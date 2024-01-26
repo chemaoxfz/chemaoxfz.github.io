@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'> Westlake University, School of Engineering </a>. xiaofangzhou@westlake.edu.cn
+subtitle: <a href='#'> Westlake University, School of Engineering </a> xiaofangzhou@westlake.edu.cn
 
 profile:
   align: right
