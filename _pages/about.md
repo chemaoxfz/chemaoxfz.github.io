@@ -13,10 +13,10 @@ profile:
     <p>600 Dunyu Road, Xihu District</p>
     <p>Hangzhou CHINA</p>
 
-news: false # includes a list of news items
-latest_posts: false # includes a list of the newest posts
+news: true # includes a list of news items
+latest_posts: true # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
-social: false # includes social icons at the bottom of the page
+social: true # includes social icons at the bottom of the page
 ---
 
 I'm Fang, an assistant professor in the School of Engineering at Westlake University in Hangzhou China, starting the biomachine architecture and control (BMAC) lab. 
