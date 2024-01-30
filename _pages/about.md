@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'> Westlake University, School of Engineering </a> xiaofangzhou@westlake.edu.cn
+subtitle: <a href='https://en.westlake.edu.cn/faculty/fangzhou-xiao.html'> Westlake University, School of Engineering </a> xiaofangzhou@westlake.edu.cn
 
 profile:
   align: right
@@ -13,13 +13,13 @@ profile:
     <p>600 Dunyu Road, Xihu District</p>
     <p>Hangzhou CHINA</p>
 
-news: true # includes a list of news items
-latest_posts: true # includes a list of the newest posts
+news: false # includes a list of news items
+latest_posts: false # includes a list of the newest posts
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-I'm Fang, an assistant professor in the School of Engineering at Westlake University in Hangzhou China, starting the biomachine architecture and control (BMAC) lab. 
+I'm Fang, an assistant professor in the School of Engineering at Westlake University in Xihu District, Hangzhou, CHINA, starting the [biomachine architecture and control (BMAC) lab](/assets/pdf/202307-westlake-summer-camp-BMAC-lab-intro-poster.pdf).
 Before this, I was a postdoctoral researcher at [Suckjoon Jun](https://jun.ucsd.edu/) group at UCSD to apply my theoretical framework in engineering to fundamental laws of bacterial survival and growth in dynamic environments. I obtained my PhD in bioengineering at Caltech in 2022, mentored by [John C Doyle](http://www.cds.caltech.edu/~doyle/wiki/index.php?title=Main_Page), and built a theoretical foundation for biocontrol in cells from gene circuits, to metabolism and physiology. My PhD thesis "Biocontrol of Biomolecular Systems: Polyhedral Constraints on Binding's Regulation of Catalysis from Biocircuits to Metabolism" is [here](https://thesis.library.caltech.edu/14652/). Here's my [google scholar site](https://scholar.google.com/citations?user=_iWSHHsAAAAJ&hl=en) and my [CV](https://chemaoxfz.github.io/assets/pdf/cv.pdf).
 
 My career goal is to push for the mature engineering of complex biological machines that fully realizes the unique potential of biotechnology.
@@ -68,9 +68,18 @@ The two figures below illustrate the system view that this promotes. For more de
     Right, understanding how the holistic regulatory profile of binding reactions relate to the mathematics of log derivative operators' decomposition rules enables a technique for analysis of log derivative polyhedra called dominance decomposition tree (DDT).
 </div>
 
+<div class="row justify-content-sm-center">
+    <div class="col-sm-6 mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-0" src="{{ '/assets/img/fig-ESC-polytope-dynamic.gif' | relative_url }}" alt="" title="binding regulates catalysis"/>
+    </div>
+</div>
+<div class="caption">
+    Binding regulates catalysis. The reaction order polyhedron (right triangle) is the holistic space of bioregulation that the binding network E+S <=> C can have on the enzymatic catalysis. Dynamics in the system happen via production and degradation changing the total enzyme and substrate concentrations (lower left), causing movements in the reaction order space (right), which in turn determines how the catalysis fluxes would respond to the changing concentrations.
+</div>
+
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-0" src="{{ '/assets/img/fig-iff-polytope-degradation.gif' | relative_url }}" alt="" title="example image"/>
+        <img class="img-fluid rounded z-depth-0" src="{{ '/assets/img/fig-iff-polytope-degradation.gif' | relative_url }}" alt="" title="perfect adaptation of incoherent feedforward viewed via ROP"/>
     </div>
 </div>
 <div class="caption">
