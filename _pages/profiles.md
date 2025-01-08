@@ -11,7 +11,7 @@ profiles:
   # and create one content file for each profile inside _pages/
   # <p>PI</p>
   - align: right
-    image: prof/pic.jpg
+    image: prof_pic.jpg
     content: about_xfz.md
     image_circular: false # crops the image to make it circular
     more_info: >
@@ -19,7 +19,7 @@ profiles:
   
   # <p>Administrative Assistant</p>
   - align: left
-    image: prof/qym.jpg
+    image: prof_qym.jpg
     content: about_qym.md
     image_circular: false # crops the image to make it circular
     more_info: >
@@ -27,21 +27,21 @@ profiles:
   
   # <p>PhD students</p>
   - align: right
-    image: prof/myp.jpg
+    image: prof_myp.jpg
     content: about_myp.md
     image_circular: false
     more_info: >
       <p>mayiping@westlake.edu.cn</p>
   
   - align: right
-    image: prof/dyh.jpg
+    image: prof_dyh.jpg
     content: about_dyh.md
     image_circular: false
     more_info: >
       <p>dingyihang@westlake.edu.cn</p>
     
   - align: right
-    image: prof/lqg.jpg
+    image: prof_lqg.jpg
     content: about_lqg.md
     image_circular: false
     more_info: >
@@ -49,7 +49,7 @@ profiles:
 
   # <p>Research Assistant</p>
   - align: left
-    image: prof/fjb.jpg
+    image: prof_fjb.jpg
     content: about_fjb.md
     image_circular: false
     more_info: >

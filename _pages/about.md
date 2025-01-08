@@ -6,7 +6,7 @@ subtitle: <a href='https://en.westlake.edu.cn/faculty/fangzhou-xiao.html'> Westl
 
 profile:
   align: right
-  image: prof/pic.jpg
+  image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Room E1-321, Yungu Campus</p>
