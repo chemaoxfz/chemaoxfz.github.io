@@ -62,7 +62,7 @@ page:
 </div>
 
 ## QSB TEA
-<!-- <div class="container">
+<div class="container">
   <div class="row">
     <div class="col">
         <img class="img-fluid rounded z-depth-0" src="{{ '/assets/img/qsbtea_1.jpg' | relative_url }}" alt="" title="Snippet 1"/>
@@ -86,4 +86,4 @@ page:
         <img class="img-fluid rounded z-depth-0" src="{{ '/assets/img/qsbtea_5.jpg' | relative_url }}" alt="" title="Snippet 5"/>
     </div>
   </div>
-</div> -->
+</div>
