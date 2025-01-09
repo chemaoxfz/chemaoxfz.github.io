@@ -1,1 +1,1 @@
-Qinguo Liu (PhD students in progress)
+Qinguo Liu (PhD student, 202409-)

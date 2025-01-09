@@ -1,1 +1,1 @@
-Yiping MA (PhD students in progress)
+Yiping MA (PhD student, 202409-)

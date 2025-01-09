@@ -1,1 +1,1 @@
-Yihang Ding (PhD students in progress)
+Yihang Ding (PhD student, 202409-)
