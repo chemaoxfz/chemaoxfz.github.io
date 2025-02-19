@@ -1,11 +1,20 @@
 ---
 layout: page
 permalink: /teaching/
-title: teaching & mentoring
-description: Courses that I have taught or TA'ed, and students that I have helped mentoring.
+title: teaching
+description: teaching for ideas is like replication for organisms.
 nav: true
 nav_order: 6
 ---
+
+## Current
+[CST 5020, Optimization and Applications, 2025 Spring, at Westlake University in Hangzhou, China](https://chemaoxfz.github.io/opt_app)
+
+
+<br>
+
+
+## Past -- Before 2024
 
 Spring 2022, UC San Diego, Guest lecturer for a one-week lecture series in Phys 176/276, on analysis and computation of dynamic metabolism. Slides for the three lectures as well as the homework assignment (with full solution) are viewable [here](https://drive.google.com/drive/folders/1F2NKVamFPvReaVWz3b19uSwzoXaECC5Q?usp=sharing).
 
