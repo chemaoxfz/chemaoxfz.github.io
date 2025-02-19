@@ -9,6 +9,7 @@ nav_order: 10
 ---
 
 [Syllabus](https://chemaoxfz.github.io/assets/opt_app/2025sp/syllabus-updated.pdf)
+[Textbook](https://web.stanford.edu/~boyd/cvxbook/)
 
 Time: 9:50 - 12:15 on Thursdays
 
