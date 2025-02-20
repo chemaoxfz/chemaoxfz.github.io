@@ -23,7 +23,19 @@ Submission: via Canvas
 
 <br>
 
-Schedule
+### Background review
+
+If you would like to review some of the background material, the following are some references that immediately come to my mind. 
+
+Appendix A, mathematical background, of our textbook, freely available [here](https://web.stanford.edu/~boyd/cvxbook/).
+
+A textbook introducing linear algebra with an optimization perspective, from the same authors as our textbook, is also freely available [here](https://web.stanford.edu/~boyd/vmls/). A course using this textbook is [EE263](https://ee263.stanford.edu/lectures.html). The [reading list](https://ee263.stanford.edu/reading.html) of this course also has some background on matrices.
+
+The "review aids" at the end of this course [webpage](https://www.stat.cmu.edu/~ryantibs/convexopt/). This is another good reference course on optimization with a more statistical and machine learning focus.
+
+<br>
+
+### Schedule
 
 | Number | Date       | Topic          | Materials | Problem Sets |
 | --    | :---       | :------------- |:-------------| ----- |
