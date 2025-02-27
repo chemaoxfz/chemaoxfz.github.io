@@ -46,6 +46,13 @@ profiles:
     image_circular: false
     more_info: >
       <p>liuqinguo@westlake.edu.cn</p>
+  
+  - align: right
+    image: prof_ljm.jpg
+    content: about_ljm.md
+    image_circular: false
+    more_info: >
+      <p>leijinman@westlake.edu.cn</p>
 
   # <p>Research Assistant</p>
   - align: left
