@@ -8,11 +8,14 @@ nav_order: 6
 ---
 
 ## Current
-[CST 5020, Optimization and Applications, 2025 Spring, at Westlake University in Hangzhou, China](https://chemaoxfz.github.io/opt_app)
+[CST 5034, Control and Computation in Biological Systems, 2025 Fall at Westlake University in Hangzhou, China](https://chemaoxfz.github.io/ccbs)
 
 
 <br>
 
+## Past -- Since 2024
+
+[CST 5020, Optimization and Applications, 2025 Spring, at Westlake University in Hangzhou, China](https://chemaoxfz.github.io/opt_app)
 
 ## Past -- Before 2024
 
