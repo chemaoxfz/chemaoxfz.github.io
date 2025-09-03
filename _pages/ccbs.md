@@ -22,6 +22,7 @@ TAs: Yihang Ding; Qinguo Liu
 Office hours: 1 hour/week, by email appointment
 TA Office hours: 1 hour/week, 10am (Yihang), 2pm (Qinguo) per Tuesday, at E3-111 BMAC lab 2nd floor
 
+Homework template: [latex template](https://www.overleaf.com/read/fjbfzgqnswjz#af1340)
 
 ### Course Description
 
@@ -40,7 +41,7 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 
 | Number | Date       | Topic          | Materials | Problem Sets |
 | --    | :---       | :------------- |:-------------| ----- |
-|  1     | 20250904   | Cell biology by the numbers, dimensional analysis, separation of time scale  |  |  |
+|  1     | 20250904   | Cell biology by the numbers, dimensional analysis, separation of time scale  |  | [pset1](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_hw01.pdf)|
 |  2     | 20250911  | Chemical reaction networks, rate equation, ODE and phase plane analysis and simulation, Stability analysis in general.|  |  |
 |  3     | 20250918   |Adaptation biomachines. Basics of control (input/output), and adaptation as integral control. How biology implements integral control differently from electrical circuits. IFFL works in biology but not in traditional engineering. |  |  |
 |  4     | 20250925  | Stochasticity, chemical master equation, noise analysis, Gillespie algorithm, gene expression burstyness, bimodal distribution, ergodicity.  |  |  |
@@ -51,6 +52,7 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 |  9     | 20251030   | Flux balance analysis (metabolic engineering), bioenergetics and metabolism (where does energy of ATP come from) |  | |
 |  10    | 20251106   | PROTEIN DESIGN! HANDS ON!!!! Nupack, Rosetta, Fold it.  |  |  |
 |  11    | 20251113   | Growth dynamics, proteome partition, diauxie, upshift/downshift  |  |  |
+
 
 <br>
 
