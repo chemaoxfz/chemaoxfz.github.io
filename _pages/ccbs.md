@@ -11,19 +11,19 @@ nav_order: 10
 <!-- [Syllabus](https://chemaoxfz.github.io/assets/ccbs/2025fall/syllabus.pdf) -->
 <!-- [Textbook](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171) -->
 
-Time: 9:50a.m. - 12:15p.m. on Thursdays
+**Time:** Thursdays 9:50a.m. - 12:15p.m.
 
-Location: E10-306 on Yungu campus
+**Location:** E10-306 on Yungu campus
 
-Website: [https://chemaoxfz.github.io/ccbs](https://chemaoxfz.github.io/ccbs)
+**Website:** [https://chemaoxfz.github.io/ccbs](https://chemaoxfz.github.io/ccbs)
 
-TAs: Yihang Ding; Qinguo Liu
+**Office hours:** 1 hour/week, by email appointment
 
-Office hours: 1 hour/week, by email appointment
+**TAs:** Yihang Ding; Qinguo Liu
 
-TA Office hours: 1 hour/week, 10am (Yihang), 2pm (Qinguo) per Tuesday, at E3-111 BMAC lab 2nd floor
+**TA Office hours:** 1 hour/week, 10am (Yihang), 2pm (Qinguo) per Tuesday, at E3-111 BMAC lab 2nd floor
 
-Homework template: [latex template](https://www.overleaf.com/read/fjbfzgqnswjz#af1340)
+**Homework template:** [latex template](https://www.overleaf.com/read/fjbfzgqnswjz#af1340)
 
 ### Course Description
 
