@@ -59,7 +59,7 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 
 ### Reference
 
-[“Biomolecular Feedback Systems”](http://www.cds.caltech.edu/~murray/BFSwiki/index.php/Main_Page) by Richard Murray. A nice (and free!) reference for general background on modeling of biological circuits (most relevant are the first 3 chapters).
+[Biomolecular Feedback Systems](http://www.cds.caltech.edu/~murray/BFSwiki/index.php/Main_Page) by Richard Murray. A nice (and free!) reference for general background on modeling of biological circuits (most relevant are the first 3 chapters).
 
 [An Introduction to Systems Biology](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171) by Uri Alon. Another good general reference. 
 
