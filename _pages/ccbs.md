@@ -64,7 +64,7 @@ Of course another good general reference is Uri Alon’s book on [systems biolog
 
 A very good course with abundant online materials: [biocircuits.github.io](https://biocircuits.github.io/)
 
-[Cell biology by the numbers](book.bionumbers.org), by Rob Phillips.
+[Cell biology by the numbers](https://book.bionumbers.org), by Rob Phillips.
 
 [Nonlinear dynamical systems](https://www.amazon.com/Nonlinear-Dynamics-Chaos-Third-Applications/dp/0367261979) and Chaos by Steven Strogatz.
 
