@@ -1,14 +1,15 @@
 ---
 layout: page
 permalink: /ccbs/
-title: CST 5031 Control and Computation in Biological Systems, Fall 2025
-description: Course materials for CST 5031 - Control and Computation in Biological Systems
+title: CST 5031 CCBS
+description: Course materials for CST 5031 - Control and Computation in Biological Systems, Fall 2025
 img: assets/img/12.jpg
 nav: true
 nav_order: 10
 ---
 
-<!-- [Syllabus](https://chemaoxfz.github.io/assets/ccbs/2025fall/syllabus.pdf) -->
+**Course name:** CST 5031 - Control and Computation in Biological Systems, Fall 2025
+[Syllabus](https://chemaoxfz.github.io/assets/ccbs/2025fall/syllabus.pdf)
 <!-- [Textbook](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171) -->
 
 **Time:** Thursdays 9:50a.m. - 12:15p.m.
@@ -17,13 +18,14 @@ nav_order: 10
 
 **Website:** [https://chemaoxfz.github.io/ccbs](https://chemaoxfz.github.io/ccbs)
 
-**Office hours:** 1 hour/week, by email appointment
+**Lecturer:** Fangzhou Xiao
+**Office hour and location:** 1 hour/week, by email appointment, E1-321
 
 **TAs:** Yihang Ding; Qinguo Liu
 
 **TA Office hours:** 1 hour/week, 10am (Yihang), 2pm (Qinguo) per Tuesday, at E3-111 BMAC lab 2nd floor
 
-**Homework template:** [latex template](https://www.overleaf.com/read/fjbfzgqnswjz#af1340)
+**Lecture scribe template:** [latex template](https://www.overleaf.com/read/fjbfzgqnswjz#af1340)
 
 ### Course Description
 
