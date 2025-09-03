@@ -59,11 +59,11 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 
 ### Reference
 
-For general background on modeling of biological circuits, a nice (and free!) reference is Richard Murray’s book [“Biomolecular Feedback Systems”](http://www.cds.caltech.edu/~murray/BFSwiki/index.php/Main_Page) (most relevant are the first 3 chapters): 
+[“Biomolecular Feedback Systems”](http://www.cds.caltech.edu/~murray/BFSwiki/index.php/Main_Page) by Richard Murray. A nice (and free!) reference for general background on modeling of biological circuits (most relevant are the first 3 chapters).
 
-Of course another good general reference is Uri Alon’s book on [systems biology](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171)
+[An Introduction to Systems Biology](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171) by Uri Alon. Another good general reference. 
 
-A very good course with abundant online materials: [biocircuits.github.io](https://biocircuits.github.io/)
+[biocircuits.github.io](https://biocircuits.github.io/) A very good course with abundant online materials: 
 
 [Cell biology by the numbers](https://book.bionumbers.org), by Rob Phillips.
 
