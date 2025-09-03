@@ -20,6 +20,7 @@ Website: [https://chemaoxfz.github.io/ccbs](https://chemaoxfz.github.io/ccbs)
 TAs: Yihang Ding; Qinguo Liu
 
 Office hours: 1 hour/week, by email appointment
+
 TA Office hours: 1 hour/week, 10am (Yihang), 2pm (Qinguo) per Tuesday, at E3-111 BMAC lab 2nd floor
 
 Homework template: [latex template](https://www.overleaf.com/read/fjbfzgqnswjz#af1340)
