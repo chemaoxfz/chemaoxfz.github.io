@@ -2,24 +2,37 @@
 layout: page
 permalink: /ccbs/
 title: CST 5031 Control and Computation in Biological Systems, Fall 2025
-description: 
+description: Course materials for CST 5031 - Control and Computation in Biological Systems
 img: assets/img/12.jpg
-nav: false
+nav: true
 nav_order: 10
 ---
 
-[Syllabus](https://chemaoxfz.github.io/assets/opt_app/2025sp/syllabus-updated.pdf)
-[Textbook](https://web.stanford.edu/~boyd/cvxbook/)
+<!-- [Syllabus](https://chemaoxfz.github.io/assets/ccbs/2025fall/syllabus.pdf) -->
+<!-- [Textbook](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171) -->
 
-Time: 9:50 - 12:15 on Thursdays
+Time: 9:50a.m. - 12:15p.m. on Thursdays
 
-Location: E10-305 on Yungu campus
+Location: E10-306 on Yungu campus
 
-Website: [https://chemaoxfz.github.io/opt_app](https://chemaoxfz.github.io/projects/opt_n_app)
+Website: [https://chemaoxfz.github.io/ccbs](https://chemaoxfz.github.io/ccbs)
 
-TAs, office hours, locations,...
+TAs: Yihang Ding; Qinguo Liu
 
-Submission: via Canvas
+Office hours: 1 hour/week, by email appointment
+TA Office hours: 1 hour/week, 10am (Yihang), 2pm (Qinguo) per Tuesday, at E3-111 BMAC lab 2nd floor
+
+
+### Course Description
+
+Biological organisms exhibit many fascinating behaviors, from magical transformation of matter via thousands of steps of metabolic reactions, to robust homeostasis adapting to rapidly shifting environments, to survival and growth that balances persistence in extreme conditions and all-out ventures into opportunistic moments of rich nutrients, to dominance and terraforming of surroundings to its own advantage. Such complex behaviors involving lots of interacting components demand a rigorous and quantitative way of reasoning, like how we reason about complex engineered machines. In this course, we introduce and master tools of reasoning from three different schools of thought pondering about life: physics, system, and industry. Physics asks what life is as an object. System asks how life works as a machine. Industry asks how life could be useful as a tool. These three schools of thought have distinct origins, approaches to analysis, and goals. They shape how we think about life forms. The tools we learn from them span a wide range, from order of magnitude estimate to design of a single protein molecule, from Markov chains to control systems, from simple reasoning based on central dogma to whole-genome models. By the end of the course, you will be able to integrate these tools and perspectives into a cohesive whole and have the confidence to reason about any biological problem thrown at you, from single molecules to populations of organisms. No background needed, but an exuberant love for biology is mandatory.
+
+### Learning Objectives
+- To understand and master the tools of analysis in quantitative synthetic biology
+- To formulate problems encountered in synthetic biology into forms analyzable using the tools in quantitative synthetic biology
+- To get familiar with the theoretical background and technical aspects underlying the tools
+
+
 
 <br>
 
@@ -27,15 +40,30 @@ Submission: via Canvas
 
 | Number | Date       | Topic          | Materials | Problem Sets |
 | --    | :---       | :------------- |:-------------| ----- |
-|  1     | 20250220   | Why optimization, intro, convex sets  | My take on ["why optimization"](https://chemaoxfz.github.io/assets/opt_app/2025sp/lecture1/CST5020-lecture-01-course-management-and-my-take.pdf). Lecture 1 and 2 of [Boyd's 364a](https://web.stanford.edu/class/ee364a/lectures.html). My version of the slides with comments: [01-intro](https://chemaoxfz.github.io/assets/opt_app/2025sp/lecture1/01-intro.pdf);[02-convex-sets](https://chemaoxfz.github.io/assets/opt_app/2025sp/lecture1/02-sets.pdf)  | |
-|  2     | 20250227   | Convex sets, Convex functions  | Lecture 3 of [Boyd's 364a](https://web.stanford.edu/class/ee364a/lectures.html), my version: [03-functions](https://chemaoxfz.github.io/assets/opt_app/2025sp/lecture2/03-convex-functions-with-notes.pdf)|  [pset1](https://chemaoxfz.github.io/assets/opt_app/2025sp/pset1/pset1.pdf) (due 20250321), [latex source](https://chemaoxfz.github.io/assets/opt_app/2025sp/pset1/pset1.zip), [overleaf link](https://www.overleaf.com/read/fzzcmmjtqrpf#7d24c4), [xy_test.csv](https://chemaoxfz.github.io/assets/opt_app/2025sp/pset1/xy_test.csv), [xy_train.csv](https://chemaoxfz.github.io/assets/opt_app/2025sp/pset1/xy_train.csv)|
-|  3     | 20250306   | Convex optimization problems  | Lecture 4 of [Boyd's 364a](https://web.stanford.edu/class/ee364a/lectures.html), my version: [04-convex-problems](https://chemaoxfz.github.io/assets/opt_app/2025sp/lecture3/04-convex-optimization-problems-with-notes.pdf) | |
-|  4     | 20250313   | Duality  | Lecture 5 of [Boyd's 364a](https://web.stanford.edu/class/ee364a/lectures.html), my version: [05-duality](https://chemaoxfz.github.io/assets/opt_app/2025sp/lecture4/05-duality-with-notes.pdf) | |
-|  5     | 20250320   | More on duality, Approximation and Fitting | Lecture 6 of [Boyd's 364a](https://web.stanford.edu/class/ee364a/lectures.html), my version: [06-approx-and-fitting](https://chemaoxfz.github.io/assets/opt_app/2025sp/lecture5/06-approx-and-fitting-with-notes.pdf) | [pset2](https://chemaoxfz.github.io/assets/opt_app/2025sp/pset2/pset2.pdf) (due 20250411), [latex source](https://chemaoxfz.github.io/assets/opt_app/2025sp/pset2/pset2.zip), [overleaf link](https://www.overleaf.com/read/dpwgsnfnmtbt#d27e90) |
-|  6     | 20250327   | Statistical estimation, geometric problems  | | |
-|  7     | 20250403   | Unconstrained minimization  | | |
-|  8     | 20250410   | Equality constrained minimization  | | |
-|  9     | 20250417   | Interior point method  | | |
-|  10    | 20250424   | Application: statistical and machine learning  | | |
-|  11    | 20250501   | Application: Control 1 - optimal control  | | |
+|  1     | 20250904   | Cell biology by the numbers, dimensional analysis, separation of time scale  |  |  |
+|  2     | 20250911  | Chemical reaction networks, rate equation, ODE and phase plane analysis and simulation, Stability analysis in general.|  |  |
+|  3     | 20250918   |Adaptation biomachines. Basics of control (input/output), and adaptation as integral control. How biology implements integral control differently from electrical circuits. IFFL works in biology but not in traditional engineering. |  |  |
+|  4     | 20250925  | Stochasticity, chemical master equation, noise analysis, Gillespie algorithm, gene expression burstyness, bimodal distribution, ergodicity.  |  |  |
+|  5     | 20251002  | Energy and equilibrium physics (kinetic proofreading), Markov chain |  |  |
+|  6     | 20251009  | Computation biomachines. Biological networks as calculators, computers, artificial neural networks, and ... themselves?  |  |  |
+|  7     | 20251016   | Combinatorial regulation and promiscuous interactions in cell signaling and cell fate decisions, also ultrasensitivity in ligand-receptor binding. ROP as a way for holistic analysis, three archetypal behaviors in a binding reaction.  |  | |
+|  8     | 20251023   | Holistic analysis solving the above problems. Behavior in ROP as trajectory through regimes. Computation of binding-catalysis networks - homotopy continuation.  |  |  |
+|  9     | 20251030   | Flux balance analysis (metabolic engineering), bioenergetics and metabolism (where does energy of ATP come from) |  | |
+|  10    | 20251106   | PROTEIN DESIGN! HANDS ON!!!! Nupack, Rosetta, Fold it.  |  |  |
+|  11    | 20251113   | Growth dynamics, proteome partition, diauxie, upshift/downshift  |  |  |
+
+<br>
+
+### Reference
+
+For general background on modeling of biological circuits, a nice (and free!) reference is Richard Murray’s book [“Biomolecular Feedback Systems”](http://www.cds.caltech.edu/~murray/BFSwiki/index.php/Main_Page) (most relevant are the first 3 chapters): 
+
+Of course another good general reference is Uri Alon’s book on [systems biology](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171)
+
+A very good course with abundant online materials: [biocircuits.github.io](https://biocircuits.github.io/)
+
+[Cell biology by the numbers](book.bionumbers.org), by Rob Phillips.
+
+[Nonlinear dynamical systems](https://www.amazon.com/Nonlinear-Dynamics-Chaos-Third-Applications/dp/0367261979) and Chaos by Steven Strogatz.
+
 
