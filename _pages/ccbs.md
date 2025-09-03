@@ -1,14 +1,14 @@
 ---
 layout: page
 permalink: /ccbs/
-title: CST 5031 CCBS
-description: Course materials for CST 5031 - Control and Computation in Biological Systems, Fall 2025
+title: CST 5034 CCBS
+description: Course materials for CST 5034 - Control and Computation in Biological Systems, Fall 2025
 img: assets/img/12.jpg
 nav: true
 nav_order: 10
 ---
 
-**Course name:** CST 5031 - Control and Computation in Biological Systems, Fall 2025
+**Course name:** CST 5034 - Control and Computation in Biological Systems, Fall 2025
 [Syllabus](https://chemaoxfz.github.io/assets/ccbs/2025fall/syllabus.pdf)
 <!-- [Textbook](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171) -->
 
