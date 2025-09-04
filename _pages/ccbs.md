@@ -44,7 +44,7 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 
 | Number | Date       | Topic          | Reference Materials | Problem Sets | Lecture Notes
 | --    | :---       | :------------- |:-------------| ----- | ----- |
-|  1     | 20250904   | Cell biology by the numbers, dimensional analysis, separation of time scale  | [cell biology by the numbers](https://book.bionumbers.org/); [physical biology of the cell](https://www.rpgroup.caltech.edu/aph161/2022/index.html) | [pset1](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_hw01.pdf)| (notes) |
+|  1     | 20250904   | Cell biology by the numbers, dimensional analysis, separation of time scale  | [cell biology by the numbers](https://book.bionumbers.org/); [physical biology of the cell](https://www.rpgroup.caltech.edu/aph161/2022/index.html) | [pset1](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_hw01.pdf)| [written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/202509-CCBS-lecture-notes-01-OoM.pdf); (scribe note) |
 |  2     | 20250911  | Chemical reaction networks, rate equation, ODE and phase plane analysis and simulation, Stability analysis in general.| (material) | (hw) | (notes) |
 |  3     | 20250918   |Adaptation biomachines. Basics of control (input/output), and adaptation as integral control. How biology implements integral control differently from electrical circuits. IFFL works in biology but not in traditional engineering. |(material) | (hw) | (notes) |
 |  4     | 20250925  | Stochasticity, chemical master equation, noise analysis, Gillespie algorithm, gene expression burstyness, bimodal distribution, ergodicity.  |(material) | (hw) | (notes) |
