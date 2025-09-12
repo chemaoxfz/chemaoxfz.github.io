@@ -43,16 +43,16 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 ### Schedule
 
 | Number | Date       | Topic          | Reference Materials | Problem Sets | Lecture Notes
-| --    | :---       | :------------- |:-------------| ----- | ----- |
-|  1     | 20250904   | Cell biology by the numbers, dimensional analysis, separation of time scale  | [cell biology by the numbers](https://book.bionumbers.org/); [physical biology of the cell](https://www.rpgroup.caltech.edu/aph161/2022/index.html) | [pset1](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_hw01.pdf)| [written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/202509-CCBS-lecture-notes-01-OoM.pdf); [scribe note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_scribe_lecture1.pdf);([source code](https://www.overleaf.com/read/fbnqbwbwmwtr#bd4ee8)) |
-|  2     | 20250911  | Chemical reaction networks, rate equation, ODE and phase plane analysis and simulation, Stability analysis in general.| (material) | [pset2](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/2025FL_CCBS_hw02.pdf) | [written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf);(scribe note) |
-|  3     | 20250918   |Adaptation biomachines. Basics of control (input/output), and adaptation as integral control. How biology implements integral control differently from electrical circuits. IFFL works in biology but not in traditional engineering. |(material) | (hw) | (notes) |
-|  4     | 20250925  | Stochasticity, chemical master equation, noise analysis, Gillespie algorithm, gene expression burstyness, bimodal distribution, ergodicity.  |(material) | (hw) | (notes) |
-|  5     | 20251002  | Energy and equilibrium physics (kinetic proofreading), Markov chain | (material) | (hw) | (notes) |
-|  6     | 20251009  | Computation biomachines. Biological networks as calculators, computers, artificial neural networks, and ... themselves?  | (material) | (hw) | (notes) |
-|  7     | 20251016   | Combinatorial regulation and promiscuous interactions in cell signaling and cell fate decisions, also ultrasensitivity in ligand-receptor binding. ROP as a way for holistic analysis, three archetypal behaviors in a binding reaction.  | (material) | (hw) | (notes) |
-|  8     | 20251023   | Holistic analysis solving the above problems. Behavior in ROP as trajectory through regimes. Computation of binding-catalysis networks - homotopy continuation.  | (material) | (hw) | (notes) |
-|  9     | 20251030   | Flux balance analysis (metabolic engineering), bioenergetics and metabolism (where does energy of ATP come from) |(material) | (hw) | (notes) |
+| --    | :---       | :----------------- |:-------------| ----- | ----- |
+|  1     | 20250904   | Order of Magnitude (OoM) reasoning in physics and biology  | [cell biology by the numbers](https://book.bionumbers.org/); [physical biology of the cell](https://www.rpgroup.caltech.edu/aph161/2022/index.html) | [pset1](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_hw01.pdf)| [written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/202509-CCBS-lecture-notes-01-OoM.pdf); [scribe note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_scribe_lecture1.pdf);([source code](https://www.overleaf.com/read/fbnqbwbwmwtr#bd4ee8)) |
+|  2     | 20250911  | Chemical reaction networks (CRNs), elementary vs composite reactions, estimate of reaction rate, law of mass action, rate equations| (material) | [pset2](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/2025FL_CCBS_hw02.pdf) | [written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf);(scribe note) |
+|  3     | 20250918   | Analysis of 1D and 2D dynamical systems, phase portrait, local stability, polynomial dynamics of CRNs, diversity of bioregulation by time scale separation |(material) | (hw) | (notes) |
+|  4     | 20250925  | Adaptation biomachines. Conceptual basics of control. Adaptation as integral control. How biology implements integral control differently from electrical circuits. IFFL works in biology but not in traditional engineering.  |(material) | (hw) | (notes) |
+|  5     | 20251002  | Stochasticity, chemical master equation, noise analysis, Gillespie algorithm, gene expression burstyness, bimodal distribution, ergodicity. | (material) | (hw) | (notes) |
+|  6     | 20251009  | Energy and equilibrium statistical mechanics applied to transcriptional and enzymatic regulation, markov chain.  | (material) | (hw) | (notes) |
+|  7     | 20251016   | Computation biomachines. Biological networks as calculators, computers, artificial neural networks, and ... themselves?  | (material) | (hw) | (notes) |
+|  8     | 20251023   | Combinatorial regulation and promiscuous interactions in cell signaling and cell fate decisions, also ultrasensitivity in ligand-receptor binding. ROP as a way for holistic analysis, three archetypal behaviors in a binding reaction. Holistic analysis solving the above problems. Behavior in ROP as trajectory through regimes. Computation of binding-catalysis networks - homotopy continuation. | (material) | (hw) | (notes) |
+|  9     | 20251030   |  Flux balance analysis (metabolic engineering), bioenergetics and metabolism (where does energy of ATP come from) |(material) | (hw) | (notes) |
 |  10    | 20251106   | PROTEIN DESIGN! HANDS ON!!!! Nupack, Rosetta, Fold it.  | (material) | (hw) | (notes) |
 |  11    | 20251113   | Growth dynamics, proteome partition, diauxie, upshift/downshift  | (material) | (hw) | (notes) |
 
@@ -61,14 +61,18 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 
 ### Reference
 
-[Biomolecular Feedback Systems](http://www.cds.caltech.edu/~murray/BFSwiki/index.php/Main_Page) by Richard Murray. A nice (and free!) reference for general background on modeling of biological circuits (most relevant are the first 3 chapters).
+This course does not have a textbook and all materials are self-contained. But the following reference might be helpful depending on your particular interests.
 
-[An Introduction to Systems Biology](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171) by Uri Alon. Another good general reference. 
+[Biomolecular Feedback Systems](http://www.cds.caltech.edu/~murray/BFSwiki/index.php/Main_Page) by Richard Murray. A nice (and free!) reference for general background on modeling of biological circuits (most relevant are the first 3 chapters), time-scale separation by singular perturbation, stochasticity, and some on feedback and control.
 
-[biocircuits.github.io](https://biocircuits.github.io/) A very good course with abundant online materials: 
+[An Introduction to Systems Biology](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171) by Uri Alon. Another good general reference on the interplay between systems thinking based on simple models and biological implications.
 
-[Cell biology by the numbers](https://book.bionumbers.org), by Rob Phillips.
+[biocircuits.github.io](https://biocircuits.github.io/). A very good course with abundant online materials! With lots of recent examples, papers, and ready-to-use code implementing analysis and simulations of many biocircuits.
 
-[Nonlinear dynamical systems](https://www.amazon.com/Nonlinear-Dynamics-Chaos-Third-Applications/dp/0367261979) and Chaos by Steven Strogatz.
+[Cell biology by the numbers](https://book.bionumbers.org). A book freely available in easily accessible webpage form! Lots of interesting vignettes for Order of Magnitude (OoM) reasoning about biology. For example, do you know an mRNA molecule is about 10 times larger (volume or mass) than the protein it encodes?
+
+[Nonlinear dynamical systems and Chaos](https://www.amazon.com/Nonlinear-Dynamics-Chaos-Third-Applications/dp/0367261979)  by Steven Strogatz. An accessible book, especially good at giving intuitive descriptions of dynamics for 1D and 2D systems.
+
+[Foundations of Chemical Reaction Network Theory](https://link.springer.com/book/10.1007/978-3-030-03858-8) by Martin Feinberg. A book on the more mathematical aspects of chemical reaction networks, especially equilibrium dynamics. A good reference book. Caution: try not to lose sight of biology, then you won't be daunted by the math wrappings.
 
 
