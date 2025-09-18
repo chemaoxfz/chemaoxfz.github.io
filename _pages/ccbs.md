@@ -36,7 +36,9 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 - To formulate problems encountered in synthetic biology into forms analyzable using the tools in quantitative synthetic biology
 - To get familiar with the theoretical background and technical aspects underlying the tools
 
-
+### Course Video
+- [Video records](https://pan.westlake.edu.cn:443/link/BE96441505CC9ACFEF78FFA268FCBA47)；Passport: hWut
+- Lecture video recordings will be updated weekly
 
 <br>
 
@@ -46,7 +48,7 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 | --    | :---       | :----------------- |:-------------| ----- | ----- |
 |  1     | 20250904   | Order of Magnitude (OoM) reasoning in physics and biology  | [cell biology by the numbers](https://book.bionumbers.org/); [physical biology of the cell](https://www.rpgroup.caltech.edu/aph161/2022/index.html) | [pset1](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_hw01.pdf)| [written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/202509-CCBS-lecture-notes-01-OoM.pdf); [scribe note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_scribe_lecture1.pdf);([source code](https://www.overleaf.com/read/fbnqbwbwmwtr#bd4ee8)) |
 |  2     | 20250911  | Chemical reaction networks (CRNs), elementary vs composite reactions, estimate of reaction rate, law of mass action, rate equations| (material) | [pset2](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/2025FL_CCBS_hw02.pdf) | [written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf);(scribe note) |
-|  3     | 20250918   | Analysis of 1D and 2D dynamical systems, phase portrait, local stability, polynomial dynamics of CRNs, diversity of bioregulation by time scale separation |(material) | (hw) | (notes) |
+|  3     | 20250918   | Analysis of 1D and 2D dynamical systems, phase portrait, local stability, polynomial dynamics of CRNs, diversity of bioregulation by time scale separation |(material) | (hw) |[written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture3/202509-CCBS-lecture-notes-03-bioregulation_202509181251_21385.pdf);(scribe note) |
 |  4     | 20250925  | Adaptation biomachines. Conceptual basics of control. Adaptation as integral control. How biology implements integral control differently from electrical circuits. IFFL works in biology but not in traditional engineering.  |(material) | (hw) | (notes) |
 |  5     | 20251002  | Stochasticity, chemical master equation, noise analysis, Gillespie algorithm, gene expression burstyness, bimodal distribution, ergodicity. | (material) | (hw) | (notes) |
 |  6     | 20251009  | Energy and equilibrium statistical mechanics applied to transcriptional and enzymatic regulation, markov chain.  | (material) | (hw) | (notes) |
