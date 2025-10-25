@@ -53,12 +53,11 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 |        |  20251002          | holiday |
 |  5     |  20251009 | Stochasticity, chemical master equation | (material)  | [pset4](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture5/2025FL_CCBS_hw04.pdf) |[written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture5/202509-CCBS-lecture-notes-05-adaptation-biomachine_202510090338_05347.pdf)(scribe note) |
 |  6     | 20251016  | noise analysis, Gillespie algorithm, gene expression burstyness, bimodal distribution, ergodicity.  | (material) | [pset5](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture6/2025FL_CCBS_hw05.pdf) | [written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture6/202509-CCBS-lecture-notes-06-noise-and-energy-equi_202510161018_41883.pdf)(scribe note) |
-|  7     |  20251023  | Energy and equilibrium statistical mechanics applied to transcriptional and enzymatic regulation, markov chain.  | (material) | (same hw as last week) | (notes) |
+|  7     |  20251023  | Energy and equilibrium statistical mechanics applied to transcriptional and enzymatic regulation, markov chain.  | (material) | (same hw as last week) | [written note](https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture7/202509-CCBS-lecture-notes-07-energy-equilibrium-re_202510251507_57260.pdf) |
 |  8     |  20251030  | Computation biomachines. Biological networks as calculators, computers, artificial neural networks, and ... themselves? | (material) | (hw) | (notes) |
 |  9     |  20251106  | PROTEIN DESIGN! HANDS ON!!!! Nupack, Rosetta, Fold it. |(material) | (hw) | (notes) |
 |  10    |  20251113  | Combinatorial regulation and promiscuous interactions in cell signaling and cell fate decisions, also ultrasensitivity in ligand-receptor binding. ROP as a way for holistic analysis, three archetypal behaviors in a binding reaction. Holistic analysis solving the above problems. Behavior in ROP as trajectory through regimes. Computation of binding-catalysis networks - homotopy continuation.   | (material) | (hw) | (notes) |
 |  11    | 20251120   |  (1) Flux balance analysis (metabolic engineering), bioenergetics and metabolism (where does energy of ATP come from), (2) Growth dynamics, proteome partition, diauxie, upshift/downshift  | (material) | (hw) | (notes) |
-
 
 <br>
 
