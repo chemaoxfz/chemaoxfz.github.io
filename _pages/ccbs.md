@@ -40,6 +40,9 @@ Biological organisms exhibit many fascinating behaviors, from magical transforma
 - [Video records](https://pan.westlake.edu.cn:443/link/BE96441505CC9ACFEF78FFA268FCBA47)；Password: **hWut**
 - Lecture video recordings will be updated weekly
 
+### Collection of Scribe notes
+- [Scribe notes collection](https://chemaoxfz.github.io/assets/ccbs/2025fall/2025FL_CCBS_textbook.pdf)
+
 <br>
 
 ### Schedule
