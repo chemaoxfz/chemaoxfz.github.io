@@ -53,12 +53,8 @@ profiles:
     image_circular: false
     more_info: >
       <p>leijinman@westlake.edu.cn</p>
-
-  # <p>Research Assistant</p>
-  - align: left
-    image: prof_fjb.jpg
-    content: about_fjb.md
-    image_circular: false
-    more_info: >
-      <p>fanjinbin@westlake.edu.cn</p>
 ---
+
+Lab Alumni: 
+
+Jinbin Fan (research assistant 2024-2025)
