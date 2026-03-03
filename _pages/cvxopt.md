@@ -4,7 +4,7 @@ permalink: /opt_app/
 title: CST 5020 Optimization and Applications, Spring 2026
 description: 
 img: assets/img/12.jpg
-nav: false
+nav: true
 nav_order: 10
 ---
 
