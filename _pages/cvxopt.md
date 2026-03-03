@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /opt_app/
-title: CST 5020 Optimization and Applications, Spring 2026
+title: CST 5020 Convex Optimization, Spring 2026
 description: 
 img: assets/img/12.jpg
 nav: true
@@ -16,8 +16,6 @@ Time: 9:50 - 11:25 on Wednesdays
 Location: E10-306 on Yungu campus
 
 Website: [https://chemaoxfz.github.io/cvxopt](https://chemaoxfz.github.io/cvxopt)
-
-Submission: via Canvas
 
 <br>
 
