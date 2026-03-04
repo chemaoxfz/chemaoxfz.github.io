@@ -4,7 +4,7 @@ permalink: /profiles/
 title: people
 description: members of the BMAC Lab
 nav: false
-nav_order: 3
+nav_order: 9
 
 profiles:
   # if you want to include more than one profile, just replicate the following block
