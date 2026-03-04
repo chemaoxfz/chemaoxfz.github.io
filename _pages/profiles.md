@@ -53,8 +53,10 @@ profiles:
     image_circular: false
     more_info: >
       <p>leijinman@westlake.edu.cn</p>
----
 
 Lab Alumni: 
 
 Jinbin Fan (research assistant 2024-2025)
+---
+
+
