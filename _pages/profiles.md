@@ -1,9 +1,9 @@
 ---
 layout: profiles
-permalink: /people/
+permalink: /profiles/
 title: people
 description: members of the BMAC Lab
-nav: true
+nav: false
 nav_order: 3
 
 profiles:
