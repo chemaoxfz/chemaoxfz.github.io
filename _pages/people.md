@@ -4,7 +4,7 @@ permalink: /people/
 title: people
 description: members of the BMAC Lab
 nav: true
-nav_order: 3
+nav_order: 4
 
 ## Principle Investigator
 
@@ -41,6 +41,8 @@ Yanzhang Jiang, research assistant (2025-), design of complex binding networks, 
 Jiarui Zhang, visiting student (2025-), monomer repressilator.
 
 Yuyang Han, visiting student (2025-), retrograde of yeast cell cycle.
+
+---
 
 
 ## Lab Alumni: 
