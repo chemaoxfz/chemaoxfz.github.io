@@ -8,11 +8,11 @@
         "Massimiliano Esposito"
       ],
       "category": "core",
-      "key_finding": "Diffusion equilibrates in reaction-diffusion systems whose chemical reaction network is either pseudo-detailed balanced or complex balanced, with the constraints on reaction fluxes originating from distinct stoichiometric properties.",
+      "key_finding": "Diffusion equilibrates in systems whose reaction networks are pseudo-detailed balanced or complex balanced, with distinct constraints on reaction fluxes arising from stoichiometric properties.",
       "pdf_url": "https://arxiv.org/pdf/2607.06030",
       "published": "2026-07-07",
       "title": "Identifying Non-Ideal Reaction-Diffusion Systems Unable to Maintain Diffusion Out-of-Equilibrium",
-      "tldr": "This preprint develops a Lyapunov-function-based method to prove that diffusion equilibrates in non-ideal reaction-diffusion systems when the reaction network is pseudo-detailed balanced or complex balanced, even under chemostat driving.",
+      "tldr": "The authors develop a method using a kinetic potential as a Lyapunov function to identify conditions under which diffusion equilibrates in non-ideal reaction-diffusion systems driven by chemostats, generalizing previous results by relaxing assumptions.",
       "topics": [
         "Binding–catalysis systems theory",
         "Stochastic \u0026 information limits",
@@ -20,7 +20,64 @@
       ],
       "url": "https://arxiv.org/abs/2607.06030",
       "venue": "arXiv (Cornell University)",
-      "why_relevant": "This work extends systems-theoretic tools for non-ideal reaction-diffusion systems relevant to biomolecular control and synthetic biology, aligning with Fangzhou's focus on systems theory for biomachines."
+      "why_relevant": "This work advances the systems-theoretic understanding of non-equilibrium reaction-diffusion systems, which is foundational for your research on binding–catalysis systems and stochastic limits in biomolecular control."
+    },
+    {
+      "authors": [
+        "Purushottam D. Dixit",
+        "Aviral Jain"
+      ],
+      "category": "adjacent",
+      "key_finding": "Receptor architecture with multi-step phosphorylation and proofreading allows signaling activity and range to increase together over a finite window of ligand residence time, overcoming the canonical synthesis-diffusion-degradation tradeoff.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/22/2026.07.17.739274.full.pdf",
+      "published": "2026-07-22",
+      "title": "Kinetic proofreading decouples signal strength and range in paracrine gradient formation",
+      "tldr": "The authors propose a model of multi-step ligand processing with kinetic-proofreading-like resetting that decouples signal strength from spatial range in paracrine gradient formation, explaining recent live-imaging data for EGF receptor ligands.",
+      "topics": [
+        "Sensing \u0026 proofreading"
+      ],
+      "url": "https://doi.org/10.64898/2026.07.17.739274",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "This paper provides a mechanistic example of kinetic proofreading in spatial signaling, directly relevant to your research on sensing and proofreading in biological systems."
+    },
+    {
+      "authors": [
+        "Felix Klempt",
+        "Hendrik Geisler",
+        "Meisam Soleimani",
+        "Philipp Junker"
+      ],
+      "category": "adjacent",
+      "key_finding": "The model uses Hamilton's principle for thermodynamic consistency and can qualitatively reproduce complex interaction patterns, including spatial structure and population dynamics.",
+      "pdf_url": "https://link.springer.com/content/pdf/10.1007/s00419-026-03160-y.pdf",
+      "published": "2026-07-22",
+      "title": "A continuum multi-species bacterial growth model with a novel interaction scheme",
+      "tldr": "The authors present a continuum multi-species bacterial biofilm model that incorporates arbitrary species interactions, nutrient and antibiotic effects, and is thermodynamically consistent via derivation from Hamilton's principle.",
+      "topics": [
+        "Bacterial physiology"
+      ],
+      "url": "https://doi.org/10.1007/s00419-026-03160-y",
+      "venue": "Archive of Applied Mechanics",
+      "why_relevant": "This thermodynamic, continuum modeling approach for bacterial populations aligns with your interest in dynamic metabolism and bacterial physiology, offering a framework for mathematical biology methods."
+    },
+    {
+      "authors": [
+        "David Ohlin",
+        "Anders Rantzer",
+        "Emma Tegling"
+      ],
+      "category": "explorer",
+      "key_finding": "A heuristic-based algorithm efficiently finds local solutions for positive linear systems, and a distributed algorithm provides local controllers within an optimality bound with a termination condition.",
+      "pdf_url": "",
+      "published": "2026-07-13",
+      "title": "Heuristic search for linear positive systems",
+      "tldr": "The authors show an equivalence between stochastic shortest path problems and optimal control of a class of positive linear systems, and derive heuristic search algorithms for distributed local control with performance bounds.",
+      "topics": [
+        "Mathematical biology methods"
+      ],
+      "url": "https://doi.org/10.1016/j.automatica.2026.113153",
+      "venue": "Automatica",
+      "why_relevant": "This advances control-theoretic tools for positive systems, which are relevant to your work on systems theory and computational design for biomolecular and microbial systems."
     }
   ],
   "run_key": "2026-W30",
