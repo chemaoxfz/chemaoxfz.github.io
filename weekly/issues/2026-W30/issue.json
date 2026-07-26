@@ -1,0 +1,30 @@
+{
+  "end_date": "2026-07-26",
+  "papers": [
+    {
+      "authors": [
+        "Francesco Avanzini",
+        "Timur Aslyamov",
+        "Massimiliano Esposito"
+      ],
+      "category": "core",
+      "key_finding": "Diffusion equilibrates in reaction-diffusion systems whose chemical reaction network is either pseudo-detailed balanced or complex balanced, with the constraints on reaction fluxes originating from distinct stoichiometric properties.",
+      "pdf_url": "https://arxiv.org/pdf/2607.06030",
+      "published": "2026-07-07",
+      "title": "Identifying Non-Ideal Reaction-Diffusion Systems Unable to Maintain Diffusion Out-of-Equilibrium",
+      "tldr": "This preprint develops a Lyapunov-function-based method to prove that diffusion equilibrates in non-ideal reaction-diffusion systems when the reaction network is pseudo-detailed balanced or complex balanced, even under chemostat driving.",
+      "topics": [
+        "Binding–catalysis systems theory",
+        "Stochastic \u0026 information limits",
+        "Sensing \u0026 proofreading"
+      ],
+      "url": "https://arxiv.org/abs/2607.06030",
+      "venue": "arXiv (Cornell University)",
+      "why_relevant": "This work extends systems-theoretic tools for non-ideal reaction-diffusion systems relevant to biomolecular control and synthetic biology, aligning with Fangzhou's focus on systems theory for biomachines."
+    }
+  ],
+  "run_key": "2026-W30",
+  "schema_version": 1,
+  "start_date": "2026-07-20",
+  "title": "BMAC Weekly — 2026-W30"
+}
