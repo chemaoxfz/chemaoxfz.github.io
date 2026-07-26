@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="title">
+  <title id="title">Microbial growth and division</title>
+  <rect width="400" height="300" rx="20" fill="#f7f8f4"/>
+  <g fill="#b8e0cf" stroke="#173c2d" stroke-width="7">
+    <rect x="46" y="154" width="92" height="44" rx="22" transform="rotate(-12 92 176)"/>
+    <rect x="153" y="118" width="102" height="48" rx="24" transform="rotate(8 204 142)"/>
+    <rect x="265" y="166" width="92" height="44" rx="22" transform="rotate(-7 311 188)"/>
+  </g>
+  <path d="M204 121v43" stroke="#e07055" stroke-width="7" stroke-dasharray="7 6"/>
+  <path d="M47 242c54-2 63-30 103-29 45 1 52-73 92-72 44 1 46-66 110-78" fill="none" stroke="#287f67" stroke-width="9" stroke-linecap="round"/>
+  <path d="M333 61l20 1-7 19" fill="none" stroke="#287f67" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

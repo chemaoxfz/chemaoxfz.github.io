@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="title">
+  <title id="title">Microbial populations and communities</title>
+  <rect width="400" height="300" rx="20" fill="#f7f8f4"/>
+  <g stroke="#173c2d" stroke-width="6">
+    <path d="M105 92l87 54M292 90l-91 57M111 217l81-61M291 215l-90-59" stroke="#9bb8a8"/>
+    <path d="M105 92l6 125M292 90l-1 125M105 92l187-2M111 217l180-2" stroke="#d0d9d2"/>
+    <circle cx="105" cy="92" r="32" fill="#d8ff63"/>
+    <circle cx="292" cy="90" r="32" fill="#8fc7ff"/>
+    <circle cx="111" cy="217" r="32" fill="#ffb86b"/>
+    <circle cx="291" cy="215" r="32" fill="#d9b5e8"/>
+    <circle cx="196" cy="151" r="38" fill="#70a288"/>
+  </g>
+  <g fill="#173c2d">
+    <circle cx="94" cy="87" r="4"/><circle cx="112" cy="99" r="4"/>
+    <circle cx="281" cy="84" r="4"/><circle cx="300" cy="98" r="4"/>
+    <circle cx="100" cy="211" r="4"/><circle cx="119" cy="224" r="4"/>
+    <circle cx="280" cy="209" r="4"/><circle cx="299" cy="222" r="4"/>
+    <circle cx="184" cy="144" r="4"/><circle cx="205" cy="158" r="4"/>
+  </g>
+</svg>

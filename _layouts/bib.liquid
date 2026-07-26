@@ -1,21 +1,41 @@
 ---
 ---
-<div class="row">
+<div class="row publication-row">
   {% if site.enable_publication_thumbnails %}
-    <div class="col-sm-2 {% if entry.preview %}preview{% else %}abbr{% endif %}">
+    <div class="col-3 col-sm-2 publication-visual {% if entry.preview %}has-preview{% else %}abbr{% endif %}">
       {% if entry.preview %}
         {% if entry.preview contains '://' %}
-          <img class="preview z-depth-1 rounded" src="{{ entry.preview }}">
-        {% else %}
-          {% assign entry_path = entry.preview | prepend: '/assets/img/publication_preview/' %}
-          {%
-            include figure.liquid
-            path=entry_path
-            sizes = "200px"
+          <img
             class="preview z-depth-1 rounded"
-            zoomable=false
-            alt=entry.preview
-          %}
+            src="{{ entry.preview }}"
+            alt="{{ entry.title | strip_html | escape }}"
+            loading="lazy"
+          >
+        {% else %}
+          {% if entry.preview contains '/' %}
+            {% assign entry_path = entry.preview %}
+          {% else %}
+            {% assign entry_path = entry.preview | prepend: '/assets/img/publication_preview/' %}
+          {% endif %}
+          {% if entry_path contains '.svg' %}
+            <img
+              class="preview z-depth-1 rounded"
+              src="{{ entry_path | relative_url }}"
+              alt="{{ entry.title | strip_html | escape }}"
+              loading="lazy"
+              width="400"
+              height="300"
+            >
+          {% else %}
+            {%
+              include figure.liquid
+              path=entry_path
+              sizes = "160px"
+              class="preview z-depth-1 rounded"
+              zoomable=false
+              alt=entry.title
+            %}
+          {% endif %}
         {% endif %}
       {% elsif entry.abbr %}
         {% if site.data.venues[entry.abbr] %}
@@ -33,12 +53,16 @@
         {% else %}
           <abbr class="badge">{{ entry.abbr }}</abbr>
         {% endif %}
+      {% else %}
+        <div class="publication-placeholder" aria-hidden="true">
+          <span>BMAC</span>
+        </div>
       {% endif %}
     </div>
   {% endif %}
 
   <!-- Entry bib key -->
-  <div id="{{entry.key}}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}">
+  <div id="{{entry.key}}" class="{% if site.enable_publication_thumbnails %}col-9 col-sm-10 publication-copy{% else %}col-12{% endif %}">
     <!-- Title -->
     <div class="title">{{ entry.title }}</div>
     <!-- Author -->

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="title">
+  <title id="title">Genomics and molecular data</title>
+  <rect width="400" height="300" rx="20" fill="#f7f8f4"/>
+  <path d="M92 51c102 45 102 153 0 198M188 51C86 96 86 204 188 249" fill="none" stroke="#173c2d" stroke-width="10" stroke-linecap="round"/>
+  <g stroke="#70a288" stroke-width="7" stroke-linecap="round">
+    <path d="M116 67h48M94 98h88M81 132h114M81 168h114M94 202h88M116 233h48"/>
+  </g>
+  <g fill="#287f67">
+    <rect x="244" y="75" width="91" height="12" rx="6"/>
+    <rect x="225" y="108" width="119" height="12" rx="6"/>
+    <rect x="256" y="141" width="73" height="12" rx="6"/>
+    <rect x="232" y="174" width="108" height="12" rx="6"/>
+    <rect x="269" y="207" width="62" height="12" rx="6"/>
+  </g>
+  <g fill="#ffb86b">
+    <circle cx="268" cy="81" r="7"/><circle cx="302" cy="114" r="7"/>
+    <circle cx="282" cy="147" r="7"/><circle cx="254" cy="180" r="7"/>
+    <circle cx="304" cy="213" r="7"/>
+  </g>
+</svg>

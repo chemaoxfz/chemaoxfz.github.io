@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="title">
+  <title id="title">Molecular sensing and proofreading</title>
+  <rect width="400" height="300" rx="20" fill="#f7f8f4"/>
+  <path d="M38 156h324" stroke="#b8c8be" stroke-width="8" stroke-linecap="round"/>
+  <path d="M181 156v-40c0-22 38-22 38 0v40" fill="none" stroke="#173c2d" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="200" cy="72" r="24" fill="#d8ff63" stroke="#173c2d" stroke-width="7"/>
+  <path d="M200 96v20M219 173h55M274 173l-15-13M274 173l-15 13" fill="none" stroke="#287f67" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="128" cy="226" r="18" fill="#8fc7ff"/>
+  <circle cx="200" cy="226" r="18" fill="#70a288"/>
+  <circle cx="272" cy="226" r="18" fill="#ffb86b"/>
+  <path d="M146 226h36M218 226h36" stroke="#173c2d" stroke-width="7" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="title">
+  <title id="title">Biomolecular network architecture and limits</title>
+  <rect width="400" height="300" rx="20" fill="#f7f8f4"/>
+  <path d="M79 153h83M238 91l-55 47M238 215l-55-47M257 91l65 51M257 215l65-51" fill="none" stroke="#173c2d" stroke-width="8" stroke-linecap="round"/>
+  <path d="M146 142l16 11-16 11M220 100l18-9-4 20M220 205l18 10-4-20M306 131l16 11-16 11M306 175l16-11-16-11" fill="none" stroke="#173c2d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="64" cy="153" r="27" fill="#d8ff63" stroke="#173c2d" stroke-width="7"/>
+  <circle cx="177" cy="153" r="32" fill="#70a288" stroke="#173c2d" stroke-width="7"/>
+  <circle cx="252" cy="78" r="27" fill="#8fc7ff" stroke="#173c2d" stroke-width="7"/>
+  <circle cx="252" cy="228" r="27" fill="#ffb86b" stroke="#173c2d" stroke-width="7"/>
+  <circle cx="337" cy="153" r="28" fill="#d9b5e8" stroke="#173c2d" stroke-width="7"/>
+</svg>

@@ -15,7 +15,7 @@ profile:
 
 news: false # includes a list of news items
 latest_posts: false # includes a list of the newest posts
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # the complete list already lives on the publications page
 social: true # includes social icons at the bottom of the page
 ---
 
@@ -35,21 +35,21 @@ In order to do so, not only do we need theoretical understanding and reliable ma
 </div>
 
 My PhD therefore focused on developing a systems theory tailored to biomolecular systems in cells.
-This culminated into the following statements. See the [research](https://chemaoxfz.github.io/projects/) page for details. 
+This culminated into the following statements. See the [research](https://chemaoxfz.github.io/projects/) page for details.
+
 <!-- Some preliminary ideas of this work were generated during my visit to [Mustafa Khammash](https://bsse.ethz.ch/ctsb) group in the summer of 2019, where I had the joy to walk along (and sometimes drift along) [the Rhine river](https://www.basel.com/en/activities-excursions/swimming-rhine). -->
 
 Biomolecular systems are binding and catalysis reactions. Catalysis determines the direction of change, while binding regulates how the catalysis rates vary with reactant concentrations.
 The holistic regulatory profile can be captured by the reaction order of catalysis, which in turn is constrained in polyhedra determined by the stoichiometry of binding.
-In summary, since cells control catalysis by binding, cells control catalysis rates by regulating reaction orders. 
-This also has ramifications in several directions. 
+In summary, since cells control catalysis by binding, cells control catalysis rates by regulating reaction orders.
+This also has ramifications in several directions.
 On metabolism, by incorporating the constraint that reaction orders of metabolic fluxes, not the fluxes themselves, are controlled, we can predict metabolism dynamics directly from network stoichiometry, e.g. glycolytic oscillations and growth arrests.
 On systems biology, this derives Analysis by Binding and Catalysis (ABC) that allows discovery of necessary and sufficient conditions for a circuit to function, holistic comparisons of different circuit implementations, e.g. activator versus repressor, and enables biocircuit design where we know when a design will work, and when a design will fail.
-On dynamics and control of biocircuits, reaction order can work as a robust basis for stability, perfect adaptation, multistability and oscillations. 
+On dynamics and control of biocircuits, reaction order can work as a robust basis for stability, perfect adaptation, multistability and oscillations.
 Lyapunov functions and dissipativity theory tailored for biomolecular systems can be constructed based on reaction order.
 On the mathematics of biology, it relates bioregulation to convex polyhedra, log derivative operator decompositions, and fundamental rules of calculus for positive variables.
 
 The two figures below illustrate the system view that this promotes. For more details see the [research](https://chemaoxfz.github.io/projects/) page.
-
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -85,4 +85,3 @@ The two figures below illustrate the system view that this promotes. For more de
 <div class="caption">
     Example of how log derivative polyhedra can capture the holistic behavior of a biocircuit. This is an incoherent feedforward (IFF) circuit with disturbance intput w activating both x1 and x2, and x2 inhibits x1 by catalyzing x1's degradation. C denotes the reaction complex formed for x1's degradation catalyzed by x2. The upper right triangle is the log derivative polyhedron of C, with the red corner near (1,1) corresponding to the adaptation regime where x1 is robust to disturbance w. When the log derivative deviates away from the red corner, x1 can no longer adapt. We see this fails for disturbance w that is larger than reference.
 </div>
-
