@@ -8,11 +8,11 @@
         "Massimiliano Esposito"
       ],
       "category": "core",
-      "key_finding": "Diffusion equilibrates in systems whose reaction networks are pseudo-detailed balanced or complex balanced, with distinct constraints on reaction fluxes arising from stoichiometric properties.",
+      "key_finding": "Diffusion equilibrates in reaction-diffusion systems whose reaction network is pseudo-detailed balanced or complex balanced.",
       "pdf_url": "https://arxiv.org/pdf/2607.06030",
       "published": "2026-07-07",
       "title": "Identifying Non-Ideal Reaction-Diffusion Systems Unable to Maintain Diffusion Out-of-Equilibrium",
-      "tldr": "The authors develop a method using a kinetic potential as a Lyapunov function to identify conditions under which diffusion equilibrates in non-ideal reaction-diffusion systems driven by chemostats, generalizing previous results by relaxing assumptions.",
+      "tldr": "A method using kinetic potential as a Lyapunov function shows that diffusion equilibrates in non-ideal reaction-diffusion systems with pseudo-detailed balanced or complex balanced reaction networks.",
       "topics": [
         "Binding–catalysis systems theory",
         "Stochastic \u0026 information limits",
@@ -20,64 +20,227 @@
       ],
       "url": "https://arxiv.org/abs/2607.06030",
       "venue": "arXiv (Cornell University)",
-      "why_relevant": "This work advances the systems-theoretic understanding of non-equilibrium reaction-diffusion systems, which is foundational for your research on binding–catalysis systems and stochastic limits in biomolecular control."
+      "why_relevant": "This connects to your work on binding–catalysis systems theory and stochastic \u0026 information limits."
     },
     {
       "authors": [
-        "Purushottam D. Dixit",
-        "Aviral Jain"
+        "X Cui",
+        "A Khodaverdian",
+        "PD Christofides"
       ],
       "category": "adjacent",
-      "key_finding": "Receptor architecture with multi-step phosphorylation and proofreading allows signaling activity and range to increase together over a finite window of ligand residence time, overcoming the canonical synthesis-diffusion-degradation tradeoff.",
-      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/22/2026.07.17.739274.full.pdf",
-      "published": "2026-07-22",
-      "title": "Kinetic proofreading decouples signal strength and range in paracrine gradient formation",
-      "tldr": "The authors propose a model of multi-step ligand processing with kinetic-proofreading-like resetting that decouples signal strength from spatial range in paracrine gradient formation, explaining recent live-imaging data for EGF receptor ligands.",
+      "key_finding": "The proposed RL-CLBF approach efficiently learns control policies with safety guarantees.",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Control Lyapunov-barrier function-based reinforcement learning of nonlinear processes",
+      "tldr": "The paper integrates control Lyapunov-barrier functions with reinforcement learning for nonlinear process control.",
       "topics": [
-        "Sensing \u0026 proofreading"
+        "Stochastic \u0026 information limits"
       ],
-      "url": "https://doi.org/10.64898/2026.07.17.739274",
-      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
-      "why_relevant": "This paper provides a mechanistic example of kinetic proofreading in spatial signaling, directly relevant to your research on sensing and proofreading in biological systems."
+      "url": "https://www.sciencedirect.com/science/article/pii/S0098135426002309",
+      "venue": "Computers \u0026 Chemical Engineering",
+      "why_relevant": "This connects to your work on stochastic \u0026 information limits."
     },
     {
       "authors": [
-        "Felix Klempt",
-        "Hendrik Geisler",
-        "Meisam Soleimani",
-        "Philipp Junker"
+        "S Azioune",
+        "W Laouira",
+        "M Berkal",
+        "EM Elsayed…"
       ],
       "category": "adjacent",
-      "key_finding": "The model uses Hamilton's principle for thermodynamic consistency and can qualitatively reproduce complex interaction patterns, including spatial structure and population dynamics.",
-      "pdf_url": "https://link.springer.com/content/pdf/10.1007/s00419-026-03160-y.pdf",
-      "published": "2026-07-22",
-      "title": "A continuum multi-species bacterial growth model with a novel interaction scheme",
-      "tldr": "The authors present a continuum multi-species bacterial biofilm model that incorporates arbitrary species interactions, nutrient and antibiotic effects, and is thermodynamically consistent via derivation from Hamilton's principle.",
+      "key_finding": "Simplified Lyapunov stability conditions for chaotic systems are derived.",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Simplified Lyapunov Stability for Chaotic Systems",
+      "tldr": "The paper provides sufficient conditions for Lyapunov stability in chaotic systems.",
       "topics": [
-        "Bacterial physiology"
+        "Stochastic \u0026 information limits"
       ],
-      "url": "https://doi.org/10.1007/s00419-026-03160-y",
-      "venue": "Archive of Applied Mechanics",
-      "why_relevant": "This thermodynamic, continuum modeling approach for bacterial populations aligns with your interest in dynamic metabolism and bacterial physiology, offering a framework for mathematical biology methods."
+      "url": "https://scholar.google.de/scholar_url?url=https%3A%2F%2Fwww.gjom.org%2Findex.php%2Fgjom%2Farticle%2Fview%2F4984\u0026hl=en\u0026sa=X\u0026d=112645260617519119\u0026ei=iSFjau72Nc_xieoPi7OU-Aw\u0026scisig=AM1tuoNA17sgaVs8Zl3JomXW2519\u0026oi=scholaralrt\u0026hist=_iWSHHsAAAAJ%3A3668077236782238760%3AAM1tuoPZcFKN4Y7Dbt9BEZHjFmjr\u0026html=\u0026pos=3\u0026folt=rel",
+      "venue": "Gulf Journal of Mathematics",
+      "why_relevant": "This connects to your work on stochastic \u0026 information limits."
     },
     {
       "authors": [
-        "David Ohlin",
-        "Anders Rantzer",
-        "Emma Tegling"
+        "D Krokavec",
+        "A Filasová"
       ],
       "category": "explorer",
-      "key_finding": "A heuristic-based algorithm efficiently finds local solutions for positive linear systems, and a distributed algorithm provides local controllers within an optimality bound with a termination condition.",
+      "key_finding": "A novel residual filter for positive systems with bounded delays is proposed.",
       "pdf_url": "",
-      "published": "2026-07-13",
-      "title": "Heuristic search for linear positive systems",
-      "tldr": "The authors show an equivalence between stochastic shortest path problems and optimal control of a class of positive linear systems, and derive heuristic search algorithms for distributed local control with performance bounds.",
+      "published": "2026-01-01",
+      "title": "Residual Filter for Positive Systems Based on Coupled Differential-Difference Equations with Bounded Delays",
+      "tldr": "The paper presents a residual filter design for additive faults in positive systems described by coupled differential-difference equations with bounded delays.",
       "topics": [
         "Mathematical biology methods"
       ],
-      "url": "https://doi.org/10.1016/j.automatica.2026.113153",
-      "venue": "Automatica",
-      "why_relevant": "This advances control-theoretic tools for positive systems, which are relevant to your work on systems theory and computational design for biomolecular and microbial systems."
+      "url": "https://ieeexplore.ieee.org/abstract/document/11598082/",
+      "venue": "2026 34th Mediterranean Conference on Control and …",
+      "why_relevant": "This connects to your work on mathematical biology methods."
+    },
+    {
+      "authors": [
+        "A Scolari Fagundes",
+        "JM Gomes da Silva Jr…"
+      ],
+      "category": "adjacent",
+      "key_finding": "",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "[HTML] Control Design Based on Generalized Lur'e Lyapunov Functions for Sampled‐Data Lur'e Systems",
+      "tldr": "",
+      "topics": [
+        "Stochastic \u0026 information limits"
+      ],
+      "url": "https://scholar.google.de/scholar_url?url=https%3A%2F%2Fonlinelibrary.wiley.com%2Fdoi%2Ffull%2F10.1002%2Frnc.70600\u0026hl=en\u0026sa=X\u0026d=5919521005602987266\u0026ei=QIZeaoKNKpa06rQPldqGoQo\u0026scisig=AM1tuoOMu5vuI-vocbCJ4hMSp1Sd\u0026oi=scholaralrt\u0026hist=_iWSHHsAAAAJ%3A3668077236782238760%3AAM1tuoPZcFKN4Y7Dbt9BEZHjFmjr\u0026html=\u0026pos=0\u0026folt=rel",
+      "venue": "International Journal of …",
+      "why_relevant": ""
+    },
+    {
+      "authors": [
+        "JHS Ip",
+        "G Makrygiorgos",
+        "A Mesbah"
+      ],
+      "category": "adjacent",
+      "key_finding": "Lyapunov neural ODEs enable learning of control policies with stability guarantees.",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Lyapunov neural ordinary differential equations for learning state-feedback control policies",
+      "tldr": "The paper uses Lyapunov neural ODEs to learn state-feedback control policies.",
+      "topics": [
+        "Stochastic \u0026 information limits"
+      ],
+      "url": "https://scholar.google.de/scholar_url?url=https%3A%2F%2Fwww.sciencedirect.com%2Fscience%2Farticle%2Fpii%2FS095219762601729X\u0026hl=en\u0026sa=X\u0026d=17313189725046894183\u0026ei=VhBhasu0BIXLieoPwYXMmQ0\u0026scisig=AM1tuoOlNB43axVGK8z9NMcDK-kh\u0026oi=scholaralrt\u0026hist=_iWSHHsAAAAJ%3A3668077236782238760%3AAM1tuoPZcFKN4Y7Dbt9BEZHjFmjr\u0026html=\u0026pos=0\u0026folt=rel",
+      "venue": "Engineering Applications of Artificial Intelligence",
+      "why_relevant": "This connects to your work on stochastic \u0026 information limits."
+    },
+    {
+      "authors": [
+        "Q Guo",
+        "C Kong",
+        "J Zhang",
+        "P Cao",
+        "S Fu",
+        "B Wang"
+      ],
+      "category": "core",
+      "key_finding": "AI-driven approaches are advancing part discovery and circuit design in plant synthetic biology.",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "[HTML] Plant synthetic biology: From modular design to artificial intelligence-driven engineering",
+      "tldr": "This review covers plant synthetic biology from modular design to AI-driven engineering, including synthetic gene circuits and DBTL cycles.",
+      "topics": [
+        "Synthetic biology circuits"
+      ],
+      "url": "https://www.sciencedirect.com/science/article/pii/S3117817026000081",
+      "venue": "Model Organisms Research",
+      "why_relevant": "This connects to your work on synthetic biology circuits."
+    },
+    {
+      "authors": [
+        "P Wang",
+        "Y Zhao",
+        "H Sang",
+        "Y Zhao",
+        "GM Dimirovski"
+      ],
+      "category": "explorer",
+      "key_finding": "A hysteresis switching strategy is used for reachable set estimation in TS fuzzy switched positive systems.",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Reachable Set Estimation of TS Fuzzy Switched Positive Systems with All Unstable Modes: A Hysteresis Switching Strategy",
+      "tldr": "The paper investigates reachable set estimation for TS fuzzy switched positive systems with all unstable modes using a hysteresis switching strategy.",
+      "topics": [
+        "Mathematical biology methods"
+      ],
+      "url": "https://scholar.google.de/scholar_url?url=https%3A%2F%2Fieeexplore.ieee.org%2Fabstract%2Fdocument%2F11579395%2F\u0026hl=en\u0026sa=X\u0026d=11020191333828215634\u0026ei=VhBhasu0BIXLieoPwYXMmQ0\u0026scisig=AM1tuoMvcoS0J0bDztLYizlS7XTa\u0026oi=scholaralrt\u0026hist=_iWSHHsAAAAJ%3A3668077236782238760%3AAM1tuoPZcFKN4Y7Dbt9BEZHjFmjr\u0026html=\u0026pos=1\u0026folt=rel",
+      "venue": "IEEE Transactions on Consumer …",
+      "why_relevant": "This connects to your work on mathematical biology methods."
+    },
+    {
+      "authors": [
+        "Diego Nuñez",
+        "Camila Krauss",
+        "Maria Gomes Fernandes",
+        "Judith Vlaar",
+        "Amy Cochrane",
+        "José Ricardo Pérez",
+        "Alejandro Maass",
+        "Eduardo Agosin",
+        "Sebastián N. Mendoza"
+      ],
+      "category": "core",
+      "key_finding": "The model identifies a minimal medium costing 10 USD/L, with MILP optimization predicting further reduction to 6.5 USD/L.",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "[HTML] A comprehensive genome-scale metabolic model for porcine cells as a tool for process optimization and design in the cultivated meat industry",
+      "tldr": "A genome-scale metabolic model iSSC2487 for porcine cells is presented, used with dynamic FBA to optimize media for cultivated meat.",
+      "topics": [
+        "Dynamic metabolism \u0026 engineering"
+      ],
+      "url": "https://www.sciencedirect.com/science/article/pii/S2666833526002339",
+      "venue": "Future Foods",
+      "why_relevant": "This connects to your work on dynamic metabolism \u0026 engineering."
+    },
+    {
+      "authors": [
+        "J Yan",
+        "HN Nguyen",
+        "N Samama"
+      ],
+      "category": "adjacent",
+      "key_finding": "A double-sum-free parameter-dependent Lyapunov function is used to develop an MPC framework for LPV systems.",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Model predictive control for linear parameter varying systems: a double-sum-free parameter-dependent lyapunov function approach",
+      "tldr": "The paper presents a model predictive control framework for linear parameter varying systems using a double-sum-free parameter-dependent Lyapunov function.",
+      "topics": [
+        "Stochastic \u0026 information limits"
+      ],
+      "url": "https://scholar.google.de/scholar_url?url=https%3A%2F%2Fwww.tandfonline.com%2Fdoi%2Fabs%2F10.1080%2F00207179.2026.2700002\u0026hl=en\u0026sa=X\u0026d=18409745376963886286\u0026ei=yJRlaq60MeO_6rQP4tTouAk\u0026scisig=AM1tuoOntJ_sjYcR_KazJKYVFhZt\u0026oi=scholaralrt\u0026hist=_iWSHHsAAAAJ%3A3668077236782238760%3AAM1tuoPZcFKN4Y7Dbt9BEZHjFmjr\u0026html=\u0026pos=1\u0026folt=rel",
+      "venue": "International Journal of Control",
+      "why_relevant": "This connects to your work on stochastic \u0026 information limits."
+    },
+    {
+      "authors": [
+        "MAK Niloy",
+        "A Hallmark",
+        "Y Cheng",
+        "P Zhao"
+      ],
+      "category": "adjacent",
+      "key_finding": "Neural-NPV Control jointly learns parameter-dependent controllers and Lyapunov functions.",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Neural-NPV Control: Learning Parameter-Dependent Controllers and Lyapunov Functions",
+      "tldr": "The paper presents Neural-NPV Control, a learning-based framework for joint learning of parameter-dependent controllers and Lyapunov functions.",
+      "topics": [
+        "Stochastic \u0026 information limits"
+      ],
+      "url": "https://ieeexplore.ieee.org/abstract/document/11609478/",
+      "venue": "IEEE Control Systems Letters",
+      "why_relevant": "This connects to your work on stochastic \u0026 information limits."
+    },
+    {
+      "authors": [
+        "M Louro",
+        "V Cabral",
+        "KB Xavier"
+      ],
+      "category": "adjacent",
+      "key_finding": "Community biofilms show greater tolerance to bile acid stress compared to planktonic cultures, preserving species associations.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/20/2026.07.20.739518.full.pdf",
+      "published": "2026-07-20",
+      "title": "[PDF] Biofilms promote tolerance and stability in gut bacterial communities during bile acid stress",
+      "tldr": "Biofilm formation in a defined gut bacterial community (OMM12) promotes tolerance to bile acid stress and preserves species associations.",
+      "topics": [
+        "Bacterial physiology"
+      ],
+      "url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/20/2026.07.20.739518.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "This connects to your work on bacterial physiology."
     }
   ],
   "run_key": "2026-W30",
