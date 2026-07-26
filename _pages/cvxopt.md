@@ -4,7 +4,7 @@ permalink: /cvxopt/
 title: CST 5020 Convex Optimization, Spring 2026
 description: 
 img: assets/img/12.jpg
-nav: true
+nav: false
 nav_order: 10
 ---
 

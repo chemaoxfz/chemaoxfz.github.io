@@ -4,7 +4,7 @@ permalink: /ccbs/
 title: CST 5034 CCBS
 description: Course materials for CST 5034 - Control and Computation in Biological Systems, Fall 2025
 img: assets/img/12.jpg
-nav: true
+nav: false
 nav_order: 10
 ---
 
@@ -81,5 +81,4 @@ This course does not have a textbook and all materials are self-contained. But t
 [Nonlinear dynamical systems and Chaos](https://www.amazon.com/Nonlinear-Dynamics-Chaos-Third-Applications/dp/0367261979)  by Steven Strogatz. An accessible book, especially good at giving intuitive descriptions of dynamics for 1D and 2D systems.
 
 [Foundations of Chemical Reaction Network Theory](https://link.springer.com/book/10.1007/978-3-030-03858-8) by Martin Feinberg. A book on the more mathematical aspects of chemical reaction networks, especially equilibrium dynamics. A good reference book. Caution: try not to lose sight of biology, then you won't be daunted by the math wrappings.
-
 
