@@ -285,6 +285,15 @@ nav_order: 4
     </article>
 
     <article class="person-card">
+      <div class="person-initials" aria-hidden="true">XF</div>
+      <div>
+        <p class="person-name">Xinwen Fan</p>
+        <p class="person-role">Visiting scholar · from August 2026</p>
+        <p class="person-focus">Robust synthetic cell platform for bioregulation in growing and dividing systems</p>
+      </div>
+    </article>
+
+    <article class="person-card">
       <div class="person-initials" aria-hidden="true">JZ</div>
       <div>
         <p class="person-name">Jiarui Zhang</p>
@@ -294,17 +303,28 @@ nav_order: 4
     </article>
 
     <article class="person-card">
-      <div class="person-initials" aria-hidden="true">YH</div>
+      <div class="person-initials" aria-hidden="true">QW</div>
       <div>
-        <p class="person-name">Yuyang Han</p>
-        <p class="person-role">Visiting student · 2025–present</p>
-        <p class="person-focus">Retrograde of yeast cell cycle</p>
+        <p class="person-name">Qianrui (Richard) Wang</p>
+        <p class="person-role">Visiting undergraduate student, University of Cambridge · July 2026–present</p>
+        <p class="person-focus">
+          Extending binding and catalysis networks to include electrical potential; optimal control of neural systems and networks
+        </p>
       </div>
     </article>
   </div>
 
   <h2>Lab alumni</h2>
   <div class="people-grid">
+    <article class="person-card">
+      <div class="person-initials" aria-hidden="true">YH</div>
+      <div>
+        <p class="person-name">Yuyang Han</p>
+        <p class="person-role">Visiting student · 2025–May 2026</p>
+        <p class="person-focus">Retrograde of yeast cell cycle</p>
+      </div>
+    </article>
+
     <article class="person-card">
       <img class="person-portrait" src="{{ '/assets/img/prof_fjb.jpg' | relative_url }}" alt="Jinbin Fan" width="76" height="76" loading="lazy">
       <div>
