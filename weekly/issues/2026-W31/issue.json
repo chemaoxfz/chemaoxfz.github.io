@@ -1,0 +1,173 @@
+{
+  "end_date": "2026-07-27",
+  "papers": [
+    {
+      "authors": [
+        "Isaline Guex",
+        "Melanie L. Stäubli",
+        "Anna Sintsova",
+        "Vladimir Sentchilo",
+        "Senka Čaušević",
+        "Adline Vouillamoz",
+        "Clara A. Bailey",
+        "Hans‐Joachim Ruscheweyh",
+        "Shinichi Sunagawa",
+        "Christian Mazza",
+        "Jan Roelof van der Meer"
+      ],
+      "category": "core",
+      "key_finding": "Community biomass is largely driven by cross-feeding interactions; models without species interactions reproduced only 20% of observed biomass.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/10/2026.07.10.737752.full.pdf",
+      "published": "2026-07-10",
+      "title": "Biphasic bacterial community assembly predicted from generalized first principles of monoculture growth and inferred species interactions",
+      "tldr": "A mathematical framework integrating monoculture growth kinetics and inferred species interactions predicts biphasic community assembly in soil microcosms, with an initial competition phase followed by cross-feeding-driven growth.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.64898/2026.07.10.737752",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "This work directly connects monoculture growth parameters to community dynamics, aligning with Fangzhou's interest in microbial population dynamics and community ecology."
+    },
+    {
+      "authors": [
+        "Lorenzo Fant",
+        "Iuri Macocco",
+        "Jacopo Grilli"
+      ],
+      "category": "core",
+      "key_finding": "Functional composition is robustly determined by environment, while taxonomic composition is non-reproducible yet constrained by functional conservation.",
+      "pdf_url": "https://journals.plos.org/ploscompbiol/article/file?id=10.1371%2Fjournal.pcbi.1014437\u0026type=printable",
+      "published": "2026-07-21",
+      "title": "Eco-evolutionary dynamics lead to functionally robust and redundant communities",
+      "tldr": "Eco-evolutionary simulations show that microbial communities converge to a functional attractor determined by environment, explaining functional redundancy despite taxonomic variability.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1371/journal.pcbi.1014437",
+      "venue": "PLoS Computational Biology",
+      "why_relevant": "This provides a theoretical foundation for functional redundancy in microbial communities, relevant to Fangzhou's interest in community ecology and population dynamics."
+    },
+    {
+      "authors": [
+        "Rubén Chaboy‐Cansado",
+        "Paula Cobeta",
+        "Ramón Gallego",
+        "Alberto Rastrojo",
+        "Daniel Aguirre de Cárcer"
+      ],
+      "category": "core",
+      "key_finding": "Simplified communities maintained system-level properties and were at least as resistant to invasion as a rationally designed synthetic community.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/16/2026.07.14.738433.full.pdf",
+      "published": "2026-07-16",
+      "title": "Drift-driven microbiome simplification generates reconstructable and ecologically cohesive microbial communities",
+      "tldr": "Drift-driven simplification via dilution and serial propagation generates reduced, reconstructable microbial communities that resist invasion by the original complex community.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/16/2026.07.14.738433.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "Offers a strategy for generating simplified microbial consortia, relevant to Fangzhou's interest in microbial community ecology and synthetic communities."
+    },
+    {
+      "authors": [
+        "Joana Q. Mends"
+      ],
+      "category": "core",
+      "key_finding": "Even low antibiotic concentrations selectively increased sul1 and intI1 abundance, indicating subtle resistance expansion without community-level changes.",
+      "pdf_url": "",
+      "published": "2026-07-21",
+      "title": "Effects of antibiotic pollution on the composition and antibiotic resistance of freshwater sediment bacterial communities",
+      "tldr": "Low antibiotic concentrations (0.1–10 µg/L) enriched resistance determinants without community shifts, while higher concentrations disrupted community composition and promoted persistence of resistant bacteria.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://hdl.handle.net/1842/44929",
+      "venue": "ERA",
+      "why_relevant": "Directly addresses antibiotic resistance dynamics in microbial communities, a core interest tied to Fangzhou's work on antibiotic resistance and microbial ecology."
+    },
+    {
+      "authors": [
+        "Pola Kuhn",
+        "John W. Ribis",
+        "Mi Ni",
+        "Gang Fang",
+        "Aimee Shen"
+      ],
+      "category": "core",
+      "key_finding": "Methylation of a single motif increases spoIIE transcription and σF activation, and premature activation does not cause lysis but allows developmental plasticity.",
+      "pdf_url": "https://journals.plos.org/plospathogens/article/file?id=10.1371%2Fjournal.ppat.1013845\u0026type=printable",
+      "published": "2026-07-23",
+      "title": "A single DNA methylation site regulates cell fate during Clostridioides difficile sporulation",
+      "tldr": "A single CamA DNA methylation site in the spoIIE promoter regulates sporulation cell fate in Clostridioides difficile, with premature σF activation leading to abortive sporulation and resumption of vegetative growth.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.1371/journal.ppat.1013845",
+      "venue": "PLoS Pathogens",
+      "why_relevant": "Ties directly to Fangzhou's interest in microbial physiology, growth, and cell-fate regulation, specifically through a DNA methylation mechanism controlling sporulation."
+    },
+    {
+      "authors": [
+        "Jonah Gray",
+        "Jennifer E. Harris",
+        "Jason P. Kaye",
+        "Estelle Couradeau"
+      ],
+      "category": "core",
+      "key_finding": "N2O flux rates correlate with the combined abundance of multiple active taxa, not a dominant single species.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/13/2026.07.10.737762.full.pdf",
+      "published": "2026-07-13",
+      "title": "Using BONCAT-FACS to probe the active soil microbial community during nitrous oxide production",
+      "tldr": "BONCAT-FACS-Seq reveals that less than 1% of the soil microbial community drives N2O production, with flux correlated to an ensemble of eight active taxa rather than a single species.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.64898/2026.07.10.737762",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "Demonstrates ensemble-based activity in a key biogeochemical process, relevant to Fangzhou's interest in microbial community function and dynamics."
+    },
+    {
+      "authors": [
+        "HV Santos",
+        "MR Scotti"
+      ],
+      "category": "core",
+      "key_finding": "Ammonium accumulation due to periodic flooding is the main environmental impact hindering restoration progress.",
+      "pdf_url": "https://iforest.sisef.org/pdf/?id=ifor4861-018",
+      "published": "2026-07-21",
+      "title": "Assessing the restoration of a seasonally flooded riparian forest through soil carbon and nitrogen cycling indicators and soil microbial communities",
+      "tldr": "Soil carbon and nitrogen cycling indicators and microbial community profiles show that a six-year restored riparian forest is approaching preserved forest conditions, but ammonium accumulation from impaired nitrification hinders recovery.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.3832/ifor4861-018",
+      "venue": "iForest - Biogeosciences and Forestry",
+      "why_relevant": "Provides a case study of microbial community responses to environmental factors, relevant to Fangzhou's interest in microbial ecology and ecosystem function."
+    },
+    {
+      "authors": [
+        "Andrea Arrabal",
+        "Magdalena San Román",
+        "Juan Díaz‐Colunga",
+        "Alvaro Sanchez"
+      ],
+      "category": "core",
+      "key_finding": "Additive and pairwise interactions explain most growth variance, allowing simple regression models to predict growth in untested nutrient combinations.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/06/30/2026.06.30.735472.full.pdf",
+      "published": "2026-06-30",
+      "title": "Statistical learning of bacterial growth in combinatorially constructed environments",
+      "tldr": "Full factorial experiments on seven bacterial species across 8 carbon sources reveal that pairwise interactions dominate growth variation, enabling accurate prediction of growth in novel environments via sparse data.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.64898/2026.06.30.735472",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "Directly addresses bacterial growth laws and resource epistasis, core to Fangzhou's interest in microbial physiology, growth, and metabolic allocation."
+    }
+  ],
+  "run_key": "2026-W31",
+  "schema_version": 1,
+  "start_date": "2026-07-21",
+  "title": "BMAC Weekly — 2026-W31"
+}
