@@ -1,0 +1,185 @@
+{
+  "end_date": "2026-08-03",
+  "papers": [
+    {
+      "authors": [
+        "Nicolas Ochsner",
+        "Magdalena San Román",
+        "Adrián Jiménez-Fernández",
+        "Sebastian Bonhoeffer",
+        "Alberto Pascual‐García"
+      ],
+      "category": "core",
+      "key_finding": "The tool predicts pervasive cross-feeding-driven niche expansion in marine microbes and provides detailed outputs that can identify functional groups.",
+      "pdf_url": "https://journals.asm.org/doi/pdf/10.1128/msystems.00688-26?download=true",
+      "published": "2026-07-28",
+      "title": "misosoup: a metabolic modeling tool for identifying minimal microbial communities, facilitates the exploration of microbial ecology and biotechnological applications",
+      "tldr": "misosoup is a Python package that uses genome-scale constraint-based metabolic modeling to identify minimal microbial communities that can grow in environments where individual strains cannot, validated against known cooperative interactions and applied to 60 marine microbes to reveal cross-feeding-driven niche expansion.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division",
+        "Dynamic metabolism \u0026 engineering"
+      ],
+      "url": "https://doi.org/10.1128/msystems.00688-26",
+      "venue": "mSystems",
+      "why_relevant": "This directly supports your interest in microbial community ecology and synthetic community design by providing a computational method to predict metabolic cooperation and minimal community composition."
+    },
+    {
+      "authors": [
+        "C Sharma",
+        "N Nafar",
+        "J Kerssemakers",
+        "JF Gutierrez…"
+      ],
+      "category": "core",
+      "key_finding": "",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Division of Synthetic Cells Using a Genomically Encoded One-Protein Divisome",
+      "tldr": "The paper reports the division of synthetic cells using a genomically encoded one-protein divisome, as described in a preprint from bioRxiv.",
+      "topics": [
+        "Synthetic biology circuits",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://www.biorxiv.org/content/10.64898/2026.07.21.739846.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "This connects to your work on synthetic biology circuits and microbial growth and division, offering a minimal genetic module for controlling cell division in engineered cells."
+    },
+    {
+      "authors": [
+        "Dmitry Sutormin",
+        "Karl D. Gaisser",
+        "Jacqueline Haring",
+        "Anjana Punniamoorthy",
+        "Theinmozhi Arulraj",
+        "Crystal Perez",
+        "Christian Diener",
+        "Katherine Ramos Sarmiento",
+        "Alex V. Carr",
+        "Noa Rappaport",
+        "Sean M. Gibbons",
+        "Anna Kuchina"
+      ],
+      "category": "core",
+      "key_finding": "The method uncovered coexisting genomovars of Segatella copri with distinct expression profiles and showed that microbiome context drives phenotypic heterogeneity not captured by bulk measurements.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/31/2026.07.30.741866.full.pdf",
+      "published": "2026-07-31",
+      "title": "Phenotypic heterogeneity in the human gut microbiome revealed by subspecies-resolution single-cell transcriptomics",
+      "tldr": "The study presents metaSPLiT, a scalable single-cell RNA sequencing method for microbiomes, and applies it to healthy human fecal samples to reconstruct 21,598 single-cell transcriptomes across 70 bacterial species, revealing subspecies-level functional specialization.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division",
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.64898/2026.07.30.741866",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "This provides a high-resolution view of phenotypic heterogeneity in microbial communities, directly relevant to your interests in population dynamics and cell-state diversity."
+    },
+    {
+      "authors": [
+        "Vaibhhav Sinha",
+        "Seppe Kuehn"
+      ],
+      "category": "core",
+      "key_finding": "Growth efficiency varies as much across resources as across phyla, and a physiological model predicts no global correlation between growth rate and growth efficiency, which is supported by data.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/27/2026.07.26.740805.full.pdf",
+      "published": "2026-07-27",
+      "title": "Hierarchical control of bacterial growth efficiency by substrate and taxonomy",
+      "tldr": "The authors develop a high-throughput method to measure CO2 production during bacterial growth and quantify growth efficiency for 23 strains across three phyla on two substrates, finding substrate identity hierarchically controls efficiency.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division",
+        "Dynamic metabolism \u0026 engineering"
+      ],
+      "url": "https://doi.org/10.64898/2026.07.26.740805",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "This links carbon allocation and energy metabolism to growth physiology, relevant to your work on growth laws and dynamic metabolism."
+    },
+    {
+      "authors": [
+        "Grace A. Beggs",
+        "Bonnie L. Bassler"
+      ],
+      "category": "core",
+      "key_finding": "QtiQ is the first identified protein inactivator of a TraR or DksA-like homolog, and the phage can suppress host growth through a cI-derepressed DksA homolog and QisA complex.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/27/2026.07.27.740977.full.pdf",
+      "published": "2026-07-27",
+      "title": "Phage VP882 possesses quorum-sensing-driven lytic induction and stress-mediated host growth suppression mechanisms",
+      "tldr": "The paper shows that Vibriophage VP882 can either launch a lytic cascade or induce host growth arrest via quorum-sensing-triggered pathways, with a novel protein QtiQ inactivating the growth-arrest complex.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Dynamic metabolism \u0026 engineering"
+      ],
+      "url": "https://doi.org/10.64898/2026.07.27.740977",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "This illustrates phage-host regulatory interactions and quorum-sensing-driven decisions, relevant to your interests in microbial decision-making and population dynamics."
+    },
+    {
+      "authors": [
+        "Logan Suteau",
+        "Claire Campion",
+        "Coralie MARAIS",
+        "Martial Briand",
+        "Anais Hardouin",
+        "Kaat Hellyn",
+        "Kenji Maurice",
+        "Muriel Marchi",
+        "Marie Simonin",
+        "Natalia Guschinskaya"
+      ],
+      "category": "core",
+      "key_finding": "SynCom inoculation altered seedling bacterial community assembly in 14 SynComs, and high seed abundance and low in vitro lag-time were key traits for efficient colonization.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/16/2026.07.15.738658.full.pdf",
+      "published": "2026-07-16",
+      "title": "Seed-applied multi-kingdom synthetic communities selectively reshape bacterial communities and highlight key criteria for strain selection",
+      "tldr": "The study constructs 20 multi-kingdom synthetic communities (bacteria, yeasts, fungi) and applies them to Brassica napus seeds in soil, showing that strain selection is more critical than assembly strategy for seedling colonization.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://www.biorxiv.org/content/10.64898/2026.07.15.738658.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "This provides empirical criteria for synthetic community design and highlights ecological processes that shape microbial community assembly."
+    },
+    {
+      "authors": [
+        "Sergio Silva-Bea",
+        "Sonia Rey",
+        "Manuel Romero",
+        "Ana Otero"
+      ],
+      "category": "core",
+      "key_finding": "Quorum sensing in K. pneumoniae likely functions as an interconnected regulatory network rather than independent pathways, and targeting QS is proposed as an anti-virulence strategy.",
+      "pdf_url": "https://www.sciencedirect.com/science/article/pii/S0944501326002144/pdf",
+      "published": "2026-07-27",
+      "title": "Quorum sensing in Klebsiella pneumoniae: An interconnected regulatory network driving virulence and antimicrobial resistance",
+      "tldr": "This review integrates current knowledge on Klebsiella pneumoniae quorum sensing, covering four main QS systems (AHL-SdiA, AI-2-Lsr, QseBC-AI-3, indole-CpxAR) and their potential interactions in controlling virulence and antimicrobial resistance.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.1016/j.micres.2026.128650",
+      "venue": "Microbiological Research",
+      "why_relevant": "This connects to your interests in antibiotic resistance and microbial decision-making by examining how QS networks coordinate virulence and resistance."
+    },
+    {
+      "authors": [
+        "Shangbin Ma",
+        "Youming Li"
+      ],
+      "category": "core",
+      "key_finding": "The authors identify conditions under which detailed balance at one volume extends to all volumes and construct networks satisfying detailed balance for every volume and positive rate constants, with double-well global potentials.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/28/2026.07.24.740452.full.pdf",
+      "published": "2026-07-28",
+      "title": "Structural characterization of stochastic detailed balance in chemical reaction networks",
+      "tldr": "The paper provides a structural characterization of stochastic detailed balance in chemical reaction networks, showing that detailed balance can depend on system volume and introducing four types of detailed balance.",
+      "topics": [
+        "Biomolecular control"
+      ],
+      "url": "https://doi.org/10.64898/2026.07.24.740452",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "This is an enabling-method wildcard: volume-dependent detailed balance could inform modeling of biochemical reaction networks in cellular compartments where volume changes, relevant to your interest in biomolecular reaction networks."
+    }
+  ],
+  "run_key": "2026-W32",
+  "schema_version": 1,
+  "start_date": "2026-07-28",
+  "title": "BMAC Weekly — 2026-W32"
+}
