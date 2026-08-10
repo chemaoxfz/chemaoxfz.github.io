@@ -1,0 +1,205 @@
+{
+  "end_date": "2026-08-10",
+  "papers": [
+    {
+      "authors": [
+        "William Calero‐Cáceres",
+        "Bimal Jana",
+        "João Pedro Rueda Furlan",
+        "Juan C. Ortiz-Marquez"
+      ],
+      "category": "core",
+      "key_finding": "Multi-omics approaches reveal coordinated genetic and transcriptional responses in AMR, such as efflux pump activation and protein acetylation, while genomic epidemiology can trace silent hospital transmission clusters.",
+      "pdf_url": "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2026.1938175/pdf",
+      "published": "2026-08-04",
+      "title": "Editorial: Integrative microbial and chemical genomics to decipher antibiotic resistance mechanisms and developing innovative antimicrobial approaches",
+      "tldr": "This editorial summarizes thirteen studies covering multi-omics approaches to antibiotic resistance mechanisms, genome mining for antimicrobial discovery, genomic epidemiology of hospital outbreaks, and alternative therapies including phage therapy and CRISPR-based tools.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division",
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.3389/fmicb.2026.1938175",
+      "venue": "Frontiers in Microbiology",
+      "why_relevant": "Provides a broad overview of current AMR research, connecting to Fangzhou Xiao's interest in antibiotic resistance mechanisms and microbial adaptation in communities."
+    },
+    {
+      "authors": [
+        "M Sandhya",
+        "E. Priyadharshini",
+        "T. Anand",
+        "Nagendran Tharmalingam",
+        "Govindasamy Senthilraja"
+      ],
+      "category": "core",
+      "key_finding": "Soil, rhizosphere, and phyllosphere microbiomes serve as reservoirs and transmission hubs for antimicrobial resistance genes, and alternatives like phage therapy and microbiome engineering may mitigate selection pressure.",
+      "pdf_url": "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2026.1778342/pdf",
+      "published": "2026-08-03",
+      "title": "Antimicrobial resistance in plant-associated microbial communities: mechanisms, ecology, and one health implications",
+      "tldr": "This review synthesizes knowledge on antimicrobial resistance in plant-associated microbial communities, discussing resistance mechanisms, ecological drivers, and sustainable alternatives to conventional antimicrobials.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.3389/fmicb.2026.1778342",
+      "venue": "Frontiers in Microbiology",
+      "why_relevant": "Relevant to Fangzhou Xiao's interest in microbial community ecology and antibiotic resistance, particularly the ecological drivers of resistance spread in environmental microbiomes."
+    },
+    {
+      "authors": [
+        "J De Baets",
+        "M De Mey",
+        "B De Paepe"
+      ],
+      "category": "core",
+      "key_finding": "A mechanistic model accurately predicts the behavior of quorum sensing-based genetic circuits, validated against experimental data.",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "An Experimentally Verified Mechanistic Model for Predicting Quorum Sensing‐Based Switches",
+      "tldr": "This paper presents an experimentally verified mechanistic model for predicting quorum sensing-based switches in synthetic biology circuits.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Synthetic biology circuits"
+      ],
+      "url": "https://enviromicro-journals.onlinelibrary.wiley.com/doi/pdfdirect/10.1111/1751-7915.70408",
+      "venue": "Microbial Biotechnology",
+      "why_relevant": "Connects to Fangzhou Xiao's work on synthetic biology circuits and microbial decision-making, providing a predictive framework for population-level behavior."
+    },
+    {
+      "authors": [
+        "Xia Li",
+        "Yuxin Zhang",
+        "Yue Yu",
+        "Yunhang Zeng",
+        "Bi Shi",
+        "Yanan Wang"
+      ],
+      "category": "core",
+      "key_finding": "Chrome-free leather showed a 2.16-fold higher biodegradation rate than chrome leather, with soil microbial diversity enhanced and shifts in amino acid metabolism genes.",
+      "pdf_url": "https://link.springer.com/content/pdf/10.1186/s42825-026-00268-3.pdf",
+      "published": "2026-08-01",
+      "title": "Soil burial evaluation of finished leather biodegradability: microbial community dynamics and biogeochemical cycles",
+      "tldr": "This study evaluates the biodegradability of finished leather using soil burial, revealing that chrome-free leather degrades faster and that microbial community dynamics and nitrogen cycling are key drivers.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1186/s42825-026-00268-3",
+      "venue": "Collagen and Leather",
+      "why_relevant": "Relevant to microbial community ecology and biogeochemical cycles, connecting to Fangzhou Xiao's interest in microbial populations and their roles in environmental processes."
+    },
+    {
+      "authors": [
+        "Maria Kulosa",
+        "Matheus R. Belisário‐Ferrari",
+        "F Semmler",
+        "M. Büttner",
+        "Corinna Duck",
+        "Zeinab Namazi",
+        "Nico Jehmlich",
+        "Martin von Bergen",
+        "Tobias Bonitz",
+        "Leonard Kaysser"
+      ],
+      "category": "core",
+      "key_finding": "A simplified lung microbiome model supports stable co-culture, with metaproteomics indicating bioactive interactions among species.",
+      "pdf_url": "https://journals.asm.org/doi/pdf/10.1128/msystems.00491-26?download=true",
+      "published": "2026-08-03",
+      "title": "Establishment of an in vitro aerobic bacterial community as a model of the human lung microbiome",
+      "tldr": "This study establishes an in vitro aerobic bacterial community of four lung microbiome species, stable for 10 days, and reveals potential microbe-microbe interactions via metaproteomics.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://journals.asm.org/doi/pdf/10.1128/msystems.00491-26",
+      "venue": "mSystems",
+      "why_relevant": "Provides a model system for studying microbial community interactions, which is relevant to Fangzhou Xiao's work on microbial population dynamics and community ecology."
+    },
+    {
+      "authors": [
+        "Kenta Suzuki",
+        "Tomonori Kamiya",
+        "Hideki FUJI",
+        "Sotaro Takano",
+        "Yoshimi Yukawa‐Muto",
+        "Norifumi Kawada",
+        "Shinji Fukuda",
+        "Hiroshi Masuya",
+        "Naoko Ohtani"
+      ],
+      "category": "core",
+      "key_finding": "Streptococcus salivarius and an unclassified Subdoligranulum show contrasting associations with disease states, suggesting active roles in linking host conditions with microbial community structure.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/07/30/2026.07.29.741610.full.pdf",
+      "published": "2026-07-30",
+      "title": "Major microbiota transitions across liver disease progression are mediated by key taxa linking host environments and microbial communities",
+      "tldr": "This preprint applies energy landscape analysis and a community shaping index to identify key taxa that mediate gut microbiota transitions across liver disease severity.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://www.biorxiv.org/content/10.64898/2026.07.29.741610.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "Directly relates to microbial community structure dynamics and host-microbe interactions, relevant to Fangzhou Xiao's interest in community ecology and microbial decision-making."
+    },
+    {
+      "authors": [
+        "Elisa Catão",
+        "Uli Klümper",
+        "Giulia Gionchetta",
+        "Xavier Bellanger",
+        "Amélie Porteu de la Morandière",
+        "Kenyum Bagra",
+        "Irina Dielacher",
+        "Alan Elena",
+        "Eda Deniz Erdem",
+        "Sonia Galazka",
+        "Agata Goryluk-Salmonowicz",
+        "Mateusz Szadziul",
+        "Edina Szekeres",
+        "Adela Teban-Man",
+        "Cristian Coman",
+        "Norbert Kreuzinger",
+        "Magdalena Popowska",
+        "Julia Vierheilig",
+        "Shauna O'Shea",
+        "Fiona Walsh",
+        "Markus Woegerbauer",
+        "Helmut Bürgmann",
+        "Thomas U. Berendonk",
+        "Christophe Merlin"
+      ],
+      "category": "core",
+      "key_finding": "Higher bacterial diversity accelerates the loss of an invading E. coli strain, and diversity loss during experimental transfer is a strong predictor of invasion resistance.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/08/05/2026.08.04.742497.full.pdf",
+      "published": "2026-08-05",
+      "title": "Microbial community diversity predicts invasion resistance of freshwater biofilms against antibiotic-resistant bacteria",
+      "tldr": "This preprint shows that the diversity and phylogenetic composition of river biofilm microbial communities predict their resistance to invasion by antibiotic-resistant bacteria.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.64898/2026.08.04.742497",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "Connects biodiversity and community organization to invasion resistance, relevant to Fangzhou Xiao's interest in microbial population dynamics and antibiotic resistance spread in environmental communities."
+    },
+    {
+      "authors": [
+        "Yu‐Chen Lee",
+        "Yu‐Che Cheng",
+        "Chun-Ming Kung",
+        "Chi‐Jung Huang"
+      ],
+      "category": "core",
+      "key_finding": "Caries is driven by ecological shifts favoring acidogenic/aciduric microorganisms, and novel prevention approaches target restoring microbial homeostasis.",
+      "pdf_url": "https://www.mdpi.com/2304-6767/14/8/477/pdf?version=1785816948",
+      "published": "2026-08-04",
+      "title": "Modulating Oral Microbiota to Prevent Dental Caries: A Microbial Ecology Approach",
+      "tldr": "This review discusses microbiota-centered prevention strategies for dental caries, including probiotics, prebiotics, and ecological modulation, highlighting the shift from pathogen eradication to ecological balance.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.3390/dj14080477",
+      "venue": "Dentistry Journal",
+      "why_relevant": "Provides an example of applied microbial ecology in a clinical context, relevant to Fangzhou Xiao's interest in microbial communities and their roles in health and disease."
+    }
+  ],
+  "run_key": "2026-W33",
+  "schema_version": 1,
+  "start_date": "2026-08-04",
+  "title": "BMAC Weekly — 2026-W33"
+}
