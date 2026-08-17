@@ -1,0 +1,195 @@
+{
+  "end_date": "2026-08-17",
+  "papers": [
+    {
+      "authors": [
+        "Xiaofei Yang",
+        "Lili Li",
+        "Jinxin Zhang",
+        "Jiangqi Qu",
+        "Shaogang Xu"
+      ],
+      "category": "core",
+      "key_finding": "Total ARG abundance was 1.81-fold higher in RAS than in PFRS despite improved water quality, and co-occurrence networks showed modular associations among species, ARGs, and MGEs.",
+      "pdf_url": "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2026.1913067/pdf",
+      "published": "2026-08-12",
+      "title": "Unexpected enrichment of antibiotic resistance genes in recirculating aquaculture effluents of rainbow trout (Oncorhynchus mykiss): microbial community assembly and mobile genetic elements as key drivers",
+      "tldr": "Recirculating aquaculture effluents had lower conventional pollutants but higher antibiotic resistance gene abundance than flow-through systems, with distinct microbial community structuring and association networks.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.3389/fmicb.2026.1913067",
+      "venue": "Frontiers in Microbiology",
+      "why_relevant": "This connects to Fangzhou Xiao's interest in microbial community ecology and antibiotic resistance, illustrating how environmental management interacts with microbial genetic elements."
+    },
+    {
+      "authors": [
+        "Saptarshi Biswas",
+        "James I. Lathrop",
+        "Rana D. Parshad"
+      ],
+      "category": "core",
+      "key_finding": "The set of positive algebraic numbers equals the set of reals computable by Lyapunov CRNs and 1-species RevCRNs, and detailed-balanced RevCRNs compute a subset of algebraic numbers.",
+      "pdf_url": "https://arxiv.org/pdf/2608.11362",
+      "published": "2026-08-11",
+      "title": "RevCRN: Reversible Analog Computation using Chemical Reaction Networks",
+      "tldr": "This preprint establishes computability relationships between real numbers computed by reversible chemical reaction networks and other CRN classes, including results on algebraic numbers and detailed-balanced networks.",
+      "topics": [
+        "Biomolecular control"
+      ],
+      "url": "https://arxiv.org/abs/2608.11362",
+      "venue": "arXiv (Cornell University)",
+      "why_relevant": "As an enabling-method wildcard with no biology content, this provides theoretical foundations for designing reversible biomolecular computing circuits that could be used for biological modeling or synthetic cellular computation."
+    },
+    {
+      "authors": [
+        "Isni Arliyani",
+        "Fahmi Ikhlasul Amalludin",
+        "Moh. Krisna Isha Marjiantono",
+        "Bieby Voijant Tangahu",
+        "Bara Awanda Marhendra",
+        "Tonni Agustiono Kurniawan",
+        "Adhi Yuniarto"
+      ],
+      "category": "core",
+      "key_finding": "Microbial community analysis showed dominance of Pseudomonas, Acinetobacter, and Geobacter, linking hydrocarbon degradation and electron transfer to system performance.",
+      "pdf_url": "https://www.sciencedirect.com/science/article/pii/S2667010026001964/pdf",
+      "published": "2026-08-07",
+      "title": "Sustainable remediation of petroleum-contaminated river using a bioaugmented constructed wetland–microbial fuel cell: Process performance and microbial community insights",
+      "tldr": "A constructed wetland–microbial fuel cell with bioaugmentation and mixed vegetation removed over 75% of petroleum hydrocarbons from contaminated river water while generating peak power density of 173 mW m−2.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1016/j.envc.2026.101602",
+      "venue": "Environmental Challenges",
+      "why_relevant": "This aligns with Fangzhou Xiao's interests in microbial populations and community function, particularly the role of specific taxa in biodegradation and bioelectricity generation."
+    },
+    {
+      "authors": [
+        "Sunardi Sunardi",
+        "Moh. Dede",
+        "Keukeu Kaniawati Rosada",
+        "Millary Agung Widiawaty",
+        "Sandy Budi Wibowo",
+        "Suharman Hamzah",
+        "Nasir Nayan",
+        "Annisa Jovani Astari",
+        "Franck Lavigne",
+        "Syamsul Bachri",
+        "Idea Wening Nurani"
+      ],
+      "category": "core",
+      "key_finding": "Volcanic zones with extreme conditions selected for specialized taxa like Hydrogenophaga and Acidiphilium, while transitional zones showed the highest microbial diversity, integrating chemosynthetic and heterotrophic processes.",
+      "pdf_url": "https://www.sciencedirect.com/science/article/pii/S2667010026001939/pdf",
+      "published": "2026-08-05",
+      "title": "Riverine microbial communities in an upper watershed: Integrating volcanic and anthropogenic influences",
+      "tldr": "Microbial community composition in the Upper Cimanuk River is structured by volcanic and anthropogenic gradients, with distinct extremophile communities in volcanic hazard zones and highest diversity in transitional zones.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1016/j.envc.2026.101599",
+      "venue": "Environmental Challenges",
+      "why_relevant": "This directly relates to Fangzhou Xiao's work on microbial population dynamics and community ecology, highlighting how environmental filters shape community composition and diversity."
+    },
+    {
+      "authors": [
+        "Mengying He",
+        "Xihao Wang",
+        "JingJing Wang",
+        "ZhenYa Tian",
+        "JingFang Yang",
+        "Yan Zhang",
+        "WeiHua Ma",
+        "HongXia Hua",
+        "Zhongshi Zhou"
+      ],
+      "category": "core",
+      "key_finding": "Generalist herbivory enriched nutrient-tolerant bacteria and led to deterministic community assembly, while specialist herbivory promoted organic matter-decomposing bacteria and stochastic assembly.",
+      "pdf_url": "https://www.sciencedirect.com/science/article/pii/S2351989426003240/pdf",
+      "published": "2026-08-01",
+      "title": "Aboveground herbivory differentially regulates belowground bacterial communities and soil functions in an invasive weed",
+      "tldr": "Herbivory by a specialist beetle and a generalist moth differentially affected rhizosphere bacterial communities and soil functions in invasive Ambrosia artemisiifolia.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1016/j.gecco.2026.e04374",
+      "venue": "Global Ecology and Conservation",
+      "why_relevant": "This connects to Fangzhou Xiao's interest in microbial community assembly and ecological interactions, showing how aboveground herbivory regulates belowground microbial processes."
+    },
+    {
+      "authors": [
+        "Zhiying Xu",
+        "Jiabao Xing",
+        "X Y Zeng",
+        "Yuqing Wu",
+        "Yao Wang",
+        "He Yl",
+        "Xialu Lin",
+        "Haiyan Huang",
+        "Zeyu Zhao",
+        "Hua Wu",
+        "Zhinan Guo",
+        "Tianmu Chen"
+      ],
+      "category": "core",
+      "key_finding": "Cross-environment lineage sharing is associated with lower nucleotide diversity, and pH shows strong non-linear associations with microbial diversity and resistome composition.",
+      "pdf_url": "",
+      "published": "2026-07-20",
+      "title": "Citywide metagenomics reveals microbial community and resistome dynamics in urban wastewater",
+      "tldr": "A citywide metagenomic survey of urban wastewater revealed source-specific microbial communities and resistome profiles, with hospitals harboring the most diverse resistomes and treatment plants accumulating ARGs from multiple sources.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://www.nature.com/articles/s41467-026-75771-6_reference.pdf",
+      "venue": "Nature Communications",
+      "why_relevant": "This relates to Fangzhou Xiao's focus on microbial population dynamics and antibiotic resistance, providing insights into the dissemination of resistance genes in interconnected urban wastewater networks."
+    },
+    {
+      "authors": [
+        "Chang Liu",
+        "Kehui Ouyang",
+        "Mingren Qu",
+        "Qinghua Qiu"
+      ],
+      "category": "core",
+      "key_finding": "Quorum sensing signaling molecules and collective behavior regulation are proposed as mechanisms for rumen microbiota to maintain fermentation homeostasis under stress, but direct evidence is limited.",
+      "pdf_url": "https://www.mdpi.com/2076-2615/16/15/2356/pdf?version=1785721412",
+      "published": "2026-08-02",
+      "title": "The Potential Role of Quorum Sensing in Rumen Microbial Adaptation to Environmental and Nutritional Stress: A Review",
+      "tldr": "This review discusses the potential role of quorum sensing in rumen microbial adaptation to environmental and nutritional stress, summarizing current evidence and knowledge gaps.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.3390/ani16152356",
+      "venue": "Animals",
+      "why_relevant": "This ties into Fangzhou Xiao's interests in microbial decision-making and community ecology, specifically how intercellular communication may coordinate microbial behavior in complex ecosystems."
+    },
+    {
+      "authors": [
+        "MOU Na",
+        "ZHANG Yu",
+        "MA Jie",
+        "LIU Ran",
+        "徐贵青"
+      ],
+      "category": "core",
+      "key_finding": "Salt-sensitive phyla were replaced by salt-tolerant ones with increasing salinity, and assembly shifted from stochastic in low/moderate salinity to deterministic in high salinity.",
+      "pdf_url": "https://www.sciencedirect.com/science/article/pii/S1674676726001180/pdf",
+      "published": "2026-08-01",
+      "title": "From structure to assembly processes: how salinity regulates soil bacterial communities in arid regions",
+      "tldr": "Soil bacterial community structure and assembly processes varied along a natural salinity gradient, with deterministic processes dominating in heavily salinized soils and reduced network complexity.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1016/j.jaridl.2026.08.009",
+      "venue": "Journal of Arid Land",
+      "why_relevant": "This addresses Fangzhou Xiao's interest in microbial community assembly and environmental filtering, providing an example of how abiotic stress shapes bacterial community structure and function."
+    }
+  ],
+  "run_key": "2026-W34",
+  "schema_version": 1,
+  "start_date": "2026-08-11",
+  "title": "BMAC Weekly — 2026-W34"
+}
