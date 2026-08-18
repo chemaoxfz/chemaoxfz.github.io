@@ -1,0 +1,1916 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Biomachine Perspective</title>
+<meta name="description" content="A cell is a machine. Fix the function, compare the implementations, and let the difference in physical constraints explain the difference in architecture.">
+<style>
+:root{
+  /* Sunset-Sky marks */
+  --coral:#EE8168; --peri:#5A73CE; --lime:#8FB043; --plum:#77488C; --teal:#1F9A8E; --rose:#D75567;
+  /* Sunset-Sky fills */
+  --blush:#F5E6EB; --lavender:#E6E4F1; --powder:#D0DAE4; --lilac:#D8CDDD; --pinkf:#F8CFCD; --cream:#FAF0D5;
+  /* neutrals */
+  --ink:#20201E; --gray:#877F77; --leader:#B8AEA5; --gridc:#EDE7E0;
+
+  --bg:#FCFAF7; --bg2:#FFFFFF; --fg:var(--ink); --muted:#6E675F; --rule:#E3DCD3;
+  --shadow:0 1px 2px rgba(32,32,30,.05), 0 8px 28px rgba(32,32,30,.05);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;
+  --maxw:44rem;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#141513; --bg2:#1C1D1A; --fg:#EDE9E2; --muted:#A9A197; --rule:#33352F;
+    --gridc:#2C2E28; --leader:#5C574F;
+    --blush:#33262B; --lavender:#262538; --powder:#1F2A33; --lilac:#2E2634; --pinkf:#3A2626; --cream:#332F20;
+    --coral:#F2937D; --peri:#8497E0; --lime:#A6C55C; --plum:#B183C6; --teal:#4FC0B3; --rose:#E8768A;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141513; --bg2:#1C1D1A; --fg:#EDE9E2; --muted:#A9A197; --rule:#33352F;
+  --gridc:#2C2E28; --leader:#5C574F;
+  --blush:#33262B; --lavender:#262538; --powder:#1F2A33; --lilac:#2E2634; --pinkf:#3A2626; --cream:#332F20;
+  --coral:#F2937D; --peri:#8497E0; --lime:#A6C55C; --plum:#B183C6; --teal:#4FC0B3; --rose:#E8768A;
+  --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#FCFAF7; --bg2:#FFFFFF; --fg:#20201E; --muted:#6E675F; --rule:#E3DCD3;
+  --gridc:#EDE7E0; --leader:#B8AEA5;
+  --blush:#F5E6EB; --lavender:#E6E4F1; --powder:#D0DAE4; --lilac:#D8CDDD; --pinkf:#F8CFCD; --cream:#FAF0D5;
+  --coral:#EE8168; --peri:#5A73CE; --lime:#8FB043; --plum:#77488C; --teal:#1F9A8E; --rose:#D75567;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--serif); font-size:18px; line-height:1.62;
+  font-kerning:normal; text-rendering:optimizeLegibility;
+}
+.wrap{max-width:78rem;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:3rem}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr;gap:0}}
+
+/* ---------- nav ---------- */
+nav.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:2.5rem 0 3rem;font-family:var(--sans);font-size:.8rem;line-height:1.45}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 .9rem;font-weight:600}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li{margin:0 0 .1rem}
+nav.toc a{display:block;padding:.26rem .55rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;border-radius:0 4px 4px 0}
+nav.toc a:hover{color:var(--fg);background:var(--bg2)}
+nav.toc a.on{color:var(--fg);border-left-color:var(--rose);background:var(--bg2);font-weight:600}
+nav.toc .part{margin:1.1rem 0 .35rem;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--leader);font-weight:700}
+@media (max-width:1000px){nav.toc{position:static;max-height:none;border-bottom:1px solid var(--rule);margin-bottom:1rem}}
+
+main{padding:2.5rem 0 6rem;min-width:0}
+main > *{max-width:var(--maxw)}
+main > figure, main > .wide, main > .demo{max-width:56rem}
+
+/* ---------- type ---------- */
+h1{font-size:2.5rem;line-height:1.1;letter-spacing:-.02em;margin:.4rem 0 .8rem;font-weight:700;max-width:26ch}
+.sub{font-size:1.18rem;color:var(--muted);margin:0 0 1.6rem;line-height:1.5;max-width:38rem}
+.byline{font-family:var(--sans);font-size:.8rem;color:var(--muted);letter-spacing:.02em;margin-bottom:2.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--rule)}
+h2{font-size:1.05rem;font-family:var(--sans);font-weight:700;letter-spacing:.02em;margin:3.6rem 0 .2rem;scroll-margin-top:1.5rem}
+h2 .n{color:var(--rose);font-variant-numeric:tabular-nums;margin-right:.5rem}
+h2 + .lede{color:var(--muted);font-size:1.02rem;margin:.1rem 0 1.1rem}
+h3{font-size:.95rem;font-family:var(--sans);font-weight:700;margin:2.1rem 0 .5rem;color:var(--fg)}
+.parthead{margin:4.5rem 0 1.2rem;padding-top:1.6rem;border-top:2px solid var(--fg)}
+.parthead .k{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700}
+.parthead h2{font-size:1.8rem;margin:.35rem 0 .3rem;letter-spacing:-.01em;font-family:var(--serif)}
+.parthead p{color:var(--muted);margin:0;font-size:1.02rem}
+p{margin:0 0 1.05rem}
+a{color:var(--fg);text-underline-offset:2px;text-decoration-color:var(--leader)}
+a:hover{text-decoration-color:var(--rose)}
+strong{font-weight:700}
+em{font-style:italic}
+ul,ol{margin:0 0 1.05rem;padding-left:1.35rem}
+li{margin:.28rem 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.6rem 0}
+.small{font-size:.88rem;color:var(--muted)}
+
+/* ---------- math ---------- */
+.m{font-family:var(--mono);font-size:.92em;font-style:normal;white-space:nowrap}
+.eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);
+    font-size:.95rem;background:var(--bg2);border:1px solid var(--rule);border-radius:8px;overflow-x:auto}
+.eq .tag{float:right;color:var(--leader);font-size:.85em}
+sub,sup{font-size:.7em;line-height:0}
+
+/* ---------- callouts ---------- */
+.box{border:1px solid var(--rule);background:var(--bg2);border-radius:10px;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow)}
+.box .lbl{font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.45rem;display:block}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+.box.key{border-left:3px solid var(--rose);background:linear-gradient(90deg,var(--blush),var(--bg2) 60%)}
+.box.key .lbl{color:var(--rose)}
+.box.def{border-left:3px solid var(--peri);background:linear-gradient(90deg,var(--lavender),var(--bg2) 60%)}
+.box.def .lbl{color:var(--peri)}
+.box.note{border-left:3px solid var(--lime)}
+.box.note .lbl{color:var(--lime)}
+.box.caution{border-left:3px solid var(--coral);background:linear-gradient(90deg,var(--pinkf),var(--bg2) 60%)}
+.box.caution .lbl{color:var(--coral)}
+.box.hist{border-left:3px solid var(--leader)}
+.box.hist .lbl{color:var(--leader)}
+
+/* ---------- figures ---------- */
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
+figcaption b{color:var(--fg);font-weight:700}
+.figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.83rem;line-height:1.45}
+th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:700;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tbody tr:last-child td{border-bottom:0}
+td.hl{color:var(--rose);font-weight:600}
+caption{caption-side:bottom;text-align:left;padding:.7rem .8rem;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
+
+/* ---------- demos ---------- */
+.demo{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:1.15rem;margin:2rem 0;box-shadow:var(--shadow)}
+.demo h4{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin:0 0 .1rem;font-weight:700}
+.demo .dsub{font-family:var(--sans);font-size:.83rem;color:var(--muted);margin:0 0 .9rem}
+.ctl{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;font-family:var(--sans);font-size:.78rem;margin:.9rem 0 .2rem}
+.ctl label{display:flex;flex-direction:column;gap:.15rem;min-width:9.5rem}
+.ctl .lv{display:flex;justify-content:space-between;gap:.6rem;color:var(--muted)}
+.ctl .lv b{color:var(--fg);font-family:var(--mono);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--rose);height:1.1rem}
+button{font-family:var(--sans);font-size:.78rem;font-weight:600;padding:.42rem .85rem;border-radius:7px;
+  border:1px solid var(--rule);background:var(--bg);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--rose);color:var(--rose)}
+button.pri{background:var(--rose);border-color:var(--rose);color:#fff}
+button.pri:hover{opacity:.88;color:#fff}
+.readout{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:.6rem;line-height:1.7}
+.readout b{color:var(--fg)}
+canvas{display:block;width:100%;height:auto;border-radius:8px}
+
+/* ---------- refs ---------- */
+.refs{font-size:.88rem;line-height:1.5}
+.refs ol{padding-left:1.8rem}
+.refs li{margin:.5rem 0}
+.refs .venue{color:var(--muted)}
+.pdf{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.04em;color:var(--teal);
+  border:1px solid var(--teal);border-radius:4px;padding:.02rem .3rem;text-decoration:none;margin-left:.3rem;white-space:nowrap}
+.pdf:hover{background:var(--teal);color:var(--bg2)}
+.pdf.no{color:var(--leader);border-color:var(--leader)}
+sup.c{font-size:.68em;color:var(--rose);font-weight:700}
+sup.c a{color:inherit;text-decoration:none}
+
+/* ---------- theme toggle ---------- */
+#tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;
+  display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
+@media print{#tt,nav.toc{display:none}.wrap{display:block}main>*{max-width:none}}
+
+/* --- added for the web version --- */
+.webbar{font-family:var(--sans);font-size:.78rem;line-height:1.5;margin:0 0 2rem;
+  padding:.7rem .9rem;border:1px solid var(--rule);border-radius:.5rem;background:var(--bg2)}
+.webbar .row{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;align-items:baseline}
+.webbar a{color:var(--peri);text-decoration:none;border:0}
+.webbar a:hover{text-decoration:underline}
+.webbar .sep{flex:1}
+.webbar .note{display:block;margin-top:.45rem;color:var(--muted)}
+.webbar code{font-family:var(--mono,monospace);font-size:.95em}
+@media(max-width:52rem){.webbar .sep{display:none}}
+</style>
+<link rel="canonical" href="https://chemaoxfz.github.io/essays/biomachine-tutorial/">
+</head>
+<body>
+<button id="tt" title="Toggle light / dark">◐</button>
+<div class="wrap">
+<nav class="toc" id="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li class="part">I · The frame</li>
+    <li><a href="#s1">1 · A cell is a machine</a></li>
+    <li><a href="#s2">2 · Why a systems theory</a></li>
+    <li><a href="#s3">3 · The method</a></li>
+    <li><a href="#s4">4 · Layers and timescales</a></li>
+    <li class="part">II · Adaptation</li>
+    <li><a href="#s5">5 · The function</a></li>
+    <li><a href="#s6">6 · The engineered answer</a></li>
+    <li><a href="#s7">7 · What biology does</a></li>
+    <li><a href="#s8">8 · The anomaly</a></li>
+    <li><a href="#s9">9 · Constraint one: positivity</a></li>
+    <li><a href="#s10">10 · Constraint two: exponents</a></li>
+    <li class="part">III · Reaction orders</li>
+    <li><a href="#s11">11 · Binding and catalysis</a></li>
+    <li><a href="#s12">12 · The reaction order</a></li>
+    <li><a href="#s13">13 · The polyhedron</a></li>
+    <li><a href="#s14">14 · Dominance</a></li>
+    <li class="part">IV · Consequences</li>
+    <li><a href="#s15">15 · Mechanism matters</a></li>
+    <li><a href="#s16">16 · Hidden regimes</a></li>
+    <li><a href="#s17">17 · Sampling lies</a></li>
+    <li><a href="#s18">18 · Flux exponent control</a></li>
+    <li class="part">V · Closing</li>
+    <li><a href="#s19">19 · The recipe</a></li>
+    <li><a href="#s20">20 · Open functions</a></li>
+    <li><a href="#s21">21 · What is assumed</a></li>
+    <li><a href="#refs">References</a></li>
+  </ol>
+</nav>
+<main>
+
+<div class="webbar">
+  <div class="row">
+    <a href="/essays/">&#8592; Research essays</a>
+    <span class="sep"></span>
+    <a href="https://github.com/chemaoxfz/idea-to-essay" rel="noopener">Written with the idea-to-essay skill &#8599;</a>
+  </div>
+  <span class="note">Sources are cited in full below. The <code>literature/</code> archive
+  the citations refer to is a local folder of verified full texts, not redistributed here.</span>
+</div>
+<h1>The Biomachine Perspective</h1>
+<p class="sub">A cell is a machine. Fix the function, compare the implementations, and let the difference in
+physical constraints explain the difference in architecture.</p>
+<p class="byline">BMAC Lab · Westlake University · a tutorial</p>
+
+<p>This is a tutorial about a way of asking questions. The way is old in engineering and still unusual in
+biology, and it goes like this. Pick a function. Find the machine that engineers built to do it. Find the
+machine biology built to do it. They will not look alike. The interesting work is explaining <em>why</em> —
+and the explanation is almost never "biology is messy." It is that the two machines are made of different
+physical stuff, and different stuff imposes different constraints, and different constraints make different
+architectures optimal.</p>
+
+<p>The tutorial is built around one function carried all the way down: <strong>adaptation</strong>. Adaptation
+is a good choice because control theory solved it completely, biology solved it independently, and the two
+solutions disagree in a way that is precise enough to be a real puzzle. Chasing that disagreement produces
+a piece of mathematics — reaction order polyhedra — that did not exist before, and that turns out to describe
+bioregulation far beyond adaptation. That chase is the spine of what follows.</p>
+
+<div class="box note">
+<span class="lbl">How to read this</span>
+<p>Sections 1–4 set up the frame. Sections 5–10 are the argument, and section 10 is the crux; if you read
+one thing, read that. Sections 11–14 build the machinery, 15–18 spend it. Every claim that rests on a
+specific paper is footnoted, and every footnote points at a PDF sitting in <span class="m">literature/</span>
+next to this file.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Part I</div>
+  <h2>The frame</h2>
+  <p>What it means to call a cell a machine, and what that buys you.</p>
+</div>
+
+<h2 id="s1"><span class="n">1</span>A cell is a machine</h2>
+
+<p>Start by rejecting a more familiar picture. Synthetic biology often draws the cell as a circuit made of
+electronic components: promoters as gates, proteins as wires, a genetic program as a netlist. The picture is
+useful for building things and wrong as a theory. Its error is not that it is an analogy — all theory is
+analogy — but that it imports the <em>components</em> of electronics rather than the <em>method</em>. A
+promoter is not a transistor, and pretending otherwise smuggles in constraints that do not hold and hides
+constraints that do.</p>
+
+<p>The biomachine picture imports the method instead. A machine is anything with</p>
+
+<ul>
+<li>an <strong>input</strong> it does not control,</li>
+<li>an <strong>output</strong> that is supposed to do something,</li>
+<li><strong>parameters</strong> that can be set, and</li>
+<li>a <strong>function</strong> it is for.</li>
+</ul>
+
+<p>That is enough to talk about <strong>performance</strong>: how well, how fast, how robustly the output
+does what the function asks, as a property of the input–output map. Performance is the pivot. Once two
+systems have performance measured on the same axes, they are comparable, no matter what they are built out
+of. A chemotaxing bacterium and a car suspension become the same kind of object: a device that rejects a
+disturbance.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 210" role="img" aria-label="Input-output box diagram applied to a cell">
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="currentColor"/></marker>
+  </defs>
+  <g font-family="var(--sans)" font-size="13" fill="var(--fg)" color="var(--gray)">
+    <!-- abstract -->
+    <text x="18" y="26" font-size="11" letter-spacing="1.4" fill="var(--gray)">THE ABSTRACTION</text>
+    <line x1="18" y1="92" x2="112" y2="92" stroke="var(--fg)" stroke-width="1.6" marker-end="url(#ar)" color="var(--fg)"/>
+    <text x="20" y="82" font-size="12">input <tspan font-family="var(--mono)">w</tspan></text>
+    <rect x="122" y="62" width="130" height="60" rx="8" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.4"/>
+    <text x="187" y="97" text-anchor="middle" font-size="13" fill="var(--fg)">System</text>
+    <line x1="252" y1="92" x2="348" y2="92" stroke="var(--fg)" stroke-width="1.6" marker-end="url(#ar)" color="var(--fg)"/>
+    <text x="256" y="82" font-size="12">output <tspan font-family="var(--mono)">y</tspan></text>
+    <line x1="187" y1="140" x2="187" y2="126" stroke="var(--gray)" stroke-width="1.4" marker-end="url(#ar)" color="var(--gray)"/>
+    <text x="187" y="158" text-anchor="middle" font-size="11" fill="var(--gray)">parameters θ</text>
+    <text x="187" y="176" text-anchor="middle" font-size="11" fill="var(--gray)">(what you may set)</text>
+
+    <!-- cell -->
+    <text x="430" y="26" font-size="11" letter-spacing="1.4" fill="var(--gray)">ONE INSTANCE</text>
+    <rect x="430" y="46" width="300" height="120" rx="10" fill="var(--bg)" stroke="var(--rule)"/>
+    <ellipse cx="580" cy="106" rx="74" ry="34" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.5"/>
+    <g stroke="var(--rose)" stroke-width="1.1" opacity=".55" fill="none">
+      <path d="M512 92 q-16 -10 -26 -4"/><path d="M512 120 q-16 10 -26 4"/>
+      <path d="M648 92 q16 -10 26 -4"/><path d="M648 120 q16 10 26 4"/>
+    </g>
+    <text x="580" y="111" text-anchor="middle" font-size="12" fill="var(--fg)">cell</text>
+    <line x1="440" y1="106" x2="500" y2="106" stroke="var(--fg)" stroke-width="1.6" marker-end="url(#ar)" color="var(--fg)"/>
+    <text x="444" y="96" font-size="11" fill="var(--gray)">ligand</text>
+    <line x1="660" y1="106" x2="720" y2="106" stroke="var(--fg)" stroke-width="1.6" marker-end="url(#ar)" color="var(--fg)"/>
+    <text x="664" y="96" font-size="11" fill="var(--gray)">tumble rate</text>
+    <text x="580" y="158" text-anchor="middle" font-size="11" fill="var(--gray)">θ = rate constants, copy numbers</text>
+  </g>
+</svg>
+<figcaption><b>Figure 1. The only structure the frame requires.</b> An input you do not control, an output
+that must do something, parameters you may set. Everything else in this tutorial is an argument about what
+θ can physically be, and what that permits the map from <span class="m">w</span> to <span class="m">y</span>
+to look like.</figcaption>
+</figure>
+
+<h2 id="s2"><span class="n">2</span>Why a systems theory, and not just a model</h2>
+
+<p>Every mature engineering discipline rests on two layers. Underneath, a <em>component rule</em>: what the
+parts are and how they compose. On top, a <em>systems theory</em>: what any machine built from those parts
+can and cannot do. Newton gave mechanics mass and force; Lagrange gave it a systems theory. Shannon gave
+communication the channel; Turing gave computation the machine. Carnot gave heat engines a bound before
+anyone had a good engine.</p>
+
+<p>The systems theory is what turns craft into industry, because it tells you the answer before you build.
+It does that by supplying <strong>hard limits</strong>: statements of the form <em>no machine of this class,
+however cleverly designed, can beat this</em>.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 1. One hard limit per discipline. Each is a statement about every machine in a class, not about
+one design. This is the kind of statement a systems theory for cells should produce.</caption>
+<thead><tr><th>Discipline</th><th>Limit</th><th>Says</th></tr></thead>
+<tbody>
+<tr><td>Mechanics</td><td class="m">δ∫L dt = 0</td><td>Trajectories are stationary points of an action</td></tr>
+<tr><td>Heat engines</td><td class="m">η ≤ 1 − T<sub>c</sub>/T<sub>h</sub></td><td>Efficiency is capped by reservoir temperatures</td></tr>
+<tr><td>Electrical networks</td><td class="m">Σi<sub>k</sub> = 0, Σv<sub>k</sub> = 0</td><td>Topology alone constrains all currents and voltages</td></tr>
+<tr><td>Communication</td><td class="m">I(X;Y) ≤ B log₂(1 + S/N)</td><td>Bandwidth and noise cap the rate</td></tr>
+<tr><td>Lossy compression</td><td class="m">R(D) = min I(X;X̂)</td><td>Distortion buys rate at a fixed exchange</td></tr>
+<tr><td>Feedback control</td><td class="m">∫₀<sup>∞</sup> ln|S(jω)| dω ≥ 0</td><td>Suppressing error at one frequency amplifies it at another</td></tr>
+<tr><td class="hl">Bioregulation</td><td class="hl m">α ∈ 𝒫(N)</td><td class="hl">Binding stoichiometry caps the achievable regulatory exponents</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The last row is the object this tutorial builds. It is not yet as sharp as Carnot's, but it has the right
+shape: a constraint on <em>every</em> circuit made of binding and catalysis, derived from stoichiometry
+alone, before any rate constant is measured.</p>
+
+<div class="box def">
+<span class="lbl">Hard limit vs. model</span>
+<p>A model predicts what <em>this</em> system does. A hard limit says what <em>no</em> system in the class
+can do. Models need parameters and are falsified by better measurements; hard limits need only structure and
+are falsified by a counterexample. In biology, where parameters are mostly unknown and mostly variable, the
+second kind of statement is worth far more per unit of data.</p>
+</div>
+
+<h2 id="s3"><span class="n">3</span>The method: fix the function, vary the physics</h2>
+
+<p>Here is the whole method in four steps.</p>
+
+<ol>
+<li><strong>Fix a function.</strong> Not a pathway, not a gene set — a functional specification, stated as a
+required input–output behavior. "Reject constant disturbances." "Amplify without adding noise." "Store one
+bit for a year."</li>
+<li><strong>Find the engineered machine</strong> that does it, and the theory that says why it works. This
+theory is usually a theorem, and usually an <em>iff</em>.</li>
+<li><strong>Find the biological machine</strong> that does it. Ask whether it satisfies the theorem. It must,
+if the theorem is really an iff — so if it looks like it does not, you have misidentified either the machine
+or the variable.</li>
+<li><strong>Find the constraint that differs.</strong> The engineered design was optimal under electronic
+constraints. The biological one is optimal under biochemical constraints. Name the constraint that flipped
+the answer. That named constraint is the theory you were missing.</li>
+</ol>
+
+<p>Step 4 is the payload. It is also the step that people skip, and skipping it is what makes
+biology-meets-engineering papers feel like decoration. The comparison is not the result. The
+<em>constraint</em> is the result.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 250" role="img" aria-label="Function-matched comparison of engineered and biological machines">
+ <g font-family="var(--sans)" font-size="12">
+  <text x="380" y="20" text-anchor="middle" font-size="12" fill="var(--gray)">fix the function, then compare</text>
+  <g id="rows">
+   <!-- row template drawn explicitly -->
+   <g transform="translate(0,34)">
+     <rect x="20" y="0" width="200" height="40" rx="7" fill="var(--powder)" stroke="var(--peri)" stroke-width="1.1"/>
+     <text x="120" y="25" text-anchor="middle" fill="var(--fg)">chemical plant</text>
+     <text x="380" y="25" text-anchor="middle" fill="var(--rose)" font-weight="700" font-size="11" letter-spacing="1">METABOLISM</text>
+     <rect x="540" y="0" width="200" height="40" rx="7" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.1"/>
+     <text x="640" y="25" text-anchor="middle" fill="var(--fg)">cell as metabolic machine</text>
+     <line x1="228" y1="20" x2="300" y2="20" stroke="var(--leader)" stroke-width="1"/>
+     <line x1="460" y1="20" x2="532" y2="20" stroke="var(--leader)" stroke-width="1"/>
+   </g>
+   <g transform="translate(0,84)">
+     <rect x="20" y="0" width="200" height="40" rx="7" fill="var(--powder)" stroke="var(--peri)" stroke-width="1.1"/>
+     <text x="120" y="25" text-anchor="middle" fill="var(--fg)">aircraft autopilot</text>
+     <text x="380" y="25" text-anchor="middle" fill="var(--rose)" font-weight="700" font-size="11" letter-spacing="1">NAVIGATION</text>
+     <rect x="540" y="0" width="200" height="40" rx="7" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.1"/>
+     <text x="640" y="25" text-anchor="middle" fill="var(--fg)">chemotaxing bacterium</text>
+     <line x1="228" y1="20" x2="300" y2="20" stroke="var(--leader)" stroke-width="1"/>
+     <line x1="460" y1="20" x2="532" y2="20" stroke="var(--leader)" stroke-width="1"/>
+   </g>
+   <g transform="translate(0,134)">
+     <rect x="20" y="0" width="200" height="40" rx="7" fill="var(--powder)" stroke="var(--peri)" stroke-width="1.1"/>
+     <text x="120" y="25" text-anchor="middle" fill="var(--fg)">car suspension · PID loop</text>
+     <text x="380" y="25" text-anchor="middle" fill="var(--rose)" font-weight="700" font-size="11" letter-spacing="1">ADAPTATION</text>
+     <rect x="540" y="0" width="200" height="40" rx="7" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.1"/>
+     <text x="640" y="25" text-anchor="middle" fill="var(--fg)">chemotaxis · osmo-response</text>
+     <line x1="228" y1="20" x2="300" y2="20" stroke="var(--rose)" stroke-width="2"/>
+     <line x1="460" y1="20" x2="532" y2="20" stroke="var(--rose)" stroke-width="2"/>
+   </g>
+   <g transform="translate(0,184)">
+     <rect x="20" y="0" width="200" height="40" rx="7" fill="var(--powder)" stroke="var(--peri)" stroke-width="1.1"/>
+     <text x="120" y="25" text-anchor="middle" fill="var(--fg)">CMOS latch · DRAM · flash</text>
+     <text x="380" y="25" text-anchor="middle" fill="var(--rose)" font-weight="700" font-size="11" letter-spacing="1">MEMORY &amp; SIGNALLING</text>
+     <rect x="540" y="0" width="200" height="40" rx="7" fill="var(--cream)" stroke="var(--leader)" stroke-width="1.1" stroke-dasharray="4 3"/>
+     <text x="640" y="25" text-anchor="middle" fill="var(--fg)">spikes, switches, synapses</text>
+     <line x1="228" y1="20" x2="300" y2="20" stroke="var(--leader)" stroke-width="1"/>
+     <line x1="460" y1="20" x2="532" y2="20" stroke="var(--leader)" stroke-width="1"/>
+   </g>
+  </g>
+ </g>
+</svg>
+<figcaption><b>Figure 2. The comparison grid.</b> Each row is one function with two implementations. This
+tutorial walks the highlighted row all the way to the bottom. The dashed row is the companion project,
+switch vs. spike, which runs the same method on
+neurons.</figcaption>
+</figure>
+
+<h2 id="s4"><span class="n">4</span>Layers, timescales, and constraints that deconstrain</h2>
+
+<p>One more piece of vocabulary before the argument. A machine is not one thing but a stack of things that
+change on different timescales.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 2. The layers of a machine, ordered by how fast they change. Useful statements about biology
+live in the lower rows, because those are the rows that stay put while the cell operates and while evolution
+tunes.</caption>
+<thead><tr><th>Layer</th><th>Changes on</th><th>In a cell</th><th>In a car</th></tr></thead>
+<tbody>
+<tr><td><b>Architecture</b></td><td>slowest — changing it means a different machine</td><td>which species bind which, stoichiometry</td><td>chassis, drivetrain layout</td></tr>
+<tr><td><b>Parameters</b></td><td>slow — tuning</td><td>rate constants, expression levels</td><td>spring rates, gear ratios</td></tr>
+<tr><td><b>Behavior</b></td><td>fast — operation</td><td>concentrations responding to signals</td><td>the actual ride over a bump</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Kirschner and Gerhart's phrase for the right relationship between these layers is <em>constraints that
+deconstrain</em>.<sup class="c"><a href="#r-kg">1</a></sup> A machine is useful precisely because it is
+severely restricted at the bottom and free at the top. A computer only flips bits, and can compute anything.
+A car only turns wheels, and can go anywhere there is road. The restriction at the architecture layer is what
+<em>creates</em> the freedom at the behavior layer, by making the behavior layer composable.</p>
+
+<p>So: a good theory of cells should be a theory of the architecture layer. It should take the thing that
+does not change — stoichiometry, which species can bind which — and derive constraints on everything above.
+That is exactly what reaction order polyhedra do, and it is why they are worth the trouble.</p>
+
+<div class="parthead">
+  <div class="k">Part II</div>
+  <h2>Adaptation, all the way down</h2>
+  <p>One function. Two solutions. One disagreement worth a decade.</p>
+</div>
+
+<h2 id="s5"><span class="n">5</span>The function: reject a step</h2>
+
+<p>Adaptation is the oldest system-level behavior studied quantitatively in biology, and the cleanest.
+A stimulus arrives and stays. The output jumps, then comes back to where it started, even though the
+stimulus is still there.</p>
+
+<div class="box def">
+<span class="lbl">Definition</span>
+<p><strong>Perfect adaptation.</strong> For a persistent step in the input <span class="m">w</span>, the
+output returns to a steady state that does not depend on <span class="m">w</span>.<br>
+<strong>Robust perfect adaptation (RPA).</strong> The above holds for an open set of parameter values, not
+just a tuned point.</p>
+<p class="small" style="margin-top:.5rem">Ma and colleagues make this quantitative with two numbers: the
+<em>sensitivity</em> (how big the transient is, relative to the input change) and the <em>precision</em>
+(the reciprocal of the residual offset). They call a circuit adaptive when sensitivity &gt; 1 and precision
+&gt; 10.<sup class="c"><a href="#r-ma">2</a></sup></p>
+</div>
+
+<p>In control theory this has a name that predates the biology by decades: <strong>constant disturbance
+rejection</strong>, or steady-state tracking of a constant reference. Your car does it over a bump. Your
+thermostat does it when someone opens a window. A cruise controller does it on a hill.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 220" role="img" aria-label="Adaptation response: step input, transient output, return to baseline">
+ <g font-family="var(--sans)" font-size="11">
+  <!-- input -->
+  <g transform="translate(60,12)">
+   <line x1="0" y1="60" x2="640" y2="60" stroke="var(--gridc)"/>
+   <path d="M0 52 L200 52 L200 18 L640 18" fill="none" stroke="var(--peri)" stroke-width="2.2"/>
+   <text x="-8" y="24" text-anchor="end" fill="var(--gray)">input w</text>
+   <text x="206" y="14" fill="var(--peri)">step on, and stays on</text>
+  </g>
+  <!-- output -->
+  <g transform="translate(60,100)">
+   <line x1="0" y1="70" x2="640" y2="70" stroke="var(--gridc)"/>
+   <line x1="0" y1="70" x2="640" y2="70" stroke="var(--leader)" stroke-dasharray="3 4"/>
+   <path d="M0 70 L200 70 C210 70 214 14 240 16 C300 20 330 66 420 69.4 C500 71 560 70 640 70"
+         fill="none" stroke="var(--rose)" stroke-width="2.4"/>
+   <text x="-8" y="74" text-anchor="end" fill="var(--gray)">output y</text>
+   <text x="646" y="74" fill="var(--gray)">baseline</text>
+   <!-- sensitivity arrow -->
+   <line x1="243" y1="18" x2="243" y2="68" stroke="var(--lime)" stroke-width="1.4"/>
+   <line x1="238" y1="20" x2="248" y2="20" stroke="var(--lime)" stroke-width="1.4"/>
+   <line x1="238" y1="66" x2="248" y2="66" stroke="var(--lime)" stroke-width="1.4"/>
+   <text x="254" y="40" fill="var(--lime)" font-weight="700">sensitivity</text>
+   <text x="254" y="54" fill="var(--gray)">size of the transient</text>
+   <!-- precision -->
+   <line x1="470" y1="70" x2="470" y2="86" stroke="var(--coral)" stroke-width="1.2"/>
+   <text x="478" y="90" fill="var(--coral)" font-weight="700">precision</text>
+   <text x="478" y="103" fill="var(--gray)">1 / residual offset —</text>
+   <text x="478" y="116" fill="var(--gray)">infinite if it returns exactly</text>
+  </g>
+ </g>
+</svg>
+<figcaption><b>Figure 3. What adaptation looks like, and the two numbers that grade it.</b> A large
+transient (high sensitivity) means the circuit is a good change detector. A small residual (high precision)
+means it is a good disturbance rejector. Ma et al. show these two can be tuned almost
+independently.<sup class="c"><a href="#r-ma">2</a></sup></figcaption>
+</figure>
+
+<h2 id="s6"><span class="n">6</span>The engineered answer, and why it is an <em>iff</em></h2>
+
+<p>Control theory did not merely find a good solution to this problem. It found <em>the</em> solution, and
+proved there is no other. The result is the <strong>internal model principle</strong> of Francis and
+Wonham.<sup class="c"><a href="#r-fw">3</a></sup></p>
+
+<div class="box key">
+<span class="lbl">Internal model principle</span>
+<p>A system rejects a class of disturbances robustly <strong>if and only if</strong> the loop contains a
+model of those disturbances. For constant (step) disturbances, the model of a constant is an
+<strong>integrator</strong>. So: robust perfect adaptation to steps ⟺ there is integral feedback on the
+error.</p>
+</div>
+
+<p>The mechanism is worth stating plainly, because the plain version is what transfers. Let
+<span class="m">e = y − y*</span> be the error and let some variable <span class="m">z</span> obey
+<span class="m">ż = e</span>. At any steady state <span class="m">ż = 0</span>, hence
+<span class="m">e = 0</span> — <em>whatever</em> the rest of the loop is doing, and whatever the parameters
+are. The zero is enforced by the structure of one equation, not by a balance between numbers. That is where
+the robustness comes from, and it is why the "I" in PID is not optional.</p>
+
+<p>Now the negative half of the story, which is the half that sets up the puzzle. There is a second way to
+kill the dependence on <span class="m">w</span>: build two paths from <span class="m">w</span> to
+<span class="m">y</span> with opposite signs and let them cancel. This is <strong>incoherent
+feedforward</strong>. In a linear system the output is</p>
+
+<div class="eq">y = (G<sub>1</sub> − G<sub>2</sub>G<sub>3</sub>) · w</div>
+
+<p>and it adapts iff <span class="m">G<sub>1</sub> = G<sub>2</sub>G<sub>3</sub></span> exactly. Engineers
+essentially never do this, and the reason is not taste. It is that
+<span class="m">G<sub>1</sub> = G<sub>2</sub>G<sub>3</sub></span> is one equation in real-valued gains: a
+measure-zero surface in parameter space. You cannot manufacture two resistors that are equal. You cannot hold
+them equal as they age and warm up. A design whose specification is satisfied only on a surface of measure
+zero is not a design.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 240" role="img" aria-label="Negative feedback with integrator versus incoherent feedforward">
+ <defs><marker id="a2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+   <path d="M0,0 L9,4.5 L0,9 z" fill="currentColor"/></marker></defs>
+ <g font-family="var(--sans)" font-size="11.5" fill="var(--fg)">
+  <!-- left: integral feedback -->
+  <text x="26" y="18" font-size="11" letter-spacing="1.2" fill="var(--peri)" font-weight="700">A · INTEGRAL FEEDBACK</text>
+  <g color="var(--gray)" stroke="var(--gray)" stroke-width="1.4" fill="none">
+    <line x1="26" y1="90" x2="86" y2="90" marker-end="url(#a2)"/>
+    <line x1="130" y1="90" x2="176" y2="90" marker-end="url(#a2)"/>
+    <line x1="250" y1="90" x2="330" y2="90" marker-end="url(#a2)"/>
+    <path d="M300 90 L300 154 L196 154" marker-end="url(#a2)"/>
+    <path d="M150 140 L150 106" marker-end="url(#a2)"/>
+  </g>
+  <circle cx="108" cy="90" r="13" fill="var(--bg)" stroke="var(--gray)" stroke-width="1.3"/>
+  <text x="108" y="94" text-anchor="middle" font-size="13">+</text>
+  <text x="99" y="112" font-size="11" fill="var(--gray)">−</text>
+  <rect x="176" y="70" width="74" height="40" rx="6" fill="var(--powder)" stroke="var(--peri)" stroke-width="1.3"/>
+  <text x="213" y="94" text-anchor="middle">plant</text>
+  <rect x="122" y="136" width="74" height="36" rx="6" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.6"/>
+  <text x="159" y="159" text-anchor="middle" font-family="var(--mono)" font-size="12">ż = e</text>
+  <text x="26" y="82" fill="var(--gray)">y*</text>
+  <text x="336" y="94" fill="var(--gray)">y</text>
+  <text x="26" y="200" fill="var(--fg)" font-size="11.5">Zero error is forced by <tspan font-family="var(--mono)">ż = 0</tspan>.</text>
+  <text x="26" y="216" fill="var(--gray)" font-size="11">Holds for an open set of parameters. Robust.</text>
+
+  <line x1="390" y1="8" x2="390" y2="230" stroke="var(--rule)"/>
+
+  <!-- right: incoherent feedforward -->
+  <text x="418" y="18" font-size="11" letter-spacing="1.2" fill="var(--coral)" font-weight="700">B · INCOHERENT FEEDFORWARD</text>
+  <g color="var(--gray)" stroke="var(--gray)" stroke-width="1.4" fill="none">
+    <path d="M418 90 L448 90 L448 58 L484 58" marker-end="url(#a2)"/>
+    <path d="M448 90 L448 128 L484 128" marker-end="url(#a2)"/>
+    <path d="M556 58 L620 58 L620 84" marker-end="url(#a2)"/>
+    <path d="M556 128 L620 128 L620 104" marker-end="url(#a2)"/>
+    <line x1="634" y1="94" x2="700" y2="94" marker-end="url(#a2)"/>
+  </g>
+  <circle cx="448" cy="90" r="4" fill="var(--gray)"/>
+  <rect x="484" y="40" width="72" height="36" rx="6" fill="var(--cream)" stroke="var(--lime)" stroke-width="1.3"/>
+  <text x="520" y="63" text-anchor="middle" font-family="var(--mono)" font-size="12">G₁</text>
+  <rect x="484" y="110" width="72" height="36" rx="6" fill="var(--pinkf)" stroke="var(--coral)" stroke-width="1.3"/>
+  <text x="520" y="133" text-anchor="middle" font-family="var(--mono)" font-size="12">G₂G₃</text>
+  <circle cx="620" cy="94" r="13" fill="var(--bg)" stroke="var(--gray)" stroke-width="1.3"/>
+  <text x="620" y="98" text-anchor="middle" font-size="13">−</text>
+  <text x="418" y="82" fill="var(--gray)">w</text>
+  <text x="706" y="98" fill="var(--gray)">y</text>
+  <text x="418" y="200" fill="var(--fg)" font-size="11.5">Zero error requires <tspan font-family="var(--mono)">G₁ = G₂G₃</tspan>.</text>
+  <text x="418" y="216" fill="var(--coral)" font-size="11">Measure zero in the gains. Fragile — in electronics.</text>
+ </g>
+</svg>
+<figcaption><b>Figure 4. The two architectures, and why engineering picks the left one.</b> Both can produce
+zero steady-state error. Only the left one produces it on an open set of parameter values. Keep the phrase
+"in electronics" in mind — it is doing all the work, and section 10 removes it.</figcaption>
+</figure>
+
+<h2 id="s7"><span class="n">7</span>What biology actually does</h2>
+
+<p>Bacterial chemotaxis is where this was first nailed down, and the sequence is a small classic of
+quantitative biology.</p>
+
+<div class="box hist">
+<span class="lbl">A forty-year thread</span>
+<ul>
+<li><b>1972</b> — Berg and Brown track individual <i>E. coli</i> in three dimensions and show that swimming
+is a biased random walk: the cell modulates tumble frequency, not direction.<sup class="c"><a href="#r-bb">4</a></sup></li>
+<li><b>1986</b> — Segall, Block and Berg show the response is to the <em>temporal derivative</em> of ligand,
+with a lobed impulse response whose integral is zero. Adaptation, measured.<sup class="c"><a href="#r-sbb">5</a></sup></li>
+<li><b>1997</b> — Barkai and Leibler point out that this precision is <em>robust</em>: it survives large
+changes in protein levels, so it cannot come from tuning.<sup class="c"><a href="#r-bl">6</a></sup></li>
+<li><b>1999</b> — Alon, Surette, Barkai and Leibler test that prediction directly. Inducing CheR over a
+<b>100-fold</b> range leaves adaptation precision flat, while adaptation time moves more than 20-fold (23 min
+down to about 1 min) and the steady-state tumbling frequency moves with it. One property is robust and the
+neighbouring ones are not, which is the signature of structure rather than
+tuning.<sup class="c"><a href="#r-asbl">7</a></sup></li>
+<li><b>2000</b> — Yi, Huang, Simon and Doyle identify the mechanism as textbook <strong>integral feedback</strong>:
+the methylation level of the receptor is the integrator, and CheB/CheR implement <span class="m">ż = e</span>
+by acting on receptors in a zero-order (saturated) regime.<sup class="c"><a href="#r-yi">8</a></sup></li>
+<li><b>2002</b> — Sourjik and Berg measure the whole thing in vivo by FRET, adding and removing attractant
+and repellent, and see precise return to baseline every time.<sup class="c"><a href="#r-sb">9</a></sup></li>
+</ul>
+</div>
+
+<p>So the first answer to "does biology obey the internal model principle?" is: <strong>yes, visibly</strong>.
+Chemotaxis has an integrator, and it is where the theorem says it must be. The theorem was not violated; it
+was confirmed in a system that had never heard of it. Synthetic biology has since gone further and
+<em>built</em> integral controllers on purpose — the antithetic integral feedback motif, in which two species
+annihilate each other so that their difference integrates the error, is now a standard part
+<sup class="c"><a href="#r-briat">10</a></sup> and has been demonstrated in living cells.<sup class="c"><a href="#r-aoki">11</a></sup></p>
+
+<h2 id="s8"><span class="n">8</span>The anomaly</h2>
+
+<p>Then the motif censuses arrived and complicated the picture. Shen-Orr, Milo and Alon counted subgraphs in
+the <i>E. coli</i> transcription network and found a small number of patterns wildly over-represented relative
+to randomized networks, the <strong>feed-forward loop</strong> chief among
+them.<sup class="c"><a href="#r-so">12</a></sup><sup class="c"><a href="#r-milo">13</a></sup></p>
+
+<div class="box caution">
+<span class="lbl">A number worth stating correctly</span>
+<p>It is tempting, and wrong, to say the <em>incoherent</em> feed-forward loop is one of biology's most common
+motifs. Shen-Orr et al. report that <strong>85% of the <i>E. coli</i> feed-forward loops are
+coherent</strong>.<sup class="c"><a href="#r-so">12</a></sup> The incoherent variant is the minority of a
+heavily over-represented family, not a majority of anything. Alon's textbook puts it exactly: of the eight
+FFL sign patterns, the coherent type-1 is the most abundant and the incoherent type-1 is
+<em>second</em>.<sup class="c"><a href="#r-alon19">15</a></sup> Second of eight, inside an over-represented
+family, is a real fact and a much smaller one than "most common motif". The anomaly below does not need it to be common.
+It needs it to <em>exist and work</em>, which the engineering argument of section 6 says it should not.</p>
+</div>
+
+<p>And Ma, Trusina, El-Samad, Lim and Tang did the decisive computation.<sup class="c"><a href="#r-ma">2</a></sup>
+They enumerated all 16,038 three-node networks, sampled 10,000 parameter sets each, and asked which
+topologies achieve adaptation robustly. The answer: exactly two minimal cores, and every robust adaptive
+network contains one of them.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 3. The two minimal adaptation topologies of Ma et al. (2009). Note the right-hand column: both
+work by putting a node into a <em>regime</em>, not by matching two numbers.</caption>
+<thead><tr><th>Core</th><th>Mechanism</th><th>Condition for perfect adaptation</th></tr></thead>
+<tbody>
+<tr>
+<td><b>NFBLB</b><br><span class="small">negative feedback loop<br>with a buffer node</span></td>
+<td>Buffer node B integrates the output error and feeds back.</td>
+<td>Both of B's regulation terms <b>saturated</b>. Then <span class="m">dB/dt = k(C − C*)</span>, a literal
+integrator, so <span class="m">C</span> settles input-independently.</td>
+</tr>
+<tr>
+<td><b>IFFLP</b><br><span class="small">incoherent feedforward loop<br>with a proportioner node</span></td>
+<td>Node B reads the input and pushes on the output with the opposite sign, cancelling it.</td>
+<td>B's production <b>saturated</b> in B, B's removal <b>linear</b> in B. Then
+<span class="m">B* ∝ A*</span> exactly, so <span class="m">C</span>'s steady state loses its
+<span class="m">A</span>-dependence.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>The decisive number is in their census of the full space. Of the 16,038 three-node topologies, exactly
+<strong>395</strong> achieve robust adaptation. Of those, <strong>166 contain the NFBLB core and 229 contain
+the IFFLP core</strong> — the two counts partition the 395 exactly.<sup class="c"><a href="#r-ma">2</a></sup>
+So within the space of networks that solve this problem robustly, feedforward cancellation is not a curiosity
+at the margin. It is the <em>larger</em> of the two families.</p>
+
+<p>Note carefully what that is and is not a claim about. It is a statement about design space, not about a
+genome census: it says that if you enumerate the ways to build a robust adapter out of three nodes, more of
+them work by feedforward than by feedback. Combined with the caution above, the picture is that biology has
+many more feedforward solutions available than the engineering argument permits, and uses a subset of them.</p>
+
+<div class="box key">
+<span class="lbl">The puzzle</span>
+<p>Same function. Same theorem. Engineering concludes feedforward cancellation is unusable, and builds
+integral feedback. Yet in the space of three-node networks, feedforward supplies 229 of the 395 robust
+adaptors, and those solutions survive sampling over broad parameter ranges. If the engineering argument were
+the whole story that count should be near zero. Something in the physics is different. What?</p>
+</div>
+
+<p>There are two answers, and they are independent. The first says biology cannot build the engineered
+solution the engineered way. The second says biology can build the "fragile" solution robustly. Together they
+explain the observed architecture.</p>
+
+<h2 id="s9"><span class="n">9</span>Constraint one: a concentration cannot be an integrator</h2>
+<p class="lede">Why biology cannot copy the engineered solution directly.</p>
+
+<p>Look again at what integral feedback requires: a state <span class="m">z</span> obeying
+<span class="m">ż = e</span>, where <span class="m">e</span> is a <em>signed</em> error. In electronics this is
+a capacitor, or in digital hardware an accumulator register, and it is completely trivial. In a cell the
+candidate states are concentrations, and concentrations obey</p>
+
+<div class="eq">ẋ = f<sup>+</sup>(x) − f<sup>−</sup>(x),&nbsp;&nbsp; f<sup>±</sup> ≥ 0,&nbsp;&nbsp; x ≥ 0</div>
+
+<p>Production and degradation are both non-negative, and the state itself is non-negative. Two consequences
+follow immediately. Degradation is generally proportional to the species itself (there must be something to
+degrade), so the equation carries a leak: <span class="m">ẋ = u − γx</span> is a low-pass filter, not an
+integrator, and it has finite DC gain <span class="m">1/γ</span>, so a step disturbance leaves a residual
+offset. And the floor at zero means <span class="m">x</span> cannot represent a signed quantity that swings
+through zero.</p>
+
+<div class="box key">
+<span class="lbl">Xiao &amp; Doyle 2018</span>
+<p>Because of positivity, <strong>a cell cannot implement integral feedback directly in the concentration of
+a chemical species.</strong> The internal model principle still holds — RPA still requires an integrator —
+but the integral variable has to be <em>encoded into the architecture</em> of the reaction network rather
+than carried by one state.<sup class="c"><a href="#r-xd">16</a></sup></p>
+</div>
+
+<p>This is a textbook instance of the biomachine method. Same function, same theorem, and a physical
+constraint (non-negativity) that is invisible in the electronic setting because voltages are signed and
+capacitors do not leak much. Naming that constraint tells you exactly what to look for in cells: not a
+species that integrates, but a <em>combination</em> of species or a <em>network relation</em> that does.
+And that is what every known biological integrator turns out to be:</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 4. Where the integrator actually lives in real biomolecular controllers. None of them is
+"a species whose concentration is the integral."</caption>
+<thead><tr><th>System</th><th>Integral variable</th><th>How positivity is dodged</th></tr></thead>
+<tbody>
+<tr><td>Chemotaxis<sup class="c"><a href="#r-yi">8</a></sup></td>
+    <td>Receptor methylation level</td>
+    <td>CheR and CheB both work at saturation, so methylation rate depends on activity but not on methylation level — a zero reaction order in the state makes the leak vanish</td></tr>
+<tr><td>Antithetic feedback<sup class="c"><a href="#r-briat">10</a></sup><sup class="c"><a href="#r-aoki">11</a></sup></td>
+    <td>Difference <span class="m">z₁ − z₂</span> of two sequestering species</td>
+    <td>Each species stays positive; only their difference integrates, and it is free to change sign</td></tr>
+<tr><td>NFBLB<sup class="c"><a href="#r-ma">2</a></sup></td>
+    <td>Buffer node under saturation</td>
+    <td>Both regulation terms saturated ⇒ <span class="m">dB/dt = k(C − C*)</span>, again a zero reaction order in B</td></tr>
+<tr><td>IFFLP<sup class="c"><a href="#r-ma">2</a></sup></td>
+    <td>Nothing integrates — the cancellation is algebraic</td>
+    <td>See the next section. This is the interesting one.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Notice a pattern already in the third column: <em>saturation</em> keeps appearing. Saturation is the
+statement that a rate has stopped depending on a concentration. In the language we are about to build, it is
+the statement that a <strong>reaction order is exactly zero</strong>. Hold that thought.</p>
+
+<h2 id="s10"><span class="n">10</span>Constraint two: biology regulates through exponents</h2>
+<p class="lede">The crux. Why feedforward cancellation is fragile in a circuit and robust in a cell.</p>
+
+<p>Now the harder half of the puzzle. The engineer's objection to incoherent feedforward was that
+<span class="m">G₁ = G₂G₃</span> is a measure-zero condition on real-valued gains. That objection is correct
+— <em>for a linear system</em>. It assumed something so basic that it is rarely stated: that the tunable
+parameters of the system are the <strong>coefficients</strong> of a linear map.</p>
+
+<p>That assumption is true of electrical circuits, and it is true because of the physics. A resistor
+contributes <span class="m">V = IR</span>; the parameter is <span class="m">R</span>, and it is a real number
+you must manufacture to tolerance. Composition of linear elements gives linear maps, whose parameters are
+matrix entries, which are again real numbers you must match.</p>
+
+<p>Biochemical regulation does not work like that. Rates in cells are products of powers:</p>
+
+<div class="eq">v(x) ∝ x<sub>1</sub><sup>α₁</sup> x<sub>2</sub><sup>α₂</sup> ⋯ x<sub>d</sub><sup>α<sub>d</sub></sup></div>
+
+<p>and the parameters that matter for the shape of regulation are the <strong>exponents</strong>
+<span class="m">α</span>, not the prefactor. Take logs and this is linear again — but linear in
+<span class="m">log x</span>, with the exponents as coefficients. So the natural coordinates for bioregulation
+are logarithmic, and the natural "gains" are exponents.</p>
+
+<p>Now redo the incoherent feedforward calculation in these coordinates. Let a disturbance
+<span class="m">w</span> drive an intermediate <span class="m">z</span> and also drive the output
+<span class="m">y</span> directly, with <span class="m">z</span> pushing back on <span class="m">y</span>:</p>
+
+<div class="eq">
+z<sub>ss</sub> ∝ w<sup>c</sup> &nbsp;&nbsp;&nbsp; y<sub>ss</sub> ∝ w<sup>a</sup> z<sub>ss</sub><sup>−b</sup>
+&nbsp;&nbsp;⟹&nbsp;&nbsp; y<sub>ss</sub> ∝ w<sup>&thinsp;a − bc</sup>
+</div>
+
+<p>Perfect adaptation is <span class="m">a − bc = 0</span>. Formally this is still one equation in three
+numbers — still a surface. The difference is <em>what kind of numbers</em> <span class="m">a, b, c</span>
+are.</p>
+
+<div class="box key">
+<span class="lbl">The crux</span>
+<p>A gain is a real number, tunable continuously, and equality between two of them is a coincidence.
+<strong>A reaction order is not tunable in the same way.</strong> It is pinned near a small integer over an
+entire open region of concentration space, and the integer is set by the stoichiometry of the binding network,
+not by any rate constant.</p>
+<p>Compare what accuracy costs in the two cases. To hold
+<span class="m">|G₁ − G₂G₃| &lt; ε</span> you must manufacture the gains to <em>relative tolerance</em>
+<span class="m">ε</span>: the admissible parameter set is a slab of thickness <span class="m">ε</span>, and
+its volume vanishes as you demand more accuracy. To hold <span class="m">|a − bc| &lt; ε</span> you need only
+sit about <span class="m">log₁₀(1/ε)</span> decades inside a dominance regime. That admissible set is a cone
+in log-parameter space. Demanding another digit does not thin it — it only shifts its apex. Every parameter
+choice deep in the regime works, and going deeper is free.</p>
+<p>So the honest statement is not that <span class="m">a − bc = 0</span> holds exactly on an open set. It is
+that <strong>the error is exponentially small in log-concentration, and its entire sensitivity to parameters
+is concentrated at regime boundaries.</strong> Inside a regime, changing a rate constant tenfold changes the
+adaptation error by almost nothing. That is what robustness means here, and it is a stronger claim than exact
+cancellation because it survives measurement.</p>
+</div>
+
+<p>This is exactly, and independently, what Ma and colleagues found by brute force.<sup class="c"><a href="#r-ma">2</a></sup>
+Read their IFFLP condition again with this vocabulary. They need node B's production term
+<em>saturated in B</em> — i.e. reaction order 0 in B and 1 in A — and B's removal term <em>linear in B</em> —
+reaction order 1. Then</p>
+
+<div class="eq">B* = A* · k<sub>AB</sub> K′<sub>F<sub>B</sub>B</sub> / (F<sub>B</sub> k′<sub>F<sub>B</sub>B</sub>)
+<span class="tag">exponent exactly 1</span></div>
+
+<p>The prefactor is a mess of rate constants, and it does not matter. What matters is the exponent relating
+<span class="m">B*</span> to <span class="m">A*</span>, and it is worth being exact about where that exponent
+comes from. The dependence on <span class="m">A</span> is linear by construction: <span class="m">A</span>
+enters the production term as an unsaturated enzyme, so its order is 1 identically, not in a limit. The other
+two conditions <em>are</em> limits — production saturated in <span class="m">B</span> (order → 0) and removal
+unsaturated in <span class="m">B</span> (order → 1) — each approached at the exponential rate above. So the
+overall exponent is one part exact and two parts exponentially close, which is why the cancellation survives
+in simulation across decades of parameter variation. The circuit then cancels <span class="m">A</span> out of
+<span class="m">C</span>'s steady state. Ma et al. say the Michaelis constants must be "tuned to achieve
+operation in the saturated regimes" — but tuning into a regime means landing anywhere in an open set, which is
+engineering, not coincidence.</p>
+
+<div class="demo" id="d-cancel">
+  <h4>Interactive · fragile vs. structural cancellation</h4>
+  <p class="dsub">Both panels show an incoherent feedforward loop trying to reject a step in
+  <span class="m">w</span>. Left: cancellation in the gains. Right: cancellation in the exponents. Drag the
+  mismatch slider and watch which one survives.</p>
+  <canvas id="c-cancel" width="1040" height="330"></canvas>
+  <div class="ctl">
+    <label><span class="lv">parameter mismatch <b id="v-mm">0%</b></span>
+      <input type="range" id="s-mm" min="-60" max="60" value="0"></label>
+    <label><span class="lv">step size <b id="v-step">10×</b></span>
+      <input type="range" id="s-step" min="2" max="60" value="10"></label>
+    <label><span class="lv">exponent a <b id="v-a">1.00</b></span>
+      <input type="range" id="s-a" min="60" max="140" value="100"></label>
+  </div>
+  <div class="readout" id="r-cancel"></div>
+</div>
+
+<p>Play with the demo and the asymmetry is stark. In the linear circuit, a mismatch <span class="m">δ</span>
+leaves a residual output <span class="m">δ·w</span> — the circuit does not adapt <em>at all</em> any more, it
+merely has reduced gain, so a tenfold step with a 30% mismatch leaves an error several times the baseline.
+In the power-law circuit, mismatch in the <em>prefactors</em> — which is what varying expression levels does —
+shifts the whole curve up or down but leaves the <em>exponent</em> at zero, so the output still returns to a
+baseline that does not depend on <span class="m">w</span>. Only when the exponent
+<span class="m">a</span> itself moves off 1 does adaptation break, and that requires leaving the regime, not
+mistuning a rate. Drag the two sliders in turn and the difference is the whole argument: one of them matters,
+the other does not.</p>
+
+<div class="box caution">
+<span class="lbl">Be precise about what is claimed</span>
+<p>Power laws do not make adaptation free. The claim is narrower and sharper: the condition for feedforward
+cancellation is transferred from <em>continuous parameters</em> to <em>exponents pinned near integers on open
+regimes</em>. Adaptation still fails — it fails when the system leaves the regime, which is exactly what
+section 15 shows happening, with a different failure boundary for each mechanism. That is a
+<em>prediction</em>, and it is the payoff. Note also what the demo above idealizes: it uses an exact power
+law, so its right-hand panel adapts perfectly. A real binding network only approaches that, at the rate given
+in section 14.</p>
+</div>
+
+<p>So the puzzle resolves, and it resolves into a question. Feedforward works in cells because reaction
+orders are rigid on regimes. Which raises the only question that matters next:</p>
+
+<p style="text-align:center;font-size:1.15rem;margin:1.6rem 0"><strong>Which exponents can a given
+biochemical network actually have?</strong></p>
+
+<div class="parthead">
+  <div class="k">Part III</div>
+  <h2>Reaction orders and their geometry</h2>
+  <p>The machinery that answers that question, built from stoichiometry alone.</p>
+</div>
+
+<h2 id="s11"><span class="n">11</span>Binding and catalysis: the component rule</h2>
+
+<p>Recall from section 2 that a systems theory needs a component rule underneath it. For mechanics that rule
+is mass and force. For biomolecular systems the proposal is <strong>binding and catalysis</strong>.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 5. The proposed core structure, with the mechanical analogy that motivates it.</caption>
+<thead><tr><th></th><th>Mechanics</th><th>Biomolecules</th></tr></thead>
+<tbody>
+<tr><td>Sets the direction of change</td><td>Force</td><td><b>Catalysis</b> — the reactions that actually convert things</td></tr>
+<tr><td>Regulates how change responds</td><td>Mass</td><td><b>Binding</b> — complexation, allostery, sequestration</td></tr>
+<tr><td>Timescale</td><td>—</td><td>Binding is fast and reaches equilibrium; catalysis is slow and drives the system</td></tr>
+<tr><td>Conserved structure</td><td>Momentum</td><td>Total concentrations — binding moves molecules between forms without creating or destroying them</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The split earns its keep because of the timescale separation. Binding equilibrates fast, so at any moment
+the free concentrations are determined algebraically by the totals. Catalysis is slow, so it sees only those
+equilibrated free concentrations. The consequence is a clean division of labour: <strong>catalysis says what
+happens; binding says how the rate depends on what is around.</strong></p>
+
+<p>This is not an exotic assumption; it is the assumption behind Michaelis–Menten, behind Hill functions,
+behind thermodynamic models of transcription.<sup class="c"><a href="#r-bintu">17</a></sup> What is new is
+refusing to solve the binding equilibrium and asking for its <em>log-derivative</em> instead.</p>
+
+<h2 id="s12"><span class="n">12</span>The reaction order</h2>
+
+<div class="box def">
+<span class="lbl">Definition</span>
+<p>The <strong>reaction order</strong> of a quantity <span class="m">v</span> with respect to a concentration
+<span class="m">x</span> is the logarithmic derivative</p>
+<div class="eq" style="margin:.7rem 0">α = ∂ log v / ∂ log x</div>
+<p>equivalently, the local slope on a log–log plot. If <span class="m">v ∝ x<sup>n</sup></span> then
+<span class="m">α = n</span> everywhere; in general <span class="m">α</span> varies with the operating point,
+and that variation is the whole content of regulation.</p>
+</div>
+
+<p>Why this object and not the rate itself? Three reasons, and they compound.</p>
+
+<p><strong>It is what regulation <em>is</em>.</strong> "A activates B" is a claim about a sign, and a weak one.
+"The reaction order of B's production in A is 1" is a claim you can compute with. The Jacobian of a
+biochemical system, its stability, its steady-state sensitivities, its adaptation conditions — all of them
+are functions of reaction orders, not of rate constants.<sup class="c"><a href="#r-xkd">18</a></sup></p>
+
+<p><strong>It is scale-free.</strong> A log-derivative is dimensionless and invariant to how you set units or
+how strongly a gene is expressed. It is a property of the <em>shape</em> of the regulation, which is the part
+that is conserved and the part that a designer controls.</p>
+
+<p><strong>It is tractable where the rate is not.</strong> Solving binding equilibria means solving systems of
+polynomial equations, which is intractable at scale. Solving for the <em>set of achievable log-derivatives</em>
+is linear algebra. This is the trick, and section 13 spends it.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 260" role="img" aria-label="Michaelis-Menten on log-log axes with its reaction order">
+ <g font-family="var(--sans)" font-size="11">
+  <!-- axes -->
+  <g stroke="var(--gridc)" stroke-width="1">
+   <line x1="70" y1="30" x2="70" y2="200"/><line x1="70" y1="200" x2="440" y2="200"/>
+   <line x1="70" y1="115" x2="440" y2="115" stroke-dasharray="2 5"/>
+  </g>
+  <line x1="255" y1="30" x2="255" y2="205" stroke="var(--rose)" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="255" y="220" text-anchor="middle" fill="var(--rose)">t_S = K</text>
+  <!-- MM curve on log-log -->
+  <path d="M80 196 L120 176 L160 156 L200 136 L230 120 L255 108 L285 96 L320 86 L360 79 L410 74 L436 72"
+        fill="none" stroke="var(--peri)" stroke-width="2.6"/>
+  <text x="100" y="150" fill="var(--peri)">slope 1</text>
+  <text x="360" y="62" fill="var(--peri)">slope 0</text>
+  <text x="42" y="112" text-anchor="end" fill="var(--gray)">log v</text>
+  <text x="255" y="240" text-anchor="middle" fill="var(--gray)">log t_S  (substrate)</text>
+  <text x="70" y="22" fill="var(--gray)" font-size="10">v = k t_E t_S /(K + t_S)</text>
+
+  <!-- order plot -->
+  <g transform="translate(470,0)">
+   <g stroke="var(--gridc)" stroke-width="1">
+    <line x1="40" y1="30" x2="40" y2="200"/><line x1="40" y1="200" x2="270" y2="200"/>
+   </g>
+   <line x1="40" y1="60" x2="270" y2="60" stroke="var(--gridc)" stroke-dasharray="2 5"/>
+   <path d="M46 62 L92 63 L118 68 L140 80 L155 100 L170 130 L190 160 L215 180 L245 191 L266 195"
+         fill="none" stroke="var(--rose)" stroke-width="2.6"/>
+   <text x="30" y="64" text-anchor="end" fill="var(--gray)">1</text>
+   <text x="30" y="203" text-anchor="end" fill="var(--gray)">0</text>
+   <text x="18" y="118" text-anchor="end" fill="var(--gray)" font-size="10">α</text>
+   <text x="155" y="240" text-anchor="middle" fill="var(--gray)">log t_S</text>
+   <text x="46" y="46" fill="var(--rose)">first order</text>
+   <text x="132" y="216" fill="var(--rose)">zero order (saturated)</text>
+   <line x1="155" y1="30" x2="155" y2="205" stroke="var(--rose)" stroke-width="1" stroke-dasharray="4 3"/>
+  </g>
+ </g>
+</svg>
+<figcaption><b>Figure 5. Michaelis–Menten is a story about one exponent moving from 1 to 0.</b> Left: the rate
+on log–log axes, where the two asymptotes are straight lines of slope 1 and 0. Right: the reaction order
+itself, sliding from 1 to 0 as substrate saturates. The order in <em>enzyme</em> stays at 1 throughout, which
+is why this whole curve is a single edge of the triangle in Figure 6. Everything Michaelis–Menten tells you is
+in the right-hand panel — and the right-hand panel is computable without solving for
+<span class="m">v</span>.</figcaption>
+</figure>
+
+<div class="box note">
+<span class="lbl">Prior art, and what is different</span>
+<p>Log-derivatives are old. Metabolic control analysis built control coefficients out of
+them;<sup class="c"><a href="#r-kacser">19</a></sup> Savageau's biochemical systems theory approximates whole
+networks as power laws with locally constant exponents (S-systems) and explores "design
+space".<sup class="c"><a href="#r-sav76">20</a></sup><sup class="c"><a href="#r-sav">21</a></sup><sup class="c"><a href="#r-sav09">22</a></sup>
+The construction is literally this one. Savageau writes the rate law in logarithms, Taylor-expands about a
+nominal operating value, and keeps two terms:</p>
+<div class="eq">log V<sub>i</sub> = log V<sub>i0</sub> + g<sub>i1</sub>(log X<sub>1</sub> − log X<sub>10</sub>) &nbsp;⟹&nbsp; V<sub>i</sub> = α<sub>i</sub> X<sub>1</sub><sup>g<sub>i1</sub></sup></div>
+<p>and calls <span class="m">g<sub>i1</sub></span> the <em>apparent kinetic order</em> of the reaction with
+respect to <span class="m">X<sub>1</sub></span>. That is our <span class="m">α</span>, under an older name,
+sixty years earlier. But it is evaluated <em>at a chosen operating point</em>: change the point and the
+exponent changes, and nothing in the framework says which exponents are reachable at all. The move here is
+different. Rather than compute <span class="m">α</span> at a point, characterize <strong>the set of all
+<span class="m">α</span> the network can ever produce</strong>, over every parameter value at once, and show
+that this set is a polyhedron fixed by stoichiometry.</p>
+</div>
+
+<h2 id="s13"><span class="n">13</span>The reaction order polyhedron</h2>
+
+<p>Take the simplest binding network there is:</p>
+
+<div class="eq">E + S ⇌ C,&nbsp;&nbsp; K = E·S/C,&nbsp;&nbsp; t<sub>E</sub> = E + C,&nbsp;&nbsp; t<sub>S</sub> = S + C</div>
+
+<p>The totals <span class="m">t<sub>E</sub>, t<sub>S</sub></span> are what the cell controls (expression
+levels, supply); the complex <span class="m">C</span> is what does the catalysis. Ask: what can</p>
+
+<div class="eq">α = ( ∂log C / ∂log t<sub>S</sub> ,&nbsp; ∂log C / ∂log t<sub>E</sub> )</div>
+
+<p>be? Solving for <span class="m">C</span> means a quadratic; solving for <span class="m">α</span> means
+inverting a 2×2 matrix built from stoichiometry. Writing <span class="m">e = E/t<sub>E</sub></span> and
+<span class="m">s = S/t<sub>S</sub></span> for the two free fractions, the answer is exact and short:</p>
+
+<div class="eq">α<sub>S</sub> = e/(s + e − se),&nbsp;&nbsp;&nbsp; α<sub>E</sub> = s/(s + e − se)</div>
+
+<p>Since <span class="m">e</span> and <span class="m">s</span> range over the open interval
+<span class="m">(0,1)</span> and nothing else, whatever the values of
+<span class="m">K, t<sub>E</sub>, t<sub>S</sub></span> the pair <span class="m">α</span> always lands in
+one triangle:</p>
+
+<div class="eq">α<sub>S</sub> ≤ 1,&nbsp;&nbsp; α<sub>E</sub> ≤ 1,&nbsp;&nbsp; α<sub>S</sub> + α<sub>E</sub> ≥ 1</div>
+
+<p>Note the direction of that third inequality: the accessible set is the <em>upper right</em> half of the
+unit square, and the origin is the one corner it can never reach. That is not an accident of algebra. The sum
+<span class="m">α<sub>S</sub> + α<sub>E</sub></span> is the response of <span class="m">C</span> to scaling
+<em>both</em> totals at once, and scaling up everything at fixed <span class="m">K</span> can only drive
+binding harder, so <span class="m">C</span> must grow at least proportionally. Meanwhile neither exponent can
+exceed 1: one binding step never gives an ultrasensitive response to either total on its own.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 316" role="img" aria-label="Reaction order polyhedron for a single binding reaction: the triangle with vertices (1,0), (0,1) and (1,1)">
+ <defs>
+  <pattern id="hatchX" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+   <line x1="0" y1="0" x2="0" y2="7" stroke="var(--leader)" stroke-width="1"/>
+  </pattern>
+ </defs>
+ <g font-family="var(--sans)" font-size="11.5">
+  <g transform="translate(96,30)">
+   <!-- unit square -->
+   <rect x="0" y="0" width="230" height="230" fill="none" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 4"/>
+   <!-- unreachable half -->
+   <path d="M0 230 L0 0 L230 230 Z" fill="url(#hatchX)" stroke="none"/>
+   <!-- reachable triangle -->
+   <path d="M0 0 L230 0 L230 230 Z" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.8"/>
+   <!-- Michaelis-Menten edge = top edge -->
+   <line x1="0" y1="0" x2="230" y2="0" stroke="var(--rose)" stroke-width="3"/>
+   <!-- axes -->
+   <line x1="0" y1="230" x2="252" y2="230" stroke="var(--gray)" stroke-width="1.2"/>
+   <line x1="0" y1="230" x2="0" y2="-14" stroke="var(--gray)" stroke-width="1.2"/>
+   <!-- vertices -->
+   <circle cx="230" cy="230" r="5.5" fill="var(--rose)"/>
+   <circle cx="0" cy="0" r="5.5" fill="var(--rose)"/>
+   <circle cx="230" cy="0" r="5.5" fill="var(--rose)"/>
+   <circle cx="0" cy="230" r="4" fill="none" stroke="var(--gray)" stroke-width="1.4"/>
+   <text x="252" y="248" text-anchor="middle" fill="var(--fg)" font-family="var(--mono)">(1,0)</text>
+   <text x="-14" y="-6" text-anchor="middle" fill="var(--fg)" font-family="var(--mono)">(0,1)</text>
+   <text x="252" y="-6" text-anchor="middle" fill="var(--fg)" font-family="var(--mono)">(1,1)</text>
+   <text x="-12" y="248" text-anchor="middle" fill="var(--gray)" font-family="var(--mono)">(0,0)</text>
+   <text x="60" y="196" fill="var(--gray)" font-size="10.5">unreachable</text>
+   <text x="115" y="272" text-anchor="middle" fill="var(--gray)">∂logC/∂log t_S</text>
+   <text x="-30" y="115" text-anchor="middle" fill="var(--gray)" transform="rotate(-90 -30 115)">∂logC/∂log t_E</text>
+   <text x="115" y="-16" text-anchor="middle" fill="var(--rose)" font-weight="700" font-size="11">Michaelis–Menten edge</text>
+   <text x="163" y="128" fill="var(--peri)" font-size="10.5" transform="rotate(45 163 128)">α_S + α_E = 1</text>
+  </g>
+  <!-- annotations -->
+  <g transform="translate(408,24)" font-size="11.5">
+   <text x="0" y="12" font-weight="700" fill="var(--fg)">Each vertex is a limiting regime.</text>
+   <g fill="var(--gray)">
+     <circle cx="8" cy="38" r="4.5" fill="var(--rose)"/>
+     <text x="22" y="42" fill="var(--fg)"><tspan font-family="var(--mono)">(1,1)</tspan> — E and S both mostly free</text>
+     <text x="22" y="57">C ≈ t_E t_S /K. Mass action.</text>
+     <circle cx="8" cy="82" r="4.5" fill="var(--rose)"/>
+     <text x="22" y="86" fill="var(--fg)"><tspan font-family="var(--mono)">(0,1)</tspan> — enzyme limiting, S in excess</text>
+     <text x="22" y="101">C ≈ t_E. Saturated Michaelis–Menten.</text>
+     <circle cx="8" cy="126" r="4.5" fill="var(--rose)"/>
+     <text x="22" y="130" fill="var(--fg)"><tspan font-family="var(--mono)">(1,0)</tspan> — substrate limiting, E in excess</text>
+     <text x="22" y="145">C ≈ t_S. All substrate is bound.</text>
+     <circle cx="8" cy="170" r="4" fill="none" stroke="var(--gray)" stroke-width="1.4"/>
+     <text x="22" y="174" fill="var(--fg)"><tspan font-family="var(--mono)">(0,0)</tspan> — impossible</text>
+     <text x="22" y="189">C cannot ignore both totals at once.</text>
+   </g>
+   <rect x="0" y="204" width="316" height="64" rx="8" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.2"/>
+   <text x="12" y="224" font-weight="700" fill="var(--rose)" font-size="11">The point</text>
+   <text x="12" y="241" fill="var(--fg)" font-size="11">The triangle depends only on the stoichiometry</text>
+   <text x="12" y="256" fill="var(--fg)" font-size="11">E + S ⇌ C. No rate constant enters.</text>
+  </g>
+ </g>
+</svg>
+<figcaption><b>Figure 6. The reaction order polyhedron of the simplest binding network.</b> Every operating
+point of every parameter setting lands somewhere in the shaded triangle, and the hatched half is unreachable:
+<span class="m">C</span> must respond to at least one total. The corners are the classical limiting regimes,
+approached but never attained at finite concentration. Michaelis–Menten runs along the top edge — enzyme
+strictly first order, substrate order sliding from 1 to 0 — so a century of enzyme kinetics is one edge of one
+triangle, and the interior is territory it cannot describe.</figcaption>
+</figure>
+
+<div class="box key">
+<span class="lbl">The general result</span>
+<p>The two-species calculation generalizes verbatim. A binding network at equilibrium supplies exactly two
+kinds of relation, and both are linear once you take logarithms. The equilibrium conditions give
+<span class="m">N<sup>⊤</sup> log x = log K</span>, and differentiating the conservation laws
+<span class="m">L x = t</span> gives <span class="m">Λ<sub>t</sub><sup>−1</sup> L Λ<sub>x</sub> · d log x =
+d log t</span>. Stack them and invert:</p>
+<div class="eq" style="margin:.7rem 0">∂ log x / ∂ log(t, K) = [ Λ<sub>t</sub><sup>−1</sup> L Λ<sub>x</sub> ; N<sup>⊤</sup> ]<sup>−1</sup></div>
+<p>where <span class="m">N</span> is the stoichiometry matrix, <span class="m">L</span> the conservation-law
+matrix, and <span class="m">Λ<sub>t</sub> = diag(t)</span>, <span class="m">Λ<sub>x</sub> = diag(x)</span>.
+The only place the operating point enters is through those two diagonal matrices, and it enters only as the
+<em>fractions</em> each species contributes to each conservation law. Those fractions live in the open unit
+simplex, so as the concentrations range over all positive values the achievable reaction-order vectors sweep
+out the interior of a <strong>polyhedron</strong> determined by <span class="m">N</span> and
+<span class="m">L</span> alone.<sup class="c"><a href="#r-thesis">23</a></sup> Sampling it is a five-step
+recipe you can run on any network; deriving it exactly is what the dominance decomposition tree does.</p>
+</div>
+
+<p>Take a moment on why this is the right kind of statement. It is a constraint on the
+<em>architecture layer</em> of Table 2, derived from the slowest-changing information about the system, and it
+bounds everything above. It is the row we promised in Table 1.</p>
+
+<h2 id="s14"><span class="n">14</span>Where the polyhedron comes from: dominance</h2>
+
+<p>Why should the achievable set be polyhedral, of all things? Polyhedra come from linear inequalities, and
+there is nothing obviously linear about binding equilibria. The answer is <strong>dominance</strong>.</p>
+
+<p>Consider the conservation law <span class="m">t<sub>S</sub> = S + C</span>. At any given operating point,
+one of the two terms is usually much bigger than the other. If <span class="m">C ≫ S</span>, then
+<span class="m">t<sub>S</sub> ≈ C</span> and <span class="m">∂log C/∂log t<sub>S</sub> → 1</span>. If
+<span class="m">S ≫ C</span>, then <span class="m">t<sub>S</sub> ≈ S</span>, the total stops reporting on the
+complex at all, and the derivative is carried entirely by the other law. Each way of choosing which term
+dominates each sum gives a <em>different linear relation</em> among the logarithms, and therefore one exact
+reaction-order vector.</p>
+
+<div class="box def">
+<span class="lbl">Dominance, in one line</span>
+<p>In log coordinates, a sum is approximately its largest term. So a nonlinear conservation law becomes a
+<em>piecewise linear</em> object: one linear piece per dominance pattern. The vertices of the reaction order
+polyhedron are the <strong>feasible</strong> dominance patterns; everything in between is a convex combination
+— a crossover region where two terms are comparable.</p>
+</div>
+
+<p>Two caveats keep this honest, and both are visible in the worked example. The word <em>feasible</em> is
+doing real work: a dominance pattern is a set of inequalities on concentrations, and a set of inequalities can
+be jointly unsatisfiable on any open region, in which case it contributes a face rather than a corner.
+And the vertices are approached, not occupied. Sitting <span class="m">d</span> decades inside a regime puts
+the reaction order within about <span class="m">10<sup>−d</sup></span> of its vertex value: one decade past
+<span class="m">K</span> buys one digit. That is the quantitative content of "the exponent is rigid here",
+and section 10 leaned on it.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 268" role="img" aria-label="Dominance decomposition tree: four branches, three feasible vertices and one degenerate branch">
+ <g font-family="var(--sans)" font-size="11.5">
+  <text x="20" y="16" font-size="11" letter-spacing="1.2" fill="var(--gray)">DOMINANCE DECOMPOSITION TREE</text>
+  <!-- root -->
+  <rect x="295" y="26" width="170" height="30" rx="7" fill="var(--bg)" stroke="var(--peri)" stroke-width="1.4"/>
+  <text x="380" y="46" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--fg)">t_S = S + C</text>
+  <!-- edges -->
+  <g stroke="var(--leader)" stroke-width="1.4" fill="none">
+    <path d="M340 56 L200 88"/><path d="M420 56 L560 88"/>
+    <path d="M170 118 L110 148"/><path d="M225 118 L282 148"/>
+    <path d="M540 118 L478 148"/><path d="M592 118 L650 148"/>
+  </g>
+  <!-- level 1 -->
+  <rect x="120" y="88" width="150" height="30" rx="7" fill="var(--cream)" stroke="var(--lime)" stroke-width="1.3"/>
+  <text x="195" y="108" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--fg)">S ≫ C</text>
+  <rect x="490" y="88" width="150" height="30" rx="7" fill="var(--pinkf)" stroke="var(--coral)" stroke-width="1.3"/>
+  <text x="565" y="108" text-anchor="middle" font-family="var(--mono)" font-size="12" fill="var(--fg)">C ≫ S</text>
+  <text x="380" y="108" text-anchor="middle" fill="var(--gray)" font-size="10.5">then split t_E = E + C</text>
+  <!-- level 2 leaves -->
+  <g font-family="var(--mono)" font-size="11.5">
+   <rect x="45" y="148" width="120" height="28" rx="6" fill="var(--bg)" stroke="var(--gray)" stroke-width="1"/>
+   <text x="105" y="167" text-anchor="middle" fill="var(--fg)">E ≫ C</text>
+   <rect x="222" y="148" width="120" height="28" rx="6" fill="var(--bg)" stroke="var(--gray)" stroke-width="1"/>
+   <text x="282" y="167" text-anchor="middle" fill="var(--fg)">C ≫ E</text>
+   <rect x="418" y="148" width="120" height="28" rx="6" fill="var(--bg)" stroke="var(--gray)" stroke-width="1"/>
+   <text x="478" y="167" text-anchor="middle" fill="var(--fg)">E ≫ C</text>
+   <rect x="590" y="148" width="120" height="28" rx="6" fill="var(--bg)" stroke="var(--gray)" stroke-width="1" stroke-dasharray="4 3"/>
+   <text x="650" y="167" text-anchor="middle" fill="var(--gray)">C ≫ E</text>
+  </g>
+  <!-- results -->
+  <g font-family="var(--mono)" font-size="12">
+   <circle cx="105" cy="200" r="7" fill="var(--rose)"/><text x="105" y="228" text-anchor="middle" fill="var(--fg)">(1,1)</text>
+   <circle cx="282" cy="200" r="7" fill="var(--rose)"/><text x="282" y="228" text-anchor="middle" fill="var(--fg)">(0,1)</text>
+   <circle cx="478" cy="200" r="7" fill="var(--rose)"/><text x="478" y="228" text-anchor="middle" fill="var(--fg)">(1,0)</text>
+   <line x1="628" y1="207" x2="672" y2="193" stroke="var(--peri)" stroke-width="3"/>
+   <text x="650" y="228" text-anchor="middle" fill="var(--peri)" font-size="11">α_S+α_E=1</text>
+  </g>
+  <g font-family="var(--sans)" font-size="10.5" fill="var(--gray)">
+   <text x="105" y="246" text-anchor="middle">mass action</text>
+   <text x="282" y="246" text-anchor="middle">saturated</text>
+   <text x="478" y="246" text-anchor="middle">substrate bound</text>
+   <text x="650" y="246" text-anchor="middle" fill="var(--peri)">degenerate: forces t_S ≈ t_E</text>
+   <text x="650" y="260" text-anchor="middle" fill="var(--peri)">an edge, not a vertex</text>
+  </g>
+ </g>
+</svg>
+<figcaption><b>Figure 7. The dominance decomposition tree, including the branch that fails.</b> Split each
+conservation law on which term dominates. Three of the four branches are feasible on an open region and each
+yields one exact reaction-order vertex. The fourth is not: <span class="m">C ≫ S</span> and
+<span class="m">C ≫ E</span> together force <span class="m">t<sub>S</sub> ≈ C ≈ t<sub>E</sub></span>, which is
+a codimension-one condition on the totals rather than an open region, so it contributes the whole edge
+<span class="m">α<sub>S</sub> + α<sub>E</sub> = 1</span> instead of a corner. Enumerating dominance patterns
+gives <em>candidate</em> vertices; each still has to pass a feasibility test.</figcaption>
+</figure>
+
+<p>Two things are worth flagging about this construction. First, it is the same idea that appears in tropical
+geometry and in Maslov dequantization: taking logs turns <span class="m">(+, ×)</span> into
+<span class="m">(max, +)</span>, and algebraic varieties into polyhedral complexes. The reaction order
+polyhedron is a piece of tropical geometry that arrived from biology.</p>
+
+<p>Second, it explains the rigidity we needed in section 10. A reaction order is <em>exactly</em> 0 or 1 not
+approximately but structurally, throughout the whole open region where one term dominates. That region is
+large — dominance by a factor of ten already puts you within a few percent of the vertex. The exponents are
+rigid because dominance is robust, and dominance is robust because it is an inequality, not an equality.</p>
+
+<div class="box key">
+<span class="lbl">The chain, complete</span>
+<p>Stoichiometry of binding → dominance patterns → polyhedral set of reaction orders → exponents pinned to
+rational values on open regimes → feedforward cancellation robust in cells and fragile in circuits.<br>
+That is the whole argument of Part II and III in one line.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Part IV</div>
+  <h2>What the geometry buys</h2>
+  <p>Four consequences, each one something the motif diagram cannot say.</p>
+</div>
+
+<h2 id="s15"><span class="n">15</span>Mechanism matters: two ways to draw the same arrow</h2>
+
+<p>Here is the first payoff, and it is the one that should change how you read a network diagram.</p>
+
+<p>An incoherent feedforward loop is drawn as: <span class="m">w</span> activates <span class="m">x₁</span>,
+<span class="m">w</span> activates <span class="m">x₂</span>, <span class="m">x₂</span> inhibits
+<span class="m">x₁</span>. Three arrows, two signs. But every biomolecular species obeys</p>
+
+<div class="eq">ẋ = f<sup>+</sup>(x) − f<sup>−</sup>(x)</div>
+
+<p>so a plus sign has <em>two</em> implementations — activate production, or repress degradation — and so does
+a minus sign. The diagram cannot tell them apart. The reaction order polyhedron can, and it says they behave
+differently.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 360" role="img" aria-label="Two implementations of the same incoherent feedforward motif fail in opposite regimes">
+ <g font-family="var(--sans)" font-size="11.5">
+  <text x="380" y="16" text-anchor="middle" fill="var(--gray)">same diagram · two mechanisms · opposite failure modes</text>
+
+  <!-- shared motif -->
+  <g transform="translate(318,30)">
+    <circle cx="0" cy="36" r="15" fill="var(--powder)" stroke="var(--peri)" stroke-width="1.3"/>
+    <text x="0" y="40" text-anchor="middle" font-size="12">w</text>
+    <circle cx="90" cy="8" r="15" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.3"/>
+    <text x="90" y="12" text-anchor="middle" font-size="12">1</text>
+    <circle cx="90" cy="64" r="15" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.3"/>
+    <text x="90" y="68" text-anchor="middle" font-size="12">2</text>
+    <path d="M14 30 Q52 10 74 10" fill="none" stroke="var(--fg)" stroke-width="1.6" marker-end="url(#ar3)"/>
+    <path d="M14 42 Q52 62 74 62" fill="none" stroke="var(--fg)" stroke-width="1.6" marker-end="url(#ar3)"/>
+    <line x1="90" y1="49" x2="90" y2="26" stroke="var(--peri)" stroke-width="2.4"/>
+    <line x1="82" y1="26" x2="98" y2="26" stroke="var(--peri)" stroke-width="2.4"/>
+  </g>
+  <defs><marker id="ar3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,0 L8,4 L0,8 z" fill="var(--fg)"/></marker></defs>
+
+  <line x1="380" y1="120" x2="380" y2="344" stroke="var(--rule)"/>
+
+  <!-- left: activate degradation -->
+  <g transform="translate(22,132)">
+    <text x="0" y="0" font-weight="700" fill="var(--coral)" font-size="11" letter-spacing=".8">MECHANISM A · ACTIVATE DEGRADATION</text>
+    <text x="0" y="20" font-family="var(--mono)" font-size="11.5" fill="var(--fg)">X₁ + X₂ ⇌ C → X₂</text>
+    <text x="0" y="37" font-family="var(--mono)" font-size="11.5" fill="var(--fg)">ẋ₁ = αw − k·c(x₁,x₂)</text>
+    <text x="0" y="54" font-family="var(--mono)" font-size="11.5" fill="var(--fg)">ẋ₂ = βw − γx₂</text>
+    <!-- polyhedron: same stoichiometry as Figure 6, same triangle -->
+    <g transform="translate(10,76)">
+      <rect x="0" y="0" width="100" height="100" fill="none" stroke="var(--rule)" stroke-dasharray="3 4"/>
+      <path d="M0 0 L100 0 L100 100 Z" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.4"/>
+      <path d="M0 0 L100 0 L100 15 L15 15 Z" fill="var(--pinkf)" stroke="var(--coral)" stroke-width="1.2"/>
+      <circle cx="62" cy="8" r="4.5" fill="var(--rose)"/>
+      <line x1="0" y1="100" x2="112" y2="100" stroke="var(--gray)"/>
+      <line x1="0" y1="100" x2="0" y2="-10" stroke="var(--gray)"/>
+      <text x="104" y="-4" text-anchor="end" fill="var(--coral)" font-size="9.5">α₂ = 1 · adapts</text>
+      <text x="56" y="122" text-anchor="middle" fill="var(--gray)" font-size="10">∂logC/∂logx₁</text>
+      <text x="-14" y="50" text-anchor="middle" fill="var(--gray)" font-size="10" transform="rotate(-90 -14 50)">∂logC/∂logx₂</text>
+    </g>
+    <text x="150" y="90" fill="var(--fg)" font-size="11.5">Adapts at low w.</text>
+    <text x="150" y="108" fill="var(--coral)" font-size="11.5" font-weight="700">Fails at HIGH w.</text>
+    <text x="150" y="126" fill="var(--gray)" font-size="10.5">Adaptation needs X₂ first order in the</text>
+    <text x="150" y="140" fill="var(--gray)" font-size="10.5">complex — the top edge. Raising w drives</text>
+    <text x="150" y="154" fill="var(--gray)" font-size="10.5">X₂ into complex, the operating point</text>
+    <text x="150" y="168" fill="var(--gray)" font-size="10.5">drops off that edge, and α₂ falls below 1.</text>
+  </g>
+
+  <!-- right: repress production -->
+  <g transform="translate(404,132)">
+    <text x="0" y="0" font-weight="700" fill="var(--teal)" font-size="11" letter-spacing=".8">MECHANISM B · REPRESS PRODUCTION</text>
+    <text x="0" y="20" font-family="var(--mono)" font-size="11.5" fill="var(--fg)">W + X₂ ⇌ C,  W → W + X₁</text>
+    <text x="0" y="37" font-family="var(--mono)" font-size="11.5" fill="var(--fg)">ẋ₁ = α·w_free(w,x₂) − kx₁</text>
+    <text x="0" y="54" font-family="var(--mono)" font-size="11.5" fill="var(--fg)">ẋ₂ = βw − γx₂</text>
+    <!-- polyhedron: unbounded strip 0 < a_w + a_2 < 1, a_w > 1 -->
+    <g transform="translate(10,76)">
+      <path d="M0 0 L100 100 L65 100 L0 35 Z" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.4"/>
+      <line x1="0" y1="35" x2="65" y2="100" stroke="var(--teal)" stroke-width="2.6"/>
+      <circle cx="40" cy="72" r="4.5" fill="var(--rose)"/>
+      <line x1="0" y1="100" x2="112" y2="100" stroke="var(--gray)"/>
+      <line x1="0" y1="100" x2="0" y2="-10" stroke="var(--gray)"/>
+      <text x="-5" y="-2" text-anchor="end" fill="var(--gray)" font-size="9.5">0</text>
+      <text x="0" y="112" text-anchor="middle" fill="var(--gray)" font-size="9.5">1</text>
+      <path d="M74 62 L96 84" stroke="var(--peri)" stroke-width="1.3" marker-end="url(#ar4)"/>
+      <text x="60" y="52" fill="var(--peri)" font-size="9">unbounded</text>
+      <text x="70" y="30" text-anchor="middle" fill="var(--teal)" font-size="9.5">α_w+α₂ = 0</text>
+      <text x="70" y="42" text-anchor="middle" fill="var(--teal)" font-size="9.5">adapts</text>
+      <text x="56" y="126" text-anchor="middle" fill="var(--gray)" font-size="10">∂log w_free/∂log w</text>
+      <text x="-14" y="50" text-anchor="middle" fill="var(--gray)" font-size="10" transform="rotate(-90 -14 50)">∂log w_free/∂log x₂</text>
+    </g>
+    <text x="150" y="90" fill="var(--fg)" font-size="11.5">Adapts at high w.</text>
+    <text x="150" y="108" fill="var(--teal)" font-size="11.5" font-weight="700">Fails at LOW w.</text>
+    <text x="150" y="126" fill="var(--gray)" font-size="10.5">Deep titration drives W's free</text>
+    <text x="150" y="140" fill="var(--gray)" font-size="10.5">fraction to zero, and the sum</text>
+    <text x="150" y="154" fill="var(--gray)" font-size="10.5">to its lower bound. Below</text>
+    <text x="150" y="168" fill="var(--gray)" font-size="10.5">threshold the repressor stops</text>
+    <text x="150" y="182" fill="var(--gray)" font-size="10.5">titrating and the sum → 1.</text>
+  </g>
+  <defs><marker id="ar4" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+    <path d="M0,0 L7,3.5 L0,7 z" fill="var(--peri)"/></marker></defs>
+ </g>
+</svg>
+<figcaption><b>Figure 8. Mechanism matters.</b> Both circuits are "the" incoherent feedforward loop. Both
+adapt — over different, complementary ranges of the disturbance. The polyhedron (blue) is fixed by
+stoichiometry; the coloured sub-region is where that mechanism's adaptation condition is satisfied; the dot is
+an operating point. Note that the two polyhedra are not the same shape even though both come from a single
+binding reaction: mechanism A asks about the <em>complex</em>, giving the bounded triangle of Figure 6, while
+mechanism B asks about the <em>free</em> species, giving an unbounded strip whose open direction is exactly
+ultrasensitivity. Which mechanism a cell uses is a statement about <em>which disturbances it is built to
+reject</em>. Simulations from the BMAC lab.<sup class="c"><a href="#r-thesis">23</a></sup></figcaption>
+</figure>
+
+<div class="box key">
+<span class="lbl">A prediction the diagram cannot make</span>
+<p>Activate-degradation IFFLs fail for large disturbances. Repress-production IFFLs fail for small ones.
+So if you find an IFFL in a pathway that must handle a wide dynamic range, you should expect to find
+<em>both</em> mechanisms, or a mechanism switch. And if you are designing one, the choice of mechanism is the
+choice of failure mode — which is the most important thing a designer needs to know and the thing the
+network cartoon systematically hides.</p>
+</div>
+
+<h2 id="s16"><span class="n">16</span>Hidden regimes: what "solve it in the usual limit" costs</h2>
+
+<p>The second payoff. Classical analysis picks a limit — substrate in excess, enzyme in excess, weak binding —
+solves in that limit, and reports a condition. Geometrically, that is evaluating at <em>one vertex</em> of the
+polyhedron. The rest of the polyhedron is not wrong; it is unexamined.</p>
+
+<p>A worked case: a synthetic circuit designed to make gene expression invariant to plasmid copy number.
+The published analysis identified one operating regime where invariance holds, corresponding to the vertex
+<span class="m">(−1, 1)</span> in reaction orders. Reading the whole polyhedron reveals a second solution — an
+entire <em>ray</em> of the polyhedron also satisfies the invariance constraint, corresponding to a large region
+of concentration space that the vertex analysis never
+visited.<sup class="c"><a href="#r-thesis">23</a></sup></p>
+
+<p>The general shape of this result is worth stating on its own, because it is the practical reason to care:</p>
+
+<ul>
+<li><strong>Necessary and sufficient, not just sufficient.</strong> A limit gives you a regime where the
+circuit works. The polyhedron gives you <em>all</em> regimes where it works, and therefore also the
+regimes where it fails.</li>
+<li><strong>Design becomes intersection.</strong> The specification is a constraint on reaction orders. The
+network supplies a polyhedron of achievable reaction orders. A design exists iff the two intersect, and the
+intersection tells you the concentration regime to build for.</li>
+<li><strong>Feasibility before parameters.</strong> You can rule a circuit out from stoichiometry alone,
+before measuring a single rate constant.</li>
+</ul>
+
+<h2 id="s17"><span class="n">17</span>Sampling in the wrong coordinates lies to you</h2>
+
+<p>The third payoff is a methodological warning with teeth, because it settles a live disagreement.</p>
+
+<p>Almost every computational study of circuit function — including Ma et al.'s — works by drawing random
+parameter sets, simulating, and counting hits. The hidden assumption is that a random draw in
+<em>parameter</em> space is a fair sample of <em>behavior</em> space. It is not, and the failure is silent.</p>
+
+<div class="box caution">
+<span class="lbl">The silent failure</span>
+<p>Take the simplest titration network, <span class="m">A + B ⇌ C</span>, and ask for ultrasensitive response
+of free <span class="m">A</span> to total <span class="m">B</span>:
+<span class="m">|∂log A/∂log B<sub>tot</sub>| &gt; 5</span>. Sample 100 log-uniform parameter sets in a
+<span class="m">[10<sup>−1</sup>,10<sup>1</sup>]</span> box: <b>0 hits</b>. Widen to
+<span class="m">[10<sup>−2</sup>,10<sup>2</sup>]</span>: <b>0 hits</b>. Widen to
+<span class="m">[10<sup>−4</sup>,10<sup>4</sup>]</span>: <b>0 hits</b>. The behavior exists — it is the
+classic titration switch — but it lives on a thin diagonal strip where
+<span class="m">A<sub>tot</sub> ≈ B<sub>tot</sub> ≫ K</span>, and a box sampler almost never lands
+there.</p>
+</div>
+
+<p>The fix follows directly from the geometry. The behavior is simple in <em>species</em> coordinates and
+convoluted in parameter coordinates, so sample where it is simple. Draw the state
+<span class="m">(v, x)</span> — fluxes and species — from a canonical box, then invert the algebra to recover
+the parameters that would have produced it:</p>
+
+<div class="eq">N log x = log k,&nbsp;&nbsp; q = L x,&nbsp;&nbsp; v = K<sup>cat</sup> x</div>
+
+<p>These are linear in logs, so the inversion is exact and cheap, and it replaces the expensive ODE solve.
+This is <strong>flux–species sampling</strong> (FSS): a two-line change to a standard pipeline. On the
+titration example it lifts the hit rate from 0.9% to 22.7%.<sup class="c"><a href="#r-liu">24</a></sup></p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 260" role="img" aria-label="Parameter space versus species space sampling">
+ <g font-family="var(--sans)" font-size="11">
+  <!-- parameter space -->
+  <g transform="translate(50,34)">
+   <text x="130" y="-12" text-anchor="middle" fill="var(--coral)" font-weight="700" font-size="11" letter-spacing=".8">PARAMETER SPACE — 0.9% hits</text>
+   <rect x="0" y="0" width="260" height="170" fill="var(--bg)" stroke="var(--rule)"/>
+   <g fill="var(--leader)" opacity=".5">
+     <circle cx="24" cy="150" r="1.6"/><circle cx="66" cy="30" r="1.6"/><circle cx="120" cy="96" r="1.6"/>
+     <circle cx="190" cy="140" r="1.6"/><circle cx="230" cy="52" r="1.6"/><circle cx="44" cy="88" r="1.6"/>
+     <circle cx="150" cy="24" r="1.6"/><circle cx="98" cy="160" r="1.6"/><circle cx="210" cy="104" r="1.6"/>
+     <circle cx="82" cy="66" r="1.6"/><circle cx="170" cy="70" r="1.6"/><circle cx="132" cy="130" r="1.6"/>
+     <circle cx="36" cy="40" r="1.6"/><circle cx="250" cy="122" r="1.6"/><circle cx="106" cy="46" r="1.6"/>
+     <circle cx="200" cy="20" r="1.6"/><circle cx="60" cy="122" r="1.6"/><circle cx="240" cy="158" r="1.6"/>
+     <circle cx="14" cy="70" r="1.6"/><circle cx="160" cy="150" r="1.6"/><circle cx="222" cy="82" r="1.6"/>
+   </g>
+   <path d="M20 152 L242 18 L250 30 L28 164 Z" fill="var(--pinkf)" stroke="var(--coral)" stroke-width="1.2"/>
+   <g fill="var(--rose)"><circle cx="60" cy="128" r="2.4"/><circle cx="112" cy="97" r="2.4"/><circle cx="180" cy="55" r="2.4"/></g>
+   <text x="130" y="184" text-anchor="middle" fill="var(--gray)">log B_tot</text>
+   <text x="-10" y="88" text-anchor="middle" fill="var(--gray)" transform="rotate(-90 -10 88)">log A_tot</text>
+   <text x="140" y="106" fill="var(--coral)" font-size="10" transform="rotate(-31 140 106)">titration strip</text>
+  </g>
+  <!-- species space -->
+  <g transform="translate(430,34)">
+   <text x="130" y="-12" text-anchor="middle" fill="var(--teal)" font-weight="700" font-size="11" letter-spacing=".8">SPECIES SPACE — 22.7% hits</text>
+   <rect x="0" y="0" width="260" height="170" fill="var(--bg)" stroke="var(--rule)"/>
+   <path d="M0 0 L260 0 L260 62 L130 96 L0 62 Z" fill="var(--powder)" opacity=".7"/>
+   <g fill="var(--leader)" opacity=".5">
+     <circle cx="30" cy="140" r="1.6"/><circle cx="90" cy="120" r="1.6"/><circle cx="200" cy="150" r="1.6"/>
+     <circle cx="240" cy="118" r="1.6"/><circle cx="60" cy="160" r="1.6"/><circle cx="160" cy="130" r="1.6"/>
+     <circle cx="120" cy="152" r="1.6"/><circle cx="220" cy="90" r="1.6"/><circle cx="40" cy="100" r="1.6"/>
+   </g>
+   <g fill="var(--rose)">
+     <circle cx="70" cy="30" r="2.4"/><circle cx="110" cy="16" r="2.4"/><circle cx="150" cy="34" r="2.4"/>
+     <circle cx="96" cy="46" r="2.4"/><circle cx="176" cy="20" r="2.4"/><circle cx="132" cy="52" r="2.4"/>
+     <circle cx="200" cy="40" r="2.4"/><circle cx="58" cy="52" r="2.4"/><circle cx="220" cy="24" r="2.4"/>
+     <circle cx="86" cy="12" r="2.4"/><circle cx="160" cy="60" r="2.4"/><circle cx="118" cy="30" r="2.4"/>
+   </g>
+   <text x="130" y="34" text-anchor="middle" fill="var(--peri)" font-size="10.5" font-weight="700">C ≫ A, C ≫ B</text>
+   <text x="130" y="184" text-anchor="middle" fill="var(--gray)">u = (log B − log A)/√2</text>
+   <text x="-10" y="88" text-anchor="middle" fill="var(--gray)" transform="rotate(-90 -10 88)">v = (2log C − log A − log B)/√6</text>
+  </g>
+  <text x="380" y="240" text-anchor="middle" fill="var(--gray)" font-size="11">the behavior did not change · the coordinates did</text>
+ </g>
+</svg>
+<figcaption><b>Figure 9. The same behavior, sampled two ways.</b> Orange = ultrasensitive hits. In parameter
+space they hide on a thin diagonal; in species space they fill a dominance cone. A negative result from
+parameter sampling is evidence about the sampler, not about the circuit.</figcaption>
+</figure>
+
+<h3>The controversy this settles</h3>
+
+<p>Ma et al. (2009) concluded that certain topologies adapt — under Michaelis–Menten
+assumptions.<sup class="c"><a href="#r-ma">2</a></sup> Jeynes-Smith and Araujo (2023) re-analysed the same
+circuits with explicit protein–protein complexes and concluded that robust perfect adaptation is
+<em>never</em> achieved in the free active form <span class="m">A*</span> of the regulated
+protein.<sup class="c"><a href="#r-jsa">25</a></sup> Two flat contradictions, both reached by numerical
+sampling in parameter space.</p>
+
+<p>Flux–species sampling reconciles them, and the reconciliation is that each side is half right:</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 6. Scoring the disagreement with a sampler that can reach the relevant regime.</caption>
+<thead><tr><th>Claim</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>Ma et al.: <span class="m">A*</span> adapts to a setpoint</td><td style="color:var(--teal)">✓ validated</td></tr>
+<tr><td>Ma et al.: …and it does so under Michaelis–Menten</td><td style="color:var(--rose)">✗ refuted</td></tr>
+<tr><td>Jeynes-Smith &amp; Araujo: adaptation needs explicit complexes, violating Michaelis–Menten</td><td style="color:var(--teal)">✓ validated</td></tr>
+<tr><td>Jeynes-Smith &amp; Araujo: <span class="m">A*</span> adapts to no value, ever</td><td style="color:var(--rose)">✗ refuted</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Adaptation of the free active form does happen — in a regime where complexes vastly exceed free substrate
+(median complex/free ratio around <span class="m">10<sup>5</sup></span>, so only 2 of 1027 hits satisfy the
+usual 10% Michaelis–Menten validity criterion). It is outside the Michaelis–Menten regime, which is why one
+group could not find it, and it is real, which is why the other group did.<sup class="c"><a href="#r-liu">24</a></sup>
+Both groups were sampling boxes that mostly did not contain the answer.</p>
+
+<div class="box note">
+<span class="lbl">Take-away for practice</span>
+<p>If your conclusion is "no parameter set achieves X", ask what fraction of behavior space your sampler
+could reach. Absence of evidence in parameter space is very weak evidence of absence.</p>
+</div>
+
+<h2 id="s18"><span class="n">18</span>Flux exponent control: the same rule, applied to metabolism</h2>
+
+<p>The fourth payoff scales the idea up from circuits to whole-cell metabolism.</p>
+
+<p>Constraint-based methods such as flux balance analysis (FBA) are the workhorse of metabolic
+modelling.<sup class="c"><a href="#r-fba">26</a></sup> FBA's constraint is stoichiometry: it fixes
+<span class="m">N v = 0</span> and lets every flux <span class="m">v</span> be chosen freely by an optimizer.
+That is a strong and useful assumption, and it has a known blind spot — it is a steady-state theory. It cannot
+produce glycolytic oscillations or growth arrest, which are precisely the dynamic phenomena that metabolic
+regulation exists to handle.</p>
+
+<p>The reaction-order rule supplies the missing constraint. Cells do not set fluxes. Cells bind things, and
+binding sets <em>exponents</em>. So the right control variable is not <span class="m">v</span> but
+<span class="m">∂log v/∂log x</span>:</p>
+
+<div class="box key">
+<span class="lbl">Flux exponent control (FEC)</span>
+<p>Metabolism is a control system in which the plant is metabolite stoichiometry and the actuator adjusts
+the <em>exponents</em> of the fluxes, within the polyhedron that binding
+allows.<sup class="c"><a href="#r-fec">27</a></sup> Because the exponents, not the fluxes, are the control
+variable, the closed loop has non-trivial intrinsic dynamics — and those dynamics reproduce glycolytic
+oscillations and growth arrest directly from network structure.</p>
+</div>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 250" role="img" aria-label="Layered architecture of metabolism and where flux exponent control acts">
+ <g font-family="var(--sans)" font-size="11.5">
+  <text x="24" y="18" font-size="11" letter-spacing="1.2" fill="var(--gray)">LAYERED ARCHITECTURE OF METABOLISM</text>
+  <g>
+   <rect x="24" y="160" width="420" height="56" rx="8" fill="var(--powder)" stroke="var(--peri)" stroke-width="1.3"/>
+   <text x="40" y="182" font-weight="700" fill="var(--fg)">Metabolite stoichiometry</text>
+   <text x="40" y="200" fill="var(--gray)">ẋ = N v — reliable, measured, the plant</text>
+
+   <rect x="24" y="92" width="420" height="56" rx="8" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.6"/>
+   <text x="40" y="114" font-weight="700" fill="var(--rose)">Binding regulates catalysis</text>
+   <text x="40" y="132" fill="var(--gray)">α = ∂log v/∂log x ∈ 𝒫(N_bind) — the actuator</text>
+
+   <rect x="24" y="24" width="420" height="56" rx="8" fill="var(--cream)" stroke="var(--lime)" stroke-width="1.3"/>
+   <text x="40" y="46" font-weight="700" fill="var(--fg)">Transcription and translation</text>
+   <text x="40" y="64" fill="var(--gray)">sets enzyme levels — slow outer loop</text>
+
+   <g stroke="var(--leader)" stroke-width="1.4" fill="none" marker-end="url(#ar5)">
+     <path d="M234 148 L234 162"/><path d="M234 80 L234 92"/>
+   </g>
+   <defs><marker id="ar5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+     <path d="M0,0 L8,4 L0,8 z" fill="var(--leader)"/></marker></defs>
+  </g>
+  <g transform="translate(470,24)">
+    <rect x="0" y="0" width="266" height="86" rx="8" fill="var(--bg)" stroke="var(--coral)" stroke-width="1.2"/>
+    <text x="14" y="22" font-weight="700" fill="var(--coral)" font-size="11">FBA controls this row</text>
+    <text x="14" y="40" fill="var(--gray)" font-size="10.5">picks v freely, subject to N v = 0.</text>
+    <text x="14" y="56" fill="var(--gray)" font-size="10.5">Steady states only — no intrinsic</text>
+    <text x="14" y="70" fill="var(--gray)" font-size="10.5">dynamics, because v has no plant.</text>
+    <rect x="0" y="102" width="266" height="102" rx="8" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.4"/>
+    <text x="14" y="124" font-weight="700" fill="var(--rose)" font-size="11">FEC controls the middle row</text>
+    <text x="14" y="142" fill="var(--gray)" font-size="10.5">picks exponents, subject to the</text>
+    <text x="14" y="156" fill="var(--gray)" font-size="10.5">reaction-order polyhedron.</text>
+    <text x="14" y="174" fill="var(--fg)" font-size="10.5">The state x now has real dynamics,</text>
+    <text x="14" y="188" fill="var(--fg)" font-size="10.5">so oscillation and arrest come out.</text>
+  </g>
+ </g>
+</svg>
+<figcaption><b>Figure 10. Where the two constraint-based methods put the actuator.</b> FBA lets the cell set
+fluxes directly. FEC says the cell can only set exponents, because the only thing it can do is bind. The
+extra constraint is what makes dynamics fall out instead of having to be assumed.</figcaption>
+</figure>
+
+<p>The analogy Xiao uses for this is Lagrangian mechanics: just as the Lagrangian formulation lets you study
+any mechanical system's response to applied forces without re-deriving Newton for each linkage, FEC lets you
+study any metabolic system's response to adjustments of flux exponents. It turns "model this pathway" into
+"analyse this class of machines."<sup class="c"><a href="#r-thesis">23</a></sup></p>
+
+<div class="parthead">
+  <div class="k">Part V</div>
+  <h2>Using the method yourself</h2>
+  <p>The recipe, the open problems, and what to distrust.</p>
+</div>
+
+<h2 id="s19"><span class="n">19</span>The recipe, restated now that you have seen it run</h2>
+
+<div class="tablewrap">
+<table>
+<caption>Table 7. The method of section 3, with the adaptation example filled in.</caption>
+<thead><tr><th>Step</th><th>In general</th><th>For adaptation</th></tr></thead>
+<tbody>
+<tr><td>1. Fix the function</td><td>State a required i/o behavior</td><td>Reject step disturbances</td></tr>
+<tr><td>2. Engineered machine + theorem</td><td>Find the design and the <em>iff</em></td><td>PID; internal model principle</td></tr>
+<tr><td>3. Biological machine</td><td>Locate the same function in a cell; check the theorem</td><td>Chemotaxis (integral), IFFL motifs (not obviously)</td></tr>
+<tr><td>4. <b>Name the constraint that differs</b></td><td>The step that produces new theory</td><td><b>positivity</b> ⇒ no integrator in a species;<br><b>regulation via exponents</b> ⇒ cancellation is structural</td></tr>
+<tr><td>5. Build the tool</td><td>Formalize the constraint</td><td>Reaction order polyhedra, dominance decomposition</td></tr>
+<tr><td>6. Spend it</td><td>New predictions, new failures, new designs</td><td>Mechanism-dependent failure modes, hidden regimes, FSS, FEC</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Two failure modes to avoid while running this. The first is stopping at step 3 — the "biology has feedback
+too!" paper, which is decoration. The second is stopping at step 4 with a vague constraint ("biology is
+noisy", "biology is nonlinear"). A constraint is only useful when it is specific enough to be formalized in
+step 5. "Concentrations are non-negative" qualifies. "Biology is complicated" does not.</p>
+
+<h2 id="s20"><span class="n">20</span>Other functions, and where the same method is pointed next</h2>
+
+<div class="tablewrap">
+<table>
+<caption>Table 8. Function-matched pairs. The right column is what the method has produced or is chasing; some
+rows are open.</caption>
+<thead><tr><th>Function</th><th>Engineered</th><th>Biological</th><th>Constraint that differs</th></tr></thead>
+<tbody>
+<tr><td>Disturbance rejection</td><td>PID, integral feedback</td><td>Chemotaxis, osmo-adaptation, IFFL motifs</td><td class="hl">Positivity; regulation through exponents</td></tr>
+<tr><td>Noise suppression</td><td>Filtering, averaging</td><td>Feedback and feedforward in gene expression</td><td class="hl">Discreteness of molecules; no i/o separation</td></tr>
+<tr><td>Discrimination / error correction</td><td>Repetition and parity codes</td><td>Kinetic proofreading</td><td class="hl">Energy dissipation buys the extra reads<sup class="c"><a href="#r-kpf">28</a></sup></td></tr>
+<tr><td>Resource allocation</td><td>Linear programming, MPC</td><td>Metabolism, ribosome allocation</td><td class="hl">Fluxes not directly settable — only exponents (FEC)</td></tr>
+<tr><td>Counting / thresholding</td><td>Counters, comparators</td><td>Replication initiation by protein accumulation</td><td class="hl">No clock; titration against a fixed site count<sup class="c"><a href="#r-fu">29</a></sup></td></tr>
+<tr><td>Memory and fast signalling</td><td>SRAM latch, DRAM refresh, flash</td><td>Spikes, synapses, epigenetic states</td><td class="hl" style="color:var(--peri)">open — see the companion tutorial</td></tr>
+<tr><td>Pattern formation</td><td>Distributed consensus</td><td>Morphogen gradients, trigger waves</td><td class="hl" style="color:var(--peri)">open</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The sixth row is the subject of the companion document,
+<strong>Switch vs. Spike</strong>, which asks why
+neurons are pulse generators rather than latches. It runs exactly the pipeline above: the function is
+short-range computation plus long-range signalling plus long-term memory; the engineered machines are SRAM,
+DRAM, flash, and regenerative repeaters; and the constraint that differs turns out to be an inversion of the
+cost of holding a state versus the cost of an event.</p>
+
+<h2 id="s21"><span class="n">21</span>What is assumed, and what is contested</h2>
+
+<p>Honest limits, because a tutorial that only sells is not a tutorial.</p>
+
+<h3>Assumptions that do real work</h3>
+<ul>
+<li><strong>Binding equilibrates fast relative to catalysis.</strong> This is what makes the split of section
+11 clean and what lets binding be solved algebraically. Where the separation fails — fast catalysis,
+slow conformational change, strongly driven systems — the polyhedron is a statement about a quasi-equilibrium
+that the system may not occupy.</li>
+<li><strong>Detailed balance in the binding subnetwork.</strong> The polyhedral derivation uses equilibrium
+binding. Non-equilibrium binding — energy-consuming proofreading steps, ATP-driven modification cycles — is
+outside the current statement, though the log-derivative machinery itself does not obviously care.</li>
+<li><strong>Well-mixed, deterministic concentrations.</strong> Small copy numbers, spatial structure, and
+phase separation are not in the frame as stated.</li>
+</ul>
+
+<h3>Contested or unsettled</h3>
+<ul>
+<li><strong>Whether reaction orders are the right primitive at all.</strong> The competing view is that
+mechanism-specific detailed models are the only honest description and that any coarse-graining discards what
+matters. The reply in this tutorial is section 15: the coarse-graining <em>keeps</em> mechanism, and makes
+mechanism-dependent predictions the diagram cannot make. But that is an argument, not a proof.</li>
+<li><strong>How often cells actually sit at vertices.</strong> The whole robustness story rests on operating
+points being deep inside dominance regions rather than in crossover. This is measurable and largely
+unmeasured.</li>
+<li><strong>The adaptation controversy is not fully closed.</strong> Section 17 reports a reconciliation from
+a sampling method; Araujo and colleagues maintain a topological programme that reaches different conclusions
+about which structures can support RPA at all.<sup class="c"><a href="#r-araujo">30</a></sup> These should be
+compared carefully, not assumed away.</li>
+<li><strong>Motif abundance ≠ motif function.</strong> The censuses count subgraphs against a randomized null,
+and the choice of null has been criticized. That feed-forward loops are over-represented is not by itself
+proof that they are there for adaptation — especially given that 85% of them are coherent, and a coherent FFL
+does not adapt at all. The load-bearing evidence for the argument here is Ma et al.'s design-space count,
+which is a claim about what <em>can</em> work, not about what is abundant.</li>
+</ul>
+
+<div class="box note">
+<span class="lbl">If you want to go further</span>
+<ul>
+<li><b>The full derivation</b> — Xiao 2022, Caltech PhD thesis, chapters 2 and 3.
+  <a class="pdf" href="/assets/pdf/xiao-2022-PhD-Thesis-final.pdf">PDF</a></li>
+<li><b>The lab's framing</b> — <i>Intro to BMAC</i> slides, 2026-07.
+  <span class="pdf">PDF</span></li>
+<li><b>The dominance polytope theory</b> — see the <span class="m">dominance-polytope</span> project,
+  especially <span class="m">supplement-overleaf</span>.</li>
+<li><b>Every reference below</b> that shows a <span class="pdf" style="cursor:default">PDF</span> tag is in
+  <span class="m">literature/</span> beside this file. Ones we could not obtain are listed with priority in
+  <span class="m">literature/NEEDED.md</span>.</li>
+</ul>
+</div>
+
+<hr>
+
+<h2 id="refs">References</h2>
+<div class="refs">
+<ol>
+<li id="r-kg">Kirschner M, Gerhart J. <i>The Plausibility of Life: Resolving Darwin's Dilemma.</i>
+  Yale University Press, 2005. <span class="venue">— source of "constraints that deconstrain".</span></li>
+<li id="r-ma">Ma W, Trusina A, El-Samad H, Lim WA, Tang C. Defining network topologies that can achieve
+  biochemical adaptation. <span class="venue"><i>Cell</i> 138:760–773, 2009.</span>
+  <span class="pdf">PDF</span>
+  <span class="pdf">SI</span></li>
+<li id="r-fw">Francis BA, Wonham WM. The internal model principle of control theory.
+  <span class="venue"><i>Automatica</i> 12:457–465, 1976.</span>
+  <span class="pdf">PDF</span>
+  &nbsp;See also the 1975 long version.
+  <span class="pdf">PDF</span></li>
+<li id="r-bb">Berg HC, Brown DA. Chemotaxis in <i>Escherichia coli</i> analysed by three-dimensional tracking.
+  <span class="venue"><i>Nature</i> 239:500–504, 1972.</span></li>
+<li id="r-sbb">Segall JE, Block SM, Berg HC. Temporal comparisons in bacterial chemotaxis.
+  <span class="venue"><i>PNAS</i> 83:8987–8991, 1986.</span></li>
+<li id="r-bl">Barkai N, Leibler S. Robustness in simple biochemical networks.
+  <span class="venue"><i>Nature</i> 387:913–917, 1997.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-asbl">Alon U, Surette MG, Barkai N, Leibler S. Robustness in bacterial chemotaxis.
+  <span class="venue"><i>Nature</i> 397:168–171, 1999.</span></li>
+<li id="r-yi">Yi T-M, Huang Y, Simon MI, Doyle J. Robust perfect adaptation in bacterial chemotaxis through
+  integral feedback control. <span class="venue"><i>PNAS</i> 97:4649–4653, 2000.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-sb">Sourjik V, Berg HC. Receptor sensitivity in bacterial chemotaxis.
+  <span class="venue"><i>PNAS</i> 99:123–127, 2002.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-briat">Briat C, Gupta A, Khammash M. Antithetic integral feedback ensures robust perfect adaptation
+  in noisy biomolecular networks. <span class="venue"><i>Cell Systems</i> 2:15–26, 2016.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-aoki">Aoki SK, Lillacci G, Gupta A, Baumschlager A, Schweingruber D, Khammash M. A universal
+  biomolecular integral feedback controller for robust perfect adaptation.
+  <span class="venue"><i>Nature</i> 570:533–537, 2019.</span>
+  <span class="pdf">PDF</span>
+  <span class="pdf">SI</span></li>
+<li id="r-so">Shen-Orr SS, Milo R, Mangan S, Alon U. Network motifs in the transcriptional regulation network
+  of <i>Escherichia coli</i>. <span class="venue"><i>Nature Genetics</i> 31:64–68, 2002.</span></li>
+<li id="r-milo">Milo R, Shen-Orr S, Itzkovitz S, Kashtan N, Chklovskii D, Alon U. Network motifs: simple
+  building blocks of complex networks. <span class="venue"><i>Science</i> 298:824–827, 2002.</span></li>
+<li id="r-alon07">Alon U. Network motifs: theory and experimental approaches.
+  <span class="venue"><i>Nature Reviews Genetics</i> 8:450–461, 2007.</span></li>
+<li id="r-alon19">Alon U. <i>An Introduction to Systems Biology: Design Principles of Biological
+  Circuits.</i> <span class="venue">2nd ed., CRC Press, 2019.</span>
+  <span class="pdf">PDF</span>
+  &mdash; FFL abundance ranking, ch. 4.</li>
+<li id="r-xd">Xiao F, Doyle JC. Robust perfect adaptation in biomolecular reaction networks.
+  <span class="venue"><i>IEEE CDC</i>, 2018.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-bintu">Bintu L, Buchler NE, Garcia HG, Gerland U, Hwa T, Kondev J, Phillips R. Transcriptional
+  regulation by the numbers: models. <span class="venue"><i>Curr Opin Genet Dev</i> 15:116–124, 2005.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-xkd">Xiao F, Khammash M, Doyle JC. Stability and control of biomolecular circuits through structure.
+  <span class="venue"><i>American Control Conference</i>, 2021.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-kacser">Kacser H, Burns JA. The control of flux.
+  <span class="venue"><i>Symp Soc Exp Biol</i> 27:65–104, 1973.</span> See also Heinrich R, Rapoport TA,
+  <span class="venue"><i>Eur J Biochem</i> 42:89–95, 1974.</span></li>
+<li id="r-sav76">Savageau MA. <i>Biochemical Systems Analysis: A Study of Function and Design in
+  Molecular Biology.</i> <span class="venue">Addison-Wesley, 1976.</span>
+  <span class="pdf">PDF</span>
+  &mdash; the apparent kinetic order is Eq. 5-10, p. 90.</li>
+<li id="r-sav">Savageau MA. Introduction to S-systems and the underlying power-law formalism.
+  <span class="venue"><i>Math Comput Modelling</i> 11:546–551, 1988.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-sav09">Savageau MA, Coelho PMBM, Fasani RA, Tolla DA, Salvador A. Phenotypes and tolerances in the
+  design space of biochemical systems. <span class="venue"><i>PNAS</i> 106:6435–6440, 2009.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-thesis">Xiao F. <i>Biocontrol of Biomolecular Systems: Polyhedral Constraints on Binding's
+  Regulation of Catalysis from Biocircuits to Metabolism.</i>
+  <span class="venue">PhD thesis, California Institute of Technology, 2022.</span>
+  <a class="pdf" href="/assets/pdf/xiao-2022-PhD-Thesis-final.pdf">PDF</a></li>
+<li id="r-liu">Liu Q, Ren X, Xiao F. Evaluating valid parameter regimes for biocircuits.
+  <span class="venue">bioRxiv 2026.01.19.700491, 2026.</span></li>
+<li id="r-jsa">Jeynes-Smith C, Araujo RP. Protein–protein complexes can undermine
+  ultrasensitivity-dependent biological adaptation.
+  <span class="venue"><i>J R Soc Interface</i> 20:20220553, 2023.</span></li>
+<li id="r-fba">Orth JD, Thiele I, Palsson BØ. What is flux balance analysis?
+  <span class="venue"><i>Nature Biotechnology</i> 28:245–248, 2010.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-fec">Xiao F, Li JS, Doyle JC. Flux exponent control predicts metabolic dynamics from network
+  structure. <span class="venue"><i>American Control Conference</i>, 2023.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-kpf">Xiao F, Galstyan V. With the leisure of time, kinetic proofreading can still perform reliable
+  ligand discrimination. <span class="venue"><i>PNAS</i> 121:e2320118121, 2024.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-fu">Fu H, Xiao F, Jun S. Bacterial replication initiation as precision control by protein counting.
+  <span class="venue"><i>PRX Life</i> 1:013011, 2023.</span>
+  <span class="pdf">PDF</span></li>
+<li id="r-araujo">Araujo RP, Liotta LA. The topological requirements for robust perfect adaptation in networks
+  of any size. <span class="venue"><i>Nature Communications</i> 9:1757, 2018.</span>
+  <span class="pdf">PDF</span>
+  <span class="pdf">SI</span></li>
+</ol>
+<p class="small">The <span class="m">literature/</span> folder holds ~60 further full texts used in preparing
+this tutorial, indexed in <span class="m">literature/README.md</span>.</p>
+</div>
+
+<hr>
+<p class="small">Companion tutorial: Switch vs. Spike —
+why neurons pulse instead of latching. Founding prompt and project intent: idea.md.</p>
+
+</main>
+</div>
+<script>
+(function(){
+  // ---- theme toggle -------------------------------------------------------
+  var root=document.documentElement, tt=document.getElementById('tt');
+  tt.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    if(!cur){ cur = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light'; }
+    root.setAttribute('data-theme', cur==='dark'?'light':'dark');
+    if(window.__redraw) window.__redraw();
+  });
+
+  // ---- TOC scroll spy -----------------------------------------------------
+  var links=[].slice.call(document.querySelectorAll('#toc a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(Boolean);
+  function spy(){
+    var y=window.scrollY+140, best=0;
+    secs.forEach(function(s,i){ if(s && s.offsetTop<=y) best=i; });
+    links.forEach(function(a,i){ a.classList.toggle('on', i===best); });
+  }
+  window.addEventListener('scroll',spy,{passive:true}); spy();
+
+  // ---- demo: fragile vs structural cancellation ---------------------------
+  var cv=document.getElementById('c-cancel'); if(!cv) return;
+  var ctx=cv.getContext('2d');
+  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  var S={mm:0, step:10, a:1.0};
+  function bind(id,key,scale,fmt){
+    var el=document.getElementById(id), out=document.getElementById('v-'+key);
+    function up(){ S[key]=el.value*scale; out.textContent=fmt(S[key]); draw(); }
+    el.addEventListener('input',up); up();
+  }
+  function series(n, f){ var a=new Array(n); for(var i=0;i<n;i++) a[i]=f(i); return a; }
+
+  function simulate(){
+    // time grid
+    var N=420, dt=0.06, tStep=60;
+    var w0=1, w1=S.step;
+    // ---- linear IFFL: y = G1*w - G2*G3*z ; z low-pass of w
+    var g1=1, g23=1*(1+S.mm/100);
+    var zL=w0, yL=[], zP=w0, yP=[];
+    var linA=[], powA=[];
+    for(var i=0;i<N;i++){
+      var w = i<tStep ? w0 : w1;
+      // linear: z tracks w with tau=1 ; y = g1*w - g23*z  (+baseline so it starts at 0 error)
+      zL += dt*(w - zL);
+      var y = g1*w - g23*zL;
+      linA.push(y);
+      // power-law: z ∝ w^c  (c=1) ; y ∝ w^a / z^b  (b=1). prefactor mismatch = S.mm
+      zP += dt*(w*(1+S.mm/100) - zP);
+      var yp = Math.pow(w, S.a) / Math.max(zP,1e-9);
+      powA.push(yp);
+    }
+    return {lin:linA, pow:powA, N:N, tStep:tStep};
+  }
+
+  function draw(){
+    var W=cv.width, H=cv.height, r=simulate();
+    ctx.clearRect(0,0,W,H);
+    var fg=css('--fg'), gray=css('--gray'), grid=css('--gridc'), rose=css('--rose'),
+        peri=css('--peri'), coral=css('--coral'), teal=css('--teal'), bg=css('--bg');
+    ctx.font='13px -apple-system,system-ui,sans-serif';
+    var pads={l:56,r:24,t:44,b:36}, pw=(W-40)/2;
+
+    function panel(x0,title,sub,arr,color,targetLabel){
+      var x=x0+pads.l, y=pads.t, w=pw-pads.l-pads.r, h=H-pads.t-pads.b;
+      // frame
+      ctx.strokeStyle=grid; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+h); ctx.lineTo(x+w,y+h); ctx.stroke();
+      // scale
+      var lo=Math.min.apply(null,arr), hi=Math.max.apply(null,arr);
+      var base=arr[r.tStep-1];
+      lo=Math.min(lo,base); hi=Math.max(hi,base);
+      var pad=(hi-lo)*0.25+1e-6; lo-=pad; hi+=pad;
+      function Y(v){ return y+h-(v-lo)/(hi-lo)*h; }
+      // baseline
+      ctx.strokeStyle=gray; ctx.setLineDash([3,4]); ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(x,Y(base)); ctx.lineTo(x+w,Y(base)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle=gray; ctx.font='11px -apple-system,system-ui,sans-serif';
+      ctx.fillText('pre-step baseline', x+4, Y(base)-6);
+      // step marker
+      var xs=x+r.tStep/r.N*w;
+      ctx.strokeStyle=peri; ctx.setLineDash([4,3]);
+      ctx.beginPath(); ctx.moveTo(xs,y); ctx.lineTo(xs,y+h); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle=peri; ctx.fillText('step in w', xs+5, y+12);
+      // curve
+      ctx.strokeStyle=color; ctx.lineWidth=2.4; ctx.beginPath();
+      for(var i=0;i<r.N;i++){ var px=x+i/r.N*w, py=Y(arr[i]); i?ctx.lineTo(px,py):ctx.moveTo(px,py); }
+      ctx.stroke();
+      // residual
+      var fin=arr[r.N-1], err=Math.abs(fin-base)/Math.max(Math.abs(base),1e-9)*100;
+      ctx.strokeStyle=err>2?coral:teal; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.moveTo(x+w-14,Y(base)); ctx.lineTo(x+w-14,Y(fin)); ctx.stroke();
+      // titles
+      ctx.font='700 12px -apple-system,system-ui,sans-serif'; ctx.fillStyle=color;
+      ctx.fillText(title, x0+pads.l, 18);
+      ctx.font='11px -apple-system,system-ui,sans-serif'; ctx.fillStyle=gray;
+      ctx.fillText(sub, x0+pads.l, 33);
+      ctx.font='700 12px -apple-system,system-ui,sans-serif';
+      ctx.fillStyle=err>2?coral:teal;
+      ctx.fillText('residual error '+err.toFixed(1)+'%', x0+pads.l, H-10);
+      return err;
+    }
+    var e1=panel(0,'LINEAR — cancellation in the gains','y = G₁w − G₂G₃z',r.lin,coral);
+    var e2=panel(pw+40,'POWER LAW — cancellation in the exponents','y ∝ w^a / z^b,  z ∝ w^c',r.pow,teal);
+    var ro=document.getElementById('r-cancel');
+    ro.innerHTML='linear circuit: <b>'+e1.toFixed(1)+'%</b> steady-state error &nbsp;·&nbsp; '+
+      'power-law circuit: <b>'+e2.toFixed(1)+'%</b><br>'+
+      'exponent balance a − bc = <b>'+(S.a-1).toFixed(2)+'</b> '+
+      (Math.abs(S.a-1)<1e-9?'(exactly zero — adaptation is exact for <i>any</i> prefactor mismatch)'
+                           :'(off the vertex — now the circuit really does fail)');
+  }
+  window.__redraw=draw;
+  bind('s-mm','mm',1,function(v){return (v>0?'+':'')+v.toFixed(0)+'%';});
+  bind('s-step','step',1,function(v){return v.toFixed(0)+'×';});
+  bind('s-a','a',0.01,function(v){return v.toFixed(2);});
+  addEventListener('resize',draw);
+})();
+</script>
+</body>
+</html>

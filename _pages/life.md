@@ -4,7 +4,7 @@ permalink: /life/
 title: life
 description: life is all about research, but not just research...
 nav: true
-nav_order: 6
+nav_order: 8
 
 page:
   # if you want to include more than one profile, just replicate the following block

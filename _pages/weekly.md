@@ -4,7 +4,7 @@ title: "weekly papers"
 permalink: "/weekly/"
 description: "A tailored weekly research-paper digest from the BMAC lab."
 nav: true
-nav_order: 5
+nav_order: 6
 ---
 
 <p class="lead">A weekly, relevance-ranked reading list for biomolecular networks, synthetic and microbial systems, and biology-enabling ideas.</p>

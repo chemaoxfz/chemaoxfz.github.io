@@ -256,7 +256,9 @@ sass:
 # -----------------------------------------------------------------------------
 
 jekyll-minifier:
-  exclude: ["robots.txt"]
+  # the essays are self-contained pages with their own inline CSS, JS and SVG.
+  # they ship exactly as authored.
+  exclude: ["robots.txt", "essays/*", "essays/*/*", "essays/*/index.html"]
   uglifier_args:
     harmony: true
 

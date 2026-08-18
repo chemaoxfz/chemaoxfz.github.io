@@ -4,7 +4,7 @@ permalink: /teaching/
 title: teaching
 description: teaching for ideas is like replication for organisms.
 nav: true
-nav_order: 6
+nav_order: 7
 ---
 <style>
   .teaching-courses {
