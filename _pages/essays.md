@@ -34,8 +34,8 @@ if you want to run it yourself.</p>
     <h3 class="h5 card-title"><a href="/essays/synbio-history/">Three Schools, Three Shocks</a></h3>
     <p class="text-muted mb-2">A history of synthetic biology, and why its third wave stalled</p>
     <p>Physics, system, and industry have each asked their own question of life. Three times a discovery
-    let all three ask it at once. The third time stalled, and the reason is a missing model class. Twenty-seven
-    sections, built on 180 sources read in full.</p>
+    let all three ask it at once. The third time stalled, and the reason is a missing model class.
+    Twenty-five sections, nine figures, 107 sources read in full.</p>
   </div>
 </div>
 
@@ -44,8 +44,8 @@ if you want to run it yourself.</p>
     <h3 class="h5 card-title"><a href="/essays/biomachine-tutorial/">The Biomachine Perspective</a></h3>
     <p class="text-muted mb-2">A tutorial on reading cells as machines, and what that buys you</p>
     <p>A cell is a machine. Fix the function, compare the implementations, and let the difference in
-    physical constraints explain the difference in architecture. Twenty-one sections, worked examples,
-    and an interactive demo. This is the perspective the lab is built on.</p>
+    physical constraints explain the difference in architecture. Twenty-one sections, ten figures, worked
+    examples, and an interactive demo. This is the perspective the lab is built on.</p>
   </div>
 </div>
 

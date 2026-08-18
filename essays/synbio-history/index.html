@@ -120,15 +120,6 @@ sub,sup{font-size:.7em;line-height:0}
 .box.quote blockquote{margin:0 0 .5rem;font-style:italic}
 .box.quote cite{font-family:var(--sans);font-size:.78rem;font-style:normal;color:var(--muted)}
 
-/* ---------- verdict chips ---------- */
-.vd{font-family:var(--sans);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
-   padding:.12rem .42rem;border-radius:4px;vertical-align:.15em;white-space:nowrap;margin-left:.35rem}
-.vd.ok{color:#fff;background:var(--teal)}
-.vd.sh{color:#fff;background:var(--peri)}
-.vd.co{color:#fff;background:var(--coral)}
-.vd.ov{color:#fff;background:var(--rose)}
-.legend{display:flex;flex-wrap:wrap;gap:.5rem 1.1rem;font-family:var(--sans);font-size:.78rem;color:var(--muted);margin:1rem 0 0}
-
 /* ---------- figures ---------- */
 figure{margin:2rem 0;padding:0}
 figure svg{display:block;width:100%;height:auto;max-width:100%}
@@ -182,6 +173,7 @@ svg text{font-family:var(--sans);fill:var(--fg)}
 svg .lbl2{font-size:11px;fill:var(--muted)}
 svg .ttl{font-size:12px;font-weight:700}
 svg .tiny{font-size:9.5px;fill:var(--muted)}
+svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linejoin:round}
 
 /* --- added for the web version --- */
 .webbar{font-family:var(--sans);font-size:.78rem;line-height:1.5;margin:0 0 2rem;
@@ -204,37 +196,35 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <ol>
     <li class="part">I · The frame</li>
     <li><a href="#s1">1 · Three questions</a></li>
-    <li><a href="#s2">2 · How this was checked</a></li>
-    <li><a href="#s3">3 · The questions are old</a></li>
+    <li><a href="#s2">2 · The questions are old</a></li>
     <li class="part">II · Shock one: 1970s</li>
-    <li><a href="#s4">4 · What the 1970s settled</a></li>
-    <li><a href="#s5">5 · Physics: proofreading</a></li>
-    <li><a href="#s6">6 · System: demand theory</a></li>
-    <li><a href="#s7">7 · Industry: the plant</a></li>
+    <li><a href="#s3">3 · What the 1970s settled</a></li>
+    <li><a href="#s4">4 · Physics: proofreading</a></li>
+    <li><a href="#s5">5 · System: demand theory</a></li>
+    <li><a href="#s6">6 · Industry: the plant</a></li>
     <li class="part">III · Shock two: the genome</li>
-    <li><a href="#s8">8 · What the genome bought</a></li>
-    <li><a href="#s9">9 · Chemotaxis, end to end</a></li>
-    <li><a href="#s10">10 · The VLSI roadmap</a></li>
-    <li><a href="#s11">11 · Genome-scale metabolism</a></li>
-    <li><a href="#s12">12 · The growth-law thread</a></li>
+    <li><a href="#s7">7 · What the genome bought</a></li>
+    <li><a href="#s8">8 · Chemotaxis, end to end</a></li>
+    <li><a href="#s9">9 · The VLSI roadmap</a></li>
+    <li><a href="#s10">10 · Genome-scale metabolism</a></li>
+    <li><a href="#s11">11 · The fourth programme</a></li>
     <li class="part">IV · Shock three: the cooling</li>
-    <li><a href="#s13">13 · Dating the turn</a></li>
-    <li><a href="#s14">14 · Parts do not compose</a></li>
-    <li><a href="#s15">15 · The host is not a chassis</a></li>
-    <li><a href="#s16">16 · Retroactivity, honestly</a></li>
-    <li><a href="#s17">17 · The models did not design</a></li>
-    <li><a href="#s18">18 · Where everyone went</a></li>
-    <li><a href="#s19">19 · It grew, but it did not scale</a></li>
+    <li><a href="#s12">12 · Dating the turn</a></li>
+    <li><a href="#s13">13 · Parts do not compose</a></li>
+    <li><a href="#s14">14 · The host is not a chassis</a></li>
+    <li><a href="#s15">15 · Retroactivity, honestly</a></li>
+    <li><a href="#s16">16 · The models did not design</a></li>
+    <li><a href="#s17">17 · Where everyone went</a></li>
+    <li><a href="#s18">18 · It grew, but it did not scale</a></li>
     <li class="part">V · The diagnosis</li>
-    <li><a href="#s20">20 · One violated inequality</a></li>
-    <li><a href="#s21">21 · Stated properly</a></li>
-    <li><a href="#s22">22 · Model class, not parameter</a></li>
-    <li><a href="#s23">23 · Four answers on offer</a></li>
+    <li><a href="#s19">19 · One violated inequality</a></li>
+    <li><a href="#s20">20 · Stated properly</a></li>
+    <li><a href="#s21">21 · Model class, not parameter</a></li>
+    <li><a href="#s22">22 · Four answers on offer</a></li>
     <li class="part">VI · Forward</li>
-    <li><a href="#s24">24 · Binding and catalysis</a></li>
-    <li><a href="#s25">25 · The missing shock</a></li>
-    <li><a href="#s26">26 · Where the narrative changes</a></li>
-    <li><a href="#s27">27 · What the last gaps changed</a></li>
+    <li><a href="#s23">23 · Binding and catalysis</a></li>
+    <li><a href="#s24">24 · The missing shock</a></li>
+    <li><a href="#s25">25 · What the record shows</a></li>
     <li><a href="#refs">References</a></li>
   </ol>
 </nav>
@@ -251,12 +241,12 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 </div>
 <h1>Three Schools, Three Shocks</h1>
 <p class="sub">Physics, system, and industry have each asked their own question of life. Three times a discovery let all three ask it at once. The third time stalled, and the reason is narrower than it looks.</p>
-<p class="byline">Fangzhou Xiao · BioMAC Lab, Westlake University · 17 August 2026 · companion to <a href="/essays/biomachine-tutorial/">The Biomachine Perspective</a> · design doc: synbio-history-idea.md</p>
+<p class="byline">Fangzhou Xiao · BioMAC Lab, Westlake University · 17 August 2026 · companion to <a href="/essays/biomachine-tutorial/">The Biomachine Perspective</a></p>
 
 <div class="parthead">
   <div class="k">Part I</div>
   <h2>The frame</h2>
-  <p>Three questions, one method for checking the story, and the long prehistory the questions came from.</p>
+  <p>Three questions, and the long prehistory they came from.</p>
 </div>
 
 <h2 id="s1"><span class="n">1</span>Three questions, not three fields</h2>
@@ -266,10 +256,10 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <p>The physics question wants an <em>invariant</em>. Something true of life the way thermodynamics is true of gases: a bound, a scaling, a law that does not care which organism you brought. The systems question wants a <em>reason</em>. Given that a cell does X, why is it built this way and not the other way, and what would go wrong if it were? The industry question wants a <em>yield</em>. Given that we want Y, what do we feed the cells and what do we change in them.</p>
 
-<p>Because the answers look so different, the three schools can work in the same building for decades without meeting. What makes the history interesting is that three times they were forced to meet, each time by a discovery that made the same object visible to all three at once. This document tracks those three meetings, checks the story against the primary literature, and then argues that the third meeting broke down for one identifiable technical reason.</p>
+<p>Because the answers look so different, the three schools can work in the same building for decades without meeting. What makes the history interesting is that three times they were forced to meet, each time by a discovery that made the same object visible to all three at once. What follows tracks those three meetings, and then argues that the third one broke down for one identifiable technical reason.</p>
 
 <figure class="figbox">
-<svg viewBox="0 0 880 430" role="img" aria-label="Three schools of thought about life, each with its own question and its own lineage from antiquity to today">
+<svg viewBox="-74 0 954 430" role="img" aria-label="Three schools of thought about life, each with its own question and its own lineage from antiquity to today">
   <defs>
     <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="var(--leader)"/>
@@ -293,11 +283,11 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   </g>
 
   <!-- era rows -->
-  <g class="lbl2" font-size="10.5">
-    <text x="14" y="106" fill="var(--leader)" font-weight="700">ANTIQUITY</text>
-    <text x="14" y="188" fill="var(--leader)" font-weight="700">1900s</text>
-    <text x="14" y="266" fill="var(--leader)" font-weight="700">1970s</text>
-    <text x="14" y="344" fill="var(--leader)" font-weight="700">2000s</text>
+  <g class="lbl2" font-size="10.5" text-anchor="end">
+    <text x="4" y="123" fill="var(--leader)" font-weight="700">ANTIQUITY</text>
+    <text x="4" y="189" fill="var(--leader)" font-weight="700">1900s</text>
+    <text x="4" y="259" fill="var(--leader)" font-weight="700">1970s</text>
+    <text x="4" y="333" fill="var(--leader)" font-weight="700">2000s</text>
   </g>
 
   <!-- physics cells -->
@@ -361,31 +351,13 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <figcaption><b>Figure 1. Three questions and their lineages.</b> Each column is a question, not a department. Each question is answered differently in each era, and the era's answer is usually borrowed from whatever the era can build. The convergence at the bottom is the subject of Parts III and IV.</figcaption>
 </figure>
 
-<h2 id="s2"><span class="n">2</span>How this was checked</h2>
-<p class="lede">Every load-bearing claim was taken back to a full text, not an abstract. Each gets one of four verdicts.</p>
-
-<p>The narrative this document tests is set out verbatim in synbio-history-idea.md. It is a working scientist's account, assembled from a decade in the field. That is exactly the kind of account that is right about the shape and wrong about the details, so each claim was pushed back to its primary source. Full texts live in literature/. What could not be obtained is listed, priority-ranked, in literature/NEEDED.md.</p>
-
-<div class="box def">
-<span class="lbl">The four verdicts</span>
-<p class="legend" style="margin-top:0">
-<span><span class="vd ok">confirmed</span> the source says it, and the number or sentence is quoted here</span>
-<span><span class="vd sh">sharpened</span> broadly right, but the date, the person, the place, or the magnitude was off</span>
-<span><span class="vd co">contested</span> the literature genuinely disagrees with itself, and both sides are given</span>
-<span><span class="vd ov">overturned</span> wrong, and the arc changes</span>
-</p>
+<div class="box note">
+<span class="lbl">How this history is sourced</span>
+<p>Every claim below that carries weight rests on a full text that was read, not on an abstract, a reference list, or a second-hand quotation. Papers are named in place and quoted where the wording matters, and the 107 entries in the reference list are all full texts.</p>
+<p>Where the field's own memory of an episode is wrong about a date, a place or an attribution, the correction is made in the text at the point of use. Those corrections are usually the interesting part, so they are not tidied into footnotes. Three of them change the argument rather than just the details: <a href="#s11">§11</a> on where the growth laws came from, <a href="#s12">§12</a> on when the cooling started, and <a href="#s18">§18</a> on what the scaling failure actually measures.</p>
 </div>
 
-<p>The headline result: the shape of the narrative survives intact, and it survives with better numbers than it started with. No claim was overturned. Several needed dates, names or magnitudes corrected, and those are collected in §26.</p>
-
-<p>Three findings turned out to be much stronger than the original telling, and they are the reason this document is worth reading rather than skimming. The field's own leading practitioners have stated the diagnosis in print, in their own methods papers. The two Nobel-winning technologies of the era both work by <em>avoiding</em> the thing that is missing. And the central claim, that circuit engineering never scaled the way electronics scaled, turns out to be measurable on a metric the field defined in 2009 and still scores itself against: <a href="#s19">§19</a> and Figure 7.</p>
-
-<div class="box caution">
-<span class="lbl">This document has been revised against itself</span>
-<p>An earlier revision marked one claim <strong>overturned</strong> and dated one turn three years too late. Both errors came from reasoning about papers whose full texts had not yet arrived. When they did, the verdicts changed. Where that happened it is said at the point of use, in <a href="#s13">§13</a>, <a href="#s19">§19</a> and <a href="#s27">§27</a>, rather than quietly corrected. A history of a field that got things wrong should show its own corrections.</p>
-</div>
-
-<h2 id="s3"><span class="n">3</span>The questions are old, and the answers are borrowed</h2>
+<h2 id="s2"><span class="n">2</span>The questions are old, and the answers are borrowed</h2>
 <p class="lede">Each school's ancient form is not a quaint prelude. It is the same question with a worse vocabulary.</p>
 
 <p>Take the systems question first, because its pattern is the clearest. "How does life work as a machine" has always been answered by reaching for the most impressive machine available. Life works like fire, an elemental transformation. Like a system of fluids, so that draining some blood might rebalance it. Like a pump, once Harvey had one. Like a clockwork automaton, once Descartes had one. Like a steam engine, once there were engines. Like a servo loop, once there were servos. Like a circuit, then a computer, then a neural network.</p>
@@ -402,13 +374,13 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <p>The physics question has the same borrowing pattern with a different flavour. Its answers are attempts to name what kind of object life is: a form, a flow, a vital fluid, and then, once statistical mechanics existed, an ordered structure that resists the second law. Schrödinger's aperiodic crystal is the famous instance. What matters is the move, not the answer: pick a class of physical object, and see what follows from life belonging to it.</p>
 
-<p>The industry question is the oldest of the three and the least troubled by any of this. Beer, wine, soy sauce, fermented fish, bread, cheese, the harnessed horse. All of it is life put to work with no theory of life at all. This is the school with the longest unbroken record of success, and it is the school least dependent on the other two. Remember that when we get to §18. When the theory-driven programme stalled, the field did not collapse. It fell back on the school that never needed the theory.</p>
+<p>The industry question is the oldest of the three and the least troubled by any of this. Beer, wine, soy sauce, fermented fish, bread, cheese, the harnessed horse. All of it is life put to work with no theory of life at all. This is the school with the longest unbroken record of success, and it is the school least dependent on the other two. Remember that when we get to §17. When the theory-driven programme stalled, the field did not collapse. It fell back on the school that never needed the theory.</p>
 
 <div class="box note">
 <span class="lbl">A caution about the machine metaphor</span>
 <p>The machine framing has a serious modern critic. Nicholson (2019) gives the position a name, the <em>machine conception of the cell</em>, and states the target precisely: the conception "grounds the conviction that a cell's organization can be explained reductionistically, as well as the idea that its <strong>molecular pathways can be construed as deterministic circuits</strong>". His case is that single-molecule data have accumulated against it across four domains, and that what is emerging instead "emphasizes the dynamic, self-organizing nature of its constitution, the fluidity and plasticity of its components, and the stochasticity and non-linearity of its underlying processes".</p>
 <p>His two stated reasons are worth keeping in view, because neither is about complexity. Cells "unlike machines, are self-organizing, fluid systems that maintain themselves in a steady state far from thermodynamic equilibrium", and at their scale they are "subject to very different physical conditions compared to macroscopic objects, like machines".</p>
-<p>That critique is engaged rather than dismissed here, because the specific failure it names, stochastic and non-modular molecular behaviour construed as deterministic circuitry, is the same failure Part IV documents from inside the engineering programme. Note where the disagreement actually lies. Nicholson's target is the <em>circuit</em> analogy, and Part IV is 20 years of evidence that he is right about it. The reply this document offers, in §22, is narrower than a defence of the metaphor: what survives is not the machine as circuit but the machine as <em>binding and catalysis</em>, a model class in which far-from-equilibrium operation and occupancy-dependent coupling are what the equations are made of rather than what they neglect.</p>
+<p>That critique is engaged rather than dismissed here, because the specific failure it names, stochastic and non-modular molecular behaviour construed as deterministic circuitry, is the same failure Part IV documents from inside the engineering programme. Note where the disagreement actually lies. Nicholson's target is the <em>circuit</em> analogy, and Part IV is 20 years of evidence that he is right about it. The reply offered here, in §21, is narrower than a defence of the metaphor: what survives is not the machine as circuit but the machine as <em>binding and catalysis</em>, a model class in which far-from-equilibrium operation and occupancy-dependent coupling are what the equations are made of rather than what they neglect.</p>
 </div>
 
 <div class="parthead">
@@ -417,10 +389,10 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <p>The 1970s did not discover that life is chemistry. It made the chemistry nameable, measurable, and cuttable. That is what let all three schools move at once.</p>
 </div>
 
-<h2 id="s4"><span class="n">4</span>What the 1970s actually settled<span class="vd sh">sharpened</span></h2>
+<h2 id="s3"><span class="n">3</span>What the 1970s actually settled</h2>
 <p class="lede">The thesis was old. What was new was that you could now name the enzyme, write the reaction, and cut the DNA.</p>
 
-<p>The narrative under test says the "universality of biochemistry" was established in the 1970s and became a foundational consensus. The shape is right and the date needs care, because the intellectual content was won much earlier, in stages. Wöhler synthesised urea in 1828. Buchner fermented sugar with cell-free extract in 1897. Sumner crystallised urease in 1926 and enzymes became proteins. Watson and Crick in 1953. The genetic code closed by 1966. By any reasonable reading, "life is chemistry" was settled science before 1970.</p>
+<p>The 1970s are remembered as the decade the universality of biochemistry became a foundational consensus. The shape of that is right and the date needs care, because the intellectual content was won much earlier, in stages. Wöhler synthesised urea in 1828. Buchner fermented sugar with cell-free extract in 1897. Sumner crystallised urease in 1926 and enzymes became proteins. Watson and Crick in 1953. The genetic code closed by 1966. By any reasonable reading, "life is chemistry" was settled science before 1970.</p>
 
 <p>So why does the 1970s feel like the moment? Three things converged, and none of them is the thesis itself.</p>
 
@@ -431,14 +403,14 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 </ol>
 
 <div class="box key">
-<span class="lbl">The correction</span>
+<span class="lbl">What the decade actually delivered</span>
 <p>Read the 1970s not as the decade biology learned that life is chemistry, but as the decade that fact became <em>operational</em>. Before it, you could believe life was chemistry. After it, you could write the reaction down with names and numbers in it, and then go change the DNA that encoded it. Every one of the three programmes below depends on that, not on the metaphysics.</p>
 </div>
 
-<h2 id="s5"><span class="n">5</span>Physics: kinetic proofreading<span class="vd ok">confirmed</span></h2>
+<h2 id="s4"><span class="n">4</span>Physics: kinetic proofreading</h2>
 <p class="lede">Take an equilibrium bound seriously, notice the measured value violates it, and conclude that something must be burning fuel.</p>
 
-<p>This is the cleanest example in biology of the physics move, and the narrative's account of it is correct in every part. Here is the argument as Hopfield states it.</p>
+<p>This is the cleanest example in biology of the physics move. Here is the argument as Hopfield states it.</p>
 
 <p>Discrimination between a correct substrate C and a near-identical wrong one D happens at a recognition site that makes the pathway energetically more favourable for C. In a simple scheme, the error frequency is bounded below by <span class="m">exp(−ΔG<sub>CD</sub>/RT)</span>, where ΔG<sub>CD</sub> is the largest free energy difference available along the path. That bound is a thermodynamic statement, and it is not negotiable.</p>
 
@@ -450,7 +422,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <cite>Hopfield 1974, PNAS 71:4135, Department of Physics, Princeton, and Bell Laboratories <span class="pdf">PDF</span></cite>
 </div>
 
-<p>The resolution: if the reaction is "strongly but nonspecifically driven, e.g., by phosphate hydrolysis", the same discrimination step can be applied twice, and the error becomes the <em>square</em> of the equilibrium floor. Two facts about this deserve emphasis. First, the mechanism is forced by the contradiction, not fitted to data. Second, Hopfield notes that the scheme he is displacing is "based on Michaelis kinetics", so the physics critique lands squarely on a Michaelis-kinetics account of the mechanism. Hold that thought until §20.</p>
+<p>The resolution: if the reaction is "strongly but nonspecifically driven, e.g., by phosphate hydrolysis", the same discrimination step can be applied twice, and the error becomes the <em>square</em> of the equilibrium floor. Two facts about this deserve emphasis. First, the mechanism is forced by the contradiction, not fitted to data. Second, Hopfield notes that the scheme he is displacing is "based on Michaelis kinetics", so the physics critique lands squarely on a Michaelis-kinetics account of the mechanism. Hold that thought until §19.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 860 300" role="img" aria-label="Equilibrium discrimination has an error floor set by the free energy difference; a driven two-checkpoint scheme squares it">
@@ -502,17 +474,17 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <figcaption><b>Figure 2. The proofreading argument.</b> Left, the equilibrium floor. Right, the driven scheme that beats it by applying the same discrimination twice. The logic is entirely physics: an inequality is stated, a measurement violates it, and the violation forces a mechanism. Hopfield explicitly notes that the scheme being displaced was "based on Michaelis kinetics."</figcaption>
 </figure>
 
-<h3>Ninio, and what "independently" means<span class="vd sh">sharpened</span></h3>
+<h3>Ninio, and what "independently" means</h3>
 <p>Ninio's paper is real, contemporaneous, and different. It was submitted 12 December 1974, four months after Hopfield's 6 August 1974 contribution, from the Salk Institute, and published in <em>Biochimie</em> in 1975. Its own summary says it discusses "the relationship between our scheme for a delayed reaction and Hopfield's scheme", citing Ninio's own prior scheme in a CNRS volume then in press.</p>
 
-<p>The nuance that matters: Ninio's argument is <em>probabilistic and kinetic</em>, framed as a "kinetic amplifier" arising from a delay in one step. He does not make the thermodynamic-contradiction argument. So "discovered independently" is fair on priority, and "the same argument" is not. Hopfield brought the physics; Ninio brought the mechanism-space analysis. It is a useful reminder that the two temperaments coexist even inside a single school.</p>
+<p>The nuance that matters: Ninio's argument is <em>probabilistic and kinetic</em>, framed as a "kinetic amplifier" arising from a delay in one step. He does not make the thermodynamic-contradiction argument. So "discovered independently" is fair on priority, and "the same argument" is not. Hopfield brought the physics. Ninio brought the mechanism-space analysis. It is a useful reminder that the two temperaments coexist even inside a single school.</p>
 
 <div class="box note">
 <span class="lbl">The thread continued</span>
-<p>The narrative notes an extension: if fidelity requires a nonequilibrium drive, the drive need not be chemical. Spatial gradients will do. That is Galstyan, Husain, Xiao, Murugan &amp; Phillips (2020, eLife), with the time-domain companion in Xiao &amp; Galstyan (2024, PNAS). The move is the same one Hopfield made: keep the bound, ask what currency can pay for beating it.</p>
+<p>The argument extends. If fidelity requires a nonequilibrium drive, the drive need not be chemical. Spatial gradients will do. That is Galstyan, Husain, Xiao, Murugan &amp; Phillips (2020, eLife), with the time-domain companion in Xiao &amp; Galstyan (2024, PNAS). The move is the same one Hopfield made: keep the bound, ask what currency can pay for beating it.</p>
 </div>
 
-<h2 id="s6"><span class="n">6</span>System: demand theory and the inverse problem<span class="vd ok">confirmed</span></h2>
+<h2 id="s5"><span class="n">5</span>System: demand theory and the inverse problem</h2>
 <p class="lede">See a design, ask what function it is optimal for, and let the answer be checkable against a census of real operons.</p>
 
 <p>The systems move needs a target, and Savageau found an unusually clean one. A cell must turn a gene on when a signal is present. Two architectures do that. Activate an activator, or de-repress a repressor. Functionally they are interchangeable. So why does nature use one here and the other there?</p>
@@ -529,12 +501,12 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <p>And the answer, in the paper's own words: regulation by a repressor is selected when there is <strong>low demand</strong> for expression in the organism's natural environment, and regulation by an activator when there is <strong>high demand</strong>. Use it or lose it.</p>
 
-<p>The narrative's account of <em>why</em> is also confirmed, and it is the interesting part. Three candidate objectives are eliminated before the surviving one.</p>
+<p>The reasoning behind that rule is the interesting part, because three candidate objectives are eliminated before the surviving one.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 860 320" role="img" aria-label="Demand theory: four candidate objective functions scored against the observed activator-high-demand, repressor-low-demand rule">
-  <g class="lbl2" font-size="10.5">
-    <text x="272" y="30" text-anchor="middle" font-weight="700" fill="var(--fg)">F1 energy cost</text>
+  <g class="lbl2" font-size="10.5" text-anchor="middle">
+    <text x="272" y="30" font-weight="700" fill="var(--fg)">F1 energy cost</text>
     <text x="272" y="44">of making the regulator</text>
     <text x="424" y="30" text-anchor="middle" font-weight="700" fill="var(--fg)">F2 individual robustness</text>
     <text x="424" y="44">to loss-of-function mutation</text>
@@ -545,16 +517,16 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   </g>
   <!-- rows -->
   <g font-size="11.5">
-    <text x="24" y="94" font-weight="700">ACTIVATOR</text>
-    <text x="24" y="112" class="tiny">signal present → make activator</text>
-    <text x="24" y="176" font-weight="700">REPRESSOR</text>
-    <text x="24" y="194" class="tiny">signal absent → make repressor</text>
+    <text x="24" y="86" font-weight="700">ACTIVATOR</text>
+    <text x="24" y="101" class="tiny">signal present → make activator</text>
+    <text x="24" y="186" font-weight="700">REPRESSOR</text>
+    <text x="24" y="201" class="tiny">signal absent → make repressor</text>
   </g>
   <g class="lbl2" font-size="10">
-    <text x="24" y="136">high demand</text>
-    <text x="24" y="150">low demand</text>
-    <text x="24" y="218">high demand</text>
-    <text x="24" y="232">low demand</text>
+    <text x="24" y="124">high demand</text>
+    <text x="24" y="142">low demand</text>
+    <text x="24" y="224">high demand</text>
+    <text x="24" y="242">low demand</text>
   </g>
   <!-- grid -->
   <g stroke="var(--rule)" fill="none">
@@ -565,15 +537,15 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   </g>
   <!-- cell contents -->
   <g font-size="10.5" text-anchor="middle">
-    <text x="272" y="132" fill="var(--badink)">high cost</text><text x="272" y="150" fill="var(--okink)">low cost</text>
-    <text x="424" y="132" fill="var(--badink)">fragile</text><text x="424" y="150" fill="var(--okink)">robust</text>
-    <text x="592" y="132" fill="var(--okink)" font-weight="700">robust</text><text x="592" y="150" fill="var(--badink)">fragile</text>
-    <text x="756" y="132" fill="var(--fg)" font-weight="700">ACTIVATOR</text><text x="756" y="150" class="tiny">not observed</text>
+    <text x="272" y="124" fill="var(--badink)">high cost</text><text x="272" y="142" fill="var(--okink)">low cost</text>
+    <text x="424" y="124" fill="var(--badink)">fragile</text><text x="424" y="142" fill="var(--okink)">robust</text>
+    <text x="592" y="124" fill="var(--okink)" font-weight="700">robust</text><text x="592" y="142" fill="var(--badink)">fragile</text>
+    <text x="756" y="124" fill="var(--fg)" font-weight="700">ACTIVATOR</text><text x="756" y="142" class="tiny">not observed</text>
 
-    <text x="272" y="214" fill="var(--okink)">low cost</text><text x="272" y="232" fill="var(--badink)">high cost</text>
-    <text x="424" y="214" fill="var(--okink)">robust</text><text x="424" y="232" fill="var(--badink)">fragile</text>
-    <text x="592" y="214" fill="var(--badink)">fragile</text><text x="592" y="232" fill="var(--okink)" font-weight="700">robust</text>
-    <text x="756" y="214" class="tiny">not observed</text><text x="756" y="232" fill="var(--fg)" font-weight="700">REPRESSOR</text>
+    <text x="272" y="224" fill="var(--okink)">low cost</text><text x="272" y="242" fill="var(--badink)">high cost</text>
+    <text x="424" y="224" fill="var(--okink)">robust</text><text x="424" y="242" fill="var(--badink)">fragile</text>
+    <text x="592" y="224" fill="var(--badink)">fragile</text><text x="592" y="242" fill="var(--okink)" font-weight="700">robust</text>
+    <text x="756" y="224" class="tiny">not observed</text><text x="756" y="242" fill="var(--fg)" font-weight="700">REPRESSOR</text>
   </g>
   <!-- verdicts -->
   <g text-anchor="middle" font-size="11">
@@ -592,17 +564,17 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <p>Two refinements the full texts force.</p>
 <p><strong>The population argument is present in 1977, but qualitative.</strong> The 1977 paper argues through the fate of regulatory mutants and their "selective disadvantage". The explicit population-dynamic model, with mutation rates and growth rates for wild type and each mutant class across two environments, is the 1998 quantitative development. Both are in Part I and Part II of the 1998 pair.</p>
-<p><strong>The rule is contested, in a productive way.</strong> Gerland &amp; Hwa (2009) examine how far the lethality assumption holds and find regimes where individual-level robustness dominates instead. Shinar, Dekel, Tlusty &amp; Alon (2006) derive a related rule from error minimisation, and Sasson et al. (2012) tie mode of regulation to insulation of expression. The rule survives; its unique explanation does not.</p>
+<p><strong>The rule is contested, in a productive way.</strong> Gerland &amp; Hwa (2009) examine how far the lethality assumption holds and find regimes where individual-level robustness dominates instead. Shinar, Dekel, Tlusty &amp; Alon (2006) derive a related rule from error minimisation, and Sasson et al. (2012) tie mode of regulation to insulation of expression. The rule survives. Its unique explanation does not.</p>
 
 <div class="box caution">
 <span class="lbl">What the school lost by not doing experiments</span>
-<p>Savageau's later work moved toward modelling and simulation and toward the power-law (S-system) formalism rather than toward experiments the theory implied. That is a real cost. Once molecular characterisation became routine in the 1980s, a theory that only postdicts operon census data has no remaining leverage. The place where a design rule still buys something is at the frontier of what can be built, because there the space of options is too large to search. That reading is developed in the working note behind this document, which turns demand theory into a concrete protocol: cycle antibiotic demand high and low, alternately introducing activator- and repressor-architecture competitor strains, and drive resistance out of a population by making each architecture accumulate the mutations its own demand regime tolerates.</p>
+<p>Savageau's later work moved toward modelling and simulation and toward the power-law (S-system) formalism rather than toward experiments the theory implied. That is a real cost. Once molecular characterisation became routine in the 1980s, a theory that only postdicts operon census data has no remaining leverage. The place where a design rule still buys something is at the frontier of what can be built, because there the space of options is too large to search. One concrete form that could take: cycle antibiotic demand high and low, alternately introducing activator- and repressor-architecture competitor strains, and drive resistance out of a population by making each architecture accumulate the mutations its own demand regime tolerates. The rule stops being a postdiction about operons and becomes a design.</p>
 </div>
 
-<h2 id="s7"><span class="n">7</span>Industry: the cell as a chemical plant<span class="vd sh">sharpened</span></h2>
-<p class="lede">Right idea, and the dates split into two waves rather than one.</p>
+<h2 id="s6"><span class="n">6</span>Industry: the cell as a chemical plant</h2>
+<p class="lede">One idea, two programmes, two decades, and two opposite attitudes to rate constants.</p>
 
-<p>The narrative places the cell-as-chemical-plant move in the late 1970s and early 1980s, producing flux balance analysis and metabolic control analysis together. The full texts split this cleanly into two distinct programmes with different mathematics and different decades.</p>
+<p>The cell-as-chemical-plant move is usually placed in the late 1970s and early 1980s, producing flux balance analysis and metabolic control analysis together. It splits cleanly into two distinct programmes, with different mathematics and different decades.</p>
 
 <p><strong>Metabolic control analysis is 1973–74, and it is about sensitivity.</strong> Kacser &amp; Burns and, independently, Heinrich &amp; Rapoport asked how a change in one enzyme's activity propagates to the flux through a whole pathway. The answer is the control coefficient and the summation theorem, which say that control over flux is distributed and sums to one. This is a physiology question answered with calculus, and its most famous downstream consequence is Kacser &amp; Burns's structural explanation of genetic dominance.</p>
 
@@ -610,7 +582,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <div class="box key">
 <span class="lbl">Why the split matters</span>
-<p>MCA needs kinetics and gives you sensitivities. FBA refuses kinetics and gives you a feasible polytope of fluxes. The industrial school chose FBA, and it chose it precisely <em>because</em> it does not require rate laws or parameters. That choice is the single most consequential methodological decision in this history, and it looks prescient in §17 and constraining in §23. It also anticipates, by fifteen years, exactly the complaint Bailey would file in "Complex biology with no parameters" (2001).</p>
+<p>MCA needs kinetics and gives you sensitivities. FBA refuses kinetics and gives you a feasible polytope of fluxes. The industrial school chose FBA, and it chose it precisely <em>because</em> it does not require rate laws or parameters. That choice is the single most consequential methodological decision in this history, and it looks prescient in §16 and constraining in §22. It also anticipates, by fifteen years, exactly the complaint Bailey would file in "Complex biology with no parameters" (2001).</p>
 </div>
 
 <p>The engineering discipline that grew from this was named by Bailey in 1991 as metabolic engineering, and codified in Stephanopoulos, Aristidou &amp; Nielsen (1998). Bailey's own 2001 commentary is worth reading against this whole document, because it draws the distinction the rest of the argument turns on: the information needed to predict a biological system's behaviour splits into the <em>systems-structural</em> (which components, and which interactions among them) and the <em>parametric</em> (the rate constants and equilibrium constants). His bet was that structure carries much more than people assumed. Part V is an argument that he was right, and that the field bet the other way.</p>
@@ -621,10 +593,10 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <p>In the 1970s the unit of analysis was a pathway. After the genome it was a cell. Each school reached for the whole at once, and two of them reached for it together.</p>
 </div>
 
-<h2 id="s8"><span class="n">8</span>What the genome bought<span class="vd ok">confirmed</span></h2>
+<h2 id="s7"><span class="n">7</span>What the genome bought</h2>
 <p class="lede">Not new physics. A complete parts list, which is a different and in some ways more dangerous gift.</p>
 
-<p>The narrative's claim is that in the 2000s it became possible to see the whole cell, and that this licensed a new level of ambition in all three schools. That is right, and the mechanism is worth being precise about, because the parts list is exactly what makes the third shock's disappointment intelligible.</p>
+<p>In the 2000s it became possible to see the whole cell, and that licensed a new level of ambition in all three schools. The mechanism is worth being precise about, because the parts list is exactly what makes the third shock's disappointment intelligible.</p>
 
 <p>A sequenced, annotated genome gives you three things. An enumeration of the components. For metabolism, the stoichiometry of nearly every reaction, because gene annotation names the enzyme and the enzyme fixes the reaction. And a coordinate system in which to place measurements, which is what made the omics era possible.</p>
 
@@ -694,7 +666,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <g class="tiny">
     <text x="199" y="244" text-anchor="end">MCA 1973</text>
     <text x="328" y="260">flux balance mid-1980s</text>
-    <text x="438" y="244" fill="var(--lime)" font-weight="700">genome-scale models 2000</text>
+    <text x="422" y="244" text-anchor="end" fill="var(--lime)" font-weight="700">genome-scale models 2000</text>
     <text x="694" y="260" text-anchor="end">six products on the market 2020</text>
   </g>
   <!-- convergence brackets -->
@@ -703,18 +675,18 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <path d="M452,158 L452,246" stroke="var(--lime)" stroke-width="1.6" fill="none"/>
   <text x="459" y="204" class="tiny" fill="var(--lime)" font-weight="700">synthetic biology</text>
 </svg>
-<figcaption><b>Figure 4. The three shocks, and who moved when.</b> Dots are the works discussed in this document, placed in their school's lane. Note the two convergences at 2000: the physics and systems lanes meeting over chemotaxis, and the systems and industry lanes meeting over engineered circuits. Note also that the industry lane's 2020 marker is the only one that is unambiguously a delivered product.</figcaption>
+<figcaption><b>Figure 4. The three shocks, and who moved when.</b> Dots are the works discussed here, placed in their school's lane. Note the two convergences at 2000: the physics and systems lanes meeting over chemotaxis, and the systems and industry lanes meeting over engineered circuits. Note also that the industry lane's 2020 marker is the only one that is unambiguously a delivered product.</figcaption>
 </figure>
 
-<h2 id="s9"><span class="n">9</span>Physics meets system: chemotaxis, end to end<span class="vd ok">confirmed</span></h2>
+<h2 id="s8"><span class="n">8</span>Physics meets system: chemotaxis, end to end</h2>
 <p class="lede">One pathway followed from receptor to flagellar motor, with a system-level property proved to be architectural rather than tuned.</p>
 
-<p>The narrative singles out chemotaxis as the culmination of the 1999–2000 moment, and this is the best-documented claim in the whole story. The sequence is worth laying out because it is a template.</p>
+<p>Chemotaxis is the culmination of the 1999–2000 moment, and the best-documented episode in the whole story. The sequence is worth laying out because it is a template.</p>
 
 <ol>
 <li><strong>Behaviour, quantified.</strong> Berg &amp; Brown 1972 track single cells in three dimensions. Segall, Block &amp; Berg 1986 measure the impulse response and find its integral is zero. Adaptation is a measured fact, in 1986.</li>
 <li><strong>The property is claimed to be robust.</strong> Barkai &amp; Leibler 1997 argue that exact adaptation cannot come from parameter tuning, because it survives parameter variation.</li>
-<li><strong>The claim is tested.</strong> Alon, Surette, Barkai &amp; Leibler 1999 vary CheR expression over a 100-fold range. Adaptation <em>time</em> moves more than 20-fold, from 23 ± 2 minutes down to about 1 minute. Adaptation <em>precision</em> stays flat. One property is structural; its neighbours are fragile.</li>
+<li><strong>The claim is tested.</strong> Alon, Surette, Barkai &amp; Leibler 1999 vary CheR expression over a 100-fold range. Adaptation <em>time</em> moves more than 20-fold, from 23 ± 2 minutes down to about 1 minute. Adaptation <em>precision</em> stays flat. One property is structural. Its neighbours are fragile.</li>
 <li><strong>The structure is named.</strong> Yi, Huang, Simon &amp; Doyle 2000 identify methylation as an integrator, with CheR and CheB saturated, and invoke the internal model principle: perfect adaptation if and only if integral feedback.</li>
 </ol>
 
@@ -722,21 +694,21 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <div class="box note">
 <span class="lbl">The template, and its limits</span>
-<p>This template is the high-water mark of the whole story, and it is worth asking why it did not generalise. It required a pathway with about a dozen named proteins, a single measurable output, a decade of quantitative behavioural data, and a system-level property sharp enough to state as a theorem. Very few biological systems come with all four. The full argument about which properties are structural and which are tuned, and what reaction orders have to do with it, is the subject of the companion document, <a href="/essays/biomachine-tutorial/">The Biomachine Perspective</a>.</p>
+<p>This template is the high-water mark of the whole story, and it is worth asking why it did not generalise. It required a pathway with about a dozen named proteins, a single measurable output, a decade of quantitative behavioural data, and a system-level property sharp enough to state as a theorem. Very few biological systems come with all four. The full argument about which properties are structural and which are tuned, and what reaction orders have to do with it, is the subject of the companion essay, <a href="/essays/biomachine-tutorial/">The Biomachine Perspective</a>.</p>
 </div>
 
-<h2 id="s10"><span class="n">10</span>System meets industry: the VLSI roadmap<span class="vd ok">confirmed</span></h2>
+<h2 id="s9"><span class="n">9</span>System meets industry: the VLSI roadmap</h2>
 <p class="lede">The founding papers used Hill functions. The founding manifesto cited the VLSI textbook by name. Both facts matter later.</p>
 
 <p>Two papers in <em>Nature</em> in January 2000 started the engineering programme. Elowitz &amp; Leibler built the repressilator, three repressors in a cycle, and Gardner, Cantor &amp; Collins built the toggle switch, two mutually repressing genes.</p>
 
-<p>Both are modelled with Hill functions, and the details are worth having exactly, because they come back in §21.</p>
+<p>Both are modelled with Hill functions, and the details are worth having exactly, because they come back in §20.</p>
 
 <div class="box def">
 <span class="lbl">The founding models, in their own parameters</span>
 <p><strong>Repressilator.</strong> mRNA and protein for each of three genes, with repression through a Hill term. Reported parameters: Hill coefficient <span class="m">n = 2</span>, 20 proteins per transcript, protein half-life 10 min, mRNA half-life 2 min, and <span class="m">K<sub>M</sub> = 40 monomers per cell</span>.</p>
 <p><strong>Toggle switch.</strong> Two repressors with cooperativity exponents β and γ. The paper's own bistability condition is a statement about those exponents: "at least one of the inhibitors must repress expression with cooperativity greater than one", with higher-order cooperativity enlarging the bistable region. The mechanism cited is cooperative binding of repressor multimers to multiple operator sites.</p>
-<p>And in the textbook that taught the field, Alon's <em>Introduction to Systems Biology</em>, the Hill function appears about twenty times and is introduced exactly as the narrative says: "The Hill function can be derived from considering the equilibrium binding of …".</p>
+<p>And in the textbook that taught the field, Alon's <em>Introduction to Systems Biology</em>, the Hill function appears about twenty times and is introduced exactly as you would expect: "The Hill function can be derived from considering the equilibrium binding of …".</p>
 </div>
 
 <p>So the field's dynamical vocabulary was fixed, from the first week, as Hill functions composed additively. Now the second half of the roadmap.</p>
@@ -747,38 +719,38 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <div class="box key">
 <span class="lbl">The roadmap was explicit, and it was self-consciously provisional</span>
-<p>The narrative claims the 2000s programme took electronics as its model, down to expecting a VLSI-style scaling curve. That is not a retrospective simplification. The founding manifesto put the VLSI textbook in its bibliography and named design-fabrication decoupling as the transferable lesson. The rest of the programme follows faithfully: a parts registry, standard assembly (BioBricks), a reference unit for promoter strength (relative promoter units, Kelly et al. 2009), and component datasheets (Brophy &amp; Voigt 2014).</p>
+<p>That the 2000s programme took electronics as its model, down to expecting a VLSI-style scaling curve, is not a retrospective simplification. The founding manifesto put the VLSI textbook in its bibliography and named design-fabrication decoupling as the transferable lesson. The rest of the programme follows faithfully: a parts registry, standard assembly (BioBricks), a reference unit for promoter strength (relative promoter units, Kelly et al. 2009), and component datasheets (Brophy &amp; Voigt 2014).</p>
 <p>One correction the full text forces, in Endy's favour. He hedges the whole triad in the paper itself: "To be clear, these ideas and my prioritization of them could be wrong; I would explicitly encourage the widespread invention and discussion of alternative ideas." The manifesto is not the naive document the field's later self-criticism sometimes implies. It also names <em>evolution</em> as the fourth challenge and says plainly that it "is largely unaddressed within past engineering experience".</p>
 </div>
 
-<p>Two details in the manifesto are worth extracting, because later sections are about their failure and one of them is the target this document sets itself against.</p>
+<p>Two details in the manifesto are worth extracting, because later sections are about their failure.</p>
 
 <div class="box def">
 <span class="lbl">Two things Endy 2005 asked for, in his own words</span>
-<p><strong>The chassis, defined as independence.</strong> "One engineer might develop standard 'power supply and chassis' cells that provide known rates of nucleotides, amino acids and other resources to any engineered biological system placed within the cell, <strong>independent of the details of the system</strong>." That last clause is the assumption. <a href="#s15">§15</a> is six independent measurements of it failing, and <a href="#s20">§20</a> shows it is the same inequality as retroactivity. Endy's Figure 2 makes the strong version of the claim visually: in his abstraction hierarchy, "abstraction barriers block <em>all</em> exchange of information between levels".</p>
-<p><strong>A target of one thousand.</strong> "Implicit in this hierarchy are formidable molecular engineering challenges; for example, engineering a set of <strong>1,000 synthetic transcription factors</strong> … each recognizing a unique cognate DNA binding site with &gt;99% specificity." That is a numeric goal, set in 2005, for the parts layer. Twenty years later, Cello's characterised gate library is about twenty repressors and the largest circuit uses ten of them. <a href="#s19">§19</a> is that arithmetic.</p>
+<p><strong>The chassis, defined as independence.</strong> "One engineer might develop standard 'power supply and chassis' cells that provide known rates of nucleotides, amino acids and other resources to any engineered biological system placed within the cell, <strong>independent of the details of the system</strong>." That last clause is the assumption. <a href="#s14">§14</a> is six independent measurements of it failing, and <a href="#s19">§19</a> shows it is the same inequality as retroactivity. Endy's Figure 2 makes the strong version of the claim visually: in his abstraction hierarchy, "abstraction barriers block <em>all</em> exchange of information between levels".</p>
+<p><strong>A target of one thousand.</strong> "Implicit in this hierarchy are formidable molecular engineering challenges; for example, engineering a set of <strong>1,000 synthetic transcription factors</strong> … each recognizing a unique cognate DNA binding site with &gt;99% specificity." That is a numeric goal, set in 2005, for the parts layer. Twenty years later, Cello's characterised gate library is about twenty repressors and the largest circuit uses ten of them. <a href="#s18">§18</a> is that arithmetic.</p>
 </div>
 
 <p>Endy also noticed, correctly, the one curve that did behave: "Bulk DNA synthesis capacity appears to have doubled every 18 months or so for the last ten years." That trend continued for another two decades. The design layer built on top of it did not. Figure 7 is that contrast.</p>
 
-<p>It is worth being fair to the analogy, because the narrative itself makes the fair point and it deserves to be stated as more than a concession. A resistor is not a law of nature. It is a manufactured object whose linearity is the product of decades of materials work, and the same is true of a transistor with a clean transfer curve. The 2000s programme was not wrong to want components. It was wrong about what stage of the process it was at. Electronics had its abstraction because someone first built the parts that deserved it.</p>
+<p>It is worth being fair to the analogy, and the fair point deserves more than a concession. A resistor is not a law of nature. It is a manufactured object whose linearity is the product of decades of materials work, and the same is true of a transistor with a clean transfer curve. The 2000s programme was not wrong to want components. It was wrong about what stage of the process it was at. Electronics had its abstraction because someone first built the parts that deserved it.</p>
 
-<h2 id="s11"><span class="n">11</span>All three at once: genome-scale metabolism<span class="vd ok">confirmed</span></h2>
+<h2 id="s10"><span class="n">10</span>All three at once: genome-scale metabolism</h2>
 <p class="lede">The parts list plus stoichiometry plus linear programming, and a real prediction accuracy to report.</p>
 
 <p>Edwards &amp; Palsson (2000, PNAS) is the moment the industrial school cashed the genome. The annotated <em>E. coli</em> MG1655 sequence plus biochemical information gives a genome-specific stoichiometric matrix, and that matrix plus capacity constraints defines the space of achievable flux distributions. They then knock out genes in central metabolism, in silico and in vivo, and compare.</p>
 
 <p>The number is <strong>86%</strong> of examined cases predicted qualitatively correctly for growth or no growth. That is a real, checkable, useful result, and it was obtained with no rate laws at all. The refusal of kinetics was a strength here.</p>
 
-<p>It is also the ceiling. A stoichiometric model can tell you what is impossible and what the best conceivable yield is. It cannot tell you what a cell will actually do, when, or how fast, because those are the questions kinetics answers. Orth, Thiele &amp; Palsson (2010) are clear about this in the canonical primer, and §17 returns to what the ceiling has meant in practice.</p>
+<p>It is also the ceiling. A stoichiometric model can tell you what is impossible and what the best conceivable yield is. It cannot tell you what a cell will actually do, when, or how fast, because those are the questions kinetics answers. Orth, Thiele &amp; Palsson (2010) are clear about this in the canonical primer, and §16 returns to what the ceiling has meant in practice.</p>
 
-<h2 id="s12"><span class="n">12</span>The thread the narrative nearly missed: growth laws<span class="vd sh">sharpened</span></h2>
+<h2 id="s11"><span class="n">11</span>The fourth programme: growth laws</h2>
 <p class="lede">Copenhagen, not Amsterdam. Salmonella, not E. coli. Exponential in 1958, linear in the right ratio by 2010. And it matters more to this story than it looks.</p>
 
-<p>The narrative recalls that a Maaløe-era group showed RNA fraction is linearly proportional to bacterial growth rate across media, that the thread went quiet, and that Hwa picked it up in the 2000s with omics tools. The shape is right. Four details need fixing, and one of them changes the argument.</p>
+<p>The story usually told is that a Maaløe-era group showed RNA fraction is linearly proportional to bacterial growth rate across media, that the thread went quiet, and that Hwa picked it up in the 2000s with omics tools. The shape is right. Four details are wrong, and one of them changes the argument.</p>
 
 <div class="box caution">
-<span class="lbl">Corrections</span>
+<span class="lbl">Four corrections to the usual telling</span>
 <ul>
 <li><strong>The place.</strong> Schaechter, Maaløe &amp; Kjeldgaard were at the <strong>State Serum Institute, Copenhagen, Denmark</strong>. Not AMOLF, which is in Amsterdam and is a different institution with a different lineage. The confusion is easy and the correction is firm: the paper's own byline says Copenhagen.</li>
 <li><strong>The organism.</strong> <em>Salmonella typhimurium</em>, not <em>E. coli</em>.</li>
@@ -795,9 +767,9 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <cite>Scott et al. 2010, Science 330:1099 <span class="pdf">PDF</span></cite>
 </div>
 
-<p>That last clause is a complete research strategy, and it is a rival to the one this document ends up defending. Hwa's answer to "we have no foundational model class" is: do not wait for one. Find phenomenological laws that hold across conditions, and use them. It worked. The linear growth law, overflow metabolism, proteome partition, and the quantitative response to translation-inhibiting antibiotics all came out of it, and <span class="pdf txt">Klumpp, Zhang &amp; Hwa (2009)</span> turned it directly on the gene-expression side effects that were about to blindside the circuit engineers.</p>
+<p>That last clause is a complete research strategy, and it is a rival to the one argued for here. Hwa's answer to "we have no foundational model class" is: do not wait for one. Find phenomenological laws that hold across conditions, and use them. It worked. The linear growth law, overflow metabolism, proteome partition, and the quantitative response to translation-inhibiting antibiotics all came out of it, and <span class="pdf txt">Klumpp, Zhang &amp; Hwa (2009)</span> turned it directly on the gene-expression side effects that were about to blindside the circuit engineers.</p>
 
-<p>So the correct account of the 2000s has <em>four</em> programmes, not three, and the fourth had a different theory of what theory is for. §23 puts it side by side with the others.</p>
+<p>So the correct account of the 2000s has <em>four</em> programmes, not three, and the fourth had a different theory of what theory is for. §22 puts it side by side with the others.</p>
 
 <div class="parthead">
   <div class="k">Part IV · Shock three</div>
@@ -805,27 +777,27 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <p>The third shock is not a discovery. It is the arrival of systematic evidence that the parts do not compose and the host is not a chassis. This part gives that evidence with its numbers, and then gives the counter-evidence too.</p>
 </div>
 
-<h2 id="s13"><span class="n">13</span>Dating the turn<span class="vd sh">sharpened</span></h2>
+<h2 id="s12"><span class="n">12</span>Dating the turn</h2>
 <p class="lede">The plateau was measured in 2009 and named in Nature in January 2010. What 2012 to 2016 added was not the diagnosis but the numbers.</p>
 
-<p>The narrative dates the cooling to roughly 2013–2016. That is right about when the quantitative evidence landed, and it is about three years late for the diagnosis. The turn has three dates, not one, and the first one is the one that matters most for this document's argument.</p>
+<p>The cooling is usually dated to roughly 2013–2016. That is right about when the quantitative evidence landed, and about three years late for the diagnosis. The turn has three dates, not one, and the first is the one that matters most.</p>
 
-<p><strong>2009, the measurement.</strong> Purnick &amp; Weiss counted regulatory regions per published circuit from 2000 to 2008, found a plateau, and proposed that the design principles were too simplistic. <a href="#s19">§19</a> treats this as the central piece of evidence in the whole document. Everything that follows in this part is the field working out <em>why</em> that plateau was there.</p>
+<p><strong>2009, the measurement.</strong> Purnick &amp; Weiss counted regulatory regions per published circuit from 2000 to 2008, found a plateau, and proposed that the design principles were too simplistic. <a href="#s18">§18</a> treats this as the central piece of evidence in the whole story. Everything that follows in this part is the field working out <em>why</em> that plateau was there.</p>
 
 <p><strong>2010, the year it went public and the year the field split.</strong> Two things happened, both in <em>Nature</em>, pointing in opposite directions. In January, Kwok's news feature "Five hard truths for synthetic biology" reported the plateau as news and enumerated the reasons. In December, Elowitz &amp; Lim published "Build life to understand it", which reframes the entire enterprise.</p>
 
-<p>Kwok's five truths deserve to be listed, because the narrative's diagnosis is four of them, and because they were in print in January 2010.</p>
+<p>Kwok's five truths deserve to be listed in full, because four of them are the entire diagnosis this essay reaches, and because they were in print in January 2010.</p>
 
 <div class="tablewrap">
 <table>
-<caption>Table 1. Kwok's five hard truths, January 2010, against what this document finds. Her article is a news feature, so each truth is a reported consensus rather than a new result. Section links go to the evidence that arrived later.</caption>
-<thead><tr><th style="width:26%">Kwok 2010</th><th style="width:12%">Holds?</th><th>What the later evidence did to it</th></tr></thead>
+<caption>Table 1. Kwok's five hard truths, January 2010. Her article is a news feature, so each truth is a reported consensus rather than a new result. All five survive the next decade's evidence, and that evidence is what the right-hand column and the section links point to.</caption>
+<thead><tr><th style="width:30%">Kwok 2010</th><th>What the later evidence did to it</th></tr></thead>
 <tbody>
-<tr><td>Many of the parts are undefined</td><td><span class="vd ok">confirmed</span></td><td>Quantified in 2013 and 2016. Kosuri et al. measured 12,563 promoter-and-RBS combinations, Beal et al. ran an interlaboratory reproducibility study, and Mutalik et al. had to engineer reliability in rather than find it (<a href="#s14">§14</a>).</td></tr>
-<tr><td>The circuitry is unpredictable</td><td><span class="vd ok">confirmed</span></td><td>Kwok's example is Collins spending "about three years of tweaking" to move a toggle switch into yeast, because the two promoters were unbalanced. That is composition failing at <em>n</em> = 2 (<a href="#s14">§14</a>, <a href="#s17">§17</a>).</td></tr>
-<tr><td>The complexity is unwieldy</td><td><span class="vd ok">confirmed</span></td><td>Kwok reports Keasling's estimate of roughly <strong>150 person-years</strong> for the artemisinin pathway, about a dozen genes. Ten years later the largest dynamical circuit is fourteen regulators (<a href="#s19">§19</a>).</td></tr>
-<tr><td>Many parts are incompatible</td><td><span class="vd ok">confirmed</span></td><td>This is growth burden, already correctly identified. Kwok cites <span class="pdf txt">Tan, Marguet &amp; You (2009)</span>, where a circuit slows growth, growth slows dilution, and bistability appears from nowhere (<a href="#s15">§15</a>, <a href="#s16">§16</a>).</td></tr>
-<tr><td>Variability crashes the system</td><td><span class="vd ok">confirmed</span></td><td>Noise, plus evolutionary loss of function. Sleight &amp; Sauro (2013) evolved 192 populations and found circuits expressed below 10% of maximum are significantly more stable, a fitness threshold for keeping a circuit at all (<a href="#s18">§18</a>).</td></tr>
+<tr><td>Many of the parts are undefined</td><td>Quantified in 2013 and 2016. Kosuri et al. measured 12,563 promoter-and-RBS combinations, Beal et al. ran an interlaboratory reproducibility study, and Mutalik et al. had to engineer reliability in rather than find it (<a href="#s13">§13</a>).</td></tr>
+<tr><td>The circuitry is unpredictable</td><td>Kwok's example is Collins spending "about three years of tweaking" to move a toggle switch into yeast, because the two promoters were unbalanced. That is composition failing at <em>n</em> = 2 (<a href="#s13">§13</a>, <a href="#s16">§16</a>).</td></tr>
+<tr><td>The complexity is unwieldy</td><td>Kwok reports Keasling's estimate of roughly <strong>150 person-years</strong> for the artemisinin pathway, about a dozen genes. Ten years later the largest dynamical circuit is fourteen regulators (<a href="#s18">§18</a>).</td></tr>
+<tr><td>Many parts are incompatible</td><td>This is growth burden, already correctly identified. Kwok cites <span class="pdf txt">Tan, Marguet &amp; You (2009)</span>, where a circuit slows growth, growth slows dilution, and bistability appears from nowhere (<a href="#s14">§14</a>, <a href="#s15">§15</a>).</td></tr>
+<tr><td>Variability crashes the system</td><td>Noise, plus evolutionary loss of function. Sleight &amp; Sauro (2013) evolved 192 populations and found circuits expressed below 10% of maximum are significantly more stable, a fitness threshold for keeping a circuit at all (<a href="#s17">§17</a>).</td></tr>
 </tbody>
 </table>
 </div>
@@ -839,31 +811,31 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <p>And the reframing, from two of the field's most prominent circuit builders, in the same year:</p>
 
 <div class="box quote">
-<span class="lbl">The pivot the narrative identifies, dated 2010</span>
+<span class="lbl">The pivot, dated 2010</span>
 <blockquote>"Synthetic biology is redefining the discipline of biology and helping people reach a deeper understanding of how life works. … Traditional biologists seek to reverse engineer natural biological systems. Synthetic biologists seem to do the opposite. … Both communities face the same daunting challenge: how to relate the architecture of a gene circuit to its behaviour in a cell or tissue."</blockquote>
 <cite>Elowitz &amp; Lim 2010, Nature 468:889 <span class="pdf txt">TXT</span></cite>
 </div>
 
-<p>The narrative's observation was that the field's justification inverted, from "understand biology in order to engineer it" to "engineer it in order to understand biology". That inversion is <span class="vd ok">confirmed</span>, and it is dated precisely: December 2010, in a Nature comment, argued for on the merits rather than as a retreat. Note also that <span class="pdf txt">Khalil &amp; Collins</span> published "Synthetic biology: applications come of age" in the same year, saying the opposite. 2010 is the year the field split on whether it was delivering.</p>
+<p>So the field's justification inverted, from "understand biology in order to engineer it" to "engineer it in order to understand biology". The inversion has a precise date: December 2010, in a Nature comment, argued for on the merits rather than as a retreat. Note also that <span class="pdf txt">Khalil &amp; Collins</span> published "Synthetic biology: applications come of age" in the same year, saying the opposite. 2010 is the year the field split on whether it was delivering.</p>
 
-<p>There is one genuine complication, and it is worth more than the tidy version. The field's own histories do not agree on when the trouble was. Cameron, Bashor &amp; Collins (2014) divide the field into four periods, and their label for <strong>2004 to 2007</strong> is "expansion and growing pains", "characterized by an expansion of the field but <strong>a lag in engineering advances</strong>". Their label for <strong>2008 to 2013</strong> is "increase in pace and scale". So Collins's group puts the lag <em>before</em> Purnick &amp; Weiss measured it, and calls the years the narrative identifies as the cooling an acceleration.</p>
+<p>There is one genuine complication, and it is worth more than the tidy version. The field's own histories do not agree on when the trouble was. Cameron, Bashor &amp; Collins (2014) divide the field into four periods, and their label for <strong>2004 to 2007</strong> is "expansion and growing pains", "characterized by an expansion of the field but <strong>a lag in engineering advances</strong>". Their label for <strong>2008 to 2013</strong> is "increase in pace and scale". So Collins's group puts the lag <em>before</em> Purnick &amp; Weiss measured it, and calls the years usually identified as the cooling an acceleration.</p>
 
 <div class="box key">
 <span class="lbl">Three datings, one resolution</span>
-<p>Purnick &amp; Weiss say complexity plateaued through 2008. Cameron et al. say engineering lagged in 2004 to 2007 and then accelerated. The narrative says the field cooled in 2013 to 2016. These are not three guesses at one date. They are measurements of different layers.</p>
-<p>Read what Cameron et al. actually list as the acceleration: Gibson assembly, MAGE, complete Boolean gate sets, genome synthesis. That is throughput, construction and library scale, and it did accelerate, exactly as Figure 7's sequencing and synthesis curves show. Purnick &amp; Weiss are counting regulators in one designed circuit, which is the design layer, and that is the curve that stayed flat. The narrative's 2013 to 2016 is a third thing again: when the <em>explanations</em> for the flat curve were quantified.</p>
-<p>So the field's chronologies conflict only if you assume it has one scaling curve. It has at least two, and they diverge. That divergence is the subject of <a href="#s19">§19</a>.</p>
+<p>Purnick &amp; Weiss say complexity plateaued through 2008. Cameron et al. say engineering lagged in 2004 to 2007 and then accelerated. The field's working memory says it cooled in 2013 to 2016. These are not three guesses at one date. They are measurements of different layers.</p>
+<p>Read what Cameron et al. actually list as the acceleration: Gibson assembly, MAGE, complete Boolean gate sets, genome synthesis. That is throughput, construction and library scale, and it did accelerate, exactly as Figure 7's sequencing and synthesis curves show. Purnick &amp; Weiss are counting regulators in one designed circuit, which is the design layer, and that is the curve that stayed flat. The 2013-to-2016 dating is a third thing again: it is when the <em>explanations</em> for the flat curve were quantified.</p>
+<p>So the field's chronologies conflict only if you assume it has one scaling curve. It has at least two, and they diverge. That divergence is the subject of <a href="#s18">§18</a>.</p>
 </div>
 
 <div class="box key">
-<span class="lbl">What this does to the narrative's dating</span>
-<p>The diagnosis was not discovered in 2013. It was available, in <em>Nature</em>, in January 2010, complete with the growth-burden mechanism and a measured plateau behind it. Truths 2, 3 and 4 are the narrative's own account of what went wrong.</p>
-<p>So the honest arc is not "the field cooled when it discovered the problem". It is closer to: the field named the problem early, correctly, and in public, and then spent a decade quantifying it while continuing to build. That is a more interesting story, and it puts more weight on the question of why naming the problem did not solve it. <a href="#s20">§20</a> onward is an answer to that.</p>
+<span class="lbl">The honest arc</span>
+<p>The diagnosis was not discovered in 2013. It was available, in <em>Nature</em>, in January 2010, complete with the growth-burden mechanism and a measured plateau behind it. Truths 2, 3 and 4 are the whole account of what went wrong.</p>
+<p>So the honest arc is not "the field cooled when it discovered the problem". It is closer to: the field named the problem early, correctly, and in public, and then spent a decade quantifying it while continuing to build. That is a more interesting story, and it puts more weight on the question of why naming the problem did not solve it. <a href="#s19">§19</a> onward is an answer to that.</p>
 </div>
 
-<p><strong>2012 to 2016, the quantification.</strong> This is where the narrative's dating is right, and the next five sections are that evidence. What arrives in these years is not a new insight. It is measurement: how far off composition actually is, how much a circuit actually costs its host, and how fast an unburdened design is actually lost to evolution.</p>
+<p><strong>2012 to 2016, the quantification.</strong> This is where the usual dating is right, and the next five sections are that evidence. What arrives in these years is not a new insight. It is measurement: how far off composition actually is, how much a circuit actually costs its host, and how fast an unburdened design is actually lost to evolution.</p>
 
-<h2 id="s14"><span class="n">14</span>The parts do not compose<span class="vd ok">confirmed</span></h2>
+<h2 id="s13"><span class="n">13</span>The parts do not compose</h2>
 <p class="lede">12,563 promoter and ribosome-binding-site combinations, measured. The conclusion the authors drew was to stop predicting.</p>
 
 <p>The single most decisive paper is Kosuri, Goodman, Cambray, Mutalik, Gao, Arkin, Endy &amp; Church (2013, PNAS). Note that author list before reading the result. Arkin, Endy and Church, three of the architects of the standardisation programme, are on the paper that measures whether standardisation works.</p>
@@ -919,7 +891,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <cite>Kosuri et al. 2013, PNAS 110:14024 <span class="pdf">PDF</span></cite>
 </div>
 
-<p>Read that against Endy 2005. The 2005 programme was standardisation so that composition would be predictable. The 2013 verdict, from partly the same people, is that composition is not predictable enough, so build a library and screen. This is a stronger version of the narrative's claim than the narrative made. The field did not merely find it hard. It changed strategy away from prediction.</p>
+<p>Read that against Endy 2005. The 2005 programme was standardisation so that composition would be predictable. The 2013 verdict, from partly the same people, is that composition is not predictable enough, so build a library and screen. The field did not merely find composition hard. It changed strategy away from prediction.</p>
 
 <p>The companion papers from the same BIOFAB collaboration, Mutalik et al. (2013a) and (2013b), are the constructive answer, and the full texts sharpen the point rather than softening it. Two numbers side by side.</p>
 
@@ -929,28 +901,28 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <p><strong>Insulating.</strong> Mutalik et al. reach <strong>~93%</strong> within a twofold window. They get there by changing the architecture, not the model: their <em>bicistronic design</em> buries the ribosome-binding site inside a short leader peptide's coding sequence, so that the site cannot form secondary structure with whatever gene follows it. The interference is not predicted. It is engineered out of reach.</p>
 </div>
 
-<p>That pattern is worth naming, because it recurs. Faced with a composition failure, the field's successful response has repeatedly been to build a physical insulator rather than a better model: bicistronic designs here, insulating load drivers for retroactivity in <a href="#s16">§16</a>, copy-number-invariant promoters for plasmid variation, orthogonal ribosomes for host coupling. Each works. None of them composes, in the sense that none makes the <em>next</em> circuit predictable.</p>
+<p>That pattern is worth naming, because it recurs. Faced with a composition failure, the field's successful response has repeatedly been to build a physical insulator rather than a better model: bicistronic designs here, insulating load drivers for retroactivity in <a href="#s15">§15</a>, copy-number-invariant promoters for plasmid variation, orthogonal ribosomes for host coupling. Each works. None of them composes, in the sense that none makes the <em>next</em> circuit predictable.</p>
 
 <p>The field also has a precise name for what is missing here, coined by four of its leaders. Way, Collins, Keasling &amp; Silver (2014) propose distinguishing <strong>concept modularity</strong> from <strong>engineering modularity</strong>:</p>
 
 <div class="box quote">
-<span class="lbl">The distinction the narrative needs</span>
+<span class="lbl">The distinction the field drew for itself</span>
 <blockquote>"An open question is whether biology is genuinely modular in an engineering sense or whether modularity is only a human construct that helps us understand biology. … For example, to understand the process of translation, it is useful to think of a ribosome binding site and a coding sequence as separate modules. However, <strong>from an engineering point of view, these elements are not necessarily distinct modules</strong> because they can interact through mRNA secondary structure, with levels of translation resulting from a <strong>nonlinear combination</strong> of the two elements."</blockquote>
 <cite>Way, Collins, Keasling &amp; Silver 2014, Cell 157:151 <span class="pdf">PDF</span></cite>
 </div>
 
-<p>This is the sharpest available statement of the narrative's "genes turned out not to be modular", and it locates the failure correctly. The gene is a real conceptual unit. It is not an interface with a defined signature. The same paper adds an observation that explains why some things <em>are</em> composable: the modularity of operons and pathogenicity islands "is a consequence of natural selection", because those units were selected for horizontal transfer between hosts. Where biology is modular, selection put the modularity there. It is not a generic property of genes, and it is not guaranteed to sit where a designer wants a boundary.</p>
+<p>That is the sharpest available statement of "genes turned out not to be modular", and it locates the failure correctly. The gene is a real conceptual unit. It is not an interface with a defined signature. The same paper adds an observation that explains why some things <em>are</em> composable: the modularity of operons and pathogenicity islands "is a consequence of natural selection", because those units were selected for horizontal transfer between hosts. Where biology is modular, selection put the modularity there. It is not a generic property of genes, and it is not guaranteed to sit where a designer wants a boundary.</p>
 
-<h2 id="s15"><span class="n">15</span>The host is not a chassis<span class="vd ok">confirmed</span></h2>
+<h2 id="s14"><span class="n">14</span>The host is not a chassis</h2>
 <p class="lede">Put a circuit in a cell and the cell pushes back. Six independent measurements of the same fact, against an assumption the field wrote down in 2005.</p>
 
-<p>The 2000s picture was that a wild-type cell is a chassis, and the circuit is what you bolt on. The narrative says this inverted, and that the chassis turned out to do the work. This is the one place where the assumption under test was written down explicitly at the start, which makes the test unusually clean. Endy 2005 defines the chassis as a cell providing resources "to any engineered biological system placed within the cell, <strong>independent of the details of the system</strong>". Every result below measures a dependence on the details of the system.</p>
+<p>The 2000s picture was that a wild-type cell is a chassis, and the circuit is what you bolt on. That picture inverted, and the chassis turned out to be doing the work. This is the one place where the assumption was written down explicitly at the start, which makes the test unusually clean. Endy 2005 defines the chassis as a cell providing resources "to any engineered biological system placed within the cell, <strong>independent of the details of the system</strong>". Every result below measures a dependence on the details of the system.</p>
 
 <p>Here is the evidence, in increasing order of how much it hurts the modular picture.</p>
 
 <p><strong>1. Expression costs capacity, measurably.</strong> Ceroni, Algar, Stan &amp; Ellis (2015) built an in vivo capacity monitor and used it to rank constructs by burden. Their framing: "all heterologous expression represents an unnatural load, consuming cellular resources and leading to decreased growth rates that can predispose synthetic constructs to <em>evolutionary instability</em>." Growth burden and mutational escape are the same problem seen at two timescales.</p>
 
-<p><strong>2. Two unconnected genes are quantitatively coupled.</strong> Gyorgy et al. (2015) put one constitutive and one inducible reporter on the same plasmid, with <em>no regulatory path between them</em>, and found the attainable pairs of protein concentrations constrained by a linear relation. They call it an isocost line, borrowing from microeconomics. Changing the inducible gene's RBS strength <em>rotates</em> the line; changing plasmid copy number <em>shifts</em> it.</p>
+<p><strong>2. Two unconnected genes are quantitatively coupled.</strong> Gyorgy et al. (2015) put one constitutive and one inducible reporter on the same plasmid, with <em>no regulatory path between them</em>, and found the attainable pairs of protein concentrations constrained by a linear relation. They call it an isocost line, borrowing from microeconomics. Changing the inducible gene's RBS strength <em>rotates</em> the line. Changing plasmid copy number <em>shifts</em> it.</p>
 
 <p><strong>3. The coupling can invert a circuit's function.</strong> Qian, Huang, Jiménez &amp; Del Vecchio (2017) built a library of genetic activation cascades and tuned each gene's resource demand explicitly. Resource competition creates "non-regulatory interactions among genes", and in an <em>activation</em> cascade these produce responses that are "biphasic or monotonically decreasing". An activation cascade that goes down when you induce it is not a mis-tuned module. It is a module whose sign is not its own.</p>
 
@@ -967,30 +939,30 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <p>Six results, six methods, one assumption. And they fail it in three different regimes: the dependence is there at steady state (1, 2, 3, 4), it is non-monotonic near the capacity limit (5), and it is enforced by selection over generations (6). "Independent of the details of the system" is not an approximation that holds in a restricted range. There is no range in which it holds.</p>
 </div>
 
-<h2 id="s16"><span class="n">16</span>Retroactivity, honestly<span class="vd co">contested</span></h2>
-<p class="lede">The narrative calls it trivial. That is half right, and the half that is wrong is the important half.</p>
+<h2 id="s15"><span class="n">15</span>Retroactivity, honestly</h2>
+<p class="lede">It is often waved away as trivial. That is half right, and the half that is wrong is the important half.</p>
 
 <p>Retroactivity, from Del Vecchio, Ninfa &amp; Sontag (2008), is the back-action of a downstream module on its upstream driver. A transcription factor that regulates a downstream promoter must bind it, and bound molecules are not free, so the downstream load changes the upstream signal.</p>
 
-<p>The narrative's objection is that this is obvious. Of course binding titrates the input. Calling it a deviation from modularity dresses up bookkeeping as a discovery.</p>
+<p>The standard objection is that this is obvious. Of course binding titrates the input. Calling it a deviation from modularity dresses up bookkeeping as a discovery.</p>
 
-<p>The objection has force, and the mechanism really is that simple. But two things make it more than bookkeeping, and both are worth conceding before §20 uses them.</p>
+<p>The objection has force, and the mechanism really is that simple. But two things make it more than bookkeeping, and both are worth conceding before §19 uses them.</p>
 
 <p><strong>First, the effect is measured and it is large.</strong> Brewster et al. (2014) and Lee &amp; Maheshri (2012) show that decoy and competing binding sites reshape regulatory input functions substantially, in bacteria and yeast respectively. Whether or not it is conceptually surprising, it is quantitatively decisive.</p>
 
 <p><strong>Second, and this is the part the "it's trivial" reading understates: it is a failure of the input–output <em>abstraction</em>, not an error in a parameter.</strong> If a module's transfer function changes when you attach a load, then a module does not have a transfer function. No amount of better parameter estimation repairs that, because the object being estimated does not exist independently of its context. This is exactly why the field's response was engineering rather than measurement: retroactivity attenuation, load drivers, promoters engineered for copy-number invariance. Those are attempts to <em>build</em> the conditions under which the abstraction becomes true, which is the correct response and is precisely what electronics did with resistors.</p>
 
 <div class="box key">
-<span class="lbl">Where this leaves the narrative</span>
-<p>Sustained, with a friendly amendment. The narrative is right that retroactivity is a symptom rather than a discovery, and right that the insulator programme did not deliver scaling. It undersells the diagnostic value of the symptom. Retroactivity is the cleanest available demonstration that the modelling abstraction, not the biology, is what broke, and §20 shows that burden is the same demonstration wearing different clothes.</p>
+<span class="lbl">Where this leaves the objection</span>
+<p>Sustained, with an amendment. Retroactivity is a symptom rather than a discovery, and the insulator programme did not deliver scaling. What the dismissal undersells is the diagnostic value of the symptom. Retroactivity is the cleanest available demonstration that the modelling abstraction, not the biology, is what broke, and §19 shows that burden is the same demonstration wearing different clothes.</p>
 </div>
 
-<h2 id="s17"><span class="n">17</span>The models did not become design tools<span class="vd sh">sharpened</span></h2>
+<h2 id="s16"><span class="n">16</span>The models did not become design tools</h2>
 <p class="lede">Whole-cell models turned out to be excellent at something other than prediction, and the honest version of that is more interesting than "they failed".</p>
 
 <p>Karr et al. (2012) built a whole-cell model of <em>Mycoplasma genitalium</em> accounting for every annotated gene function. Its claimed successes are real and specific: in vivo rates of protein–DNA association, an inverse relationship between the durations of replication initiation and replication, and previously undetected kinetic parameters found by experiments the model directed.</p>
 
-<p>The narrative says such models "do not really predict much, and are not useful to guide experiments". The full texts support a sharper and less dismissive statement. Look at what Macklin et al. (2020, Science) actually report for <em>E. coli</em>.</p>
+<p>The usual verdict on such models is that they do not really predict much and are not much use for guiding experiments. The full texts support a sharper and less dismissive statement. Look at what Macklin et al. (2020, Science) actually report for <em>E. coli</em>.</p>
 
 <div class="box quote">
 <span class="lbl">What a whole-cell model is really good for</span>
@@ -1004,15 +976,15 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <div class="box note">
 <span class="lbl">The generalisable lesson</span>
-<p>Across all three modelling programmes the pattern is the same. Each produced a genuine scientific instrument and none produced a design tool. The instrument function is: reveal that your measurements disagree with each other. The design function requires something the instruments do not have, which is a guarantee that the model class contains the real system. §22 is about that gap.</p>
+<p>Across all three modelling programmes the pattern is the same. Each produced a genuine scientific instrument and none produced a design tool. The instrument function is: reveal that your measurements disagree with each other. The design function requires something the instruments do not have, which is a guarantee that the model class contains the real system. §21 is about that gap.</p>
 </div>
 
-<h2 id="s18"><span class="n">18</span>Where everyone went<span class="vd ok">confirmed</span></h2>
+<h2 id="s17"><span class="n">17</span>Where everyone went</h2>
 <p class="lede">Into domains where the cell does the work. And, decisively, into two technologies that succeed by not needing a model at all.</p>
 
-<p>The narrative's account of the diaspora is accurate: CAR-T and immune engineering, gut microbiome, rhizosphere and soil, bacterial cancer therapy, fermentation and metabolic engineering, antibiotic persistence. The literature bears this out item by item. <span class="pdf txt">Roybal et al. (2016)</span> is combinatorial antigen sensing in T cells, where the T cell supplies essentially all of the capability and the engineered logic is an AND gate. <span class="pdf txt">Din et al. (2016)</span> is synchronised bacterial lysis for in vivo delivery, where the payload is the point and the circuit is a quorum-triggered lysis timer.</p>
+<p>The diaspora is a matter of record: CAR-T and immune engineering, gut microbiome, rhizosphere and soil, bacterial cancer therapy, fermentation and metabolic engineering, antibiotic persistence. What the literature adds is that in each case the cell supplies most of the capability. <span class="pdf txt">Roybal et al. (2016)</span> is combinatorial antigen sensing in T cells, where the T cell supplies essentially all of the capability and the engineered logic is an AND gate. <span class="pdf txt">Din et al. (2016)</span> is synchronised bacterial lysis for in vivo delivery, where the payload is the point and the circuit is a quorum-triggered lysis timer.</p>
 
-<p>What the narrative does not say, and what the sources make unavoidable, is the sharpest fact in this whole history.</p>
+<p>And underneath the diaspora is the sharpest fact in this whole history.</p>
 
 <div class="box key">
 <span class="lbl">The field routed around the missing theory</span>
@@ -1025,13 +997,13 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <div class="box def">
 <span class="lbl">Artemisinin, 2006 to 2016, in four numbers</span>
-<p><strong>100 mg/L.</strong> Ro et al. (2006) reach "high titres (up to 100 mg l<sup>−1</sup>) of artemisinic acid" in engineered yeast. This is the paper the narrative and the field both point to as the industry school's proof.</p>
+<p><strong>100 mg/L.</strong> Ro et al. (2006) reach "high titres (up to 100 mg l<sup>−1</sup>) of artemisinic acid" in engineered yeast. This is the paper the field points to as the industry school's proof.</p>
 <p><strong>25 g/L.</strong> Paddon et al. (2013) report fermentation titres of 25 grams per litre. A 250-fold improvement in seven years. As a feat of strain engineering this is unambiguous success.</p>
 <p><strong>150 person-years.</strong> Keasling's own estimate of the cost, reported in Kwok (2010), for a pathway of about a dozen genes. Kwok files it under "the complexity is unwieldy".</p>
 <p><strong>$250 against $350.</strong> Peplow (2016): Sanofi made enough semi-synthetic artemisinin for about 10% of global combination-therapy demand but "has not sold" it. For two years the plant-derived chemical sold for "less than $250 per kilogram, below Sanofi's 'no profit–no loss' margin of around $350–400 per kilogram". Demand stopped rising, and by July 2016 Sanofi was completing the sale of the production site. Keasling's own verdict, in the same piece: "If that price is already very low and there's a bumper crop, there's no reason to fire up a fermenter."</p>
 </div>
 
-<p>Read the four together and the lesson is not about biology at all. The technical programme worked, spectacularly, by screening and iteration. What it did not do was change the economics, because the competing process is a plant. This matters for the narrative in a specific way: it means the industry school's success criterion never required a predictive dynamical model either, and its failure mode was not a modelling failure. Both of the era's headline outcomes, the commercial ones and the circuit ones, are silent on whether a theory of composition would have helped. Only §19's curve speaks to that.</p>
+<p>Read the four together and the lesson is not about biology at all. The technical programme worked, spectacularly, by screening and iteration. What it did not do was change the economics, because the competing process is a plant. This matters in a specific way. The industry school's success criterion never required a predictive dynamical model either, and its failure mode was not a modelling failure. Both of the era's headline outcomes, the commercial ones and the circuit ones, are silent on whether a theory of composition would have helped. Only §18's curve speaks to that.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 860 400" role="img" aria-label="Technologies plotted by how much they scaled against how much they need a predictive dynamical model">
@@ -1041,49 +1013,44 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <text x="455" y="384" text-anchor="middle" font-size="12" font-weight="700">how much it needs a predictive dynamical model  →</text>
   <text x="26" y="200" font-size="12" font-weight="700" transform="rotate(-90 26 200)" text-anchor="middle">how much it scaled  →</text>
   <!-- quadrant shading -->
-  <rect x="90" y="40" width="330" height="150" fill="var(--cream)" opacity=".55"/>
-  <rect x="500" y="220" width="320" height="130" fill="var(--pinkf)" opacity=".5"/>
-  <text x="255" y="60" text-anchor="middle" class="tiny" font-weight="700" fill="var(--okink)">SCALED WITHOUT THEORY</text>
-  <text x="660" y="340" text-anchor="middle" class="tiny" font-weight="700" fill="var(--badink)">NEEDS THEORY, DID NOT SCALE</text>
+  <rect x="90" y="40" width="330" height="132" fill="var(--cream)" opacity=".55"/>
+  <rect x="470" y="256" width="350" height="94" fill="var(--pinkf)" opacity=".5"/>
+  <text x="255" y="58" text-anchor="middle" class="tiny" font-weight="700" fill="var(--okink)">SCALED WITHOUT THEORY</text>
+  <text x="560" y="345" text-anchor="middle" class="tiny" font-weight="700" fill="var(--badink)">NEEDS THEORY, DID NOT SCALE</text>
 
   <g stroke="var(--bg2)" stroke-width="1.5">
-    <circle cx="150" cy="86" r="8" fill="var(--lime)"/>
-    <circle cx="200" cy="110" r="8" fill="var(--lime)"/>
-    <circle cx="300" cy="128" r="8" fill="var(--teal)"/>
-    <circle cx="360" cy="160" r="8" fill="var(--teal)"/>
-    <circle cx="470" cy="196" r="8" fill="var(--peri)"/>
-    <circle cx="560" cy="238" r="8" fill="var(--plum)"/>
-    <circle cx="650" cy="262" r="8" fill="var(--coral)"/>
-    <circle cx="742" cy="300" r="8" fill="var(--rose)"/>
-    <circle cx="700" cy="176" r="8" fill="var(--peri)"/>
+    <circle cx="150" cy="78" r="8" fill="var(--lime)"/>
+    <circle cx="205" cy="98" r="8" fill="var(--lime)"/>
+    <circle cx="288" cy="120" r="8" fill="var(--teal)"/>
+    <circle cx="368" cy="148" r="8" fill="var(--teal)"/>
+    <circle cx="592" cy="180" r="8" fill="var(--peri)"/>
+    <circle cx="692" cy="122" r="8" fill="var(--peri)"/>
+    <circle cx="516" cy="278" r="8" fill="var(--plum)"/>
+    <circle cx="640" cy="300" r="8" fill="var(--coral)"/>
+    <circle cx="748" cy="318" r="8" fill="var(--rose)"/>
   </g>
   <g font-size="11">
-    <text x="164" y="90">genome editing <tspan class="tiny">(2020 Nobel)</tspan></text>
-    <text x="214" y="114">directed evolution <tspan class="tiny">(2018 Nobel)</tspan></text>
-    <text x="314" y="132">DNA synthesis and assembly</text>
-    <text x="374" y="164">pathway transfer, strain engineering</text>
-    <text x="484" y="200">protein structure prediction</text>
-    <text x="574" y="242">genome-scale metabolic models</text>
-    <text x="664" y="266">multi-gene dynamical circuits</text>
-    <text x="738" y="322" text-anchor="middle">whole-cell models</text>
-    <text x="694" y="180" text-anchor="end">learned protein design</text>
+    <text x="164" y="82">genome editing <tspan class="tiny">(2020 Nobel)</tspan></text>
+    <text x="219" y="102">directed evolution <tspan class="tiny">(2018 Nobel)</tspan></text>
+    <text x="302" y="124">DNA synthesis and assembly</text>
+    <text x="382" y="152">pathway transfer, strain engineering</text>
+    <text x="592" y="204" text-anchor="middle">protein structure prediction</text>
+    <text x="692" y="110" text-anchor="middle">learned protein design</text>
+    <text x="502" y="282" text-anchor="end">genome-scale metabolic models</text>
+    <text x="626" y="304" text-anchor="end">multi-gene dynamical circuits</text>
+    <text x="748" y="340" text-anchor="middle">whole-cell models</text>
   </g>
-  <!-- diagonal frontier -->
-  <path d="M110,60 C300,110 520,210 800,330" stroke="var(--rose)" stroke-width="1.6" stroke-dasharray="5 4" fill="none"/>
-  <text x="815" y="352" text-anchor="end" class="tiny" fill="var(--rose)" font-weight="700">the frontier the field has not crossed</text>
+  <!-- the frontier: everything that scaled sits above it -->
+  <path d="M100,104 C280,152 470,232 818,316" stroke="var(--rose)" stroke-width="1.6" stroke-dasharray="5 4" fill="none"/>
+  <text x="326" y="240" class="tiny" fill="var(--rose)" font-weight="700">the frontier the field has not crossed</text>
 </svg>
-<figcaption><b>Figure 6. What scaled, and what it needed.</b> Placement is qualitative and is the argument of this section, not a measurement. The pattern is that everything above the dashed frontier either replaced prediction with selection, replaced composition with one-at-a-time editing, or bought its predictive power from a learned statistical model over a huge dataset rather than from a mechanistic one. Protein structure prediction is the interesting case: it crossed the frontier, but with a learned model class rather than a derived one. §25 returns to what that implies.</figcaption>
+<figcaption><b>Figure 6. What scaled, and what it needed.</b> Placement is qualitative and is the argument of this section, not a measurement. The pattern is that everything above the dashed frontier either replaced prediction with selection, replaced composition with one-at-a-time editing, or bought its predictive power from a learned statistical model over a huge dataset rather than from a mechanistic one. Protein structure prediction is the interesting case: it crossed the frontier, but with a learned model class rather than a derived one. §24 returns to what that implies.</figcaption>
 </figure>
 
-<h2 id="s19"><span class="n">19</span>It grew, but it did not scale<span class="vd ok">confirmed</span></h2>
+<h2 id="s18"><span class="n">18</span>It grew, but it did not scale</h2>
 <p class="lede">Twelve repressors and two activators in one cell, twenty years after three. That is a real gain and it is not scaling, and the field has been keeping score with exactly this metric since 2009.</p>
 
-<div class="box caution">
-<span class="lbl">A correction to this document</span>
-<p>An earlier draft marked this claim <strong>overturned</strong>, on the grounds that component counts rose from three regulators to fourteen. That applied the wrong test. The claim is about a <em>rate</em>, not about whether any increase occurred, and rates can be measured. Measured, the claim holds.</p>
-</div>
-
-<p>The claim under test is that circuit engineering never scaled in the sense that electronics scaled. Two things make this checkable rather than rhetorical. First, there is an agreed metric: Purnick &amp; Weiss (2009) defined circuit complexity as <em>the number of regulatory regions in one designed system</em>, and everyone since has kept score that way. Second, scaling has a definition: a fixed doubling period, sustained.</p>
+<p>The claim is that circuit engineering never scaled in the sense that electronics scaled. It is easy to get this wrong in an obvious way, by pointing at the rise from three regulators to fourteen and calling the claim refuted. That applies the wrong test. The claim is about a <em>rate</em>, not about whether any increase occurred, and rates can be measured. Two things make the measurement possible rather than rhetorical. First, there is an agreed metric: Purnick &amp; Weiss (2009) defined circuit complexity as <em>the number of regulatory regions in one designed system</em>, and everyone since has kept score that way. Second, scaling has a definition: a fixed doubling period, sustained.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 880 402" role="img" aria-label="Number of independently specified components in one designed system, plotted against years since each field produced its first artefact, with genetic circuits far below integrated circuits, DNA sequencing and DNA synthesis">
@@ -1126,7 +1093,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <g clip-path="url(#pc)">
     <line x1="58.0" y1="336.5" x2="248.4" y2="239.3" stroke="var(--gray)" stroke-width="1" stroke-dasharray="1.5 3"/>
   </g>
-  <text class="tiny" x="142.2" y="299.1" transform="rotate(-40 142.2 299.1)">doubling every 2 years</text>
+  <text class="tiny halo" x="142.2" y="299.1" transform="rotate(-40 142.2 299.1)">doubling every 2 years</text>
   <line x1="204.5" y1="46" x2="204.5" y2="344" stroke="var(--leader)" stroke-width="1" stroke-dasharray="4 3"/>
   <text class="tiny" x="208.5" y="56">year 20</text>
   <g clip-path="url(#pc)" opacity="0.75">
@@ -1187,13 +1154,13 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
     <circle cx="204.5" cy="315.5" r="2.9" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.2"/>
   </g>
   <circle cx="204.5" cy="233.2" r="5.6" fill="none" stroke="var(--peri)" stroke-width="1.4"/>
-  <text class="tiny" x="217.5" y="218.2" fill="var(--peri)" font-weight="700">29,000 transistors</text>
+  <text class="tiny halo" x="197.5" y="226.0" text-anchor="end" fill="var(--peri)" font-weight="700">29,000 transistors</text>
   <circle cx="204.5" cy="315.5" r="5.6" fill="none" stroke="var(--rose)" stroke-width="1.4"/>
-  <text class="tiny" x="214.5" y="330.5" fill="var(--rose)" font-weight="700">14 regulators</text>
-  <text class="lbl2" x="226.4" y="160.2" font-weight="700">same field age, 2,000&#215; fewer parts</text>
-  <text class="tiny" x="62.0" y="324.2" text-anchor="start" fill="var(--rose)">repressilator</text>
-  <text class="tiny" x="129.9" y="341.7" text-anchor="middle" fill="var(--rose)">the 2009 plateau</text>
-  <text class="tiny" x="214.5" y="309.5" text-anchor="start" fill="var(--rose)">Shin 2020</text>
+  <text class="tiny halo" x="214.5" y="330.5" fill="var(--rose)" font-weight="700">14 regulators</text>
+  <text class="lbl2 halo" x="215.0" y="288.0" font-weight="700">same field age, 2,000&#215; fewer parts</text>
+  <text class="tiny halo" x="62.0" y="324.2" text-anchor="start" fill="var(--rose)">repressilator</text>
+  <text class="tiny halo" x="132.0" y="338.0" text-anchor="middle" fill="var(--rose)">the 2009 plateau</text>
+  <text class="tiny halo" x="214.5" y="309.5" text-anchor="start" fill="var(--rose)">Shin 2020</text>
   <g>
     <line x1="72" y1="72" x2="92" y2="72" stroke="var(--rose)" stroke-width="3.4" opacity="1.00"/>
     <circle cx="82" cy="72" r="2.6" fill="var(--rose)" opacity="1.00"/>
@@ -1240,7 +1207,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <text class="tiny" x="822.0" y="293" text-anchor="middle">9</text>
   <text class="lbl2" x="747.0" y="310" text-anchor="middle">years per doubling</text>
 </svg>
-<figcaption><b>Figure 7. Components per designed system, each field measured from its own year zero.</b> Every genetic-circuit point comes from a paper in literature/: the toggle switch and repressilator (2000), the plateau value implied by Nielsen et al.'s "doubling a plateau first noted in 2009", Cello's largest circuit (2016), and Shin et al.'s decoder (2020). Transistor counts, instrument read lengths and synthesis milestones are public records. <b>Units differ between series, so only the slopes are comparable</b>, with one exception that matters: transistors per chip and regulators per cell are both counts of independently specified components, so those two compare directly. Metabolic pathway genes per strain are shown because they are the same kind of count for work that needs no dynamical model. Caveat: the circuit series tracks the largest <em>single-cell</em> dynamical circuit I could source. Distributing a design across strains, and static pathway or genome edits, both reach higher counts, and §18 argues that is the whole point.</figcaption>
+<figcaption><b>Figure 7. Components per designed system, each field measured from its own year zero.</b> Every genetic-circuit point comes from a paper in literature/: the toggle switch and repressilator (2000), the plateau value implied by Nielsen et al.'s "doubling a plateau first noted in 2009", Cello's largest circuit (2016), and Shin et al.'s decoder (2020). Transistor counts, instrument read lengths and synthesis milestones are public records. <b>Units differ between series, so only the slopes are comparable</b>, with one exception that matters: transistors per chip and regulators per cell are both counts of independently specified components, so those two compare directly. Metabolic pathway genes per strain are shown because they are the same kind of count for work that needs no dynamical model. Caveat: the circuit series tracks the largest <em>single-cell</em> dynamical circuit I could source. Distributing a design across strains, and static pathway or genome edits, both reach higher counts, and §17 argues that is the whole point.</figcaption>
 </figure>
 
 <p>The rates are not close. Integrated circuits doubled every <strong>1.7 years</strong> for sixty-four years, DNA sequencing every <strong>1.4 years</strong>, chemical DNA synthesis every <strong>3.1 years</strong>. Genetic circuits doubled every <strong>7 to 9 years</strong>, depending on whether you anchor 2000 at the toggle switch or the repressilator, and the 2016-to-2020 interval is no faster at <strong>8.2 years</strong>. Twenty years after its first artefact, the integrated circuit had 29,000 components on one die. Twenty years after its first artefact, synthetic biology had fourteen regulators in one cell.</p>
@@ -1253,7 +1220,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <cite>Purnick &amp; Weiss 2009, Nat Rev Mol Cell Biol 10:410 <span class="pdf">PDF</span>. Their Figure 2b plots complexity against year for 2000 to 2008 and reports that it "seems to have reached a plateau".</cite>
 </div>
 
-<p>This is the narrative's claim, and its diagnosis, in a 2009 review from Ron Weiss's own lab, one of the three groups that built the founding circuits. It is not a retrospective judgement. The plateau was visible while it was happening, it was measured, and the explanation offered was that the design principles were too simple.</p>
+<p>That is the claim, and the diagnosis, stated in a 2009 review from Ron Weiss's own lab, one of the three groups that built the founding circuits. It is not a retrospective judgement. The plateau was visible while it was happening, it was measured, and the explanation offered was that the design principles were too simple.</p>
 
 <p>Within a year it was on Nature's news pages. Kwok (2010) reports that "although the number of published synthetic biological circuits has risen over the past few years, the complexity of those circuits, or the number of regulatory parts they use, has begun to flatten out", citing Purnick &amp; Weiss directly. And the field kept using the same yardstick. Cello's own discussion measures itself against it:</p>
 
@@ -1263,11 +1230,11 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <cite>Nielsen et al. 2016, Science 352:aac7341 <span class="pdf">PDF</span>. The largest circuit, Consensus, contains ten regulatory proteins and 55 genetic parts. Of 60 automatically designed circuits, 45 worked in every output state, and 92% of 412 output states matched prediction.</cite>
 </div>
 
-<p>Two doublings in eleven years, announced as an achievement, and correctly so. Nobody in the field claims a Moore's law for circuits. The narrative is not disputing the field's self-assessment. It is repeating it.</p>
+<p>Two doublings in eleven years, announced as an achievement, and correctly so. Nobody in the field claims a Moore's law for circuits. This section is not disputing the field's self-assessment. It is repeating it, with the arithmetic attached.</p>
 
 <p>The 2020 result is the current ceiling. Shin, Zhang, Der, Nielsen &amp; Voigt (2020) encoded a binary-coded-digit to seven-segment decoder in <em>E. coli</em>: seven strains, each carrying a circuit with up to <strong>12 repressors and two activators</strong>, and 63 regulators and about 76,000 base pairs <em>across all seven together</em>. Per cell, the number is fourteen. The distinction matters, because a chip's transistor count is per die.</p>
 
-<p>So the arc holds. What the 2020 paper adds is the reason, and it is the reason this document exists.</p>
+<p>So the arc holds. What the 2020 paper adds is the reason, and the reason is what the rest of this essay is about.</p>
 
 <div class="box quote">
 <span class="lbl">The bottleneck, named by the people who moved it</span>
@@ -1279,13 +1246,13 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <div class="eq">y<sub>i</sub> = (y<sub>max,i</sub> − y<sub>min,i</sub>) · K<sub>i</sub><sup>n<sub>i</sub></sup> / (K<sub>i</sub><sup>n<sub>i</sub></sup> + x<sub>i</sub><sup>n<sub>i</sub></sup>) + y<sub>min,i</sub>,<span style="margin-left:1.2rem">x<sub>i</sub> = Σ upstream RNAP fluxes</span></div>
 
-<p>They say so explicitly: "The first model for NOR gates simply treated the input as the sum of the RNAP fluxes of the upstream promoters." That is Hill plus additivity, cited to Kelly et al. 2009 and Nielsen et al. 2016. Going from three regulators to fourteen required abandoning additivity and adding a resource-utilisation term, which is RNAP flux accounting. Those are precisely the two assumptions §20 identifies as one violated inequality.</p>
+<p>They say so explicitly: "The first model for NOR gates simply treated the input as the sum of the RNAP fluxes of the upstream promoters." That is Hill plus additivity, cited to Kelly et al. 2009 and Nielsen et al. 2016. Going from three regulators to fourteen required abandoning additivity and adding a resource-utilisation term, which is RNAP flux accounting. Those are precisely the two assumptions §19 identifies as one violated inequality.</p>
 
 <div class="box key">
 <span class="lbl">Why the gains do not compound</span>
-<p>Both halves of the picture now have the same explanation. Complexity rose where the model was repaired, which is why the narrative's diagnosis is right. Complexity rose <em>slowly</em> because each repair was a specific correction to a specific effect, fitted to a specific gate library, and corrections like that do not compound.</p>
+<p>Both halves of the picture now have the same explanation. Complexity rose exactly where the model was repaired. It rose <em>slowly</em> because each repair was a specific correction to a specific effect, fitted to a specific gate library, and corrections like that do not compound.</p>
 <p>This is the difference that a doubling period encodes. VLSI's doubling compounded because the abstraction held: a designer's gains were reusable by the next designer without revisiting the physics. Here, every increase in circuit size has been bought by re-measuring the parts and patching the model for the effect that broke last time. Sixty-three regulators over seven strains is an achievement of characterisation, not of composition.</p>
-<p>So the target is not a better Hill function. It is a model class in which composition is exact and shared resources are represented from the start, so that gains are inherited instead of re-earned. That is the argument of §22 and §24, and Figure 7 is the reason to want it.</p>
+<p>So the target is not a better Hill function. It is a model class in which composition is exact and shared resources are represented from the start, so that gains are inherited instead of re-earned. That is the argument of §21 and §23, and Figure 7 is the reason to want it.</p>
 </div>
 
 <div class="parthead">
@@ -1294,10 +1261,10 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <p>Two decades of surprises, one violated inequality. This part states it exactly, shows where real circuits sit relative to it, and then argues that the fix is a change of model class rather than a change of parameters.</p>
 </div>
 
-<h2 id="s20"><span class="n">20</span>Retroactivity and burden are one inequality<span class="vd ok">confirmed</span></h2>
+<h2 id="s19"><span class="n">19</span>Retroactivity and burden are one inequality</h2>
 <p class="lede">Both surprises say the same thing: a pool assumed to be in excess was not in excess.</p>
 
-<p>Here is the narrative's central technical claim, and it is correct. Line up the two headline failures of the engineering programme and ask what each one is, mechanically.</p>
+<p>Here is the central technical claim of this essay. Line up the two headline failures of the engineering programme and ask what each one is, mechanically.</p>
 
 <p><strong>Retroactivity.</strong> A transcription factor drives a downstream promoter. To do so it binds the operator. Bound molecules are removed from the free pool. So the effective input to the downstream gene, and the effective level of the upstream signal, both depend on how many downstream sites there are. The assumption that broke is <em>the complex is a negligible fraction of the total transcription factor</em>.</p>
 
@@ -1305,10 +1272,10 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <p>These are not two phenomena. They are one violated inequality, applied to two different shared species. And crucially, it is the <em>same</em> inequality that licenses writing a Hill or Michaelis–Menten function in the first place.</p>
 
-<h2 id="s21"><span class="n">21</span>The inequality, stated properly<span class="vd sh">sharpened</span></h2>
+<h2 id="s20"><span class="n">20</span>The inequality, stated properly</h2>
 <p class="lede">It is not "substrate greatly exceeds enzyme". The correct condition is a ratio involving the affinity, and the difference is exactly where gene circuits live.</p>
 
-<p>The narrative states the condition as <span class="m">S<sub>tot</sub> ≫ C</span>, so that <span class="m">S<sub>tot</sub> ≈ S</span>. That is the right condition. It is also worth having the classical sharpened form, because the naive version ("enzyme is much less abundant than substrate") is what most people carry around and it is not the criterion.</p>
+<p>Stated loosely, the condition is <span class="m">S<sub>tot</sub> ≫ C</span>, so that <span class="m">S<sub>tot</sub> ≈ S</span>. That is the right condition. It is worth having the classical sharpened form as well, because the naive version ("enzyme is much less abundant than substrate") is what most people carry around and it is not the criterion.</p>
 
 <p>For the standard scheme <span class="m">E + S ⇌ C → E + P</span> with initial totals <span class="m">E<sub>0</sub></span> and <span class="m">S<sub>0</sub></span>, the quasi-steady-state approximation, and therefore the Michaelis–Menten rate law, is valid when</p>
 
@@ -1316,7 +1283,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <p>Segel &amp; Slemrod (1989, SIAM Review) derive this as the necessary condition, and note that it is strictly stronger than the timescale-separation condition alone. It reduces to <span class="m">E<sub>0</sub> ≪ S<sub>0</sub></span> only when the substrate is well above the affinity. When affinity is tight, <span class="m">K<sub>M</sub></span> is small and the criterion becomes <em>harder</em>, not easier.</p>
 
-<p>And here is the review that states the modern consequence in the same terms the narrative uses:</p>
+<p>And here is the review that states the modern consequence in exactly these terms:</p>
 
 <div class="box quote">
 <span class="lbl">The diagnosis, in the literature, verbatim</span>
@@ -1324,9 +1291,9 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <cite>Kim &amp; Tyson 2020, PLoS Comput Biol 16:e1008258 <span class="pdf">PDF</span></cite>
 </div>
 
-<p>Read the list of false predictions against the founding papers of §10. Ultrasensitivity, bistability, oscillations. The toggle switch is a bistability claim resting on a cooperativity exponent. The repressilator is an oscillation claim resting on a Hill coefficient. Neither paper is wrong about what it built, because both were verified experimentally. The point is narrower and more damaging: the model class used to reason about them cannot be trusted to get those three features right, which is why the field could not predict its way from three genes to fourteen.</p>
+<p>Read the list of false predictions against the founding papers of §9. Ultrasensitivity, bistability, oscillations. The toggle switch is a bistability claim resting on a cooperativity exponent. The repressilator is an oscillation claim resting on a Hill coefficient. Neither paper is wrong about what it built, because both were verified experimentally. The point is narrower and more damaging: the model class used to reason about them cannot be trusted to get those three features right, which is why the field could not predict its way from three genes to fourteen.</p>
 
-<p>One number from §10 makes this concrete. The repressilator's reported <span class="m">K<sub>M</sub></span> is <strong>40 monomers per cell</strong>. A handful of plasmid copies each carrying operator sites puts the site count within an order of magnitude of that. So <span class="m">ε = t<sub>sites</sub>/(K<sub>D</sub> + t<sub>TF</sub>)</span> is not small. The founding model of the field was applied, in its own parameters, at the edge of its own validity.</p>
+<p>One number from §9 makes this concrete. The repressilator's reported <span class="m">K<sub>M</sub></span> is <strong>40 monomers per cell</strong>. A handful of plasmid copies each carrying operator sites puts the site count within an order of magnitude of that. So <span class="m">ε = t<sub>sites</sub>/(K<sub>D</sub> + t<sub>TF</sub>)</span> is not small. The founding model of the field was applied, in its own parameters, at the edge of its own validity.</p>
 
 <div class="demo" id="demo1">
   <h4>Interactive</h4>
@@ -1354,12 +1321,12 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
     <text x="100" y="398">−2</text><text x="220" y="398">−1</text><text x="340" y="398">0</text>
     <text x="460" y="398">1</text><text x="580" y="398">2</text><text x="700" y="398">3</text><text x="820" y="398">4</text>
   </g>
-  <text x="460" y="422" text-anchor="middle" font-size="12" font-weight="700">log₁₀ ( ligand total / K_D )</text>
+  <text x="460" y="422" text-anchor="middle" font-size="12" font-weight="700">log₁₀ ( ligand total / K<tspan font-size=".72em" dy="2.4">D</tspan><tspan dy="-2.4"> )</tspan></text>
   <g class="tiny" text-anchor="end">
     <text x="94" y="384">−3</text><text x="94" y="316">−2</text><text x="94" y="248">−1</text>
     <text x="94" y="180">0</text><text x="94" y="112">1</text><text x="94" y="44">2</text>
   </g>
-  <text x="34" y="210" font-size="12" font-weight="700" transform="rotate(-90 34 210)" text-anchor="middle">log₁₀ ( binding-site total / K_D )</text>
+  <text x="34" y="210" font-size="12" font-weight="700" transform="rotate(-90 34 210)" text-anchor="middle">log₁₀ ( binding-site total / K<tspan font-size=".72em" dy="2.4">D</tspan><tspan dy="-2.4"> )</tspan></text>
   <!-- valid region: y < log10(0.1*(1+10^x)) -->
   <path d="M100,380 L100,248 L220,242 L340,228 L460,177 L580,112 L700,44 L820,44 L820,380 Z" fill="var(--powder)" opacity=".45"/>
   <path d="M100,248 L220,242 L340,228 L460,177 L580,112 L700,44" stroke="var(--peri)" stroke-width="2" fill="none"/>
@@ -1369,7 +1336,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   <text x="118" y="66" font-size="12" font-weight="700" fill="var(--badink)">ε &gt; 0.1</text>
   <text x="118" y="84" class="tiny">titration matters; the module has no</text>
   <text x="118" y="98" class="tiny">context-free transfer function</text>
-  <text x="545" y="180" class="tiny" fill="var(--peri)" transform="rotate(-29.5 545 180)">ε = t_E / (K_D + t_S) = 0.1</text>
+  <text x="136" y="234" class="tiny" fill="var(--peri)" transform="rotate(-3 136 234)">ε = t<tspan font-size=".72em" dy="2.4">E</tspan><tspan dy="-2.4"> / (K</tspan><tspan font-size=".72em" dy="2.4">D</tspan><tspan dy="-2.4"> + t</tspan><tspan font-size=".72em" dy="2.4">S</tspan><tspan dy="-2.4">) = 0.1</tspan></text>
 
   <!-- markers -->
   <g stroke="var(--bg2)" stroke-width="1.6">
@@ -1381,32 +1348,32 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
   </g>
   <g font-size="11">
     <text x="748" y="336" text-anchor="end">textbook enzyme assay</text>
-    <text x="748" y="352" class="tiny" text-anchor="end">nM enzyme, mM substrate, µM K_M</text>
-    <text x="368" y="158">repressilator repressor vs its operators</text>
-    <text x="368" y="172" class="tiny">K_D = 40 / cell, sites on a few plasmid copies</text>
-    <text x="412" y="116">TF with decoy sites (Brewster 2014)</text>
+    <text x="748" y="352" class="tiny" text-anchor="end">nM enzyme, mM substrate, µM K<tspan font-size=".72em" dy="2.4">M</tspan></text>
+    <text x="344" y="158" text-anchor="end">repressilator repressor vs its operators</text>
+    <text x="344" y="172" text-anchor="end" class="tiny">K<tspan font-size=".72em" dy="2.4">D</tspan><tspan dy="-2.4"> = 40 / cell, sites on a few plasmid copies</tspan></text>
+    <text x="388" y="124" text-anchor="end">TF with decoy sites (Brewster 2014)</text>
     <text x="312" y="92">ribosome pool vs circuit mRNA demand</text>
     <text x="312" y="106" class="tiny">the burden regime</text>
     <text x="314" y="282">a well-insulated part</text>
     <text x="314" y="296" class="tiny">what the insulator programme was buying</text>
   </g>
 </svg>
-<figcaption><b>Figure 8. The validity region, and where real circuits sit.</b> Axes are the two dimensionless groups that decide whether a Hill or Michaelis–Menten form is legitimate. The shaded region is <span class="m">ε = t<sub>E</sub>/(K<sub>D</sub> + t<sub>S</sub>) &lt; 0.1</span>. Placements are order-of-magnitude estimates from the cited parameters, not measurements. The textbook enzyme assay that motivated the rate law in 1913 sits deep inside the safe region. Gene regulation with a handful of high-affinity sites does not. The insulator and load-driver programme of §16 is best understood as an attempt to <em>drag circuits down and to the right</em>, into the region where the abstraction the field had already adopted becomes true.</figcaption>
+<figcaption><b>Figure 8. The validity region, and where real circuits sit.</b> Axes are the two dimensionless groups that decide whether a Hill or Michaelis–Menten form is legitimate. The shaded region is <span class="m">ε = t<sub>E</sub>/(K<sub>D</sub> + t<sub>S</sub>) &lt; 0.1</span>. Placements are order-of-magnitude estimates from the cited parameters, not measurements. The textbook enzyme assay that motivated the rate law in 1913 sits deep inside the safe region. Gene regulation with a handful of high-affinity sites does not. The insulator and load-driver programme of §15 is best understood as an attempt to <em>drag circuits down and to the right</em>, into the region where the abstraction the field had already adopted becomes true.</figcaption>
 </figure>
 
-<h2 id="s22"><span class="n">22</span>Why this is a missing model class, not a missing parameter</h2>
+<h2 id="s21"><span class="n">21</span>Why this is a missing model class, not a missing parameter</h2>
 <p class="lede">A parameter error shrinks when you measure better. This one does not, because the object being measured does not exist independently of its context.</p>
 
-<p>The narrative's diagnosis is that the field lacked a foundational theory of the right kind: not a law like Newton's, but a characterisation of a <em>model class</em> that is guaranteed to contain every biological system. This is the part of the narrative that is an argument rather than a fact, so it deserves the sharpest statement and the strongest available objection.</p>
+<p>The diagnosis is that the field lacked a foundational theory of the right kind. Not a law like Newton's, but a characterisation of a <em>model class</em> guaranteed to contain every biological system. This is the part of the case that is an argument rather than a fact, so it deserves the sharpest statement and the strongest available objection.</p>
 
 <p><strong>The argument.</strong> Mechanical engineering has the Lagrangian. Every mechanical system you might build is in that class, so system identification is a search inside a family you know contains the answer. Circuit theory has Kirchhoff plus constitutive relations, with the same guarantee. Given such a class, theory and experiment can close a loop: the model proposes, the experiment disposes, and the discrepancy is informative because it must be a discrepancy <em>within</em> the class. That loop is what drove the electrical and mechanical revolutions.</p>
 
-<p>Biology's analogue exists in principle, and this is the pivot the narrative makes. By the universality of biochemistry, the class of all chemical reaction networks certainly contains every cell. Everything mechanical, electrical, thermal or osmotic that interacts with life interacts through that core. So a guaranteed class is available. It was simply not used, because in 2000 it was neither writable nor simulable at scale, and Hill and Michaelis–Menten were.</p>
+<p>Biology's analogue exists in principle, and that is the pivot. By the universality of biochemistry, the class of all chemical reaction networks certainly contains every cell. Everything mechanical, electrical, thermal or osmotic that interacts with life interacts through that core. So a guaranteed class is available. It was simply not used, because in 2000 it was neither writable nor simulable at scale, and Hill and Michaelis–Menten were.</p>
 
-<p>The consequence is that the field's working class was <em>smaller than biology</em>. Not approximate in a controlled way. Smaller. Real systems sat outside it, and the standard symptoms of that condition are exactly what §14 through §17 document: models that fit in isolation and fail on composition, parameter estimates that shift when context changes, and predicted dynamical features that do not survive.</p>
+<p>The consequence is that the field's working class was <em>smaller than biology</em>. Not approximate in a controlled way. Smaller. Real systems sat outside it, and the standard symptoms of that condition are exactly what §13 through §16 document: models that fit in isolation and fail on composition, parameter estimates that shift when context changes, and predicted dynamical features that do not survive.</p>
 
 <div class="box caution">
-<span class="lbl">The strongest objection, which the narrative itself raises</span>
+<span class="lbl">The strongest objection</span>
 <p>A resistor is not a law of nature. Linear passive components are a manufacturing achievement, produced by decades of materials work, and the same is true of clean mechanical bearings. So one could argue the correct reading is not "biology lacks a theory" but "biology lacks manufactured components", and that the insulator programme was therefore right and merely early.</p>
 <p>This objection is serious and partly correct. The reply is about which asymmetry binds. In electronics, you can manufacture a component whose behaviour is context-free because you control its material environment and can put a physical boundary around it. Inside a cell, the shared pools <em>are</em> the environment, and there is no boundary to draw. Ribosomes are common to every gene by construction. So component-style insulation in a cell is not a materials problem awaiting effort. It is a request to remove the coupling that makes the cell a cell. That is why insulators buy a factor and not an abstraction, and it is why the class has to change.</p>
 </div>
@@ -1416,10 +1383,10 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <p>Three requirements, in order of importance. It must <em>contain</em> the real system, so that discrepancy is informative. It must be <em>writable</em> from the kind of information genomes and databases actually supply, which is structural rather than parametric. And it must be <em>computable</em>, or nothing in the loop runs. All-of-chemistry satisfies the first and fails the third. Hill functions satisfy the third and fail the first. The whole problem is the middle.</p>
 </div>
 
-<h2 id="s23"><span class="n">23</span>Four answers on offer</h2>
+<h2 id="s22"><span class="n">22</span>Four answers on offer</h2>
 <p class="lede">The field did respond to the missing class. It produced four distinct strategies, and they are still competing.</p>
 
-<p>It is worth being explicit that the diagnosis in §22 is not a complaint that nobody noticed. Everyone noticed. Four coherent responses exist, each with a real success record and a real cost.</p>
+<p>It is worth being explicit that the diagnosis in §21 is not a complaint that nobody noticed. Everyone noticed. Four coherent responses exist, each with a real success record and a real cost.</p>
 
 <div class="tablewrap">
 <table>
@@ -1447,7 +1414,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <tr>
   <td class="hl">Change the class</td>
   <td>Replace Hill and Michaelis–Menten with a class that makes no excess assumption and is still writable and computable.</td>
-  <td>binding and catalysis; reaction-order geometry; §24 below</td>
+  <td>binding and catalysis; reaction-order geometry; §23 below</td>
   <td>Requires the theory to be built before the payoff arrives, and has to prove it can do something the other three cannot.</td>
 </tr>
 </tbody>
@@ -1484,22 +1451,22 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
     <text x="556" y="52">3 → 14 regulators. how many patches left?</text>
     <text x="556" y="120">growth laws. cannot pose a new question alone.</text>
     <text x="556" y="190">six products, two Nobels. no transfer.</text>
-    <text x="556" y="258" fill="var(--plum)" font-weight="700">the bet of §24</text>
+    <text x="556" y="258" fill="var(--plum)" font-weight="700">the bet of §23</text>
   </g>
 </svg>
-<figcaption><b>Figure 9. Four responses to one gap.</b> The first three are all in active use and all work. The document's argument is not that they are wrong, but that only the fourth restores the theory-experiment loop that made the other engineering revolutions cumulative.</figcaption>
+<figcaption><b>Figure 9. Four responses to one gap.</b> The first three are all in active use and all work. The argument here is not that they are wrong, but that only the fourth restores the theory-experiment loop that made the other engineering revolutions cumulative.</figcaption>
 </figure>
 
 <div class="parthead">
   <div class="k">Part VI</div>
   <h2>Forward</h2>
-  <p>The proposed class, the enabling event that has not arrived, and an accounting of where this reading changed the story.</p>
+  <p>The proposed class, the enabling event that has not arrived, and what the record does and does not support.</p>
 </div>
 
-<h2 id="s24"><span class="n">24</span>Binding and catalysis</h2>
+<h2 id="s23"><span class="n">23</span>Binding and catalysis</h2>
 <p class="lede">A cell cannot change pressure, temperature or pH at will. It can only change whether a catalyst is present. That single restriction is what turns all-of-chemistry into a workable class.</p>
 
-<p>This section states the proposal compactly. The full development is the companion document, <a href="/essays/biomachine-tutorial/">The Biomachine Perspective</a>, and the mathematics is in the dominance-polytope supplement.</p>
+<p>This section states the proposal compactly. The full development is the companion essay, <a href="/essays/biomachine-tutorial/">The Biomachine Perspective</a>.</p>
 
 <p>Start from the restriction. A chemist gets to change conditions: heat the flask, change the solvent, swing the pH. A cell does not. Its interior is held within narrow bounds, which is most of what homeostasis is for. So a cell cannot make a reaction go by changing conditions. Its only lever is whether the enzyme for that reaction is present and active. Therefore every load-bearing reaction in a cell is an enzymatic reaction, and every enzymatic reaction has the same two-part structure: molecules <em>bind</em> to form a complex, and the complex is <em>catalysed</em> into products.</p>
 
@@ -1524,83 +1491,61 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <p>Retroactivity is not a correction term in this class. It is what <span class="m">L x = q</span> says. Resource competition is not a patch. It is the same equation applied to the ribosome pool. Reaction orders, the log-derivatives <span class="m">∂ log x / ∂ log q</span>, are the natural regulatory currency, and their achievable values form polyhedra whose vertices are the dominance regimes. That is the content of the companion tutorial, and the practical consequence is a way to ask, before building, whether a proposed circuit's intended behaviour is even reachable. Liu &amp; Xiao (2026) is that question posed directly as parameter-regime validity for biocircuits.</p>
 </div>
 
-<h2 id="s25"><span class="n">25</span>The missing shock</h2>
+<h2 id="s24"><span class="n">24</span>The missing shock</h2>
 <p class="lede">Each previous wave needed an enabling event. The honest answer to "what is the third one" is that we do not yet know, and there are three candidates with different implications.</p>
 
-<p>The narrative's structural insight is that theory alone has never started one of these waves. Each time, a discovery arrived that made a new object visible, and the three schools moved because they could suddenly see the same thing. So the question is not only whether the model class is right. It is what the enabling event will be.</p>
+<p>One structural point in the history above is worth naming. Theory alone has never started one of these waves. Each time, a discovery arrived that made a new object visible, and the three schools moved because they could suddenly see the same thing. So the question is not only whether the model class is right. It is what the enabling event will be.</p>
 
-<p><strong>Candidate one: omics at scale.</strong> The 1970s gave named mechanisms; the 2000s gave a parts list; large-scale multi-omics and perturbation data give, for the first time, the <em>parametric</em> half of Bailey's split, at scale and across conditions. If the binding network is what has to be learned, this is the data it would be learned from.</p>
+<p><strong>Candidate one: omics at scale.</strong> The 1970s gave named mechanisms. The 2000s gave a parts list. Large-scale multi-omics and perturbation data give, for the first time, the <em>parametric</em> half of Bailey's split, at scale and across conditions. If the binding network is what has to be learned, this is the data it would be learned from.</p>
 
-<p><strong>Candidate two: learned model classes.</strong> This candidate deserves the most care, because Figure 6 already contains its precedent. Protein structure prediction crossed the frontier that gene circuits did not. It did so with a learned model class, trained on a large curated dataset, rather than a derived one. AlphaFold and then generative design did for one biological question exactly what this document says is missing for another. That is encouraging for the ambition and awkward for the method, because it suggests the class need not be derived from first principles at all.</p>
+<p><strong>Candidate two: learned model classes.</strong> This candidate deserves the most care, because Figure 6 already contains its precedent. Protein structure prediction crossed the frontier that gene circuits did not. It did so with a learned model class, trained on a large curated dataset, rather than a derived one. AlphaFold and then generative design did for one biological question exactly what is argued here to be missing for another. That is encouraging for the ambition and awkward for the method, because it suggests the class need not be derived from first principles at all.</p>
 
-<p><strong>Candidate three: a mechanistic model class that is also learnable.</strong> This is the bet behind the foundational virtual cell programme, and it is an attempt to take both lessons at once. Keep the class mechanistic, so that its interior is interpretable and its discrepancies are informative. Make it learnable at scale, by using the equilibrium structure of the binding layer to get well-behaved gradients. The claim being tested is that binding and catalysis is the class where those two demands are compatible.</p>
+<p><strong>Candidate three: a mechanistic model class that is also learnable.</strong> This is the bet behind the foundational virtual-cell programme, and it is an attempt to take both lessons at once. Keep the class mechanistic, so that its interior is interpretable and its discrepancies are informative. Make it learnable at scale, by using the equilibrium structure of the binding layer to get well-behaved gradients. The claim being tested is that binding and catalysis is the class where those two demands are compatible.</p>
 
 <div class="box caution">
 <span class="lbl">The bar this has to clear</span>
-<p>Section 18 is the standing challenge. Directed evolution and genome editing won the era's two Nobels by making the missing theory unnecessary. Screening beat prediction on commercial output. So a new model class does not get to justify itself by being more correct. It has to do something the other three strategies structurally cannot: extrapolate to a design no library contains, transfer a mechanism from one context to another, or state in advance that a proposed behaviour is unreachable. Those are the three things only a class that contains the system can do, and they are the deliverables to hold the programme to.</p>
+<a href="#s17">§17</a> is the standing challenge. Directed evolution and genome editing won the era's two Nobels by making the missing theory unnecessary. Screening beat prediction on commercial output. So a new model class does not get to justify itself by being more correct. It has to do something the other three strategies structurally cannot: extrapolate to a design no library contains, transfer a mechanism from one context to another, or state in advance that a proposed behaviour is unreachable. Those are the three things only a class that contains the system can do, and they are the deliverables to hold the programme to.</p>
 </div>
 
-<h2 id="s26"><span class="n">26</span>Where the narrative changes</h2>
-<p class="lede">The shape survived, and nothing in it was overturned. Here is every place the reading moved it, and the three places it came out stronger than it went in.</p>
+<h2 id="s25"><span class="n">25</span>What the record shows, and what it does not</h2>
+<p class="lede">Three findings in this history are solid enough to argue from. The proposal built on them is not yet, and it should be held to a specific deliverable.</p>
 
-<div class="tablewrap">
-<table>
-<caption>Table 3. Verdicts on the narrative's load-bearing claims. Section numbers link to the argument.</caption>
-<thead><tr><th style="width:30%">Claim</th><th style="width:12%">Verdict</th><th>What changed</th></tr></thead>
-<tbody>
-<tr><td>Three schools: physics, system, industry, with ancient roots</td><td><span class="vd ok">confirmed</span></td><td>Monod 1971 canonises both the machine framing and the chemical-invariance framing in one book (<a href="#s3">§3</a>).</td></tr>
-<tr><td>The 1970s established the universality of biochemistry</td><td><span class="vd sh">sharpened</span></td><td>The thesis was won 1828–1966. The 1970s made it <em>operational</em>: chemiosmosis settled, restriction enzymes, recombinant DNA, sequencing (<a href="#s4">§4</a>).</td></tr>
-<tr><td>Kinetic proofreading as the physics move</td><td><span class="vd ok">confirmed</span></td><td>Now with numbers: error floor exp(−ΔG/RT), 10⁻⁴ needs 5.5 kcal/mol, replication reaches 10⁻⁹. Hopfield names Michaelis kinetics as the scheme he displaces (<a href="#s5">§5</a>).</td></tr>
-<tr><td>Ninio independently and by the same argument</td><td><span class="vd sh">sharpened</span></td><td>Independent on priority (submitted Dec 1974, Salk), but his argument is probabilistic and kinetic, not thermodynamic (<a href="#s5">§5</a>).</td></tr>
-<tr><td>Demand theory: population-level mutational robustness, not energy or individual robustness</td><td><span class="vd ok">confirmed</span></td><td>Savageau 1977's exact rule quoted, and his statement of why a direct <em>lac</em>-vs-<em>mal</em> comparison cannot work. The population-dynamic model is the 1998 pair (<a href="#s6">§6</a>).</td></tr>
-<tr><td>FBA and MCA arise together from the cell-as-plant idea, late 1970s to early 1980s</td><td><span class="vd sh">sharpened</span></td><td>Two programmes, not one. MCA is 1973–74 and needs kinetics. FBA is mid-1980s (Papoutsakis 1984, Fell &amp; Small 1986) and refuses them (<a href="#s7">§7</a>).</td></tr>
-<tr><td>Chemotaxis solved end-to-end in 1999–2000</td><td><span class="vd ok">confirmed</span></td><td>With the Alon 1999 numbers: CheR varied 100-fold, adaptation time moves &gt;20-fold, precision flat (<a href="#s9">§9</a>).</td></tr>
-<tr><td>The 2000s programme took electronics and VLSI as its model</td><td><span class="vd ok">confirmed</span></td><td>From the text, not just the bibliography. Endy names design-fabrication decoupling as VLSI's transferable lesson, and Way et al. 2014 trace the framework to a 2003 DARPA study that recommended learning from the microchip industry. Endy also hedges the triad explicitly (<a href="#s10">§10</a>).</td></tr>
-<tr><td>Elowitz, Gardner–Collins and Alon's textbook all use Hill functions</td><td><span class="vd ok">confirmed</span></td><td>Repressilator: n = 2, K<sub>M</sub> = 40 monomers/cell. Toggle: bistability stated as a condition on cooperativity exponents (<a href="#s10">§10</a>).</td></tr>
-<tr><td>Maaløe-era growth law: RNA fraction linear in growth rate, at AMOLF</td><td><span class="vd sh">sharpened</span></td><td>Copenhagen, not AMOLF. <em>Salmonella</em>, not <em>E. coli</em>. Exponential in 1958. The linear law is the RNA/protein ratio, Scott et al. 2010 (<a href="#s12">§12</a>).</td></tr>
-<tr><td>The cooling ran roughly 2013–2016</td><td><span class="vd sh">sharpened</span></td><td>Three years too late for the diagnosis. Purnick &amp; Weiss measured the plateau in 2009; Kwok reported it in January 2010 and named growth burden, citing Tan, Marguet &amp; You 2009. 2012–2016 is when the quantification arrived, not the insight (<a href="#s13">§13</a>).</td></tr>
-<tr><td>Parts do not compose; standardisation did not deliver</td><td><span class="vd ok">confirmed</span></td><td>Stronger than stated. Kosuri 2013: 12,563 combinations, protein within 2× only 64% of the time, worst 5% off 13-fold, and the authors' own conclusion is to screen rather than predict (<a href="#s14">§14</a>).</td></tr>
-<tr><td>Genes turned out not to be modular</td><td><span class="vd sh">sharpened</span></td><td>The field has a name for the distinction: Way, Collins, Keasling &amp; Silver 2014 separate <em>concept modularity</em> from <em>engineering modularity</em>, and note that where biology is modular (operons, pathogenicity islands) selection put the modularity there for horizontal transfer. Genes are real units and not interfaces (<a href="#s14">§14</a>).</td></tr>
-<tr><td>The field's answer to non-composability was better models</td><td><span class="vd sh">sharpened</span></td><td>It was insulation, not prediction. The best forward-design tool of 2013 hit a twofold window ~47% of the time; Mutalik et al. reached ~93% by burying the ribosome-binding site inside a leader peptide so it cannot interact with the downstream gene (<a href="#s14">§14</a>).</td></tr>
-<tr><td>Retroactivity is trivial once you see it</td><td><span class="vd co">contested</span></td><td>Mechanism yes, significance no. It is a failure of the input–output abstraction, which no parameter estimate repairs (<a href="#s16">§16</a>).</td></tr>
-<tr><td>Whole-cell models and FBA did not become useful predictors</td><td><span class="vd sh">sharpened</span></td><td>Fairer statement: they became instruments, not design tools. Macklin 2020 finds the field's own parameters mutually inconsistent (<a href="#s17">§17</a>).</td></tr>
-<tr><td>The field fragmented into domains where the chassis does the work</td><td><span class="vd ok">confirmed</span></td><td>And sharper: the era's two Nobels, directed evolution and genome editing, both succeed by removing the need for a predictive model (<a href="#s18">§18</a>).</td></tr>
-<tr><td>Circuit engineering never scaled the way VLSI scaled</td><td><span class="vd ok">confirmed</span></td><td>Measured on the field's own metric, circuits doubled every 7 to 9 years against 1.7 for transistors and 1.4 for sequencing, and the 2016&ndash;2020 interval was no faster. The plateau was measured and published by Purnick &amp; Weiss in 2009 and is still the yardstick Cello and Shin et al. score against (<a href="#s19">§19</a>).</td></tr>
-<tr><td>Only a few genes can be inserted at all</td><td><span class="vd sh">sharpened</span></td><td>The per-cell ceiling is fourteen regulators, not three (Shin et al. 2020). Static composition goes far higher: dozens of pathway genes per strain, 473 genes in a synthetic minimal genome. The limit is on designed <em>dynamics</em>, not on gene count (<a href="#s19">§19</a>, <a href="#s18">§18</a>).</td></tr>
-<tr><td>Retroactivity and burden are both the failure of the Hill/MM excess assumption</td><td><span class="vd ok">confirmed</span></td><td>Kim &amp; Tyson 2020 state the condition and the consequences in the same terms, and name false ultrasensitivity, bistability and oscillations (<a href="#s20">§20</a>, <a href="#s21">§21</a>).</td></tr>
-<tr><td>The assumption is "substrate much greater than enzyme"</td><td><span class="vd sh">sharpened</span></td><td>The correct criterion is ε = E₀/(K<sub>M</sub> + S₀) ≪ 1. Tight affinity makes it harder, not easier, which is exactly the gene-regulation regime (<a href="#s21">§21</a>).</td></tr>
-</tbody>
-</table>
-</div>
+<p>The arc has been: three questions, three moments when a discovery let all three be asked of one object, and a third moment that produced less than the first two. Part V's answer is that a single modelling assumption failed and was never replaced. That answer is an argument, so it is worth separating what the record establishes from what the argument adds to it.</p>
 
 <div class="box key">
-<span class="lbl">The three findings worth carrying away</span>
-<p><strong>The diagnosis is in the literature, written by the practitioners.</strong> Shin et al. 2020 open by saying circuit complexity "is limited by the accuracy of mathematical models", then replace additive Hill composition with non-additive interference plus resource accounting, and gain an order of magnitude. That is not a critic's reading of the field. It is the field's own methods section.</p>
-<p><strong>The field's biggest wins came from not needing the theory.</strong> Any argument for building the missing model class has to be made against a decade in which screening and editing beat prediction, decisively, twice over. That raises the bar and it also clarifies the target: the class earns its keep only where selection cannot reach.</p>
-<p><strong>The central claim is measurable, and the field keeps the score.</strong> "Never scaled like VLSI" reads like rhetoric until you use the field's own metric. Purnick &amp; Weiss defined it in 2009, measured a plateau, and named too-simple design principles as the likely cause. Cello reported itself in 2016 as "doubling a plateau first noted in 2009". Seven to nine years per doubling against 1.7 for transistors is not a rhetorical contrast, and <a href="#s19">§19</a> is the arithmetic.</p>
+<span class="lbl">Three findings the record establishes</span>
+<p><strong>The diagnosis is in the literature, written by the practitioners.</strong> <a href="#s18">§18</a>: Shin et al. 2020 open by saying circuit complexity "is limited by the accuracy of mathematical models", then replace additive Hill composition with non-additive interference plus resource accounting, and gain an order of magnitude. That is not a critic's reading of the field. It is the field's own methods section.</p>
+<p><strong>The field's biggest wins came from not needing the theory.</strong> <a href="#s17">§17</a>: any argument for building the missing model class has to be made against a decade in which screening and editing beat prediction, decisively, twice over. That raises the bar, and it also clarifies the target. The class earns its keep only where selection cannot reach.</p>
+<p><strong>The central claim is measurable, and the field keeps the score.</strong> "Never scaled like VLSI" reads like rhetoric until you use the field's own metric. Purnick &amp; Weiss defined it in 2009, measured a plateau, and named too-simple design principles as the likely cause. Cello reported itself in 2016 as "doubling a plateau first noted in 2009". Seven to nine years per doubling against 1.7 for transistors is not a rhetorical contrast, and <a href="#s18">§18</a> is the arithmetic.</p>
 </div>
 
-<h2 id="s27"><span class="n">27</span>What the last gaps changed</h2>
-<p class="lede">All fifteen outstanding full texts arrived. Here is what reading them did, including to this document's own verdicts.</p>
+<p>Those three are why the history is worth telling as a history rather than as an opinion. Each one is a number or a sentence from a paper by someone who was building at the time, not a retrospective judgement imposed on them.</p>
 
-<p>The full annotated index of the 197 items behind this document is literature/README.md. NEEDED.md is now empty. Nothing in this document rests on an abstract, a reference list, or a second-hand quotation. Five changes were substantive enough to name.</p>
+<h3>What to distrust here</h3>
+
+<p>Three places where the evidence is thinner than the prose around it, stated so a reader can discount them appropriately.</p>
 
 <ul>
-<li><strong>One verdict reversed.</strong> <a href="#s19">§19</a> had marked "circuits never scaled" as overturned. Reading Purnick &amp; Weiss (2009) and Nielsen et al. (2016) in full showed the claim is <em>confirmed</em>, on the field's own metric, and that the field has been reporting the plateau since 2009. The document had applied the wrong test.</li>
-<li><strong>One date moved earlier.</strong> <a href="#s13">§13</a> had called 2010 a rhetorical turn. Kwok (2010) rests on a measured plateau and names the growth-burden mechanism, citing Tan, Marguet &amp; You. The diagnosis was public and empirical in January 2010.</li>
-<li><strong>One attribution corrected.</strong> The "hype phase" line is Fussenegger's, quoted by Kwok, not Kwok's own. §13 said otherwise.</li>
-<li><strong>One assumption found stated verbatim.</strong> Endy (2005) defines the chassis as supplying resources "independent of the details of the system", and sets a target of 1,000 orthogonal transcription factors. <a href="#s15">§15</a> and <a href="#s19">§19</a> are now measurements against the manifesto's own words rather than against a reconstruction of them.</li>
-<li><strong>One number that reframes §14.</strong> Mutalik et al. report that the best forward-design tool of 2013 gave "an ~47% chance" of hitting a twofold window, and that their own 93% came from a physical insulating architecture. The field's fix for non-composability was insulation, not prediction.</li>
+<li><strong>Figure 7's circuit series is a lower bound, not a census.</strong> It tracks the largest single-cell dynamical circuit I could source. A larger one published since 2020 would move the last point, though a per-cell count would have to roughly double to change the conclusion about the slope. The comparison series, transistor counts and instrument read lengths and synthesis milestones, are public engineering records rather than papers, and the caption says so.</li>
+<li><strong>Figure 6 is an argument, not a measurement.</strong> Both axes are qualitative and the placements are the claim of <a href="#s17">§17</a> rather than data. It earns its place by making the pattern legible, not by establishing it.</li>
+<li><strong>The four strategies of <a href="#s22">§22</a> are not mutually exclusive, and the fourth is the least proven.</strong> Patching rate laws, finding phenomenological laws and screening are all in production use with track records. Changing the model class has a thesis, a preprint and a programme. Comparing them as equals overstates the fourth.</li>
 </ul>
 
-<p>Two things a reader should still treat with care. First, Figure 7's circuit series tracks the largest single-cell dynamical circuit I could source from the literature in hand, and a larger one published since 2020 would change the last point, though a per-cell count would have to roughly double to change the slope conclusion. Second, the comparison series in Figure 7 are public engineering records rather than papers in literature/, and are labelled as such in the caption.</p>
+<h3>The calculation that would settle it</h3>
 
-<p>What is genuinely missing is not a paper. It is the calculation named in <a href="#s26">§26</a>: a worked demonstration that the binding-and-catalysis class predicts a composition failure that a Hill-function model gets wrong, on a circuit someone has already measured.</p>
+<p>What is missing from the case for <a href="#s23">§23</a> is not a paper. It is a calculation: a worked demonstration that the binding-and-catalysis class predicts a composition failure a Hill-function model gets wrong, on a circuit someone has already built and measured. Retroactivity and burden are both available as test cases, because both are documented failures with published numbers, and both are supposed to fall out of <span class="m">L x = q</span> rather than being fitted.</p>
+
+<p>Until that exists, Parts V and VI are a diagnosis with a proposed treatment and no trial. The three deliverables named at the end of <a href="#s24">§24</a> are the terms on which the treatment should be judged: extrapolate to a design no library contains, transfer a mechanism from one context to another, or state in advance that a proposed behaviour is unreachable. Nothing in the history above obliges anyone to believe those are achievable. It only shows why they are the right things to ask for.</p>
+
+<div class="box note">
+<span class="lbl">The one-paragraph version</span>
+<p>Physics, system and industry each ask a different question of life, and each is answered with whatever the era can build. Three times a discovery let all three ask their question of the same object. The first time gave proofreading, demand theory and the metabolic plant. The second gave chemotaxis end to end, genome-scale metabolism and the engineered circuit. The third did not arrive, and the reason is not that biology turned out to be too complicated. It is that the model class the field adopted in 2000, Hill functions composed additively, assumes a pool in excess that gene circuits do not have. Retroactivity and burden are that one assumption failing twice. Everything else follows.</p>
+</div>
 
 <hr>
 
 <h2 id="refs">References</h2>
-<p class="small">Full texts are in literature/. <span class="pdf">PDF</span> is a verified full text. <span class="pdf txt">TXT</span> is a verified full text obtained as complete text rather than PDF, from the PMC open-data archive. Every one of the 107 entries below is a verified full text: as of this revision NEEDED.md is empty. Ordered by the section that first uses them.</p>
+<p class="small">Every one of the 107 entries below was read in full. <span class="pdf">PDF</span> marks a verified full text. <span class="pdf txt">TXT</span> marks one obtained as complete text rather than PDF, from the PMC open-data archive. Ordered by the section that first uses them.</p>
 
 <div class="refs">
 <h3>Part I · the frame</h3>
@@ -1645,7 +1590,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 <li>Brophy, J.A.N. &amp; Voigt, C.A. (2014) Principles of genetic circuit design. <span class="venue">Nat Methods 11:508.</span> <span class="pdf">PDF</span></li>
 <li>Andrianantoandro, E., Basu, S., Karig, D.K. &amp; Weiss, R. (2006) Synthetic biology: new engineering rules for an emerging discipline. <span class="venue">Mol Syst Biol 2:2006.0028.</span> <span class="pdf">PDF</span></li>
 <li>Kitano, H. (2002) Systems biology: a brief overview. <span class="venue">Science 295:1662.</span> <span class="pdf">PDF</span></li>
-<li>Purnick, P.E.M. &amp; Weiss, R. (2009) The second wave of synthetic biology: from modules to systems. <span class="venue">Nat Rev Mol Cell Biol 10:410.</span> <span class="pdf">PDF</span> <span class="venue">The measured plateau, §19.</span></li>
+<li>Purnick, P.E.M. &amp; Weiss, R. (2009) The second wave of synthetic biology: from modules to systems. <span class="venue">Nat Rev Mol Cell Biol 10:410.</span> <span class="pdf">PDF</span> <span class="venue">The measured plateau, §18.</span></li>
 <li>Alon, U. (2019) <em>An Introduction to Systems Biology</em>, 2nd ed. <span class="venue">CRC Press.</span> <span class="pdf">PDF</span></li>
 <li>Edwards, J.S. &amp; Palsson, B.O. (2000) The <em>E. coli</em> MG1655 in silico metabolic genotype. <span class="venue">PNAS 97:5528.</span> <span class="pdf">PDF</span></li>
 <li>Orth, J.D., Thiele, I. &amp; Palsson, B.O. (2010) What is flux balance analysis? <span class="venue">Nat Biotechnol 28:245.</span> <span class="pdf">PDF</span></li>
@@ -1659,7 +1604,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 
 <h3>Part IV · the cooling</h3>
 <ol start="43">
-<li>Kwok, R. (2010) Five hard truths for synthetic biology. <span class="venue">Nature 463:288.</span> <span class="pdf">PDF</span> <span class="venue">The five truths are tabulated in §13.</span></li>
+<li>Kwok, R. (2010) Five hard truths for synthetic biology. <span class="venue">Nature 463:288.</span> <span class="pdf">PDF</span> <span class="venue">The five truths are tabulated in §12.</span></li>
 <li>Cameron, D.E., Bashor, C.J. &amp; Collins, J.J. (2014) A brief history of synthetic biology. <span class="venue">Nat Rev Microbiol 12:381.</span> <span class="pdf">PDF</span></li>
 <li>Way, J.C., Collins, J.J., Keasling, J.D. &amp; Silver, P.A. (2014) Integrating biological redesign: where synthetic biology came from and where it needs to go. <span class="venue">Cell 157:151.</span> <span class="pdf">PDF</span></li>
 <li>Bashor, C.J. &amp; Collins, J.J. (2018) Understanding biological regulation through synthetic biology. <span class="venue">Annu Rev Biophys 47:399.</span> <span class="pdf">PDF</span></li>
@@ -1731,7 +1676,7 @@ svg .tiny{font-size:9.5px;fill:var(--muted)}
 </ol>
 </div>
 
-<p class="small" style="margin-top:2.4rem">Companion documents: <a href="/essays/biomachine-tutorial/">The Biomachine Perspective</a> develops the reaction-order and dominance theory referenced in §24. synbio-history-idea.md is the design doc and preserves the founding prompt verbatim. literature/README.md is the annotated index of all 180 sources. literature/NEEDED.md lists what could not be obtained, priority-ranked.</p>
+<p class="small" style="margin-top:2.4rem">Companion essay: <a href="/essays/biomachine-tutorial/">The Biomachine Perspective</a> develops the reaction-order and dominance theory referenced in §23.</p>
 
 </main>
 </div>
