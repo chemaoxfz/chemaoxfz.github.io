@@ -119,6 +119,19 @@ sub,sup{font-size:.7em;line-height:0}
 .box.quote .lbl{color:var(--plum)}
 .box.quote blockquote{margin:0 0 .5rem;font-style:italic}
 .box.quote cite{font-family:var(--sans);font-size:.78rem;font-style:normal;color:var(--muted)}
+.mtoc{font-family:var(--serif)}
+.mtoc .row{display:grid;grid-template-columns:1fr 9rem;gap:.35rem 1.1rem;padding:.6rem 0;border-top:1px solid var(--rule)}
+.mtoc .row:first-of-type{border-top:0;padding-top:.2rem}
+.mtoc .ch{grid-column:1;font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.mtoc .ch .rn{color:var(--leader);display:inline-block;min-width:2.6em}
+.mtoc .pg{float:right;color:var(--leader);font-weight:400;letter-spacing:0;font-variant-numeric:tabular-nums}
+.mtoc .kw{grid-column:1;color:var(--muted);font-size:.86rem;line-height:1.5;margin-top:.25rem}
+.mtoc .kw .sep{color:var(--leader)}
+.mtoc .kw mark{background:none;color:var(--rose);font-weight:600}
+.mtoc .gl{grid-column:2;grid-row:1 / span 2;font-family:var(--sans);font-size:.72rem;line-height:1.4;color:var(--plum);align-self:start;padding-top:.1rem}
+.mtoc .gl a{color:var(--plum);text-decoration-color:var(--plum)}
+.mtoc .row.dim .ch,.mtoc .row.dim .kw{opacity:.55}
+@media(max-width:820px){.mtoc .row{grid-template-columns:1fr}.mtoc .gl{grid-row:auto;padding-top:.3rem}}
 
 /* ---------- figures ---------- */
 figure{margin:2rem 0;padding:0}
@@ -354,6 +367,8 @@ svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linej
 <div class="box note">
 <span class="lbl">How this history is sourced</span>
 <p>Every claim below that carries weight rests on a full text that was read, not on an abstract, a reference list, or a second-hand quotation. Papers are named in place and quoted where the wording matters, and the 107 entries in the reference list are all full texts.</p>
+<p>A companion document, <a href="/essays/structure-and-parameters/"><em>Structure is sparsity</em></a>, takes up the question <a href="#s23">&#167;23</a> leaves open: what a genome actually supplies, what it cannot, and why the structure of a model and its parameters are one object.</p>
+
 <p>Where the field's own memory of an episode is wrong about a date, a place or an attribution, the correction is made in the text at the point of use. Those corrections are usually the interesting part, so they are not tidied into footnotes. Three of them change the argument rather than just the details: <a href="#s11">§11</a> on where the growth laws came from, <a href="#s12">§12</a> on when the cooling started, and <a href="#s18">§18</a> on what the scaling failure actually measures.</p>
 </div>
 
@@ -364,13 +379,65 @@ svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linej
 
 <p>It is tempting to read this as a series of mistakes. It is better read as a series of <em>instruments</em>. Each machine metaphor imports a whole analytical apparatus along with the image, and the apparatus is what does the work. When Cannon named homeostasis and Wiener named cybernetics, the payload was not the word but the mathematics of negative feedback. The cost is that you also import the metaphor's blind spots, and those are invisible from inside. That is precisely the trap Part IV is about.</p>
 
-<div class="box quote">
-<span class="lbl">1971, both ideas in one book</span>
-<blockquote>Chapter titles: "self-constructing machines … self-reproducing machines … strange properties: invariance and teleonomy." And later: "the chemical invariants … DNA as the fundamental invariant … the translation of the code."</blockquote>
-<cite>Jacques Monod, <em>Chance and Necessity</em>, 1971 <span class="pdf">PDF</span></cite>
+<div class="box hist">
+<span class="lbl">1971, both ideas in one book: the contents page of <em>Chance and Necessity</em></span>
+<div class="mtoc">
+<div class="row dim">
+<div class="ch"><span class="rn"></span>Preface<span class="pg">xi</span></div>
+</div>
+<div class="row">
+<div class="ch"><span class="rn">I</span>Of Strange Objects<span class="pg">3</span></div>
+<div class="kw">the natural and the artificial <span class="sep">&#8230;</span> difficulties of a space program <span class="sep">&#8230;</span> objects endowed with a purpose <span class="sep">&#8230;</span> <mark>self-constructing machines</mark> <span class="sep">&#8230;</span> <mark>self-reproducing machines</mark> <span class="sep">&#8230;</span> strange properties: <mark>invariance and teleonomy</mark> <span class="sep">&#8230;</span> the &#8220;paradox&#8221; of invariance <span class="sep">&#8230;</span> teleonomy and the principle of objectivity</div>
+<div class="gl">The machine thesis, stated as a thesis. <a href="#s2">&#167;2</a>, <a href="#s3">&#167;3</a></div>
+</div>
+<div class="row dim">
+<div class="ch"><span class="rn">II</span>Vitalisms and Animisms<span class="pg">23</span></div>
+<div class="kw">the priority relationship between invariance and teleonomy: a fundamental dilemma <span class="sep">&#8230;</span> metaphysical vitalism <span class="sep">&#8230;</span> scientistic vitalism <span class="sep">&#8230;</span> the animist projection and the &#8220;old covenant&#8221; <span class="sep">&#8230;</span> scientistic progressism <span class="sep">&#8230;</span> the animist projection in dialectical materialism <span class="sep">&#8230;</span> the need for a critical epistemology <span class="sep">&#8230;</span> the anthropocentric illusion <span class="sep">&#8230;</span> the biosphere a unique occurrence nondeducible from first principles</div>
+</div>
+<div class="row">
+<div class="ch"><span class="rn">III</span>Maxwell&#8217;s Demons<span class="pg">45</span></div>
+<div class="kw">proteins as molecular agents of structural and functional teleonomy <span class="sep">&#8230;</span> <mark>the enzyme-proteins as specific catalysts</mark> <span class="sep">&#8230;</span> covalent and noncovalent bonds <span class="sep">&#8230;</span> <mark>the concept of the noncovalent stereospecific complex</mark> <span class="sep">&#8230;</span> Maxwell&#8217;s demon</div>
+<div class="gl">Binding and catalysis, split, in 1971. <a href="#s23">&#167;23</a></div>
+</div>
+<div class="row">
+<div class="ch"><span class="rn">IV</span>Microscopic Cybernetics<span class="pg">62</span></div>
+<div class="kw">functional coherence of cellular machinery <span class="sep">&#8230;</span> regulatory proteins and the logic of regulations <span class="sep">&#8230;</span> mechanism of allosteric interactions <span class="sep">&#8230;</span> regulation of the synthesis of enzymes <span class="sep">&#8230;</span> <mark>the concept of gratuity</mark> <span class="sep">&#8230;</span> &#8220;holism&#8221; vs. &#8220;reductionism&#8221;</div>
+<div class="gl">Gratuity is the licence to swap parts. <a href="#s13">&#167;13</a></div>
+</div>
+<div class="row">
+<div class="ch"><span class="rn">V</span>Molecular Ontogenesis<span class="pg">81</span></div>
+<div class="kw">the spontaneous association of subunits in oligomeric proteins <span class="sep">&#8230;</span> the spontaneous structuration of complex particles <span class="sep">&#8230;</span> microscopic morphogenesis and macroscopic morphogenesis <span class="sep">&#8230;</span> primary and globular structures of proteins <span class="sep">&#8230;</span> formation of globular structures <span class="sep">&#8230;</span> <mark>the false paradox of genetic enrichment</mark> <span class="sep">&#8230;</span> the ultima ratio of teleonomic structures <span class="sep">&#8230;</span> the interpretation of the message</div>
+<div class="gl">Is the structure in the sequence? <a href="#s7">&#167;7</a></div>
+</div>
+<div class="row">
+<div class="ch"><span class="rn">VI</span>Invariance and Perturbations<span class="pg">99</span></div>
+<div class="kw">Plato and Heraclitus <span class="sep">&#8230;</span> anatomical invariants <span class="sep">&#8230;</span> the chemical invariants <span class="sep">&#8230;</span> <mark>DNA as the fundamental invariant</mark> <span class="sep">&#8230;</span> the translation of the code <span class="sep">&#8230;</span> the irreversibility of translation <span class="sep">&#8230;</span> microscopic perturbations <span class="sep">&#8230;</span> operational uncertainty and essential uncertainty <span class="sep">&#8230;</span> evolution: absolute creation and not revelation</div>
+<div class="gl">The chemistry school&#8217;s canon. <a href="#s3">&#167;3</a></div>
+</div>
+<div class="row dim">
+<div class="ch"><span class="rn">VII</span>Evolution<span class="pg">118</span></div>
+<div class="kw">chance and necessity <span class="sep">&#8230;</span> the rich resources of chance <span class="sep">&#8230;</span> the &#8220;paradox&#8221; of species stability <span class="sep">&#8230;</span> irreversibility of evolution and the second law <span class="sep">&#8230;</span> origin of antibodies <span class="sep">&#8230;</span> behavior orients the pressures of selection <span class="sep">&#8230;</span> language and the evolution of man <span class="sep">&#8230;</span> the acquisition of language programmed in the epigenetic development of the brain</div>
+</div>
+<div class="row dim">
+<div class="ch"><span class="rn">VIII</span>The Frontiers<span class="pg">138</span></div>
+<div class="kw">the present frontiers of knowledge in the field of biology <span class="sep">&#8230;</span> the problem of life&#8217;s origins <span class="sep">&#8230;</span> the riddle of the code&#8217;s origins <span class="sep">&#8230;</span> the other frontier: the central nervous system <span class="sep">&#8230;</span> the analysis of sense impressions <span class="sep">&#8230;</span> empiricism and innateness <span class="sep">&#8230;</span> the function of simulation <span class="sep">&#8230;</span> the dualist illusion and the presence of the spirit</div>
+</div>
+<div class="row dim">
+<div class="ch"><span class="rn">IX</span>The Kingdom and the Darkness<span class="pg">160</span></div>
+<div class="kw">the pressures of selection in the evolution of man <span class="sep">&#8230;</span> dangers of genetic degradation in modern societies <span class="sep">&#8230;</span> the selection of ideas <span class="sep">&#8230;</span> the need for an explanation <span class="sep">&#8230;</span> mythic and metaphysical ontogenies <span class="sep">&#8230;</span> the breakdown of the old covenant and the modern soul&#8217;s distress <span class="sep">&#8230;</span> values and knowledge <span class="sep">&#8230;</span> the ethic of knowledge <span class="sep">&#8230;</span> the ethic of knowledge and the socialist ideal</div>
+</div>
+<div class="row dim">
+<div class="ch"><span class="rn"></span>Appendixes<span class="pg">181</span></div>
+<div class="kw">1. structure of proteins <span class="sep">&#8230;</span> 2. nucleic acids <span class="sep">&#8230;</span> 3. the genetic code <span class="sep">&#8230;</span> 4. note concerning the second law of thermodynamics</div>
+</div>
+</div>
+<p style="margin-top:1rem">Chapter titles and their keyword strings, as Monod printed them, pages vii to ix. Emphasis added. The nine chapters are one continuous argument, and the first six of them are the argument this document is about.</p>
+<cite style="font-family:var(--sans);font-size:.78rem;color:var(--muted)">Jacques Monod, <em>Chance and Necessity: An Essay on the Natural Philosophy of Modern Biology</em>, Knopf, 1971 (French original 1970) <span class="pdf">PDF</span></cite>
 </div>
 
-<p>That is worth pausing on. The two ideas this whole history turns on, that life is a machine and that life is chemistry all the way down, were canonised together, in print, by one of the architects of molecular biology, in 1970 and 1971. Monod's table of contents is the outline of the next fifty years.</p>
+<p>That is worth pausing on. The two ideas this whole history turns on, that life is a machine and that life is chemistry all the way down, were canonised together, in print, by one of the architects of molecular biology, in 1970 and 1971. Chapter I is the machine thesis. Chapter VI is the chemistry thesis. They sit in the same book, by the same author, as two halves of one argument.</p>
+
+<p>Two further entries are worth marking now, because they come back later and they come back as problems. Chapter III splits protein function into exactly two operations, <em>specific catalysis</em> and the <em>noncovalent stereospecific complex</em>. That is catalysis and binding, named as the two primitives, in 1971, and it is the split <a href="#s23">&#167;23</a> builds a model class out of. And Chapter IV's “concept of gratuity” is the claim that the chemistry of a regulatory signal bears no necessary relation to the chemistry of the reaction it regulates. Gratuity is what licenses part swapping. It is the reason a repressor from one organism can be pointed at a promoter from another, and therefore the reason anyone believed a parts registry could work. <a href="#s13">&#167;13</a> is about what gratuity does not buy you.</p>
 
 <p>The physics question has the same borrowing pattern with a different flavour. Its answers are attempts to name what kind of object life is: a form, a flow, a vital fluid, and then, once statistical mechanics existed, an ordered structure that resists the second law. Schrödinger's aperiodic crystal is the famous instance. What matters is the move, not the answer: pick a class of physical object, and see what follows from life belonging to it.</p>
 
@@ -568,7 +635,11 @@ svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linej
 
 <div class="box caution">
 <span class="lbl">What the school lost by not doing experiments</span>
-<p>Savageau's later work moved toward modelling and simulation and toward the power-law (S-system) formalism rather than toward experiments the theory implied. That is a real cost. Once molecular characterisation became routine in the 1980s, a theory that only postdicts operon census data has no remaining leverage. The place where a design rule still buys something is at the frontier of what can be built, because there the space of options is too large to search. One concrete form that could take: cycle antibiotic demand high and low, alternately introducing activator- and repressor-architecture competitor strains, and drive resistance out of a population by making each architecture accumulate the mutations its own demand regime tolerates. The rule stops being a postdiction about operons and becomes a design.</p>
+<p>The direction Savageau's later work took is worth stating correctly, because it is usually read as a retreat into simulation and it was not. Biochemical systems theory begins in 1969 from a diagnosis about measurement. Computers had just made large reaction networks simulable in principle, and Garfinkel and others expected pathway simulation to follow directly. Savageau's objection was that nobody knew which functions to put in. You could default to Michaelis-Menten or Hill forms, but then every constant had to be supplied, and Schulz had shown that an honest rate law for even a two-substrate two-product reaction becomes unmanageable once the intermediate complexes are tracked. Heinrich and Rapoport added the complementary objection from the other side: a large simulation makes it hard to tell which components are responsible for a systemic response. Voit's review of the field records both as the founding motivation.</p>
+
+<p>The power-law formalism is the answer to that diagnosis. Approximate every process by a product of powers, exact at a chosen operating point, and steady states and sensitivities become linear algebra in logarithmic coordinates. Whether it was the right answer is arguable. That it answered a real problem is not, and the problem is the one this essay keeps arriving at from other directions: the constants are the expensive half, and they do not arrive with the sequence. The companion document takes up what follows if the structure and the constants are in fact one object.</p>
+
+<p>What the school did lose is the experiments. Savageau's later work moved toward modelling and formalism rather than toward the tests the demand theory implied. That is a real cost. Once molecular characterisation became routine in the 1980s, a theory that only postdicts operon census data has no remaining leverage. The place where a design rule still buys something is at the frontier of what can be built, because there the space of options is too large to search. One concrete form that could take: cycle antibiotic demand high and low, alternately introducing activator- and repressor-architecture competitor strains, and drive resistance out of a population by making each architecture accumulate the mutations its own demand regime tolerates. The rule stops being a postdiction about operons and becomes a design.</p>
 </div>
 
 <h2 id="s6"><span class="n">6</span>Industry: the cell as a chemical plant</h2>
@@ -600,7 +671,7 @@ svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linej
 
 <p>A sequenced, annotated genome gives you three things. An enumeration of the components. For metabolism, the stoichiometry of nearly every reaction, because gene annotation names the enzyme and the enzyme fixes the reaction. And a coordinate system in which to place measurements, which is what made the omics era possible.</p>
 
-<p>What it does not give you is any rate law, any binding constant, any copy number, or any indication of which reactions matter under which condition. The genome delivers the structural half of Bailey's split and none of the parametric half. Every programme in this part is an attempt to get by on the structural half, and the differences between them are differences in how they handle that gap.</p>
+<p>What it does not give you is any rate law, any binding constant, any copy number, or any indication of which reactions matter under which condition. The genome delivers the structural half of Bailey's split and none of the parametric half. It does not deliver all of the structural half either, and the companion essay <a href="/essays/structure-and-parameters/"><em>Structure is sparsity</em></a> measures how much: the first genome-scale <em>E. coli</em> network needed 46 entries from the biochemical literature, sixteen of which name an enzyme activity with no gene at all, and the gene-less share of the network was still 4.5% in 2017. Every programme in this part is an attempt to get by on the structural half, and the differences between them are differences in how they handle that gap.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 880 340" role="img" aria-label="Timeline of the three schools across three shocks from 1950 to 2030">
@@ -966,7 +1037,7 @@ svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linej
 
 <div class="box quote">
 <span class="lbl">What a whole-cell model is really good for</span>
-<blockquote>"… the total output of the ribosomes and RNA polymerases described by the data are not sufficient for a cell to reproduce measured doubling times, that measured metabolic parameters are neither fully compatible with each other nor with overall growth, and that essential proteins are absent during the cell cycle — and the cell is robust to this absence. After correcting for these inconsistencies, the model is capable of validatable predictions compared with previously withheld data."</blockquote>
+<blockquote>"… the total output of the ribosomes and RNA polymerases described by the data are not sufficient for a cell to reproduce measured doubling times, that measured metabolic parameters are neither fully compatible with each other nor with overall growth, and that essential proteins are absent during the cell cycle, and the cell is robust to this absence. After correcting for these inconsistencies, the model is capable of validatable predictions compared with previously withheld data."</blockquote>
 <cite>Macklin et al. 2020 <span class="pdf">PDF</span></cite>
 </div>
 
@@ -1482,7 +1553,7 @@ svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linej
 
 <p><strong>It contains the systems it needs to.</strong> Binding networks are universal in the relevant sense: they can approximate any positive continuous function arbitrarily well. So restricting from all chemistry to binding-plus-catalysis loses no expressive power over the regulatory functions a cell can implement.</p>
 
-<p><strong>Its architecture is fixed and knowable.</strong> The catalysis matrix <span class="m">S</span> is what genome annotation and metabolic databases already give you. That is the structural information the genome supplies for free, in Bailey's sense. What is unknown is the binding network <span class="m">L</span>, and that is where the learning problem lives.</p>
+<p><strong>Its architecture is fixed and knowable.</strong> The catalysis matrix <span class="m">S</span> is what genome annotation and metabolic databases already give you. That is the structural information the genome supplies in Bailey's sense, though not for free: <a href="/essays/structure-and-parameters/"><em>Structure is sparsity</em></a> argues that a genome-scale reconstruction is a gap-filled fit rather than a derivation, so <span class="m">S</span> is a strong prior rather than a given. What is more clearly unknown is the binding network <span class="m">L</span>, and that is where the learning problem lives.</p>
 
 <p><strong>The unknown part is at equilibrium, which makes it tractable.</strong> Binding is fast, so the binding layer is an equilibrium problem, not a stiff dynamical one. This is the same structural gift that made equilibrium statistical-mechanics models the starting point for machine learning, and it means gradients through the binding layer are well behaved. Mechanism identification then reduces to <em>sparsity in the binding affinities</em>: an affinity of zero means that complex does not form.</p>
 
@@ -1504,7 +1575,7 @@ svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linej
 
 <div class="box caution">
 <span class="lbl">The bar this has to clear</span>
-<a href="#s17">§17</a> is the standing challenge. Directed evolution and genome editing won the era's two Nobels by making the missing theory unnecessary. Screening beat prediction on commercial output. So a new model class does not get to justify itself by being more correct. It has to do something the other three strategies structurally cannot: extrapolate to a design no library contains, transfer a mechanism from one context to another, or state in advance that a proposed behaviour is unreachable. Those are the three things only a class that contains the system can do, and they are the deliverables to hold the programme to.</p>
+<p><a href="#s17">§17</a> is the standing challenge. Directed evolution and genome editing won the era's two Nobels by making the missing theory unnecessary. Screening beat prediction on commercial output. So a new model class does not get to justify itself by being more correct. It has to do something the other three strategies structurally cannot: extrapolate to a design no library contains, transfer a mechanism from one context to another, or state in advance that a proposed behaviour is unreachable. Those are the three things only a class that contains the system can do, and they are the deliverables to hold the programme to.</p>
 </div>
 
 <h2 id="s25"><span class="n">25</span>What the record shows, and what it does not</h2>
@@ -1565,6 +1636,7 @@ svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3px;stroke-linej
 <li>Savageau, M.A. (1977) Design of molecular control mechanisms and the demand for gene expression. <span class="venue">PNAS 74:5647.</span> <span class="pdf">PDF</span></li>
 <li>Savageau, M.A. (1998) Demand theory of gene regulation, I and II. <span class="venue">Genetics 149:1665, 1677.</span> <span class="pdf">I</span> <span class="pdf">II</span></li>
 <li>Savageau, M.A. (1976) <em>Biochemical Systems Analysis</em>. <span class="venue">Addison-Wesley.</span> <span class="pdf">PDF</span></li>
+<li>Voit, E.O. (2013) Biochemical systems theory: a review. <span class="venue">ISRN Biomath 2013:897658.</span> <span class="pdf">PDF</span></li>
 <li>Shinar, G., Dekel, E., Tlusty, T. &amp; Alon, U. (2006) Rules for biological regulation based on error minimization. <span class="venue">PNAS 103:3999.</span> <span class="pdf">PDF</span></li>
 <li>Gerland, U. &amp; Hwa, T. (2009) Evolutionary selection between alternative modes of gene regulation. <span class="venue">PNAS / J Mol Evol.</span> <span class="pdf">PDF</span></li>
 <li>Sasson, V. et al. (2012) Mode of regulation and the insulation of bacterial gene expression. <span class="venue">Mol Syst Biol / Mol Cell.</span> <span class="pdf">PDF</span></li>
