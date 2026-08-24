@@ -49,17 +49,6 @@ if you want to run it yourself.</p>
   </div>
 </div>
 
-<div class="card mb-3">
-  <div class="card-body">
-    <h3 class="h5 card-title"><a href="/essays/structure-and-parameters/">Structure is Sparsity</a></h3>
-    <p class="text-muted mb-2">What is actually obtainable about a cell, from what kind of data</p>
-    <p>A biochemical model's structure is the support of its parameter vector, so the line between
-    structure and parameters is a threshold rather than a kind. Bailey's 2001 split into qualitative
-    and quantitative information does not survive putting binding into the network. Twenty-eight
-    sections, seven figures, 83 sources read in full.</p>
-  </div>
-</div>
-
 <p class="text-muted"><small>Each essay links into a local <code>literature/</code> archive of full-text
 PDFs. That archive is not redistributed here, so those links are inert on the web. Every citation is
 complete enough to find the source.</small></p>

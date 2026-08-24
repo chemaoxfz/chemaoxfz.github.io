@@ -98,6 +98,23 @@ nav_order: 7
 
 <div class="teaching-courses">
   <section class="teaching-course">
+    <h2>PEBBLE BioFusion · Summer research camp</h2>
+    <p>Westlake University, Hangzhou</p>
+
+    <div class="course-year">
+      <div class="course-term">Summer 2026</div>
+      <div>
+        <p>Eleven days for undergraduates and first-year PhD students in quantitative and systems
+        biology, run AI-native throughout. Week one opens five live research questions through
+        talks and hands-on studios. Week two hands the hours over to the students, who each
+        carry a question of their own to a manuscript. Thirty-six sessions, fourteen tutorials, and
+        sixteen student manuscripts by forty-five authors.</p>
+        <a class="course-link" href="https://pebble-biofusion.github.io/">Schedule, tutorials, research-with-AI method, and student work →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="teaching-course">
     <h2>CST 5020 · Convex Optimization</h2>
     <p>Westlake University, Hangzhou</p>
 
