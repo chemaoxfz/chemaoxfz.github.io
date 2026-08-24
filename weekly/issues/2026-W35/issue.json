@@ -1,0 +1,225 @@
+{
+  "end_date": "2026-08-24",
+  "papers": [
+    {
+      "authors": [
+        "YP Tseng",
+        "A Letten",
+        "J Engelstaedter"
+      ],
+      "category": "core",
+      "key_finding": "Metabolic switching generates growth responses distinct from specialists, enabling coexistence under intermediate fluctuation regimes, with faster, more responsive switching enhancing competitive ability.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/08/19/2026.08.19.745668.full.pdf",
+      "published": "2026-08-19",
+      "title": "Metabolic switching promotes microbial coexistence under fluctuating resources",
+      "tldr": "Simulations of consumer-resource models show that microbes switching between respiratory and fermentative metabolism can coexist with specialists under intermediate resource fluctuations.",
+      "topics": [
+        "Dynamic metabolism \u0026 engineering",
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://www.biorxiv.org/content/10.64898/2026.08.19.745668.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "Directly informs Fangzhou's work on dynamic metabolism and microbial community ecology by showing how metabolic flexibility (overflow metabolism) creates temporal niches for coexistence."
+    },
+    {
+      "authors": [
+        "Haimeng Li",
+        "Miao Qi",
+        "Xin Wang",
+        "Honglei Liu",
+        "Qiuying Yang",
+        "Hui Chen",
+        "Rui Jiang",
+        "Ting Chen",
+        "Yuqing Yang",
+        "Congmin Zhu"
+      ],
+      "category": "explorer",
+      "key_finding": "ESMARG outperformed alignment-based and deep learning tools, identifying 145 ARGs with abundance peaking in summer, and structural equation modeling linked ARG abundance to cyanobacterial abundance and bacterial replication-and-repair functions.",
+      "pdf_url": "https://www.sciencedirect.com/science/article/pii/S2589914726001313/pdf",
+      "published": "2026-08-01",
+      "title": "Protein-language-model-based antibiotic resistance gene prediction and resistomes mining in cyanobacterial blooms",
+      "tldr": "A protein language model (ESMARG) predicted antibiotic resistance genes in cyanobacterial bloom metagenomes with high precision, revealing seasonal ARG dynamics and links to microbial community structure.",
+      "topics": [
+        "Biology-enabling generative methods",
+        "Microbial physiology, growth \u0026 division",
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1016/j.wroa.2026.100604",
+      "venue": "Water Research X",
+      "why_relevant": "Showcases a biology-enabling generative method (protein language model) applied to microbial physiology and community dynamics, aligning with Fangzhou's interest in data-driven and generative approaches for biological systems."
+    },
+    {
+      "authors": [
+        "Youshun Jin",
+        "Yanyan Wang",
+        "Hafiz Muhammad Hamza Rasool",
+        "Xiaoqiang Zhang",
+        "Duojie Caidan",
+        "Kastai Nurdaly",
+        "Jingang Duan",
+        "Yunlong Sun",
+        "Shuyu Wang",
+        "Zhaocai Li",
+        "Xiaowei Gong",
+        "Qiwei Chen",
+        "Tao Ran",
+        "Jizhang Zhou"
+      ],
+      "category": "core",
+      "key_finding": "Even \u003c1% of administered phages in fecal input restructured microbial communities, with Psychrobacter enrichment linked to resistance-related gene dynamics.",
+      "pdf_url": "",
+      "published": "2026-08-17",
+      "title": "Low-level phage residues in manure are associated with shifts in microbial communities and resistance-related profiles",
+      "tldr": "Low-level phage residues in chicken manure were associated with reduced bacterial diversity, increased antibiotic resistance genes and mobile genetic elements in manure microcosms.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://www.sciencedirect.com/science/article/pii/S0160412026004241",
+      "venue": "Environment International",
+      "why_relevant": "Relevant to Fangzhou's interest in microbial communities and antibiotic resistance, as it shows how phage inputs (relevant to phage therapy) can reshape community composition and resistance profiles."
+    },
+    {
+      "authors": [
+        "Tarekegn Limore Binchebo",
+        "Satyanarayana Narra",
+        "Venkata Ramayya Ancha",
+        "Solomon Kebede Asefa",
+        "Teka Tesfaye Mengesha",
+        "Edo Begna Jiru",
+        "Mona-Maria Narra"
+      ],
+      "category": "core",
+      "key_finding": "Carbohydrate substrates are ideal, but lignocellulosic biomass requires pretreatment; process stability is influenced by hydrogen partial pressure, byproducts, and competition from methanogens and lactic acid bacteria.",
+      "pdf_url": "https://www.frontiersin.org/journals/energy-research/articles/10.3389/fenrg.2026.1819152/pdf",
+      "published": "2026-08-20",
+      "title": "Recent developments in biohydrogen production through dark fermentation of biomass waste: feedstocks, microbial population dynamics, and system integration",
+      "tldr": "A review of dark fermentation for biohydrogen production covering feedstock characteristics, microbial community dynamics, and system integration.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.3389/fenrg.2026.1819152",
+      "venue": "Frontiers in Energy Research",
+      "why_relevant": "Connects to Fangzhou's interest in microbial population dynamics and fermentation ecology, providing an overview of community-level factors in a biotechnological context."
+    },
+    {
+      "authors": [
+        "Charlie C Luchen",
+        "Marlon Banda",
+        "Jay Sikalima",
+        "Innocent Mwape",
+        "Dickson Sandala",
+        "Kennedy Chibesa",
+        "Mapeesho Kamayani",
+        "Mike Masona",
+        "Ben Katowa",
+        "Keith Kabengele",
+        "Lugard Sichalwe",
+        "Clement Phiri",
+        "Noah Hull",
+        "Chipo Mambo",
+        "Ephraim Chandela",
+        "Mwelwa Chibuye",
+        "Precious Simushi",
+        "Suwilanji Silwamba",
+        "Chilufya Mulenga",
+        "Michael Njuguna",
+        "Fatim Jallow",
+        "Michael Kachumi",
+        "Dhally M. Menda",
+        "Victor Daka",
+        "Caroline Cleopatra Chisenga",
+        "Michelo Simuyandi",
+        "Samuel Bosomprah",
+        "Doreen Mainza Shempela",
+        "Walter Muleya",
+        "Paul Simusika",
+        "Karen Sichinga",
+        "Edgar Simulundu",
+        "Roma Chilengi",
+        "Clement Phiri"
+      ],
+      "category": "core",
+      "key_finding": "qacEΔ1 disinfectant resistance genes co-occurred with sulfonamide and aminoglycoside resistance determinants, suggesting biocide-mediated co-selection in environmental resistomes.",
+      "pdf_url": "https://www.nature.com/articles/s41598-026-66216-7_reference.pdf",
+      "published": "2026-08-17",
+      "title": "Multi-site wastewater metagenomics reveals geographically distinct microbial communities and plasmid-mediated antimicrobial resistance co-selection in Zambia",
+      "tldr": "Wastewater metagenomics across five Zambian districts revealed geographically distinct microbial communities and plasmid-mediated antimicrobial resistance co-selection.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.1038/s41598-026-66216-7",
+      "venue": "Scientific Reports",
+      "why_relevant": "Relevant to Fangzhou's interest in microbial communities and antibiotic resistance, illustrating how environmental surveillance can uncover plasmid-mediated resistance dynamics."
+    },
+    {
+      "authors": [
+        "姜仁雷",
+        "Xiaoyu Zhang",
+        "Chuanhou Gao",
+        "Denis Dochain"
+      ],
+      "category": "core",
+      "key_finding": "ISS is certified for weakly reversible CRNs with nonzero deficiency and multiple linkage classes, and for certain non-weakly reversible networks through linear conjugacy and reconstruction.",
+      "pdf_url": "https://arxiv.org/pdf/2608.13302",
+      "published": "2026-08-13",
+      "title": "Input-to-state stability of chemical reaction networks with application to molecular computation",
+      "tldr": "This paper establishes input-to-state stability (ISS) for a broader class of weakly reversible chemical reaction networks and extends to non-weakly reversible networks via transformation techniques.",
+      "topics": [
+        "Biomolecular control"
+      ],
+      "url": "https://arxiv.org/abs/2608.13302",
+      "venue": "arXiv (Cornell University)",
+      "why_relevant": "An enabling-method wildcard: provides a stability framework for biochemical reaction networks, which could support modeling of biomolecular computation or synthetic genetic circuits in Fangzhou's future work."
+    },
+    {
+      "authors": [
+        "Chuanyin Liu",
+        "Jingjing Zhang",
+        "Rui Chen",
+        "Xiangdong Bi",
+        "Wei Dai",
+        "Wenjie Zhao",
+        "Dajuan Zhang",
+        "Qian Wang",
+        "Xinyu Wang"
+      ],
+      "category": "core",
+      "key_finding": "The degradation involves hydrolytic ring-opening, deamination, and decarboxylation, with upregulation of non-canonical peptidases and DNRA pathway genes, suggesting a mlr-independent system.",
+      "pdf_url": "https://journals.plos.org/plosone/article/file?id=10.1371%2Fjournal.pone.0355950\u0026type=printable",
+      "published": "2026-08-19",
+      "title": "Putative anaerobic transformation pathway of microcystin-RR inferred from 15N labeling and multi-omics in an enriched shrimp pond sediment microbial community",
+      "tldr": "Using 15N labeling and multi-omics, this study inferred an anaerobic transformation pathway for microcystin-RR in an enriched sediment microbial community.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1371/journal.pone.0355950",
+      "venue": "PLoS ONE",
+      "why_relevant": "Relevant to Fangzhou's interest in microbial community function and metabolism, demonstrating how multi-omics can reveal degradation pathways in complex communities."
+    },
+    {
+      "authors": [
+        "Matheus P.S. Láscaris",
+        "Anderson S. Sant’Ana"
+      ],
+      "category": "core",
+      "key_finding": "Metagenomics overcomes VBNC detection limits, and biopreservation and CRISPR-Cas strains offer salt-independent barriers, but they act as complementary multi-barrier components rather than standalone solutions.",
+      "pdf_url": "https://www.sciencedirect.com/science/article/pii/S0956713526006213/pdf",
+      "published": "2026-08-22",
+      "title": "Microbial ecology of salted food products: Preservation, safety, and innovation",
+      "tldr": "A review of microbial ecology in salted foods covers salt's selective role, pathogen survival, and emerging technologies for sodium reduction while maintaining safety.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1016/j.foodcont.2026.112576",
+      "venue": "Food Control",
+      "why_relevant": "Relates to Fangzhou's interest in microbial populations and communities, particularly in food fermentation ecology and microbial safety in complex matrices."
+    }
+  ],
+  "run_key": "2026-W35",
+  "schema_version": 1,
+  "start_date": "2026-08-18",
+  "title": "BMAC Weekly — 2026-W35"
+}
