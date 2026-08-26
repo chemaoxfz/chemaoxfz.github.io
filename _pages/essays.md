@@ -35,7 +35,7 @@ if you want to run it yourself.</p>
     <p class="text-muted mb-2">A history of synthetic biology, and why its third wave stalled</p>
     <p>Physics, system, and industry have each asked their own question of life. Three times a discovery
     let all three ask it at once. The third time stalled, and the reason is a missing model class.
-    Twenty-five sections, nine figures, 107 sources read in full.</p>
+    Twenty-five sections, nine figures, 111 sources read in full.</p>
   </div>
 </div>
 
@@ -46,6 +46,18 @@ if you want to run it yourself.</p>
     <p>A cell is a machine. Fix the function, compare the implementations, and let the difference in
     physical constraints explain the difference in architecture. Twenty-one sections, ten figures, worked
     examples, and an interactive demo. This is the perspective the lab is built on.</p>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <h3 class="h5 card-title"><a href="/essays/structure-and-parameters/">Structure is Sparsity</a></h3>
+    <p class="text-muted mb-2">What is actually obtainable about a cell, from what kind of data</p>
+    <p>A biochemical model's structure is the support of its parameter vector, so the line between
+    structure and parameters is a threshold rather than a kind. Bailey's 2001 split into qualitative
+    and quantitative information does not survive putting binding into the network, and Bailey had
+    already built the machine that treats them as one. Twenty-eight sections, seven figures, 90
+    sources read in full.</p>
   </div>
 </div>
 
