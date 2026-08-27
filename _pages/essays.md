@@ -61,6 +61,22 @@ if you want to run it yourself.</p>
   </div>
 </div>
 
+<div class="card mb-3">
+  <div class="card-body">
+    <h3 class="h5 card-title"><a href="/essays/reaction-order/">The Order of a Reaction</a></h3>
+    <p class="text-muted mb-2">One log-log slope, five names, and the assumption underneath twenty-five years of argument</p>
+    <p>The derivative &part;log&thinsp;v/&part;log&thinsp;x was a measurement before it was a theory. van 't Hoff wrote it
+    as a formula in 1884 and called it the number of molecules taking part; Ostwald renamed it "order"
+    three years later to say it was not. It arrives again as the Hill coefficient, the reflection
+    coefficient, the kinetic order and the elasticity, and two schools of theoretical biochemistry then
+    spent twenty-five years disputing whether one was a special case of the other. That dispute is
+    reconstructed here from both sides' papers, and resolved: separating binding from catalysis makes
+    metabolic control analysis's one assumption exactly true at the layer where it belongs, and a
+    computable polytope at the layer where it does not. Twenty-seven sections, fourteen figures, seven
+    of them page images of the original sources, 41 sources read in full.</p>
+  </div>
+</div>
+
 <p class="text-muted"><small>Each essay links into a local <code>literature/</code> archive of full-text
 PDFs. That archive is not redistributed here, so those links are inert on the web. Every citation is
 complete enough to find the source.</small></p>
