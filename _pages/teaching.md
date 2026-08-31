@@ -136,17 +136,19 @@ nav_order: 7
   </section>
 
   <section class="teaching-course">
-    <h2>CST 5034 · Control and Computation in Biological Systems</h2>
+    <h2>EST 5053 &middot; Control and Computation in Biological Systems</h2>
+    <p style="margin-top:-.4rem;opacity:.7;font-size:.9em">CST 5034 in 2025</p>
     <p>Westlake University, Hangzhou</p>
 
     <div class="course-year">
       <div class="course-term">Fall 2026</div>
       <div>
         <p>Control and Computation in Biological Systems — AI-native, co-taught seminar.
-        The lecturer teaches week 1; from week 2 the students teach each weekly topic in
-        30-minute sessions (one point each) with TA-approved comprehension quizzes, and
-        every week publishes three artifacts on the site: core, exposition, and
-        extension-by-audience.</p>
+        Sixteen lectures, one topic each. The lecturer teaches lectures 1 and 2; lectures 3
+        to 16 are taught by teams of two or three students who own the whole 95 minutes,
+        with a five-minute lecturer addendum closing each one and the lecturer stepping in
+        as a guaranteed fallback. Every lecture publishes three artifacts on the site: the
+        lecturer's core digest, the team's exposition, and the audience's extension.</p>
         <a class="course-link" href="{{ '/ccbs/2026fall/' | relative_url }}">Course site, schedule, weekly materials →</a>
       </div>
     </div>
