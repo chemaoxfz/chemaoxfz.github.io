@@ -84,6 +84,10 @@ sub,sup{font-size:.7em;line-height:0}
 .box.open .lbl{color:var(--plum)}
 figure{margin:2rem 0;padding:0}
 figure svg{display:block;width:100%;height:auto;max-width:100%}
+svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo2{paint-order:stroke;stroke:var(--bg);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo3{paint-order:stroke;stroke:var(--bg);stroke-width:3.6px;stroke-linejoin:round}
+
 figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
 figcaption b{color:var(--fg);font-weight:700}
 .figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
@@ -3672,7 +3676,7 @@ z
 <p>The three numbers are: Fermi about 10 kilotons, Taylor 16,800 tons with an alternative of 23,700, and the accepted radiochemical value about 21 kilotons. Told carelessly, this says Fermi was a factor of two low, Taylor was twenty per cent low, and the chemists were right.</p>
 
 <figure class="figbox">
-<svg viewBox="0 0 720 226" role="img" aria-label="Three estimates of the Trinity yield, showing that two measure blast and one measures total energy">
+<svg viewBox="0 0 720 246" role="img" aria-label="Three estimates of the Trinity yield, showing that two measure blast and one measures total energy">
   <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
     <text x="14" y="22" font-size="12" font-weight="700" fill="var(--fg)" letter-spacing=".9">YIELD, KILOTONS OF TNT</text>
 
@@ -3698,7 +3702,8 @@ z
     <circle cx="534" cy="145" r="7" fill="var(--lime)" stroke="var(--bg2)" stroke-width="2"/>
     <text x="549" y="150" font-size="12" fill="var(--muted)">21 kt &#183; measures everything</text>
 
-    <text x="14" y="216" font-size="12" fill="var(--muted)">Taylor predicted in 1941 that blast would carry about half the energy. Two blast measurements falling below the total is the prediction, not the error.</text>
+    <text x="14" y="214" font-size="12" fill="var(--muted)">Taylor predicted in 1941 that blast would carry about half the energy.</text>
+    <text x="14" y="234" font-size="12" fill="var(--muted)">Two blast measurements falling below the total is the prediction, not the error.</text>
   </g>
 </svg>
 <figcaption><b>Figure 4. Not the same quantity three times.</b> Fermi and Taylor both measured the mechanical energy delivered to the air. Radiochemistry measures the total energy released, including what left as radiation. Taylor's figure is explicitly for "that part of the energy which was not radiated outside the ball of fire", so a shortfall is expected.</figcaption>
