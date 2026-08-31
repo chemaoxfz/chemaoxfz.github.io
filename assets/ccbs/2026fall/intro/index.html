@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How this course works · CCBS 2026</title>
+<meta name="description" content="CST 5034 &amp;middot; Control and Computation in Biological Systems &amp;middot; Fall 2026. The rules, the topics, the format, the rubric, and the four things you hand in.">
+<style>
+:root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
+--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--ink:#20201E;--gray:#877F77;--leader:#B8AEA5;--gridc:#EDE7E0;
+--bg:#FCFAF7;--bg2:#FFFFFF;--fg:var(--ink);--muted:#6E675F;--rule:#E3DCD3;
+--shadow:0 1px 2px rgba(32,32,30,.05), 0 8px 28px rgba(32,32,30,.05);
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+--mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;--maxw:44rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;
+--gridc:#2C2E28;--leader:#5C574F;--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;--gridc:#2C2E28;--leader:#5C574F;
+--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}
+:root[data-theme="light"]{--bg:#FCFAF7;--bg2:#FFFFFF;--fg:#20201E;--muted:#6E675F;--rule:#E3DCD3;--gridc:#EDE7E0;--leader:#B8AEA5;
+--ink:#20201E;--gray:#877F77;--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--serif);font-size:18px;line-height:1.62;
+font-kerning:normal;text-rendering:optimizeLegibility}
+.wrap{max-width:78rem;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:3rem}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr;gap:0}}
+nav.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:2.5rem 0 3rem;
+font-family:var(--sans);font-size:.8rem;line-height:1.45}
+nav.toc .brand{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700;margin:0 0 1.1rem}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 .9rem;font-weight:600}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li{margin:0 0 .1rem}
+nav.toc a{display:block;padding:.26rem .55rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;border-radius:0 4px 4px 0}
+nav.toc a:hover{color:var(--fg);background:var(--bg2)}
+nav.toc a.on{color:var(--fg);border-left-color:var(--rose);background:var(--bg2);font-weight:600}
+nav.toc .part{margin:1.1rem 0 .35rem;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--leader);font-weight:700}
+@media (max-width:1000px){nav.toc{position:static;max-height:none;border-bottom:1px solid var(--rule);margin-bottom:1rem}}
+main{padding:2.5rem 0 6rem;min-width:0}
+main > *{max-width:var(--maxw)}
+main > figure,main > .wide,main > .demo,main > .tablewrap{max-width:56rem}
+h1{font-size:2.5rem;line-height:1.1;letter-spacing:-.02em;margin:.4rem 0 .8rem;font-weight:700;max-width:26ch}
+.sub{font-size:1.18rem;color:var(--muted);margin:0 0 1.6rem;line-height:1.5;max-width:38rem}
+.byline{font-family:var(--sans);font-size:.8rem;color:var(--muted);letter-spacing:.02em;margin-bottom:2.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--rule)}
+h2{font-size:1.05rem;font-family:var(--sans);font-weight:700;letter-spacing:.02em;margin:3.6rem 0 .2rem;scroll-margin-top:1.5rem}
+h2 .n{color:var(--rose);font-variant-numeric:tabular-nums;margin-right:.5rem}
+h2 + .lede{color:var(--muted);font-size:1.02rem;margin:.1rem 0 1.1rem}
+h3{font-size:.95rem;font-family:var(--sans);font-weight:700;margin:2.1rem 0 .5rem;color:var(--fg)}
+.parthead{margin:4.5rem 0 1.2rem;padding-top:1.6rem;border-top:2px solid var(--fg)}
+.parthead .k{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700}
+.parthead h2{font-size:1.8rem;margin:.35rem 0 .3rem;letter-spacing:-.01em;font-family:var(--serif)}
+.parthead p{color:var(--muted);margin:0;font-size:1.02rem}
+p{margin:0 0 1.05rem}
+a{color:var(--fg);text-underline-offset:2px;text-decoration-color:var(--leader)}
+a:hover{text-decoration-color:var(--rose)}
+ul,ol{margin:0 0 1.05rem;padding-left:1.35rem}
+li{margin:.28rem 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.6rem 0}
+.small{font-size:.88rem;color:var(--muted)}
+.m{font-family:var(--mono);font-size:.92em;font-style:normal;white-space:nowrap}
+.eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);font-size:.95rem;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;line-height:1.9}
+.eq .tag{float:right;color:var(--leader);font-size:.85em}
+.eq b{color:var(--rose);font-weight:700}
+sub,sup{font-size:.7em;line-height:0}
+.box{border:1px solid var(--rule);background:var(--bg2);border-radius:10px;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow)}
+.box .lbl{font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.45rem;display:block}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+.box.key{border-left:3px solid var(--rose);background:linear-gradient(94deg,var(--blush),var(--bg2) 62%)}
+.box.key .lbl{color:var(--rose)}
+.box.def{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.def .lbl{color:var(--peri)}
+.box.note{border-left:3px solid var(--lime)}
+.box.note .lbl{color:var(--lime)}
+.box.caution{border-left:3px solid var(--coral);background:linear-gradient(94deg,var(--pinkf),var(--bg2) 62%)}
+.box.caution .lbl{color:var(--coral)}
+.box.sim{border-left:3px solid var(--teal);background:linear-gradient(94deg,var(--powder),var(--bg2) 62%)}
+.box.sim .lbl{color:var(--teal)}
+.box.open{border-left:3px solid var(--plum);background:linear-gradient(94deg,var(--lilac),var(--bg2) 62%)}
+.box.open .lbl{color:var(--plum)}
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
+figcaption b{color:var(--fg);font-weight:700}
+.figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
+.tablewrap{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.83rem;line-height:1.45}
+th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:700;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hl{color:var(--rose);font-weight:600}
+caption{caption-side:bottom;text-align:left;padding:.7rem .8rem;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
+.refs{font-size:.88rem;line-height:1.5}
+.refs ol{padding-left:1.8rem}
+.refs li{margin:.5rem 0}
+.refs .venue{color:var(--muted)}
+.pdf{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.04em;color:var(--teal);border:1px solid var(--teal);border-radius:4px;padding:.02rem .3rem;text-decoration:none;margin-left:.3rem;white-space:nowrap}
+.pdf:hover{background:var(--teal);color:var(--bg2)}
+sup.c{font-size:.68em;color:var(--rose);font-weight:700}
+sup.c a{color:inherit;text-decoration:none}
+#tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
+@media print{#tt,nav.toc{display:none}.wrap{display:block}main>*{max-width:none}}
+</style>
+</head>
+<body>
+<button id="tt" title="Toggle light / dark">&#9689;</button>
+<div class="wrap">
+<nav class="toc" id="toc">
+  <div class="brand">CCBS &middot; 2026 &middot; How this course works</div>
+  <h2>Contents</h2>
+  <ol>
+    <li class="part">The course</li>
+    <li><a href="#s1">1 &middot; What this course is about</a></li>
+    <li><a href="#s2">2 &middot; The contents: 16 lectures</a></li>
+    <li><a href="#s3">3 &middot; The AI-native take</a></li>
+    <li class="part">How it runs</li>
+    <li><a href="#s4">4 &middot; The format</a></li>
+    <li><a href="#s5">5 &middot; The rules, part by part</a></li>
+    <li><a href="#s6">6 &middot; The rubric</a></li>
+    <li><a href="#s7">7 &middot; The tools, and where to get them</a></li>
+    <li class="part">What you hand in</li>
+    <li><a href="#s8">8 &middot; Assignment 1: teach one lecture</a></li>
+    <li><a href="#s9">9 &middot; Assignment 2: the extension mini-essay</a></li>
+    <li><a href="#s10">10 &middot; Assignment 3: participation</a></li>
+    <li><a href="#s11">11 &middot; Assignment 4: the research essay</a></li>
+    <li class="part">Reference</li>
+    <li><a href="#s12">12 &middot; Every deadline</a></li>
+    <li><a href="#s13">13 &middot; This week</a></li>
+  </ol>
+</nav>
+<main>
+
+<h1>How this course works</h1>
+<p class="sub">CST 5034 &middot; Control and Computation in Biological Systems &middot; Fall 2026. The rules, the topics, the format, the rubric, and the four things you hand in.</p>
+<p class="byline">Westlake University &middot; Tue &amp; Thu 10:40&ndash;12:15 &middot; E10-305, Yungu campus &middot; lecturer Fangzhou Xiao &middot; TAs Wenqin Zhou and Xinyu Wang &middot; 16 lectures, 2026-09-01 to 2026-10-29</p>
+
+<div class="box key">
+<span class="lbl">The whole course in five lines</span>
+<ul>
+<li><strong>I teach lectures 1 and 2. You teach lectures 3 to 16.</strong> Two or three of you form a team and own one entire 95-minute lecture.</li>
+<li><strong>The last 5 minutes of every lecture are mine</strong>, for the gap, the take-away, and what the field says next.</li>
+<li><strong>I hand you a core page per lecture, one week ahead.</strong> That is the floor, not the ceiling. Going beyond it is the assignment.</li>
+<li><strong>Quality is guaranteed by design.</strong> If a lecture does not hold up, I step in and teach it. That is the fallback, and it is built into the grading.</li>
+<li><strong>Four things are graded:</strong> your lecture, your extension mini-essays, your participation, and one research essay at the end.</li>
+</ul>
+</div>
+
+<div class="parthead">
+  <div class="k">Part 1</div>
+  <h2>The course</h2>
+  <p>What it is about, what it covers, and the stance on working with AI that runs through all of it.</p>
+</div>
+
+<h2 id="s1"><span class="n">1</span>What this course is about</h2>
+<p class="lede">Three schools ask three questions about life. This course teaches you to answer all three quantitatively.</p>
+
+<p>Biological organisms do extraordinary things. They transform matter through thousands
+of metabolic steps. They hold themselves steady while the world around them shifts. They
+balance persistence in famine against all-out growth in plenty. They reshape their
+surroundings to their own advantage. Behaviors like these involve enormous numbers of
+interacting components, and reasoning about them demands the same rigor we bring to a
+complicated engineered machine.</p>
+
+<p>Three schools of thought have taken up that reasoning, and this course teaches the
+tools of all three.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 1. The three schools, and where each one lives in this course.</caption>
+<thead><tr><th>School</th><th>Its question</th><th>Its tools here</th><th>Lectures</th></tr></thead>
+<tbody>
+<tr><td class="hl">Physics</td><td>What is life, as an object?</td><td>Order-of-magnitude estimates, scaling laws, statistical mechanics, energy and information</td><td class="num">1, 2, 7</td></tr>
+<tr><td class="hl">System</td><td>How does life work, as a machine?</td><td>Reaction networks, dynamics, stochastic processes, feedback and control, computation</td><td class="num">3&ndash;12</td></tr>
+<tr><td class="hl">Industry</td><td>How could life be useful, as a tool?</td><td>Metabolic engineering, growth laws, protein design, whole-cell models</td><td class="num">13&ndash;16</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The course has an argument, not just a syllabus. Lectures 1 to 7 build two components:
+<strong>binding</strong>, which is fast and reversible and therefore reaches equilibrium,
+and <strong>catalysis</strong>, which is slow and effectively irreversible and therefore
+never does. Lecture 8 is the claim those seven were for: to reason about a cell you need
+those two reaction types and nothing else. Everything from lecture 9 onward applies that
+framework to one biological machine at a time, and the last lectures land on open research
+problems.</p>
+
+<p>No background is needed. An exuberant love for biology is mandatory.</p>
+
+<h2 id="s2"><span class="n">2</span>The contents: 16 lectures</h2>
+<p class="lede">One topic per lecture, one team per lecture, 95 minutes each.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 2. The 16 lectures. Lectures 1 and 2 are lecturer-taught; the rest are yours.</caption>
+<thead><tr><th>#</th><th>Date</th><th>Topic</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td class="num">09-01 Tue</td><td><strong>How this course works, and order of magnitude: the physics.</strong> Dimensional analysis, scaling, estimating from constraints, energy and motion, heat and diffusion, <span class="m">t &asymp; x&sup2;/&kappa;</span>, null models. <em>Lecturer.</em></td></tr>
+<tr><td class="num">2</td><td class="num">09-03 Thu</td><td><strong>From order of magnitude in biology to binding and catalysis.</strong> The cell's ledger and crowding, mixing times, elementary versus composite reactions, the diffusion-limited on-rate derived, the catalytic bottleneck. <em>Lecturer.</em></td></tr>
+<tr><td class="num">3</td><td class="num">09-08 Tue</td><td><strong>Reaction networks, with the central dogma as the worked example.</strong> Mass action, stoichiometry, conservation, steady states, Michaelis-Menten from rates, lifetimes, Hill regulation, growth dilution.</td></tr>
+<tr><td class="num">4</td><td class="num">09-10 Thu</td><td><strong>Dynamics: local stability, phase portraits, bifurcations.</strong> Flows, fixed points, nullclines, the four local shapes, limit cycles, what reaction networks may and may not do.</td></tr>
+<tr><td class="num">5</td><td class="num">09-15 Tue</td><td><strong>Stochastic dynamics: the master equation and Gillespie.</strong> The counting regime, the CME, Markov chains and stationary distributions, exact sampling, Poisson universality, linear noise analysis.</td></tr>
+<tr><td class="num">6</td><td class="num">09-17 Thu</td><td><strong>Timescale separation: singular perturbation, QSSA, and the telegraph model.</strong> Fast and slow made rigorous, the enzyme derivation done properly, when it fails, and the stochastic version that produces bursting.</td></tr>
+<tr><td class="num">7</td><td class="num">09-22 Tue</td><td><strong>Equilibrium parts driven out of equilibrium.</strong> Boltzmann weights, the energy model of a regulated gene, detailed balance, dissipation, kinetic proofreading, limits on what a cell can know.</td></tr>
+<tr><td class="num">8</td><td class="num">09-24 Thu</td><td><strong>The cell as a biomachine: binding and catalysis.</strong> The restriction stated as a thesis, the three regimes of one binding reaction, and the same object found across metabolism, signalling, chromatin and motors. <em>The climax of the first half.</em></td></tr>
+<tr><td class="num">9</td><td class="num">09-29 Tue</td><td><strong>Multistability and oscillations.</strong> Toggle switches, MultiFate, cell fate as attractors; the repressilator, relaxation oscillators, circadian clocks, the cell cycle, replication initiation. Every one rewritten as binding and catalysis, then simulated.</td></tr>
+<tr><td class="num">10</td><td class="num">10-08 Thu</td><td><strong>The adaptation biomachine.</strong> Set-points, why feedforward fails, perfect adaptation as integral feedback, the internal model principle, chemotaxis, and the incoherent feedforward twist.</td></tr>
+<tr><td class="num">11</td><td class="num">10-13 Tue</td><td><strong>Analysis of binding and catalysis via reaction-order structure.</strong> Reaction order as a log-derivative, reaction-order polyhedra, the three archetypes, regimes and trajectories, homotopy continuation.</td></tr>
+<tr><td class="num">12</td><td class="num">10-15 Thu</td><td><strong>The computation biomachine.</strong> Logic gates in cells and the counting argument that ruins them, three genes as a perceptron, and the real question: what is the natural computational task of a cell?</td></tr>
+<tr><td class="num">13</td><td class="num">10-20 Tue</td><td><strong>The metabolic biomachine.</strong> Stoichiometry, flux balance analysis as a linear program, bioenergetics, flux exponent control, genome-scale models, metabolic engineering.</td></tr>
+<tr><td class="num">14</td><td class="num">10-22 Thu</td><td><strong>The growth biomachine.</strong> Proteome partition, the growth law <span class="m">&lambda; = &epsilon;&phi;<sub>R</sub></span>, diauxie and shifts, growth rate as a maximum eigenvalue, and bet-hedging as a population-level strategy.</td></tr>
+<tr><td class="num">15</td><td class="num">10-27 Tue</td><td><strong>Introduction to protein design.</strong> The de novo binder pipeline, RFdiffusion, ProteinMPNN, AlphaFold, protein language models, and how to judge what these models actually know.</td></tr>
+<tr><td class="num">16</td><td class="num">10-29 Thu</td><td><strong>Foundational virtual cells that are fully mechanistic.</strong> What whole-cell models achieve, why they do not compose, and the proposal that one language for the whole cell makes them reachable. The course's closing argument.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p class="small">The National Day window, 2026-10-01 to 10-07, is skipped. Lecture 9 sits
+before it and lecture 10 after it.</p>
+
+<div class="box open">
+<span class="lbl">Lectures 11, 14 and 16 are live research</span>
+<p>Reaction-order polyhedra, the bet-hedging half of the growth lecture and the mechanistic
+virtual cell are my own current research programmes, not settled textbook material. That is
+deliberate. If one of them grabs you, the lecture is a good first step into working on it
+with me.</p>
+</div>
+
+<h2 id="s3"><span class="n">3</span>The AI-native take</h2>
+<p class="lede">Access to content is no longer the bottleneck. Understanding and communication are. The course is redesigned around that.</p>
+
+<p>Until recently, a lecture existed because the material was hard to reach. That is no
+longer true. An agent will digest a paper, draft the code and produce a first figure on
+demand. So the scarce thing in this room is not content. It is judgment, understanding,
+and the ability to make someone else understand.</p>
+
+<p>This course therefore runs one loop, every week:</p>
+
+<div class="eq"><b>ask AI to digest and write</b> &rarr; <b>understand it and use it to work and iterate</b> &rarr; <b>present it to others to communicate</b></div>
+
+<p>That is an input-learn-output cycle, and the output stage is the one that cannot be
+faked. You can generate a beautiful lecture you do not understand. You cannot deliver it
+to a room of people who will ask questions. That is the whole design.</p>
+
+<div class="box def">
+<span class="lbl">The four commandments of research with AI</span>
+<ol>
+<li><strong>AI is our minion, not our peer.</strong> Own every claim, or do not use it. If you cannot explain it, it is vapor.</li>
+<li><strong>AI is a cyber-arm.</strong> Attach it to the work you care about most, not the chores you dislike. If an idea is alive in your mind, put it into the loop before it cools.</li>
+<li><strong>Your input-output bandwidth is the bottleneck</strong>, not the model's power. Specification in, comprehension out.</li>
+<li><strong>Be above AI on everything you think about.</strong> Generic AI output is the floor, not the ceiling. Know the generic answer before you claim your own expertise.</li>
+</ol>
+<p class="small">The full stance is at <a href="https://pebble-biofusion.github.io/workshop/method/">pebble-biofusion.github.io/workshop/method</a>. Every presentation and essay in this course is graded against it.</p>
+</div>
+
+<p>Two practical consequences, and they are graded.</p>
+<ul>
+<li><strong>Every claim must survive a question.</strong> Not "the agent said so". You must be able to say why it is true, or say plainly that you do not know.</li>
+<li><strong>Every number must be reproducible from code you ran.</strong> Quoting a number you did not check is the single most common way an agent-assisted presentation goes wrong.</li>
+</ul>
+
+<div class="parthead">
+  <div class="k">Part 2</div>
+  <h2>How it runs</h2>
+  <p>The format, the rules of each part, the rubric that grades them, and the tools you will use.</p>
+</div>
+
+<h2 id="s4"><span class="n">4</span>The format</h2>
+<p class="lede">Sixteen lectures. Fourteen teams. Everybody teaches exactly once.</p>
+
+<p>There are 35 of you. Lectures 3 to 16 are fourteen lectures, and each is owned by a
+team of <strong>two or three students</strong>. Seven teams of three and seven teams of two
+uses all 35 of you exactly once. The TAs help every team.</p>
+
+<p>A lecture is 95 minutes and is structured only at the coarsest level:</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 3. One lecture. Nothing finer is prescribed.</caption>
+<thead><tr><th>Time</th><th>What</th><th>Who</th></tr></thead>
+<tbody>
+<tr><td class="num">10:40&ndash;10:45</td><td>Admin: what is due, what is coming</td><td>lecturer</td></tr>
+<tr><td class="num">10:45&ndash;12:10</td><td><strong>The lecture</strong>, including its own questions, discussion and exercises</td><td class="hl">the team</td></tr>
+<tr><td class="num">12:10&ndash;12:15</td><td><strong>Addendum</strong>: the gap, the take-away, what the field says next</td><td>lecturer</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>How your team divides 85 minutes is entirely yours. Two people can split it in half.
+Three can take three passes at one idea. You can lecture, you can run a live simulation,
+you can hold a debate, you can make the room do the calculation. <strong>How you structure
+it is part of what is being judged</strong>, because choosing a structure is most of
+teaching.</p>
+
+<div class="box note">
+<span class="lbl">What you are handed, and what you owe</span>
+<p>One week before your lecture, the <strong>core page</strong> for your topic is posted on
+the course site. It is a self-contained HTML digest: the argument, the derivations, the
+numbers, the sources, and a list of what is deliberately left open. It is the floor. Your
+job is to understand it, go past it, and teach the result. A lecture that only re-presents
+the core page has not done the assignment.</p>
+</div>
+
+<h2 id="s5"><span class="n">5</span>The rules, part by part</h2>
+<p class="lede">What happens before, during and after your lecture, and what the fallback means.</p>
+
+<h3>Before: the preparation loop</h3>
+<ol>
+<li><strong>Ten days out.</strong> The core page for your lecture is posted. Read it. Run the
+loop on it: digest with an agent, then check every claim against the core page and the
+sources, and remake the numbers with code rather than quoting them.</li>
+<li><strong>Five days out.</strong> Send the TAs your outline: the sequence of ideas, what you
+will derive live, what you will simulate, what you will ask the room, and the one thing you
+added that the core page does not have. This is a short message, not a document.</li>
+<li><strong>Two to three days out.</strong> Rehearse with the TAs, roughly 30 minutes. They
+check the content against the core page and tell you where a strong student would catch an
+error. Fix what they find.</li>
+<li><strong>The day before.</strong> Your slides, page or notebook are final. Post them to the
+submissions repo when the lecture is done, so the site carries them.</li>
+</ol>
+
+<h3>During: the lecture is yours</h3>
+<p>I will not interrupt you except in the one case below. The room will ask questions, and
+answering them is part of the assessment. "I do not know, but here is how I would find out"
+is a good answer. Bluffing is not, and it is visible from the back of the room.</p>
+
+<h3>The fallback, and why it exists</h3>
+<div class="box caution">
+<span class="lbl">If a lecture does not hold up, I teach it</span>
+<p>If the material is not being covered at a workable standard, I step in and teach that
+part myself, on the spot. That is a score of 0 for the team on that segment, and it is
+the only case where I interrupt.</p>
+<p>This is a feature, not a threat. It means <strong>the class cannot lose the material</strong>
+no matter what happens, so student-taught is not a gamble the audience pays for. The
+website's schedule says <em>students present, lecturer-backed</em> for exactly this reason.
+The team then retakes a condensed 10-minute version with the TAs in the following lecture's
+discussion time, and the retake caps that segment at a 1.</p>
+</div>
+
+<h3>After: the artifacts</h3>
+<p>Your teaching material goes into the submissions repo and then onto the course site. Each
+lecture ends up with three artifacts, and together they make the page for that lecture:</p>
+<ul>
+<li><strong>core</strong> &mdash; mine, posted a week ahead.</li>
+<li><strong>exposition</strong> &mdash; yours, posted after you teach: the HTML page, notebook or slide deck you taught from, plus a short note on what you added beyond the core.</li>
+<li><strong>extension</strong> &mdash; the audience's, assembled by the TAs from that week's mini-essays into one themed writeup, with disagreements kept visibly in conversation.</li>
+</ul>
+<p>The site grows into a textbook this way, one year at a time. Your name is on your part of it.</p>
+
+<h2 id="s6"><span class="n">6</span>The rubric</h2>
+<p class="lede">Zero to three, anchored on whether the room can use the material afterwards.</p>
+
+<p>Your lecture is rated 0 to 3 by me and, separately, by your peers. The two are combined
+<strong>60% mine, 40% the trimmed mean of the class</strong>. Peer ratings are anonymous and
+published only in aggregate.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 4. The 0&ndash;3 scale, and what each score looks like from the back of the room.</caption>
+<thead><tr><th>Score</th><th>Meaning</th><th>Detectable in class</th></tr></thead>
+<tbody>
+<tr><td class="num hl">3</td><td>Excellent. The audience got the material.</td><td>A random student can redo the worked example afterwards. Claims survive two or more hostile questions. Figures and numbers are traceable to something you ran.</td></tr>
+<tr><td class="num hl">2</td><td>Good. The audience got it.</td><td>Well organized and mostly right. One or two details hand-waved, or one question got a fuzzy answer.</td></tr>
+<tr><td class="num hl">1</td><td>The key ideas landed, a lot of the detail did not.</td><td>The worked example failed, or the class and the TA had to supply the fix.</td></tr>
+<tr><td class="num hl">0</td><td>The topic was not taught. The fallback engaged.</td><td>I stepped in. Retake caps at 1.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The sub-criteria I use, so the number is reproducible rather than a mood:</p>
+<ul>
+<li><strong>Correctness and depth.</strong> Is it right, and is it deeper than the core page?</li>
+<li><strong>Pedagogy.</strong> Does the room end up able to <em>use</em> it, not just to have heard it?</li>
+<li><strong>Communication.</strong> Structure, figures, pacing, and whether the argument has a spine.</li>
+<li><strong>AI-use standards.</strong> Every claim owned and explainable. Commandments 1 and 4.</li>
+<li><strong>Defense under questioning.</strong> What happens when someone pushes.</li>
+</ul>
+
+<div class="box key">
+<span class="lbl">How the whole grade is made</span>
+<div class="tablewrap" style="margin:.7rem 0 0">
+<table>
+<thead><tr><th>Component</th><th>Weight</th><th>What it is</th></tr></thead>
+<tbody>
+<tr><td>Your lecture</td><td class="num hl">35</td><td>The 0&ndash;3 rubric above, 60% lecturer and 40% peers</td></tr>
+<tr><td>Extension mini-essays</td><td class="num hl">25</td><td>Best 6 of your 8 weekly essays</td></tr>
+<tr><td>Participation</td><td class="num hl">10</td><td>Questions, discussion, peer ratings actually submitted</td></tr>
+<tr><td>Research essay</td><td class="num hl">30</td><td>Due 2026-11-05</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small" style="margin-top:.7rem">Grade scale: A 90&ndash;100, B 80&ndash;89, C 70&ndash;79, D 60&ndash;69, F below 60.</p>
+</div>
+
+<h2 id="s7"><span class="n">7</span>The tools, and where to get them</h2>
+<p class="lede">If you do not already have an AI agent you use daily, get one before Thursday.</p>
+
+<div class="box sim">
+<span class="lbl">Westlake AI Campus &mdash; free, internal, use it</span>
+<p><a href="https://hpc.westlake.edu.cn/#/ai-campus"><strong>hpc.westlake.edu.cn/#/ai-campus</strong></a>
+is the university's internal platform, with locally deployed models (DeepSeek, GLM and
+others) available to every Westlake student and faculty member. It costs you nothing and
+your data stays inside the university. <strong>This is the baseline tool for the course.</strong>
+If you have never used it, set it up tonight, and bring a question you actually care about
+on Thursday.</p>
+</div>
+
+<p>Two more things you will use constantly:</p>
+<ul>
+<li><strong>The <code>research-essay</code> skill</strong> (also called idea-to-essay):
+<a href="https://github.com/chemaoxfz/idea-to-essay">github.com/chemaoxfz/idea-to-essay</a>.
+This is the reference pipeline for every digest in this course: idea, thesis, literature
+sweep with verified full texts, numbers from code, and one self-contained HTML page at the
+end. The core pages are built with it. So should your exposition be, and so should your
+research essay.</li>
+<li><strong>The essays</strong>: <a href="https://chemaoxfz.github.io/essays/">chemaoxfz.github.io/essays</a>.
+<em>Three Schools, Three Shocks</em> frames the whole course. <em>The Biomachine Perspective</em>
+is the lens. <em>Structure is Sparsity</em> and <em>The Order of a Reaction</em> are behind
+lecture 11.</li>
+</ul>
+
+<p>You are expected to use AI heavily. You are not permitted to use it as an oracle. The
+difference is whether you can defend the output, and that is exactly what is graded.</p>
+
+<div class="parthead">
+  <div class="k">Part 3</div>
+  <h2>What you hand in</h2>
+  <p>Four assignments. One of them is due this Thursday.</p>
+</div>
+
+<h2 id="s8"><span class="n">8</span>Assignment 1: teach one lecture</h2>
+<p class="lede">Two or three of you own one lecture. You sign up by opening a pull request, and the pull request is itself the first test.</p>
+
+<p>Every student teaches exactly once, as part of a team of two or three, on one of
+lectures 3 to 16. You choose your lecture and your teammates yourself, first come first
+served.</p>
+
+<h3>How to sign up</h3>
+<p>You sign up by adding one small file to the course submissions repository and opening a
+pull request. Merging is automatic, so your sign-up lands within a minute or two of opening
+the request.</p>
+
+<div class="box def">
+<span class="lbl">Sign-up, step by step</span>
+<ol>
+<li>Get a GitHub account if you do not have one.</li>
+<li>Go to <a href="https://github.com/chemaoxfz/ccbs-2026-submissions"><strong>github.com/chemaoxfz/ccbs-2026-submissions</strong></a> and press <strong>Fork</strong>.</li>
+<li>In your fork, create a file named <code>signup/lectureNN-yourname.md</code>, for example
+<code>signup/lecture09-tongli.md</code>. Copy <code>signup/TEMPLATE.md</code> and fill in your
+name, student ID, email, GitHub handle, the lecture number, and who your teammates are.</li>
+<li>Open a pull request against <code>main</code>. Nothing else. Do not edit any other file.</li>
+<li>A bot checks the file and merges it. If it refuses, it tells you why in a comment. Fix and push again.</li>
+<li>The live team roster is at <code>signup/ROSTER.md</code>, rebuilt on every merge. Check it to see which lectures still have room.</li>
+</ol>
+</div>
+
+<div class="box caution">
+<span class="lbl">Sign-up closes Thursday 2026-09-03, 23:59</span>
+<p>Each lecture takes <strong>at most 3</strong> students and needs <strong>at least 2</strong>.
+After the deadline I assign anyone who has not signed up, and I fill the thin lectures first.
+Lectures 3 and 4 are on 09-08 and 09-10, so those two teams should sign up first and start
+immediately.</p>
+</div>
+
+<p>Yes, this is deliberately also a test. If you can open a pull request, you can submit
+everything else in this course, and you have used the tool that essentially all
+collaborative technical work now runs on. If you get stuck, ask the TAs, ask the room, or
+ask an agent. Getting stuck and then unstuck is the point.</p>
+
+<h2 id="s9"><span class="n">9</span>Assignment 2: the extension mini-essay</h2>
+<p class="lede">One short piece per week, on one thing the lecture did not say. Eight of them, best six counted.</p>
+
+<h3>What it is</h3>
+<p>An extension mini-essay is not a summary. A summary of the lecture proves nothing: I was
+there. An extension takes <strong>one thing</strong> the lecture touched and pushes past it,
+and it is short on purpose so that the pushing has to be real.</p>
+
+<p>Pick exactly one of these, each week:</p>
+<ul>
+<li><strong>One example.</strong> A system, organism, circuit or experiment the lecture did not use, worked through with the lecture's tools.</li>
+<li><strong>One scenario.</strong> What happens if you change something. A parameter, a constraint, an assumption.</li>
+<li><strong>One opinion.</strong> Something in the lecture you think is wrong, oversold, or under-sold, argued rather than asserted.</li>
+<li><strong>One perspective.</strong> The same content seen from another field: physics, engineering, ecology, medicine, economics.</li>
+<li><strong>One argument.</strong> A claim of your own, with the reasoning that supports it.</li>
+</ul>
+
+<div class="box key">
+<span class="lbl">The three requirements</span>
+<ol>
+<li><strong>Short.</strong> A few paragraphs. Roughly 400 to 800 words. Longer is not better, and I will notice padding.</li>
+<li><strong>One thing you made.</strong> A number you computed, a figure you plotted, an estimate you carried out. Not a number you copied. The code that produced it goes in the file or beside it.</li>
+<li><strong>Traceable.</strong> Every factual claim points at something a reader can check: a paper you actually opened, the core page, a database entry. One good source that you read beats ten you did not.</li>
+</ol>
+</div>
+
+<p>Conflicting positions are welcome and actively wanted. Two of you may take opposite sides
+on the same question in the same week. The TAs assemble each week's essays into one themed
+writeup for the site, and disagreements are kept visible rather than smoothed over.</p>
+
+<div class="box note">
+<span class="lbl">A worked example, written by me</span>
+<p>Here is one done properly, at the length and standard expected:
+<a href="../extension-example/"><strong>&ldquo;A ribosome's speed sets the shortest possible cell cycle&rdquo;</strong></a>.
+It takes one number from lecture 2, computes with it, gets a hard bound, checks the bound
+against the fastest-growing bacterium known, and lands on a claim that lecture 14 will pick
+up. That is the shape: one thing, taken seriously, ending somewhere the lecture did not go.</p>
+</div>
+
+<h3>When and how</h3>
+<p>One essay per teaching week, eight in total, <strong>including the weeks you teach and
+including this first week</strong>. Writing one this week is how you learn the routine while
+the stakes are low. Your best six scores count, so you have two free skips to spend on a
+bad week.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 5. The eight extension mini-essays. Each is due Sunday 23:59 after its week.</caption>
+<thead><tr><th>Week</th><th>Lectures</th><th>Due</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>1, 2</td><td class="num">Sun 2026-09-06</td></tr>
+<tr><td class="num">2</td><td>3, 4</td><td class="num">Sun 2026-09-13</td></tr>
+<tr><td class="num">3</td><td>5, 6</td><td class="num">Sun 2026-09-20</td></tr>
+<tr><td class="num">4</td><td>7, 8</td><td class="num">Sun 2026-09-27</td></tr>
+<tr><td class="num">5</td><td>9, 10</td><td class="num">Sun 2026-10-11</td></tr>
+<tr><td class="num">6</td><td>11, 12</td><td class="num">Sun 2026-10-18</td></tr>
+<tr><td class="num">7</td><td>13, 14</td><td class="num">Sun 2026-10-25</td></tr>
+<tr><td class="num">8</td><td>15, 16</td><td class="num">Sun 2026-11-01</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Submit the same way as the sign-up: a pull request to the submissions repo, adding
+<code>weekN/weekN-yourname-ext.html</code>. Start from <code>TEMPLATE_ext.html</code>. A single
+self-contained HTML file, no external assets. Merging is automatic.</p>
+
+<p>Each essay is scored 0 to 3: 0 missing, 1 a recap or an untraceable claim, 2 a real
+extension done correctly, 3 something that made me think or that I did not know.</p>
+
+<h2 id="s10"><span class="n">10</span>Assignment 3: participation</h2>
+<p class="lede">Ten percent, and it is the cheapest ten percent in the course.</p>
+
+<p>Participation means three things, all of them observable:</p>
+<ul>
+<li><strong>You ask questions.</strong> During lectures, of your classmates. A room that does not push is a room the presenter cannot learn from, and it makes the 0 to 3 rating meaningless.</li>
+<li><strong>You take part in discussion and exercises</strong> when a team runs one.</li>
+<li><strong>You submit your peer ratings</strong> after each lecture. Not submitting is the one reliable way to lose these points.</li>
+</ul>
+<p>Attendance alone is not participation. Being present and silent for sixteen lectures is
+worth very little here.</p>
+
+<h2 id="s11"><span class="n">11</span>Assignment 4: the research essay</h2>
+<p class="lede">One topic you actually care about, developed properly, due one week after the last lecture.</p>
+
+<p>The capstone. Choose a topic you are genuinely interested in. It may come from the
+course, from your own research, or from somewhere else entirely, as long as you can bring
+this course's tools to bear on it. Then write it up as a <strong>standalone HTML essay</strong>:
+one self-contained file, readable on its own by someone who was not in this class.</p>
+
+<p>Use the <code>research-essay</code> pipeline. That is what it is for.</p>
+
+<div class="box def">
+<span class="lbl">PCAPS: the chain of logic every essay must have</span>
+<ul>
+<li><strong>P</strong>roblem &mdash; what question, and why it matters.</li>
+<li><strong>C</strong>hallenge &mdash; why it is not already answered. What makes it hard.</li>
+<li><strong>A</strong>pproach &mdash; what you do about it.</li>
+<li><strong>P</strong>roof &mdash; the evidence, the derivation, the numbers, the simulation.</li>
+<li><strong>S</strong>ignificance &mdash; what changes if you are right.</li>
+</ul>
+<p class="small">These do not need to be five headed sections. They need to be visibly there,
+in that order, so a reader can follow the argument without reconstructing it.</p>
+</div>
+
+<div class="tablewrap">
+<table>
+<caption>Table 6. How the research essay is graded.</caption>
+<thead><tr><th>Criterion</th><th>Weight</th><th>What I look for</th></tr></thead>
+<tbody>
+<tr><td><strong>The PCAPS logic is cleanly presented</strong></td><td class="num hl">30</td><td>The chain holds. The problem is stated sharply, the challenge is real rather than rhetorical, the approach addresses that challenge, and the proof supports the significance you claim. No step is missing and none is smuggled.</td></tr>
+<tr><td><strong>The literature and field context are clear</strong></td><td class="num hl">25</td><td>Your topic is visibly in conversation with existing work. You know who has asked this before and what they found. You read the full texts, not the abstracts, and it shows.</td></tr>
+<tr><td><strong>There is real insight, analyzed with some depth</strong></td><td class="num hl">25</td><td>Something is obtained: a derivation, a calculation, a simulation, a synthesis nobody handed you. Depth beats breadth. One thing understood properly beats five things surveyed.</td></tr>
+<tr><td><strong>The presentation is very clear</strong></td><td class="num hl">20</td><td>Tutorial-like. Any student in this class can read it start to finish and learn from it, without you in the room. Well illustrated: figures that carry the argument rather than decorate it.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>On that last row, be concrete: an essay that is correct but unreadable does not score
+well here. Write it as if it were the core page for a lecture that does not exist yet,
+because that is exactly what the good ones will be.</p>
+
+<div class="box caution">
+<span class="lbl">Due Thursday 2026-11-05, 23:59</span>
+<p>One week after lecture 16. Submit by pull request to the submissions repo, as
+<code>research-essay/yourname.html</code>. Talk to me about your topic before then, ideally
+by the middle of October. A topic chosen badly is the most common reason a strong essay is
+not possible.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Part 4</div>
+  <h2>Reference</h2>
+  <p>Every date in one place, and what to do in the next three days.</p>
+</div>
+
+<h2 id="s12"><span class="n">12</span>Every deadline</h2>
+<p class="lede">Print this, or bookmark it.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 7. All deadlines for the term.</caption>
+<thead><tr><th>When</th><th>What</th></tr></thead>
+<tbody>
+<tr><td class="num">Thu 2026-09-03, 23:59</td><td class="hl">Team sign-up pull request merged</td></tr>
+<tr><td class="num">Sun 2026-09-06, 23:59</td><td>Extension mini-essay, week 1</td></tr>
+<tr><td class="num">Sun 2026-09-13, 23:59</td><td>Extension mini-essay, week 2</td></tr>
+<tr><td class="num">Sun 2026-09-20, 23:59</td><td>Extension mini-essay, week 3</td></tr>
+<tr><td class="num">Sun 2026-09-27, 23:59</td><td>Extension mini-essay, week 4</td></tr>
+<tr><td class="num">Sun 2026-10-11, 23:59</td><td>Extension mini-essay, week 5</td></tr>
+<tr><td class="num">Sun 2026-10-18, 23:59</td><td>Extension mini-essay, week 6</td></tr>
+<tr><td class="num">Sun 2026-10-25, 23:59</td><td>Extension mini-essay, week 7</td></tr>
+<tr><td class="num">Sun 2026-11-01, 23:59</td><td>Extension mini-essay, week 8</td></tr>
+<tr><td class="num">Thu 2026-11-05, 23:59</td><td class="hl">Research essay</td></tr>
+<tr><td class="num">rolling</td><td>Your outline to the TAs, 5 days before your lecture; rehearsal 2 to 3 days before; exposition posted after</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="s13"><span class="n">13</span>This week</h2>
+<p class="lede">Three things, none of them large.</p>
+
+<ol>
+<li><strong>Tonight or tomorrow:</strong> get an agent working. <a href="https://hpc.westlake.edu.cn/#/ai-campus">Westlake AI Campus</a> if you do not already have one. Bring a real question to Thursday's lecture.</li>
+<li><strong>Before Thursday 23:59:</strong> get a GitHub account, find two or three people you want to work with, pick a lecture, and open your sign-up pull request. The <a href="https://github.com/chemaoxfz/ccbs-2026-submissions">repository README</a> walks through it.</li>
+<li><strong>Before Sunday 23:59:</strong> write your first extension mini-essay, on anything from lectures 1 or 2. Use <a href="../extension-example/">my example</a> as the model for length and shape.</li>
+</ol>
+
+<div class="box key">
+<span class="lbl">Links you will need all term</span>
+<ul>
+<li>Course site: <a href="https://chemaoxfz.github.io/ccbs/2026fall/">chemaoxfz.github.io/ccbs/2026fall</a></li>
+<li>Submissions repo: <a href="https://github.com/chemaoxfz/ccbs-2026-submissions">github.com/chemaoxfz/ccbs-2026-submissions</a></li>
+<li>Westlake AI Campus: <a href="https://hpc.westlake.edu.cn/#/ai-campus">hpc.westlake.edu.cn/#/ai-campus</a></li>
+<li>Research with AI, the stance: <a href="https://pebble-biofusion.github.io/workshop/method/">pebble-biofusion.github.io/workshop/method</a></li>
+<li>The <code>research-essay</code> skill: <a href="https://github.com/chemaoxfz/idea-to-essay">github.com/chemaoxfz/idea-to-essay</a></li>
+<li>The essays: <a href="https://chemaoxfz.github.io/essays/">chemaoxfz.github.io/essays</a></li>
+<li>Last year's course: <a href="https://chemaoxfz.github.io/ccbs/">chemaoxfz.github.io/ccbs</a></li>
+</ul>
+<p class="small" style="margin-top:.7rem">Lecturer: Fangzhou Xiao, E1-321, office hour one hour a week by email appointment.
+TAs: Wenqin Zhou (<a href="mailto:zhouwenqin@westlake.edu.cn">zhouwenqin@westlake.edu.cn</a>),
+Xinyu Wang (<a href="mailto:wangxinyu@westlake.edu.cn">wangxinyu@westlake.edu.cn</a>).</p>
+</div>
+
+</main>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('tt');
+  function apply(){document.documentElement.setAttribute('data-theme',
+    (typeof localStorage!=='undefined'&&localStorage.getItem('th')==='dark')?'dark':'light');}
+  b.addEventListener('click',function(){var d=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
+    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();});
+  if(typeof localStorage!=='undefined'&&!localStorage.getItem('th')){var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';localStorage.setItem('th',d);}
+  apply();
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  function hi(){var y=window.scrollY+80,cur=null;links.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t&&t.offsetTop<=y)cur=a;});links.forEach(function(a){a.classList.toggle('on',a===cur);});}
+  addEventListener('scroll',hi,{passive:true});hi();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 6 · Timescale separation: singular perturbation, QSSA, and the telegraph model · CCBS 2026</title>
+<meta name="description" content="Fast and slow are not a convenience. Made rigorous by singular perturbation, they turn an intractable network into a small one, deterministically and stochastically.">
+<style>
+:root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
+--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--ink:#20201E;--gray:#877F77;--leader:#B8AEA5;--gridc:#EDE7E0;
+--bg:#FCFAF7;--bg2:#FFFFFF;--fg:var(--ink);--muted:#6E675F;--rule:#E3DCD3;
+--shadow:0 1px 2px rgba(32,32,30,.05), 0 8px 28px rgba(32,32,30,.05);
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+--mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;--maxw:44rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;
+--gridc:#2C2E28;--leader:#5C574F;--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;--gridc:#2C2E28;--leader:#5C574F;
+--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}
+:root[data-theme="light"]{--bg:#FCFAF7;--bg2:#FFFFFF;--fg:#20201E;--muted:#6E675F;--rule:#E3DCD3;--gridc:#EDE7E0;--leader:#B8AEA5;
+--ink:#20201E;--gray:#877F77;--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--serif);font-size:18px;line-height:1.62;
+font-kerning:normal;text-rendering:optimizeLegibility}
+.wrap{max-width:78rem;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:3rem}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr;gap:0}}
+nav.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:2.5rem 0 3rem;
+font-family:var(--sans);font-size:.8rem;line-height:1.45}
+nav.toc .brand{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700;margin:0 0 1.1rem}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 .9rem;font-weight:600}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li{margin:0 0 .1rem}
+nav.toc a{display:block;padding:.26rem .55rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;border-radius:0 4px 4px 0}
+nav.toc a:hover{color:var(--fg);background:var(--bg2)}
+nav.toc a.on{color:var(--fg);border-left-color:var(--rose);background:var(--bg2);font-weight:600}
+nav.toc .part{margin:1.1rem 0 .35rem;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--leader);font-weight:700}
+@media (max-width:1000px){nav.toc{position:static;max-height:none;border-bottom:1px solid var(--rule);margin-bottom:1rem}}
+main{padding:2.5rem 0 6rem;min-width:0}
+main > *{max-width:var(--maxw)}
+main > figure,main > .wide,main > .demo,main > .tablewrap{max-width:56rem}
+h1{font-size:2.5rem;line-height:1.1;letter-spacing:-.02em;margin:.4rem 0 .8rem;font-weight:700;max-width:26ch}
+.sub{font-size:1.18rem;color:var(--muted);margin:0 0 1.6rem;line-height:1.5;max-width:38rem}
+.byline{font-family:var(--sans);font-size:.8rem;color:var(--muted);letter-spacing:.02em;margin-bottom:2.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--rule)}
+h2{font-size:1.05rem;font-family:var(--sans);font-weight:700;letter-spacing:.02em;margin:3.6rem 0 .2rem;scroll-margin-top:1.5rem}
+h2 .n{color:var(--rose);font-variant-numeric:tabular-nums;margin-right:.5rem}
+h2 + .lede{color:var(--muted);font-size:1.02rem;margin:.1rem 0 1.1rem}
+h3{font-size:.95rem;font-family:var(--sans);font-weight:700;margin:2.1rem 0 .5rem;color:var(--fg)}
+.parthead{margin:4.5rem 0 1.2rem;padding-top:1.6rem;border-top:2px solid var(--fg)}
+.parthead .k{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700}
+.parthead h2{font-size:1.8rem;margin:.35rem 0 .3rem;letter-spacing:-.01em;font-family:var(--serif)}
+.parthead p{color:var(--muted);margin:0;font-size:1.02rem}
+p{margin:0 0 1.05rem}
+a{color:var(--fg);text-underline-offset:2px;text-decoration-color:var(--leader)}
+a:hover{text-decoration-color:var(--rose)}
+ul,ol{margin:0 0 1.05rem;padding-left:1.35rem}
+li{margin:.28rem 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.6rem 0}
+.small{font-size:.88rem;color:var(--muted)}
+.m{font-family:var(--mono);font-size:.92em;font-style:normal;white-space:nowrap}
+.eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);font-size:.95rem;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;line-height:1.9}
+.eq .tag{float:right;color:var(--leader);font-size:.85em}
+.eq b{color:var(--rose);font-weight:700}
+sub,sup{font-size:.7em;line-height:0}
+.box{border:1px solid var(--rule);background:var(--bg2);border-radius:10px;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow)}
+.box .lbl{font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.45rem;display:block}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+.box.key{border-left:3px solid var(--rose);background:linear-gradient(94deg,var(--blush),var(--bg2) 62%)}
+.box.key .lbl{color:var(--rose)}
+.box.def{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.def .lbl{color:var(--peri)}
+.box.note{border-left:3px solid var(--lime)}
+.box.note .lbl{color:var(--lime)}
+.box.caution{border-left:3px solid var(--coral);background:linear-gradient(94deg,var(--pinkf),var(--bg2) 62%)}
+.box.caution .lbl{color:var(--coral)}
+.box.sim{border-left:3px solid var(--teal);background:linear-gradient(94deg,var(--powder),var(--bg2) 62%)}
+.box.sim .lbl{color:var(--teal)}
+.box.open{border-left:3px solid var(--plum);background:linear-gradient(94deg,var(--lilac),var(--bg2) 62%)}
+.box.open .lbl{color:var(--plum)}
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
+figcaption b{color:var(--fg);font-weight:700}
+.figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
+.tablewrap{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.83rem;line-height:1.45}
+th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:700;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hl{color:var(--rose);font-weight:600}
+caption{caption-side:bottom;text-align:left;padding:.7rem .8rem;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
+.refs{font-size:.88rem;line-height:1.5}
+.refs ol{padding-left:1.8rem}
+.refs li{margin:.5rem 0}
+.refs .venue{color:var(--muted)}
+.pdf{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.04em;color:var(--teal);border:1px solid var(--teal);border-radius:4px;padding:.02rem .3rem;text-decoration:none;margin-left:.3rem;white-space:nowrap}
+.pdf:hover{background:var(--teal);color:var(--bg2)}
+sup.c{font-size:.68em;color:var(--rose);font-weight:700}
+sup.c a{color:inherit;text-decoration:none}
+#tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
+@media print{#tt,nav.toc{display:none}.wrap{display:block}main>*{max-width:none}}
+</style>
+</head>
+<body>
+<button id="tt" title="Toggle light / dark">&#9689;</button>
+<div class="wrap">
+<nav class="toc" id="toc">
+  <div class="brand">CCBS &middot; 2026 &middot; Lecture 6 &middot; CORE</div>
+  <h2>Contents</h2>
+  <ol>
+    <li class="part">Part 1 &middot; The deterministic reduction</li>
+    <li><a href="#s1">1 &middot; QSSA and the enzyme master derivation</a></li>
+    <li class="part">Part 2 &middot; The stochastic reduction</li>
+    <li><a href="#s2">2 &middot; Burstiness and the Fano factor</a></li>
+    <li class="part">Appendix</li>
+    <li><a href="#refs">References &amp; note sources</a></li>
+  </ol>
+</nav>
+<main>
+
+<h1>Timescale separation: singular perturbation, QSSA, and the telegraph model</h1>
+<p class="sub">Fast and slow are not a convenience. Made rigorous by singular perturbation, they turn an intractable network into a small one, deterministically and stochastically.</p>
+<p class="byline">CCBS &middot; CST 5034 &middot; Fall 2026 &middot; lecture 6 &middot; core page &middot; 2026-09-17 (Thu) 10:40&ndash;12:15 &middot; students present, lecturer-backed</p>
+
+<p>Every model in this course is a reduced model, and timescale separation is the reduction. Done casually it is the quasi-steady-state assumption you already met in Michaelis-Menten. Done rigorously it is singular perturbation, with an error bound and a condition for when it fails. The same idea then reduces a stochastic gene-expression model to the telegraph model, which is where bursting comes from.</p>
+
+<div class="box open">
+<span class="lbl">Still to be written into this core page</span>
+<p>This lecture is new in 2026 or substantially re-scoped, so parts of it are not yet carried over from the 2025 notes. The teaching team should treat this list as the commissioning brief, and the lecturer as the backlog.</p>
+<ul>
+<li>Singular perturbation stated rigorously: the fast/slow form, the slow manifold, Tikhonov's theorem, and the O(epsilon) error bound.</li>
+<li>When QSSA fails: substrate depletion, comparable timescales, and the total-QSSA fix.</li>
+<li>The telegraph model of gene expression: a two-state promoter with switching rates, its exact stationary distribution, and the burst limit where it becomes negative-binomial.</li>
+<li>The bridge: the telegraph model IS the stochastic QSSA of the same network, so the two halves of the lecture are one argument.</li>
+</ul>
+</div>
+
+<div class="parthead">
+  <div class="k">Part 1</div>
+  <h2>The deterministic reduction</h2>
+  <p>Fast enzymatic reactions, the quasi-steady-state assumption, and the derivation done properly.</p>
+</div>
+
+<h2 id="s1"><span class="n">1</span>QSSA and the enzyme master derivation</h2>
+<p class="lede">Fast variables are slaved by slow ones: the complex C is quasisteady, and the resulting law comes straight from the algebra.</p>
+
+<p>The time-scale separation argument: <span class="m">E + S ⇌ C → E + P</span> with the
+complex fast relative to the substrate/product. Set <span class="m">dC/dt ≈ 0</span>
+(the quasi-steady-state assumption). The binding equilibrium gives
+<sup class="c"><a href="#r-w3-l23">1</a></sup></p>
+
+<div class="eq">C = ES/K, &nbsp; K = (k<sub>off</sub> + k<sub>cat</sub>)/k<sub>on</sub>, &nbsp; C = ½[(E<sub>tot</sub>+S<sub>tot</sub>+K) ± √((E<sub>tot</sub>+S<sub>tot</sub>+K)² − 4E<sub>tot</sub>S<sub>tot</sub>)] <span class="tag">(3)</span></div>
+
+<p>Two regimes emerge from the quadratic's two branches — substrate-excess and
+enzyme-excess — and the realized rate is a different function in each. The general
+principle: <strong>slow variables see fast ones at their quasisteady value.</strong>
+Gene expression uses the same trick (transcription fast, protein slow); lecture 7's
+equilibrium physics is its thermodynamic form; lecture 5's master equation is its
+stochastic one.</p>
+
+<div class="parthead">
+  <div class="k">Part 2</div>
+  <h2>The stochastic reduction</h2>
+  <p>The same separation applied to gene expression: promoter states, bursts, and the Fano factor.</p>
+</div>
+
+<h2 id="s2"><span class="n">2</span>Burstiness and the Fano factor</h2>
+<p class="lede">Gene expression arrives in bursts: the distribution is not Poisson, the variance exceeds the mean — and single cells are bimodal.</p>
+
+<p>Genes fire in pulses: mRNAs are born in bursts and translated in bursts, so a
+single-gene reporter's histogram is heavier-tailed than Poisson. The Fano factor
+(above) is the diagnostic; in the lecture's examples, mean ≈ variance is replaced by
+<span class="m">F &gt; 1</span> — an immediate quantitative statement that the "noise"
+is bursty, not diffusive.<sup class="c"><a href="#r-w5-l6">3</a></sup> And because the
+production rate itself is a state (gene on/off), the effective description of a gene is
+a two-level input filtered by degradation — the bursts' size and duration are design
+knobs, and they parameterize how much noise a cell tolerates before a design changes.</p>
+
+<hr>
+
+<h2 id="refs"><span class="n">&dagger;</span>References &amp; note sources</h2>
+<p class="lede">Where this page's claims and numbers live.</p>
+
+<div class="refs">
+<ol>
+<li id="r-w3-l23">F. Xiao, <em>CCBS 2025 Lecture 2</em> (§2.4 phase portraits, §2.5 local
+stability) and <em>Lecture 3 — Dynamical systems and diversity of bioregulation</em>
+(outline: 1D/2D dynamics, polynomial CRNs, time-scale separation and archetypal
+behaviors, LEGO of bioregulation).
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf">L2 PDF</a>
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture3/202509-CCBS-lecture-notes-03-bioregulation_202509181251_21385.pdf">L3 PDF</a>
+<span class="venue">This lecture traces here.</span></li>
+<li id="r-w3-l10">F. Xiao, <em>CCBS 2025 Lecture 10 — Computation (bio)machine</em> (toggle
+switch, nullclines, multistability).
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture10/202509-CCBS-lecture-notes-10-computation-biomachin_0_1763000567235.pdf">PDF</a>
+<span class="venue">The multi-gene stability story; see also reaction-order polyhedra in lecture 11.</span></li>
+<li id="r-w3-l5">F. Xiao, <em>CCBS 2025 Lecture 5</em> (Repressilator opening the noise
+discussion).
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture5/202509-CCBS-lecture-notes-05-adaptation-biomachine_202510090338_05347.pdf">PDF</a></li>
+<li>S. Strogatz, <em>Nonlinear Dynamics and Chaos</em>, Ch. 1–8.
+<span class="venue">The intuition-first reference for everything here.</span></li>
+<li>G. Buzi, U. Alon-style motif theory: <em>An Introduction to Systems Biology</em>, Ch. 3–4.
+<span class="venue">Network motifs: feedforward loops, feedback, and their functions.</span></li>
+<li id="r-w5-l56">F. Xiao, <em>CCBS 2025 Lecture 5</em> (half B) + <em>Lecture 6</em> (half A):
+the Repressilator, Poisson noise, bursty gene expression, CME, Gillespie/SSA, moment
+analysis, moment closure/LNA, stochastic phenomena (burstiness, multistability→
+multimodality, extinction, ergodicity).
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture5/202509-CCBS-lecture-notes-05-adaptation-biomachine_202510090338_05347.pdf">L5 PDF</a>
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture6/202509-CCBS-lecture-notes-06-noise-and-energy-equi_202510161018_41883.pdf">L6 PDF</a>
+<span class="venue">This lecture traces here.</span></li>
+<li id="r-w5-l5">F. Xiao, <em>CCBS 2025 Lecture 5</em> — Poisson distribution, CME, LNA
+derivation. <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture5/202509-CCBS-lecture-notes-05-adaptation-biomachine_202510090338_05347.pdf">PDF</a></li>
+<li id="r-w5-l6">F. Xiao, <em>CCBS 2025 Lecture 6</em> — Gillespie algorithm derivation and
+moment analysis.<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture6/202509-CCBS-lecture-notes-06-noise-and-energy-equi_202510161018_41883.pdf">PDF</a></li>
+<li>M. Elowitz, A. Levine, E. Siggia, P. Swain, <em>Science</em> 2002 — intrinsic vs
+extrinsic noise.
+<span class="venue">The classic single-cell noise experiment (the "go beyond" pointer).</span></li>
+<li>R. Erban, S. Chapman, P. Martin, <em>Stochastic Modelling of Reaction–Diffusion
+Processes</em> (2007).
+<span class="venue">Cited in the notes; the algorithmic companion.</span></li>
+</ol>
+</div>
+
+</main>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('tt');
+  function apply(){document.documentElement.setAttribute('data-theme',
+    (typeof localStorage!=='undefined'&&localStorage.getItem('th')==='dark')?'dark':'light');}
+  b.addEventListener('click',function(){var d=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
+    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();});
+  if(typeof localStorage!=='undefined'&&!localStorage.getItem('th')){var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';localStorage.setItem('th',d);}
+  apply();
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  function hi(){var y=window.scrollY+80,cur=null;links.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t&&t.offsetTop<=y)cur=a;});links.forEach(function(a){a.classList.toggle('on',a===cur);});}
+  addEventListener('scroll',hi,{passive:true});hi();
+})();
+</script>
+</body>
+</html>
