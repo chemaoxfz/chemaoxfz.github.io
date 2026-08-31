@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week 1 — Order of Magnitude: numbers can say a lot</title>
+<meta name="description" content="The 2026 course frame, and OoM reasoning as the first tool: fast, robust estimates from Hangzhou to the cell.">
+<style>
+:root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
+--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--ink:#20201E;--gray:#877F77;--leader:#B8AEA5;--gridc:#EDE7E0;
+--bg:#FCFAF7;--bg2:#FFFFFF;--fg:var(--ink);--muted:#6E675F;--rule:#E3DCD3;
+--shadow:0 1px 2px rgba(32,32,30,.05), 0 8px 28px rgba(32,32,30,.05);
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+--mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;--maxw:44rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;
+--gridc:#2C2E28;--leader:#5C574F;--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;--gridc:#2C2E28;--leader:#5C574F;
+--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}
+:root[data-theme="light"]{--bg:#FCFAF7;--bg2:#FFFFFF;--fg:#20201E;--muted:#6E675F;--rule:#E3DCD3;--gridc:#EDE7E0;--leader:#B8AEA5;
+--ink:#20201E;--gray:#877F77;--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--serif);font-size:18px;line-height:1.62;
+font-kerning:normal;text-rendering:optimizeLegibility}
+.wrap{max-width:78rem;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:3rem}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr;gap:0}}
+nav.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:2.5rem 0 3rem;
+font-family:var(--sans);font-size:.8rem;line-height:1.45}
+nav.toc .brand{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700;margin:0 0 1.1rem}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 .9rem;font-weight:600}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li{margin:0 0 .1rem}
+nav.toc a{display:block;padding:.26rem .55rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;border-radius:0 4px 4px 0}
+nav.toc a:hover{color:var(--fg);background:var(--bg2)}
+nav.toc a.on{color:var(--fg);border-left-color:var(--rose);background:var(--bg2);font-weight:600}
+nav.toc .part{margin:1.1rem 0 .35rem;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--leader);font-weight:700}
+@media (max-width:1000px){nav.toc{position:static;max-height:none;border-bottom:1px solid var(--rule);margin-bottom:1rem}}
+main{padding:2.5rem 0 6rem;min-width:0}
+main > *{max-width:var(--maxw)}
+main > figure,main > .wide,main > .demo,main > .tablewrap{max-width:56rem}
+h1{font-size:2.5rem;line-height:1.1;letter-spacing:-.02em;margin:.4rem 0 .8rem;font-weight:700;max-width:26ch}
+.sub{font-size:1.18rem;color:var(--muted);margin:0 0 1.6rem;line-height:1.5;max-width:38rem}
+.byline{font-family:var(--sans);font-size:.8rem;color:var(--muted);letter-spacing:.02em;margin-bottom:2.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--rule)}
+h2{font-size:1.05rem;font-family:var(--sans);font-weight:700;letter-spacing:.02em;margin:3.6rem 0 .2rem;scroll-margin-top:1.5rem}
+h2 .n{color:var(--rose);font-variant-numeric:tabular-nums;margin-right:.5rem}
+h2 + .lede{color:var(--muted);font-size:1.02rem;margin:.1rem 0 1.1rem}
+h3{font-size:.95rem;font-family:var(--sans);font-weight:700;margin:2.1rem 0 .5rem;color:var(--fg)}
+.parthead{margin:4.5rem 0 1.2rem;padding-top:1.6rem;border-top:2px solid var(--fg)}
+.parthead .k{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700}
+.parthead h2{font-size:1.8rem;margin:.35rem 0 .3rem;letter-spacing:-.01em;font-family:var(--serif)}
+.parthead p{color:var(--muted);margin:0;font-size:1.02rem}
+p{margin:0 0 1.05rem}
+a{color:var(--fg);text-underline-offset:2px;text-decoration-color:var(--leader)}
+a:hover{text-decoration-color:var(--rose)}
+ul,ol{margin:0 0 1.05rem;padding-left:1.35rem}
+li{margin:.28rem 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.6rem 0}
+.small{font-size:.88rem;color:var(--muted)}
+.m{font-family:var(--mono);font-size:.92em;font-style:normal;white-space:nowrap}
+.eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);font-size:.95rem;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;line-height:1.9}
+.eq .tag{float:right;color:var(--leader);font-size:.85em}
+.eq b{color:var(--rose);font-weight:700}
+sub,sup{font-size:.7em;line-height:0}
+.box{border:1px solid var(--rule);background:var(--bg2);border-radius:10px;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow)}
+.box .lbl{font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.45rem;display:block}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+.box.key{border-left:3px solid var(--rose);background:linear-gradient(94deg,var(--blush),var(--bg2) 62%)}
+.box.key .lbl{color:var(--rose)}
+.box.def{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.def .lbl{color:var(--peri)}
+.box.note{border-left:3px solid var(--lime)}
+.box.note .lbl{color:var(--lime)}
+.box.caution{border-left:3px solid var(--coral);background:linear-gradient(94deg,var(--pinkf),var(--bg2) 62%)}
+.box.caution .lbl{color:var(--coral)}
+.box.sim{border-left:3px solid var(--teal);background:linear-gradient(94deg,var(--powder),var(--bg2) 62%)}
+.box.sim .lbl{color:var(--teal)}
+.box.open{border-left:3px solid var(--plum);background:linear-gradient(94deg,var(--lilac),var(--bg2) 62%)}
+.box.open .lbl{color:var(--plum)}
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
+figcaption b{color:var(--fg);font-weight:700}
+.figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
+.tablewrap{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.83rem;line-height:1.45}
+th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:700;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hl{color:var(--rose);font-weight:600}
+caption{caption-side:bottom;text-align:left;padding:.7rem .8rem;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
+.refs{font-size:.88rem;line-height:1.5}
+.refs ol{padding-left:1.8rem}
+.refs li{margin:.5rem 0}
+.refs .venue{color:var(--muted)}
+.pdf{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.04em;color:var(--teal);border:1px solid var(--teal);border-radius:4px;padding:.02rem .3rem;text-decoration:none;margin-left:.3rem;white-space:nowrap}
+.pdf:hover{background:var(--teal);color:var(--bg2)}
+sup.c{font-size:.68em;color:var(--rose);font-weight:700}
+sup.c a{color:inherit;text-decoration:none}
+#tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
+@media print{#tt,nav.toc{display:none}.wrap{display:block}main>*{max-width:none}}
+</style>
+</head>
+<body>
+<button id="tt" title="Toggle light / dark">◐</button>
+<div class="wrap">
+<nav class="toc" id="toc">
+  <div class="brand">CCBS · 2026 · Week 1 · CORE</div>
+  <h2>Contents</h2>
+  <ol>
+    <li class="part">Block 0 · The course</li>
+    <li><a href="#s1">1 · What this course is</a></li>
+    <li><a href="#s2">2 · The 2026 operating cycle</a></li>
+    <li><a href="#s3">3 · The anatomy of a session</a></li>
+    <li class="part">Block 1 · The method</li>
+    <li><a href="#s4">4 · What OoM reasoning is</a></li>
+    <li><a href="#s5">5 · Hangzhou: 10<sup>7</sup> people out</a></li>
+    <li class="part">Block 2 · The numbers</li>
+    <li><a href="#s6">6 · Jump height does not care</a></li>
+    <li><a href="#s7">7 · The cell in numbers</a></li>
+    <li class="part">Block 3 · The scales</li>
+    <li><a href="#s8">8 · Heat: t ~ x²/κ</a></li>
+    <li><a href="#s9">9 · Diffusion and mixing</a></li>
+    <li><a href="#s10">10 · Null hypotheses for biology</a></li>
+    <li class="part">Appendix</li>
+    <li><a href="#refs">References &amp; note sources</a></li>
+  </ol>
+</nav>
+<main>
+
+<h1>Order of magnitude: numbers can say a lot</h1>
+<p class="sub">Week 1 of CCBS 2026. Estimate fast, estimate robustly, and the world starts to look constrained — from evacuating a city to mixing a metabolite inside a cell.</p>
+<p class="byline">CCBS · CST 5034 · Fall 2026 · core page · lecturer-taught (week 1) · blocks 0–3</p>
+
+<p>This page is the <em>core</em> for week 1: everything a student needs before build
+discussion. Block 0 tells you how the course works. Blocks 1–3 are the content of the
+first lecture, Order-of-Magnitude (OoM) reasoning, taught now and used for the rest of
+the course: what a reaction costs, whether noise matters, how fast a cell can respond —
+those questions are all OoM questions first.</p>
+
+<div class="box note">
+<span class="lbl">How to use this page</span>
+<p>Blocks are labeled. The lecturer teaches this week; from week 2 every block's session
+is taught by a student, quizzed by the presenter's own TA-approved quiz, and closed by
+the lecturer's 15-minute addendum. Claims that rest on a specific note are marked with
+a PDF badge pointing at the 2025 lecture note it came from; the reference list is a
+reading map, not a claim ledger.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Block 0</div>
+  <h2>The course</h2>
+  <p>Rules, the three schools, the cycle, and the anatomy of every session.</p>
+</div>
+
+<h2 id="s1"><span class="n">1</span>What this course is</h2>
+<p class="lede">Physics, system, industry: three schools asking three questions about life, and this course's tools aim at all three.</p>
+
+<p>CCBS reads a cell as a machine you can reason about quantitatively. Three schools
+frame the reasoning, and each asks its own question. <strong>Physics</strong> asks what
+life is as an object: sizes, rates, energies, and the constraints they impose. <strong>System</strong>
+asks how life works as a machine: reaction networks, dynamics, feedback, stochasticity,
+computation. <strong>Industry</strong> asks how life could be useful as a tool: design a
+protein, engineer a metabolism, grow a machine.</p>
+
+<p>Nothing in the course needs prior background classes — only "an exuberant love for
+biology," which is mandatory. What the course does ask is that you treat skills and
+numbers as things you can build, because in 2026 the raw material for learning is
+available to everyone: an AI agent can digest a paper, write first-pass code, and
+produce a draft figure on demand. What it cannot do is understand, defend, and
+communicate. That part is yours, and it is the whole course.</p>
+
+<h2 id="s2"><span class="n">2</span>The 2026 operating cycle</h2>
+<p class="lede">Input → learn → output, run weekly, with an agent in the loop and the audience as the judge.</p>
+
+<div class="eq">ask AI to digest and write → understand and use it to work and iterate → present to others to communicate</div>
+
+<p>Every week runs this loop. Input: the lecturer's <em>core</em> page and the pointers on
+it. Learn: you digest it with an agent, check every claim against the core, and make
+numbers with code rather than quoting them. Output: the teaching students present (30
+minutes per block), the whole class answers a comprehension quiz per block, and every
+non-teaching student posts a short extension micro-essay. The extension micro-essay is
+not a summary: one example, one scenario, one opinion, one perspective, one argument,
+traceably sourced. Conflicting positions are welcome — the TAs assemble the week's
+micro-essays into one extension-by-audience page, conflicts kept visibly in conversation.</p>
+
+<div class="box key">
+<span class="lbl">The four commandments (research-with-AI)</span>
+<ul>
+<li>AI is our minion, not our peer. Own every claim, or do not use it.</li>
+<li>AI is a cyber-arm. Attach it to what you care about, not the chores you dislike.</li>
+<li>Your input–output bandwidth is the bottleneck. Specify well, comprehend fully.</li>
+<li>Be above AI on everything you think about. Generic output is the floor, not the ceiling.</li>
+</ul>
+</div>
+
+<h2 id="s3"><span class="n">3</span>The anatomy of a session</h2>
+<p class="lede">30 minutes of teaching, 5 minutes of quiz, 15 minutes of addendum; the lecture that gets rated is the lecture that gets quizzed.</p>
+
+<p>From week 2, each week has four blocks. Each block is one point of the lecture and is
+taught by one student in a <strong>30-minute session</strong>, immediately followed by a
+<strong>5-minute quiz</strong> written by that session's presenter and approved by the
+TAs before class (approval means: it tests the block's core point, and anyone who got
+the material can solve it in about 30 seconds). The class and the lecturer rate every
+session 0–3: 3 excellent, 2 the audience got it, 1 the key ideas landed but details
+vanished, 0 the lecturer steps in and teaches it instead — that fallback is a design
+feature, not a failure. Each day ends with the <strong>lecturer's 15-minute
+addendum</strong>: gaps, the thing that matters most, take-aways.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 1. One week, one day, one point per session.</caption>
+<thead><tr><th>Block</th><th>Who</th><th>Content</th><th>Output</th></tr></thead>
+<tbody>
+<tr><td class="num">0</td><td>lecturer</td><td>rules, format, map</td><td>the week's assignment list</td></tr>
+<tr><td class="num">1–4</td><td>student ×4</td><td>one point each, 30 min + 5 min quiz</td><td>exposition + quiz (+1-min "beyond")</td></tr>
+<tr><td class="num">—</td><td>everyone else</td><td>extension micro-essay, due next Wed</td><td>extension-by-audience page</td></tr>
+<tr><td class="num">—</td><td>lecturer</td><td>15 min addendum</td><td>corrections, take-aways</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="box open">
+<span class="lbl">Week 1 assignment</span>
+<p>Before week 2: pick the one thing in this page you would have estimated differently,
+and write the extension micro-essay on it (one number, a figure you made, one source).
+That is the format you will be graded on all semester.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Block 1</div>
+  <h2>The method</h2>
+  <p>OoM reasoning: fast, robust estimates; order-of-magnitude is the unit, not the answer.</p>
+</div>
+
+<h2 id="s4"><span class="n">4</span>What OoM reasoning is</h2>
+<p class="lede">Numbers can say a lot, but only when they are robust; details are fragile, orders of magnitude are not.</p>
+
+<p>The world is connected. Observations that seem unrelated can be deeply constrained —
+the size of the Earth was estimated from a solar eclipse, centuries before anyone stood
+on a pole. The instrument that sees such connections is <strong>order-of-magnitude
+reasoning</strong>: estimate the quantity, keep only the power of ten, and let the
+constraint do the arguing.<sup class="c"><a href="#r-l1">1</a></sup></p>
+
+<div class="box def">
+<span class="lbl">Order of magnitude</span>
+<p>An estimate that is right to within a factor — typically we keep <span class="m">1</span> or <span class="m">10</span>, not more. The claim to make is of the form "it's about <span class="m">10<sup>6</sup></span> per second," never "approximately 1.3×10<sup>6</sup>."</p>
+</div>
+
+<p>Two properties make OoM the right first tool. First, it is <strong>fast</strong>:
+you can do it in your head, mid-conversation. Second, and more important, it is
+<strong>robust</strong>: the factors that dominate an estimate are usually few, so the
+answer survives small errors in every detail — while striking a precise answer <em>suggests
+precision it does not have</em>. Details are fragile; orders of magnitude are not. The
+lecture's heading for this is <em>1, 10</em>.<sup class="c"><a href="#r-l1">1</a></sup></p>
+
+<h2 id="s5"><span class="n">5</span>Hangzhou: 10<sup>7</sup> people out</h2>
+<p class="lede">Evacuating a city by plane or by car — the same flux formula answers both, and scaling tells you cars win.</p>
+
+<p>The first worked example is macroscopic: evacuate all of Hangzhou (~10<sup>7</sup>
+people). Option one, airplane. The bottleneck is the airport — one plane at a time. One
+plane every two minutes holds 300 people, so
+<sup class="c"><a href="#r-l1">1</a></sup></p>
+
+<div class="eq">2×10<sup>5</sup> people/day ≈ 60·24 × 300/2 <span class="tag">(1)</span></div>
+
+<p>and the whole city takes roughly 50 days. Option two, cars. Count the lanes: about
+10 highways, ~10 lanes each in an emergency → 100 lanes. Each lane is a flux pipe:</p>
+
+<div class="eq">Flux = N·v / L = (#people per car × speed) / (distance between cars) <span class="tag">(2)</span></div>
+
+<p>With 4 people per car, 20 m/s, and 40 m between cars, one lane moves 2 people per
+second — again ~2×10<sup>5</sup> per day, but per <em>lane</em>, so 100 lanes move
+~2×10<sup>7</sup> people per day: <strong>the city evacuates in about a day</strong>.<sup class="c"><a href="#r-l1">1</a></sup></p>
+
+<div class="box key">
+<span class="lbl">The lesson</span>
+<p>The same arithmetic (1) appears twice with opposite conclusions; the difference is the
+bottleneck, found by <em>scaling the geometry</em>, not by refining numbers. And once the
+flux is written as <span class="m">N/τ</span> — N people per car over τ, a reaction time
+that nature fixes — the answer stops depending on the vehicle: walking on the highway at
+1 m/s with 2 m spacing evacuates the city too.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Block 2</div>
+  <h2>The numbers</h2>
+  <p>Scaling laws and the cell's ledger: what stays constant, what changes, and how much stuff a cell actually has.</p>
+</div>
+
+<h2 id="s6"><span class="n">6</span>Jump height does not care</h2>
+<p class="lede">h ∝ M⁰: muscle energy scales with body volume, and the height reached is independent of animal size.</p>
+
+<p>Second example: how does jump height scale with animal size? Energy to reach height
+h: <span class="m">E<sub>g</sub> = Mgh</span>. Energy stored in muscle: the muscle volume
+is a fixed fraction of the body, so <span class="m">E<sub>m</sub> ∝ L³ ∝ M</span>.
+Equate, cancel:<sup class="c"><a href="#r-l1">1</a></sup></p>
+
+<div class="eq">M g h = E<sub>m</sub> ∝ M f<sub>m</sub> ⇒ <b>h ∝ M<sup>0</sup> f<sub>m</sub></b> <span class="tag">(3)</span></div>
+
+<p>Jump height is independent of size (for the same muscle mechanism). Data fit: rat 50
+cm, flea 25 cm, cat 150 cm. But the <em>time</em> to take the jump scales as
+<span class="m">τ ∝ L/v</span> — the body must deliver its stored energy over its own
+length at a fixed speed. Human: ~0.3 s, fine. Cat: pushing the limit. Flea: ~0.6 ms —
+<strong>too fast for muscles</strong>.<sup class="c"><a href="#r-l1">1</a></sup>
+The resolution: the flea stores energy in its shell first. Air resistance only bites
+when the jump length reaches ~10³ body lengths, since the energy lost to drag relative
+to takeoff energy scales as <span class="m">ρ<sub>a</sub>/ρ<sub>m</sub></span> per body
+length — a flea jumping 10³ body lengths is where drag starts to matter.</p>
+
+<div class="box caution">
+<span class="lbl">A warning built into the example</span>
+<p>The <em>conclusion</em> (3) is a scaling law, robust and worth remembering. The
+<em>mechanism</em> ("muscles store energy ∝ volume") is the fragile part. When a student
+presents a scaling result, the audience should be able to name the assumption that made
+it — and what would break it. That is exactly what the week's quiz question will test.</p>
+</div>
+
+<h2 id="s7"><span class="n">7</span>The cell in numbers</h2>
+<p class="lede">The ledger every later lecture will draw on: volumes, proteins, concentrations, and the rates that follow from them.</p>
+
+<p>OoM reasoning turns inward, to the cell — the domain of the whole course. The base
+units first:<sup class="c"><a href="#r-l1">1</a></sup></p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 2. The cell's ledger (from the 2025 lecture notes; every value is OoM-ready).</caption>
+<thead><tr><th>Quantity</th><th>Value</th><th>Why it will matter</th></tr></thead>
+<tbody>
+<tr><td>1 µm³</td><td class="num">10<sup>−15</sup> L = 1 fL</td><td>the working volume unit</td></tr>
+<tr><td>1 pg</td><td class="num">10<sup>−12</sup> g</td><td>the working mass unit</td></tr>
+<tr><td>E. coli genome</td><td class="num">5 Mbp</td><td>how much information a cell carries</td></tr>
+<tr><td>protein</td><td class="num">~30 kDa, ~300 aa</td><td>typical size for estimates</td></tr>
+<tr><td>protein volume</td><td class="num">~30 nm³</td><td>crowding starts here</td></tr>
+<tr><td>protein diffusion</td><td class="num">D ~ 100 µm²/s</td><td>mixing times follow</td></tr>
+<tr><td>protein concentration</td><td class="num">~1 µM</td><td>≈ 1 per fL — the counting regime</td></tr>
+<tr><td>metabolite concentration</td><td class="num">~1 mM</td><td>≈ 1000× protein count</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Numbers to notice: a protein at 1 µM is roughly <strong>one molecule per
+femtoliter</strong> — in a small bacterial cell, "concentration" and "discreteness" meet,
+which is why stochasticity will not stay a footnote. Metabolites at ~1 mM sit three
+orders of magnitude above that, so the reaction-network picture (deterministic, well
+mixed) is the right first approximation for small molecules and already the wrong first
+approximation for regulators.</p>
+
+<div class="parthead">
+  <div class="k">Block 3</div>
+  <h2>The scales</h2>
+  <p>Diffusion and heat do one thing everywhere: t ≈ x²/D. It is the single most useful scaling in the course.</p>
+</div>
+
+<h2 id="s8"><span class="n">8</span>Heat: t ~ x²/κ</h2>
+<p class="lede">From the heat equation to "a potato takes ~10 minutes"; the scaling t ∝ x² is the deliverable.</p>
+
+<p>Third example: heat. Flux <span class="m">J = −K∇T</span>, heat capacity per volume
+<span class="m">c<sub>v</sub></span>; energy balance gives <span class="m">∂T/∂t = κ∇²T</span>
+with <span class="m">κ = K/c<sub>v</sub></span>. Dimensional analysis of that equation
+gives the only scaling that matters:<sup class="c"><a href="#r-l1">1</a></sup></p>
+
+<div class="eq">t ≈ x² / κ <span class="tag">(4)</span></div>
+
+<p>Check the potato: κ ≈ 1.5×10<sup>−6</sup> m²/s, x ~ 5 cm → about 10 minutes to cook
+through. The same scaling says a molten Earth takes ~10<sup>10</sup> years to cool —
+which may be one of the reasons the moon's interior is still partly hot. The functional
+form <span class="m">t ∝ x²</span> is the point: <strong>double the size, quadruple the
+time.</strong> Nothing else about the mechanism — K, c<sub>v</sub>, geometry details —
+survives in the scaling.</p>
+
+<h2 id="s9"><span class="n">9</span>Diffusion and mixing</h2>
+<p class="lede">Brownian motion is a random walk: τ ≈ x²/D, D ∝ 1/r; the mixing time of a cell follows immediately.</p>
+
+<p>Same random-walk logic, biological currency. A molecule of radius r in fluid buys
+mobility independent of its mass through drag, <span class="m">F<sub>drag</sub> ≈ η r v</span>,
+so the diffusion constant shrinks with size: <span class="m">D ∝ 1/r</span> — protein
+D ≈ 100 µm²/s, metabolite D larger. Mixing is a random walk, so
+<sup class="c"><a href="#r-l1">1</a></sup></p>
+
+<div class="eq">τ<sub>mix</sub> ≈ x² / D <span class="tag">(5)</span></div>
+
+<p>For a metabolite crossing a 1 µm bacterium: τ ~ (10<sup>−6</sup>)²/10<sup>3</sup> ≈
+<strong>1 ms</strong>. For a protein covering a 1 µm cell: ~0.01–0.1 s. The estimates
+carry a message used all course long: inside a bacterium, diffusion mixes small
+molecules almost instantly — so <em>spatial gradients are the exception, and the cell is
+best described as a well-mixed reactor.</em> Turbulence there is none; the molecular
+jiggle is the mixing.</p>
+
+<h2 id="s10"><span class="n">10</span>Null hypotheses for biology</h2>
+<p class="lede">OoM in biology starts from the null model: how far can diffusion, dilution and mass action take you before any design is needed?</p>
+
+<p>When OoM reasoning enters biology, it becomes a null-hypothesis generator: before
+asking why a cell regulates something, estimate what plain physics would do without
+regulation.<sup class="c"><a href="#r-l1">1</a></sup> "Would two molecules at 1 µM meet
+often enough?" — about 10<sup>6</sup> encounters per second per enzyme, since
+<span class="m">k<sub>on</sub> ≈ 4πDa ≈ 10<sup>9</sup> M<sup>−1</sup>s<sup>−1</sup></span>
+(that estimate, with its boundary-value derivation, is week 2's first block). A naked
+reaction with a 100 ms timescale is going nowhere unless something else — catalysis,
+concentration, localization — does the work. So the OoM drill ends the way it began:
+the number says what needs explaining, and the null hypothesis says the explanation is
+cheap.</p>
+
+<div class="box sim">
+<span class="lbl">The ten-questions game</span>
+<p>Worked example of the format: ten questions, three minutes each, answers to within a
+factor of ten. What is the mass of all RNA in a human cell? How many ATP molecules per
+cell at any instant? How long does a transcription cycle take? How many metabolism
+reactions fit in one cell? The method is always: name the scale, then the bottleneck,
+then the answer.</p>
+</div>
+
+<hr>
+
+<h2 id="refs"><span class="n">†</span>References &amp; note sources</h2>
+<p class="lede">Where this page's claims and numbers live.</p>
+
+<div class="refs">
+<ol>
+<li id="r-l1">F. Xiao, <em>CCBS 2025 Lecture 1 — OoM reasoning</em> (handwritten lecture
+notes, 2025). <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/202509-CCBS-lecture-notes-01-OoM.pdf">PDF</a>
+<span class="venue">Every formula in blocks 1–3 traces here; the note is archived at
+lecture1/ above.</span></li>
+<li><em>Cell Biology by the Numbers</em>, R. Phillips &amp; J. Kondev.
+<a href="https://book.bionumbers.org">book.bionumbers.org</a>
+<span class="venue">The vignette source for the movement numbers (mRNA ≈ 10× its
+protein) and estimation practice.</span></li>
+<li><em>Physical Biology of the Cell</em>, Phillips, Kondev, Theriot, Garcia.
+<a href="https://www.rpgroup.caltech.edu/aph161/2022/index.html">course site</a>
+<span class="venue">Reference read for scaling arguments in biology.</span></li>
+<li>Research-with-AI: the <a href="https://pebble-biofusion.github.io/workshop/method/">four
+commandments and PCAPS</a>; the <a href="https://chemaoxfz.github.io/essays/">essays</a>
+including <em>Three Schools, Three Shocks</em> and the <code>research-essay</code> skill
+(<a href="https://github.com/chemaoxfz/idea-to-essay">idea-to-essay</a>).
+<span class="venue">The method and house style behind every core page and every
+teaching presentation.</span></li>
+</ol>
+</div>
+
+</main>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('tt');
+  function apply(){document.documentElement.setAttribute('data-theme',
+    (typeof localStorage!=='undefined'&&localStorage.getItem('th')==='dark')?'dark':'light');}
+  b.addEventListener('click',function(){var d=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
+    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();});
+  if(typeof localStorage!=='undefined'&&!localStorage.getItem('th')){var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';localStorage.setItem('th',d);}
+  apply();
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  function hi(){var y=window.scrollY+80,cur=null;links.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t&&t.offsetTop<=y)cur=a;});links.forEach(function(a){a.classList.toggle('on',a===cur);});}
+  addEventListener('scroll',hi,{passive:true});hi();
+})();
+</script>
+</body>
+</html>
