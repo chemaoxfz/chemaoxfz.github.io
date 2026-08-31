@@ -8,6 +8,8 @@ nav: false
 nav_order: 10
 ---
 
+**Fall 2026:** [CST 5034 CCBS 2026 course site](/ccbs/2026fall/)
+
 **Course name:** CST 5034 - Control and Computation in Biological Systems, Fall 2025
 [Syllabus](https://chemaoxfz.github.io/assets/ccbs/2025fall/syllabus.pdf)
 <!-- [Textbook](https://www.amazon.com/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171) -->
