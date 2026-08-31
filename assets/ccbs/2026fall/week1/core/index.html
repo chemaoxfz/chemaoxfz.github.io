@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Week 1 — Order of Magnitude: numbers can say a lot</title>
-<meta name="description" content="The 2026 course frame, and OoM reasoning as the first tool: fast, robust estimates from Hangzhou to the cell.">
+<title>Order of magnitude: numbers can say a lot</title>
+<meta name="description" content="Order of magnitude: numbers can say a lot">
 <style>
 :root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
 --blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
@@ -114,21 +114,23 @@ sup.c a{color:inherit;text-decoration:none}
   <div class="brand">CCBS · 2026 · Week 1 · CORE</div>
   <h2>Contents</h2>
   <ol>
-    <li class="part">Block 0 · The course</li>
+    <li class="part">Block 0 · The course (Tue)</li>
     <li><a href="#s1">1 · What this course is</a></li>
     <li><a href="#s2">2 · The 2026 operating cycle</a></li>
     <li><a href="#s3">3 · The anatomy of a session</a></li>
-    <li class="part">Block 1 · The method</li>
-    <li><a href="#s4">4 · What OoM reasoning is</a></li>
-    <li><a href="#s5">5 · Hangzhou: 10<sup>7</sup> people out</a></li>
-    <li class="part">Block 2 · The numbers</li>
-    <li><a href="#s6">6 · Jump height does not care</a></li>
-    <li><a href="#s7">7 · The cell in numbers</a></li>
-    <li class="part">Block 3 · The scales</li>
-    <li><a href="#s8">8 · Heat: t ~ x²/κ</a></li>
-    <li><a href="#s9">9 · Diffusion and mixing</a></li>
-    <li><a href="#s10">10 · Null hypotheses for biology</a></li>
+    <li><a href="#s4">4 · The rubric, calibrated</a></li>
+    <li class="part">Block 1 · The method (Tue)</li>
+    <li><a href="#s5">5 · What OoM reasoning is</a></li>
+    <li><a href="#s6">6 · Hangzhou: 10⁷ people out</a></li>
+    <li class="part">Block 2 · The numbers (Thu)</li>
+    <li><a href="#s7">7 · Jump heights and the t = L/v limit</a></li>
+    <li><a href="#s8">8 · The cell in numbers</a></li>
+    <li class="part">Block 3 · The scales (Thu)</li>
+    <li><a href="#s9">9 · Heat: from the equation to t ≈ x²/κ</a></li>
+    <li><a href="#s10">10 · Diffusion and the mixing of a cell</a></li>
+    <li><a href="#s11">11 · Null models, and the ten-questions game</a></li>
     <li class="part">Appendix</li>
+    <li><a href="#s12">12 · The two sessions, min by min</a></li>
     <li><a href="#refs">References &amp; note sources</a></li>
   </ol>
 </nav>
@@ -136,114 +138,172 @@ sup.c a{color:inherit;text-decoration:none}
 
 <h1>Order of magnitude: numbers can say a lot</h1>
 <p class="sub">Week 1 of CCBS 2026. Estimate fast, estimate robustly, and the world starts to look constrained — from evacuating a city to mixing a metabolite inside a cell.</p>
-<p class="byline">CCBS · CST 5034 · Fall 2026 · core page · lecturer-taught (week 1) · blocks 0–3</p>
+<p class="byline">CCBS · CST 5034 · Fall 2026 · week 1 · core page · lecturer-taught · blocks 0–3 · tue 09-01 (0–1) + thu 09-03 (2–3)</p>
 
-<p>This page is the <em>core</em> for week 1: everything a student needs before build
-discussion. This page spans the first week's two sessions — blocks 0–1 on
-Tuesday 09-01, blocks 2–3 on Thursday 09-03. Block 0 tells you how the course
-works. Blocks 1–3 are the content of the first lecture, Order-of-Magnitude (OoM) reasoning, taught now and used for the rest of
-the course: what a reaction costs, whether noise matters, how fast a cell can respond —
-those questions are all OoM questions first.</p>
+<p>This page is the lecture. It is also the <em>exemplar</em>: every week after this one
+produces a page like it — a core digest of the week's one lecture, split into four
+30-minute blocks (week 1: an introductory block 0 plus three content blocks), each block
+teachable as a single session and quizzed by its presenter. Block 0 tells you how the
+course works. Blocks 1–3 are the first content lecture, Order-of-Magnitude (OoM)
+reasoning: the skill the whole course leans on, because every later question — how fast a
+reaction can be, whether noise matters, how much energy regulation costs — is a numbers
+question first.</p>
 
 <div class="box note">
-<span class="lbl">How to use this page</span>
-<p>Blocks are labeled. The lecturer teaches this week; from week 2 every block's session
-is taught by a student, quizzed by the presenter's own TA-approved quiz; blocks 1–2 run on
-Tuesday, blocks 3–4 on Thursday (both 10:40–12:15), and the 15-minute addendum
-closes the Thursday session. Claims that rest on a specific note are marked with
-a PDF badge pointing at the 2025 lecture note it came from; the reference list is a
-reading map, not a claim ledger.</p>
+<span class="lbl">How to read this page</span>
+<p>Blocks are labeled with their session. Each section is one teachable unit of a block:
+a claim, its derivation, and an estimate. Numbers are bookkept as the lecturer's notes
+and the 2025 scribes had them; where the handwritten notes and the scribe differ by a
+factor of 2–3, the order of magnitude is the claim (that is the point of the lesson).
+Claims are cited to the 2025 lecture note and its scribe note at the bottom.</p>
 </div>
 
 <div class="parthead">
-  <div class="k">Block 0</div>
+  <div class="k">Block 0 · Tuesday</div>
   <h2>The course</h2>
-  <p>Rules, the three schools, the cycle, and the anatomy of every session.</p>
+  <p>Rules, the three schools, the cycle, the session anatomy, and how excellence is measured.</p>
 </div>
 
 <h2 id="s1"><span class="n">1</span>What this course is</h2>
-<p class="lede">Physics, system, industry: three schools asking three questions about life, and this course's tools aim at all three.</p>
+<p class="lede">Physics, system, industry: three schools asking three questions about life, and one course whose tools aim at all three.</p>
 
 <p>CCBS reads a cell as a machine you can reason about quantitatively. Three schools
-frame the reasoning, and each asks its own question. <strong>Physics</strong> asks what
-life is as an object: sizes, rates, energies, and the constraints they impose. <strong>System</strong>
-asks how life works as a machine: reaction networks, dynamics, feedback, stochasticity,
-computation. <strong>Industry</strong> asks how life could be useful as a tool: design a
-protein, engineer a metabolism, grow a machine.</p>
+frame the reasoning, each asking its own question. <strong>Physics</strong> asks what
+life is as an object: sizes, rates, energies, and the constraints they impose (weeks 1
+and 6). <strong>System</strong> asks how life works as a machine: reaction networks,
+dynamics, feedback, stochasticity, computation (weeks 2–5 and 7). <strong>Industry</strong>
+asks how life could be useful as a tool: design a protein, engineer a metabolism, grow a
+machine (week 8). Each school has its own origins, its own analysis style, and its own
+goals — the course's promise is that you will leave able to reason about any biological
+problem with all three at once.</p>
 
-<p>Nothing in the course needs prior background classes — only "an exuberant love for
-biology," which is mandatory. What the course does ask is that you treat skills and
-numbers as things you can build, because in 2026 the raw material for learning is
-available to everyone: an AI agent can digest a paper, write first-pass code, and
-produce a draft figure on demand. What it cannot do is understand, defend, and
-communicate. That part is yours, and it is the whole course.</p>
+<p>Nothing needs prior background classes — only "an exuberant love for biology," which
+is mandatory. What the course does demand is a different relationship to material than
+you may be used to: in 2026 the raw material for learning is available to everyone —
+an AI agent can digest a paper, write first-pass code, and draft a figure on demand —
+so the course moves the emphasis to what an agent cannot do: <strong>understand,
+defend, and communicate</strong>.</p>
 
 <h2 id="s2"><span class="n">2</span>The 2026 operating cycle</h2>
 <p class="lede">Input → learn → output, run weekly, with an agent in the loop and the audience as the judge.</p>
 
 <div class="eq">ask AI to digest and write → understand and use it to work and iterate → present to others to communicate</div>
 
-<p>Every week runs this loop. Input: the lecturer's <em>core</em> page and the pointers on
-it. Learn: you digest it with an agent, check every claim against the core, and make
-numbers with code rather than quoting them. Output: the teaching students present (30
-minutes per block), the whole class answers a comprehension quiz per block, and every
-non-teaching student posts a short extension micro-essay. The extension micro-essay is
-not a summary: one example, one scenario, one opinion, one perspective, one argument,
-traceably sourced. Conflicting positions are welcome — the TAs assemble the week's
-micro-essays into one extension-by-audience page, conflicts kept visibly in conversation.</p>
+<p>Every week runs this loop. <strong>Input:</strong> the lecturer's core page and its
+pointers, posted a week ahead. <strong>Learn:</strong> digest it with an agent — then
+check every claim against the core, and make the numbers with code rather than quoting
+them. <strong>Output:</strong> the teaching students present (one block each),
+the class answers comprehension quizzes, and every non-teaching student posts a short
+extension micro-essay: one example, one scenario, one opinion, one perspective, one
+argument — traceably sourced, <em>not</em> a summary. Conflicting positions are welcome
+(the TAs assemble the week's micro-essays into the week's extension-by-audience page,
+keeping the conflicts visibly in conversation).</p>
 
 <div class="box key">
 <span class="lbl">The four commandments (research-with-AI)</span>
 <ul>
-<li>AI is our minion, not our peer. Own every claim, or do not use it.</li>
-<li>AI is a cyber-arm. Attach it to what you care about, not the chores you dislike.</li>
-<li>Your input–output bandwidth is the bottleneck. Specify well, comprehend fully.</li>
-<li>Be above AI on everything you think about. Generic output is the floor, not the ceiling.</li>
+<li>AI is our minion, not our peer. Own every claim, or do not use it. If you cannot
+explain it, it is vapor.</li>
+<li>AI is a cyber-arm. Attach it to the work you care about most, not the chores you
+dislike. If an idea is active in your mind, put it into the loop before it cools.</li>
+<li>Your input–output bandwidth is the bottleneck — not the model's power. Specification
+in, comprehension out.</li>
+<li>Be above AI on everything you think about. Generic AI output is the floor, not the
+ceiling. Know the generic answer before claiming your own expertise.</li>
 </ul>
 </div>
 
-<h2 id="s3"><span class="n">3</span>The anatomy of a session</h2>
-<p class="lede">30 minutes of teaching, 5 minutes of quiz, 15 minutes of addendum; the lecture that gets rated is the lecture that gets quizzed.</p>
+<div class="box note">
+<span class="lbl">Tools you will actually use</span>
+<p>The Westlake AI Campus (<a href="https://hpc.westlake.edu.cn/#/ai-campus">hpc.westlake.edu.cn/#/ai-campus</a>)
+hosts the university's internal model deployments (DeepSeek, GLM, and more) — use these
+as your agents. The <code>research-essay</code> (idea-to-essay) skill is the reference
+pipeline for every digest: idea → thesis → literature sweep with verified full texts →
+numbers from code → a single self-contained HTML page. The course submissions repo
+(<a href="https://github.com/chemaoxfz/ccbs-2026-submissions">ccbs-2026-submissions</a>)
+collects each week's exposition, quizzes, and extension micro-essays.</p>
+</div>
 
-<p>From week 2, each week has four blocks. Each block is one point of the lecture and is
-taught by one student in a <strong>30-minute session</strong>, immediately followed by a
+<h2 id="s3"><span class="n">3</span>The anatomy of a session</h2>
+<p class="lede">30 minutes of teaching, 5 minutes of quiz, 15 minutes of addendum; a two-session week — blocks 1–2 Tuesday, blocks 3–4 Thursday.</p>
+
+<p>The course runs <strong>Tuesdays and Thursdays, 10:40–12:15</strong> (two 95-minute
+sessions per week, E10-305): <strong>blocks 1–2 on Tuesday, blocks 3–4 on
+Thursday</strong>. From week 2, each block is one point of the lecture, taught by one
+student as a <strong>30-minute session</strong>, immediately followed by a
 <strong>5-minute quiz</strong> written by that session's presenter and approved by the
-TAs before class (approval means: it tests the block's core point, and anyone who got
-the material can solve it in about 30 seconds). The class and the lecturer rate every
-session 0–3: 3 excellent, 2 the audience got it, 1 the key ideas landed but details
-vanished, 0 the lecturer steps in and teaches it instead — that fallback is a design
-feature, not a failure. Blocks 1–2 are taught in Tuesday's session and blocks
-3–4 in Thursday's (both 10:40–12:15); each block is followed by its quiz, and
-the week's Thursday session ends with the <strong>lecturer's 15-minute
-addendum</strong>: gaps, the thing that matters most, take-aways.</p>
+TAs before class — approval means it tests the block's core point, and anyone who got
+the material solves it in about 30 seconds. The class <em>and</em> the lecturer rate each
+session 0–3 (next section). If the lecturer has to step in and teach because the quality
+did not hold, that is the designed fallback: the material is covered anyway, and the
+group retakes a condensed version with the TAs. The week's Thursday session ends with
+the lecturer's <strong>15-minute addendum</strong>: gaps, the thing that matters most,
+take-aways.</p>
 
 <div class="tablewrap">
 <table>
 <caption>Table 1. One week, two sessions, one point per block.</caption>
-<thead><tr><th>Block</th><th>Who</th><th>Content</th><th>Output</th></tr></thead>
+<thead><tr><th>Session</th><th>Time</th><th>Content</th></tr></thead>
 <tbody>
-<tr><td class="num">0</td><td>lecturer</td><td>rules, format, map</td><td>the week's assignment list</td></tr>
-<tr><td class="num">1–4</td><td>student ×4</td><td>one point each, 30 min + 5 min quiz</td><td>exposition + quiz (+1-min "beyond")</td></tr>
-<tr><td class="num">—</td><td>everyone else</td><td>extension micro-essay, due next Wed</td><td>extension-by-audience page</td></tr>
-<tr><td class="num">—</td><td>lecturer</td><td>15 min addendum</td><td>corrections, take-aways</td></tr>
+<tr><td>Tuesday</td><td class="num">10:40–10:45</td><td>admin, quiz aggregates, assignment check</td></tr>
+<tr><td>Tuesday</td><td class="num">10:45–11:15</td><td>Block 1 (30 min) — then 5-min quiz</td></tr>
+<tr><td>Tuesday</td><td class="num">11:20–11:50</td><td>Block 2 (30 min) — then 5-min quiz</td></tr>
+<tr><td>Tuesday</td><td class="num">11:55–12:15</td><td>discussion, cross-questioning, mini-exercise</td></tr>
+<tr><td>Thursday</td><td class="num">10:40–10:45</td><td>admin, micro-check (extensions due Wed 23:59)</td></tr>
+<tr><td>Thursday</td><td class="num">10:45–11:15</td><td>Block 3 (30 min) — then 5-min quiz</td></tr>
+<tr><td>Thursday</td><td class="num">11:20–11:50</td><td>Block 4 (30 min) — then 5-min quiz</td></tr>
+<tr><td>Thursday</td><td class="num">11:55–12:15</td><td>lecturer addendum (15 min) + next-week briefing</td></tr>
 </tbody>
 </table>
 </div>
 
+<div class="box sim">
+<span class="lbl">The demo today</span>
+<p>This hour demonstrates the format, once: a ~30-minute teach of one OoM point, a
+sample quiz (one multiple-choice, one fill-in), the class rates it 0–3 on the rubric
+below, and the addendum's shape is shown. What you experience as the audience today is
+exactly what your session will be judged by.</p>
+</div>
+
+<h2 id="s4"><span class="n">4</span>The rubric, calibrated</h2>
+<p class="lede">0–3, anchored on comprehension — and the quiz is the evidence, not charisma.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 2. The 0–3 rating, and what it means for the audience.</caption>
+<thead><tr><th>Score</th><th>Meaning</th><th>Detectable in class</th></tr></thead>
+<tbody>
+<tr><td class="hl">3</td><td>Excellent: the audience got the material</td><td>a random student can redo the worked example; claims survive 2+ hostile questions; figures/numbers traceable</td></tr>
+<tr><td class="hl">2</td><td>OK: the audience got it</td><td>organized, mostly right; one or two details hand-waved; a question got a fuzzy answer</td></tr>
+<tr><td class="hl">1</td><td>Key ideas landed, lots of details lost</td><td>the worked example failed; the class or the TA had to supply the fix</td></tr>
+<tr><td class="hl">0</td><td>Too low quality — the lecturer stepped in</td><td>the topic was not taught; fallback engaged (retake capped at 1)</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Sub-criteria the lecturer uses: <strong>correctness + depth</strong> (right, and deeper
+than the digest), <strong>pedagogy</strong> (the audience ends up able to <em>use</em> it,
+as evidenced by the block's quiz), <strong>communication</strong> (structure, figures,
+pacing), <strong>AI-use standards</strong> (every claim owned; commandments 1 and 4),
+and <strong>defense under questioning</strong>. The same 0–3 set is what peers submit
+(anonymous, trimmed-mean, 60/40 with the lecturer's score — and the lecturer's weight
+is what keeps the mean honest).</p>
+
 <div class="box open">
-<span class="lbl">Week 1 assignment</span>
-<p>Before week 2: pick the one thing in this page you would have estimated differently,
-and write the extension micro-essay on it (one number, a figure you made, one source).
-That is the format you will be graded on all semester.</p>
+<span class="lbl">Week 1 assignment (all students)</span>
+<p>Pick the one thing in this page you would have estimated differently. Write the
+extension micro-essay on it (one number — made by you, from code or a documented
+source; one figure; one source), size of a page, due before week 2's Tuesday session.
+That is the format you'll be graded on all semester; the first one is practice.</p>
 </div>
 
 <div class="parthead">
-  <div class="k">Block 1</div>
+  <div class="k">Block 1 · Tuesday</div>
   <h2>The method</h2>
-  <p>OoM reasoning: fast, robust estimates; order-of-magnitude is the unit, not the answer.</p>
+  <p>Why order-of-magnitude reasoning is a way of seeing connections — and the city-size example that makes the method obvious.</p>
 </div>
 
-<h2 id="s4"><span class="n">4</span>What OoM reasoning is</h2>
+<h2 id="s5"><span class="n">5</span>What OoM reasoning is</h2>
 <p class="lede">Numbers can say a lot, but only when they are robust; details are fragile, orders of magnitude are not.</p>
 
 <p>The world is connected. Observations that seem unrelated can be deeply constrained —
@@ -254,170 +314,346 @@ constraint do the arguing.<sup class="c"><a href="#r-l1">1</a></sup></p>
 
 <div class="box def">
 <span class="lbl">Order of magnitude</span>
-<p>An estimate that is right to within a factor — typically we keep <span class="m">1</span> or <span class="m">10</span>, not more. The claim to make is of the form "it's about <span class="m">10<sup>6</sup></span> per second," never "approximately 1.3×10<sup>6</sup>."</p>
+<p>An estimate right to within a factor — we keep <span class="m">1</span> or
+<span class="m">10</span>, not more. The claim is of the form "it's about
+<span class="m">10<sup>6</sup></span> per second," never "approximately 1.3×10<sup>6</sup>."</p>
 </div>
 
-<p>Two properties make OoM the right first tool. First, it is <strong>fast</strong>:
-you can do it in your head, mid-conversation. Second, and more important, it is
+<p>Two properties make OoM the right first tool. First, it is <strong>fast</strong>: do
+it in your head, mid-conversation. Second, and more important, it is
 <strong>robust</strong>: the factors that dominate an estimate are usually few, so the
-answer survives small errors in every detail — while striking a precise answer <em>suggests
-precision it does not have</em>. Details are fragile; orders of magnitude are not. The
-lecture's heading for this is <em>1, 10</em>.<sup class="c"><a href="#r-l1">1</a></sup></p>
+answer survives small errors in every detail — while a precisely written answer
+<em>suggests a precision it does not have</em>. The lecture's shorthand for this: details
+are fragile; orders of magnitude are not. The practice of the skill is the seeing: the
+goal is not the answer, it is the <em>constraint</em> that becomes visible once numbers
+are put in.</p>
 
-<h2 id="s5"><span class="n">5</span>Hangzhou: 10<sup>7</sup> people out</h2>
-<p class="lede">Evacuating a city by plane or by car — the same flux formula answers both, and scaling tells you cars win.</p>
+<h2 id="s6"><span class="n">6</span>Hangzhou: 10⁷ people out</h2>
+<p class="lede">Evacuating a city by plane or by car — the same flux formula answers both, and the bottleneck, not the vehicle, decides.</p>
 
-<p>The first worked example is macroscopic: evacuate all of Hangzhou (~10<sup>7</sup>
-people). Option one, airplane. The bottleneck is the airport — one plane at a time. One
-plane every two minutes holds 300 people, so
-<sup class="c"><a href="#r-l1">1</a></sup></p>
+<p>The first worked example is macroscopic and familiar: evacuate all of Hangzhou
+(~10<sup>7</sup> people). The question is framed as a choice of transport, but the
+method is: <strong>name the bottleneck.</strong></p>
 
-<div class="eq">2×10<sup>5</sup> people/day ≈ 60·24 × 300/2 <span class="tag">(1)</span></div>
+<h3>Option 1 — airplane</h3>
+<p>One airport. Emergency loading: a plane leaves every ~2 minutes, so on the order of
+10<sup>3</sup> minutes per day divided by 2 — about 5–7×10<sup>2</sup> planes per day.
+A plane carries ~10<sup>2</sup> people:</p>
 
-<p>and the whole city takes roughly 50 days. Option two, cars. Count the lanes: about
-10 highways, ~10 lanes each in an emergency → 100 lanes. Each lane is a flux pipe:</p>
+<div class="eq">2 min/plane → ~5×10<sup>2</sup> planes/day → ~10<sup>2</sup> people/plane → ~5×10<sup>4</sup> people/day <span class="tag">(1)</span></div>
 
-<div class="eq">Flux = N·v / L = (#people per car × speed) / (distance between cars) <span class="tag">(2)</span></div>
+<p>For 10<sup>7</sup> people: <span class="m">10<sup>7</sup> / 5×10<sup>4</sup> ≈ 2×10<sup>2</sup> days</span>.
+Too long for an apocalypse — and note the reason: the airplanes are fast, the airport is
+not. The bottleneck is the number of runways.</p>
 
-<p>With 4 people per car, 20 m/s, and 40 m between cars, one lane moves 2 people per
-second — again ~2×10<sup>5</sup> per day, but per <em>lane</em>, so 100 lanes move
-~2×10<sup>7</sup> people per day: <strong>the city evacuates in about a day</strong>.<sup class="c"><a href="#r-l1">1</a></sup></p>
+<h3>Option 2 — cars</h3>
+<p>Count the lanes instead. Roughly ~10 main highways out of the city; an emergency
+state makes all lanes one-directional; typical 4 lanes per way, 8 per highway
+(~10<sup>2</sup> lanes total). Now a lane is a pipe with three numbers: speed, spacing,
+capacity —</p>
+
+<div class="eq">Flux = N·v/L = (4 people/car × 20 m/s) / (40 m/car) = 2 people/s per lane <span class="tag">(2)</span></div>
+
+<p>10<sup>2</sup> lanes × 2 people/s × 3.6×10<sup>3</sup> s/h × 24 h/day ≈
+<strong>2×10<sup>7</sup> people/day — the city evacuates in about a day.</strong>
+The same formula (2) that condemned the airport saves the highway; the difference is
+the number of parallel pipes.</p>
+
+<h3>The actual bottleneck: τ, the reaction time</h3>
+<p>Now the deeper move. Is the number of cars a limit? Could be — but does it matter?
+Rewrite the lane flux in terms of the safety spacing: the gap between cars is
+<em>not</em> a design choice; it is a consequence of a fixed human reaction time
+<span class="m">τ</span>, through <span class="m">L = vτ</span>:</p>
+
+<div class="eq">Flux = N·v/L = N/τ, &nbsp; with τ fixed by human reflexes <span class="tag">(3)</span></div>
+
+<p>Once flux is <span class="m">N/τ</span>, the vehicle disappears from the arithmetic —
+walking at 1 m/s with 2 m spacing gives the same people-per-second. The conclusion,
+which is exactly the lecture's first lesson about scaling: <strong>the constraint is
+the human reaction time, and it is the same for every vehicle; the geometry of the
+problem, not the technology, decides the answer.</strong> So: in an emergency, walk on
+the highway.<sup class="c"><a href="#r-l1">1</a></sup></p>
 
 <div class="box key">
-<span class="lbl">The lesson</span>
-<p>The same arithmetic (1) appears twice with opposite conclusions; the difference is the
-bottleneck, found by <em>scaling the geometry</em>, not by refining numbers. And once the
-flux is written as <span class="m">N/τ</span> — N people per car over τ, a reaction time
-that nature fixes — the answer stops depending on the vehicle: walking on the highway at
-1 m/s with 2 m spacing evacuates the city too.</p>
+<span class="lbl">The method, in three steps</span>
+<p>1) Set up the formula with the quantities you can estimate (flux = Nv/L). 2) Find the
+bottleneck by scaling the geometry (one airport vs 100 lanes). 3) Replace fragile
+details with the fixed quantity (τ) and rewrite — the vehicle drops out, and what
+survives is the constraint.</p>
 </div>
 
 <div class="parthead">
-  <div class="k">Block 2</div>
+  <div class="k">Block 2 · Thursday</div>
   <h2>The numbers</h2>
-  <p>Scaling laws and the cell's ledger: what stays constant, what changes, and how much stuff a cell actually has.</p>
+  <p>Scaling laws and the cell's ledger: what stays constant, how much stuff a cell has, and why crowding is a design constraint.</p>
 </div>
 
-<h2 id="s6"><span class="n">6</span>Jump height does not care</h2>
-<p class="lede">h ∝ M⁰: muscle energy scales with body volume, and the height reached is independent of animal size.</p>
+<h2 id="s7"><span class="n">7</span>Jump heights and the t = L/v limit</h2>
+<p class="lede">h ∝ M⁰: muscle energy scales with body volume, so jump height is size-independent — but the time to deliver it is not.</p>
 
-<p>Second example: how does jump height scale with animal size? Energy to reach height
-h: <span class="m">E<sub>g</sub> = Mgh</span>. Energy stored in muscle: the muscle volume
-is a fixed fraction of the body, so <span class="m">E<sub>m</sub> ∝ L³ ∝ M</span>.
-Equate, cancel:<sup class="c"><a href="#r-l1">1</a></sup></p>
+<p>Second example: how does jump height scale with animal size? A student jumps ~40–60
+cm above their reach; an athlete, a bit more — within humans, no change across orders of
+magnitude. Now the dimensional argument.<sup class="c"><a href="#r-l1">1</a></sup>
+Energy to reach height h: <span class="m">E<sub>g</sub> = mgh</span>. Energy stored in
+muscle: muscle is a fixed volume fraction <span class="m">f<sub>m</sub></span> of the
+body, and body mass scales as volume, <span class="m">m ∝ L³</span>, so
+<span class="m">E<sub>m</sub> ∝ L³ f<sub>m</sub> ∝ m f<sub>m</sub></span>. Set equal,
+cancel:</p>
 
-<div class="eq">M g h = E<sub>m</sub> ∝ M f<sub>m</sub> ⇒ <b>h ∝ M<sup>0</sup> f<sub>m</sub></b> <span class="tag">(3)</span></div>
+<div class="eq">mgh = E<sub>m</sub> ∝ m f<sub>m</sub> ⇒ <b>h ∝ M<sup>0</sup> f<sub>m</sub></b> <span class="tag">(4)</span></div>
 
-<p>Jump height is independent of size (for the same muscle mechanism). Data fit: rat 50
-cm, flea 25 cm, cat 150 cm. But the <em>time</em> to take the jump scales as
-<span class="m">τ ∝ L/v</span> — the body must deliver its stored energy over its own
-length at a fixed speed. Human: ~0.3 s, fine. Cat: pushing the limit. Flea: ~0.6 ms —
-<strong>too fast for muscles</strong>.<sup class="c"><a href="#r-l1">1</a></sup>
-The resolution: the flea stores energy in its shell first. Air resistance only bites
-when the jump length reaches ~10³ body lengths, since the energy lost to drag relative
-to takeoff energy scales as <span class="m">ρ<sub>a</sub>/ρ<sub>m</sub></span> per body
-length — a flea jumping 10³ body lengths is where drag starts to matter.</p>
+<p><strong>Jump height is independent of mass, volume, or size</strong> — only the muscle
+fraction matters, as long as the same muscle mechanism is used. Data roughly confirm:
+rat ~50 cm, flea ~25 cm, cat ~100–150 cm: same order of magnitude.</p>
 
-<div class="box caution">
-<span class="lbl">A warning built into the example</span>
-<p>The <em>conclusion</em> (3) is a scaling law, robust and worth remembering. The
-<em>mechanism</em> ("muscles store energy ∝ volume") is the fragile part. When a student
-presents a scaling result, the audience should be able to name the assumption that made
-it — and what would break it. That is exactly what the week's quiz question will test.</p>
-</div>
-
-<h2 id="s7"><span class="n">7</span>The cell in numbers</h2>
-<p class="lede">The ledger every later lecture will draw on: volumes, proteins, concentrations, and the rates that follow from them.</p>
-
-<p>OoM reasoning turns inward, to the cell — the domain of the whole course. The base
-units first:<sup class="c"><a href="#r-l1">1</a></sup></p>
+<h3>The time limit that drives fleas to cheat</h3>
+<p>Since h is fixed, the takeoff speed <span class="m">v = √(2gh)</span> is the same for
+all of them (~3 m/s). What changes is how long the body has to deliver that speed:
+<span class="m">τ ∝ L/v</span> — the energy is released over roughly the animal's own
+length.</p>
 
 <div class="tablewrap">
 <table>
-<caption>Table 2. The cell's ledger (from the 2025 lecture notes; every value is OoM-ready).</caption>
-<thead><tr><th>Quantity</th><th>Value</th><th>Why it will matter</th></tr></thead>
+<caption>Table 3. The release-time limit (v ≈ 3 m/s).</caption>
+<thead><tr><th>Animal</th><th>L</th><th>τ = L/v</th><th>Fast muscles (~0.1 s half-contraction)</th></tr></thead>
 <tbody>
-<tr><td>1 µm³</td><td class="num">10<sup>−15</sup> L = 1 fL</td><td>the working volume unit</td></tr>
-<tr><td>1 pg</td><td class="num">10<sup>−12</sup> g</td><td>the working mass unit</td></tr>
-<tr><td>E. coli genome</td><td class="num">5 Mbp</td><td>how much information a cell carries</td></tr>
-<tr><td>protein</td><td class="num">~30 kDa, ~300 aa</td><td>typical size for estimates</td></tr>
-<tr><td>protein volume</td><td class="num">~30 nm³</td><td>crowding starts here</td></tr>
-<tr><td>protein diffusion</td><td class="num">D ~ 100 µm²/s</td><td>mixing times follow</td></tr>
-<tr><td>protein concentration</td><td class="num">~1 µM</td><td>≈ 1 per fL — the counting regime</td></tr>
-<tr><td>metabolite concentration</td><td class="num">~1 mM</td><td>≈ 1000× protein count</td></tr>
+<tr><td>human</td><td class="num">1 m</td><td class="num">≈ 0.3 s</td><td>fine</td></tr>
+<tr><td>cat</td><td class="num">0.2 m</td><td class="num">≈ 0.1 s</td><td>pushing the limit</td></tr>
+<tr><td>flea</td><td class="num">2 mm</td><td class="num">≈ 1 ms</td><td class="hl">impossible</td></tr>
 </tbody>
 </table>
 </div>
 
-<p>Numbers to notice: a protein at 1 µM is roughly <strong>one molecule per
-femtoliter</strong> — in a small bacterial cell, "concentration" and "discreteness" meet,
-which is why stochasticity will not stay a footnote. Metabolites at ~1 mM sit three
-orders of magnitude above that, so the reaction-network picture (deterministic, well
-mixed) is the right first approximation for small molecules and already the wrong first
-approximation for regulators.</p>
+<p>The flea's resolution, per the lecture: the body is too slow, so the energy is stored
+in the <em>shell</em> — bent shells release in microseconds. And one more estimate closes
+the question: does air resistance matter? Drag is
+<span class="m">F<sub>d</sub> ≈ ½ C<sub>d</sub> ρ<sub>a</sub> v² L²</span>; over the
+stopping length <span class="m">~L</span> it wastes
+<span class="m">F<sub>d</sub>L ~ ρ<sub>a</sub>v²L³</span> against total energy
+<span class="m">~ ρ<sub>m</sub>L³v²</span> — so drag matters only when the jump length
+reaches ~<span class="m">ρ<sub>m</sub>/ρ<sub>a</sub> ≈ 10³</span> body lengths. A flea
+jumps ~200 body lengths; it is safe.<sup class="c"><a href="#r-l1">1</a></sup></p>
 
-<div class="parthead">
-  <div class="k">Block 3</div>
-  <h2>The scales</h2>
-  <p>Diffusion and heat do one thing everywhere: t ≈ x²/D. It is the single most useful scaling in the course.</p>
+<div class="box caution">
+<span class="lbl">The fragile part</span>
+<p>The conclusion (4) is a scaling law and it is robust. The mechanism ("muscle energy
+∝ volume") is the fragile part: a different mechanism (shells, tendons, springs) breaks
+the scaling — which is <em>exactly</em> what the flea's case demonstrates. When you
+present a scaling result, name the assumption that made it, and what would break it.
+That is what the week's quiz will test.</p>
 </div>
 
-<h2 id="s8"><span class="n">8</span>Heat: t ~ x²/κ</h2>
-<p class="lede">From the heat equation to "a potato takes ~10 minutes"; the scaling t ∝ x² is the deliverable.</p>
+<h2 id="s8"><span class="n">8</span>The cell in numbers</h2>
+<p class="lede">The ledger every later lecture draws on: volumes, masses, concentrations, crowd ing — built from three estimates and one unit convention.</p>
 
-<p>Third example: heat. Flux <span class="m">J = −K∇T</span>, heat capacity per volume
-<span class="m">c<sub>v</sub></span>; energy balance gives <span class="m">∂T/∂t = κ∇²T</span>
-with <span class="m">κ = K/c<sub>v</sub></span>. Dimensional analysis of that equation
-gives the only scaling that matters:<sup class="c"><a href="#r-l1">1</a></sup></p>
+<p>OoM reasoning turns inward, to the cell — the domain of the whole course. Three
+estimates structure everything: size, mass, count. Start with the length ladder
+<sup class="c"><a href="#r-l1">1</a></sup>: an atom is ~1 Å (10<sup>−10</sup> m), a
+cell ~1 µm (10<sup>−6</sup> m), a human ~1 m. The ladder itself is the first lesson: a
+bacterium is to a human what an atom is to a bacterium.</p>
 
-<div class="eq">t ≈ x² / κ <span class="tag">(4)</span></div>
+<h3>Size and volume</h3>
+<div class="tablewrap">
+<table>
+<caption>Table 4. The length ladder and cell sizes.</caption>
+<thead><tr><th>Object</th><th>Size</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>atom</td><td class="num">1 Å = 10<sup>−10</sup> m</td><td>the bottom of our ladder</td></tr>
+<tr><td>E. coli</td><td class="num">1 µm</td><td>our standard reference</td></tr>
+<tr><td>yeast</td><td class="num">5 µm</td><td></td></tr>
+<tr><td>mammalian cell</td><td class="num">10–20 µm</td><td></td></tr>
+<tr><td>human</td><td class="num">1 m</td><td>the top of our ladder</td></tr>
+</tbody>
+</table>
+</div>
 
-<p>Check the potato: κ ≈ 1.5×10<sup>−6</sup> m²/s, x ~ 5 cm → about 10 minutes to cook
-through. The same scaling says a molten Earth takes ~10<sup>10</sup> years to cool —
-which may be one of the reasons the moon's interior is still partly hot. The functional
-form <span class="m">t ∝ x²</span> is the point: <strong>double the size, quadruple the
-time.</strong> Nothing else about the mechanism — K, c<sub>v</sub>, geometry details —
-survives in the scaling.</p>
+<div class="eq">1 µm³ = 10<sup>−18</sup> m³ = 10<sup>−15</sup> L = 1 fL &nbsp;&nbsp;✓&nbsp;&nbsp; 1 pg = 10<sup>−12</sup> g <span class="tag">(5)</span></div>
 
-<h2 id="s9"><span class="n">9</span>Diffusion and mixing</h2>
-<p class="lede">Brownian motion is a random walk: τ ≈ x²/D, D ∝ 1/r; the mixing time of a cell follows immediately.</p>
+<p>Two consequences of the volume in (5). First, a pellet of saturated E. coli culture is
+~1 µL for ~10<sup>9</sup> cells — 1 mL of culture medium is ~10<sup>−3</sup> cells by
+volume, <em>less dense than our classroom</em>. Second, in this volume, "one molecule
+per cell" is already a concentration: <span class="m">1/10<sup>−15</sup>L / 6×10<sup>23</sup> ≈ 10<sup>−9</sup> M = 1 nM</span>.
+This single conversion is the seed of week 5: at 1 nM, discreteness is a property of
+the system.</p>
 
-<p>Same random-walk logic, biological currency. A molecule of radius r in fluid buys
-mobility independent of its mass through drag, <span class="m">F<sub>drag</sub> ≈ η r v</span>,
-so the diffusion constant shrinks with size: <span class="m">D ∝ 1/r</span> — protein
-D ≈ 100 µm²/s, metabolite D larger. Mixing is a random walk, so
-<sup class="c"><a href="#r-l1">1</a></sup></p>
+<h3>Mass per molecule: the log-average trick</h3>
+<p>A glucose/nucleotide is ~3×10<sup>2</sup> Da (size ~
+<span class="m">(3×10²)<sup>1/3</sup> ≈ 6 Å</span>). An amino acid is ~10<sup>2</sup> Da —
+<em>because</em> the true range is ~60–200 Da, and the average over a log scale is
+<span class="m">√(60×200) ≈ 10²</span>. The aside is worth stopping on: orders of
+magnitude are the right thing to average when quantities span them.</p>
 
-<div class="eq">τ<sub>mix</sub> ≈ x² / D <span class="tag">(5)</span></div>
+<h3>How many proteins per cell?</h3>
+<ul>
+<li>Protein length: lower bound ~50 aa, upper bound ~5×10³ aa → geometric mean
+<span class="m">√(2×10<sup>5</sup>) ≈ 300</span> aa ≈ 30 kDa.</li>
+<li>1 pg / 30 kDa ≈ 2×10<sup>7</sup> protein molecules per E. coli — the upper bound if
+the whole cell were protein. Reality: <span class="m">10<sup>3</sup>–10<sup>4</sup></span>
+per protein type.</li>
+</ul>
 
-<p>For a metabolite crossing a 1 µm bacterium: τ ~ (10<sup>−6</sup>)²/10<sup>3</sup> ≈
-<strong>1 ms</strong>. For a protein covering a 1 µm cell: ~0.01–0.1 s. The estimates
-carry a message used all course long: inside a bacterium, diffusion mixes small
-molecules almost instantly — so <em>spatial gradients are the exception, and the cell is
-best described as a well-mixed reactor.</em> Turbulence there is none; the molecular
-jiggle is the mixing.</p>
+<h3>Concentrations: the ladder</h3>
+<div class="tablewrap">
+<table>
+<caption>Table 5. Concentration ladder: molecules per cell → molar.</caption>
+<thead><tr><th>Species</th><th>copies/cell</th><th>concentration</th><th>regime</th></tr></thead>
+<tbody>
+<tr><td>metabolites</td><td class="num">10<sup>6</sup>–10<sup>7</sup></td><td class="num">1–10 mM</td><td>well-mixed reactor (week 2)</td></tr>
+<tr><td>proteins</td><td class="num">10<sup>3</sup>–10<sup>4</sup></td><td class="num">1–10 µM</td><td>regulators; the counting regime begins</td></tr>
+<tr><td>one molecule</td><td class="num">1</td><td class="num">1 nM</td><td>the discreteness limit (week 5)</td></tr>
+</tbody>
+</table>
+</div>
 
-<h2 id="s10"><span class="n">10</span>Null hypotheses for biology</h2>
-<p class="lede">OoM in biology starts from the null model: how far can diffusion, dilution and mass action take you before any design is needed?</p>
+<h3>Volume: the genome is small, proteins are not</h3>
+<p>The genome: 5×10<sup>6</sup> bp × 0.3 nm/bp ≈ 10<sup>3</sup> µm of DNA — long enough to
+need folding ≥10<sup>3</sup>-fold to fit. Its volume, though, is
+<span class="m">~1.5×10<sup>−3</sup> µm³ ≈ 1%</span> of the cell. Proteins: 300 aa ×
+~100 Å³ × 10<sup>7</sup> molecules ≈ 0.3 µm³ — <strong>20–40% of the cell's
+volume</strong>. The asymmetry is the lesson: the genome is information (small volume,
+long length), the protein is machinery (large volume, crowded). Crowding puts a cap on
+how many components you can pack, and it is one of the reasons cells are not dilute
+solutions.<sup class="c"><a href="#r-l1">1</a></sup></p>
 
-<p>When OoM reasoning enters biology, it becomes a null-hypothesis generator: before
-asking why a cell regulates something, estimate what plain physics would do without
-regulation.<sup class="c"><a href="#r-l1">1</a></sup> "Would two molecules at 1 µM meet
-often enough?" — about 10<sup>6</sup> encounters per second per enzyme, since
-<span class="m">k<sub>on</sub> ≈ 4πDa ≈ 10<sup>9</sup> M<sup>−1</sup>s<sup>−1</sup></span>
-(that estimate, with its boundary-value derivation, is week 2's first block). A naked
-reaction with a 100 ms timescale is going nowhere unless something else — catalysis,
-concentration, localization — does the work. So the OoM drill ends the way it began:
-the number says what needs explaining, and the null hypothesis says the explanation is
-cheap.</p>
+<div class="box key">
+<span class="lbl">Take-away of block 2</span>
+<p>Three numbers do most of the work: <span class="m">1 fL</span> (the volume),
+<span class="m">30 kDa</span> (the typical protein), <span class="m">1 µM ≈ 1/fL</span>
+(the regulator scale). Everything else in this course — 10⁹ encounter rates, 10⁻³/s
+degradation, 1 nM switch thresholds — is these three numbers times a scaling law.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Block 3 · Thursday</div>
+  <h2>The scales</h2>
+  <p>Heat and diffusion do one thing everywhere: t ≈ x²/κ. It is the single most useful scaling in the course.</p>
+</div>
+
+<h2 id="s9"><span class="n">9</span>Heat: from the equation to t ≈ x²/κ</h2>
+<p class="lede">Fourier's law, energy conservation, one PDE, and the scaling that survives: double the size, quadruple the time.</p>
+
+<p>Third example: heating a potato — and then, with the same constant, the cooling of the
+moon. The derivation, in four steps.<sup class="c"><a href="#r-l1">1</a></sup></p>
+
+<h3>Step 1: the flux law</h3>
+<p>Heat flux is proportional to the local temperature gradient (Fourier):</p>
+<div class="eq">J = −K ∇T, &nbsp; ∇T ≈ δT/δx <span class="tag">(6)</span></div>
+<p>with K the thermal conductivity. Stored energy per volume per degree:
+<span class="m">ΔE ≈ C<sub>v</sub> δT</span>.</p>
+
+<h3>Step 2: energy conservation on a slab</h3>
+<p>In a segment of length δx, the net influx changes the internal energy:</p>
+<div class="eq">δx C<sub>v</sub> δT = (J<sub>x−1</sub> − J<sub>x+1</sub>) δt
+⇒ ∂T/∂t = κ ∇²T, &nbsp; κ = K/C<sub>v</sub> <span class="tag">(7)</span></div>
+
+<h3>Step 3: the scaling</h3>
+<p>Drop the partial derivatives (that is legitimate: the scaling is a statement about the
+units of one step):</p>
+<div class="eq">T/t ≈ κ T/x² ⇒ <b>t ≈ x²/κ</b> <span class="tag">(8)</span></div>
+<p>The heat equation's two parameters, K and C<sub>v</sub>, collapse into one — κ, the
+heat diffusivity — and only one functional form survives: <strong>quadratic in
+size.</strong></p>
+
+<h3>Step 4: calibrate κ with a potato, then cool the moon</h3>
+<p>A 10 cm potato takes ~10 min to cook through:</p>
+<div class="eq">κ ≈ x²/t = (10<sup>−1</sup> m)² / 600 s ≈ <b>1.5×10<sup>−5</sup> m²/s</b> <span class="tag">(9)</span></div>
+<p>Now the moon (L ≈ 2×10<sup>6</sup> m):</p>
+<div class="eq">t ≈ x²/κ = 4×10<sup>12</sup> / 1.5×10<sup>−5</sup> ≈ 3×10<sup>17</sup> s ≈ <b>10<sup>10</sup> years</b> <span class="tag">(10)</span></div>
+<p>with ~3×10<sup>7</sup> s/year. The solar system is ~4.6×10<sup>9</sup> years old — so
+the estimate says the moon should be nearly, but not quite, cooled. Reality: the moon is
+fully cooled. The discrepancy is also the lesson: the moon's <em>molten core</em>, early
+on, enabled <em>convection</em> — a much faster transport mechanism than conduction —
+and the estimate's failure mode tells you the mechanism. A calibrated constant plus a
+scaling law gives you a prediction that is quantitatively close and mechanistically
+honest about where it is wrong.</p>
+
+<h2 id="s10"><span class="n">10</span>Diffusion and the mixing of a cell</h2>
+<p class="lede">Brownian motion is a random walk: τ ≈ x²/D with D ∝ 1/r — and the mixing times that follow run the whole course.</p>
+
+<p>The same random-walk logic, in biological currency. Brown (1827) watched pollen
+jiggle under a microscope with no apparent force. Estimate its size: visible under a
+1800s microscope, not visible to the naked eye → ~10 µm (eukaryotic-cell scale). Its
+motion: visible jiggling over seconds (~1 µm on seconds timescale), but not significant
+net movement over minutes → to move one body length (10 µm) takes about an hour:</p>
+
+<div class="eq">D<sub>pollen</sub> ≈ x²/τ = (10 µm)² / 3600 s ≈ 10<sup>−2</sup> µm²/s <span class="tag">(11)</span></div>
+
+<p>Now for the scaling that turns this into biology. Diffusion is a balance between the
+thermal kicks (∝ L², since it scales with the surface being hit) and viscous drag
+(<span class="m">F ∝ η L v</span>), so mobility per force is
+<span class="m">v/F ∝ L<sup>−1</sup></span>, and Einstein's relation gives</p>
+
+<div class="eq">D = μ k<sub>B</sub>T, &nbsp; μ ∝ v/F ∝ L<sup>−1</sup> ⇒ <b>D ∝ 1/L</b> <span class="tag">(12)</span></div>
+
+<p>A protein is <span class="m">~1 nm</span> (from
+<span class="m">(300 aa)<sup>1/3</sup></span>-ish size scalings), 10<sup>4</sup>-fold
+smaller than pollen, so <span class="m">D<sub>protein</sub> ≈ 100 µm²/s</span>. Then the
+mixing times, which the rest of the course quotes:</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 6. τ = x²/D for a protein (D ≈ 100 µm²/s): the size scaling of mixing.</caption>
+<thead><tr><th>Compartment</th><th>Size</th><th>τ</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td>E. coli</td><td class="num">1 µm</td><td class="num">0.01 s</td><td>well-mixed on any biological timescale</td></tr>
+<tr><td>mammalian cell</td><td class="num">10 µm</td><td class="num">1 s</td><td>still fast</td></tr>
+<tr><td>egg</td><td class="num">100 µm</td><td class="num">100 s</td><td>gradients can persist</td></tr>
+<tr><td>axon</td><td class="num">1 m</td><td class="num">3×10² years</td><td class="hl">passive diffusion fails: active transport exists</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The axon row is the payoff: since <span class="m">τ ∝ x²</span>, mass transport by
+diffusion dies at large distances, and the existence of axonal transport (and vesicles,
+and motors) is <em>predicted</em> by this scaling rather than assumed. That is what a
+null model is for.</p>
+
+<h2 id="s11"><span class="n">11</span>Null models, and the ten-questions game</h2>
+<p class="lede">In biology, an OoM estimate is a null hypothesis: how far does plain physics take you before any design is needed?</p>
+
+<p>The last point of the lecture is the mode in which OoM reasoning is used in biology:
+not to calculate, but to <strong>generate null hypotheses</strong>. Before asking why a
+cell regulates something, estimate what plain physics would do without regulation:
+"would two molecules at 1 µM meet often enough?" — about 10<sup>6</sup> encounters per
+second per enzyme, because <span class="m">k<sub>on</sub> ≈ 4πDa ≈ 10<sup>9</sup>
+M<sup>−1</sup>s<sup>−1</sup></span> (that estimate, derived properly, is week 2's first
+derivation). "How long to transport a protein across a neuron?" — forever; therefore
+motors exist. "Is this state stable?" — before the ODE, ask: what is the timescale? A
+naked reaction with a 100 ms timescale is going nowhere unless something — catalysis,
+concentration, localization — does the work. The number says what needs explaining, and
+the null hypothesis says the explanation is cheap.</p>
 
 <div class="box sim">
 <span class="lbl">The ten-questions game</span>
-<p>Worked example of the format: ten questions, three minutes each, answers to within a
-factor of ten. What is the mass of all RNA in a human cell? How many ATP molecules per
-cell at any instant? How long does a transcription cycle take? How many metabolism
-reactions fit in one cell? The method is always: name the scale, then the bottleneck,
-then the answer.</p>
+<p>The block's exercise, in the demo format: ten questions, three minutes each, answers
+to within a factor of ten. Sample: what is the mass of all the RNA in a human cell? How
+many ATP molecules in a cell at any instant? How long is one transcription cycle? How
+many metabolic reactions fit in one cell? Method, always: name the scale, then the
+bottleneck, then the answer. One of these is done live in the demo; the class rates it
+0–3 on the rubric; the remaining nine are the discussion material.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Appendix</div>
+  <h2>Plan and sources</h2>
+</div>
+
+<h2 id="s12"><span class="n">12</span>The two sessions, min by min</h2>
+<p class="lede">Block 0–1 (Tuesday) and 2–3 (Thursday), with the demo and the assignments.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 7. Week 1 delivery plan.</caption>
+<thead><tr><th>Time</th><th>Tuesday (blocks 0–1)</th><th>Thursday (blocks 2–3)</th></tr></thead>
+<tbody>
+<tr><td class="num">10:40–10:45</td><td>admin, AI Campus, submissions repo, TAs</td><td>admin; quiz aggregates from Tue</td></tr>
+<tr><td class="num">10:45–11:15</td><td>§1–2: the course, the cycle, commandments</td><td>§7: jump heights (energy → h ∝ M⁰, flea cheat)</td></tr>
+<tr><td class="num">11:15–11:20</td><td>sample quiz 1 (on the course + an OoM check)</td><td>quiz 3</td></tr>
+<tr><td class="num">11:20–11:50</td><td>§3–4: session anatomy; rubric; <strong>demo OoM session + demo quiz</strong></td><td>§8: the cell ledger (volumes, masses, concentrations)</td></tr>
+<tr><td class="num">11:50–11:55</td><td>class rates the demo (rubric calibration)</td><td>quiz 4</td></tr>
+<tr><td class="num">11:55–12:15</td><td>§5–6: the method + Hangzhou exodus</td><td>§9–11: heat &amp; diffusion &amp; null models; addendum; week-2 briefing</td></tr>
+</tbody>
+</table>
 </div>
 
 <hr>
@@ -427,26 +663,29 @@ then the answer.</p>
 
 <div class="refs">
 <ol>
-<li id="r-l1">F. Xiao, <em>CCBS 2025 Lecture 1 — OoM reasoning</em> (handwritten lecture
-notes, 2025). <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/202509-CCBS-lecture-notes-01-OoM.pdf">PDF</a>
-<span class="venue">Every formula in blocks 1–3 traces here; the note is archived at
-lecture1/ above.</span></li>
+<li id="r-l1">F. Xiao, <em>CCBS 2025 Lecture 1 — Order of Magnitude reasoning</em>
+(handwritten lecture notes) + the 2025 scribe notes by Qinguo Liu &amp; Yihang Ding
+("Order of Magnitude (OoM) reasoning in physics and biology", 20250904).
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/202509-CCBS-lecture-notes-01-OoM.pdf">notes PDF</a>
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_scribe_lecture1.pdf">scribe PDF</a>
+<span class="venue">Every formula in blocks 1–3 traces here; the handwritten notes and
+the scribe agree up to small factor-of-2 differences, which the OoM framing absorbs.</span></li>
 <li><em>Cell Biology by the Numbers</em>, R. Phillips &amp; J. Kondev.
-<a href="https://book.bionumbers.org">book.bionumbers.org</a>
-<span class="venue">The vignette source for the movement numbers (mRNA ≈ 10× its
-protein) and estimation practice.</span></li>
+<a href="https://book.bionumbers.org">book.bionumbers.org</a> — also "Snapshot:
+characteristic rates and timescales in cell biology" (cited in the 2025 notes).
+<span class="venue">The vignette source (mRNA ≈ 10× its protein in volume/mass) and
+estimation practice.</span></li>
 <li><em>Physical Biology of the Cell</em>, Phillips, Kondev, Theriot, Garcia.
 <a href="https://www.rpgroup.caltech.edu/aph161/2022/index.html">course site</a>
-<span class="venue">Reference read for scaling arguments in biology.</span></li>
+<span class="venue">Scaling arguments in biology.</span></li>
 <li>Research-with-AI: the <a href="https://pebble-biofusion.github.io/workshop/method/">four
 commandments and PCAPS</a>; the <a href="https://chemaoxfz.github.io/essays/">essays</a>
 including <em>Three Schools, Three Shocks</em> and the <code>research-essay</code> skill
 (<a href="https://github.com/chemaoxfz/idea-to-essay">idea-to-essay</a>).
-<span class="venue">The method and house style behind every core page and every
-teaching presentation.</span></li>
+<span class="venue">The method and house style behind every core page and every teaching
+presentation; block 0's rules.</span></li>
 </ol>
 </div>
-
 </main>
 </div>
 <script>

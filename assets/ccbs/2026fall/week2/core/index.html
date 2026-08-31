@@ -114,19 +114,22 @@ sup.c a{color:inherit;text-decoration:none}
   <div class="brand">CCBS · 2026 · Week 2 · CORE</div>
   <h2>Contents</h2>
   <ol>
-    <li class="part">Block 1 · Notations</li>
+    <li class="part">Block 1 · Notations (Tue)</li>
     <li><a href="#s1">1 · How a cell does chemistry</a></li>
     <li><a href="#s2">2 · Elementary vs composite</a></li>
-    <li class="part">Block 2 · Rates</li>
-    <li><a href="#s3">3 · The diffusion-limited encounter</a></li>
-    <li><a href="#s4">4 · Catalysis and the real rates</a></li>
-    <li class="part">Block 3 · Mass action</li>
-    <li><a href="#s5">5 · The law of mass action</a></li>
-    <li><a href="#s6">6 · The CRN rate equation</a></li>
-    <li class="part">Block 4 · Worked models</li>
-    <li><a href="#s7">7 · Production, degradation, bistability</a></li>
-    <li><a href="#s8">8 · Michaelis–Menten from rates</a></li>
-    <li><a href="#s9">9 · The simulation toolkit</a></li>
+    <li><a href="#s3">3 · Four biological examples</a></li>
+    <li class="part">Block 2 · Rates (Tue)</li>
+    <li><a href="#s4">4 · Two steps: binding, then catalysis</a></li>
+    <li><a href="#s5">5 · The diffusion-limited on-rate, derived</a></li>
+    <li><a href="#s6">6 · The units, checked</a></li>
+    <li class="part">Block 3 · Mass action (Thu)</li>
+    <li><a href="#s7">7 · A generic reaction, and the accounting</a></li>
+    <li><a href="#s8">8 · The law of mass action</a></li>
+    <li><a href="#s9">9 · The CRN rate equation</a></li>
+    <li class="part">Block 4 · Worked models (Thu)</li>
+    <li><a href="#s10">10 · Three ODEs that carry the course</a></li>
+    <li><a href="#s11">11 · The simulation toolkit</a></li>
+    <li><a href="#s12">12 · What networks can do</a></li>
     <li class="part">Appendix</li>
     <li><a href="#refs">References &amp; note sources</a></li>
   </ol>
@@ -134,230 +137,322 @@ sup.c a{color:inherit;text-decoration:none}
 <main>
 
 <h1>The reactor: chemical reaction networks</h1>
-<p class="sub">Notation, rates, mass action, and the equations that turn a soup of reactions into a machine.</p>
-<p class="byline">CCBS · CST 5034 · Fall 2026 · week 2 · core page · 4 student blocks</p>
+<p class="sub">Notation, rates, mass action, and the equation that turns a soup of reactions into a machine — with the diffusion-limited on-rate derived to the last boundary condition.</p>
+<p class="byline">CCBS · CST 5034 · Fall 2026 · week 2 · core page · first draft (built from the 2025 scribe note) · blocks 1–2 Tue 09-08 + blocks 3–4 Thu 09-10</p>
 
-<p>Week 2 is vocabulary and the first equation. Everything the course later says about
-dynamics (week 3), control (week 4), stochasticity (week 5), energy (week 6), computation
-(week 7) and industry (week 8) is stated in the language fixed here: what a reaction is,
-how fast it goes, and how a network of them becomes a dynamical system. The 2025 lecture
-covered this in one sitting<sup class="c"><a href="#r-l2">1</a></sup>; the four blocks of
-week 2 are the same material, one point per block.</p>
+<p>Week 2 is vocabulary and the first equation. Everything later — dynamics (week 3),
+control (week 4), stochasticity (week 5), energy (week 6), computation (week 7),
+industry (week 8) — is stated in the language fixed here: what a reaction is, how fast
+it can go, and how a network of them becomes a dynamical system. This first draft is
+built directly on the 2025 scribe note of the same lecture (Jiahe Wang, Yiqiao Deng,
+Zhi Zhou), whose detailed derivation of the diffusion-limited on-rate is the
+<em>anchor derivation</em> of the course: it is the first place where a biological
+quantity (the fastest possible reaction rate) is <em>derived from physics</em>, with
+boundary conditions, and every later derivation is judged against it.</p>
 
 <div class="box note">
 <span class="lbl">Blocks and sessions &middot; blocks 1–2 Tuesday, blocks 3–4 Thursday (10:40–12:15), addendum closes Thursday</span>
 <p>Each block = one 30-minute session taught by one student, followed by the presenter's
 own TA-approved 5-minute quiz (it must test that block's core point, and anyone who got
-the session should solve it in ~30 seconds). The four blocks are coordinated by the week's
-students into one coherent week; the 15-minute addendum closes the week, in Thursday's session.</p>
+the session should solve it in ~30 seconds). The four blocks are coordinated by the
+week's students into one coherent week; the 15-minute addendum closes the Thursday
+session.</p>
 </div>
 
 <div class="parthead">
-  <div class="k">Block 1</div>
+  <div class="k">Block 1 · Tuesday</div>
   <h2>Notations</h2>
   <p>What a reaction is, and the two arrow vocabularies the course uses.</p>
 </div>
 
 <h2 id="s1"><span class="n">1</span>How a cell does chemistry</h2>
-<p class="lede">Changes in cells happen via chemical reactions, whose kinetics are ultimately governed by diffusion.</p>
+<p class="lede">Cellular changes happen through chemical reactions, ultimately governed by diffusion kinetics — at constant temperature and pressure.</p>
 
 <p>A cell changes its state by reactions: molecules meet, decide, and become other
-molecules. Two facts set the frame. First, cellular chemistry happens at roughly constant
-temperature and pressure — so free energies, not heats, are the currency, and equilibrium
-questions (week 6) are the right background. Second, the rate at which molecules can
-meet is set by diffusion — which is the very first rate estimate in the course (block 2)
-and by which every enzyme must abide.</p>
+molecules. Three properties frame everything. First, cellular chemistry happens at
+roughly constant temperature and pressure, so free energies, not heats, are the
+currency (that is week 6's background). Second, the rate at which molecules can meet is
+set by diffusion — which is why block 2's derivation is the course's first rate
+estimate.<sup class="c"><a href="#r-l2">1</a></sup></p>
 
-<p>The base notation is simple: <span class="m">E + S ⇌ C → E + P</span> is a mechanism —
-the straight arrow means the reaction actually proceeds through that collision. Kinetic
-detail is what distinguishes an elementary reaction from a summary. <sup class="c"><a href="#r-l2">1</a></sup></p>
+<p>Third — the feature that matters most for this week — reactions in cells are
+<strong>catalyzed</strong>. Thermodynamically favorable reactions can sit for years on
+their own (spontaneous glucose degradation, peptide-bond cleavage, ATP hydrolysis), and
+enzymes accelerate them by factors of 10<sup>10</sup> or more. The consequence is a
+clean separation of two questions, and the course keeps them apart deliberately:
+<em>whether</em> a reaction can proceed (thermodynamics — week 6) versus
+<em>how fast</em> it does (kinetics — this week).</p>
 
 <h2 id="s2"><span class="n">2</span>Elementary vs composite</h2>
-<p class="lede">Straight arrows are mechanisms; squiggly arrows are bookkeeping for net change.</p>
-
-<div class="box def">
-<span class="lbl">Elementary reaction</span>
-<p>One step, straight arrow: <span class="m">E + S ⇌ C</span>. The arrow <em>is</em> the
-mechanism; stoichiometry and rate law follow from the arrow.</p>
-</div>
-
-<div class="box def">
-<span class="lbl">Composite reaction</span>
-<p>A summary of several steps, squiggly arrow: <span class="m">S ⇝ P</span> (or, tracking
-counts, <span class="m">(S,P) ⇝ (S−1, P+1)</span>, <span class="m">mRNA ⇝ mRNA+1</span>). Only
-the net change is claimed; the mechanism is not.</p>
-</div>
-
-<p>The distinction runs the whole course.<sup class="c"><a href="#r-l2">1</a></sup> An
-elementary reaction's rate law is forced by the arrow (block 3). A composite reaction's
-rate law must be <em>measured or derived</em> from the steps — Michaelis–Menten (block 4)
-is the first derived rate law; Hill functions and ultrasensitive fronts (week 3) are
-composite behaviors built from elementary steps. Whenever a claim says "the rate is…,"
-the first question to ask is: is that arrow elementary?</p>
-
-<div class="parthead">
-  <div class="k">Block 2</div>
-  <h2>Rates</h2>
-  <p>How fast can a reaction actually happen: the diffusion limit, and the catalytic reality below it.</p>
-</div>
-
-<h2 id="s3"><span class="n">3</span>The diffusion-limited encounter</h2>
-<p class="lede">The fastest possible bimolecular reaction is set by diffusion: k_on ≈ 10⁹ s⁻¹M⁻¹ — every enzyme starts here and can only go slower.</p>
-
-<p>Estimate the upper bound on a bimolecular rate. Put a sphere of radius a (the enzyme
-or molecule) in a sea of substrate at concentration <span class="m">C</span>. Molecules
-diffuse; any molecule that reaches the surface reacts. The flux at the surface is the
-diffusive flux <span class="m">J = D ∂C/∂R</span>; solving the boundary-value problem on
-the sphere gives the classic result<sup class="c"><a href="#r-l2">1</a></sup></p>
-
-<div class="eq">J = 4πDaC<sub>∞</sub> = k<sub>on</sub>C<sub>∞</sub>, &nbsp;&nbsp; k<sub>on</sub> = 4πDa ≈ <b>10<sup>9</sup> s<sup>−1</sup>M<sup>−1</sup></b> <span class="tag">(1)</span></div>
-
-<p>with D the diffusion constant of the substrate and a the reaction radius. The number
-itself is the lesson: <strong>no bimolecular association in a cell can beat
-10<sup>9</sup> M<sup>−1</sup>s<sup>−1</sup></strong>; real rates sit at or below it, and
-when a claimed on-rate exceeds it, the claim is wrong. With C ~ 1 mM, this says an enzyme
-can receive up to ~10<sup>6</sup> encounters per second — the full unit chain is worth
-doing once by hand: <span class="m">(10<sup>9</sup> s<sup>−1</sup>M<sup>−1</sup>)(10<sup>−3</sup> M) = 10<sup>6</sup> s<sup>−1</sup></span>.</p>
-
-<h2 id="s4"><span class="n">4</span>Catalysis and the real rates</h2>
-<p class="lede">Enzymes receive millions of encounters per second and convert tens per second: catalysis, not diffusion, is the bottleneck.</p>
-
-<p>An enzyme that could react with every encounter would be a perfect enzyme — but even
-the fastest enzymes turn over at 10–10<sup>2</sup> reactions per second. The gap of
-~10<sup>4</sup>–10<sup>5</sup> is catalysis: binding must be specific, the catalytic step
-has to happen, products must leave. This one OoM fact, plus the encounter limit, sets the
-definition of "fast" the course will use:
-<sup class="c"><a href="#r-l2">1</a></sup></p>
+<p class="lede">Straight arrows are mechanisms; squiggly arrows are bookkeeping for the net change.</p>
 
 <div class="tablewrap">
 <table>
-<caption>Table 1. Rate scales to keep in the head.</caption>
-<thead><tr><th>Process</th><th>Scale</th><th>Where it appears</th></tr></thead>
+<caption>Table 1. The two reaction notations (from the 2025 scribe note).</caption>
+<thead><tr><th>Type</th><th>Arrow</th><th>Meaning</th><th>Examples</th></tr></thead>
 <tbody>
-<tr><td>diffusion-limited on-rate</td><td class="num">k<sub>on</sub> ≈ 10<sup>9</sup> M<sup>−1</sup>s<sup>−1</sup></td><td>caps every bimolecular step</td></tr>
-<tr><td>enzyme turnover (fast)</td><td class="num">k<sub>cat</sub> ≈ 10–10<sup>2</sup> s<sup>−1</sup></td><td>the catalytic bottleneck</td></tr>
-<tr><td>transcription/translation</td><td class="num">k<sub>d</sub> ≈ 10<sup>−3</sup> s<sup>−1</sup></td><td>~20 min timescale, week 7's numbers</td></tr>
-<tr><td>metabolite concentration</td><td class="num">~10<sup>−3</sup> M</td><td>the well-mixed regime</td></tr>
-<tr><td>protein/regulator concentration</td><td class="num">~10<sup>−6</sup> M</td><td>the counting regime (week 5)</td></tr>
+<tr><td>Elementary</td><td>straight →</td><td>implies the reaction <em>mechanism</em>, all key players included; it is an irreducible step — you cannot break it down further, or it is useless for your concern</td><td><span class="m">E+S ⇌ C → E+P</span>; <span class="m">Gene+RNAP ⇌ C₀ → C₁ → … → Cₙ → Gene+RNAP+mRNA</span></td></tr>
+<tr><td>Composite</td><td>squiggly ⇝</td><td>may have a hidden mechanism — only the <em>net change</em> of several steps</td><td><span class="m">S ⇝ P</span>; <span class="m">Gene ⇝ Gene+mRNA</span>; <span class="m">(S,P) ⇝ (S−1,P+1)</span></td></tr>
 </tbody>
 </table>
 </div>
 
-<div class="box caution">
-<span class="lbl">Units are the answer</span>
-<p>Every rate estimate lives or dies on its unit chain. Practice the chain until it is
-reflexive: <span class="m">M<sup>−1</sup>s<sup>−1</sup> × M = s<sup>−1</sup></span>,
-volume <span class="m">1 µm³ = 10<sup>−15</sup> L</span>, mass <span class="m">1 pg =
-10<sup>−12</sup> g</span>.</p>
+<p>The third notation is the one the scribe names explicitly: the <strong>net-change
+form</strong>, <span class="m">(X₁, X₂, …, Xₙ) → (X₁ + P₁, …, Xₙ + Pₙ)</span>, written
+on molecule counts rather than species symbols. It is the notation that makes the
+accounting of block 3 automatic, because it registers only <em>who lost and who
+gained what</em>.</p>
+
+<h2 id="s3"><span class="n">3</span>Four biological examples</h2>
+<p class="lede">The same two arrows, four real systems — and the habit of asking which one a diagram really is.</p>
+
+<p>The 2025 scribe lists four examples worth having on the wall:<sup class="c"><a href="#r-l2">1</a></sup></p>
+
+<ol>
+<li><strong>Cell replication:</strong> <span class="m">N ⇝ 2N</span> (or <span class="m">N ⇝ N+1</span>) — composite; the mechanism is a whole cell cycle.</li>
+<li><strong>Photon doubling in a laser:</strong> <span class="m">photon + excited atom → 2 photons + ground atom</span> — elementary in the interesting direction, and one of the few systems where the "elementary" step is genuinely one event.</li>
+<li><strong>Diffusion through a passive membrane channel:</strong> <span class="m">A<sub>out</sub> → A<sub>in</sub></span> — elementary as written (it is a single crossing), but the <em>rate</em> hides transport physics.</li>
+<li><strong>ATPase pumping H⁺ out:</strong> <span class="m">H⁺<sub>in</sub> ⇝ H⁺<sub>out</sub></span> — composite, and energy-driven: this is exactly the kind of arrow that week 6 (energy) asks about.</li>
+</ol>
+
+<div class="box key">
+<span class="lbl">The habit to install now</span>
+<p>When anyone writes a rate law, ask: <em>is that arrow elementary?</em> If it is
+composite, the rate law must be derived (week 3's Michaelis–Menten) or measured — never
+assumed from the arrowhead.</p>
 </div>
 
 <div class="parthead">
-  <div class="k">Block 3</div>
+  <div class="k">Block 2 · Tuesday</div>
+  <h2>Rates</h2>
+  <p>How fast a reaction can happen: the diffusion-limited on-rate, derived — the anchor derivation of the course.</p>
+</div>
+
+<h2 id="s4"><span class="n">4</span>Two steps: binding, then catalysis</h2>
+<p class="lede">An enzymatic reaction is binding plus catalysis; the fastest possible rate is the association rate, which is governed by diffusion.</p>
+
+<p>An enzyme and its substrate collide, bind, and then the enzyme's atoms orient the
+substrate into the product. Two steps, one rate ceiling. The fastest reaction rate is
+limited by the association step — react immediately upon association — and that
+association is diffusion-limited, hence the name: <strong>diffusion-limited
+on-rate</strong>.<sup class="c"><a href="#r-l2">1</a></sup> The scheme:</p>
+
+<div class="eq">E + S ⇌ C ⇝ E + P <span class="tag">(1)</span></div>
+
+<div class="box def">
+<span class="lbl">What "fast" means, in the end</span>
+<p>The diffusion limit sets <span class="m">k<sub>on</sub> ≈ 10⁹ M<sup>−1</sup>s<sup>−1</sup></span>.
+At 1 mM substrate, one enzyme gets ~10⁶ encounters per second. But most enzymes are far
+slower — bottlenecked by catalysis at <span class="m">10–10²</span> reactions per
+second. Keep both numbers; the gap between them is the whole subject of enzyme
+engineering, and the answer to most "why isn't this reaction faster?" questions.</p>
+</div>
+
+<h2 id="s5"><span class="n">5</span>The diffusion-limited on-rate, derived</h2>
+<p class="lede">Fick's law in spherical symmetry, two boundary conditions, one integration chain — and 10⁹ s⁻¹M⁻¹ falls out.</p>
+
+<p>This is the anchor derivation. Set up: an enzyme at the origin, substrate diffusing in
+a steady state; the enzyme acts as an absorbing sphere of radius a. <strong>Step 1 —
+flux at the surface.</strong> At a point on the enzyme surface, Fick's first law:</p>
+
+<div class="eq">j(a) = D ∂C/∂R |<sub>R=a</sub>, &nbsp; roughly ≈ D C<sub>∞</sub>/a <span class="tag">(2)</span></div>
+
+<p><strong>Step 2 — conservation gives the profile.</strong> In spherical symmetry,
+steady state means the flux through any sphere is the same:
+<span class="m">4πR² j = const ≠ 0</span>. In the steady state of Fick's second law,
+<span class="m">∂C/∂t = D∇²C</span>, the angular derivatives vanish and</p>
+
+<div class="eq">(1/R²)·d/dR (R² dC/dR) = 0 ⇒ R² dC/dR = A ⇒ C(R) = −A/R + B <span class="tag">(3)</span></div>
+
+<p><strong>Step 3 — boundary conditions.</strong> Absorbing surface:
+<span class="m">C(a) = 0</span>; far away: <span class="m">C(∞) = C<sub>∞</sub></span>.
+So <span class="m">B = C<sub>∞</sub></span>, <span class="m">A = aC<sub>∞</sub></span>:</p>
+
+<div class="eq">C(R) = C<sub>∞</sub>(1 − a/R) <span class="tag">(4)</span></div>
+
+<p><strong>Step 4 — the gradient at the surface, the flux, the rate.</strong>
+<span class="m">∂C/∂R|<sub>a</sub> = C<sub>∞</sub>/a</span>, so
+<span class="m">j = D C<sub>∞</sub>/a</span>, and the total rate is flux × area:</p>
+
+<div class="eq"><b>J = j·4πa² = 4πDa C<sub>∞</sub> = k<sub>on</sub> C<sub>∞</sub></b>, &nbsp; k<sub>on</sub> = 4πDa <span class="tag">(5)</span></div>
+
+<p><strong>Step 5 — the number.</strong> With D ≈ 10² µm²/s for a small molecule,
+a ≈ 1 nm, and the unit conversion for a molecule-per-liter concentration:</p>
+
+<div class="eq">k<sub>on</sub> = 4π · 10² µm²/s · 1 nm · (6×10²³/mol) · (1 L / 10¹⁵ µm³) ≈ <b>10⁹ s<sup>−1</sup>M<sup>−1</sup></b> <span class="tag">(6)</span></div>
+
+<p>Note what the derivation does for you: it turns "how fast can a reaction be?" into a
+<em>Newtonian boundary-value problem</em> — a physical question, forced by the math to
+have one answer. If a claimed on-rate exceeds 10⁹, it is wrong, and you can say why.</p>
+
+<h2 id="s6"><span class="n">6</span>The units, checked</h2>
+<p class="lede">j = D ∂c/∂R, dimension by dimension — the way every estimate in this course should be checked.</p>
+
+<p>The scribe includes the dimensional check of the flux law, and it is the template for
+every future estimate:<sup class="c"><a href="#r-l2">1</a></sup></p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 2. Dimensional verification of j = D ∂c/∂R.</caption>
+<thead><tr><th>Quantity</th><th>Dimensions</th></tr></thead>
+<tbody>
+<tr><td>j (molecules per area per time)</td><td class="num">N / (L²·T)</td></tr>
+<tr><td>D (diffusion coefficient)</td><td class="num">L² / T</td></tr>
+<tr><td>∂c/∂R (concentration gradient)</td><td class="num">(N/L³)/L = N / L⁴</td></tr>
+<tr><td>D · ∂c/∂R</td><td class="num">(L²/T)(N/L⁴) = N/(L²·T) ✓ = [j]</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The habit generalizes: <em>before believing a rate, check its units; before believing
+a scale, check its exponents.</em> (The same table, with <span class="m">t ≈ x²/κ</span>
+and <span class="m">J = 4πDaC<sub>∞</sub></span>, is what gives week 1's and this week's
+numbers legs.)</p>
+
+<div class="parthead">
+  <div class="k">Block 3 · Thursday</div>
   <h2>Mass action</h2>
-  <p>The one law that turns arrows into equations.</p>
+  <p>The one law that turns arrows into equations — and the accounting that holds even when you know nothing about the mechanism.</p>
 </div>
 
-<h2 id="s5"><span class="n">5</span>The law of mass action</h2>
-<p class="lede">The rate of an elementary reaction is k times the product of reactant concentrations raised to their stoichiometries.</p>
+<h2 id="s7"><span class="n">7</span>A generic reaction, and the accounting</h2>
+<p class="lede">γ = β − α; every time a reaction fires it changes species j by γⱼ·v.</p>
 
-<p>For an elementary reaction with reactant stoichiometry <span class="m">α<sub>i</sub></span>
-(the exponent vector), the <strong>law of mass action</strong> says</p>
+<p>Write a generic reaction — elementary (→) or composite (⇝), n species, reactants
+<span class="m">αⱼ</span>, products <span class="m">βⱼ</span>:</p>
 
-<div class="eq">v<sub>i</sub> = k<sub>i</sub> x<sup>α<sub>i</sub></sup> = k<sub>i</sub> ∏ x<sub>j</sub><sup>α<sub>ij</sub></sup> <span class="tag">(2)</span></div>
+<div class="eq">α₁X₁ + … + αₙXₙ → β₁X₁ + … + βₙXₙ, &nbsp; γⱼ = βⱼ − αⱼ <span class="tag">(7)</span></div>
 
-<p>The law is the "central organizing law of reaction kinetics": rate ∝ how often
-reactants collide, which scales as the product of their densities. It is what the
-course means by a well-mixed assumption — week 5's master equation relaxes it.</p>
+<p>The <strong>net-stoichiometry</strong> <span class="m">γⱼ</span> is the only thing the
+accounting needs. Every time the reaction fires with flux <span class="m">v</span>,
+species j changes by <span class="m">γⱼ·v</span>. This is the net-change notation of
+block 1 made algebraic.</p>
 
-<h2 id="s6"><span class="n">6</span>The CRN rate equation</h2>
-<p class="lede">A whole network is dx/dt = Γv: the stoichiometric matrix times the flux vector. Conservation and steady states follow.</p>
+<div class="box key">
+<span class="lbl">The accounting statement (say it out loud)</span>
+<p>The equation of a chemical network is pure bookkeeping: where molecules went. It holds
+<em>always</em>, for elementary and composite reactions alike, and it depends only on γ
+— not on α, not on β. You can write it even if you know nothing about the mechanism.
+What you <em>cannot</em> do without kinetics is close the system: that is exactly what
+the next section supplies.</p>
+</div>
 
-<p>Collect species <span class="m">x</span>, reactions with fluxes <span class="m">v</span>,
-net stoichiometry <span class="m">γ<sub>j</sub> = β<sub>j</sub> − α<sub>j</sub></span>
-(products minus reactants), and the network becomes<sup class="c"><a href="#r-l2">1</a></sup></p>
+<h2 id="s8"><span class="n">8</span>The law of mass action</h2>
+<p class="lede">For an elementary reaction, the flux is k times the product of reactant concentrations raised to their stoichiometries.</p>
 
-<div class="eq">dx/dt = Γ v(x) = Γ Λ<sub>k</sub> x<sup>α</sup> = f<sup>+</sup>(x) − f<sup>−</sup>(x) <span class="tag">(3)</span></div>
+<p>Kinetics supplies the flux. For an elementary reaction, the law that organizes all
+reaction kinetics:</p>
 
-<p>where <span class="m">Λ<sub>k</sub></span> is the diagonal matrix of rate constants.
-Two consequences are immediate. First, <strong>conservation:</strong> the left-null
-space of Γ contains the conserved quantities; if the network is closed, Σx stays put.
-Second, <strong>steady states:</strong> <span class="m">Γv(x*) = 0</span> — the equation
-that week 3 will analyze for stability. Note also what (3) is not: it is a
-<span class="m">subset</span> of an arbitrary dynamical system <span class="m">ẋ = f(x)</span>.
-Polynomiality, positivity (the cone <span class="m">x ≥ 0</span> is forward-invariant)
-and parameter uncertainty constrain what a cell can realize — this is the structural
-rules story of week 3, block 3.</p>
+<div class="eq">v(x) = k · X₁<sup>α₁</sup> X₂<sup>α₂</sup> ··· Xₙ<sup>αₙ</sup> = k x<sup>α</sup> <span class="tag">(8)</span></div>
+
+<p>The rationale is the collision picture: the rate is proportional to how often
+reactants meet, which scales as the product of their densities. Example from the
+scribe: <span class="m">E + S → C</span> with rate constant K has
+<span class="m">rate = K·E·S</span> — and if the step is the elementary binding
+<em>of</em> an association-limited reaction, then that K is exactly
+<span class="m">k<sub>on</sub> ≈ 4πDa</span> from block 2: the same quantity, one
+derived from physics, one assumed from the arrow. That agreement is the reason the
+course calls (5) an anchor: <em>the law of mass action's</em> constants are not free —
+block 2's physics caps them.</p>
+
+<h2 id="s9"><span class="n">9</span>The CRN rate equation</h2>
+<p class="lede">dx/dt = Γv = f⁺ − f⁻: a network's dynamics, split into production and consumption — the form every later week starts from.</p>
+
+<p>Combine accounting (7) with kinetics (8). For m reactions, n species, the network
+obeys<sup class="c"><a href="#r-l2">1</a></sup></p>
+
+<div class="eq">dxⱼ/dt = Σ<sub>i</sub> γ<sub>ij</sub> v<sub>i</sub> = Σ<sub>i: γ>0</sub> γ<sub>ij</sub>v<sub>i</sub> − Σ<sub>i: γ<0</sub> |γ<sub>ij</sub>| v<sub>i</sub> = f<sup>+</sup><sub>j</sub>(x) − f<sup>−</sup><sub>j</sub>(x)</div>
+
+<p>in matrix form</p>
+
+<div class="eq"><b>dx/dt = Γ v(x) = Γ Λ<sub>k</sub> x<sup>α</sup> = f<sup>+</sup>(x) − f<sup>−</sup>(x)</b> <span class="tag">(9)</span></div>
+
+<p>with <span class="m">Γ</span> the n×m net-stoichiometry matrix and
+<span class="m">Λ<sub>k</sub></span> the diagonal matrix of rate constants. Three
+immediate consequences:</p>
+
+<ul>
+<li><strong>Conservation.</strong> Any vector <span class="m">c</span> with
+<span class="m">c<sup>T</sup>Γ = 0</span> is conserved; closed networks have such
+quantities — the accounting's invariant.</li>
+<li><strong>Steady states.</strong> <span class="m">Γv(x*) = 0</span>. Note the split:
+<em>structure</em> (Γ) and <em>kinetics</em> (v) each constrain the fixed point
+separately, which is why week 7 can say surprising things about what a network's
+<em>shape</em> alone allows.</li>
+<li><strong>What (9) is not.</strong> It is a proper subset of arbitrary dynamical
+systems. Positivity (the orthant is forward-invariant), polynomiality and parameter
+uncertainty are the structural rules week 3 encodes as [P], [CP], [PU].</li>
+</ul>
+
+<div class="box open">
+<span class="lbl">Week 2 quiz ideas (presenters, pick one)</span>
+<p>(a) Given the scheme <span class="m">E+S ⇌ C → E+P</span>, write Γ and v for the
+elementary steps and name the one that is composite. (b) A claimed on-rate of
+10¹¹ M⁻¹s⁻¹ — why is it wrong? (c) Which species are conserved in a dimerization
+<span class="m">2A ⇌ A₂</span> and what does (9) say about their sum? Each is 30
+seconds for someone who got the block.</p>
+</div>
 
 <div class="parthead">
-  <div class="k">Block 4</div>
+  <div class="k">Block 4 · Thursday</div>
   <h2>Worked models</h2>
-  <p>Three models that carry the course: production–degradation, the TXTL circuit, and the derived Michaelis–Menten law.</p>
+  <p>Three ODEs that carry the course, and the toolkit that solves them.</p>
 </div>
 
-<h2 id="s7"><span class="n">7</span>Production, degradation, bistability</h2>
-<p class="lede">One ODE is biology's harmonic oscillator: everything later is a variation on it.</p>
+<h2 id="s10"><span class="n">10</span>Three ODEs that carry the course</h2>
+<p class="lede">Production–degradation, the TXTL circuit, and the S-shaped bistable — every later week is a variation on these.</p>
 
-<p>Start with the workhorse<sup class="c"><a href="#r-l2">1</a></sup> — protein production
-at rate k, degradation at rate λ:</p>
+<p>The 2025 handwritten notes develop the gallery in order:<sup class="c"><a href="#r-l2">2</a></sup></p>
 
-<div class="eq">dP/dt = k − λP <span class="tag">(4)</span></div>
+<div class="eq">ẋ = μ − x <span class="tag">(10)</span></div>
 
-<p>Steady state <span class="m">P* = k/λ</span>; relaxation with timescale <span class="m">1/λ</span>.
-Add a second layer — the TXTL-style circuit (transcription with inducible rate, translation
-with dilution),</p>
+<p><strong>Production–degradation</strong> (the scribe's Exp 4). Fixed point
+<span class="m">x* = μ</span>; relaxation with timescale 1. Nothing else happens — and
+that "nothing else" is the null model of every gene-expression circuit.</p>
 
-<div class="eq">dM/dt = k<sub>M</sub>G − γ<sub>M</sub>M, &nbsp; dP/dt = k<sub>H</sub>M − γ<sub>P</sub>P <span class="tag">(5)</span></div>
+<div class="eq">dM/dt = k<sub>M</sub>G − γ<sub>M</sub>M, &nbsp; dP/dt = k<sub>H</sub>M − γ<sub>P</sub>P <span class="tag">(11)</span></div>
 
-<p>— and the machinery for week 3 is assembled: two variables, one matrix, and a
-qualitative question (when is the fixed point stable?). The third example of this block
-is the construction of a 1D bistable system, <span class="m">ẋ = f<sup>+</sup>(x) − x</span>
-with an S-shaped production term — the general shape behind every toggle switch, and the
-bridge to week 3's bifurcation language.</p>
+<p><strong>The TXTL-style circuit</strong> — transcription (with inducible rate) and
+translation, both diluted/degraded. Two variables, one matrix; its stability analysis
+is week 3's first exercise.</p>
 
-<div class="box sim">
-<span class="lbl">The block's exercise</span>
-<p>Simulate (4) and (5); then add a Hill term plus a delay-less S-shape and find the
-bistable window by hand: <span class="m">f<sup>+</sup>(x) = β x<sup>n</sup>/(K<sup>n</sup>+x<sup>n</sup>)</span>.
-Where (in β) does the middle fixed point appear? This is the same computation week 3
-does with phase portraits.</p>
-</div>
+<div class="eq">ẋ = f<sup>+</sup>(x) − x, &nbsp; f<sup>+</sup> an S-shaped (Hill-type) production term <span class="tag">(12)</span></div>
 
-<h2 id="s8"><span class="n">8</span>Michaelis–Menten from rates</h2>
-<p class="lede">The first derived rate law: three elementary steps, one quasi-steady assumption, one effective law.</p>
+<p><strong>The bistable construction.</strong> With an S-shaped production, (12) has
+three fixed points: two stable, one unstable. This is the toggle switch's skeleton —
+and week 3 will say exactly how the S-shape can arise from a CRN (cooperativity, or
+the saturation/bottleneck/ultrasensitivity regimes of one binding reaction).</p>
 
-<p>The canonical composite: <span class="m">E + S ⇌ C → E + P</span>. Under the
-quasi-steady-state assumption on the complex, the binding equilibrium gives
-<span class="m">C = ES/K</span> with <span class="m">K = (k<sub>off</sub>+k<sub>cat</sub>)/k<sub>on</sub></span>,
-and the quadratic solves to<sup class="c"><a href="#r-l2">1</a></sup></p>
+<h2 id="s11"><span class="n">11</span>The simulation toolkit</h2>
+<p class="lede">Deterministic solvers first; the CRN zoo next; Gillespie in week 5.</p>
 
-<div class="eq">C = ½ [ (E<sub>tot</sub>+S<sub>tot</sub>+K) ± √((E<sub>tot</sub>+S<sub>tot</sub>+K)² − 4E<sub>tot</sub>S<sub>tot</sub>) ] <span class="tag">(6)</span></div>
+<p>"Let's see" means "let's solve" from here on. Deterministic ODEs (any stiff-aware
+solver; the 2025 course's scribes and code are published with each lecture) for weeks
+2–4; the Gillespie algorithm enters in week 5 when copy numbers get small. The zoo to
+keep on hand: birth–death (10), dimerization <span class="m">2A ⇌ A₂</span> (the
+first nonlinearity and a conservation check on (9)), autocatalysis, the enzyme module
+(1), and the inducible/repressible genes of (11). Every model in the zoo should be
+written as (9) first: <em>Γ, then v.</em></p>
 
-<p>with rate <span class="m">v = k<sub>cat</sub>C</span>. The two branches of (6) pick
-out the two dominance regimes of the reaction — substrate-excess and enzyme-excess —
-and the transition between them is exactly the kind of thing week 3 handles as
-time-scale separation and week 7 sees in binding-based computation. The deep point:
-a composite reaction's rate law is <em>derived</em>, not assumed, and this derivation is
-the template.</p>
+<h2 id="s12"><span class="n">12</span>What networks can do</h2>
+<p class="lede">The teaser that opens week 3 — and the reason this week's vocabulary is worth the effort.</p>
 
-<h2 id="s9"><span class="n">9</span>The simulation toolkit</h2>
-<p class="lede">Deterministic solvers first; the CRN zoo next; the Gillespie jump goes with week 5.</p>
-
-<p>For the rest of the course, "let's see" means "let's solve" — deterministic ODEs with
-any stiff-capable solver (scipy, ROSENBROCK-style) for weeks 2–4, and the Gillespie
-algorithm (week 5) when copy numbers get small. The zoo to keep on hand: birth–death
-(4), dimerization <span class="m">2A ⇌ A₂</span> (the first nonlinearity and the start of
-unit-problems in stoichiometry), autocatalysis, the MM module (6), and the repressible/
-inducible gene expressions of (5). During this block, each student should bring one CRN
-simulation with a number they can defend: that is the format of the week's exercises and
-of every later week.</p>
+<p>With (9) in hand, the course's first big question appears: <em>what can a network
+do?</em> The CRN equation is a constrained dynamical system, so its behaviors are
+restricted — but within the restrictions lie bistability, oscillations, adaptation,
+computation. The lecturer's addendum this week states the question cleanly: week 3 will
+map what (9) can draw (phase portraits, stability, time-scale separation), week 4 will
+ask how a network adapts, week 5 how it behaves when the counts are small, and week 7
+what it computes. Every one of those questions starts with the same two sentences:
+write Γ; write v.</p>
 
 <div class="box open">
 <span class="lbl">Week 2 extension micro-essay</span>
 <p>One of: (a) estimate + verify the turnover rate of your favorite enzyme against the
-10<sup>9</sup> limit; (b) derive the rate law of a composite reaction of your choice and
-show which regime it lives in; (c) build a CRN whose steady state is a conserved quantity
-the naive observer wouldn't see. Same format: one example, one number made by code, one
-source.</p>
+10⁹ limit (the derivation of (6) is the reference); (b) derive the rate law of a
+composite reaction you choose, and show which dominance regime it lives in; (c) build a
+CRN whose steady state hides a conserved quantity and show (9)'s accounting on it.
+Same format: one example, one number made by code, one source.</p>
 </div>
 
 <hr>
@@ -368,18 +463,24 @@ source.</p>
 <div class="refs">
 <ol>
 <li id="r-l2">F. Xiao, <em>CCBS 2025 Lecture 2 — Biochemical reaction networks and their
-dynamics</em> (§2.1 notation, §2.2 rate estimates, §2.3 CRN dynamics, §2.6 building
-blocks). <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf">PDF</a>
-<span class="venue">Blocks 1–4 trace here.</span></li>
+dynamics</em>; 2025 scribe note by Jiahe Wang, Yiqiao Deng &amp; Zhi Zhou
+(§1.1 notations, §1.2 estimates of enzymatic reaction rates incl. the full
+diffusion-limited derivation and the dimensional check, §1.3 CRN dynamics).
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf">notes PDF</a>
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/2025FL_CCBS_scribe_lecture2.pdf">scribe PDF</a>
+<span class="venue">Blocks 1–3 trace here; the scribe's derivation (5) is the anchor.</span></li>
+<li id="r-l2b">F. Xiao, <em>CCBS 2025 Lecture 2</em>, handwritten notes — Exp 1–5 and the
+ODE gallery of block 4.<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf">PDF</a></li>
 <li>M. Feinberg, <em>Foundations of Chemical Reaction Network Theory</em>.
 <a href="https://link.springer.com/book/10.1007/978-3-030-03858-8">Springer</a>
-<span class="venue">The mathematical formulation of CRNs; keep the biology in view.</span></li>
+<span class="venue">The mathematical formulation of CRNs — equilibrium classes,
+deficiency; keep the biology in view.</span></li>
 <li>R. Phillips &amp; J. Kondev, <em>Cell biology by the numbers</em>.
 <a href="https://book.bionumbers.org">book.bionumbers.org</a>
 <span class="venue">Rate and concentration scales (encounter rates, enzyme numbers).</span></li>
 <li>R. Murray, <em>Biomolecular Feedback Systems</em>, Ch. 1–3.
 <a href="http://www.cds.caltech.edu/~murray/BFSwiki/index.php/Main_Page">free</a>
-<span class="venue">Modeling of biological circuits, time-scale separation, stochasticity.</span></li>
+<span class="venue">Modeling biological circuits, time-scale separation, stochasticity.</span></li>
 </ol>
 </div>
 </main>
