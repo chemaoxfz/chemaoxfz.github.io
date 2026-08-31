@@ -140,6 +140,18 @@ nav_order: 7
     <p>Westlake University, Hangzhou</p>
 
     <div class="course-year">
+      <div class="course-term">Fall 2026</div>
+      <div>
+        <p>Control and Computation in Biological Systems — AI-native, co-taught seminar.
+        The lecturer teaches week 1; from week 2 the students teach each weekly topic in
+        30-minute sessions (one point each) with TA-approved comprehension quizzes, and
+        every week publishes three artifacts on the site: core, exposition, and
+        extension-by-audience.</p>
+        <a class="course-link" href="{{ '/ccbs/2026fall/' | relative_url }}">Course site, schedule, weekly materials →</a>
+      </div>
+    </div>
+
+    <div class="course-year">
       <div class="course-term">Fall 2025</div>
       <div>
         <p>Control and Computation in Biological Systems</p>
