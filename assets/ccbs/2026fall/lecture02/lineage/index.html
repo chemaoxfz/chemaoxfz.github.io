@@ -1,0 +1,1101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 2 · Two rate constants and the gap between them · lineage · CCBS 2026</title>
+<meta name="description" content="Molecules in a cell meet at up to 10¹⁰ M⁻¹s⁻¹ and enzymes turn over at about 10 s⁻¹. Five separate research programmes produced those two numbers and none of them owns the distance between. That distance is not an inefficiency. It is the structural fact that makes a cell controllable.">
+<style>
+:root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
+--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--ink:#20201E;--gray:#877F77;--leader:#B8AEA5;--gridc:#EDE7E0;
+--bg:#FCFAF7;--bg2:#FFFFFF;--fg:var(--ink);--muted:#6E675F;--rule:#E3DCD3;
+--shadow:0 1px 2px rgba(32,32,30,.05), 0 8px 28px rgba(32,32,30,.05);
+--paper:var(--bg);--paper2:var(--bg2);--accent:var(--teal);--blue:var(--peri);--warn:var(--coral);--grid:var(--gridc);
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+--mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;--maxw:44rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;
+--gridc:#2C2E28;--leader:#5C574F;--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;--gridc:#2C2E28;--leader:#5C574F;
+--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}
+:root[data-theme="light"]{--bg:#FCFAF7;--bg2:#FFFFFF;--fg:#20201E;--muted:#6E675F;--rule:#E3DCD3;--gridc:#EDE7E0;--leader:#B8AEA5;
+--ink:#20201E;--gray:#877F77;--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--serif);font-size:18px;line-height:1.62;
+font-kerning:normal;text-rendering:optimizeLegibility}
+.wrap{max-width:78rem;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:3rem}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr;gap:0}}
+nav.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:2.5rem 0 3rem;
+font-family:var(--sans);font-size:.8rem;line-height:1.45}
+nav.toc .brand{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700;margin:0 0 1.1rem}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 .9rem;font-weight:600}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li{margin:0 0 .1rem}
+nav.toc a{display:block;padding:.26rem .55rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;border-radius:0 4px 4px 0}
+nav.toc a:hover{color:var(--fg);background:var(--bg2)}
+nav.toc a.on{color:var(--fg);border-left-color:var(--rose);background:var(--bg2);font-weight:600}
+nav.toc .part{margin:1.1rem 0 .35rem;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--leader);font-weight:700}
+@media (max-width:1000px){nav.toc{position:static;max-height:none;border-bottom:1px solid var(--rule);margin-bottom:1rem}}
+main{padding:2.5rem 0 6rem;min-width:0}
+main > *{max-width:var(--maxw)}
+main > figure,main > .wide,main > .demo,main > .tablewrap{max-width:56rem}
+h1{font-size:2.5rem;line-height:1.1;letter-spacing:-.02em;margin:.4rem 0 .8rem;font-weight:700;max-width:26ch}
+.sub{font-size:1.18rem;color:var(--muted);margin:0 0 1.6rem;line-height:1.5;max-width:38rem}
+.byline{font-family:var(--sans);font-size:.8rem;color:var(--muted);letter-spacing:.02em;margin-bottom:2.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--rule)}
+h2{font-size:1.05rem;font-family:var(--sans);font-weight:700;letter-spacing:.02em;margin:3.6rem 0 .2rem;scroll-margin-top:1.5rem}
+h2 .n{color:var(--rose);font-variant-numeric:tabular-nums;margin-right:.5rem}
+h2 + .lede{color:var(--muted);font-size:1.02rem;margin:.1rem 0 1.1rem}
+h3{font-size:.95rem;font-family:var(--sans);font-weight:700;margin:2.1rem 0 .5rem;color:var(--fg)}
+.parthead{margin:4.5rem 0 1.2rem;padding-top:1.6rem;border-top:2px solid var(--fg)}
+.parthead .k{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700}
+.parthead h2{font-size:1.8rem;margin:.35rem 0 .3rem;letter-spacing:-.01em;font-family:var(--serif)}
+.parthead p{color:var(--muted);margin:0;font-size:1.02rem}
+p{margin:0 0 1.05rem}
+a{color:var(--fg);text-underline-offset:2px;text-decoration-color:var(--leader)}
+a:hover{text-decoration-color:var(--rose)}
+ul,ol{margin:0 0 1.05rem;padding-left:1.35rem}
+li{margin:.28rem 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.6rem 0}
+.small{font-size:.88rem;color:var(--muted)}
+.m{font-family:var(--mono);font-size:.92em;font-style:normal;white-space:nowrap}
+.eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);font-size:.95rem;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;line-height:1.9}
+.eq .tag{float:right;color:var(--leader);font-size:.85em}
+.eq b{color:var(--rose);font-weight:700}
+sub,sup{font-size:.7em;line-height:0}
+.box{border:1px solid var(--rule);background:var(--bg2);border-radius:10px;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow)}
+.box .lbl{font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.45rem;display:block}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+.box.key{border-left:3px solid var(--rose);background:linear-gradient(94deg,var(--blush),var(--bg2) 62%)}
+.box.key .lbl{color:var(--rose)}
+.box.def{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.def .lbl{color:var(--peri)}
+.box.note{border-left:3px solid var(--lime)}
+.box.note .lbl{color:var(--lime)}
+.box.caution{border-left:3px solid var(--coral);background:linear-gradient(94deg,var(--pinkf),var(--bg2) 62%)}
+.box.caution .lbl{color:var(--coral)}
+.box.sim{border-left:3px solid var(--teal);background:linear-gradient(94deg,var(--powder),var(--bg2) 62%)}
+.box.sim .lbl{color:var(--teal)}
+.box.open{border-left:3px solid var(--plum);background:linear-gradient(94deg,var(--lilac),var(--bg2) 62%)}
+.box.open .lbl{color:var(--plum)}
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo2{paint-order:stroke;stroke:var(--bg);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halopink{paint-order:stroke;stroke:var(--pinkf);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo3{paint-order:stroke;stroke:var(--bg);stroke-width:3.6px;stroke-linejoin:round}
+
+figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
+figcaption b{color:var(--fg);font-weight:700}
+.figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
+.tablewrap{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.83rem;line-height:1.45}
+th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:700;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hl{color:var(--rose);font-weight:600}
+caption{caption-side:bottom;text-align:left;padding:.7rem .8rem;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
+.refs{font-size:.88rem;line-height:1.5}
+.refs ol{padding-left:1.8rem}
+.refs li{margin:.5rem 0}
+.refs .venue{color:var(--muted)}
+.pdf{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.04em;color:var(--teal);border:1px solid var(--teal);border-radius:4px;padding:.02rem .3rem;text-decoration:none;margin-left:.3rem;white-space:nowrap}
+.pdf:hover{background:var(--teal);color:var(--bg2)}
+sup.c{font-size:.68em;color:var(--rose);font-weight:700}
+sup.c a{color:inherit;text-decoration:none}
+.rundown{display:grid;grid-template-columns:6.2rem 1fr;gap:.45rem 1rem;margin:1.4rem 0;padding:1rem 1.15rem;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow);font-family:var(--sans);font-size:.84rem;line-height:1.45}
+.rundown dt{font-family:var(--mono);font-weight:700;color:var(--rose)}.rundown dd{margin:0 0 .25rem}.rundown dd strong{color:var(--fg)}
+.steps{counter-reset:worked;list-style:none;padding:0;margin:1.4rem 0}.steps>li{counter-increment:worked;position:relative;padding:.8rem 1rem .8rem 3.2rem;margin:.6rem 0;border-left:2px solid var(--peri);background:var(--bg2);border-radius:0 8px 8px 0}.steps>li:before{content:counter(worked);position:absolute;left:.85rem;top:.7rem;width:1.55rem;height:1.55rem;display:grid;place-items:center;border-radius:50%;background:var(--peri);color:var(--bg2);font:700 .72rem var(--sans)}
+.checkpoint{margin:1.6rem 0;padding:.9rem 1.05rem;border:1px dashed var(--teal);border-radius:9px;background:color-mix(in srgb,var(--powder) 55%,var(--bg2));font-family:var(--sans);font-size:.88rem}.checkpoint strong{color:var(--teal)}
+.formula-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.3rem 0}.formula-pair>*{margin:0}
+@media(max-width:700px){.rundown{grid-template-columns:1fr}.rundown dt{margin-top:.3rem}.formula-pair{grid-template-columns:1fr}}
+#tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
+@media print{#tt,nav.toc{display:none}.wrap{display:block}main>*{max-width:none}}
+
+/* ---- extras used by the lecture 2 lineage and exposition pages ---- */
+.box.thm{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.thm .lbl{color:var(--peri)}
+.box.hist{border-left:3px solid var(--leader)}
+.box.hist .lbl{color:var(--leader)}
+blockquote.quote{margin:1.4rem 0;padding:.15rem 0 .15rem 1.15rem;border-left:3px solid var(--leader);
+  color:var(--gray);font-style:italic;font-size:.96em;line-height:1.62}
+blockquote.quote cite{display:block;margin-top:.5rem;font-style:normal;font-family:var(--sans);
+  font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--leader)}
+blockquote.quote cite::before{content:"\2014 "}
+.demo{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:1.15rem;margin:2rem 0;box-shadow:var(--shadow)}
+.demo h4{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin:0 0 .1rem;font-weight:700}
+.demo .dsub{font-family:var(--sans);font-size:.83rem;color:var(--muted);margin:0 0 .9rem}
+.ctl{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;font-family:var(--sans);font-size:.78rem;margin:.9rem 0 .2rem}
+.ctl label{display:flex;flex-direction:column;gap:.15rem;min-width:9.5rem;flex:1 1 9.5rem}
+.ctl .lv{display:flex;justify-content:space-between;gap:.6rem;color:var(--muted)}
+.ctl .lv b{color:var(--fg);font-family:var(--mono);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--rose);height:1.1rem}
+button{font-family:var(--sans);font-size:.78rem;font-weight:600;padding:.42rem .85rem;border-radius:7px;
+  border:1px solid var(--rule);background:var(--bg);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--rose);color:var(--rose)}
+button.pri{background:var(--rose);border-color:var(--rose);color:#fff}
+button.pri:hover{color:#fff;opacity:.9}
+.readout{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:.6rem;line-height:1.7}
+.readout b{color:var(--fg)}
+canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--bg)}
+.pdf.no{color:var(--leader);border-color:var(--leader)}
+.pdf.no:hover{background:none;color:var(--leader)}
+</style>
+</head>
+<body>
+<button id="tt" title="Toggle light / dark">&#9689;</button>
+<div class="wrap">
+<nav class="toc" id="toc">
+  <div class="brand">CCBS &middot; 2026 &middot; Lecture 2 &middot; LINEAGE</div>
+  <h2>Contents</h2>
+  <ol>
+    <li class="part">I &middot; Five programmes</li>
+    <li><a href="#s1">1 &middot; Counting a cell</a></li>
+    <li><a href="#s2">2 &middot; What Brown actually saw</a></li>
+    <li><a href="#s3">3 &middot; From a jiggle to a molecular constant</a></li>
+    <li><a href="#s4">4 &middot; What an arrow came to mean</a></li>
+    <li><a href="#s5">5 &middot; The ceiling</a></li>
+    <li><a href="#s6">6 &middot; The floor</a></li>
+    <li><a href="#s7">7 &middot; The fact nobody owns</a></li>
+    <li class="part">II &middot; The frame</li>
+    <li><a href="#s8">8 &middot; Two rate constants</a></li>
+    <li><a href="#s9">9 &middot; The master relation, dated</a></li>
+    <li><a href="#s10">10 &middot; The measurement that licenses everything</a></li>
+    <li class="part">III &middot; What the frame buys</li>
+    <li><a href="#s11">11 &middot; Timescale separation, measured</a></li>
+    <li><a href="#s12">12 &middot; The regulatory layer is forced</a></li>
+    <li><a href="#s13">13 &middot; And it was found where the argument says</a></li>
+    <li><a href="#s14">14 &middot; Where the estimate is beaten</a></li>
+    <li><a href="#s15">15 &middot; Where the estimate is exact</a></li>
+    <li><a href="#s16">16 &middot; The correction the ledger made to itself</a></li>
+    <li class="part">IV &middot; How it came to be taught</li>
+    <li><a href="#s17">17 &middot; A feeling for the numbers</a></li>
+    <li><a href="#s18">18 &middot; What an agent does not remove</a></li>
+    <li class="part">V &middot; Situating and testing</li>
+    <li><a href="#s19">19 &middot; Where this sits</a></li>
+    <li><a href="#s20">20 &middot; Where it could be wrong</a></li>
+    <li><a href="#s21">21 &middot; What to do on Monday</a></li>
+    <li><a href="#s22">22 &middot; What the record establishes</a></li>
+    <li><a href="#refs">References</a></li>
+  </ol>
+</nav>
+<main>
+
+<h1>Two rate constants and the gap between them</h1>
+<p class="sub">Molecules in a cell meet at up to <span class="m">10¹⁰ M⁻¹s⁻¹</span> and enzymes turn over at about <span class="m">10 s⁻¹</span>. Five separate research programmes produced those two numbers and none of them owns the distance between. That distance is not an inefficiency. It is the structural fact that makes a cell controllable.</p>
+<p class="byline">Fangzhou Xiao &middot; Westlake University &middot; CCBS (EST 5053), Fall 2026 &middot; the research pass behind lecture 2 &middot; 2026-09-01</p>
+
+<p>This is the scholarship behind a ninety-five minute lecture. The lecture teaches how to count what is in a cell, how to turn a size into a diffusion coefficient, how to derive the fastest possible bimolecular rate from a boundary-value problem, and what enzymes actually do about that bound. Those four things arrived from four different centuries of work, and they are usually taught as a list of numbers. They are not a list. Put end to end they are an argument, and the argument has a conclusion that decides how the rest of the course is built.</p>
+
+<p>The conclusion is this. Binding reaches equilibrium roughly ten thousand times during a single catalytic turnover. That ratio is measured, not assumed, and it is what licenses treating a cell as a fast reversible layer regulating a slow irreversible one. A second, entirely independent route reaches the same place: a metabolite pool empties in a tenth of a second and gene expression takes forty minutes, so a fast regulatory layer is <em>forced</em> to exist, and the only candidate on the timescale ladder is binding. Allostery was discovered in 1956. The timescales predict it.</p>
+
+<p>What follows traces where each piece came from, what its authors actually claimed, and where the retelling has drifted. Several things had to be corrected in the writing. Robert Brown was not watching pollen. The famous protein count is an upper bound that assumes a cell is dry. The lac repressor's impossible speed has been over-generalised by its own literature. And the constant Michaelis and Menten actually fitted in 1913 was not the Michaelis constant.</p>
+
+<div class="box note">
+<span class="lbl">How to read this</span>
+<p>Part I introduces the five programmes that produced the numbers, generously, and ends on the fact none of them owns. Part II states the frame in three sections, and <strong>&sect;10 is the crux</strong>. Part III is the payoff, including the two interactive demos. Part IV is about teaching, which is what this document is ultimately for. Part V says where the argument sits and where it breaks. Every claim resting on a paper carries a superscript, and every reference in the list was read in full unless it is marked <span class="pdf no">NEEDED</span>.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Part I</div>
+  <h2>Five programmes, and the fact they leave on the table</h2>
+  <p>Each of these produced half of the argument. None of them wrote down the other half.</p>
+</div>
+
+<h2 id="s1"><span class="n">1</span>Counting a cell</h2>
+<p class="lede">A tradition that treats the composition of a bacterium as a measurable object, and what it is for.</p>
+
+<p>There is a research programme whose product is a table. It runs from the mid-century bacterial physiologists, who weighed cultures and assayed their protein, RNA and DNA, through Bremer and Dennis's growth-rate-dependent ledger, to Milo's BioNumbers database and Phillips and Milo's <i>Cell Biology by the Numbers</i>. Its claim is modest and it is correct: cell biology has a numerical spine, the spine is knowable to about a factor of two, and knowing it changes which questions are worth asking.</p>
+
+<p>The spine for one <i>E. coli</i> is short enough to memorise. A volume of one to four femtolitres.<sup class="c"><a href="#r-volkmer">1</a></sup> A wet mass near one picogram, about 70% water. Protein at 0.24&nbsp;g per mL of cell, which is three to four million protein molecules in a cubic micron.<sup class="c"><a href="#r-milo2013">2</a></sup> A total metabolite pool near 300&nbsp;mM, of which glutamate alone is 96&nbsp;mM.<sup class="c"><a href="#r-bennett">3</a></sup> A genome of 4.6 million base pairs, 1.6&nbsp;mm long and half a percent of the volume.</p>
+
+<div class="box hist">
+<span class="lbl">The correction that made the programme interesting</span>
+<p>The count of proteins is the place where the tradition audits itself. Divide the whole wet mass by the mass of a 33&nbsp;kDa protein and you get <span class="m">2&times;10<sup>7</sup></span>, which is the number many courses still teach. It assumes the cell is dry and made only of protein. The measured figure is three to four million per femtolitre, about five times smaller. Milo went further and found that several proteome-wide mass-spectrometry censuses report totals three to ten times <em>below</em> even the correct estimate, and argued they should be renormalised.<sup class="c"><a href="#r-milo2013">2</a></sup> An estimate that catches an experiment is doing more than an estimate that agrees with one.</p>
+</div>
+
+<p>What the programme structurally cannot do is tell you which of its numbers matter. A table has no argument in it. The ledger says a metabolite sits at millimolar and an enzyme at micromolar, and it does not say that the ratio of those two numbers is why enzymes are saturated, which is why binding equilibrates, which is why the cell can be regulated at all. That inference needs a second programme.</p>
+
+<h2 id="s2"><span class="n">2</span>What Brown actually saw</h2>
+<p class="lede">The founding observation of the second programme, and the detail that almost every retelling gets wrong.</p>
+
+<p>In June 1827 Robert Brown put pollen of <i>Clarkia pulchella</i> in water under a single-lens microscope and watched particles move with no visible cause. Nearly every textbook says he watched pollen grains jiggle. He did not, and he could not have.</p>
+
+<p>Pearle and colleagues went back to the plant, grew it, and repeated the observation with both a modern microscope and a reconstructed single-ball lens.<sup class="c"><a href="#r-pearle">4</a></sup> A <i>Clarkia</i> pollen grain is about 100&nbsp;&micro;m across. What Brown saw were organelles ejected from grains that burst under turgor: oblong amyloplasts, which store starch, at a radius near 2&nbsp;&micro;m, and spherical spherosomes, which store lipid, clustered at a radius of <strong>0.5&nbsp;&micro;m</strong>.</p>
+
+<p>The size matters because Brownian displacement falls with particle radius. Pearle et al. tabulate the mean one-dimensional displacement in one second: 0.74&nbsp;&micro;m for a particle of radius 0.5&nbsp;&micro;m, and 0.07&nbsp;&micro;m for one of radius 50&nbsp;&micro;m.<sup class="c"><a href="#r-pearle">4</a></sup> With a lens of magnification 370 the eye cannot resolve a displacement below about 0.2&nbsp;&micro;m. So the organelles were visibly moving and the grain was visibly still, and that is exactly what Brown reported.</p>
+
+<div class="box hist">
+<span class="lbl">The move that made it science</span>
+<p>Brown's contribution was not the observation. Others had seen the motion. His contribution was the control. He repeated it with dried and long-dead plants, with fossil wood, with ground glass, with metals, and with a fragment of the Sphinx, and got the same motion every time. That is what removed the vital explanation. It is the same move as a null model: the interesting step was not measuring the effect, it was eliminating the only mechanism anyone believed in.</p>
+</div>
+
+<h2 id="s3"><span class="n">3</span>From a jiggle to a molecular constant</h2>
+<p class="lede">Einstein's 1905 paper is not about Brownian motion. It is about whether molecules exist, and it says so in its first paragraph.</p>
+
+<p>Einstein's opening line is worth reading for what it assumes and what it does not:</p>
+
+<blockquote class="quote">
+In this paper it will be shown that according to the molecular-kinetic theory of heat, bodies of microscopically-visible size suspended in a liquid will perform movements of such magnitude that they can be easily observed in a microscope&hellip; If the movement discussed here can actually be observed &hellip; then classical thermodynamics can no longer be looked upon as applicable with precision to bodies even of dimensions distinguishable in a microscope.
+<cite>Einstein, 1905</cite>
+</blockquote>
+
+<p>He is not explaining a known phenomenon. He is predicting a measurable consequence of atoms and offering it as a decision procedure.<sup class="c"><a href="#r-einstein">5</a></sup> The two results that follow are the ones this course uses. First, that the mean square displacement grows linearly in time rather than quadratically, so the observable is a diffusion coefficient and not a velocity. Second, the relation between that coefficient and the friction on the particle. For a sphere in a fluid of viscosity <span class="m">&eta;</span>, combining the Einstein relation with Stokes drag gives</p>
+
+<div class="eq">D = k<sub>B</sub>T / (6&pi;&eta;a) <span class="tag">(1)</span></div>
+
+<p>which was obtained independently and slightly earlier by William Sutherland. The point for a biologist is not the formula, it is the direction of inference. <strong>One number, measured on something you can see, fixes a constant that applies to everything you cannot.</strong> Brown's own description of his particles is enough. A radius of 0.5&nbsp;&micro;m and a displacement of about a micron in a second give <span class="m">D &asymp; 0.43 &micro;m&sup2;/s</span>, so <span class="m">k<sub>B</sub>T/6&pi;&eta; = D&middot;a = 0.21 &micro;m&sup3;/s</span> against a true value of 0.245. <strong>Thirteen percent, from an 1827 observation with no numbers in it.</strong> Divide by the radius of a protein and you have the diffusion coefficient of a protein.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 400" role="img" aria-label="Diffusion coefficient against particle radius, log-log, with the Stokes-Einstein line and measured values" font-family="var(--sans)">
+<defs><clipPath id="l2clipD"><rect x="76" y="34" width="514" height="312"/></clipPath></defs><rect x="76.0" y="34.0" width="514.0" height="312.0" rx="4" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+<line x1="94.4" y1="34.0" x2="94.4" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="94.4" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">0.1</text>
+<line x1="186.1" y1="34.0" x2="186.1" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="186.1" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">1</text>
+<line x1="277.9" y1="34.0" x2="277.9" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="277.9" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">10</text>
+<line x1="369.7" y1="34.0" x2="369.7" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="369.7" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">100</text>
+<line x1="461.5" y1="34.0" x2="461.5" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="461.5" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 µm</text>
+<line x1="553.3" y1="34.0" x2="553.3" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="553.3" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">10 µm</text>
+<line x1="76.0" y1="335.2" x2="590.0" y2="335.2" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="339.2" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">-2</tspan><tspan dy="5"></tspan></text>
+<line x1="76.0" y1="281.4" x2="590.0" y2="281.4" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="285.4" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">-1</tspan><tspan dy="5"></tspan></text>
+<line x1="76.0" y1="227.7" x2="590.0" y2="227.7" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="231.7" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">0</tspan><tspan dy="5"></tspan></text>
+<line x1="76.0" y1="173.9" x2="590.0" y2="173.9" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="177.9" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">1</tspan><tspan dy="5"></tspan></text>
+<line x1="76.0" y1="120.1" x2="590.0" y2="120.1" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="124.1" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">2</tspan><tspan dy="5"></tspan></text>
+<line x1="76.0" y1="66.3" x2="590.0" y2="66.3" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="70.3" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">3</tspan><tspan dy="5"></tspan></text>
+<text x="333.0" y="390.0" font-size="12" text-anchor="middle" fill="var(--gray)">particle radius a</text>
+<text x="-190.0" y="18.0" font-size="12" text-anchor="middle" fill="var(--gray)" transform="rotate(-90)">D  (µm² s⁻¹)</text>
+<g clip-path="url(#l2clipD)"><path d="M 76.0,34.5 L 80.3,37.1 L 84.6,39.6 L 88.8,42.1 L 93.1,44.6 L 97.4,47.1 L 101.7,49.6 L 106.0,52.1 L 110.3,54.6 L 114.5,57.1 L 118.8,59.7 L 123.1,62.2 L 127.4,64.7 L 131.7,67.2 L 136.0,69.7 L 140.2,72.2 L 144.5,74.7 L 148.8,77.2 L 153.1,79.7 L 157.4,82.2 L 161.7,84.8 L 165.9,87.3 L 170.2,89.8 L 174.5,92.3 L 178.8,94.8 L 183.1,97.3 L 187.4,99.8 L 191.7,102.3 L 195.9,104.8 L 200.2,107.3 L 204.5,109.9 L 208.8,112.4 L 213.1,114.9 L 217.3,117.4 L 221.6,119.9 L 225.9,122.4 L 230.2,124.9 L 234.5,127.4 L 238.8,129.9 L 243.1,132.5 L 247.3,135.0 L 251.6,137.5 L 255.9,140.0 L 260.2,142.5 L 264.5,145.0 L 268.8,147.5 L 273.0,150.0 L 277.3,152.5 L 281.6,155.0 L 285.9,157.6 L 290.2,160.1 L 294.5,162.6 L 298.7,165.1 L 303.0,167.6 L 307.3,170.1 L 311.6,172.6 L 315.9,175.1 L 320.1,177.6 L 324.4,180.1 L 328.7,182.7 L 333.0,185.2 L 337.3,187.7 L 341.6,190.2 L 345.8,192.7 L 350.1,195.2 L 354.4,197.7 L 358.7,200.2 L 363.0,202.7 L 367.3,205.3 L 371.6,207.8 L 375.8,210.3 L 380.1,212.8 L 384.4,215.3 L 388.7,217.8 L 393.0,220.3 L 397.3,222.8 L 401.5,225.3 L 405.8,227.8 L 410.1,230.4 L 414.4,232.9 L 418.7,235.4 L 422.9,237.9 L 427.2,240.4 L 431.5,242.9 L 435.8,245.4 L 440.1,247.9 L 444.4,250.4 L 448.6,252.9 L 452.9,255.5 L 457.2,258.0 L 461.5,260.5 L 465.8,263.0 L 470.1,265.5 L 474.4,268.0 L 478.6,270.5 L 482.9,273.0 L 487.2,275.5 L 491.5,278.1 L 495.8,280.6 L 500.1,283.1 L 504.3,285.6 L 508.6,288.1 L 512.9,290.6 L 517.2,293.1 L 521.5,295.6 L 525.8,298.1 L 530.0,300.6 L 534.3,303.2 L 538.6,305.7 L 542.9,308.2 L 547.2,310.7 L 551.5,313.2 L 555.7,315.7 L 560.0,318.2 L 564.3,320.7 L 568.6,323.2 L 572.9,325.7 L 577.1,328.3 L 581.4,330.8 L 585.7,333.3 L 590.0,335.8" fill="none" stroke="var(--peri)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 76.0,91.2 L 80.3,93.7 L 84.6,96.2 L 88.8,98.7 L 93.1,101.2 L 97.4,103.7 L 101.7,106.3 L 106.0,108.8 L 110.3,111.3 L 114.5,113.8 L 118.8,116.3 L 123.1,118.8 L 127.4,121.3 L 131.7,123.8 L 136.0,126.3 L 140.2,128.8 L 144.5,131.4 L 148.8,133.9 L 153.1,136.4 L 157.4,138.9 L 161.7,141.4 L 165.9,143.9 L 170.2,146.4 L 174.5,148.9 L 178.8,151.4 L 183.1,154.0 L 187.4,156.5 L 191.7,159.0 L 195.9,161.5 L 200.2,164.0 L 204.5,166.5 L 208.8,169.0 L 213.1,171.5 L 217.3,174.0 L 221.6,176.5 L 225.9,179.1 L 230.2,181.6 L 234.5,184.1 L 238.8,186.6 L 243.1,189.1 L 247.3,191.6 L 251.6,194.1 L 255.9,196.6 L 260.2,199.1 L 264.5,201.6 L 268.8,204.2 L 273.0,206.7 L 277.3,209.2 L 281.6,211.7 L 285.9,214.2 L 290.2,216.7 L 294.5,219.2 L 298.7,221.7 L 303.0,224.2 L 307.3,226.8 L 311.6,229.3 L 315.9,231.8 L 320.1,234.3 L 324.4,236.8 L 328.7,239.3 L 333.0,241.8 L 337.3,244.3 L 341.6,246.8 L 345.8,249.3 L 350.1,251.9 L 354.4,254.4 L 358.7,256.9 L 363.0,259.4 L 367.3,261.9 L 371.6,264.4 L 375.8,266.9 L 380.1,269.4 L 384.4,271.9 L 388.7,274.4 L 393.0,277.0 L 397.3,279.5 L 401.5,282.0 L 405.8,284.5 L 410.1,287.0 L 414.4,289.5 L 418.7,292.0 L 422.9,294.5 L 427.2,297.0 L 431.5,299.6 L 435.8,302.1 L 440.1,304.6 L 444.4,307.1 L 448.6,309.6 L 452.9,312.1 L 457.2,314.6 L 461.5,317.1 L 465.8,319.6 L 470.1,322.1 L 474.4,324.7 L 478.6,327.2 L 482.9,329.7 L 487.2,332.2 L 491.5,334.7 L 495.8,337.2 L 500.1,339.7 L 504.3,342.2 L 508.6,344.7 L 512.9,347.2 L 517.2,349.8 L 521.5,352.3 L 525.8,354.8 L 530.0,357.3 L 534.3,359.8 L 538.6,362.3 L 542.9,364.8 L 547.2,367.3 L 551.5,369.8 L 555.7,372.4 L 560.0,374.9 L 564.3,377.4 L 568.6,379.9 L 572.9,382.4 L 577.1,384.9 L 581.4,387.4 L 585.7,389.9 L 590.0,392.4" fill="none" stroke="var(--coral)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 4"/>
+</g><circle cx="146.0" cy="75.6" r="5.00" fill="var(--lime)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="154.0" y="61.6" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">glucose</text>
+<circle cx="227.5" cy="123.3" r="5.00" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="237.5" y="109.3" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">GFP in water</text>
+<circle cx="227.5" cy="180.0" r="5.00" fill="var(--coral)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="237.5" y="200.0" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">GFP in E. coli</text>
+<circle cx="107.8" cy="46.8" r="5.00" fill="var(--plum)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="115.8" y="32.8" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">water</text>
+<circle cx="433.9" cy="247.5" r="5.00" fill="var(--teal)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="424.9" y="236.5" font-size="11" text-anchor="end" fill="var(--fg)" class="halo2">what Brown watched, 1827</text>
+<text x="602.0" y="46.0" font-size="12" text-anchor="start" fill="var(--peri)" font-weight="700">D = kT / 6πηa</text>
+<text x="602.0" y="62.0" font-size="11" text-anchor="start" fill="var(--gray)">in water, 25 °C</text>
+<line x1="602.0" y1="78.0" x2="628.0" y2="78.0" stroke="var(--coral)" stroke-width="1.8" stroke-dasharray="6 4"/>
+<text x="634.0" y="82.0" font-size="11" text-anchor="start" fill="var(--coral)">÷ 11</text>
+<text x="602.0" y="98.0" font-size="11" text-anchor="start" fill="var(--gray)">measured in the</text>
+<text x="602.0" y="112.0" font-size="11" text-anchor="start" fill="var(--gray)">E. coli cytoplasm</text>
+<text x="602.0" y="140.0" font-size="11" text-anchor="start" fill="var(--gray)">slope −1 over</text>
+<text x="602.0" y="154.0" font-size="11" text-anchor="start" fill="var(--gray)">five decades</text>
+</svg>
+<figcaption><b>Figure 1.</b> Equation (1) across five decades of particle radius, in water at 25&nbsp;&deg;C, with measured values on it. Glucose lands on the line. GFP lands on it once its hydrodynamic radius is used rather than the minimum radius of a sphere of the same mass. Water sits above it, correctly: the derivation assumes the particle is large compared with the solvent, and a water molecule is not. The dashed line is the same relation divided by eleven, which is what the crowded interior of a bacterium actually does (&sect;16). Computed in <span class="m">analysis/make_svg.py</span>, not fitted.</figcaption>
+</figure>
+
+<p>Perrin then closed the argument experimentally, tracking colloidal particles and extracting Avogadro's number from their statistics, which is the measurement that ended serious opposition to atomism. The programme's claim is therefore stronger than "diffusion is random walking". It is that <em>a microscope is a thermometer for the molecular world</em>, and it is why an order-of-magnitude estimate calibrated on something visible can be trusted about something invisible.</p>
+
+<h2 id="s4"><span class="n">4</span>What an arrow came to mean</h2>
+<p class="lede">A rate law is not a description of a reaction. It is a consequence of a claim about mechanism, and the claim is made by the shape of the arrow.</p>
+
+<p>Guldberg and Waage stated the law of mass action to the Academy in Christiania in 1864, and the statement is more careful than the version usually attributed to them:</p>
+
+<blockquote class="quote">
+The substitution force, other conditions being equal, is directly proportional to the product of the masses provided each is raised to a particular exponent. &hellip; If the same masses of the interacting substances occur in different volumes, then the action of these masses is inversely proportional to the volume.
+<cite>Guldberg and Waage, 1864, in Abrash's translation</cite>
+</blockquote>
+
+<p>Two things are already there.<sup class="c"><a href="#r-guldberg">6</a></sup> The exponents are explicitly allowed to be arbitrary, which is the modern notion of reaction order and not the stoichiometric coefficient. And mass divided by volume is concentration, which is why the law is about concentrations rather than amounts. What is <em>not</em> there is any statement about when the exponents equal the stoichiometry. That took another two decades and it is the whole content of the word "elementary".</p>
+
+<p>Van't Hoff's <i>&Eacute;tudes de dynamique chimique</i> in 1884 is where kinetics becomes a subject with its own laws rather than a set of observations.<sup class="c"><a href="#r-vanthoff">7</a></sup> The distinction that survives is between <strong>molecularity</strong>, which is how many molecules take part in one microscopic event, and <strong>order</strong>, which is what you measure. They coincide exactly when the written step is the microscopic event, and that is the definition of an elementary reaction.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 300" role="img" aria-label="Elementary and composite reaction arrows, and what each one entitles you to write down" font-family="var(--sans)">
+<defs><marker id="l2a1" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--rose)"/></marker><marker id="l2a2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--peri)"/></marker></defs><rect x="20.0" y="34.0" width="720.0" height="116.0" rx="10" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.4"/>
+<text x="38.0" y="58.0" font-size="10.5" text-anchor="start" fill="var(--rose)" font-weight="700" letter-spacing="1.6">ELEMENTARY</text>
+<rect x="20.0" y="170.0" width="720.0" height="116.0" rx="10" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.4"/>
+<text x="38.0" y="194.0" font-size="10.5" text-anchor="start" fill="var(--peri)" font-weight="700" letter-spacing="1.6">COMPOSITE</text>
+<text x="38.0" y="86.0" font-size="17" text-anchor="start" fill="var(--fg)" font-weight="700">E + S</text>
+<line x1="94.0" y1="80.0" x2="132.0" y2="80.0" stroke="var(--rose)" stroke-width="1.6" marker-end="url(#l2a1)"/>
+<text x="113.0" y="70.0" font-size="11" text-anchor="middle" fill="var(--gray)">k<tspan font-size=".72em" dy="2.8">on</tspan><tspan dy="-2.8"></tspan></text>
+<line x1="132.0" y1="92.0" x2="94.0" y2="92.0" stroke="var(--rose)" stroke-width="1.6" marker-end="url(#l2a1)"/>
+<text x="113.0" y="110.0" font-size="11" text-anchor="middle" fill="var(--gray)">k<tspan font-size=".72em" dy="2.8">off</tspan><tspan dy="-2.8"></tspan></text>
+<text x="146.0" y="86.0" font-size="17" text-anchor="start" fill="var(--fg)" font-weight="700">C</text>
+<line x1="168.0" y1="80.0" x2="206.0" y2="80.0" stroke="var(--rose)" stroke-width="1.6" marker-end="url(#l2a1)"/>
+<text x="187.0" y="70.0" font-size="11" text-anchor="middle" fill="var(--gray)">k<tspan font-size=".72em" dy="2.8">cat</tspan><tspan dy="-2.8"></tspan></text>
+<text x="218.0" y="86.0" font-size="17" text-anchor="start" fill="var(--fg)" font-weight="700">E + P</text>
+<line x1="320.0" y1="54.0" x2="320.0" y2="142.0" stroke="var(--rose)" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="344.0" y="78.0" font-size="12.5" text-anchor="start" fill="var(--fg)">a claim about mechanism: these are all the players,</text>
+<text x="344.0" y="98.0" font-size="12.5" text-anchor="start" fill="var(--fg)">and nothing is hidden inside the arrow.</text>
+<text x="344.0" y="122.0" font-size="12.5" text-anchor="start" fill="var(--rose)" font-weight="700">So the rate law is forced:  v = k<tspan font-size=".72em" dy="2.8">on</tspan><tspan dy="-2.8"> · [E][S].</tspan></text>
+<text x="38.0" y="222.0" font-size="17" text-anchor="start" fill="var(--fg)" font-weight="700">S</text>
+<path d="M 60,216 q 10,-9 20,0 q 10,9 20,0 q 10,-9 20,0" fill="none" stroke="var(--peri)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="120.0" y1="216.0" x2="138.0" y2="216.0" stroke="var(--peri)" stroke-width="1.6" marker-end="url(#l2a2)"/>
+<text x="152.0" y="222.0" font-size="17" text-anchor="start" fill="var(--fg)" font-weight="700">P</text>
+<text x="38.0" y="256.0" font-size="12.5" text-anchor="start" fill="var(--gray)">(S, P) ⇝ (S−1, P+1)</text>
+<line x1="320.0" y1="190.0" x2="320.0" y2="278.0" stroke="var(--peri)" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="344.0" y="214.0" font-size="12.5" text-anchor="start" fill="var(--fg)">a claim about accounting only: one S disappears,</text>
+<text x="344.0" y="234.0" font-size="12.5" text-anchor="start" fill="var(--fg)">one P appears, by some route not shown.</text>
+<text x="344.0" y="258.0" font-size="12.5" text-anchor="start" fill="var(--peri)" font-weight="700">So no rate law follows. It must be derived or measured.</text>
+</svg>
+<figcaption><b>Figure 2.</b> The two arrow vocabularies, and what each entitles you to write. The upper claim is mechanistic and it forces the rate law. The lower claim is only bookkeeping, and no rate law follows from it. Writing a mass-action rate under a squiggly arrow is the most common modelling error in the field, and it is invisible because both arrows look like arrows.</figcaption>
+</figure>
+
+<p>Horn and Jackson closed the loop in 1972 by making mass-action kinetics a mathematical object in its own right, with a stoichiometric matrix, a reaction graph, and theorems about what such systems can and cannot do regardless of the rate constants.<sup class="c"><a href="#r-hornjackson">8</a></sup> That is the formalism lecture 3 uses, and its hypotheses are exactly "every arrow is elementary". The moment a squiggly arrow enters, the theorems stop applying, which is the practical reason to keep the notations apart.</p>
+
+<h2 id="s5"><span class="n">5</span>The ceiling</h2>
+<p class="lede">How fast can two molecules in solution possibly react? The answer is a hundred years old and it is a boundary-value problem.</p>
+
+<p>Smoluchowski asked it in 1916, in a paper on the coagulation of colloids, and got the answer by solving the steady diffusion equation around a perfectly absorbing sphere.<sup class="c"><a href="#r-smol">9</a></sup> The result is the master relation of this whole course:</p>
+
+<div class="eq">k<sub>on</sub> = 4&pi;(D<sub>A</sub> + D<sub>B</sub>)(a<sub>A</sub> + a<sub>B</sub>) <span class="tag">(2)</span></div>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 320" role="img" aria-label="The absorbing-sphere problem: an enzyme as a perfect sink, the steady concentration profile, and the resulting capture rate" font-family="var(--sans)">
+<rect x="24.0" y="30.0" width="250.0" height="258.0" rx="8" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+<text x="36.0" y="48.0" font-size="10.5" text-anchor="start" fill="var(--gray)" font-weight="700" letter-spacing="1.4">THE SET-UP</text>
+<circle cx="150.0" cy="160.0" r="108.00" fill="none" stroke="var(--peri)" stroke-width="1" opacity="0.16"/>
+<circle cx="150.0" cy="160.0" r="78.00" fill="none" stroke="var(--peri)" stroke-width="1" opacity="0.28"/>
+<circle cx="150.0" cy="160.0" r="51.00" fill="none" stroke="var(--peri)" stroke-width="1" opacity="0.5"/>
+<circle cx="150.0" cy="160.0" r="30.00" fill="var(--blush)" stroke="var(--rose)" stroke-width="2"/>
+<text x="150.0" y="165.0" font-size="15" text-anchor="middle" fill="var(--rose)" font-weight="700">E</text>
+<line x1="267.0" y1="160.0" x2="188.4" y2="160.0" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="232.7" y1="242.7" x2="177.2" y2="187.2" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="150.0" y1="277.0" x2="150.0" y2="198.4" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="67.3" y1="242.7" x2="122.8" y2="187.2" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="33.0" y1="160.0" x2="111.6" y2="160.0" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="67.3" y1="77.3" x2="122.8" y2="132.8" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="150.0" y1="43.0" x2="150.0" y2="121.6" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="232.7" y1="77.3" x2="177.2" y2="132.8" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<text x="150.0" y="280.0" font-size="11.5" text-anchor="middle" fill="var(--gray)" class="halo3">C(a) = 0   ·   C(∞) = C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"></tspan></text>
+<text x="150.0" y="68.0" font-size="11" text-anchor="middle" fill="var(--gray)" class="halo3">absorbing sphere, radius a</text>
+<rect x="330.0" y="56.0" width="390.0" height="202.0" rx="4" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+<text x="330.0" y="44.0" font-size="10.5" text-anchor="start" fill="var(--gray)" font-weight="700" letter-spacing="1.2">THE STEADY PROFILE   C(R) = C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"> (1 − a/R)</tspan></text>
+<line x1="330.0" y1="258.0" x2="720.0" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="323.0" y="262.0" font-size="11" text-anchor="end" fill="var(--gray)">0</text>
+<line x1="330.0" y1="157.0" x2="720.0" y2="157.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="323.0" y="161.0" font-size="11" text-anchor="end" fill="var(--gray)">0.5</text>
+<line x1="330.0" y1="56.0" x2="720.0" y2="56.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="323.0" y="60.0" font-size="11" text-anchor="end" fill="var(--gray)">C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"></tspan></text>
+<line x1="330.0" y1="56.0" x2="330.0" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="330.0" y="275.0" font-size="11" text-anchor="middle" fill="var(--gray)">a</text>
+<line x1="427.5" y1="56.0" x2="427.5" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="427.5" y="275.0" font-size="11" text-anchor="middle" fill="var(--gray)">2a</text>
+<line x1="525.0" y1="56.0" x2="525.0" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="525.0" y="275.0" font-size="11" text-anchor="middle" fill="var(--gray)">3a</text>
+<line x1="622.5" y1="56.0" x2="622.5" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="622.5" y="275.0" font-size="11" text-anchor="middle" fill="var(--gray)">4a</text>
+<line x1="720.0" y1="56.0" x2="720.0" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="720.0" y="275.0" font-size="11" text-anchor="middle" fill="var(--gray)">5a</text>
+<path d="M 330.0,258.0 L 331.9,254.0 L 333.9,250.2 L 335.9,246.6 L 337.8,243.0 L 339.8,239.6 L 341.7,236.4 L 343.7,233.2 L 345.6,230.1 L 347.6,227.2 L 349.5,224.3 L 351.4,221.6 L 353.4,218.9 L 355.4,216.3 L 357.3,213.8 L 359.2,211.4 L 361.2,209.0 L 363.1,206.7 L 365.1,204.5 L 367.1,202.4 L 369.0,200.3 L 370.9,198.3 L 372.9,196.3 L 374.9,194.4 L 376.8,192.5 L 378.8,190.7 L 380.7,188.9 L 382.6,187.2 L 384.6,185.5 L 386.6,183.8 L 388.5,182.2 L 390.4,180.7 L 392.4,179.2 L 394.4,177.7 L 396.3,176.2 L 398.2,174.8 L 400.2,173.4 L 402.1,172.1 L 404.1,170.8 L 406.1,169.5 L 408.0,168.2 L 409.9,167.0 L 411.9,165.8 L 413.9,164.6 L 415.8,163.4 L 417.8,162.3 L 419.7,161.2 L 421.6,160.1 L 423.6,159.1 L 425.6,158.0 L 427.5,157.0 L 429.4,156.0 L 431.4,155.0 L 433.4,154.1 L 435.3,153.1 L 437.2,152.2 L 439.2,151.3 L 441.1,150.4 L 443.1,149.5 L 445.0,148.7 L 447.0,147.8 L 448.9,147.0 L 450.9,146.2 L 452.8,145.4 L 454.8,144.6 L 456.8,143.8 L 458.7,143.1 L 460.6,142.3 L 462.6,141.6 L 464.5,140.9 L 466.5,140.2 L 468.4,139.5 L 470.4,138.8 L 472.4,138.1 L 474.3,137.5 L 476.2,136.8 L 478.2,136.2 L 480.1,135.5 L 482.1,134.9 L 484.1,134.3 L 486.0,133.7 L 488.0,133.1 L 489.9,132.5 L 491.9,131.9 L 493.8,131.4 L 495.8,130.8 L 497.7,130.3 L 499.7,129.7 L 501.6,129.2 L 503.6,128.7 L 505.5,128.1 L 507.5,127.6 L 509.4,127.1 L 511.4,126.6 L 513.3,126.1 L 515.2,125.7 L 517.2,125.2 L 519.1,124.7 L 521.1,124.2 L 523.0,123.8 L 525.0,123.3 L 527.0,122.9 L 528.9,122.4 L 530.9,122.0 L 532.8,121.6 L 534.8,121.2 L 536.7,120.7 L 538.6,120.3 L 540.6,119.9 L 542.5,119.5 L 544.5,119.1 L 546.5,118.7 L 548.4,118.3 L 550.3,118.0 L 552.3,117.6 L 554.2,117.2 L 556.2,116.8 L 558.1,116.5 L 560.1,116.1 L 562.0,115.8 L 564.0,115.4 L 566.0,115.1 L 567.9,114.7 L 569.9,114.4 L 571.8,114.0 L 573.8,113.7 L 575.7,113.4 L 577.6,113.1 L 579.6,112.7 L 581.5,112.4 L 583.5,112.1 L 585.5,111.8 L 587.4,111.5 L 589.4,111.2 L 591.3,110.9 L 593.2,110.6 L 595.2,110.3 L 597.2,110.0 L 599.1,109.7 L 601.0,109.4 L 603.0,109.2 L 605.0,108.9 L 606.9,108.6 L 608.8,108.3 L 610.8,108.1 L 612.8,107.8 L 614.7,107.5 L 616.6,107.3 L 618.6,107.0 L 620.5,106.8 L 622.5,106.5 L 624.4,106.2 L 626.4,106.0 L 628.4,105.8 L 630.3,105.5 L 632.2,105.3 L 634.2,105.0 L 636.2,104.8 L 638.1,104.6 L 640.0,104.3 L 642.0,104.1 L 644.0,103.9 L 645.9,103.6 L 647.8,103.4 L 649.8,103.2 L 651.8,103.0 L 653.7,102.8 L 655.6,102.5 L 657.6,102.3 L 659.5,102.1 L 661.5,101.9 L 663.5,101.7 L 665.4,101.5 L 667.4,101.3 L 669.3,101.1 L 671.2,100.9 L 673.2,100.7 L 675.1,100.5 L 677.1,100.3 L 679.0,100.1 L 681.0,99.9 L 683.0,99.7 L 684.9,99.5 L 686.9,99.3 L 688.8,99.2 L 690.8,99.0 L 692.7,98.8 L 694.7,98.6 L 696.6,98.4 L 698.5,98.3 L 700.5,98.1 L 702.5,97.9 L 704.4,97.7 L 706.3,97.6 L 708.3,97.4 L 710.2,97.2 L 712.2,97.1 L 714.1,96.9 L 716.1,96.7 L 718.1,96.6 L 720.0,96.4" fill="none" stroke="var(--rose)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="330.0" y1="258.0" x2="417.8" y2="76.2" stroke="var(--teal)" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="432.4" y="84.3" font-size="11" text-anchor="start" fill="var(--teal)">slope C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"> / a  =  ∂C/∂R at R = a</tspan></text>
+<text x="573.8" y="201.4" font-size="12" text-anchor="middle" fill="var(--fg)" font-weight="700">J = 4πa² · D C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8">/a = 4πDa C</tspan><tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"></tspan></text>
+<text x="720.0" y="308.0" font-size="12" text-anchor="end" fill="var(--gray)">R</text>
+<defs><marker id="l2ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--peri)"/></marker></defs></svg>
+<figcaption><b>Figure 3.</b> The problem and its solution. Left, the geometry: a sink of radius <span class="m">a</span>, a bulk reservoir at <span class="m">C<sub>&infin;</sub></span>. Right, the computed steady profile <span class="m">C(R) = C<sub>&infin;</sub>(1&minus;a/R)</span>. The concentration only reaches half of bulk at two radii out, so a perfectly absorbing enzyme sits at the bottom of a wide depletion well. The dashed tangent is the surface gradient, and the flux is that gradient times <span class="m">D</span> times the area.</figcaption>
+</figure>
+
+<p>Everything after that is refinement of the boundary condition. Collins and Kimball replaced the perfect sink with a partially absorbing surface, which is what happens when the intrinsic chemistry is not infinitely fast. Debye added the electrostatic term for charged reactants. Alberty and Hammes carried the whole apparatus into enzyme kinetics. Eigen built relaxation methods that could actually measure rates in the microsecond range and found proton transfers at <span class="m">10<sup>10</sup></span> to <span class="m">10<sup>11</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, at the ceiling.</p>
+
+<p>Two later results matter more for biology than any of those. Berg and Purcell asked what happens when the absorbing surface is not the whole sphere but a scattering of small patches, which is the real situation for a receptor-covered cell.<sup class="c"><a href="#r-bergpurcell">10</a></sup> The answer is counterintuitive and it is the reason enzymes work at all: because a molecule that misses a patch does not leave, but diffuses back and tries again, a sphere carrying a few thousand receptors of nanometre size captures at close to the rate of a perfect absorber even though the receptors cover a thousandth of its area. Northrup and Erickson then measured the cost of orientation by Brownian dynamics, and found the basal protein-protein association rate to be <span class="m">10<sup>5</sup></span> to <span class="m">10<sup>6</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> once a few simultaneous contacts are demanded.<sup class="c"><a href="#r-northrup">11</a></sup></p>
+
+<div class="box key">
+<span class="lbl">What the programme established</span>
+<p>There is a hard ceiling on any bimolecular rate constant in solution, it is computable from two sizes and two diffusion coefficients, and for biological molecules it is <span class="m">10<sup>9</sup></span> to <span class="m">10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. Getting close to it requires either a very large target or a mechanism, and there are only two known mechanisms: pull the substrate in with a field, or change the dimension of the search.</p>
+</div>
+
+<h2 id="s6"><span class="n">6</span>The floor</h2>
+<p class="lede">A century of enzyme kinetics, and a surprise about what its founding paper actually measured.</p>
+
+<p>Victor Henri derived the saturating rate equation first, in 1903. Michaelis and Menten's 1913 paper on invertase is the one that stuck, because they controlled pH and did the experiment properly. Johnson and Goody translated it completely in 2011 and reanalysed the original data, and what they found is a genuine correction to the field's memory of itself.<sup class="c"><a href="#r-johnsongoody">12</a></sup></p>
+
+<div class="box caution">
+<span class="lbl">The original Michaelis constant was not the Michaelis constant</span>
+<p>Michaelis and Menten did not stop at initial velocities. They fitted their full time courses to the integrated rate equation, including product inhibition, and reduced everything to a single global constant. That constant was <span class="m">V<sub>max</sub>/K<sub>M</sub></span>, which is <span class="m">k<sub>cat</sub>/K<sub>M</sub> &times; E<sub>0</sub></span>, what we now call the specificity constant.<sup class="c"><a href="#r-johnsongoody">12</a></sup> It is the quantity with a physical ceiling, the one section 5's programme bounds, and the one Bar-Even measures a century later. The field spent that century quoting <span class="m">K<sub>M</sub></span> instead.</p>
+</div>
+
+<p>Michaelis and Menten assumed the binding step was at equilibrium. Briggs and Haldane replaced that in 1925 with the steady-state assumption, which is weaker and almost always better, and the two-paragraph note in which they did it is one of the highest ratios of consequence to length in the literature.<sup class="c"><a href="#r-briggshaldane">13</a></sup> Section 11 returns to the difference, because the difference is exactly the timescale separation this essay is about.</p>
+
+<p>The distributional question, though, waited until 2011. Bar-Even and colleagues pulled kinetic parameters for thousands of enzyme-substrate pairs out of BRENDA, filtered them to natural substrates using KEGG, and plotted the histogram.<sup class="c"><a href="#r-barEven">14</a></sup></p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 300" role="img" aria-label="The distribution of enzyme turnover numbers against the theoretical ceiling" font-family="var(--sans)">
+<rect x="62.0" y="34.0" width="654.0" height="208.0" rx="4" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+<line x1="62.0" y1="34.0" x2="62.0" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="62.0" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">-3</tspan><tspan dy="5"></tspan></text>
+<line x1="124.3" y1="34.0" x2="124.3" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="124.3" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">-2</tspan><tspan dy="5"></tspan></text>
+<line x1="186.6" y1="34.0" x2="186.6" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="186.6" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">-1</tspan><tspan dy="5"></tspan></text>
+<line x1="248.9" y1="34.0" x2="248.9" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="248.9" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">0</tspan><tspan dy="5"></tspan></text>
+<line x1="311.1" y1="34.0" x2="311.1" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="311.1" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">1</tspan><tspan dy="5"></tspan></text>
+<line x1="373.4" y1="34.0" x2="373.4" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="373.4" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">2</tspan><tspan dy="5"></tspan></text>
+<line x1="435.7" y1="34.0" x2="435.7" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="435.7" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">3</tspan><tspan dy="5"></tspan></text>
+<line x1="498.0" y1="34.0" x2="498.0" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="498.0" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">4</tspan><tspan dy="5"></tspan></text>
+<line x1="560.3" y1="34.0" x2="560.3" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="560.3" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">5</tspan><tspan dy="5"></tspan></text>
+<line x1="622.6" y1="34.0" x2="622.6" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="622.6" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">6</tspan><tspan dy="5"></tspan></text>
+<line x1="684.9" y1="34.0" x2="684.9" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="684.9" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">7</tspan><tspan dy="5"></tspan></text>
+<text x="389.0" y="288.0" font-size="12" text-anchor="middle" fill="var(--gray)">turnover number k<tspan font-size=".72em" dy="2.8">cat</tspan><tspan dy="-2.8">  (s⁻¹)</tspan></text>
+<path d="M 62.0,241.3 L 64.7,241.3 L 67.4,241.2 L 70.2,241.0 L 72.9,240.9 L 75.6,240.8 L 78.4,240.6 L 81.1,240.5 L 83.8,240.3 L 86.5,240.1 L 89.2,239.9 L 92.0,239.6 L 94.7,239.3 L 97.4,239.0 L 100.1,238.7 L 102.9,238.4 L 105.6,238.0 L 108.3,237.5 L 111.1,237.1 L 113.8,236.5 L 116.5,236.0 L 119.2,235.4 L 121.9,234.7 L 124.7,234.0 L 127.4,233.2 L 130.1,232.4 L 132.8,231.5 L 135.6,230.5 L 138.3,229.5 L 141.0,228.4 L 143.8,227.2 L 146.5,225.9 L 149.2,224.5 L 151.9,223.1 L 154.6,221.5 L 157.4,219.9 L 160.1,218.2 L 162.8,216.3 L 165.6,214.4 L 168.3,212.3 L 171.0,210.1 L 173.7,207.9 L 176.4,205.5 L 179.2,203.0 L 181.9,200.4 L 184.6,197.6 L 187.4,194.8 L 190.1,191.8 L 192.8,188.7 L 195.5,185.5 L 198.2,182.2 L 201.0,178.8 L 203.7,175.3 L 206.4,171.7 L 209.1,168.0 L 211.9,164.2 L 214.6,160.3 L 217.3,156.3 L 220.1,152.3 L 222.8,148.2 L 225.5,144.0 L 228.2,139.8 L 230.9,135.6 L 233.7,131.4 L 236.4,127.1 L 239.1,122.8 L 241.9,118.6 L 244.6,114.3 L 247.3,110.1 L 250.0,105.9 L 252.8,101.8 L 255.5,97.8 L 258.2,93.8 L 260.9,90.0 L 263.6,86.3 L 266.4,82.6 L 269.1,79.2 L 271.8,75.8 L 274.6,72.7 L 277.3,69.7 L 280.0,66.9 L 282.7,64.2 L 285.5,61.8 L 288.2,59.6 L 290.9,57.7 L 293.6,55.9 L 296.4,54.4 L 299.1,53.2 L 301.8,52.2 L 304.5,51.4 L 307.2,50.9 L 310.0,50.7 L 312.7,50.7 L 315.4,51.0 L 318.1,51.5 L 320.9,52.3 L 323.6,53.3 L 326.3,54.6 L 329.1,56.2 L 331.8,57.9 L 334.5,59.9 L 337.2,62.2 L 340.0,64.6 L 342.7,67.2 L 345.4,70.1 L 348.1,73.1 L 350.9,76.3 L 353.6,79.6 L 356.3,83.1 L 359.0,86.8 L 361.8,90.5 L 364.5,94.4 L 367.2,98.4 L 369.9,102.4 L 372.6,106.5 L 375.4,110.7 L 378.1,114.9 L 380.8,119.2 L 383.6,123.4 L 386.3,127.7 L 389.0,132.0 L 391.7,136.2 L 394.5,140.4 L 397.2,144.6 L 399.9,148.8 L 402.6,152.9 L 405.4,156.9 L 408.1,160.8 L 410.8,164.7 L 413.5,168.5 L 416.2,172.2 L 419.0,175.8 L 421.7,179.3 L 424.4,182.7 L 427.2,186.0 L 429.9,189.2 L 432.6,192.2 L 435.3,195.2 L 438.0,198.0 L 440.8,200.7 L 443.5,203.3 L 446.2,205.8 L 448.9,208.2 L 451.7,210.5 L 454.4,212.6 L 457.1,214.7 L 459.9,216.6 L 462.6,218.4 L 465.3,220.1 L 468.0,221.8 L 470.8,223.3 L 473.5,224.7 L 476.2,226.1 L 478.9,227.4 L 481.6,228.5 L 484.4,229.6 L 487.1,230.7 L 489.8,231.6 L 492.6,232.5 L 495.3,233.3 L 498.0,234.1 L 500.7,234.8 L 503.5,235.5 L 506.2,236.1 L 508.9,236.6 L 511.6,237.1 L 514.3,237.6 L 517.1,238.0 L 519.8,238.4 L 522.5,238.8 L 525.2,239.1 L 528.0,239.4 L 530.7,239.7 L 533.4,239.9 L 536.1,240.1 L 538.9,240.3 L 541.6,240.5 L 544.3,240.7 L 547.0,240.8 L 549.8,240.9 L 552.5,241.1 L 555.2,241.2 L 558.0,241.3 L 560.7,241.3 L 563.4,241.4 L 566.1,241.5 L 568.8,241.6 L 571.6,241.6 L 574.3,241.7 L 577.0,241.7 L 579.8,241.7 L 582.5,241.8 L 585.2,241.8 L 587.9,241.8 L 590.6,241.8 L 593.4,241.9 L 596.1,241.9 L 598.8,241.9 L 601.5,241.9 L 604.3,241.9 L 607.0,241.9 L 609.7,241.9 L 612.5,242.0 L 615.2,242.0 L 617.9,242.0 L 620.6,242.0 L 623.4,242.0 L 626.1,242.0 L 628.8,242.0 L 631.5,242.0 L 634.2,242.0 L 637.0,242.0 L 639.7,242.0 L 642.4,242.0 L 645.1,242.0 L 647.9,242.0 L 650.6,242.0 L 653.3,242.0 L 656.0,242.0 L 658.8,242.0 L 661.5,242.0 L 664.2,242.0 L 667.0,242.0 L 669.7,242.0 L 672.4,242.0 L 675.1,242.0 L 677.9,242.0 L 680.6,242.0 L 683.3,242.0 L 686.0,242.0 L 688.8,242.0 L 691.5,242.0 L 694.2,242.0 L 696.9,242.0 L 699.7,242.0 L 702.4,242.0 L 705.1,242.0 L 707.8,242.0 L 710.5,242.0 L 713.3,242.0 L 716.0,242.0 L 716.0,242.0 L 62.0,242.0 Z" fill="var(--blush)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 62.0,241.3 L 64.7,241.3 L 67.4,241.2 L 70.2,241.0 L 72.9,240.9 L 75.6,240.8 L 78.4,240.6 L 81.1,240.5 L 83.8,240.3 L 86.5,240.1 L 89.2,239.9 L 92.0,239.6 L 94.7,239.3 L 97.4,239.0 L 100.1,238.7 L 102.9,238.4 L 105.6,238.0 L 108.3,237.5 L 111.1,237.1 L 113.8,236.5 L 116.5,236.0 L 119.2,235.4 L 121.9,234.7 L 124.7,234.0 L 127.4,233.2 L 130.1,232.4 L 132.8,231.5 L 135.6,230.5 L 138.3,229.5 L 141.0,228.4 L 143.8,227.2 L 146.5,225.9 L 149.2,224.5 L 151.9,223.1 L 154.6,221.5 L 157.4,219.9 L 160.1,218.2 L 162.8,216.3 L 165.6,214.4 L 168.3,212.3 L 171.0,210.1 L 173.7,207.9 L 176.4,205.5 L 179.2,203.0 L 181.9,200.4 L 184.6,197.6 L 187.4,194.8 L 190.1,191.8 L 192.8,188.7 L 195.5,185.5 L 198.2,182.2 L 201.0,178.8 L 203.7,175.3 L 206.4,171.7 L 209.1,168.0 L 211.9,164.2 L 214.6,160.3 L 217.3,156.3 L 220.1,152.3 L 222.8,148.2 L 225.5,144.0 L 228.2,139.8 L 230.9,135.6 L 233.7,131.4 L 236.4,127.1 L 239.1,122.8 L 241.9,118.6 L 244.6,114.3 L 247.3,110.1 L 250.0,105.9 L 252.8,101.8 L 255.5,97.8 L 258.2,93.8 L 260.9,90.0 L 263.6,86.3 L 266.4,82.6 L 269.1,79.2 L 271.8,75.8 L 274.6,72.7 L 277.3,69.7 L 280.0,66.9 L 282.7,64.2 L 285.5,61.8 L 288.2,59.6 L 290.9,57.7 L 293.6,55.9 L 296.4,54.4 L 299.1,53.2 L 301.8,52.2 L 304.5,51.4 L 307.2,50.9 L 310.0,50.7 L 312.7,50.7 L 315.4,51.0 L 318.1,51.5 L 320.9,52.3 L 323.6,53.3 L 326.3,54.6 L 329.1,56.2 L 331.8,57.9 L 334.5,59.9 L 337.2,62.2 L 340.0,64.6 L 342.7,67.2 L 345.4,70.1 L 348.1,73.1 L 350.9,76.3 L 353.6,79.6 L 356.3,83.1 L 359.0,86.8 L 361.8,90.5 L 364.5,94.4 L 367.2,98.4 L 369.9,102.4 L 372.6,106.5 L 375.4,110.7 L 378.1,114.9 L 380.8,119.2 L 383.6,123.4 L 386.3,127.7 L 389.0,132.0 L 391.7,136.2 L 394.5,140.4 L 397.2,144.6 L 399.9,148.8 L 402.6,152.9 L 405.4,156.9 L 408.1,160.8 L 410.8,164.7 L 413.5,168.5 L 416.2,172.2 L 419.0,175.8 L 421.7,179.3 L 424.4,182.7 L 427.2,186.0 L 429.9,189.2 L 432.6,192.2 L 435.3,195.2 L 438.0,198.0 L 440.8,200.7 L 443.5,203.3 L 446.2,205.8 L 448.9,208.2 L 451.7,210.5 L 454.4,212.6 L 457.1,214.7 L 459.9,216.6 L 462.6,218.4 L 465.3,220.1 L 468.0,221.8 L 470.8,223.3 L 473.5,224.7 L 476.2,226.1 L 478.9,227.4 L 481.6,228.5 L 484.4,229.6 L 487.1,230.7 L 489.8,231.6 L 492.6,232.5 L 495.3,233.3 L 498.0,234.1 L 500.7,234.8 L 503.5,235.5 L 506.2,236.1 L 508.9,236.6 L 511.6,237.1 L 514.3,237.6 L 517.1,238.0 L 519.8,238.4 L 522.5,238.8 L 525.2,239.1 L 528.0,239.4 L 530.7,239.7 L 533.4,239.9 L 536.1,240.1 L 538.9,240.3 L 541.6,240.5 L 544.3,240.7 L 547.0,240.8 L 549.8,240.9 L 552.5,241.1 L 555.2,241.2 L 558.0,241.3 L 560.7,241.3 L 563.4,241.4 L 566.1,241.5 L 568.8,241.6 L 571.6,241.6 L 574.3,241.7 L 577.0,241.7 L 579.8,241.7 L 582.5,241.8 L 585.2,241.8 L 587.9,241.8 L 590.6,241.8 L 593.4,241.9 L 596.1,241.9 L 598.8,241.9 L 601.5,241.9 L 604.3,241.9 L 607.0,241.9 L 609.7,241.9 L 612.5,242.0 L 615.2,242.0 L 617.9,242.0 L 620.6,242.0 L 623.4,242.0 L 626.1,242.0 L 628.8,242.0 L 631.5,242.0 L 634.2,242.0 L 637.0,242.0 L 639.7,242.0 L 642.4,242.0 L 645.1,242.0 L 647.9,242.0 L 650.6,242.0 L 653.3,242.0 L 656.0,242.0 L 658.8,242.0 L 661.5,242.0 L 664.2,242.0 L 667.0,242.0 L 669.7,242.0 L 672.4,242.0 L 675.1,242.0 L 677.9,242.0 L 680.6,242.0 L 683.3,242.0 L 686.0,242.0 L 688.8,242.0 L 691.5,242.0 L 694.2,242.0 L 696.9,242.0 L 699.7,242.0 L 702.4,242.0 L 705.1,242.0 L 707.8,242.0 L 710.5,242.0 L 713.3,242.0 L 716.0,242.0" fill="none" stroke="var(--rose)" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 248.9,107.7 L 250.4,105.3 L 252.0,103.0 L 253.5,100.7 L 255.1,98.4 L 256.6,96.1 L 258.2,93.8 L 259.8,91.6 L 261.3,89.5 L 262.9,87.3 L 264.4,85.2 L 266.0,83.1 L 267.5,81.1 L 269.1,79.2 L 270.7,77.2 L 272.2,75.4 L 273.8,73.5 L 275.3,71.8 L 276.9,70.1 L 278.4,68.4 L 280.0,66.9 L 281.6,65.3 L 283.1,63.9 L 284.7,62.5 L 286.2,61.2 L 287.8,59.9 L 289.3,58.8 L 290.9,57.7 L 292.5,56.6 L 294.0,55.7 L 295.6,54.8 L 297.1,54.0 L 298.7,53.3 L 300.2,52.7 L 301.8,52.2 L 303.4,51.7 L 304.9,51.3 L 306.5,51.0 L 308.0,50.8 L 309.6,50.7 L 311.1,50.6 L 312.7,50.7 L 314.3,50.8 L 315.8,51.0 L 317.4,51.3 L 318.9,51.7 L 320.5,52.2 L 322.0,52.7 L 323.6,53.3 L 325.2,54.0 L 326.7,54.8 L 328.3,55.7 L 329.8,56.6 L 331.4,57.7 L 332.9,58.8 L 334.5,59.9 L 336.1,61.2 L 337.6,62.5 L 339.2,63.9 L 340.7,65.3 L 342.3,66.9 L 343.8,68.4 L 345.4,70.1 L 347.0,71.8 L 348.5,73.5 L 350.1,75.4 L 351.6,77.2 L 353.2,79.2 L 354.7,81.1 L 356.3,83.1 L 357.9,85.2 L 359.4,87.3 L 361.0,89.5 L 362.5,91.6 L 364.1,93.8 L 365.6,96.1 L 367.2,98.4 L 368.8,100.7 L 370.3,103.0 L 371.9,105.3 L 373.4,107.7 L 373.4,242.0 L 248.9,242.0 Z" fill="var(--pinkf)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="248.9" y1="242.0" x2="248.9" y2="107.7" stroke="var(--rose)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<line x1="373.4" y1="242.0" x2="373.4" y2="107.7" stroke="var(--rose)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="254.9" y="222.0" font-size="11" text-anchor="start" fill="var(--rose)" font-weight="700" class="halo2">60% of all enzymes</text>
+<line x1="311.1" y1="242.0" x2="311.1" y2="50.6" stroke="var(--rose)" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="311.1" y="38.6" font-size="11.5" text-anchor="middle" fill="var(--rose)" font-weight="700">median ≈ 10 s⁻¹</text>
+<rect x="622.6" y="35.0" width="62.3" height="207.0" rx="0" fill="var(--lavender)" opacity="0.75"/>
+<text x="612.6" y="54.0" font-size="11" text-anchor="end" fill="var(--peri)" font-weight="700">the ceiling on any</text>
+<text x="612.6" y="68.0" font-size="11" text-anchor="end" fill="var(--peri)" font-weight="700">turnover number</text>
+<text x="612.6" y="84.0" font-size="11" text-anchor="end" fill="var(--peri)">10⁶ to 10⁷ s⁻¹</text>
+<text x="653.7" y="276.0" font-size="11" text-anchor="middle" fill="var(--peri)">▲</text>
+<line x1="317.1" y1="234.0" x2="616.6" y2="234.0" stroke="var(--gray)" stroke-width="1.1" stroke-dasharray="2 3"/>
+<text x="466.9" y="227.0" font-size="10.5" text-anchor="middle" fill="var(--gray)" class="halo2">five orders of magnitude</text>
+</svg>
+<figcaption><b>Figure 4.</b> The distribution of turnover numbers. The curve is a log-normal pinned to the two statistics Bar-Even et al. report, a median of <span class="m">10 s<sup>&minus;1</sup></span> and 60% of values between 1 and <span class="m">100 s<sup>&minus;1</sup></span>, so it is derived rather than digitized from their figure. The band on the right is the ceiling they quote for any turnover number. The median enzyme is five orders of magnitude short of it.</figcaption>
+</figure>
+
+<p>The medians are <span class="m">k<sub>cat</sub> &asymp; 10 s<sup>&minus;1</sup></span> over 1942 pairs, <span class="m">k<sub>cat</sub>/K<sub>M</sub> &asymp; 10<sup>5</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> over 1882, and <span class="m">K<sub>M</sub> &asymp; 100 &micro;M</span> over 5194. Their own reading is evolutionary. Enzymes in central carbon and energy metabolism run at a median of <span class="m">79 s<sup>&minus;1</sup></span> against <span class="m">2.5 s<sup>&minus;1</sup></span> in secondary metabolism, a thirty-fold difference in exactly the direction selection pressure would predict. Their conclusion is that "the catalytic efficiency of some enzymes toward their natural substrates could be increased in many cases by natural or laboratory evolution".</p>
+
+<h2 id="s7"><span class="n">7</span>The fact nobody owns</h2>
+<p class="lede">Put programme five's ceiling next to programme six's floor and something falls out that neither of them states.</p>
+
+<p>The specificity constant of the median enzyme is <span class="m">10<sup>5</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. The Smoluchowski ceiling for a metabolite meeting an enzyme, computed from equation (2) with measured diffusion coefficients and radii, is <span class="m">1.4&times;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. The ratio is <span class="m">1.4&times;10<sup>5</sup></span>.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 340" role="img" aria-label="Second-order rate constants on a logarithmic axis, from the median enzyme to the diffusion ceiling" font-family="var(--sans)">
+<rect x="669.7" y="26.0" width="46.3" height="252.0" rx="4" fill="var(--pinkf)"/>
+<text x="710.0" y="318.0" font-size="10.5" text-anchor="end" fill="var(--coral)" font-weight="700">faster than molecules meet</text>
+<line x1="56.0" y1="278.0" x2="716.0" y2="278.0" stroke="var(--fg)" stroke-width="1.6"/>
+<line x1="56.0" y1="278.0" x2="56.0" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="56.0" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">2</tspan><tspan dy="5"></tspan></text>
+<line x1="129.3" y1="278.0" x2="129.3" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="129.3" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">3</tspan><tspan dy="5"></tspan></text>
+<line x1="202.7" y1="278.0" x2="202.7" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="202.7" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">4</tspan><tspan dy="5"></tspan></text>
+<line x1="276.0" y1="278.0" x2="276.0" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="276.0" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">5</tspan><tspan dy="5"></tspan></text>
+<line x1="349.3" y1="278.0" x2="349.3" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="349.3" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">6</tspan><tspan dy="5"></tspan></text>
+<line x1="422.7" y1="278.0" x2="422.7" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="422.7" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">7</tspan><tspan dy="5"></tspan></text>
+<line x1="496.0" y1="278.0" x2="496.0" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="496.0" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">8</tspan><tspan dy="5"></tspan></text>
+<line x1="569.3" y1="278.0" x2="569.3" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="569.3" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">9</tspan><tspan dy="5"></tspan></text>
+<line x1="642.7" y1="278.0" x2="642.7" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="642.7" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">10</tspan><tspan dy="5"></tspan></text>
+<line x1="716.0" y1="278.0" x2="716.0" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="716.0" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">11</tspan><tspan dy="5"></tspan></text>
+<text x="386.0" y="324.0" font-size="12" text-anchor="middle" fill="var(--gray)">second-order rate constant  (M⁻¹ s⁻¹)</text>
+<circle cx="276.0" cy="278.0" r="5.00" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="276.0" y1="271.0" x2="276.0" y2="61.0" stroke="var(--rose)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="276.0" y="40.0" font-size="10.8" text-anchor="middle" fill="var(--rose)" font-weight="700" class="halo">the median enzyme</text>
+<text x="276.0" y="53.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">k<tspan font-size=".72em" dy="2.8">cat</tspan><tspan dy="-2.8">/</tspan>K<tspan font-size=".72em" dy="2.8">M</tspan><tspan dy="-2.8"></tspan> ≈ 10⁵</text>
+<circle cx="474.6" cy="278.0" r="5.00" fill="var(--coral)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="474.6" y1="271.0" x2="474.6" y2="61.0" stroke="var(--coral)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="474.6" y="40.0" font-size="10.8" text-anchor="middle" fill="var(--coral)" font-weight="700" class="halo">EcoRI</text>
+<text x="474.6" y="53.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">methyltransferase</text>
+<circle cx="496.0" cy="278.0" r="5.00" fill="var(--lime)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="496.0" y1="271.0" x2="496.0" y2="93.0" stroke="var(--lime)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="496.0" y="72.0" font-size="10.8" text-anchor="middle" fill="var(--lime)" font-weight="700" class="halo">β-lactamase,</text>
+<text x="496.0" y="85.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">good substrate</text>
+<circle cx="620.6" cy="278.0" r="5.00" fill="var(--teal)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="620.6" y1="271.0" x2="620.6" y2="61.0" stroke="var(--teal)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="620.6" y="40.0" font-size="10.8" text-anchor="middle" fill="var(--teal)" font-weight="700" class="halo">barnase binding</text>
+<text x="620.6" y="53.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">barstar</text>
+<circle cx="653.5" cy="278.0" r="5.00" fill="var(--peri)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="653.5" y1="271.0" x2="653.5" y2="93.0" stroke="var(--peri)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="653.5" y="72.0" font-size="10.8" text-anchor="middle" fill="var(--peri)" font-weight="700" class="halo">4πDa: metabolite</text>
+<text x="653.5" y="85.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">meeting an enzyme</text>
+<circle cx="659.6" cy="278.0" r="5.00" fill="var(--plum)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="659.6" y1="271.0" x2="659.6" y2="125.0" stroke="var(--plum)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="659.6" y="104.0" font-size="10.8" text-anchor="middle" fill="var(--plum)" font-weight="700" class="halo">fastest enzyme</text>
+<text x="659.6" y="117.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">ever measured</text>
+</svg>
+<figcaption><b>Figure 5.</b> Second-order rate constants on one logarithmic axis. The wash marks rates above <span class="m">4&pi;Da</span> for superoxide meeting superoxide dismutase, computed here as <span class="m">2.3&times;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, the highest bound relevant to anything on the axis. Every marked value comes from a full text in the reference list, not from reading positions off a published figure.</figcaption>
+</figure>
+
+<p>Five orders of magnitude is a lot of room, and the literature treats it as a puzzle about enzymes. It is not only that. It is also a fact about <em>time</em>. If catalysis is that slow relative to encounter, then during one turnover the binding equilibrium is re-established thousands of times. The bound fraction of enzyme is therefore not a dynamical variable at all on the timescale of the flux. It is an equilibrium quantity, computable by statistical mechanics, and free to be used as a control input.</p>
+
+<div class="box key">
+<span class="lbl">The claim of this essay</span>
+<p>The gap between <span class="m">k<sub>on</sub></span> and <span class="m">k<sub>cat</sub></span> is not primarily a statement about how good enzymes are. It is the structural condition that separates a cell into two layers: a fast reversible one that equilibrates and therefore regulates, and a slow irreversible one that carries flux and therefore does the work. Every programme in Part I holds one end of that statement. None of them writes it down.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Part II</div>
+  <h2>The frame</h2>
+  <p>Two objects, one relation, and one measurement.</p>
+</div>
+
+<h2 id="s8"><span class="n">8</span>Two rate constants</h2>
+<p class="lede">Define them by their formulas, then read off where each one's value comes from.</p>
+
+<div class="box def">
+<span class="lbl">Definition</span>
+<p>For the elementary association <span class="m">E + S &rarr; C</span>, the <strong>on-rate</strong> <span class="m">k<sub>on</sub></span> is the constant in the mass-action flux <span class="m">v = k<sub>on</sub>[E][S]</span>. Its units are <span class="m">M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, which is a volume swept per unit time per mole.</p>
+<p>For the composite step <span class="m">C &#10547; E + P</span>, the <strong>turnover number</strong> <span class="m">k<sub>cat</sub></span> is the constant in <span class="m">v = k<sub>cat</sub>[C]</span>. Its units are <span class="m">s<sup>&minus;1</sup></span>, a frequency.</p>
+</div>
+
+<p>The asymmetry in the definitions is the asymmetry in the physics. <span class="m">k<sub>on</sub></span> has an upper bound derivable from first principles, because getting two molecules into contact is a transport problem and transport is governed by an equation we can solve. <span class="m">k<sub>cat</sub></span> has no such bound below <span class="m">10<sup>6</sup>&ndash;10<sup>7</sup> s<sup>&minus;1</sup></span>, because what happens after contact is a chemical rearrangement inside a protein, and no general theory predicts it from structure. So one constant is physics and the other is biology, and the whole of enzymology lives in the second.</p>
+
+<p>Note also that <span class="m">k<sub>on</sub></span> is not directly comparable to <span class="m">k<sub>cat</sub></span>. One is second order and one is first order. The comparable quantity is the specificity constant <span class="m">k<sub>cat</sub>/K<sub>M</sub></span>, which is second order and which reduces to <span class="m">k<sub>on</sub></span> exactly when every encounter leads to product. That is why <span class="m">k<sub>cat</sub>/K<sub>M</sub></span> is the parameter with a ceiling, and it is why it was the right thing for Michaelis and Menten to fit in 1913.</p>
+
+<h2 id="s9"><span class="n">9</span>The master relation, dated</h2>
+<p class="lede">Where the <span class="m">4&pi;</span> comes from, and what changes when the target is smaller than the searcher.</p>
+
+<p>The derivation is four steps and it is worth doing rather than quoting. Put the enzyme at the origin as an absorbing sphere of radius <span class="m">a</span>. In steady state the flux through every concentric shell is equal, so <span class="m">4&pi;R&sup2;j</span> is a nonzero constant. The steady diffusion equation in spherical symmetry then integrates twice to <span class="m">C(R) = &minus;A/R + B</span>. The boundary conditions <span class="m">C(a) = 0</span> and <span class="m">C(&infin;) = C<sub>&infin;</sub></span> fix the constants and give <span class="m">C(R) = C<sub>&infin;</sub>(1 &minus; a/R)</span>. Differentiating at the surface and multiplying by the area gives <span class="m">J = 4&pi;DaC<sub>&infin;</sub></span>.</p>
+
+<p>Halford and Marko give a version with no calculus in it at all, and it is the one to teach.<sup class="c"><a href="#r-halford">15</a></sup> If targets sit at concentration <span class="m">c</span>, a searcher is typically a distance <span class="m">r = c<sup>&minus;1/3</sup></span> from one. In a time <span class="m">r&sup2;/D</span> it either hits the target, with probability <span class="m">a/r</span>, or wanders off. Waiting <span class="m">r/a</span> times longer makes success near certain, so the total time is <span class="m">(r/a)(r&sup2;/D) = 1/(Dac)</span> and the rate constant is <span class="m">Dac/c = Da</span>. The <span class="m">4&pi;</span> is what the exact calculation adds.</p>
+
+<div class="box thm">
+<span class="lbl">The bound</span>
+<p>For two species diffusing freely in solution and reacting on every contact, <span class="m">k<sub>on</sub> = 4&pi;(D<sub>A</sub>+D<sub>B</sub>)(a<sub>A</sub>+a<sub>B</sub>)</span>. No unguided bimolecular reaction in solution exceeds it.</p>
+</div>
+
+<p>The factor that matters most in practice is hidden in <span class="m">a</span>. It is the <em>reactive</em> radius, not the molecular one. When the target is a small site on a large molecule, the bound falls in proportion. Halford and Marko take <span class="m">a/d = 0.1</span> for an operator site on DNA and get <span class="m">10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> rather than <span class="m">10<sup>9</sup></span>.<sup class="c"><a href="#r-halford">15</a></sup> Berg and Purcell's patch result is the counterweight: a target that is small but repeatedly revisited does much better than its area suggests.<sup class="c"><a href="#r-bergpurcell">10</a></sup> Both corrections are geometric, both are order unity to two, and neither changes the decade.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 1. Equation (2) evaluated for the pairs this course cares about. Diffusion coefficients from Stokes-Einstein with measured radii, in-cell values reduced by the crowding factor of &sect;16. Computed in <span class="m">analysis/cell_ledger.py</span>.</caption>
+<thead><tr><th>Pair</th><th>setting</th><th><span class="m">D<sub>A</sub>+D<sub>B</sub></span></th><th><span class="m">a<sub>A</sub>+a<sub>B</sub></span></th><th><span class="m">k<sub>on</sub></span></th></tr></thead>
+<tbody>
+<tr><td>superoxide + SOD</td><td>water</td><td class="num">1340 &micro;m&sup2;/s</td><td class="num">2.3 nm</td><td class="num hl">2.3&times;10<sup>10</sup></td></tr>
+<tr><td>metabolite + enzyme</td><td>water</td><td class="num">770 &micro;m&sup2;/s</td><td class="num">2.4 nm</td><td class="num">1.4&times;10<sup>10</sup></td></tr>
+<tr><td>protein + protein</td><td>water</td><td class="num">200 &micro;m&sup2;/s</td><td class="num">4.1 nm</td><td class="num">6.2&times;10<sup>9</sup></td></tr>
+<tr><td>metabolite + enzyme</td><td>cytoplasm</td><td class="num">208 &micro;m&sup2;/s</td><td class="num">2.4 nm</td><td class="num">3.8&times;10<sup>9</sup></td></tr>
+<tr><td>protein + protein</td><td>cytoplasm</td><td class="num">15 &micro;m&sup2;/s</td><td class="num">4.1 nm</td><td class="num">4.8&times;10<sup>8</sup></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The third row is a check on the arithmetic rather than a new result. Stroppolo et al. quote <span class="m">7&times;10<sup>9</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> as the Einstein-Smoluchowski rate for two spheres of radius 18&nbsp;&Aring; that react on every contact regardless of orientation.<sup class="c"><a href="#r-stroppolo">16</a></sup> The computation here gives <span class="m">6.2&times;10<sup>9</sup></span> for two spheres of 20.5&nbsp;&Aring;. Same number.</p>
+
+<h2 id="s10"><span class="n">10</span>The measurement that licenses everything</h2>
+<p class="lede">Put the two constants into one expression and the separation of timescales stops being an assumption.</p>
+
+<p>The binding step is a reversible elementary reaction, so a perturbation of it decays exponentially with a rate that is the sum of the forward and backward pseudo-first-order rates:</p>
+
+<div class="eq">&tau;<sub>bind</sub> = 1 / ( k<sub>on</sub>([E] + [S]) + k<sub>off</sub> ), &nbsp;&nbsp; k<sub>off</sub> = k<sub>on</sub>K<sub>D</sub> <span class="tag">(3)</span></div>
+
+<p>Use the medians of Part I and nothing else. Enzyme at 1&nbsp;&micro;M, substrate at 1&nbsp;mM, <span class="m">K<sub>D</sub> = 100 &micro;M</span> from the median <span class="m">K<sub>M</sub></span>, and <span class="m">k<sub>on</sub> = 10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, which is already two decades below the ceiling:</p>
+
+<div class="eq">&tau;<sub>bind</sub> = 9 &micro;s &nbsp;&nbsp;against&nbsp;&nbsp; &tau;<sub>cat</sub> = 1/k<sub>cat</sub> = 100 ms &nbsp;&nbsp;&rArr;&nbsp;&nbsp; <b>separation &asymp; 10<sup>4</sup></b> <span class="tag">(4)</span></div>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 380" role="img" aria-label="The timescales inside one cell on a logarithmic axis, showing the gap between the fast reversible layer and the slow irreversible one" font-family="var(--sans)">
+<rect x="246.8" y="34.0" width="214.2" height="286.0" rx="5" fill="var(--lavender)"/>
+<text x="353.9" y="28.0" font-size="11.5" text-anchor="middle" fill="var(--plum)" font-weight="700">10<tspan font-size=".70em" dy="-5">4</tspan><tspan dy="5">-fold separation</tspan></text>
+<text x="184.0" y="62.0" font-size="11.5" text-anchor="end" fill="var(--fg)">binding equilibrates</text>
+<line x1="196.0" y1="58.0" x2="726.0" y2="58.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="246.8" cy="58.0" r="5.20" fill="var(--peri)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="258.8" y="62.0" font-size="10.5" text-anchor="start" fill="var(--peri)" font-weight="700">fast, reversible</text>
+<text x="184.0" y="90.0" font-size="11.5" text-anchor="end" fill="var(--fg)">metabolite crosses the cell</text>
+<line x1="196.0" y1="86.0" x2="726.0" y2="86.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="392.0" cy="86.0" r="5.20" fill="var(--peri)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="118.0" font-size="11.5" text-anchor="end" fill="var(--fg)">protein crosses the cell</text>
+<line x1="196.0" y1="114.0" x2="726.0" y2="114.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="467.0" cy="114.0" r="5.20" fill="var(--peri)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="146.0" font-size="11.5" text-anchor="end" fill="var(--fg)">one catalytic turnover</text>
+<line x1="196.0" y1="142.0" x2="726.0" y2="142.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="461.0" cy="142.0" r="5.20" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="473.0" y="146.0" font-size="10.5" text-anchor="start" fill="var(--rose)" font-weight="700">slow, irreversible</text>
+<text x="184.0" y="174.0" font-size="11.5" text-anchor="end" fill="var(--fg)">PEP pool turns over</text>
+<line x1="196.0" y1="170.0" x2="726.0" y2="170.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="514.5" cy="170.0" r="5.20" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="202.0" font-size="11.5" text-anchor="end" fill="var(--fg)">ATP pool turns over</text>
+<line x1="196.0" y1="198.0" x2="726.0" y2="198.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="494.9" cy="198.0" r="5.20" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="230.0" font-size="11.5" text-anchor="end" fill="var(--fg)">FBP pool turns over</text>
+<line x1="196.0" y1="226.0" x2="726.0" y2="226.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="583.5" cy="226.0" r="5.20" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="258.0" font-size="11.5" text-anchor="end" fill="var(--fg)">mRNA decays</text>
+<line x1="196.0" y1="254.0" x2="726.0" y2="254.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="645.3" cy="254.0" r="5.20" fill="var(--coral)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="286.0" font-size="11.5" text-anchor="end" fill="var(--fg)">protein pool is diluted</text>
+<line x1="196.0" y1="282.0" x2="726.0" y2="282.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="693.2" cy="282.0" r="5.20" fill="var(--coral)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="681.2" y="286.0" font-size="10.5" text-anchor="end" fill="var(--coral)" font-weight="700">far too slow to regulate</text>
+<line x1="196.0" y1="304.0" x2="726.0" y2="304.0" stroke="var(--fg)" stroke-width="1.4"/>
+<line x1="196.0" y1="304.0" x2="196.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="249.0" y1="304.0" x2="249.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="302.0" y1="304.0" x2="302.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="355.0" y1="304.0" x2="355.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="408.0" y1="304.0" x2="408.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="461.0" y1="304.0" x2="461.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="514.0" y1="304.0" x2="514.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="567.0" y1="304.0" x2="567.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="620.0" y1="304.0" x2="620.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="673.0" y1="304.0" x2="673.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="726.0" y1="304.0" x2="726.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="196.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 µs</text>
+<text x="355.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 ms</text>
+<text x="514.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 s</text>
+<text x="620.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">2 min</text>
+<text x="726.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">3 h</text>
+<text x="461.0" y="346.0" font-size="12" text-anchor="middle" fill="var(--gray)">time</text>
+</svg>
+<figcaption><b>Figure 6.</b> Every timescale inside one bacterium on one logarithmic axis. The shaded band is the gap. Binding sits on its left. Catalysis, metabolite pool turnover, mRNA decay and protein dilution all sit on its right, spread over six further decades. Metabolite turnover times are pool size over flux, computed from measured concentrations and the glycolytic flux in <span class="m">analysis/cell_ledger.py</span>.</figcaption>
+</figure>
+
+<div class="box key">
+<span class="lbl">The crux</span>
+<p>A model that writes the bound fraction of an enzyme as an equilibrium expression while writing the flux as a differential equation is not making a convenient approximation. It is quoting a measured four-decade ratio. Every quasi-steady-state reduction in this course inherits its validity from equation (4), and so does the use of equilibrium statistical mechanics on a cell that is manifestly not at equilibrium.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Part III</div>
+  <h2>What the frame buys</h2>
+  <p>Five consequences, each with a number, and two of them you can move with a slider.</p>
+</div>
+
+<h2 id="s11"><span class="n">11</span>Timescale separation, measured</h2>
+<p class="lede">Michaelis and Menten assumed it. Briggs and Haldane weakened the assumption. Segel and Slemrod said what it costs. The number in &sect;10 says when you may.</p>
+
+<p>The history here is a slow clarification of one question. Michaelis and Menten took the binding step to be at equilibrium, which requires <span class="m">k<sub>cat</sub> &#8810; k<sub>off</sub></span>. Briggs and Haldane replaced that with the steady state <span class="m">d[C]/dt &asymp; 0</span>, which is weaker and holds under a different condition.<sup class="c"><a href="#r-briggshaldane">13</a></sup> The two give the same functional form and different meanings for <span class="m">K<sub>M</sub></span>, and generations of textbooks have blurred them.</p>
+
+<p>Segel and Slemrod made it precise by identifying the small parameter. The quasi-steady-state approximation is valid when</p>
+
+<div class="eq">&epsilon; = E<sub>T</sub> / (K<sub>M</sub> + S<sub>T</sub>) &#8810; 1 <span class="tag">(5)</span></div>
+
+<p>which is a statement about <em>concentrations</em>, not about rate constants: there must be far less enzyme than substrate. Gunawardena's reading is the one to carry: the assumption is fundamentally about timescale separation, and it is the same mathematical move as singular perturbation.<sup class="c"><a href="#r-gunawardena">17</a></sup> Lecture 6 makes that rigorous.</p>
+
+<p>What Part I adds is that both conditions are satisfied in a real cell for ordinary metabolic enzymes, and satisfied by a wide margin, and that this is a fact you can check rather than a hope. An enzyme at 1&nbsp;&micro;M with <span class="m">K<sub>M</sub> = 100 &micro;M</span> and substrate at 1&nbsp;mM gives <span class="m">&epsilon; = 10<sup>&minus;3</sup></span>.</p>
+
+<div class="demo">
+  <h4>Demo 1 &middot; the separation, on a logarithmic clock</h4>
+  <p class="dsub">The full mass-action system on ten decades of time. The complex fills first and then sits still while product accumulates. Push <span class="m">k<sub>cat</sub></span> up until the two curves collide, and the reduction of lecture 6 stops being legal.</p>
+  <canvas id="c-qssa" width="760" height="300"></canvas>
+  <div class="ctl">
+    <label><span class="lv"><span>k<sub>cat</sub> (s<sup>&minus;1</sup>)</span><b id="v-kcat">10</b></span>
+      
+      <input type="range" id="s-kcat" min="0" max="100" value="40"></label>
+    <label><span class="lv"><span>total enzyme (&micro;M)</span><b id="v-et">1.0</b></span>
+      
+      <input type="range" id="s-et" min="0" max="100" value="50"></label>
+    <label><span class="lv"><span>substrate (&micro;M)</span><b id="v-s0">1000</b></span>
+      
+      <input type="range" id="s-s0" min="0" max="100" value="75"></label>
+  </div>
+  <div class="readout" id="r-qssa"></div>
+</div>
+
+<h2 id="s12"><span class="n">12</span>The regulatory layer is forced</h2>
+<p class="lede">The same conclusion from the other end, using two timescales and no rate constants at all.</p>
+
+<p>Ask a physiological question instead of a kinetic one. <em>Can a cell control its metabolism by changing how much enzyme it has?</em></p>
+
+<p>A metabolite pool turns over in pool size divided by flux. <i>E. coli</i> on glucose takes up about 8&nbsp;mmol per gram dry weight per hour, and a gram dry weight occupies about 3&nbsp;mL of cell, so the glycolytic flux density is 0.73&nbsp;mM/s. Bennett et al. measured the pools.<sup class="c"><a href="#r-bennett">3</a></sup> Dividing gives turnover times of <strong>0.12&nbsp;s for phosphoenolpyruvate, 0.44&nbsp;s for ATP, 1.0&nbsp;s for 3-phosphoglycerate and 21&nbsp;s for fructose-1,6-bisphosphate</strong>.</p>
+
+<p>Gene expression cannot approach that, and the reason is a one-line derivation rather than a measurement. For a protein that is not actively degraded in a cell growing at rate <span class="m">&mu;</span>, dilution is the only loss:</p>
+
+<div class="eq">dP/dt = &beta; &minus; &mu;P &nbsp;&rArr;&nbsp; response half-time = ln2/&mu; = <b>the doubling time</b> <span class="tag">(6)</span></div>
+
+<p>Forty minutes for a well-fed <i>E. coli</i>. Even the fastest conceivable transcriptional route is slow: 80% of <i>E. coli</i> mRNA half-lives lie between 3 and 8 minutes.<sup class="c"><a href="#r-bernstein">18</a></sup></p>
+
+<div class="box key">
+<span class="lbl">The conclusion, and it is forced</span>
+<p>Expression responds in 2400 seconds. The PEP pool empties in 0.12 seconds. Expression is <span class="m">2&times;10<sup>4</sup></span> times too slow to control it, and still more than a hundred times too slow for the slowest pool measured. A cell regulating metabolism only through expression would empty or overflow its pools thousands of times before the first new enzyme arrived. <strong>Therefore a faster regulatory layer must exist, and binding at 9&nbsp;&micro;s is the only candidate on the ladder.</strong></p>
+</div>
+
+<div class="demo">
+  <h4>Demo 2 &middot; two ways to hold a metabolite pool</h4>
+  <p class="dsub">Influx doubles five minutes in. One cell corrects it by making more enzyme, which it can only do at the dilution rate. The other corrects it by allosteric feedback on the enzyme it already has. Same gain, different speed. Note the second failure mode of the slow route: high gain applied late overshoots and empties the pool.</p>
+  <canvas id="c-ctrl" width="760" height="320"></canvas>
+  <div class="ctl">
+    <label><span class="lv"><span>step in influx (&times;)</span><b id="v-step">2.0</b></span>
+      
+      <input type="range" id="s-step" min="10" max="60" value="20"></label>
+    <label><span class="lv"><span>doubling time (min)</span><b id="v-td">40</b></span>
+      
+      <input type="range" id="s-td" min="10" max="120" value="40"></label>
+    <label><span class="lv"><span>feedback strength n</span><b id="v-nh">2.0</b></span>
+      
+      <input type="range" id="s-nh" min="10" max="40" value="20"></label>
+  </div>
+  <div class="readout" id="r-ctrl"></div>
+</div>
+
+<h2 id="s13"><span class="n">13</span>And it was found where the argument says</h2>
+<p class="lede">The prediction of &sect;12 was confirmed nine years before anyone made it, by people who were not looking for it.</p>
+
+<p>In 1956 Umbarger reported that isoleucine inhibits threonine deaminase, the first enzyme of its own biosynthetic pathway.<sup class="c"><a href="#r-umbarger">19</a></sup> In the same year Yates and Pardee reported the same architecture for pyrimidines: the end product of the pathway inhibits its first committed step.<sup class="c"><a href="#r-yatespardee">20</a></sup> Neither inhibitor resembles the substrate of the enzyme it shuts down, so the inhibition cannot be competition for the active site. There had to be a second site.</p>
+
+<p>Monod, Changeux and Jacob named that arrangement <em>allosteric</em> in 1963, and Monod, Wyman and Changeux gave it a model in 1965 that is still the one taught: two conformations in equilibrium, ligands with different affinities for each, and cooperativity arising from the shift of that equilibrium rather than from any interaction between sites.<sup class="c"><a href="#r-mwc">21</a></sup> Stadtman's 1966 review collected what had by then become a general principle of metabolic control.<sup class="c"><a href="#r-stadtman">22</a></sup></p>
+
+<div class="box hist">
+<span class="lbl">Why the model is an equilibrium model</span>
+<p>The MWC model is written entirely in terms of equilibrium constants. No rate appears in it. That is not a simplification made for tractability, it is licensed by equation (4): the conformational and binding equilibria settle four decades faster than the catalytic step they modulate. The 1965 paper does not argue this. It did not need to, because everything the model was fitted to was a steady-state measurement. The timescale argument is what says the model is <em>right</em> rather than merely convenient.</p>
+</div>
+
+<p>The modern version of the same finding is systematic rather than anecdotal. Link, Kochanowski and Sauer screened for allosteric metabolite-protein interactions in <i>E. coli</i> and found them throughout central metabolism, including regulatory couplings nobody had proposed.<sup class="c"><a href="#r-link">23</a></sup> The layer predicted by two timescales is not a handful of famous examples. It is the normal way metabolism is controlled.</p>
+
+<h2 id="s14"><span class="n">14</span>Where the estimate is beaten</h2>
+<p class="lede">The interesting cases are the ones that break the bound, and both known mechanisms are worth knowing.</p>
+
+<p>The lac repressor was measured in 1970 to find its operator faster than <span class="m">10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, about a hundred times the protein-DNA diffusion limit of <span class="m">10<sup>8</sup></span>. The resolution is <strong>facilitated diffusion</strong>: the protein binds DNA non-specifically anywhere along its length, then slides in one dimension until it reaches the operator or falls off. A one-dimensional search of a large effective target beats a three-dimensional search for a small one.</p>
+
+<p>The signature is visible in the data and it is unambiguous. EcoRI methyltransferase reaches <span class="m">5.1&times;10<sup>7</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> on a 14&nbsp;bp substrate and four times that on a 429&nbsp;bp substrate carrying the same site.<sup class="c"><a href="#r-stroppolo">16</a></sup> Adding DNA that is not the target makes the target easier to find. That is impossible for a three-dimensional search and automatic for a one-dimensional one. Adam and Delbr&uuml;ck had proposed exactly this reduction of dimensionality in 1968.</p>
+
+<div class="box caution">
+<span class="lbl">A correction to how this story is usually told</span>
+<p>Halford and Marko went through the record and found the generalisation does not hold.<sup class="c"><a href="#r-halford">15</a></sup> The pre-1986 lac experiments used DNA carrying several repressor sites and a filter assay that could not say which was occupied. Later footprinting did reproduce <span class="m">10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> for lac, and Gal repressor and integration host factor are also above <span class="m">10<sup>10</sup></span>. But <strong>the majority of measured protein-DNA associations sit within a factor of three of <span class="m">10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span></strong>, which is the ordinary limit. "DNA-binding proteins are impossibly fast" is folklore built on a handful of systems.</p>
+</div>
+
+<p>The second mechanism is electrostatic steering. A charged substrate falling into an oppositely charged field around an active site arrives faster than diffusion alone would allow. Barnase associates with barstar at <span class="m">5&times;10<sup>9</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> despite requiring a precise alignment, and colicin nucleases bind their immunity proteins above <span class="m">10<sup>10</sup></span> at low salt.<sup class="c"><a href="#r-stroppolo">16</a></sup> The caveat is important and it is usually dropped: raising the salt to physiological levels drops those same rates to about <span class="m">10<sup>7</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, because the charge is screened.<sup class="c"><a href="#r-halford">15</a></sup> Electrostatic acceleration is real, and it is largely a low-salt laboratory phenomenon.</p>
+
+<h2 id="s15"><span class="n">15</span>Where the estimate is exact</h2>
+<p class="lede">One enzyme sits at 73% of a ceiling computed from nothing but two radii and two diffusion coefficients.</p>
+
+<p>Superoxide dismutase is the cleanest test of equation (2) in biology, because its substrate is tiny. Superoxide has a radius near 0.2&nbsp;nm, so Stokes-Einstein gives it <span class="m">D = 1230 &micro;m&sup2;/s</span>, and Cu,Zn SOD is a 32&nbsp;kDa dimer with <span class="m">R<sub>min</sub> = 2.1</span>&nbsp;nm. The bound for this specific pair is</p>
+
+<div class="eq">k<sub>on</sub> = 4&pi;(1230 + 117)(2.3 nm) = <b>2.3&times;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></b> <span class="tag">(7)</span></div>
+
+<div class="box sim">
+<span class="lbl">Measured against computed</span>
+<p>Eukaryotic Cu,Zn SOD runs at <span class="m">2&times;10<sup>9</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. Prokaryotic versions from <i>Photobacterium leiognathi</i> and <i>Salmonella typhimurium</i> reach <span class="m">8.5&times;10<sup>9</sup></span> and <span class="m">1.3&times;10<sup>10</sup></span>. A single Glu&rarr;Gln mutation gives <span class="m">10<sup>10</sup></span>, and a second engineered variant reaches <span class="m">1.7&times;10<sup>10</sup></span>, the fastest rate ever reported for any enzyme.<sup class="c"><a href="#r-stroppolo">16</a></sup> Against the bound in equation (7), that is <strong>73%</strong>. Computed in <span class="m">analysis/cell_ledger.py</span>.</p>
+</div>
+
+<p>This is worth more than the usual statement that SOD is diffusion-limited. A pair-specific bound, computed from geometry with no fitted parameter, is within a factor of 1.4 of a measured rate constant. That is the level at which the physics of section 5 is actually true, and it is why the ceiling is worth teaching as a law rather than a rule of thumb.</p>
+
+<h2 id="s16"><span class="n">16</span>The correction the ledger made to itself</h2>
+<p class="lede">Every rate in Part I was measured in water. A cell is not water, and the difference is a factor of eleven.</p>
+
+<p>The cytoplasm of <i>E. coli</i> carries protein at about 0.24&nbsp;g per mL and total macromolecule near 0.3&nbsp;g per mL, which puts macromolecular volume occupancy somewhere between a sixth and a third of the cell. That is not a dilute solution, and the consequence was measured directly.</p>
+
+<p>Elowitz and colleagues bleached and photoactivated GFP inside living <i>E. coli</i> and found <span class="m">D = 7.7 &plusmn; 2.5 &micro;m&sup2;/s</span>, against about 87 in dilute buffer.<sup class="c"><a href="#r-elowitz">24</a></sup> The slowdown is size-dependent and steep: a 72&nbsp;kDa MBP-GFP fusion drops to <span class="m">2.5 &plusmn; 0.6</span>, and even a six-histidine tag on GFP halves it. Konopka and colleagues later showed that the effect is not a fixed viscosity but depends on cytoplasmic water content, so it changes with osmotic condition.<sup class="c"><a href="#r-konopka">25</a></sup></p>
+
+<div class="box caution">
+<span class="lbl">What this changes, and what it does not</span>
+<p>It changes the mixing times of &sect;10 by an order of magnitude, and it changes <span class="m">k<sub>on</sub></span> in a cell from <span class="m">1.4&times;10<sup>10</sup></span> to <span class="m">3.8&times;10<sup>9</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. It does not change the conclusion of &sect;10, because the gap it has to survive is four decades and crowding costs one. Order-of-magnitude arguments earn their keep exactly here: a correction that would ruin a two-fold claim leaves a ten-thousand-fold claim standing.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Part IV</div>
+  <h2>How it came to be taught</h2>
+  <p>The pedagogy is a programme of its own, and it has an argument.</p>
+</div>
+
+<h2 id="s17"><span class="n">17</span>A feeling for the numbers</h2>
+<p class="lede">Why a table of cell numbers became a thing worth teaching, and who argued for it.</p>
+
+<p>Physics has taught estimation deliberately for a long time. Caltech ran an order-of-magnitude physics course, Mahajan wrote it up twice, and the tradition has a canon of worked problems. Biology did not, and the reason is not laziness. For most of the twentieth century the numbers were not there to be taught: nobody knew how many ribosomes a cell had, or how fast a polymerase moved, to better than an order of magnitude, and a course built on unreliable numbers teaches unreliability.</p>
+
+<p>That changed, and Phillips and Milo's 2009 essay is the moment it became a programme.<sup class="c"><a href="#r-phillipsmilo">26</a></sup> Their argument has two parts. The first is that biology now has enough good numbers to reason with. The second, and the interesting one, is that a number is only useful if you have a feel for the ones around it, so the numbers have to be learned as a connected system rather than looked up. BioNumbers was the infrastructure built for that, with each entry carrying its provenance so a reader can see how a number was obtained and decide whether to trust it.<sup class="c"><a href="#r-bionumbers">27</a></sup> <i>Cell Biology by the Numbers</i> and <i>Physical Biology of the Cell</i> are the textbooks.</p>
+
+<p>What this course adds to that tradition is the insistence that the ledger is a premise and not a product. Lecture 2 spends its first half counting, and the counting would be inert if it stopped there. It does not stop there because the counts have a consequence, and the consequence is the architecture of the rest of the course. A student who leaves with the table has half the lecture. A student who leaves with equation (4) has the lecture.</p>
+
+<h2 id="s18"><span class="n">18</span>What an agent does not remove</h2>
+<p class="lede">The arithmetic in this document is now free. The judgement in it is not, and it is what the lecture is for.</p>
+
+<p>Every number here could be produced by an AI agent in seconds. The Stokes-Einstein evaluation, the unit conversion in equation (2), the pool-over-flux division, all of it. That is not a reason to stop teaching them, and it is not a reason to keep teaching them either. It is a reason to be clear about what the exercise was ever for.</p>
+
+<p>Look at what actually had to be decided in writing this. That the calibration particle is a spherosome and not a pollen grain, which no amount of arithmetic would have caught, and which required going back to a 2010 paper that went back to the plant. That the naive protein count is an upper bound rather than an estimate, which is a judgement about which term in a product is doing the wrong work. That the specificity constant, not <span class="m">K<sub>M</sub></span>, is the quantity with a ceiling, which required reading a translation of a 1913 paper. That the lac repressor result is real but has been over-generalised, which required a review that says so. That crowding costs one decade and the argument needs four, so the correction can be absorbed.</p>
+
+<div class="box key">
+<span class="lbl">The skill, stated</span>
+<p>Order-of-magnitude reasoning is not the ability to multiply approximately. It is the ability to decide <em>which constraint decides the problem</em>, to notice when an estimate is a bound rather than a value, and to know how much error an argument can absorb before it stops being an argument. None of that got automated. What got automated is the part that was never the point.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Part V</div>
+  <h2>Situating and testing</h2>
+  <p>Where this sits, where it breaks, and what a student could do about it next week.</p>
+</div>
+
+<h2 id="s19"><span class="n">19</span>Where this sits</h2>
+<p class="lede">Programme by programme: what is compatible, what is a real disagreement, and what is a restatement of something already known.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 2. The claim of &sect;7 against the five programmes of Part I.</caption>
+<thead><tr><th>Programme</th><th>Relation to the claim</th></tr></thead>
+<tbody>
+<tr><td>The ledger (Neidhardt, Bremer-Dennis, Milo, Phillips)</td><td><strong>Supplies the premises, states no conclusion.</strong> Every number in &sect;10 and &sect;12 comes from this tradition. The inference from those numbers to an architecture is not made in it.</td></tr>
+<tr><td>Brownian motion (Brown, Einstein, Sutherland, Perrin)</td><td><strong>Compatible, and prior.</strong> It supplies equation (1) and the licence to calibrate on the visible. Nothing here disagrees with it.</td></tr>
+<tr><td>Mass action (Guldberg-Waage, van't Hoff, Horn-Jackson)</td><td><strong>Compatible, and constraining.</strong> It is what makes the elementary-composite distinction load-bearing rather than pedantic. The claim of &sect;7 lives inside its formalism.</td></tr>
+<tr><td>Diffusion-controlled kinetics (Smoluchowski, Debye, Collins-Kimball, Berg-Purcell)</td><td><strong>Supplies the ceiling.</strong> This programme reads its own bound as a statement about enzymes. The reading here is that it is also a statement about the separability of timescales, which the programme does not make.</td></tr>
+<tr><td>Enzyme efficiency (Michaelis-Menten to Bar-Even)</td><td><strong>A real disagreement about interpretation.</strong> Bar-Even et al. read the gap as weak selection. This essay reads it as a structural condition. Both fit the histogram. &sect;20 says how they differ.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Two things here are restatements and should be labelled as such. That binding is fast and catalysis is slow is not news to any enzymologist. That allostery regulates metabolism on a fast timescale is textbook. What is not standard is putting the two together and treating the ratio as the thing that <em>defines the model class of a cell</em>, which is the thesis of lecture 8 and the reason lecture 2 exists in the form it does.</p>
+
+<h2 id="s20"><span class="n">20</span>Where it could be wrong</h2>
+<p class="lede">Three ways, stated so that someone could go and check.</p>
+
+<p><strong>The evolutionary reading might be the whole story.</strong> Bar-Even et al. argue the gap reflects weak selection on rate, and their evidence is real: a thirty-fold difference in median <span class="m">k<sub>cat</sub></span> between central and secondary metabolism is exactly what selection would produce.<sup class="c"><a href="#r-barEven">14</a></sup> If that is all it is, the separation is contingent and could fail in any given system, and the framework here is a good bet rather than a principle. The two readings differ in one prediction. The structural reading says the separation should hold <em>even where selection for speed is strong</em>, because it is a condition for control rather than a consequence of neglect. Central-metabolism enzymes at <span class="m">79 s<sup>&minus;1</sup></span> are still <span class="m">10<sup>4</sup></span> below their ceiling, which is weak evidence in the structural direction. Stronger evidence would be a systematic look at the most heavily selected enzymes in the cell.</p>
+
+<p><strong>The separation fails in real systems, and it is not rare.</strong> A transcription factor at 10&nbsp;nM binding an operator with <span class="m">K<sub>D</sub> = 1 nM</span> has <span class="m">&tau;<sub>bind</sub></span> of tens of milliseconds, comparable to a catalytic turnover. Promoter occupancy is therefore not always quasi-static, and the telegraph model of lecture 6 exists precisely because it is not. Bennett et al. found the same thing metabolically: concentrations exceed <span class="m">K<sub>M</sub></span> for most pairs, but in lower glycolysis they sit near <span class="m">K<sub>M</sub></span> and every reaction is near equilibrium.<sup class="c"><a href="#r-bennett">3</a></sup> Where the cell needs reversible flux it gives up the separation deliberately.</p>
+
+<p><strong>The bound is pair-specific and can be misapplied.</strong> Table 1 shows the ceiling moving by a factor of fifty between a small ion and two proteins in cytoplasm. Quoting "the diffusion limit is <span class="m">10<sup>9</sup></span>" without saying which pair is how the lac repressor folklore started. Any use of the bound should carry the radii and diffusion coefficients that produced it.</p>
+
+<div class="box open">
+<span class="lbl">What would settle it</span>
+<p>A measurement, on a single organism, of the joint distribution of <span class="m">k<sub>cat</sub></span> and in vivo substrate concentration for the enzymes carrying the largest fluxes, with the pair-specific Smoluchowski bound computed for each. If the most heavily selected enzymes still sit three or more decades below their own bounds, the structural reading survives its hardest test. Davidi and colleagues built most of the machinery for this when they extracted in vivo catalytic rates across the <i>E. coli</i> proteome.<sup class="c"><a href="#r-davidi">28</a></sup></p>
+</div>
+
+<h2 id="s21"><span class="n">21</span>What to do on Monday</h2>
+<p class="lede">Four things a student in this course could actually do, cheapest first.</p>
+
+<ol>
+<li><strong>Redo &sect;12 for a mammalian cell.</strong> Volume 2000&nbsp;&micro;m&sup3;, doubling time about 24 hours, metabolite concentrations similar. Does the argument get stronger or weaker, and by how much? Then predict what fraction of mammalian metabolic regulation should be post-translational, and go and check whether it is.</li>
+<li><strong>Compute the pair-specific bound for five enzymes you care about.</strong> Take their molecular weights, get <span class="m">R<sub>min</sub></span> from Erickson's formula<sup class="c"><a href="#r-erickson">29</a></sup>, get substrate radii from their molecular weights the same way, and evaluate equation (2). Then look up their <span class="m">k<sub>cat</sub>/K<sub>M</sub></span> in BRENDA and plot the ratio. Anything above 0.1 is remarkable and worth reading about.</li>
+<li><strong>Break demo 1 on purpose.</strong> Find the parameter region where the quasi-steady-state reduction is wrong by more than 10%, express the boundary in terms of Segel and Slemrod's <span class="m">&epsilon;</span>, and check whether that boundary is where the theory says it should be.</li>
+<li><strong>Find a paper that writes a mass-action rate law under a squiggly arrow.</strong> This takes about ten minutes. Then work out whether the error matters for the paper's conclusion, which takes longer and is the actual exercise.</li>
+</ol>
+
+<h2 id="s22"><span class="n">22</span>What the record establishes</h2>
+<p class="lede">Four things are settled, one is an argument, and one is a correction to the field's memory.</p>
+
+<p><strong>Settled.</strong> There is a computable ceiling on bimolecular rate constants in solution, it is <span class="m">4&pi;(D<sub>A</sub>+D<sub>B</sub>)(a<sub>A</sub>+a<sub>B</sub>)</span>, and it is accurate: the fastest enzyme ever measured sits at 73% of its own pair-specific value. The median enzyme sits five decades below. Binding therefore equilibrates about <span class="m">10<sup>4</sup></span> times per catalytic turnover, and that ratio is a measurement rather than a modelling assumption. And metabolite pools turn over hundreds to tens of thousands of times faster than gene expression can respond, so a fast regulatory layer is not optional.</p>
+
+<p><strong>An argument.</strong> Whether the gap is best understood as weak selection or as a structural condition for control. Both readings fit the data of &sect;6, they differ in what they predict about the most heavily selected enzymes, and &sect;20 says what would settle it. This course takes the structural reading, and lecture 8 states it as a thesis that students are invited to attack.</p>
+
+<p><strong>A correction.</strong> Four pieces of standard retelling did not survive contact with the sources. Brown was watching organelles half a micron across, not pollen grains a hundred microns across, and the corrected calibration is <em>better</em> than the textbook one. The familiar count of <span class="m">2&times;10<sup>7</sup></span> proteins per bacterium is an upper bound that assumes the cell is dry. The constant Michaelis and Menten actually determined in 1913 was the specificity constant, not the Michaelis constant. And the lac repressor's superlative on-rate, though real, has been generalised into a claim about DNA-binding proteins that the measurements do not support.</p>
+
+<p>None of those corrections changes the conclusion. All four of them change how it should be taught, which is the point of writing this down.</p>
+
+<hr>
+
+<h2 id="refs">References</h2>
+<p class="lede">Every entry was read in full for this essay unless marked <span class="pdf no">NEEDED</span>, which means the claim resting on it is attributed to a secondary source that was read. Links go to the canonical open copy where one exists. The project's local full-text archive is not redistributed. The lecture itself is the <a href="../core/">core page</a>, and the tutorial version is the <a href="../exposition/">exposition</a>.</p>
+
+<div class="refs">
+<ol>
+<li id="r-volkmer">B. Volkmer, M. Heinemann. Condition-dependent cell volume and concentration of <i>Escherichia coli</i> to facilitate data conversion for systems biology modeling. <span class="venue"><i>PLoS ONE</i> 6:e23126, 2011.</span> <a class="pdf" href="https://doi.org/10.1371/journal.pone.0023126">PDF</a></li>
+<li id="r-milo2013">R. Milo. What is the total number of protein molecules per cell volume? A call to rethink some published values. <span class="venue"><i>BioEssays</i> 35:1050&ndash;1055, 2013.</span> <a class="pdf" href="https://doi.org/10.1002/bies.201300066">PDF</a></li>
+<li id="r-bennett">B. D. Bennett, E. H. Kimball, M. Gao, R. Osterhout, S. J. Van Dien, J. D. Rabinowitz. Absolute metabolite concentrations and implied enzyme active site occupancy in <i>Escherichia coli</i>. <span class="venue"><i>Nature Chemical Biology</i> 5:593&ndash;599, 2009.</span> <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2754216/">PDF</a></li>
+<li id="r-pearle">P. Pearle, B. Collett, K. Bart, D. Bilderback, D. Newman, S. Samuels. What Brown saw and you can too. <span class="venue"><i>American Journal of Physics</i> 78:1278&ndash;1289, 2010.</span> <a class="pdf" href="https://arxiv.org/abs/1008.0039">PDF</a></li>
+<li id="r-einstein">A. Einstein. On the movement of small particles suspended in a stationary liquid demanded by the molecular-kinetic theory of heat. <span class="venue"><i>Annalen der Physik</i> 17:549&ndash;560, 1905; F&uuml;rth and Cowper translation, 1926.</span> <a class="pdf" href="https://jxshix.people.wm.edu/math490-2009/AEinstein-1905-MovBrowniano.pdf">PDF</a></li>
+<li id="r-guldberg">C. M. Guldberg, P. Waage. Studies concerning affinity. <span class="venue"><i>Forhandlinger i Videnskabs-Selskabet i Christiania</i>, 1864; H. I. Abrash translation, <i>Journal of Chemical Education</i> 63:1044&ndash;1047, 1986.</span> <span class="pdf">read</span></li>
+<li id="r-vanthoff">J. H. van 't Hoff. <i>&Eacute;tudes de dynamique chimique.</i> <span class="venue">Frederik Muller, Amsterdam, 1884.</span> <span class="pdf">read</span></li>
+<li id="r-hornjackson">F. Horn, R. Jackson. General mass action kinetics. <span class="venue"><i>Archive for Rational Mechanics and Analysis</i> 47:81&ndash;116, 1972.</span> <span class="pdf">read</span></li>
+<li id="r-smol">M. von Smoluchowski. Versuch einer mathematischen Theorie der Koagulationskinetik kolloider L&ouml;sungen. <span class="venue"><i>Zeitschrift f&uuml;r physikalische Chemie</i> 92:129&ndash;168, 1918 (submitted 1916).</span> <a class="pdf no">NEEDED</a> <span class="venue">The <span class="m">4&pi;Da</span> attribution here rests on Halford and Marko and on Stroppolo et al., both read in full.</span></li>
+<li id="r-bergpurcell">H. C. Berg, E. M. Purcell. Physics of chemoreception. <span class="venue"><i>Biophysical Journal</i> 20:193&ndash;219, 1977.</span> <a class="pdf" href="https://doi.org/10.1016/S0006-3495(77)85544-6">PDF</a></li>
+<li id="r-northrup">S. H. Northrup, H. P. Erickson. Kinetics of protein-protein association explained by Brownian dynamics computer simulation. <span class="venue"><i>PNAS</i> 89:3338&ndash;3342, 1992.</span> <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC48862/">PDF</a></li>
+<li id="r-johnsongoody">K. A. Johnson, R. S. Goody. The original Michaelis constant: translation of the 1913 Michaelis-Menten paper. <span class="venue"><i>Biochemistry</i> 50:8264&ndash;8269, 2011.</span> <a class="pdf" href="https://doi.org/10.1021/bi201284u">PDF</a></li>
+<li id="r-briggshaldane">G. E. Briggs, J. B. S. Haldane. A note on the kinetics of enzyme action. <span class="venue"><i>Biochemical Journal</i> 19:338&ndash;339, 1925.</span> <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1259181/">PDF</a></li>
+<li id="r-barEven">A. Bar-Even, E. Noor, Y. Savir, W. Liebermeister, D. Davidi, D. S. Tawfik, R. Milo. The moderately efficient enzyme. <span class="venue"><i>Biochemistry</i> 50:4402&ndash;4410, 2011.</span> <a class="pdf" href="https://doi.org/10.1021/bi2002289">PDF</a></li>
+<li id="r-halford">S. E. Halford, J. F. Marko. How do site-specific DNA-binding proteins find their targets? <span class="venue"><i>Nucleic Acids Research</i> 32:3040&ndash;3052, 2004.</span> <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC434431/">PDF</a></li>
+<li id="r-stroppolo">M. E. Stroppolo, M. Falconi, A. M. Caccuri, A. Desideri. Superefficient enzymes. <span class="venue"><i>Cellular and Molecular Life Sciences</i> 58:1451&ndash;1460, 2001.</span> <a class="pdf" href="https://doi.org/10.1007/PL00000788">PDF</a></li>
+<li id="r-gunawardena">J. Gunawardena. Time-scale separation: Michaelis and Menten's old idea, still bearing fruit. <span class="venue"><i>FEBS Journal</i> 281:473&ndash;488, 2014.</span> <a class="pdf" href="https://doi.org/10.1111/febs.12532">PDF</a></li>
+<li id="r-bernstein">J. A. Bernstein, A. B. Khodursky, P.-H. Lin, S. Lin-Chao, S. N. Cohen. Global analysis of mRNA decay and abundance in <i>Escherichia coli</i> at single-gene resolution. <span class="venue"><i>PNAS</i> 99:9697&ndash;9702, 2002.</span> <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC124983/">PDF</a></li>
+<li id="r-umbarger">H. E. Umbarger. Evidence for a negative-feedback mechanism in the biosynthesis of isoleucine. <span class="venue"><i>Science</i> 123:848, 1956.</span> <span class="pdf">read</span></li>
+<li id="r-yatespardee">R. A. Yates, A. B. Pardee. Control of pyrimidine biosynthesis in <i>Escherichia coli</i> by a feed-back mechanism. <span class="venue"><i>Journal of Biological Chemistry</i> 221:757&ndash;770, 1956.</span> <span class="pdf">read</span></li>
+<li id="r-mwc">J. Monod, J. Wyman, J.-P. Changeux. On the nature of allosteric transitions: a plausible model. <span class="venue"><i>Journal of Molecular Biology</i> 12:88&ndash;118, 1965.</span> <a class="pdf" href="https://doi.org/10.1016/S0022-2836(65)80285-6">PDF</a></li>
+<li id="r-stadtman">E. R. Stadtman. Allosteric regulation of enzyme activity. <span class="venue"><i>Advances in Enzymology</i> 28:41&ndash;154, 1966.</span> <span class="pdf">read</span></li>
+<li id="r-link">H. Link, K. Kochanowski, U. Sauer. Systematic identification of allosteric protein-metabolite interactions that control enzyme activity in vivo. <span class="venue"><i>Nature Biotechnology</i> 31:357&ndash;361, 2013.</span> <a class="pdf" href="https://doi.org/10.1038/nbt.2489">PDF</a></li>
+<li id="r-elowitz">M. B. Elowitz, M. G. Surette, P.-E. Wolf, J. B. Stock, S. Leibler. Protein mobility in the cytoplasm of <i>Escherichia coli</i>. <span class="venue"><i>Journal of Bacteriology</i> 181:197&ndash;203, 1999.</span> <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC103549/">PDF</a></li>
+<li id="r-konopka">M. C. Konopka, I. A. Shkel, S. Cayley, M. T. Record, J. C. Weisshaar. Crowding and confinement effects on protein diffusion in vivo. <span class="venue"><i>Journal of Bacteriology</i> 188:6115&ndash;6123, 2006.</span> <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1595386/">PDF</a></li>
+<li id="r-phillipsmilo">R. Phillips, R. Milo. A feeling for the numbers in biology. <span class="venue"><i>PNAS</i> 106:21465&ndash;21471, 2009.</span> <a class="pdf" href="https://doi.org/10.1073/pnas.0907732106">PDF</a></li>
+<li id="r-bionumbers">R. Milo, P. Jorgensen, U. Moran, G. Weber, M. Springer. BioNumbers, the database of key numbers in molecular and cell biology. <span class="venue"><i>Nucleic Acids Research</i> 38:D750&ndash;D753, 2010.</span> <a class="pdf" href="https://doi.org/10.1093/nar/gkp889">PDF</a></li>
+<li id="r-davidi">D. Davidi, E. Noor, W. Liebermeister, A. Bar-Even, A. Flamholz, K. Tummler, U. Barenholz, M. Goldenfeld, T. Shlomi, R. Milo. Global characterization of in vivo enzyme catalytic rates and their correspondence to in vitro <span class="m">k<sub>cat</sub></span> measurements. <span class="venue"><i>PNAS</i> 113:3401&ndash;3406, 2016.</span> <a class="pdf" href="https://doi.org/10.1073/pnas.1514240113">PDF</a></li>
+<li id="r-erickson">H. P. Erickson. Size and shape of protein molecules at the nanometer level determined by sedimentation, gel filtration, and electron microscopy. <span class="venue"><i>Biological Procedures Online</i> 11:32&ndash;51, 2009.</span> <a class="pdf" href="https://doi.org/10.1007/s12575-009-9008-x">PDF</a></li>
+</ol>
+</div>
+
+</main>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  function css(v){ return getComputedStyle(root).getPropertyValue(v).trim(); }
+  function axes(ctx,W,H,pad,xlab,ylab){
+    ctx.strokeStyle=css('--gray'); ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(pad.l,pad.t); ctx.lineTo(pad.l,H-pad.b); ctx.lineTo(W-pad.r,H-pad.b); ctx.stroke();
+    ctx.fillStyle=css('--gray'); ctx.font='11px -apple-system,system-ui,sans-serif';
+    ctx.textAlign='center'; ctx.fillText(xlab,(pad.l+W-pad.r)/2,H-6);
+    ctx.save(); ctx.translate(12,(pad.t+H-pad.b)/2); ctx.rotate(-Math.PI/2); ctx.fillText(ylab,0,0); ctx.restore();
+    ctx.textAlign='left';
+  }
+
+  // ---------- demo 1: QSSA against the full system ------------------------
+  (function(){
+    var cv=document.getElementById('c-qssa'); if(!cv) return;
+    var ctx=cv.getContext('2d'), S={kcat:10, ET:1.0, S0:1000};
+    function run(){
+      // Units: uM and s.  kon = 100 /uM/s, which is 1e8 /M/s.  KD = 100 uM.
+      // Ten decades of time need an adaptive step, so dt grows with t and is always
+      // small against the fastest rate present.
+      var kon=100, KD=100, koff=kon*KD, kcat=S.kcat, ET=S.ET, S0=S.S0;
+      var KM=(koff+kcat)/kon, Css=ET*S0/(KM+S0);
+      var tauB=1/(kon*(ET+S0)+koff+kcat), tauC=1/kcat;
+      var t=1e-10, C=0, Sf=S0, P=0, pts=[], tEnd=Math.min(50*tauC, 1e5);
+      var tBind=null, tProd=null;
+      while(t<tEnd && pts.length<12000){
+        var lam=kon*Sf+koff+kcat;
+        var dt=Math.min(0.03*t+1e-11, tEnd/300);   // exponential Euler on C is stable at any dt
+        var Cst=kon*ET*Sf/lam;
+        C = Cst + (C-Cst)*Math.exp(-lam*dt);
+        Sf += (-kon*(ET-C)*Sf + koff*C)*dt; if(Sf<0) Sf=0;
+        P  += kcat*C*dt;
+        t  += dt;
+        if(tBind===null && C>0.98*Css) tBind=t;
+        pts.push([t, C/Math.max(Css,1e-12), P]);
+      }
+      var Pend=pts.length?pts[pts.length-1][2]:1;
+      for(var i=0;i<pts.length;i++){
+        pts[i][2] /= Math.max(Pend,1e-12);
+        if(tProd===null && pts[i][2]>0.01) tProd=pts[i][0];
+      }
+      return {pts:pts, tauB:tauB, tauC:tauC, Css:Css, tBind:tBind, tProd:tProd, tEnd:t};
+    }
+    function draw(){
+      var W=cv.width,H=cv.height,pad={l:52,r:16,t:20,b:36}, r=run();
+      ctx.clearRect(0,0,W,H);
+      var lo=-9, hi=Math.ceil(Math.log10(r.tEnd));
+      function X(t){ return pad.l+(Math.log10(Math.max(t,1e-10))-lo)/(hi-lo)*(W-pad.l-pad.r); }
+      function Y(v){ return H-pad.b-Math.min(v,1.05)*(H-pad.t-pad.b)/1.05; }
+      ctx.strokeStyle=css('--gridc'); ctx.lineWidth=1;
+      ctx.font='11px -apple-system,system-ui,sans-serif';
+      for(var e=lo;e<=hi;e++){
+        ctx.beginPath(); ctx.moveTo(X(Math.pow(10,e)),pad.t); ctx.lineTo(X(Math.pow(10,e)),H-pad.b); ctx.stroke();
+      }
+      ctx.fillStyle=css('--gray'); ctx.textAlign='center';
+      var NAME={'-9':'1 ns','-8':'10 ns','-7':'100 ns','-6':'1 \u00b5s','-5':'10 \u00b5s','-4':'100 \u00b5s',
+                '-3':'1 ms','-2':'10 ms','-1':'100 ms','0':'1 s','1':'10 s','2':'100 s','3':'17 min','4':'3 h'};
+      var stride = (hi-lo) > 8 ? 3 : ((hi-lo) > 4 ? 2 : 1);
+      for(var q=hi; q>=lo; q-=stride){
+        var px=X(Math.pow(10,q)); if(px < pad.l-2 || px > W-pad.r+2) continue;
+        ctx.fillText(NAME[String(q)]||('10^'+q), Math.min(Math.max(px, pad.l+16), W-pad.r-16), H-pad.b+18);
+      }
+      ctx.textAlign='left';
+      axes(ctx,W,H,pad,'','fraction of the way there');
+      function line(idx,col,w){ ctx.strokeStyle=col; ctx.lineWidth=w; ctx.beginPath();
+        r.pts.forEach(function(p,i){ i?ctx.lineTo(X(p[0]),Y(p[idx])):ctx.moveTo(X(p[0]),Y(p[idx])); }); ctx.stroke(); }
+      line(1, css('--peri'), 2.6);
+      line(2, css('--rose'), 2.6);
+      if(r.tBind){ ctx.setLineDash([3,3]); ctx.strokeStyle=css('--peri');
+        ctx.beginPath(); ctx.moveTo(X(r.tBind),pad.t); ctx.lineTo(X(r.tBind),H-pad.b); ctx.stroke(); ctx.setLineDash([]); }
+      ctx.fillStyle=css('--peri'); ctx.fillText('complex, filling to its equilibrium', pad.l+10, pad.t+14);
+      ctx.fillStyle=css('--rose'); ctx.fillText('product, as a fraction of what is made by the end', pad.l+10, pad.t+29);
+      var gap = r.tBind ? r.tauC/r.tBind : null;
+      document.getElementById('r-qssa').innerHTML =
+        '\u03c4<sub>bind</sub> = <b>'+r.tauB.toExponential(1)+' s</b> &nbsp;\u00b7&nbsp; \u03c4<sub>cat</sub> = <b>'+
+        r.tauC.toExponential(1)+' s</b> &nbsp;\u00b7&nbsp; separation <b>'+(r.tauC/r.tauB).toPrecision(3)+
+        '</b>' + (gap ? ' &nbsp;\u00b7&nbsp; the complex is within 2% of equilibrium <b'+(gap<10?' style="color:'+css('--coral')+'"':'')+'>'+
+        gap.toPrecision(2)+'\u00d7</b> sooner than one turnover' : '');
+    }
+    window.__redraw=draw;
+    [['s-kcat','kcat','v-kcat',function(v){return Math.pow(10,-1+5*v/100);},
+      function(v){return v<1?v.toFixed(2):(v<1000?v.toFixed(0):v.toExponential(0));}],
+     ['s-et','ET','v-et',function(v){return Math.pow(10,-2+4*v/100);},
+      function(v){return v<1?v.toFixed(2):v.toFixed(1);}],
+     ['s-s0','S0','v-s0',function(v){return Math.pow(10,4*v/100);},
+      function(v){return v<10?v.toFixed(1):v.toFixed(0);}]]
+    .forEach(function(c){ var el=document.getElementById(c[0]), out=document.getElementById(c[2]);
+      function up(){ S[c[1]]=c[3](+el.value); out.textContent=c[4](S[c[1]]); draw(); }
+      el.oninput=up; up(); });
+    addEventListener('resize',draw);
+  })();
+
+  // ---------- demo 2: expression control against allosteric control -------
+  (function(){
+    var cv=document.getElementById('c-ctrl'); if(!cv) return;
+    var ctx=cv.getContext('2d'), S={step:2.0, Td:40, n:2.0};
+    function run(){
+      // A metabolite pool M held at a set point by an enzyme that is SATURATED, so its
+      // rate does not fall when the pool falls. Consumption is Michaelis-Menten with
+      // KM well below the set point, which is what Bennett et al. measured for most pairs.
+      // Two controllers, same gain n, different speed.
+      //   expression : synthesis of enzyme responds to M, but the level relaxes at mu.
+      //   binding    : the activity of the enzyme already present responds to M at once.
+      var J0=0.73, Mset=1.0, KMr=0.1, emax=20, T=6000, dt=0.25;
+      var mu=Math.LN2/(S.Td*60), vmax=J0*(KMr+Mset)/Mset;
+      var Me=Mset, e=1.0, Ma=Mset, A=[], B=[], J;
+      for(var t=0;t<T;t+=dt){
+        J = (t<300) ? J0 : J0*S.step;
+        var g = Math.min(Math.pow(Me/Mset, S.n), emax);
+        e  += mu*(g - e)*dt;
+        Me += (J - e*vmax*Me/(KMr+Me))*dt; if(Me<1e-4) Me=1e-4;
+        var a = Math.min(Math.pow(Ma/Mset, S.n), emax);
+        Ma += (J - a*vmax*Ma/(KMr+Ma))*dt; if(Ma<1e-4) Ma=1e-4;
+        A.push([t,Me]); B.push([t,Ma]);
+      }
+      var pe=0, pa=0;
+      A.forEach(function(p){ pe=Math.max(pe,p[1]); });
+      B.forEach(function(p){ pa=Math.max(pa,p[1]); });
+      return {A:A,B:B,peakE:pe,peakA:pa,T:T};
+    }
+    function draw(){
+      var W=cv.width,H=cv.height,pad={l:60,r:16,t:18,b:34}, r=run();
+      ctx.clearRect(0,0,W,H);
+      var lo=Math.log10(0.5), hi=Math.log10(Math.max(r.peakE,r.peakA)*1.6);
+      function X(t){ return pad.l+t/r.T*(W-pad.l-pad.r); }
+      function Y(v){ return H-pad.b-(Math.log10(Math.max(v,0.5))-lo)/(hi-lo)*(H-pad.t-pad.b); }
+      ctx.strokeStyle=css('--gridc'); ctx.lineWidth=1;
+      ctx.font='11px -apple-system,system-ui,sans-serif'; ctx.fillStyle=css('--gray');
+      for(var e=Math.ceil(lo);e<=hi;e++){
+        var yv=Math.pow(10,e);
+        ctx.beginPath(); ctx.moveTo(pad.l,Y(yv)); ctx.lineTo(W-pad.r,Y(yv)); ctx.stroke();
+        ctx.textAlign='right'; ctx.fillText((e<0?yv.toFixed(1):'\u00d7'+yv), pad.l-6, Y(yv)+4); ctx.textAlign='left';
+      }
+      axes(ctx,W,H,pad,'time (s)','pool, relative to its set point');
+      ctx.setLineDash([3,3]); ctx.strokeStyle=css('--gray');
+      ctx.beginPath(); ctx.moveTo(X(300),pad.t); ctx.lineTo(X(300),H-pad.b); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle=css('--gray'); ctx.fillText('influx steps up', X(300)+6, pad.t+13);
+      function line(d,col,w){ ctx.strokeStyle=col; ctx.lineWidth=w; ctx.beginPath();
+        d.forEach(function(p,i){ i?ctx.lineTo(X(p[0]),Y(p[1])):ctx.moveTo(X(p[0]),Y(p[1])); }); ctx.stroke(); }
+      line(r.A, css('--coral'), 2.6);
+      line(r.B, css('--teal'), 2.6);
+      ctx.fillStyle=css('--coral'); ctx.fillText('regulated by expression', W-pad.r-190, pad.t+13);
+      ctx.fillStyle=css('--teal');  ctx.fillText('regulated by binding', W-pad.r-190, pad.t+28);
+      document.getElementById('r-ctrl').innerHTML =
+        'peak excursion &nbsp;\u00b7&nbsp; expression <b style="color:'+css('--coral')+'">\u00d7'+
+        r.peakE.toFixed(1)+'</b> &nbsp;\u00b7&nbsp; binding <b style="color:'+css('--teal')+'">\u00d7'+
+        r.peakA.toFixed(2)+'</b> &nbsp;\u00b7&nbsp; the fast layer holds the pool <b>'+
+        (r.peakE/r.peakA).toFixed(0)+'</b> times tighter';
+    }
+    var old=window.__redraw;
+    window.__redraw=function(){ if(old) old(); draw(); };
+    [['s-step','step','v-step',function(v){return v/10;},function(v){return v.toFixed(1);}],
+     ['s-td','Td','v-td',function(v){return v;},function(v){return v.toFixed(0);}],
+     ['s-nh','n','v-nh',function(v){return v/10;},function(v){return v.toFixed(1);}]]
+    .forEach(function(c){ var el=document.getElementById(c[0]), out=document.getElementById(c[2]);
+      function up(){ S[c[1]]=c[3](+el.value); out.textContent=c[4](S[c[1]]); draw(); }
+      el.oninput=up; up(); });
+    addEventListener('resize',draw);
+  })();
+})();
+</script>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('tt');
+  function apply(){document.documentElement.setAttribute('data-theme',
+    (typeof localStorage!=='undefined'&&localStorage.getItem('th')==='dark')?'dark':'light');}
+  b.addEventListener('click',function(){var d=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
+    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();if(window.__redraw)window.__redraw();});
+  if(typeof localStorage!=='undefined'&&!localStorage.getItem('th')){var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';localStorage.setItem('th',d);}
+  apply();
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  function hi(){var y=window.scrollY+80,cur=null;links.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t&&t.offsetTop<=y)cur=a;});links.forEach(function(a){a.classList.toggle('on',a===cur);});}
+  addEventListener('scroll',hi,{passive:true});hi();
+})();
+</script>
+</body>
+</html>
