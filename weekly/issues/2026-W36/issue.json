@@ -1,0 +1,184 @@
+{
+  "end_date": "2026-08-31",
+  "papers": [
+    {
+      "authors": [
+        "Chaosheng Zhou",
+        "Yue Wu",
+        "Maocang Yan",
+        "Rongmao Lu",
+        "Xiaolin Huang",
+        "Shaoguo Ru"
+      ],
+      "category": "core",
+      "key_finding": "Salinity and cultivation system were major correlates of community variation, with earthen brackish ponds showing more stable succession but increasing potentially pathogenic genera over time.",
+      "pdf_url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2026.1899440/pdf",
+      "published": "2026-08-26",
+      "title": "A comparative observational study of prokaryotic microbial community dynamics across different Litopenaeus vannamei cultivation systems",
+      "tldr": "A comparative observational study of prokaryotic communities in three Litopenaeus vannamei cultivation systems found system-specific diversity and composition, with earthen brackish ponds showing higher alpha-diversity but increasing potential pathogens, while concrete seawater ponds had the highest predicted metabolic potential.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.3389/fmars.2026.1899440",
+      "venue": "Frontiers in Marine Science",
+      "why_relevant": "This provides empirical baselines for microbial community dynamics in aquaculture, relevant to your interest in microbial population dynamics and community ecology."
+    },
+    {
+      "authors": [
+        "Natawan Gadjisade",
+        "Matteo Mori",
+        "Tobias Bollenbach"
+      ],
+      "category": "core",
+      "key_finding": "Antibiotics disrupting translation initiation or fidelity do not elicit the canonical ribosome upregulation, and combining antibiotics reveals a generalized growth law where individual responses superimpose.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/08/24/2026.08.21.746212.full.pdf",
+      "published": "2026-08-24",
+      "title": "A generalized growth law for translation- and transcription-targeting antibiotics captures drug interactions",
+      "tldr": "A generalized bacterial growth law for translation- and transcription-targeting antibiotics was developed, showing that ribosome responses vary by antibiotic mechanism and that individual responses superimpose to predict drug interactions.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.64898/2026.08.21.746212",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "This extends bacterial growth laws to antibiotic perturbations, directly relevant to your work on microbial physiology, growth laws, and antibiotic resistance."
+    },
+    {
+      "authors": [
+        "T Paez-Watson",
+        "M Suarez-Diez",
+        "F Bruggeman"
+      ],
+      "category": "core",
+      "key_finding": "The method predicts optimal community composition and metabolic strategies, illustrated on a two-species synergistic community, a five-member anaerobic digestion community, and a syngas-fermenting coculture.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/08/21/2026.08.20.745959.full.pdf",
+      "published": "2026-08-21",
+      "title": "Flux balance analysis of microbial communities from metabolic strategies: composition, cross-feeding and ecological service",
+      "tldr": "A physiology-based formulation of community flux balance analysis reduces each species' metabolism to macrochemical equations, enabling prediction of community composition, growth rate, and metabolic exchanges as a single linear program.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://www.biorxiv.org/content/10.64898/2026.08.20.745959.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "This offers a scalable tool for modeling microbial community metabolism and cross-feeding, relevant to your interest in microbial community ecology and metabolic networks."
+    },
+    {
+      "authors": [
+        "Yuan Chen",
+        "Weize Mao",
+        "Dongbin Xiu"
+      ],
+      "category": "core",
+      "key_finding": "The trained stochastic propagator generates statistically consistent trajectories with significantly reduced computational cost compared to the Stochastic Simulation Algorithm.",
+      "pdf_url": "https://arxiv.org/pdf/2608.25421",
+      "published": "2026-08-26",
+      "title": "Data-driven Effective Modeling of Stochastic Chemical Reaction Networks",
+      "tldr": "A data-driven effective model for stochastic chemical reaction networks approximates the finite-time transition kernel using conditional normalizing flows, enabling efficient simulation at coarse time steps.",
+      "topics": [
+        "Biomolecular control"
+      ],
+      "url": "https://arxiv.org/abs/2608.25421",
+      "venue": "arXiv (Cornell University)",
+      "why_relevant": "This enabling-method could accelerate simulations of biochemical reaction networks, relevant to your interest in biomolecular and biochemical reaction networks."
+    },
+    {
+      "authors": [
+        "Miao Lin",
+        "Shan Hua",
+        "Cody J. Naccarato",
+        "Zhao Zhang",
+        "Zhijie Liu",
+        "Fen Guo",
+        "Vanessa Horner",
+        "M. Anwar Iqbal",
+        "Archibald Perkins",
+        "Patrick J. Murphy",
+        "Bin Zhang"
+      ],
+      "category": "core",
+      "key_finding": "Partial loss of centromeric chromatin triggers restoration via seed-driven expansion into adjacent naive chromatin, whereas boundary creation without mass loss only leads to local remodeling.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/08/17/2026.08.14.744943.full.pdf",
+      "published": "2026-08-17",
+      "title": "Ablation and Seed-driven Restoration of an Alpha-Satellite Devoid Human Centromere Reveals Size Homeostasis Mechanisms",
+      "tldr": "Using a genetically tractable human neocentromere system devoid of repetitive DNA, the study shows that centromere formation involves seed acquisition followed by regulated domain expansion, with size homeostasis maintaining domain size.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.64898/2026.08.14.744943",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "This reveals mechanisms of chromatin domain size homeostasis, relevant to your interest in cell division and size homeostasis, though in human cells rather than microbes."
+    },
+    {
+      "authors": [
+        "HX Shi",
+        "YP Chen",
+        "JS Guo",
+        "P Yan"
+      ],
+      "category": "core",
+      "key_finding": "",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Neglected drivers of antibiotic resistance dissemination: promoted the horizontal transfer of antibiotic resistance genes by quorum sensing-mediated filamentous …",
+      "tldr": "The abstract is incomplete, but the title suggests that quorum sensing-mediated filamentous processes promote horizontal transfer of antibiotic resistance genes, acting as neglected drivers of resistance dissemination.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://www.sciencedirect.com/science/article/pii/S0960852426016305",
+      "venue": "Bioresource Technology",
+      "why_relevant": "This connects to your interests in antibiotic resistance and microbial community dynamics, though the full abstract was unavailable."
+    },
+    {
+      "authors": [
+        "J. R. Lawrence",
+        "Isis Cohen Nicholson",
+        "Rebecca McCerery",
+        "Laure Newby",
+        "Rosalia Calvo‐Ryan",
+        "Andrew Nelson",
+        "Joseph A. Graly",
+        "Elisabeth Isaksson",
+        "Andrew Hodson",
+        "David A. Pearce"
+      ],
+      "category": "core",
+      "key_finding": "Firn microbial communities are spatially structured and depth-dependent, influenced by depositional variability and local geochemical conditions.",
+      "pdf_url": "https://academic.oup.com/femsec/advance-article-pdf/doi/10.1093/femsec/fiag095/70784763/fiag095.pdf",
+      "published": "2026-08-20",
+      "title": "Microbial community structure in the firn associated with a ∼1000 km transect of the Eastern Antarctic Ice Sheet",
+      "tldr": "Microbial community structure in firn cores along a ~1000 km transect of the Eastern Antarctic Ice Sheet showed spatial and vertical heterogeneity, with ion concentrations like phosphate correlating with diversity.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1093/femsec/fiag095",
+      "venue": "FEMS Microbiology Ecology",
+      "why_relevant": "This adds to understanding of microbial population dynamics in extreme environments, relevant to your interest in microbial community ecology."
+    },
+    {
+      "authors": [
+        "Deyong Zhu",
+        "Anna J. Svagan",
+        "Nan Yang",
+        "Mads Frederik Hansen",
+        "Michael Kühl",
+        "Mette Burmølle"
+      ],
+      "category": "core",
+      "key_finding": "Polymer-rich carbon substrates promote a highly structured biofilm organization, while diffusible simple carbon substrates yield intermixed communities, suggesting carbon substrate type as an ecological determinant.",
+      "pdf_url": "https://academic.oup.com/ismej/advance-article-pdf/doi/10.1093/ismejo/wrag223/70820975/wrag223.pdf",
+      "published": "2026-08-27",
+      "title": "Carbon substrate type shapes spatial self-organization in a multi-species biofilm community",
+      "tldr": "Carbon substrate type shapes spatial self-organization in a four-member synthetic biofilm community, with diffusible sugars leading to intermixed communities and polymeric substrates promoting structured organization with polymer-degrading species at the periphery.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1093/ismejo/wrag223",
+      "venue": "The ISME Journal",
+      "why_relevant": "This links environmental factors to spatial self-organization in biofilms, relevant to your interest in microbial community ecology and population dynamics."
+    }
+  ],
+  "run_key": "2026-W36",
+  "schema_version": 1,
+  "start_date": "2026-08-25",
+  "title": "BMAC Weekly — 2026-W36"
+}
