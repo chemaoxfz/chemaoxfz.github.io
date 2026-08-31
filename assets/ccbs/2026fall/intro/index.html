@@ -682,8 +682,9 @@ served.</p>
 
 <h3>How to sign up</h3>
 <p>You sign up by adding one small file to the course submissions repository and opening a
-pull request. Merging is automatic, so your sign-up lands within a minute or two of opening
-the request.</p>
+pull request. Once the checks run, merging is automatic, so your sign-up normally lands
+within a minute or two. GitHub may hold the first workflow run from a brand-new account for
+course-staff approval; if you see that message, tell a TA and keep the same pull request.</p>
 
 <figure>
 <div class="figbox">
@@ -735,9 +736,12 @@ once on Thursday and the rest of the term is muscle memory.</figcaption>
 <li>Go to <a href="https://github.com/chemaoxfz/ccbs-2026-submissions"><strong>github.com/chemaoxfz/ccbs-2026-submissions</strong></a> and press <strong>Fork</strong>.</li>
 <li>In your fork, create a file named <code>signup/lectureNN-yourname.md</code>, for example
 <code>signup/lecture09-tongli.md</code>. Copy <code>signup/TEMPLATE.md</code> and fill in your
-name, student ID, email, GitHub handle, the lecture number, and who your teammates are.</li>
+name, student ID, email, GitHub handle, the lecture number, and who your teammates are.
+The <code>github</code> field must be the account that opens the pull request.</li>
 <li>Open a pull request against <code>main</code>. Nothing else. Do not edit any other file.</li>
-<li>A bot checks the file and merges it. If it refuses, it tells you why in a comment. Fix and push again.</li>
+<li>A bot checks the name, size, sign-up fields, lecture capacity and ownership, then merges
+it. If it refuses, it tells you every problem in a comment. Fix and push again to the same
+branch.</li>
 <li>The live team roster is at <code>signup/ROSTER.md</code>, rebuilt on every merge. Check it to see which lectures still have room.</li>
 </ol>
 </div>
@@ -804,13 +808,21 @@ on the same question in the same week. The TAs assemble each week's essays into 
 writeup for the site.</p>
 
 <div class="box note">
-<span class="lbl">A worked example, written by me</span>
-<p>Here is one done properly, at the length and standard expected:
-<a href="../extension-example/"><strong>&ldquo;A ribosome's speed sets the shortest possible cell cycle&rdquo;</strong></a>.
-It takes one number from lecture 2, computes with it, gets a hard bound, checks the bound
-against the fastest-growing bacterium known, and lands on a claim that lecture 14 will pick
-up. That is the shape: one thing, taken seriously, told as a story, with a figure, ending
-somewhere the lecture did not go.</p>
+<span class="lbl">Two worked examples, written by me</span>
+<p>One for each of the first two lectures, so you can see the same format applied to
+different kinds of idea.</p>
+<ul>
+<li><a href="../lecture01/extension/"><strong>&ldquo;Two scaling laws, one theorem&rdquo;</strong></a>
+(lecture 1). Takes three derivations the lecture kept apart, shows that two of them are the
+same counting argument, and is honest that the third is not. That is the
+<em>connect two things</em> shape.</li>
+<li><a href="../extension-example/"><strong>&ldquo;A ribosome's speed sets the shortest possible cell cycle&rdquo;</strong></a>
+(lecture 2). Takes one number, computes with it, gets a hard bound, checks the bound against
+the fastest-growing bacterium known, and lands somewhere lecture 14 will pick up. That is the
+<em>push one number until it says something</em> shape.</li>
+</ul>
+<p>Both end with a section saying what was actually read and at what depth. Copy that habit.
+It is worth more than another paragraph of argument.</p>
 </div>
 
 <h3>When and how</h3>
@@ -841,7 +853,8 @@ TAs can assemble the week's page before we move on.</p>
 
 <p>Submit the same way as the sign-up: a pull request to the submissions repo, adding
 <code>weekN/weekN-yourname-ext.html</code>. Start from <code>TEMPLATE_ext.html</code>. A single
-self-contained HTML file, no external assets. Merging is automatic.</p>
+self-contained HTML file, no external assets. Use the same <code>yourname</code> as in your
+merged sign-up; the bot checks ownership and merges automatically.</p>
 
 <p>Five points each, best six counted. You get them for doing it properly: a real extension,
 clearly told, illustrated, with something you made and sources you read.</p>
@@ -1008,7 +1021,7 @@ the research essay on 11-05.</figcaption>
 <ol>
 <li><strong>Tonight or tomorrow:</strong> get an agent working. <a href="https://hpc.westlake.edu.cn/#/ai-campus">Westlake AI Campus</a> if you do not already have one. Bring a real question to Thursday's lecture.</li>
 <li><strong>Before Thursday 23:59:</strong> get a GitHub account, find two or three people you want to work with, pick a lecture, and open your sign-up pull request. The <a href="https://github.com/chemaoxfz/ccbs-2026-submissions">repository README</a> walks through it.</li>
-<li><strong>Before Monday 23:59:</strong> write your first extension mini-essay, on anything from lectures 1 or 2. Use <a href="../extension-example/">my example</a> as the model for length and shape.</li>
+<li><strong>Before Monday 23:59:</strong> write your first extension mini-essay, on anything from lectures 1 or 2. Use <a href="../lecture01/extension/">my lecture 1 example</a> as the model for shape.</li>
 </ol>
 
 <div class="box key">

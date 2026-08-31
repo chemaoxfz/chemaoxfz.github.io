@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lecture 1 · Order of magnitude: the physics · core · CCBS 2026</title>
-<meta name="description" content="Estimate fast, estimate robustly, and the world starts to look constrained. From a bomb yield read off a photograph to the one scaling that runs through the whole course.">
+<title>Lecture 1 · Order of magnitude, worked slowly · exposition · CCBS 2026</title>
+<meta name="description" content="The full tutorial version of lecture 1. Every derivation done rather than sketched, every number traced, and the failures left in.">
 <style>
 :root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
 --blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
@@ -111,193 +111,206 @@ sup.c a{color:inherit;text-decoration:none}
 <button id="tt" title="Toggle light / dark">&#9689;</button>
 <div class="wrap">
 <nav class="toc" id="toc">
-  <div class="brand">CCBS &middot; 2026 &middot; Lecture 1 &middot; CORE</div>
+  <div class="brand">CCBS &middot; 2026 &middot; Lecture 1 &middot; EXPOSITION</div>
   <h2>Contents</h2>
   <ol>
-    <li class="part">Part 1 &middot; The course</li>
-    <li><a href="#s1">1 &middot; What this course is</a></li>
-    <li class="part">Part 2 &middot; The method</li>
-    <li><a href="#s2">2 &middot; What the method is</a></li>
-    <li><a href="#s3">3 &middot; Dimensional analysis: one theorem</a></li>
-    <li><a href="#s4">4 &middot; Trinity: a yield from a photograph</a></li>
-    <li><a href="#s5">5 &middot; Hangzhou: naming the bottleneck</a></li>
-    <li class="part">Part 3 &middot; The scales</li>
-    <li><a href="#s6">6 &middot; Jump height, and the wall at &tau; = L/v</a></li>
-    <li><a href="#s7">7 &middot; Heat, and t &asymp; x&sup2;/&kappa;</a></li>
-    <li><a href="#s8">8 &middot; Life at low Reynolds number</a></li>
-    <li class="part">Part 4 &middot; Using it</li>
-    <li><a href="#s9">9 &middot; Null models</a></li>
-    <li><a href="#s10">10 &middot; This week</a></li>
+    <li class="part">Part 1 &middot; Getting started</li>
+    <li><a href="#s1">1 &middot; How to read this</a></li>
+    <li><a href="#s2">2 &middot; Your first estimate, badly</a></li>
+    <li><a href="#s3">3 &middot; What "order of magnitude" buys</a></li>
+    <li class="part">Part 2 &middot; Move one: count</li>
+    <li><a href="#s4">4 &middot; Units as a constraint</a></li>
+    <li><a href="#s5">5 &middot; The &Pi; theorem, worked slowly</a></li>
+    <li><a href="#s6">6 &middot; Three worked &Pi; problems</a></li>
+    <li><a href="#s7">7 &middot; The blast wave, start to finish</a></li>
+    <li><a href="#s8">8 &middot; When counting is not enough</a></li>
+    <li class="part">Part 3 &middot; Move two: bottleneck</li>
+    <li><a href="#s9">9 &middot; Hangzhou, all the way down</a></li>
+    <li><a href="#s10">10 &middot; Bombs: terminal velocity</a></li>
+    <li><a href="#s11">11 &middot; Why bombs got smaller</a></li>
+    <li class="part">Part 4 &middot; Move three: anchor</li>
+    <li><a href="#s12">12 &middot; Jump height, derived properly</a></li>
+    <li><a href="#s13">13 &middot; The power wall, and the spring</a></li>
+    <li><a href="#s14">14 &middot; Heat: deriving t = x&sup2;/&kappa;</a></li>
+    <li><a href="#s15">15 &middot; The potato, and how to catch it</a></li>
+    <li class="part">Part 5 &middot; Into the cell</li>
+    <li><a href="#s16">16 &middot; Life at low Reynolds number</a></li>
+    <li><a href="#s17">17 &middot; Diffusion, and why it decides</a></li>
+    <li><a href="#s18">18 &middot; The null model, and its limit</a></li>
+    <li class="part">Part 6 &middot; Practice</li>
+    <li><a href="#s19">19 &middot; The checklist</a></li>
+    <li><a href="#s20">20 &middot; Ten questions</a></li>
     <li class="part">Appendix</li>
-    <li><a href="#refs">References &amp; sources</a></li>
+    <li><a href="#refs">References</a></li>
   </ol>
 </nav>
 <main>
 
-<h1>Order of magnitude: the physics</h1>
-<p class="sub">Estimate fast, estimate robustly, and the world starts to look constrained. From a bomb yield read off a photograph to the one scaling that runs through the whole course.</p>
-<p class="byline">CCBS &middot; EST 5053 &middot; Fall 2026 &middot; lecture 1 &middot; core page &middot; 2026-09-01 (Tue) 10:40&ndash;12:15 &middot; lecturer-taught</p>
+<h1>Order of magnitude, worked slowly</h1>
+<p class="sub">The full tutorial version of lecture 1. Every derivation done rather than sketched, every number traced, and the failures left in.</p>
+<p class="byline">CCBS &middot; EST 5053 &middot; Fall 2026 &middot; lecture 1 &middot; exposition &middot; the lecturer's model of the artifact each team produces</p>
 
-<p>This lecture opens the course and then teaches its first tool. The first fifteen minutes are the rules. The rest is order-of-magnitude reasoning on the physics side, where the quantities are lengths, times, energies, and the scaling laws that tie them together. Lecture 2 does the same for biology and chemistry.</p>
-
-<p>The claim being made for the method is stronger than it first sounds, so it is worth stating plainly at the top. Order-of-magnitude reasoning is not a way of getting approximate answers quickly. It is a way of finding <strong>the one constraint that decides a problem</strong>, before you have a model and often before you have data. The answer it produces is a by-product. The constraint is the point.</p>
+<p>This is the third of lecture 1's three pages, and the longest. The <a href="../core/">core</a> is the spine of the ninety-five minutes. The <a href="../lineage/">lineage</a> is where the method came from. This page is the one to read afterwards, with a pen, when you actually want to be able to do it.</p>
 
 <div class="box key">
-<span class="lbl">The rules of the course live on their own page</span>
-<p>How the course runs, what you hand in, how you are graded, and where to get the AI tools is the <a href="../../intro/">course organization page</a>. It is the first fifteen minutes of this lecture, and it is the reference you come back to all term.</p>
-</div>
-
-<div class="box note">
-<span class="lbl">Three pages, three depths</span>
-<p>This is the <strong>core</strong>: the spine of the lecture, with every calculation carried through. Two companions go further. <a href="../lineage/">Where this method comes from</a> traces the history, from Galileo through Buckingham, Taylor, Fermi and Purcell to the Caltech course this one descends from. <a href="../exposition/">The full exposition</a> is the tutorial read: the same material slowly, with the derivations done rather than sketched. Both are worth your time after the lecture, not during it.</p>
+<span class="lbl">This page is also an example of an assignment</span>
+<p>Every teaching team produces an <strong>exposition</strong> after they teach. This is the lecturer's, for lecture 1, and it is here to set the standard rather than to intimidate. What makes it worth reading is not its length. It is that the derivations are complete, the numbers come from code you can run, and the two places where the lecture's own reasoning breaks are left visible instead of tidied away. Aim at those three properties. The word count will follow or it will not, and it does not matter.</p>
 </div>
 
 <div class="parthead">
   <div class="k">Part 1</div>
-  <h2>The course</h2>
-  <p>What this is, in one section. The full rules live on the organization page.</p>
+  <h2>Getting started</h2>
+  <p>Do one badly before reading how to do one well.</p>
 </div>
 
-<h2 id="s1"><span class="n">1</span>What this course is</h2>
-<p class="lede">Physics, system, industry: three schools asking three questions about life, and one course whose tools aim at all three.</p>
+<h2 id="s1"><span class="n">1</span>How to read this</h2>
+<p class="lede">Slowly, with paper, and out of order if you like.</p>
 
-<p>CCBS reads a cell as a machine you can reason about quantitatively. Three schools frame the reasoning, each asking its own question. <strong>Physics</strong> asks what life is as an object: sizes, rates, energies, and the constraints they impose. That is lectures 1, 2 and 7. <strong>System</strong> asks how life works as a machine: reaction networks, dynamics, feedback, stochasticity, computation. That is lectures 3 to 6 and 12. <strong>Industry</strong> asks how life could be useful as a tool: design a protein, engineer a metabolism, grow a machine. That is lectures 13 to 16. Each school has its own origins, its own analysis style, and its own goals. The course's promise is that you will leave able to reason about any biological problem with all three at once.</p>
+<p>Parts 2 to 4 are the three moves of the method, one part each, and they are independent enough to read in any order. Part 5 carries the method into cells, which is what the rest of the course is about. Part 6 is practice.</p>
 
-<p>Nothing needs prior background classes, only "an exuberant love for biology," which is mandatory. What the course does demand is a different relationship to material than you may be used to. In 2026 the raw material for learning is available to everyone: an agent can digest a paper, write first-pass code and draft a figure on demand. So the course moves the emphasis to what an agent cannot do, which is to <strong>understand, defend, and communicate</strong>.</p>
+<p>Everything numeric here is produced by <code>analysis/oom_numbers.py</code> in the lecture's research folder, which runs with no arguments and prints all ninety-two numbers with each input marked as either a value read from a source or a standard constant.<sup class="c"><a href="#r14">14</a></sup> If a number in this page is not in that output, it is a bug and worth telling me about.</p>
 
-<p>Order of magnitude comes first because it is the tool that decides which of the other tools you need. Before you write down a differential equation you should know whether the process it describes takes a microsecond or a century, and whether the thing it acts on exists in ten copies or ten million. Half the time that knowledge dissolves the question.</p>
+<h2 id="s2"><span class="n">2</span>Your first estimate, badly</h2>
+<p class="lede">Before any technique: guess, then find out what your guess was worth.</p>
+
+<p>Here is a question. <strong>How many seconds have you been alive?</strong></p>
+
+<p>Do not read on. Answer it in your head, now, and write the number down.</p>
+
+<p>Most people do one of two things. Either they freeze, because they cannot remember how many seconds are in a year, or they produce something within a factor of three, quickly, by chaining round numbers: about 20 years, about 400 days a year, about 25 hours a day, about 4000 seconds an hour. That chain gives <span class="m">2&times;10<sup>1</sup> &times; 4&times;10<sup>2</sup> &times; 2.5&times;10<sup>1</sup> &times; 4&times;10<sup>3</sup> = 8&times;10<sup>8</sup></span>, and the true answer for a twenty-year-old is <span class="m">6.3&times;10<sup>8</sup></span>.</p>
+
+<p>Every rounding in that chain was wrong. 400 is not 365, 25 is not 24, 4000 is not 3600. Each error is 5 to 10 per cent, and there are three of them, and the answer is still right to 25 per cent, which is far inside the factor of ten we were aiming at.</p>
+
+<div class="box def">
+<span class="lbl">Why the errors did not accumulate the way you feared</span>
+<p>Multiplying quantities means adding their logarithms, and independent rounding errors add <em>in quadrature</em> rather than linearly. Three independent 8 per cent errors give <span class="m">&radic;3 &times; 8% &asymp; 14%</span>, not 24 per cent. Round in both directions where you can and it is better still, because the errors partly cancel. This is the arithmetic reason the method works, and it is why deliberately sloppy rounding is safe in a way that deliberately sloppy modelling is not.</p>
+</div>
+
+<p>Now compare the two failures. Freezing produced no answer. Rounding produced an answer good to 25 per cent in four seconds. That gap is the entire skill, and everything below is a systematic version of it.</p>
+
+<h2 id="s3"><span class="n">3</span>What "order of magnitude" buys</h2>
+<p class="lede">A factor of ten is not a weak claim. It is usually the claim that settles the question.</p>
+
+<p>Students often find the deliberate imprecision uncomfortable, so it is worth being concrete about what a factor of ten decides.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 1. Real questions, and the precision each one actually needs.</caption>
+<thead><tr><th>Question</th><th>Competing answers differ by</th><th>Precision needed</th></tr></thead>
+<tbody>
+<tr><td>Can a protein cross a bacterium by diffusion alone?</td><td class="num">10<sup>10</sup></td><td class="hl">a factor of 10 is overkill</td></tr>
+<tr><td>Is a cell well mixed on the timescale of gene expression?</td><td class="num">10<sup>4</sup></td><td class="hl">a factor of 10 settles it</td></tr>
+<tr><td>Does this reaction need an enzyme?</td><td class="num">10<sup>6</sup></td><td class="hl">a factor of 10 settles it</td></tr>
+<tr><td>Which of two enzymes is faster?</td><td class="num">2</td><td>you need to measure</td></tr>
+<tr><td>Is this drug dose safe?</td><td class="num">2</td><td>you need to measure</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The pattern is that questions about <em>whether a mechanism is needed at all</em> have answers separated by many orders of magnitude, and questions about <em>which of two similar things is better</em> do not. Order-of-magnitude reasoning answers the first kind completely and the second kind not at all. Knowing which kind you have is the first decision.</p>
 
 <div class="parthead">
   <div class="k">Part 2</div>
-  <h2>The method</h2>
-  <p>Three moves: count the dimensions, name the bottleneck, calibrate against something you have touched.</p>
+  <h2>Move one: count</h2>
+  <p>Units are not bookkeeping. They are a constraint, and sometimes they are the whole answer.</p>
 </div>
 
-<h2 id="s2"><span class="n">2</span>What the method is</h2>
-<p class="lede">Numbers can say a lot, but only when they are robust. Details are fragile. Orders of magnitude are not.</p>
+<h2 id="s4"><span class="n">4</span>Units as a constraint</h2>
+<p class="lede">A physical law cannot know what units you chose, and that ignorance is worth exploiting.</p>
 
-<p>The world is connected. Observations that seem unrelated can be deeply constraining, and Eratosthenes measured the size of the Earth from the length of a shadow. The instrument that sees such connections is <strong>order-of-magnitude reasoning</strong>: estimate the quantity, keep only the power of ten, and let the constraint do the arguing.<sup class="c"><a href="#r1">1</a></sup></p>
+<p>Start from something obvious. If a relation among physical quantities is true, it stays true when you switch from metres to feet. The law does not know about your ruler.</p>
 
-<div class="box def">
-<span class="lbl">Order of magnitude</span>
-<p>An estimate right to within a factor. We keep <span class="m">1</span> or <span class="m">10</span>, not more. The claim is of the form "it is about <span class="m">10<sup>6</sup></span> per second", never "approximately 1.3&times;10<sup>6</sup>".</p>
-</div>
+<p>Now make that useful. Suppose a relation involves a length <span class="m">L</span>, a time <span class="m">T</span> and a speed <span class="m">v</span>. Change your unit of length so that every length is multiplied by <span class="m">&lambda;</span>. Then <span class="m">L &rarr; &lambda;L</span> and <span class="m">v &rarr; &lambda;v</span>, while <span class="m">T</span> is untouched. Any relation surviving this must be built from combinations in which the <span class="m">&lambda;</span>'s cancel, and <span class="m">vT/L</span> is one such combination.</p>
 
-<p>Two properties make this the right first tool. First it is <strong>fast</strong>: you can do it in your head, mid-conversation, which means you can do it before deciding whether a project is worth a month. Second, and more important, it is <strong>robust</strong>. The factors that dominate an estimate are few, so the answer survives being wrong about every detail, whereas a precisely written answer <em>claims a precision it does not have</em>. Details are fragile. Orders of magnitude are not.</p>
+<p>So the real content of a physical law is a relation among <strong>dimensionless</strong> quantities. Everything else is an artefact of your choice of units. This is the observation that Buckingham turned into a theorem.<sup class="c"><a href="#r2">2</a></sup></p>
 
-<p>The method has three moves, and the rest of Part 2 is one worked example of each.</p>
+<h2 id="s5"><span class="n">5</span>The &Pi; theorem, worked slowly</h2>
+<p class="lede">The counting, done in full, so you can see where each number in it comes from.</p>
 
-<figure class="figbox">
-<svg viewBox="0 0 720 208" role="img" aria-label="Three moves: count dimensions, name the bottleneck, calibrate against an anchor">
-  <defs>
-    <marker id="ar1" markerWidth="9" markerHeight="9" refX="7.2" refY="3.2" orient="auto">
-      <path d="M0,0 L7,3.2 L0,6.4 z" fill="var(--gray)"/>
-    </marker>
-  </defs>
-  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
+<p>Write your quantities as <span class="m">Q<sub>1</sub>, ..., Q<sub>n</sub></span>. Each has dimensions expressible in <span class="m">k</span> fundamental units, which in mechanics are mass M, length L and time T, so <span class="m">k = 3</span>. Write the dimensions of <span class="m">Q<sub>i</sub></span> as</p>
 
-    <rect x="14" y="34" width="200" height="126" rx="10" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.6"/>
-    <text x="34" y="60" font-size="11.5" font-weight="700" fill="var(--peri)" letter-spacing="1.2">MOVE 1</text>
-    <text x="34" y="84" font-size="15" font-weight="700" fill="var(--fg)">Count the dimensions</text>
-    <text x="34" y="107" font-size="12.5" fill="var(--muted)">n quantities, k units,</text>
-    <text x="34" y="124" font-size="12.5" fill="var(--muted)">n &#8722; k dimensionless groups.</text>
-    <text x="34" y="146" font-size="12.5" fill="var(--peri)" font-weight="600">If n &#8722; k = 1, you are done.</text>
+<div class="eq">[Q<sub>i</sub>] = M<sup>a<sub>i</sub></sup> L<sup>b<sub>i</sub></sup> T<sup>c<sub>i</sub></sup> <span class="tag">(1)</span></div>
 
-    <rect x="260" y="34" width="200" height="126" rx="10" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.6"/>
-    <text x="280" y="60" font-size="11.5" font-weight="700" fill="var(--rose)" letter-spacing="1.2">MOVE 2</text>
-    <text x="280" y="84" font-size="15" font-weight="700" fill="var(--fg)">Name the bottleneck</text>
-    <text x="280" y="107" font-size="12.5" fill="var(--muted)">Find the quantity that is</text>
-    <text x="280" y="124" font-size="12.5" fill="var(--muted)">actually fixed, and rewrite</text>
-    <text x="280" y="146" font-size="12.5" fill="var(--rose)" font-weight="600">until the rest cancels.</text>
+<p>A product <span class="m">&Pi; = Q<sub>1</sub><sup>p<sub>1</sub></sup> &middot;&middot;&middot; Q<sub>n</sub><sup>p<sub>n</sub></sup></span> is dimensionless exactly when the exponents of M, L and T each vanish:</p>
 
-    <rect x="506" y="34" width="200" height="126" rx="10" fill="var(--cream)" stroke="var(--lime)" stroke-width="1.6"/>
-    <text x="526" y="60" font-size="11.5" font-weight="700" fill="var(--lime)" letter-spacing="1.2">MOVE 3</text>
-    <text x="526" y="84" font-size="15" font-weight="700" fill="var(--fg)">Calibrate on an anchor</text>
-    <text x="526" y="107" font-size="12.5" fill="var(--muted)">Fix the unknown constant</text>
-    <text x="526" y="124" font-size="12.5" fill="var(--muted)">from a case you have lived,</text>
-    <text x="526" y="146" font-size="12.5" fill="var(--lime)" font-weight="600">then ride the scaling out.</text>
+<div class="eq">&Sigma;<sub>i</sub> p<sub>i</sub>a<sub>i</sub> = 0, &nbsp; &Sigma;<sub>i</sub> p<sub>i</sub>b<sub>i</sub> = 0, &nbsp; &Sigma;<sub>i</sub> p<sub>i</sub>c<sub>i</sub> = 0 <span class="tag">(2)</span></div>
 
-    <line x1="222" y1="97" x2="252" y2="97" stroke="var(--gray)" stroke-width="1.6" marker-end="url(#ar1)"/>
-    <line x1="468" y1="97" x2="498" y2="97" stroke="var(--gray)" stroke-width="1.6" marker-end="url(#ar1)"/>
-
-    <text x="14" y="192" font-size="12" fill="var(--muted)">Move 3 is the one that can betray you, because an anchor you never checked is a number you invented.</text>
-  </g>
-</svg>
-<figcaption><b>Figure 1. The method, in three moves.</b> Move 1 is a theorem and cannot fail. Move 2 is a judgement about the physics. Move 3 is an empirical claim, and &sect;7 shows what happens when the claim is wrong.</figcaption>
-</figure>
-
-<h2 id="s3"><span class="n">3</span>Dimensional analysis: one theorem</h2>
-<p class="lede">If the units of a problem admit only one dimensionless combination, then the answer is that combination, and no physics is required to find it.</p>
-
-<p>The formal core of move 1 is a hundred-year-old theorem. Buckingham stated it in 1914 in a paper whose whole purpose was to show that arguments physicists had been making informally for decades were in fact a consequence of one counting argument.<sup class="c"><a href="#r2">2</a></sup></p>
+<p>That is a homogeneous linear system: three equations in the <span class="m">n</span> unknowns <span class="m">p<sub>i</sub></span>. Its solution space is a vector space, and if the three equations are independent its dimension is <span class="m">n &minus; 3</span>. In general, with <span class="m">k</span> independent units, the dimension is <span class="m">n &minus; k</span>.</p>
 
 <div class="box def">
 <span class="lbl">The Buckingham &Pi; theorem</span>
-<p>Let a physical relation involve <span class="m">n</span> quantities, expressed in a system with <span class="m">k</span> independent fundamental units. Then the relation can be written as a function of exactly <span class="m">n &minus; k</span> independent dimensionless products.</p>
-<p class="small" style="margin-top:.6rem">Buckingham's own words for the count: the number of independent arguments "is the maximum number of independent dimensionless products of the form (6) which can be made by combining the <span class="m">n</span> quantities", and there are "<span class="m">(n &minus; k)</span> equations" fixing them.</p>
+<p>A physical relation among <span class="m">n</span> quantities involving <span class="m">k</span> independent fundamental units can be written as a relation among exactly <span class="m">n &minus; k</span> independent dimensionless products.</p>
+<p style="margin-top:.5rem"><strong>Corollary, and the one that matters.</strong> If <span class="m">n &minus; k = 1</span> there is only one such product, so it must equal a constant, and the relation among the <span class="m">Q<sub>i</sub></span> is fixed up to that constant.</p>
 </div>
 
-<p>The consequence that matters is the special case. <strong>If <span class="m">n &minus; k = 1</span>, the problem is solved by units alone,</strong> up to a single dimensionless constant that no amount of dimensional reasoning can supply. There is exactly one way to combine the quantities into something dimensionless, so that combination has to be a constant, and the functional form of the answer follows.</p>
+<p>The proof is linear algebra and the content is a rank computation, which is why the count occasionally surprises you: if two of your quantities have proportional dimension vectors, the matrix drops rank and you get one more group than you expected.</p>
 
-<p>This is worth dwelling on, because it is the only place in the course where you get something for nothing. You have written down no equation of motion, made no approximation, and solved nothing. You have counted.</p>
+<h2 id="s6"><span class="n">6</span>Three worked &Pi; problems</h2>
+<p class="lede">Small, complete, and increasing in interest. Do these before the blast wave.</p>
 
-<figure class="figbox">
-<svg viewBox="0 0 720 250" role="img" aria-label="Counting the Pi groups for the blast wave: four variables, three dimensions, one group">
-  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
-    <text x="14" y="24" font-size="12.5" font-weight="700" fill="var(--rose)" letter-spacing="1.1">THE BLAST WAVE, COUNTED</text>
+<h3>(a) The pendulum</h3>
+<p>Quantities: period <span class="m">T</span>, length <span class="m">L</span>, gravity <span class="m">g</span>, bob mass <span class="m">m</span>. So <span class="m">n = 4</span>. Dimensions used: M, L, T, so <span class="m">k = 3</span>. Therefore <span class="m">n &minus; k = 1</span>, one group.</p>
 
-    <text x="14" y="56" font-size="12.5" fill="var(--muted)">n = 4 quantities</text>
-    <g font-size="13.5" fill="var(--fg)">
-      <rect x="14" y="66" width="150" height="30" rx="6" fill="var(--bg)" stroke="var(--rule)"/>
-      <text x="26" y="86">E &#160; energy released</text>
-      <rect x="14" y="102" width="150" height="30" rx="6" fill="var(--bg)" stroke="var(--rule)"/>
-      <text x="26" y="122">t &#160; time since</text>
-      <rect x="14" y="138" width="150" height="30" rx="6" fill="var(--bg)" stroke="var(--rule)"/>
-      <text x="26" y="158">R &#160; shock radius</text>
-      <rect x="14" y="174" width="150" height="30" rx="6" fill="var(--bg)" stroke="var(--rule)"/>
-      <text x="26" y="194">&#961;&#8320; &#160; air density</text>
-    </g>
+<p>Find it. Mass appears in exactly one quantity, <span class="m">m</span>, and nothing else can cancel it, so its exponent must be zero. <strong>The period cannot depend on the mass</strong>, and we knew that before doing any mechanics. What remains is <span class="m">T</span>, <span class="m">L</span>, <span class="m">g</span> with dimensions T, L, LT<sup>&minus;2</sup>, and the only combination is</p>
 
-    <text x="212" y="56" font-size="12.5" fill="var(--muted)">k = 3 units</text>
-    <g font-size="13.5" fill="var(--fg)">
-      <rect x="212" y="66" width="118" height="30" rx="6" fill="var(--powder)" stroke="var(--teal)"/>
-      <text x="224" y="86">M &#160; mass</text>
-      <rect x="212" y="102" width="118" height="30" rx="6" fill="var(--powder)" stroke="var(--teal)"/>
-      <text x="224" y="122">L &#160; length</text>
-      <rect x="212" y="138" width="118" height="30" rx="6" fill="var(--powder)" stroke="var(--teal)"/>
-      <text x="224" y="158">T &#160; time</text>
-    </g>
+<div class="eq">&Pi;<sub>1</sub> = T&radic;(g/L) = const &nbsp; &rArr; &nbsp; <b>T &prop; &radic;(L/g)</b> <span class="tag">(3)</span></div>
 
-    <text x="378" y="56" font-size="12.5" fill="var(--muted)">n &#8722; k = 1 group</text>
-    <rect x="378" y="66" width="326" height="66" rx="8" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.6"/>
-    <text x="398" y="94" font-size="17" font-family="ui-monospace,SF Mono,Menlo,monospace" fill="var(--fg)">&#928;&#8321; = R&#8309; &#961;&#8320; / (E t&#178;)</text>
-    <text x="398" y="118" font-size="12.5" fill="var(--muted)">the only dimensionless thing you can build</text>
+<p>The true constant is <span class="m">2&pi; &asymp; 6.3</span>, which the theorem cannot supply. Note that it is not of order one, and this is the honest counterexample to the rule of thumb in &sect;5 of the lineage page. Constants involving a full revolution tend to carry a <span class="m">2&pi;</span>, so when your estimate is out by about six, suspect a missing angle.</p>
 
-    <rect x="378" y="146" width="326" height="58" rx="8" fill="var(--cream)" stroke="var(--lime)" stroke-width="1.6"/>
-    <text x="398" y="172" font-size="12.5" fill="var(--muted)">so &#928;&#8321; is a constant, and therefore</text>
-    <text x="398" y="194" font-size="16" font-family="ui-monospace,SF Mono,Menlo,monospace" font-weight="700" fill="var(--fg)">R &#8733; (E t&#178; / &#961;&#8320;)<tspan font-size="11" dy="-6">1/5</tspan></text>
+<h3>(b) Diffusion, which is the one you will use most</h3>
+<p>Quantities: a time <span class="m">t</span>, a distance <span class="m">x</span>, a diffusion coefficient <span class="m">D</span> with dimensions L<sup>2</sup>T<sup>&minus;1</sup>. So <span class="m">n = 3</span>, and only L and T appear, so <span class="m">k = 2</span>. One group:</p>
 
-    <text x="14" y="232" font-size="12" fill="var(--muted)">Four minus three is one. That subtraction is the entire derivation, and it fixes the exponent 2/5 exactly.</text>
-  </g>
-</svg>
-<figcaption><b>Figure 2. Counting is the derivation.</b> Energy, time, radius and air density involve mass, length and time. Four quantities, three units, so exactly one dimensionless group survives, and the radius must grow as the two-fifths power of time.</figcaption>
-</figure>
+<div class="eq">&Pi;<sub>1</sub> = Dt/x&sup2; = const &nbsp; &rArr; &nbsp; <b>t &prop; x&sup2;/D</b> <span class="tag">(4)</span></div>
+
+<p>Stop and notice what just happened. Section 14 derives that same result by writing down the diffusion equation, discretising a flux balance, and taking a scaling limit, which is most of a page of work. Here it took two lines and no physics beyond knowing the units of <span class="m">D</span>. The most useful relation in this entire course follows from counting.</p>
+
+<h3>(c) Drag on a sphere, where the count comes out differently</h3>
+<p>Quantities: drag force <span class="m">F</span>, sphere radius <span class="m">R</span>, speed <span class="m">v</span>, fluid density <span class="m">&rho;</span>, viscosity <span class="m">&eta;</span>. So <span class="m">n = 5</span>, <span class="m">k = 3</span>, and <span class="m">n &minus; k = 2</span>. Two groups, so the theorem does <em>not</em> settle it. The standard choice is</p>
+
+<div class="eq">&Pi;<sub>1</sub> = F/(&rho;v&sup2;R&sup2;), &nbsp; &Pi;<sub>2</sub> = &rho;vR/&eta; = Re <span class="tag">(5)</span></div>
+
+<p>and all the theorem yields is <span class="m">&Pi;<sub>1</sub> = f(Re)</span> for some unknown function. That is genuinely less than an answer, and it is also exactly the right amount of structure: it says every sphere in every fluid at every speed collapses onto <em>one curve</em>, which is why a wind-tunnel model predicts a full-size aircraft. Reducing five variables to one curve is what "physically similar systems" means, and it is the title of Buckingham's paper.</p>
+
+<div class="box note">
+<span class="lbl">How to read your own count</span>
+<p><span class="m">n &minus; k = 1</span>: the problem is solved, up to a constant. <span class="m">n &minus; k = 2</span>: you have a universal curve and need one experiment or one limit to pin it down. <span class="m">n &minus; k &ge; 3</span>: dimensional analysis has given you what it can and you need physics. The count is the first thing to compute, because it tells you which kind of trouble you are in.</p>
+</div>
+
+<h2 id="s7"><span class="n">7</span>The blast wave, start to finish</h2>
+<p class="lede">The famous one, with every step shown and the answer checked against the real data.</p>
+
+<p>A large energy <span class="m">E</span> is released at a point in air of density <span class="m">&rho;<sub>0</sub></span>. A shock expands. How does its radius <span class="m">R</span> grow with time <span class="m">t</span>?</p>
+
+<h3>Step 1: choose the list</h3>
+<p>This is the step that is physics rather than arithmetic, and the step that can be wrong.</p>
+<ul>
+<li><span class="m">E</span>: it is the only thing driving the motion.</li>
+<li><span class="m">t</span>, <span class="m">R</span>: the question.</li>
+<li><span class="m">&rho;<sub>0</sub></span>: the air must be pushed, and inertia is what resists.</li>
+</ul>
+<p>And now the omissions, which need justifying. <strong>Ambient pressure</strong> is left out because the shock is violent, so <span class="m">E &Gt; p<sub>0</sub>R&sup3;</span>. This is why the answer fails at late times, when the blast weakens to a sound wave. <strong>Viscosity</strong> is left out because the Reynolds number is enormous. <strong>The bomb's own mass</strong> is left out once the swept-up air outweighs it, which is Taylor's condition <span class="m">R &gt; (&rho;<sub>s</sub>/&rho;<sub>a</sub>)<sup>1/3</sup>R<sub>bomb</sub></span>.</p>
 
 <div class="box caution">
-<span class="lbl">What the theorem does not give you</span>
-<p>It gives the <em>form</em>, never the <em>constant</em>. The blast wave really goes as <span class="m">t<sup>2/5</sup></span>, but the prefactor depends on the ratio of specific heats of air and has to come from solving the flow. Taylor spent a paper on it. The division of labour is the useful part: units decide the shape, physics decides the number in front, and the shape is usually what you needed.</p>
+<span class="lbl">Every omission is a range of validity</span>
+<p>The three omissions above are not carelessness, they are the definition of the regime the answer applies to. When you present a scaling result, present the omissions with it, because they <em>are</em> the domain of the result. Figure 1's leftmost point is where one of them starts to fail.</p>
 </div>
 
-<h2 id="s4"><span class="n">4</span>Trinity: a yield from a photograph</h2>
-<p class="lede">The canonical demonstration. Twenty-five frames of a fireball, one dimensionless group, and a classified number falls out.</p>
+<h3>Step 2: count</h3>
+<p><span class="m">n = 4</span> (E, t, R, &rho;<sub>0</sub>), <span class="m">k = 3</span> (M, L, T), so one group.</p>
 
-<p>In 1941 G. I. Taylor was told that a bomb might be built in which a very large amount of energy would be released by nuclear fission. He asked what the mechanical effects would be, wrote down the self-similar blast-wave solution, and circulated it to the Ministry of Home Security in June of that year. The paper was published only in 1950, after declassification, "as it was first written, without alteration".<sup class="c"><a href="#r3">3</a></sup> Everything in it predates the explosion it is now famous for analysing by four years.</p>
+<h3>Step 3: find it</h3>
+<p>Seek <span class="m">&Pi; = E<sup>a</sup>t<sup>b</sup>R<sup>c</sup>&rho;<sub>0</sub><sup>d</sup></span>. Dimensions: <span class="m">[E] = ML<sup>2</sup>T<sup>&minus;2</sup></span>, <span class="m">[t] = T</span>, <span class="m">[R] = L</span>, <span class="m">[&rho;<sub>0</sub>] = ML<sup>&minus;3</sup></span>. Collect:</p>
 
-<p>The second paper is the demonstration.<sup class="c"><a href="#r4">4</a></sup> After the July 1945 Trinity test, a strip of high-speed photographs was declassified and published. The fireball radius at each frame was public. The yield was not. Taylor read radii and times off twenty-five frames and applied the group from Figure 2:</p>
+<div class="eq">M: a + d = 0 &nbsp;&nbsp; L: 2a + c &minus; 3d = 0 &nbsp;&nbsp; T: &minus;2a + b = 0 <span class="tag">(6)</span></div>
 
-<div class="eq">&Pi;<sub>1</sub> = R<sup>5</sup>&rho;<sub>0</sub> / (E t<sup>2</sup>) = const &nbsp; &rArr; &nbsp; <b>E = K(&gamma;) &rho;<sub>0</sub> R<sup>5</sup> / t<sup>2</sup></b> <span class="tag">(1)</span></div>
+<p>Set <span class="m">a = &minus;1</span>. Then <span class="m">d = 1</span> from M, <span class="m">b = &minus;2</span> from T, and <span class="m">c = 3d &minus; 2a = 3 + 2 = 5</span> from L. So</p>
 
-<p>Both halves of the prediction can be checked against his own table, and they are checked here rather than asserted.<sup class="c"><a href="#r14">14</a></sup> First the exponent: a least-squares fit of <span class="m">log R</span> on <span class="m">log t</span> over his twenty-five points, spanning three decades in time, gives a slope of <strong>0.406</strong> against the predicted <span class="m">2/5 = 0.400</span>, an error of 1.5 per cent. Second the constant: every frame should imply the same energy, and after the first frame they do.</p>
+<div class="eq">&Pi;<sub>1</sub> = R<sup>5</sup>&rho;<sub>0</sub> / (E t&sup2;) &nbsp; &rArr; &nbsp; <b>R = [K(&gamma;) E t&sup2; / &rho;<sub>0</sub>]<sup>1/5</sup></b> <span class="tag">(7)</span></div>
+
+<p>The whole derivation is solving three linear equations. And it delivers a hard prediction: on a log-log plot of <span class="m">R</span> against <span class="m">t</span>, the slope is exactly <span class="m">2/5</span>, no matter what the bomb was made of.</p>
+
+<h3>Step 4: test it against the actual explosion</h3>
+<p>Taylor read twenty-five radii and times off declassified photographs of the Trinity test and tabulated them.<sup class="c"><a href="#r4">4</a></sup> Fitting his numbers gives a slope of <strong>0.406</strong> against the predicted 0.400.</p>
 
 <figure class="figbox">
 <!--FIG:taylor-trinity-->
@@ -3610,112 +3623,122 @@ z
  </defs>
 </svg>
 <!--/FIG-->
-<figcaption><b>Figure 3. Taylor's Trinity data, re-analysed.</b> Left: the twenty-five measurements of fireball radius against time from table 1 of his 1950 paper, with the two-fifths slope that the single &Pi; group forces. Right: the yield each frame implies through equation (1) at <span class="m">&gamma; = 1.4</span>. The first frame, at 0.1 ms, sits low because a fireball 11 m across is not yet a point source. Every frame after it lands within a factor of 1.3 of Taylor's published figure of 16,800 tons.</figcaption>
+<figcaption><b>Figure 1. The prediction, and the data it predicted.</b> Left, Taylor's twenty-five measurements over three decades in time, with the slope that equation (7) forces. Right, the energy each frame implies. The lone low point is the earliest frame, where the fireball is 11 m across and the point-source idealisation of step 1 has not yet become true. A theory failing exactly where you said it would is the best outcome available.</figcaption>
 </figure>
 
-<p>Taylor gave two numbers, 16,800 tons of TNT and 23,700 tons, and said the first was the more likely to be accurate. The modern radiochemical value for the total yield is about 21 kilotons.<sup class="c"><a href="#r5">5</a></sup> That looks like a twenty per cent miss until you read what he was estimating. His 1941 paper already predicted that a nuclear device would be <em>about half as efficient a blast producer</em> as a chemical explosive of the same total energy, because much of the energy leaves as radiation, and his 16,800 tons is explicitly "that part of the energy which was not radiated outside the ball of fire". A blast-derived estimate is supposed to fall short of the radiochemical total.</p>
+<h3>Step 5: get the number</h3>
+<p>Rearranging (7), <span class="m">E = K(&gamma;) &rho;<sub>0</sub> R<sup>5</sup>/t&sup2;</span>. Taylor computed <span class="m">K = 0.856</span> for <span class="m">&gamma; = 1.4</span>, and with <span class="m">&rho;<sub>0</sub> = 1.25&times;10<sup>&minus;3</sup> g/cm&sup3;</span> and <span class="m">R<sup>5</sup>t<sup>&minus;2</sup> = 6.67&times;10<sup>23</sup></span> in CGS:</p>
 
-<div class="box note">
-<span class="lbl">The same explosion, estimated twice, from opposite ends of rigour</span>
-<p>Enrico Fermi was at the test. He dropped scraps of paper as the blast front passed, measured how far they were carried, got about 2.5 m, and announced roughly ten kilotons within seconds of the shock arriving.<sup class="c"><a href="#r5">5</a></sup> Taylor used a published photograph, a self-similar solution and a season of algebra to get 16.8. Both are blast measurements, both fall below the radiochemical 21, and both are the same order of magnitude. That is the whole argument for the method: Fermi's back-of-envelope and Taylor's fluid dynamics land in the same place, so the envelope was enough for the decision that had to be made in the moment.</p>
-</div>
+<div class="eq">E = 0.856 &times; 1.25&times;10<sup>&minus;3</sup> &times; 6.67&times;10<sup>23</sup> = 7.1&times;10<sup>20</sup> erg = <b>17 kilotons of TNT</b> <span class="tag">(8)</span></div>
 
-<h2 id="s5"><span class="n">5</span>Hangzhou: naming the bottleneck</h2>
-<p class="lede">Evacuating a city by plane or by car. The same flux formula answers both, and the bottleneck, not the vehicle, decides.</p>
+<p>Taylor published 16,800 tons. The lineage page (&sect;9) explains why comparing that to the radiochemical 21 kilotons requires care, and it is worth reading before you quote either number.<sup class="c"><a href="#r5">5</a></sup></p>
 
-<p>Dimensional analysis solved the blast wave because it had exactly one group. Most problems have more, and then you need move 2. The worked example is macroscopic and familiar: evacuate all of Hangzhou, about <span class="m">10<sup>7</sup></span> people. The question sounds like a choice of transport. It is not.</p>
+<h2 id="s8"><span class="n">8</span>When counting is not enough</h2>
+<p class="lede">Two failure modes, both common, both avoidable once named.</p>
 
-<h3>By air</h3>
-<p>One airport. Under emergency loading a plane leaves every two minutes, and each carries about <span class="m">10<sup>2</sup></span> people:</p>
+<p><strong>The list is wrong.</strong> Include an irrelevant quantity and you get an extra group and lose the sharp answer. Omit a relevant one and you get a confident falsehood with no warning. There is no formal defence. What helps is the habit of writing the omissions down as in step 1, because an omission you have written down is an assumption you can test, and an omission you have not is a mistake waiting.</p>
 
-<div class="eq">(86400 s/day) / (120 s/plane) &asymp; 7&times;10<sup>2</sup> planes/day &times; 10<sup>2</sup> people &asymp; 7&times;10<sup>4</sup> people/day <span class="tag">(2)</span></div>
-
-<p>For <span class="m">10<sup>7</sup></span> people that is <strong>about 140 days</strong>. Too slow for an emergency, and note where the failure is. The aircraft is the fastest vehicle available and it is irrelevant, because the constraint is the number of runways.</p>
-
-<h3>By road</h3>
-<p>Count lanes instead. Roughly ten highways leave the city; in an emergency all lanes run outbound, so call it <span class="m">10<sup>2</sup></span> lanes. A lane is a pipe with three numbers: how many people per vehicle, how fast, how closely spaced.</p>
-
-<div class="eq">Flux = N v / L = (4 people &times; 20 m/s) / (40 m) = 2 people/s per lane <span class="tag">(3)</span></div>
-
-<p>With <span class="m">10<sup>2</sup></span> lanes that is <span class="m">1.7&times;10<sup>7</sup></span> people per day, so <strong>the city clears in about half a day</strong>. Same formula, opposite verdict, and the only thing that changed is the number of parallel pipes.</p>
-
-<h3>The move that matters</h3>
-<p>Now ask the obvious objection. Are there enough cars? What if people drive faster, or slower? Each of these is a fragile detail, and the way to kill all of them at once is to find what is actually fixed.</p>
-
-<p>The spacing <span class="m">L</span> is not a free choice. You leave a gap because you need time to react, so <span class="m">L = v&tau;</span> with <span class="m">&tau; &asymp; 2 s</span> set by human reflexes. Substitute:</p>
-
-<div class="eq">Flux = N v / L = N v / (v&tau;) = <b>N / &tau;</b> <span class="tag">(4)</span></div>
-
-<figure class="figbox">
-<svg viewBox="0 0 720 268" role="img" aria-label="A lane as a pipe: substituting L equals v tau makes the speed cancel">
-  <defs>
-    <marker id="ar2" markerWidth="9" markerHeight="9" refX="7.2" refY="3.2" orient="auto">
-      <path d="M0,0 L7,3.2 L0,6.4 z" fill="var(--rose)"/>
-    </marker>
-  </defs>
-  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
-
-    <text x="14" y="22" font-size="12.5" font-weight="700" fill="var(--peri)" letter-spacing="1.1">BEFORE: THREE NUMBERS YOU HAVE TO GUESS</text>
-    <rect x="14" y="34" width="690" height="52" rx="8" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.4"/>
-    <g>
-      <rect x="40" y="48" width="46" height="24" rx="4" fill="var(--peri)"/>
-      <rect x="176" y="48" width="46" height="24" rx="4" fill="var(--peri)"/>
-      <rect x="312" y="48" width="46" height="24" rx="4" fill="var(--peri)"/>
-      <rect x="448" y="48" width="46" height="24" rx="4" fill="var(--peri)"/>
-      <rect x="584" y="48" width="46" height="24" rx="4" fill="var(--peri)"/>
-    </g>
-    <line x1="86" y1="60" x2="170" y2="60" stroke="var(--gray)" stroke-width="1.1" stroke-dasharray="3 3"/>
-    <text x="112" y="55" font-size="11.5" fill="var(--muted)">L</text>
-    <text x="646" y="64" font-size="12.5" fill="var(--muted)">v &#8594;</text>
-
-    <text x="14" y="116" font-size="14" font-family="ui-monospace,SF Mono,Menlo,monospace" fill="var(--fg)">Flux = N v / L</text>
-    <text x="170" y="116" font-size="12.5" fill="var(--muted)">N people per car, v speed, L spacing. Three fragile guesses.</text>
-
-    <line x1="360" y1="134" x2="360" y2="162" stroke="var(--rose)" stroke-width="1.8" marker-end="url(#ar2)"/>
-    <text x="374" y="153" font-size="12.5" fill="var(--rose)" font-weight="600">L is not free: you need &#964; seconds to react, so L = v&#964;</text>
-
-    <text x="14" y="196" font-size="12.5" font-weight="700" fill="var(--rose)" letter-spacing="1.1">AFTER: ONE NUMBER, AND IT IS NOT ABOUT CARS</text>
-    <rect x="14" y="208" width="690" height="46" rx="8" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.6"/>
-    <text x="36" y="238" font-size="17" font-family="ui-monospace,SF Mono,Menlo,monospace" font-weight="700" fill="var(--fg)">Flux = N / &#964;</text>
-    <text x="184" y="238" font-size="12.5" fill="var(--muted)">The speed cancelled. Walking gives 0.5 people/s per lane against a car's 2.</text>
-  </g>
-</svg>
-<figcaption><b>Figure 4. The vehicle cancels.</b> Once the spacing is written as <span class="m">v&tau;</span>, the speed drops out of the flux entirely and only the occupancy and the reaction time remain. A crowd walking at 1 m/s two metres apart moves people at a quarter the rate of cars at 72 km/h, not a twentieth.</figcaption>
-</figure>
-
-<p>The speed has cancelled. Whatever you thought you knew about how fast the vehicle goes was never in the answer, because going faster forces you to leave a proportionally bigger gap. What remains is the occupancy and a fixed human reaction time.</p>
-
-<div class="box key">
-<span class="lbl">The lesson, stated generally</span>
-<p>When an estimate depends on a quantity you are unsure of, look for the relation that ties that quantity to something fixed, and substitute. If the uncertain quantity cancels, you never needed it. If it does not cancel, you have just learned that it is one of the few things worth measuring. Either outcome is progress, which is why this move is worth making even when you expect it to fail.</p>
-</div>
+<p><strong>Two quantities share dimensions.</strong> If your list has both a length <span class="m">L</span> and a length <span class="m">d</span>, their ratio <span class="m">d/L</span> is already dimensionless and the theorem tells you nothing about it. That is a real limitation and also a real signal: the ratio is a shape parameter, and the theorem is telling you that shape matters and units cannot decide it.</p>
 
 <div class="parthead">
   <div class="k">Part 3</div>
-  <h2>The scales</h2>
-  <p>What stays constant when size changes, what does not, and the single most useful scaling in the course.</p>
+  <h2>Move two: bottleneck</h2>
+  <p>When counting leaves too many groups, find the quantity that is actually fixed and rewrite until the rest cancels.</p>
 </div>
 
-<h2 id="s6"><span class="n">6</span>Jump height, and the wall at &tau; = L/v</h2>
-<p class="lede">Muscle energy scales with body volume, so jump height is size-independent. The time available to deliver it is not, and that is where the interesting biology lives.</p>
+<h2 id="s9"><span class="n">9</span>Hangzhou, all the way down</h2>
+<p class="lede">The core page gives this in half a page. Here is the version with the objections answered.</p>
 
-<p>How does jump height scale with animal size? Set the energy stored in muscle equal to the height gained. Muscle is a fixed volume fraction <span class="m">f<sub>m</sub></span> of the body, and it does a fixed work per unit volume <span class="m">w</span>, so the available energy is <span class="m">E<sub>m</sub> = f<sub>m</sub> w L<sup>3</sup></span>. The mass is <span class="m">m = &rho;L<sup>3</sup></span>. Set them equal:</p>
+<p>Evacuate <span class="m">10<sup>7</sup></span> people. By air, one runway at a departure every two minutes and a hundred people a plane gives <span class="m">7&times;10<sup>4</sup></span> people a day, so about <strong>140 days</strong>. By road, a hundred outbound lanes each carrying <span class="m">Nv/L</span> = <span class="m">(4)(20)/(40)</span> = 2 people a second gives <span class="m">1.7&times;10<sup>7</sup></span> a day, so about <strong>half a day</strong>.</p>
 
-<div class="eq">&rho;L<sup>3</sup> g h = f<sub>m</sub> w L<sup>3</sup> &nbsp; &rArr; &nbsp; <b>h = f<sub>m</sub> w / (&rho; g)</b>, &nbsp; independent of L <span class="tag">(5)</span></div>
+<p>Now the objections, which is where the actual lesson is.</p>
 
-<p>The <span class="m">L<sup>3</sup></span> cancels on both sides, and jump height turns out not to depend on size at all. Only the muscle fraction and the quality of the muscle matter. Putting in <span class="m">f<sub>m</sub> &asymp; 0.15</span> and <span class="m">w &asymp; 10<sup>5</sup> J/m<sup>3</sup></span> gives <span class="m">h &asymp; 1.5 m</span>, which is the right answer for an athlete's centre of mass.</p>
+<div class="tablewrap">
+<table>
+<caption>Table 2. Four objections, and what each one does to the answer.</caption>
+<thead><tr><th>Objection</th><th>Response</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>People drive faster than 72 km/h</td><td>Then they leave a proportionally bigger gap, since <span class="m">L = v&tau;</span></td><td class="hl">none: v cancels</td></tr>
+<tr><td>People drive slower</td><td>Same argument, the other way</td><td class="hl">none: v cancels</td></tr>
+<tr><td>There are not enough cars</td><td>Changes <span class="m">N</span>, the occupancy. Walking is <span class="m">N = 1</span></td><td>a factor of 4</td></tr>
+<tr><td>Ten highways is a guess</td><td>Changes the lane count directly</td><td class="hl">proportional: the real uncertainty</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The substitution <span class="m">L = v&tau;</span> turns <span class="m">Nv/L</span> into <span class="m">N/&tau;</span> and kills the first two objections outright. What survives is that the answer is proportional to the number of lanes and to the occupancy, and those are the two things to go and check. <strong>The estimate has told you what to measure.</strong></p>
+
+<p>And then the conclusion that sounds absurd and is not: since <span class="m">&tau; &asymp; 2 s</span> for people on foot as well as for drivers, walking evacuates the city at a quarter of the rate of driving, not a twentieth. In an emergency where fuel or vehicles are short, telling people to walk out along the highways is a defensible plan. That is a real policy conclusion from four lines of arithmetic.</p>
+
+<h2 id="s10"><span class="n">10</span>Bombs: terminal velocity</h2>
+<p class="lede">From the 2025 problem set. A nice case where the bottleneck is a balance of two forces.</p>
+
+<p>An object falls. Gravity pulls with <span class="m">&rho;<sub>s</sub>gL&sup3;</span>. At high Reynolds number, air resistance pushes back with roughly <span class="m">&rho;<sub>a</sub>v&sup2;L&sup2;</span>, because the object sweeps out a tube of air of cross-section <span class="m">L&sup2;</span> and accelerates it to about <span class="m">v</span>. Set them equal:</p>
+
+<div class="eq">&rho;<sub>s</sub>gL&sup3; &asymp; &rho;<sub>a</sub>v&sup2;L&sup2; &nbsp; &rArr; &nbsp; <b>v&sup2; &asymp; (&rho;<sub>s</sub>/&rho;<sub>a</sub>) g L</b> <span class="tag">(9)</span></div>
+
+<p>For a person, <span class="m">&rho;<sub>s</sub>/&rho;<sub>a</sub> &asymp; 800</span> and the transverse size in a stable belly-down fall is <span class="m">L &asymp; 0.3 m</span>:</p>
+
+<div class="eq">v &asymp; &radic;(800 &times; 9.8 &times; 0.3) &asymp; 49 m/s &asymp; <b>175 km/h</b> <span class="tag">(10)</span></div>
+
+<p>The measured figure for that posture is about 200 km/h. Within 15 per cent, from a force balance with no drag coefficient.</p>
+
+<p>Two more numbers fall out for free. The time to reach terminal velocity is <span class="m">v/g &asymp; 5 s</span> and the distance is <span class="m">v&sup2;/2g &asymp; 120 m</span>. So a bomb released from 5 km is at terminal velocity long before impact, and if it is small it never approaches free fall at all. Its impact speed would be <span class="m">v = &radic;(2gh) = 313 m/s</span> only if it stayed in free fall, which is Mach 0.92, so the sound barrier is genuinely in play. Requiring the terminal velocity of steel to exceed that needs <span class="m">L &gt; v&sup2;&rho;<sub>a</sub>/(&rho;<sub>s</sub>g) &asymp; 1.6 m</span>. Real free-fall bombs are about that size, and the estimate has just explained why.</p>
+
+<h2 id="s11"><span class="n">11</span>Why bombs got smaller</h2>
+<p class="lede">A two-line scaling argument with a strategic conclusion.</p>
+
+<p>Take equation (7) and eliminate time in favour of the expansion speed, which stays near the speed of sound while the destructive phase lasts. From <span class="m">R &prop; (Et&sup2;/&rho;)<sup>1/5</sup></span> and <span class="m">v &asymp; R/t</span>:</p>
+
+<div class="eq">R &prop; (E/&rho;)<sup>1/3</sup> v<sup>&minus;2/3</sup> &nbsp; &rArr; &nbsp; area destroyed <b>A &prop; R&sup2; &prop; E<sup>2/3</sup></b> <span class="tag">(11)</span></div>
+
+<p>Sublinear. Doubling the yield does not double the area, it multiplies it by <span class="m">2<sup>2/3</sup> = 1.6</span>. So split the same total energy into <span class="m">N</span> pieces and the total area becomes</p>
+
+<div class="eq">N &times; (E/N)<sup>2/3</sup> = <b>N<sup>1/3</sup> E<sup>2/3</sup></b> <span class="tag">(12)</span></div>
+
+<p>Dividing a warhead into a hundred smaller ones covers <span class="m">100<sup>1/3</sup> &asymp; 4.6</span> times the area for the same energy. That is the entire physics case for multiple independently targetable warheads, and it is one exponent.</p>
 
 <div class="box note">
-<span class="lbl">This argument is a hundred years old, and Haldane credited it to Galileo</span>
-<p>J. B. S. Haldane's 1926 essay <em>On Being the Right Size</em> puts it exactly: "people still believe that if a flea were as large as a man it could jump a thousand feet into the air. As a matter of fact the height to which an animal can jump is more nearly independent of its size than proportional to it."<sup class="c"><a href="#r8">8</a></sup> His figures are a flea at about two feet and a man at about five. He opens the point with "although Galileo demonstrated the contrary more than three hundred years ago", pointing back to the square-cube law in the <em>Two New Sciences</em> of 1638. Note also his hedge, "more nearly independent than proportional": his own two numbers differ by a factor of 2.5, and he is telling you what an order-of-magnitude claim actually claims.</p>
+<span class="lbl">The general form of this argument</span>
+<p>Any quantity that scales sublinearly with a resource is better delivered in many small doses than one large one, and any quantity that scales superlinearly is the reverse. It is worth carrying because it recurs constantly in biology: whether to make one large cell or many small ones, whether to express one strong promoter or several weak ones. Find the exponent, and the strategy follows.</p>
 </div>
 
-<h3>Now the time</h3>
-<p>If <span class="m">h</span> is the same for everyone then so is the takeoff speed, <span class="m">v = &radic;(2gh) &asymp; 3 m/s</span>. But the animal has only its own body length in which to reach that speed, so the time available is</p>
+<div class="parthead">
+  <div class="k">Part 4</div>
+  <h2>Move three: anchor</h2>
+  <p>Calibrating a constant from something you have lived through, and the discipline that keeps it honest.</p>
+</div>
 
-<div class="eq">&tau; &asymp; L / v <span class="tag">(6)</span></div>
+<h2 id="s12"><span class="n">12</span>Jump height, derived properly</h2>
+<p class="lede">The classic result, with the muscle model made explicit so you can see which assumption carries the weight.</p>
 
-<p>and unlike <span class="m">h</span>, this one depends on size, linearly. A human has 0.34 s, a cat 0.07 s, a flea 0.7 ms. Fast muscle needs roughly 0.1 s to shorten by half its length, so somewhere between the cat and the flea the animal runs out of time.</p>
+<p>Energy at the top of the jump is <span class="m">E<sub>g</sub> = mgh</span>. Energy available is whatever the muscle did. Model the muscle as doing work <span class="m">w</span> per unit volume per contraction, occupying a fraction <span class="m">f<sub>m</sub></span> of a body of density <span class="m">&rho;</span> and length <span class="m">L</span>:</p>
+
+<div class="eq">E<sub>m</sub> = f<sub>m</sub> w L&sup3;, &nbsp;&nbsp; m = &rho;L&sup3; <span class="tag">(13)</span></div>
+<div class="eq">&rho;L&sup3;gh = f<sub>m</sub>wL&sup3; &nbsp; &rArr; &nbsp; <b>h = f<sub>m</sub>w / (&rho;g)</b> <span class="tag">(14)</span></div>
+
+<p>with no <span class="m">L</span> on the right. Put in numbers: <span class="m">f<sub>m</sub> &asymp; 0.15</span>, <span class="m">w &asymp; 10<sup>5</sup> J/m&sup3;</span>, <span class="m">&rho; = 10<sup>3</sup> kg/m&sup3;</span>:</p>
+
+<div class="eq">h = (0.15)(10<sup>5</sup>)/((10<sup>3</sup>)(9.8)) = <b>1.5 m</b> <span class="tag">(15)</span></div>
+
+<p>Haldane's figure for a man, from 1926, is "about five" feet, which is 1.5 m.<sup class="c"><a href="#r8">8</a></sup></p>
+
+<div class="box caution">
+<span class="lbl">Which assumption is load-bearing</span>
+<p>Not <span class="m">f<sub>m</sub></span>, and not <span class="m">w</span>. Both enter linearly, so getting either wrong by a factor of two moves <span class="m">h</span> by a factor of two and the conclusion survives.</p>
+<p style="margin-top:.5rem">The load-bearing assumption is <strong>that the energy comes from muscle at all</strong>, and it is the one that fails. Section 13 is what happens when it does. When you present a scaling law, say which assumption would break it, because that is where the biology is hiding.</p>
+</div>
+
+<h2 id="s13"><span class="n">13</span>The power wall, and the spring</h2>
+<p class="lede">The energy is available at every size. The time in which to deliver it is not, and that is what forces a mechanism.</p>
+
+<p>If <span class="m">h</span> is the same for all jumpers then so is the takeoff speed, <span class="m">v = &radic;(2gh) &asymp; 3 m/s</span>. The animal accelerates over roughly its own length, so</p>
+
+<div class="eq">&tau; &asymp; L/v <span class="tag">(16)</span></div>
+
+<p>which is linear in size while <span class="m">h</span> is constant. Now convert to the quantity muscle is actually limited by, which is power per unit volume:</p>
+
+<div class="eq">P/V = w/&tau; = w v / L <span class="tag">(17)</span></div>
 
 <figure class="figbox">
 <!--FIG:jump-release-wall-->
@@ -6591,36 +6614,63 @@ z
  </defs>
 </svg>
 <!--/FIG-->
-<figcaption><b>Figure 5. One quantity is flat, the other is not.</b> Left: jump height across three decades of body length, with the geometric mean. Right: the time available to deliver it, <span class="m">&tau; = L/v</span>, against the 0.1 s that one muscle contraction takes. The flea is a factor of 150 below the line, so whatever it is doing, it is not powering the jump with muscle.</figcaption>
+<figcaption><b>Figure 2. The wall.</b> Left, jump height across three decades of body length. Right, the release time against the roughly 0.1 s that one muscle contraction takes. The flea is a factor of 150 below.</figcaption>
 </figure>
 
-<p>The same statement in power terms is sharper. Delivering <span class="m">10<sup>5</sup> J/m<sup>3</sup></span> in 0.7 ms demands <span class="m">1.5&times;10<sup>8</sup> W/m<sup>3</sup></span>, and muscle tops out near <span class="m">2&times;10<sup>5</sup></span>. The flea needs a thousand times the power density muscle can produce.</p>
-
-<p>The resolution is that small jumpers do not power the jump at all. They contract muscle slowly against an elastic element, load it over hundreds of milliseconds, hold it with a latch, and release it in under a millisecond. The spring, not the muscle, sets the power. Energy is conserved and power is amplified, because power is energy over time and the spring shortens the time.</p>
-
-<div class="box caution">
-<span class="lbl">Haldane had the constraint and missed the mechanism</span>
-<p>His sentence carries the caveat "provided it can be developed quickly enough in the small animal", which is equation (6) in words, in 1926. But his explanation for why a flea does not clear a man's height is that insect muscle "appears to be less efficient". That is the wrong answer, and the right one is more interesting: the flea is not using muscle as an engine, it is using it as a winch. Getting the constraint right and the mechanism wrong is the normal outcome of a good estimate, and it is what makes the estimate worth doing. It tells you exactly which question to go and ask.</p>
+<div class="tablewrap">
+<table>
+<caption>Table 3. Where the wall is, in power terms. Muscle delivers at most about 2&times;10<sup>5</sup> W/m&sup3;.</caption>
+<thead><tr><th>Animal</th><th>L</th><th>&tau; = L/v</th><th>P/V required</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td>human</td><td class="num">1 m</td><td class="num">0.34 s</td><td class="num">3&times;10<sup>5</sup></td><td>at the limit</td></tr>
+<tr><td>cat</td><td class="num">0.2 m</td><td class="num">0.07 s</td><td class="num">1.5&times;10<sup>6</sup></td><td>over</td></tr>
+<tr><td>flea</td><td class="num">2 mm</td><td class="num">0.7 ms</td><td class="num hl">1.5&times;10<sup>8</sup></td><td class="hl">over by 10<sup>3</sup></td></tr>
+</tbody>
+</table>
 </div>
 
-<div class="box open">
-<span class="lbl">One number here is borrowed and flagged</span>
-<p>Haldane's flea figure of two feet is high compared with published measurements, which are species-dependent and generally smaller. The primary sources are recorded in <code>literature/NEEDED.md</code> and have not been read, so this page quotes the figure as Haldane's and does not assert a corrected one. The scaling argument does not depend on it.</p>
+<p>So the flea needs a thousand times the power density muscle can produce. It cannot be a muscle-powered jump, and the resolution is a spring: contract slowly against an elastic element, hold with a latch, release fast.</p>
+
+<div class="box key">
+<span class="lbl">Why a spring works, in one line</span>
+<p>Power is energy over time, and a spring changes the time without changing the energy. Load it over 300 ms and release it over 0.7 ms and you have multiplied the power by 400 while conserving every joule. Nothing is created. The energy is simply delivered on a different schedule, and the schedule was the constraint.</p>
 </div>
 
-<h2 id="s7"><span class="n">7</span>Heat, and t &asymp; x&sup2;/&kappa;</h2>
-<p class="lede">Fourier's law, conservation, one equation, and the scaling that survives: double the size, quadruple the time. This is the most useful line in the course.</p>
+<p>This pattern, load slowly and release through a latch, is now known to be general across small fast biological systems. It is also the reason the estimate was worth making: it did not tell us the flea uses a spring, it told us that the flea <em>must</em> use something other than muscle, which is a question sharp enough to go and answer.</p>
 
-<p>Heat flux is proportional to the local temperature gradient, and energy is conserved. Those two facts give the heat equation in four lines.</p>
+<h2 id="s14"><span class="n">14</span>Heat: deriving t = x&sup2;/&kappa;</h2>
+<p class="lede">The long way, so that you know what the short way in &sect;6(b) was standing on.</p>
 
-<div class="eq">J = &minus;K &nabla;T &nbsp;&nbsp;(Fourier) &nbsp;&nbsp;&nbsp; &Delta;E = C<sub>v</sub> &delta;T &nbsp;&nbsp;(storage) <span class="tag">(7)</span></div>
-<div class="eq">&delta;x C<sub>v</sub> &delta;T = [J(x) &minus; J(x+&delta;x)] &delta;t &nbsp; &rArr; &nbsp; <b>&part;T/&part;t = &kappa; &nabla;&sup2;T</b>, &nbsp; &kappa; = K/C<sub>v</sub> <span class="tag">(8)</span></div>
+<p>Two physical inputs. First, heat flows down a temperature gradient in proportion to it, which is Fourier's law with conductivity <span class="m">K</span>:</p>
 
-<p>Two material constants have collapsed into one. Now take the order-of-magnitude step: replace each derivative by the variation over one characteristic scale, <span class="m">&part;/&part;t &rarr; 1/t</span> and <span class="m">&part;&sup2;/&part;x&sup2; &rarr; 1/x&sup2;</span>. The temperature cancels and</p>
+<div class="eq">J = &minus;K &part;T/&part;x <span class="tag">(18)</span></div>
 
-<div class="eq">T/t &asymp; &kappa; T/x&sup2; &nbsp; &rArr; &nbsp; <b>t &asymp; x&sup2;/&kappa;</b> <span class="tag">(9)</span></div>
+<p>Second, storing heat raises temperature in proportion to the heat capacity per volume <span class="m">C<sub>v</sub></span>.</p>
 
-<p>Only one functional form survives, and it is quadratic in size. Every diffusive process in this course obeys it, with a different letter in place of <span class="m">&kappa;</span>: heat, molecules, momentum, even the spread of a mutation. Learn this one line.</p>
+<p>Take a slab from <span class="m">x</span> to <span class="m">x + &delta;x</span>, of unit cross-section. Heat in minus heat out over time <span class="m">&delta;t</span> equals the energy stored:</p>
+
+<div class="eq">[J(x) &minus; J(x+&delta;x)] &delta;t = C<sub>v</sub> &delta;x &delta;T <span class="tag">(19)</span></div>
+
+<p>Divide by <span class="m">&delta;x &delta;t</span>, and let both go to zero. The left side becomes <span class="m">&minus;&part;J/&part;x</span>, and with (18):</p>
+
+<div class="eq">C<sub>v</sub> &part;T/&part;t = K &part;&sup2;T/&part;x&sup2; &nbsp; &rArr; &nbsp; <b>&part;T/&part;t = &kappa; &part;&sup2;T/&part;x&sup2;</b>, &nbsp; &kappa; = K/C<sub>v</sub> <span class="tag">(20)</span></div>
+
+<p>Two material constants have become one, and <span class="m">&kappa;</span> has dimensions L&sup2;T<sup>&minus;1</sup>. Now the scaling step: over one characteristic time <span class="m">t</span> and one characteristic length <span class="m">x</span>, replace <span class="m">&part;/&part;t</span> by <span class="m">1/t</span> and <span class="m">&part;&sup2;/&part;x&sup2;</span> by <span class="m">1/x&sup2;</span>. The temperature cancels:</p>
+
+<div class="eq">T/t &asymp; &kappa;T/x&sup2; &nbsp; &rArr; &nbsp; <b>t &asymp; x&sup2;/&kappa;</b> <span class="tag">(21)</span></div>
+
+<p>Which is (4), obtained in &sect;6(b) by counting units. The long derivation was not wasted: it produced the equation itself, the identification <span class="m">&kappa; = K/C<sub>v</sub></span>, and therefore a way to compute <span class="m">&kappa;</span> from tabulated properties instead of measuring it. That is exactly what catches the error in &sect;15.</p>
+
+<h2 id="s15"><span class="n">15</span>The potato, and how to catch it</h2>
+<p class="lede">The lecture's own worked example is wrong by two orders of magnitude, and the way it is caught is the most transferable thing on this page.</p>
+
+<p>The traditional anchor: a 10 cm potato cooks in about 10 minutes, so <span class="m">&kappa; = x&sup2;/t = (0.1)&sup2;/600 = 1.7&times;10<sup>&minus;5</sup> m&sup2;/s</span>. Then the moon, radius 1737 km, cools in <span class="m">x&sup2;/&kappa; &asymp; 6&times;10<sup>9</sup></span> years, against a solar system 4.57 billion years old. A satisfying near-miss, and the lecture used to conclude that the moon should be almost but not quite cooled.</p>
+
+<p>Now apply the check that &sect;14 made available. We have <span class="m">&kappa; = K/(&rho;c<sub>p</sub>)</span> and a potato is mostly water:</p>
+
+<div class="eq">&kappa;<sub>water</sub> = 0.60 / (1000 &times; 4180) = <b>1.4&times;10<sup>&minus;7</sup> m&sup2;/s</b> <span class="tag">(22)</span></div>
+
+<p>a factor of 116 smaller than the anchor. One of the two is wrong, and it is not the one built from three tabulated constants.</p>
 
 <figure class="figbox">
 <!--FIG:diffusion-scaling-->
@@ -10583,186 +10633,173 @@ z
  </defs>
 </svg>
 <!--/FIG-->
-<figcaption><b>Figure 6. Sixteen decades on one line.</b> Left: <span class="m">t = x&sup2;/&kappa;</span> from a protein crossing a bacterium to the moon cooling, with a band spanning &kappa; from water to rock. The band is a factor of 7 wide and invisible at this scale, which is why one line really does carry all of them. Right: the calibration, which is where the lecture's own chain breaks.</figcaption>
+<figcaption><b>Figure 3. What the correction does.</b> Left, <span class="m">t = x&sup2;/&kappa;</span> from a protein crossing a bacterium to the moon, with a band covering &kappa; from water to rock. The band is a factor of 7 wide and invisible over sixteen decades, which is why a single line serves for all of them. Right, the calibration itself, with the anchor sitting two decades below where water puts it.</figcaption>
 </figure>
 
-<h3>Calibrating &kappa;, and getting it wrong</h3>
-<p>Move 3 says to fix the constant from something you have personally experienced. The traditional anchor for this lecture is a potato: 10 cm across, ten minutes to cook, so <span class="m">&kappa; &asymp; (0.1)&sup2;/600 = 1.7&times;10<sup>&minus;5</sup> m&sup2;/s</span>. It is a lovely move and the anchor is wrong.</p>
+<p>Where did the anchor go wrong? Almost certainly the memory is of boiling <em>chopped</em> potato, where heat travels about a centimetre and the time really is around ten minutes. A whole baked potato has 3 cm to its centre, and (21) with the true <span class="m">&kappa;</span> gives 6300 s, about 100 minutes. A baked potato takes about an hour. The estimate is right and the anchor was measuring a different vegetable.</p>
 
-<p>Check it against the definition. A potato is mostly water, and water's conductivity, density and heat capacity are all textbook numbers:</p>
+<h3>What this does to the moon</h3>
+<p>With rock's <span class="m">&kappa; = K/(&rho;c<sub>p</sub>) = 2.5/(3000 &times; 800) = 1.0&times;10<sup>&minus;6</sup> m&sup2;/s</span>:</p>
 
-<div class="eq">&kappa;<sub>water</sub> = K/(&rho;c<sub>p</sub>) = 0.60 / (1000 &times; 4180) = <b>1.4&times;10<sup>&minus;7</sup> m&sup2;/s</b> <span class="tag">(10)</span></div>
+<div class="eq">t = (1.737&times;10<sup>6</sup>)&sup2; / 1.0&times;10<sup>&minus;6</sup> = 2.9&times;10<sup>18</sup> s = <b>9&times;10<sup>10</sup> years</b> <span class="tag">(23)</span></div>
 
-<p>a factor of 116 smaller. The anchor claimed a potato cooks in ten minutes, and by conduction it does not: equation (9) with the true <span class="m">&kappa;</span> and 3 cm to the centre gives about 100 minutes, which is what a baked potato actually takes. The original anchor was a memory of boiling <em>chopped</em> potato, where the distance is a centimetre and the answer really is about ten minutes.</p>
+<p>Twenty times the age of the solar system, so the conclusion reverses: conduction cannot have cooled the moon. The right question becomes how deep the cooling reached, and (21) inverted answers it:</p>
 
-<h3>What that does to the moon</h3>
-<p>The payoff of the potato was supposed to be the moon. With the bad <span class="m">&kappa;</span> and a 1737 km radius, equation (9) gives about <span class="m">6&times;10<sup>9</sup></span> years, tantalisingly close to the 4.57 billion years the solar system has existed, and the lecture concluded that the moon should be nearly but not quite cooled. With rock's real diffusivity, <span class="m">&kappa; = 1.0&times;10<sup>&minus;6</sup> m&sup2;/s</span>, the answer is <span class="m">9&times;10<sup>10</sup></span> years, <strong>twenty times the age of the solar system.</strong></p>
+<div class="eq">d = &radic;(&kappa;t) = &radic;(1.0&times;10<sup>&minus;6</sup> &times; 1.4&times;10<sup>17</sup>) = <b>390 km</b> <span class="tag">(24)</span></div>
 
-<p>So the conclusion inverts. Conduction cannot have cooled the moon, and the right question is how deep the cooling reached. Turn equation (9) around and ask what thickness has had time to cool:</p>
-
-<div class="eq">d = &radic;(&kappa; t) = &radic;(1.0&times;10<sup>&minus;6</sup> &times; 1.4&times;10<sup>17</sup>) &asymp; <b>390 km</b> <span class="tag">(11)</span></div>
-
-<p>which is the outer 22 per cent of the radius. That is a real and checkable prediction about the moon, and it is closer to the truth than the original.</p>
+<p>The outer 22 per cent of the radius. That is a sharper and more checkable statement than the original, and it came from fixing one number.</p>
 
 <div class="box key">
-<span class="lbl">This is the method working, not failing</span>
-<p>A wrong anchor produced a wrong conclusion, and the error was caught by a routine that costs thirty seconds: compare your calibrated constant against the material property it is supposed to be. Move 1 is a theorem and cannot betray you. Move 2 is a judgement and can. <strong>Move 3 is an empirical claim, and an anchor you have never checked is a number you invented.</strong> Always check the constant, and always quote it, so that whoever reads your estimate can check it too.</p>
+<span class="lbl">The rule, and it is the most useful sentence on this page</span>
+<p><strong>Any constant you calibrate from experience must be checked against an independent route to the same constant.</strong> Usually that means computing it from tabulated material properties, as in (22). Moves 1 and 2 cannot betray you, because a theorem and an algebraic substitution are either right or visibly wrong. Move 3 can, silently, and a wrong anchor propagates through perfectly correct reasoning to a confidently wrong answer.</p>
+<p style="margin-top:.5rem">This matters more in 2026 than it did in 1999. An agent will hand you a plausible number for anything, instantly, with no signal about whether it was measured, inferred, or invented. The check is the whole defence.</p>
 </div>
-
-<div class="tablewrap">
-<table>
-<caption>Table 1. The two 2025 records of this lecture disagree, and the arithmetic settles it. The deeper point is in the last column.</caption>
-<thead><tr><th>Quantity</th><th>Handwritten notes</th><th>Scribe note</th><th>Recomputed</th></tr></thead>
-<tbody>
-<tr><td>&kappa; from the potato</td><td class="num">1.5&times;10<sup>&minus;6</sup></td><td class="num">1.5&times;10<sup>&minus;5</sup></td><td class="num hl">1.7&times;10<sup>&minus;5</sup> (scribe is right)</td></tr>
-<tr><td>&kappa; of water, from K/&rho;c<sub>p</sub></td><td>not given</td><td>not given</td><td class="num hl">1.4&times;10<sup>&minus;7</sup> (both anchors are wrong)</td></tr>
-<tr><td>Moon cooling time</td><td class="num">10<sup>10</sup> yr (from 3&times;10<sup>18</sup> s, which is 10<sup>11</sup>)</td><td class="num">10<sup>10</sup> yr</td><td class="num hl">9&times;10<sup>10</sup> yr with rock's &kappa;</td></tr>
-<tr><td>Proteins per <em>E. coli</em></td><td class="num">2&times;10<sup>6</sup> to 2&times;10<sup>7</sup></td><td class="num">2&times;10<sup>7</sup></td><td class="num hl">3&times;10<sup>6</sup>; the 2&times;10<sup>7</sup> is an upper bound</td></tr>
-</tbody>
-</table>
-</div>
-
-<h2 id="s8"><span class="n">8</span>Life at low Reynolds number</h2>
-<p class="lede">Below ten microns, inertia does not exist. Everything you know about swimming, coasting and stirring is wrong there, and the estimate that shows it is one line.</p>
-
-<p>The last physics of the lecture is the one that most damages your intuition, and it is the bridge to lecture 2. The Reynolds number compares inertial to viscous forces:</p>
-
-<div class="eq">Re = &rho;vL/&eta; <span class="tag">(12)</span></div>
-
-<p>For a bacterium, <span class="m">&rho; = 10<sup>3</sup> kg/m<sup>3</sup></span>, <span class="m">v &asymp; 30 &micro;m/s</span>, <span class="m">L &asymp; 1 &micro;m</span>, <span class="m">&eta; = 10<sup>&minus;3</sup> Pa&middot;s</span>:</p>
-
-<div class="eq">Re &asymp; (10<sup>3</sup>)(3&times;10<sup>&minus;5</sup>)(10<sup>&minus;6</sup>) / 10<sup>&minus;3</sup> = <b>3&times;10<sup>&minus;5</sup></b> <span class="tag">(13)</span></div>
-
-<p>against roughly <span class="m">10<sup>6</sup></span> for a human swimming. Purcell put it as "about <span class="m">10<sup>&minus;4</sup></span> or <span class="m">10<sup>&minus;5</sup></span>. For these animals inertia is totally irrelevant. We know that F = ma, but they could scarcely care less."<sup class="c"><a href="#r9">9</a></sup></p>
-
-<p>The consequence he draws is the one worth remembering. Stop pushing a bacterium and ask how far it coasts. Balancing its momentum against Stokes drag gives a stopping distance of about <span class="m">0.03</span> &Aring;, and Purcell's own figure is 0.1 &Aring;, in 0.6 microseconds. Either way it is a fraction of an atom.</p>
-
-<figure class="figbox">
-<svg viewBox="0 0 720 236" role="img" aria-label="At low Reynolds number a reciprocal stroke returns you to where you started">
-  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
-    <text x="14" y="22" font-size="12.5" font-weight="700" fill="var(--rose)" letter-spacing="1.1">THE SCALLOP THEOREM</text>
-    <text x="14" y="44" font-size="12.5" fill="var(--muted)">With no inertia, the flow depends only on where the body is, never on how fast it got there.</text>
-
-    <rect x="14" y="60" width="336" height="132" rx="10" fill="var(--pinkf)" stroke="var(--coral)" stroke-width="1.5"/>
-    <text x="34" y="84" font-size="13.5" font-weight="700" fill="var(--fg)">One hinge: open slow, shut fast</text>
-    <g stroke="var(--coral)" stroke-width="2.4" fill="none" stroke-linecap="round">
-      <path d="M60 118 L104 104"/><path d="M60 118 L104 132"/>
-      <path d="M170 118 L214 112"/><path d="M170 118 L214 124"/>
-      <path d="M280 118 L324 104"/><path d="M280 118 L324 132"/>
-    </g>
-    <text x="126" y="122" font-size="15" fill="var(--gray)">&#8594;</text>
-    <text x="236" y="122" font-size="15" fill="var(--gray)">&#8594;</text>
-    <text x="34" y="160" font-size="12.5" fill="var(--muted)">The configuration retraces itself, so the</text>
-    <text x="34" y="177" font-size="12.5" fill="var(--coral)" font-weight="600">scallop ends exactly where it began.</text>
-
-    <rect x="368" y="60" width="336" height="132" rx="10" fill="var(--powder)" stroke="var(--teal)" stroke-width="1.5"/>
-    <text x="388" y="84" font-size="13.5" font-weight="700" fill="var(--fg)">A corkscrew: never retraces</text>
-    <path d="M400 128 q14 -22 28 0 t28 0 t28 0 t28 0 t28 0 t28 0" stroke="var(--teal)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-    <circle cx="396" cy="128" r="9" fill="var(--teal)"/>
-    <text x="596" y="133" font-size="15" fill="var(--gray)">&#8594;</text>
-    <text x="388" y="160" font-size="12.5" fill="var(--muted)">A rotating helix passes through a loop in</text>
-    <text x="388" y="177" font-size="12.5" fill="var(--teal)" font-weight="600">shape space, so it goes somewhere.</text>
-
-    <text x="14" y="222" font-size="12" fill="var(--muted)">This is why every swimming bacterium you will meet in this course turns a helical flagellum rather than paddling.</text>
-  </g>
-</svg>
-<figcaption><b>Figure 7. Why bacteria have propellers and not paddles.</b> Purcell's scallop theorem: at zero Reynolds number a swimmer whose shape changes reciprocally, retracing the same sequence of configurations backwards, has zero net displacement, however fast or slow it moves. Escaping the theorem requires a stroke that traverses a loop in shape space.</figcaption>
-</figure>
-
-<p>One more of Purcell's estimates carries straight into lecture 2. Compare the time to move something a distance <span class="m">l</span> by stirring, <span class="m">l/v</span>, against the time to move it by diffusion, <span class="m">l&sup2;/D</span>. The ratio is <span class="m">lv/D</span>. Purcell introduces it, notes that "I'm sure this ratio has someone's name but I don't know the literature", and calls it the stirring number. It is the Péclet number. A cell of a micron with <span class="m">D &asymp; 100</span> &micro;m&sup2;/s and any plausible internal flow has <span class="m">lv/D &lt; 1</span>, so <strong>stirring a bacterium is pointless</strong>, and diffusion has already done the job.</p>
 
 <div class="parthead">
-  <div class="k">Part 4</div>
-  <h2>Using it</h2>
-  <p>What the method is for once you leave physics, and what you do this week.</p>
+  <div class="k">Part 5</div>
+  <h2>Into the cell</h2>
+  <p>What changes when the object is a micron across and alive.</p>
 </div>
 
-<h2 id="s9"><span class="n">9</span>Null models</h2>
-<p class="lede">In biology an estimate is a null hypothesis. It says what plain physics would do with no regulation at all, and the gap is where design lives.</p>
+<h2 id="s16"><span class="n">16</span>Life at low Reynolds number</h2>
+<p class="lede">One dimensionless number deletes inertia, and with it most of your physical intuition.</p>
 
-<p>Everything so far was physics, where the estimate is the answer. In biology the estimate is rarely the answer, and that is precisely what makes it valuable. You compute what the system would do if nothing were regulating it, and then you compare.<sup class="c"><a href="#r11">11</a></sup> Three outcomes, and all three are useful.</p>
+<p>The Reynolds number is the ratio of inertial to viscous forces. Build it by dimensional analysis: from <span class="m">&rho;</span>, <span class="m">v</span>, <span class="m">L</span>, <span class="m">&eta;</span> there is exactly one dimensionless group,</p>
+
+<div class="eq">Re = &rho;vL/&eta; <span class="tag">(25)</span></div>
+
+<p>For a swimming bacterium, <span class="m">&rho; = 10<sup>3</sup></span> kg/m&sup3;, <span class="m">v = 30 &micro;m/s</span>, <span class="m">L = 1 &micro;m</span>, <span class="m">&eta; = 10<sup>&minus;3</sup></span> Pa&middot;s:</p>
+
+<div class="eq">Re = (10<sup>3</sup>)(3&times;10<sup>&minus;5</sup>)(10<sup>&minus;6</sup>)/10<sup>&minus;3</sup> = <b>3&times;10<sup>&minus;5</sup></b> <span class="tag">(26)</span></div>
+
+<p>Purcell's own statement is "about <span class="m">10<sup>&minus;4</sup></span> or <span class="m">10<sup>&minus;5</sup></span>. For these animals inertia is totally irrelevant. We know that F = ma, but they could scarcely care less."<sup class="c"><a href="#r9">9</a></sup></p>
+
+<h3>Making the number physical</h3>
+<p>A number is not an intuition. Here is the conversion. Stop pushing the bacterium and ask how far it coasts. Its momentum is <span class="m">mv</span> and Stokes drag is <span class="m">6&pi;&eta;av</span>, so the stopping time is <span class="m">m/(6&pi;&eta;a)</span> and the distance is that times <span class="m">v</span>:</p>
+
+<div class="eq">d = mv/(6&pi;&eta;a) = (10<sup>&minus;15</sup>)(3&times;10<sup>&minus;5</sup>)/(6&pi; &times; 10<sup>&minus;3</sup> &times; 5&times;10<sup>&minus;7</sup>) &asymp; 3&times10<sup>&minus;12</sup> m = <b>0.03 &Aring;</b> <span class="tag">(27)</span></div>
+
+<p>Purcell gets 0.1 &Aring;, and the factor of three between us is what an order-of-magnitude calculation is for. Either way: <strong>a bacterium that stops swimming stops within a fraction of the width of an atom.</strong> There is no coasting, no momentum, no gliding. If it is moving, something is pushing it right now.</p>
+
+<p>The structural consequence is the scallop theorem. With inertia gone, the flow depends only on the sequence of shapes, not on the rate, so any stroke that retraces itself nets zero displacement however violently performed. Escaping it needs a stroke that traverses a loop in shape space, which is why bacteria rotate helical flagella.</p>
+
+<h2 id="s17"><span class="n">17</span>Diffusion, and why it decides</h2>
+<p class="lede">Equation (4) again, now with the numbers that run the rest of the course.</p>
+
+<p>The diffusion coefficient for a sphere of radius <span class="m">a</span> follows from balancing thermal energy against Stokes drag, which is the Stokes-Einstein relation:</p>
+
+<div class="eq">D = k<sub>B</sub>T / (6&pi;&eta;a) <span class="tag">(28)</span></div>
+
+<p>The <span class="m">1/a</span> is the honest version of the lecture's "D scales as one over size". For a 30 kDa protein, <span class="m">a &asymp; 2</span> nm:</p>
+
+<div class="eq">D = (1.38&times;10<sup>&minus;23</sup>)(293) / (6&pi; &times; 10<sup>&minus;3</sup> &times; 2&times;10<sup>&minus;9</sup>) &asymp; <b>110 &micro;m&sup2;/s</b> <span class="tag">(29)</span></div>
+
+<p>Now put it in (4) and read off the whole course.</p>
 
 <div class="tablewrap">
 <table>
-<caption>Table 2. What to conclude from the gap between the estimate and the observation.</caption>
-<thead><tr><th>Outcome</th><th>What it means</th><th>Example</th></tr></thead>
+<caption>Table 4. Mixing time by passive diffusion, <span class="m">t = x&sup2;/D</span>, for a typical protein.</caption>
+<thead><tr><th>Compartment</th><th>x</th><th>t</th><th>What it implies</th></tr></thead>
 <tbody>
-<tr><td><strong>Physics is far too slow</strong></td><td>Some mechanism must exist that you have not accounted for. Go find it.</td><td>A protein diffusing down a 1 m axon needs <span class="m">3&times;10<sup>2</sup></span> years, so motors exist.</td></tr>
-<tr><td><strong>Physics is fast enough</strong></td><td>No regulation is needed for this. Stop looking, and do not build a model of it.</td><td>Mixing a bacterium takes 10 ms, so a bacterium is well stirred by doing nothing at all.</td></tr>
-<tr><td><strong>The system sits at the bound</strong></td><td>Nothing left to explain by design; physics already forbids doing better. This is the strongest kind of result.</td><td>The Berg&ndash;Purcell limit on how precisely a cell can read a concentration.<sup class="c"><a href="#r10">10</a></sup></td></tr>
+<tr><td><em>E. coli</em></td><td class="num">1 &micro;m</td><td class="num">9 ms</td><td>well mixed for free; no transport machinery needed</td></tr>
+<tr><td>yeast</td><td class="num">5 &micro;m</td><td class="num">0.2 s</td><td>still fine</td></tr>
+<tr><td>mammalian cell</td><td class="num">20 &micro;m</td><td class="num">3.7 s</td><td>comparable to signalling times; now it matters</td></tr>
+<tr><td>frog egg</td><td class="num">1 mm</td><td class="num">2.6 h</td><td>needs cytoplasmic streaming</td></tr>
+<tr><td>axon</td><td class="num">1 m</td><td class="num hl">300 years</td><td class="hl">therefore motor proteins exist</td></tr>
 </tbody>
 </table>
 </div>
 
-<p>The third row is the one people forget, and it is worth being honest that it undercuts the framing of the other two. Sometimes biology is <em>at</em> the physical limit, and then there is no gap and no design to find. Berg and Purcell showed that a chemotactic bacterium measures concentrations about as accurately as any device of its size could, given that the molecules arrive by diffusion. When an estimate comes out equal to the observation, that is not a failed null model. It is the discovery that the organism is up against physics.</p>
+<p>That table is one of the most useful things in the course. It says a bacterium gets mixing free and a neuron cannot have it at any price, and the entire apparatus of kinesin and dynein is the consequence of an exponent of two.</p>
 
-<div class="box sim">
-<span class="lbl">The ten-questions game</span>
-<p>Ten questions, three minutes each, answers to within a factor of ten. What is the mass of all the RNA in a human cell? How many ATP molecules are in a bacterium at any instant? How long is one transcription cycle? How many metabolic reactions fit in one cell? The method is always the same: name the scale, name the bottleneck, then answer. We do one live, and the room rates it 0 to 3 on the course rubric. That single act converts the rubric from a table into a shared standard.</p>
+<h2 id="s18"><span class="n">18</span>The null model, and its limit</h2>
+<p class="lede">In biology the estimate is usually not the answer, and that is the point. Except when it is.</p>
+
+<p>The standard use is as a null hypothesis. Compute what plain physics does with no regulation, compare, and interpret the gap. Table 4 has both of the common outcomes in it: the axon row is "physics is far too slow, so a mechanism must exist", and the <em>E. coli</em> row is "physics is fast enough, so stop modelling it".</p>
+
+<p>The third outcome is the one that complicates the framing, and it deserves its own statement. Berg and Purcell asked how precisely a bacterium could possibly measure a chemical concentration, given that molecules arrive by diffusion and arrival is a counting process with its own noise.<sup class="c"><a href="#r10">10</a></sup> They derived a bound that no receptor design can beat, then compared it with what bacteria achieve in chemotaxis, and found them close to it.</p>
+
+<p>There is no gap. Nothing is left to attribute to design, because physics already forbids doing better. That is a stronger result than any gap would have been, and it changes the question from "why is the cell built this way" to "the cell is built the only way that works".</p>
+
+<div class="box note">
+<span class="lbl">What to do with each outcome</span>
+<p><strong>Estimate far below observation:</strong> a mechanism exists that you have not accounted for. Go find it. <strong>Estimate far above:</strong> no regulation is needed here; do not build a model of it. <strong>Estimate equals observation:</strong> the system is at a physical bound. Stop looking for a cleverer mechanism, and go and check whether the bound is tight in other organisms too.</p>
 </div>
 
-<h2 id="s10"><span class="n">10</span>This week</h2>
-<p class="lede">Two deadlines, and the first is a test of the plumbing rather than of you.</p>
+<div class="parthead">
+  <div class="k">Part 6</div>
+  <h2>Practice</h2>
+  <p>The routine, and something to do this week.</p>
+</div>
 
-<ul>
-<li><strong>Thursday 09-03, 23:59: sign up to teach.</strong> One file, one pull request, to the <a href="https://github.com/chemaoxfz/ccbs-2026-submissions">submissions repo</a>. It merges itself if you named the file correctly and refuses with a reason if you did not. Teams of two or three. Lectures 3 and 4 teach on 09-08 and 09-10, so those teams should go first.</li>
-<li><strong>Monday 09-07, 23:59: the first extension mini-essay.</strong> Anything from lectures 1 or 2 that you want to push on. The <a href="../../extension-example/">worked example</a> shows the shape and the expected length. Eight of these run over the term and your best six count, so you have two free skips built in.</li>
-</ul>
+<h2 id="s19"><span class="n">19</span>The checklist</h2>
+<p class="lede">What to actually do, in order, when you meet a quantitative question.</p>
 
-<p>Two things in this lecture are open invitations rather than settled results. The flea's measured jump height is not pinned down here because the primary sources are behind a paywall, and the potato anchor is a correction that arrived while preparing this page. Either would make a perfectly good first mini-essay, and finding a third correction of the same kind would make a better one.</p>
+<div class="tablewrap">
+<table>
+<caption>Table 5. The routine. Steps 3 and 7 are the ones people skip, and they are the ones that catch errors.</caption>
+<thead><tr><th>#</th><th>Step</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td>Say what you are estimating, in words, with units</td><td>Half of all disagreements are definitional</td></tr>
+<tr><td class="num">2</td><td>List the quantities that matter, and the ones you are leaving out</td><td>The omissions are the range of validity</td></tr>
+<tr><td class="num">3</td><td>Count: <span class="m">n</span> quantities, <span class="m">k</span> units, <span class="m">n &minus; k</span> groups</td><td>Tells you whether you are done before you start</td></tr>
+<tr><td class="num">4</td><td>If more than one group, find what is actually fixed and substitute</td><td>Move 2. What cancels, you never needed</td></tr>
+<tr><td class="num">5</td><td>Anchor any unknown constant on something you have lived through</td><td>Move 3</td></tr>
+<tr><td class="num">6</td><td>Compute, rounding freely in both directions</td><td>Errors add in quadrature, not linearly</td></tr>
+<tr><td class="num">7</td><td class="hl">Check the anchor against an independent route</td><td class="hl">The only defence against a silently wrong constant</td></tr>
+<tr><td class="num">8</td><td>Say what would break the result</td><td>Turns an answer into a question worth asking</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2 id="s20"><span class="n">20</span>Ten questions</h2>
+<p class="lede">Three minutes each, a factor of ten, and the routine above every time.</p>
+
+<ol>
+<li>How many ATP molecules are in one <em>E. coli</em> at any instant?</li>
+<li>How long does it take to transcribe an average gene?</li>
+<li>What is the total mass of RNA in a human cell, compared with protein?</li>
+<li>How many ribosomes does a bacterium need to double in twenty minutes?</li>
+<li>How far apart are two molecules of a protein present at 1 &micro;M?</li>
+<li>How many times a second does a given enzyme meet its substrate at 1 mM?</li>
+<li>What fraction of a cell's energy goes into making protein?</li>
+<li>How thick is the cell membrane, from the length of a lipid?</li>
+<li>How many cells are there in your body, and how do you know?</li>
+<li>How much would the answer to (9) change if you were wrong about cell size by a factor of two?</li>
+</ol>
+
+<p>Question 10 is not a filler. Propagating an uncertainty through an estimate is the step that turns a number into a claim, and it is the one most often left out.</p>
+
+<div class="box sim">
+<span class="lbl">This week</span>
+<p>The first extension mini-essay is due <strong>Monday 09-07, 23:59</strong>, on anything from lectures 1 or 2. Two open threads from this page would make good ones. The flea's measured jump height is not pinned down here because the primary sources are paywalled, and the potato anchor is a correction found while writing. Finding a third error of the same kind, anywhere in these three pages, would be better than either. The <a href="../extension/">worked example</a> shows the shape.</p>
+</div>
 
 <hr>
 
-<h2 id="refs"><span class="n">&dagger;</span>References &amp; sources</h2>
-<p class="lede">Every claim and number on this page traces to one of these. Items marked <span class="pdf">PDF</span> have their full text in the course's <code>literature/</code> archive.</p>
+<h2 id="refs"><span class="n">&dagger;</span>References</h2>
+<p class="lede">Items marked <span class="pdf">PDF</span> have their full text in the course's <code>literature/</code> archive. The <a href="../lineage/">lineage page</a> discusses most of them in context.</p>
 
 <div class="refs">
 <ol>
-<li id="r1">F. Xiao, <em>CCBS 2025 Lecture 1: Order of Magnitude reasoning</em> (handwritten notes), with the 2025 scribe notes by Qinguo Liu and Yihang Ding.
+<li id="r1">F. Xiao, <em>CCBS 2025 Lecture 1</em>, handwritten notes and the scribe note by Qinguo Liu and Yihang Ding.
 <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/202509-CCBS-lecture-notes-01-OoM.pdf">notes</a>
-<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_scribe_lecture1.pdf">scribe</a>
-<span class="venue">The source of the Hangzhou, jump-height and potato examples. Where the two records disagree, Table 1 says which is right.</span></li>
-
-<li id="r2">E. Buckingham, "On physically similar systems; illustrations of the use of dimensional equations", <em>Phys. Rev.</em> <strong>4</strong>, 345&ndash;376 (1914). <span class="pdf">PDF</span>
-<span class="venue">The &Pi; theorem. The n &minus; k count in &sect;3 is his.</span></li>
-
-<li id="r3">G. I. Taylor, "The formation of a blast wave by a very intense explosion. I. Theoretical discussion", <em>Proc. R. Soc. A</em> <strong>201</strong>, 159&ndash;174 (1950). <span class="pdf">PDF</span>
-<span class="venue">Written in 1941 and circulated in June of that year. Contains the prediction that a nuclear blast is about half as efficient as a chemical one of the same energy.</span></li>
-
-<li id="r4">G. I. Taylor, "The formation of a blast wave by a very intense explosion. II. The atomic explosion of 1945", <em>Proc. R. Soc. A</em> <strong>201</strong>, 175&ndash;186 (1950). <span class="pdf">PDF</span>
-<span class="venue">Table 1, page 176, is the twenty-five (t, R) pairs plotted in Figure 3. His two yield figures, 16,800 and 23,700 tons, are on page 180.</span></li>
-
-<li id="r5">J. I. Katz, "Fermi at Trinity", arXiv:2103.05784 (2021). <span class="pdf">PDF</span>
-<span class="venue">Source for Fermi's 2.5 m paper displacement and ~10 kt, and for the accepted radiochemical yield of ~21 kt.</span></li>
-
-<li id="r6">P. Goldreich, S. Mahajan and S. Phinney, <em>Order-of-Magnitude Physics: Understanding the World with Dimensional Analysis, Educated Guesswork, and White Lies</em>, draft of 1 August 1999. <span class="pdf">PDF</span>
-<span class="venue">The Caltech course this lecture descends from. See the <a href="../lineage/">lineage page</a>.</span></li>
-
-<li id="r7">S. Mahajan, <em>The Art of Approximation in Science and Engineering</em>, MIT 6.055 draft (2009), published as <em>Street-Fighting Mathematics</em>, MIT Press (2010). <span class="pdf">PDF</span>
-<span class="venue">The method taught as a discipline rather than a knack.</span></li>
-
-<li id="r8">J. B. S. Haldane, "On Being the Right Size", in <em>Possible Worlds and Other Papers</em> (1926). <span class="pdf">PDF</span>
-<span class="venue">The jump-height argument in full, a century early, with the release-time caveat attached and the mechanism misdiagnosed.</span></li>
-
-<li id="r9">E. M. Purcell, "Life at low Reynolds number", <em>Am. J. Phys.</em> <strong>45</strong>, 3&ndash;11 (1977). <span class="pdf">PDF</span>
-<span class="venue">Re for a bacterium, the 0.1 &Aring; coasting distance, the scallop theorem, and the stirring number.</span></li>
-
-<li id="r10">H. C. Berg and E. M. Purcell, "Physics of chemoreception", <em>Biophys. J.</em> <strong>20</strong>, 193&ndash;219 (1977). <span class="pdf">PDF</span>
-<span class="venue">The case where the estimate and the organism agree, which is the third row of Table 2.</span></li>
-
-<li id="r11">R. Phillips and R. Milo, "A feeling for the numbers in biology", <em>PNAS</em> <strong>106</strong>, 21465 (2009). <span class="pdf">PDF</span>
-<span class="venue">The argument for a numerical spine in cell biology.</span></li>
-
-<li id="r12">R. Milo <em>et al.</em>, "BioNumbers: the database of key numbers in molecular and cell biology", <em>Nucleic Acids Res.</em> <strong>38</strong>, D750 (2010). <span class="pdf">PDF</span>
-&middot; <a href="https://book.bionumbers.org">Cell Biology by the Numbers</a>
-<span class="venue">Where to look up any number in Part 4, and lecture 2's main reference.</span></li>
-
+<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_scribe_lecture1.pdf">scribe</a></li>
+<li id="r2">E. Buckingham, <em>Phys. Rev.</em> <strong>4</strong>, 345 (1914). <span class="pdf">PDF</span></li>
+<li id="r3">G. I. Taylor, <em>Proc. R. Soc. A</em> <strong>201</strong>, 159 (1950), part I. <span class="pdf">PDF</span></li>
+<li id="r4">G. I. Taylor, <em>Proc. R. Soc. A</em> <strong>201</strong>, 175 (1950), part II. <span class="pdf">PDF</span> <span class="venue">Table 1 is the data in Figure 1.</span></li>
+<li id="r5">J. I. Katz, "Fermi at Trinity", arXiv:2103.05784 (2021). <span class="pdf">PDF</span></li>
+<li id="r6">P. Goldreich, S. Mahajan and S. Phinney, <em>Order-of-Magnitude Physics</em> (1999). <span class="pdf">PDF</span></li>
+<li id="r7">S. Mahajan, <em>Street-Fighting Mathematics</em>, MIT Press (2010); 6.055 draft. <span class="pdf">PDF</span></li>
+<li id="r8">J. B. S. Haldane, "On Being the Right Size" (1926). <span class="pdf">PDF</span></li>
+<li id="r9">E. M. Purcell, <em>Am. J. Phys.</em> <strong>45</strong>, 3 (1977). <span class="pdf">PDF</span></li>
+<li id="r10">H. C. Berg and E. M. Purcell, <em>Biophys. J.</em> <strong>20</strong>, 193 (1977). <span class="pdf">PDF</span></li>
+<li id="r11">R. Phillips and R. Milo, <em>PNAS</em> <strong>106</strong>, 21465 (2009). <span class="pdf">PDF</span></li>
+<li id="r12">R. Milo <em>et al.</em>, <em>Nucleic Acids Res.</em> <strong>38</strong>, D750 (2010). <span class="pdf">PDF</span> &middot; <a href="https://book.bionumbers.org">book.bionumbers.org</a></li>
 <li id="r13">F. Xiao, <em>CCBS 2025 problem set 1</em>.
 <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_hw01.pdf">PDF</a>
-<span class="venue">Carries the blast wave as a student exercise, along with the terminal-velocity and bomb-area estimates worked in the <a href="../exposition/">exposition</a>.</span></li>
-
-<li id="r14"><code>lectures/lecture01/research/analysis/oom_numbers.py</code> and <code>make_figures.py</code>.
-<span class="venue">Every number on this page. Runs with no arguments and prints all 92 of them, with each input marked as either a value read from a full text or a standard constant.</span></li>
+<span class="venue">Sections 10 and 11 are worked versions of its problem 1.</span></li>
+<li id="r14"><code>lectures/lecture01/research/analysis/</code>: <code>oom_numbers.py</code> for every number on this page, <code>make_figures.py</code> for Figures 1 to 3, <code>theme_svgs.py</code> for the embedding.</li>
 </ol>
 </div>
 
