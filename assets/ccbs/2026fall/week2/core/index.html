@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The reactor: chemical reaction networks</title>
+<meta name="description" content="The reactor: chemical reaction networks">
+<style>
+:root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
+--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--ink:#20201E;--gray:#877F77;--leader:#B8AEA5;--gridc:#EDE7E0;
+--bg:#FCFAF7;--bg2:#FFFFFF;--fg:var(--ink);--muted:#6E675F;--rule:#E3DCD3;
+--shadow:0 1px 2px rgba(32,32,30,.05), 0 8px 28px rgba(32,32,30,.05);
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+--mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;--maxw:44rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;
+--gridc:#2C2E28;--leader:#5C574F;--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;--gridc:#2C2E28;--leader:#5C574F;
+--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}
+:root[data-theme="light"]{--bg:#FCFAF7;--bg2:#FFFFFF;--fg:#20201E;--muted:#6E675F;--rule:#E3DCD3;--gridc:#EDE7E0;--leader:#B8AEA5;
+--ink:#20201E;--gray:#877F77;--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--serif);font-size:18px;line-height:1.62;
+font-kerning:normal;text-rendering:optimizeLegibility}
+.wrap{max-width:78rem;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:3rem}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr;gap:0}}
+nav.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:2.5rem 0 3rem;
+font-family:var(--sans);font-size:.8rem;line-height:1.45}
+nav.toc .brand{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700;margin:0 0 1.1rem}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 .9rem;font-weight:600}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li{margin:0 0 .1rem}
+nav.toc a{display:block;padding:.26rem .55rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;border-radius:0 4px 4px 0}
+nav.toc a:hover{color:var(--fg);background:var(--bg2)}
+nav.toc a.on{color:var(--fg);border-left-color:var(--rose);background:var(--bg2);font-weight:600}
+nav.toc .part{margin:1.1rem 0 .35rem;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--leader);font-weight:700}
+@media (max-width:1000px){nav.toc{position:static;max-height:none;border-bottom:1px solid var(--rule);margin-bottom:1rem}}
+main{padding:2.5rem 0 6rem;min-width:0}
+main > *{max-width:var(--maxw)}
+main > figure,main > .wide,main > .demo,main > .tablewrap{max-width:56rem}
+h1{font-size:2.5rem;line-height:1.1;letter-spacing:-.02em;margin:.4rem 0 .8rem;font-weight:700;max-width:26ch}
+.sub{font-size:1.18rem;color:var(--muted);margin:0 0 1.6rem;line-height:1.5;max-width:38rem}
+.byline{font-family:var(--sans);font-size:.8rem;color:var(--muted);letter-spacing:.02em;margin-bottom:2.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--rule)}
+h2{font-size:1.05rem;font-family:var(--sans);font-weight:700;letter-spacing:.02em;margin:3.6rem 0 .2rem;scroll-margin-top:1.5rem}
+h2 .n{color:var(--rose);font-variant-numeric:tabular-nums;margin-right:.5rem}
+h2 + .lede{color:var(--muted);font-size:1.02rem;margin:.1rem 0 1.1rem}
+h3{font-size:.95rem;font-family:var(--sans);font-weight:700;margin:2.1rem 0 .5rem;color:var(--fg)}
+.parthead{margin:4.5rem 0 1.2rem;padding-top:1.6rem;border-top:2px solid var(--fg)}
+.parthead .k{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700}
+.parthead h2{font-size:1.8rem;margin:.35rem 0 .3rem;letter-spacing:-.01em;font-family:var(--serif)}
+.parthead p{color:var(--muted);margin:0;font-size:1.02rem}
+p{margin:0 0 1.05rem}
+a{color:var(--fg);text-underline-offset:2px;text-decoration-color:var(--leader)}
+a:hover{text-decoration-color:var(--rose)}
+ul,ol{margin:0 0 1.05rem;padding-left:1.35rem}
+li{margin:.28rem 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.6rem 0}
+.small{font-size:.88rem;color:var(--muted)}
+.m{font-family:var(--mono);font-size:.92em;font-style:normal;white-space:nowrap}
+.eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);font-size:.95rem;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;line-height:1.9}
+.eq .tag{float:right;color:var(--leader);font-size:.85em}
+.eq b{color:var(--rose);font-weight:700}
+sub,sup{font-size:.7em;line-height:0}
+.box{border:1px solid var(--rule);background:var(--bg2);border-radius:10px;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow)}
+.box .lbl{font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.45rem;display:block}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+.box.key{border-left:3px solid var(--rose);background:linear-gradient(94deg,var(--blush),var(--bg2) 62%)}
+.box.key .lbl{color:var(--rose)}
+.box.def{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.def .lbl{color:var(--peri)}
+.box.note{border-left:3px solid var(--lime)}
+.box.note .lbl{color:var(--lime)}
+.box.caution{border-left:3px solid var(--coral);background:linear-gradient(94deg,var(--pinkf),var(--bg2) 62%)}
+.box.caution .lbl{color:var(--coral)}
+.box.sim{border-left:3px solid var(--teal);background:linear-gradient(94deg,var(--powder),var(--bg2) 62%)}
+.box.sim .lbl{color:var(--teal)}
+.box.open{border-left:3px solid var(--plum);background:linear-gradient(94deg,var(--lilac),var(--bg2) 62%)}
+.box.open .lbl{color:var(--plum)}
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
+figcaption b{color:var(--fg);font-weight:700}
+.figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
+.tablewrap{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.83rem;line-height:1.45}
+th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:700;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hl{color:var(--rose);font-weight:600}
+caption{caption-side:bottom;text-align:left;padding:.7rem .8rem;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
+.refs{font-size:.88rem;line-height:1.5}
+.refs ol{padding-left:1.8rem}
+.refs li{margin:.5rem 0}
+.refs .venue{color:var(--muted)}
+.pdf{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.04em;color:var(--teal);border:1px solid var(--teal);border-radius:4px;padding:.02rem .3rem;text-decoration:none;margin-left:.3rem;white-space:nowrap}
+.pdf:hover{background:var(--teal);color:var(--bg2)}
+sup.c{font-size:.68em;color:var(--rose);font-weight:700}
+sup.c a{color:inherit;text-decoration:none}
+#tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
+@media print{#tt,nav.toc{display:none}.wrap{display:block}main>*{max-width:none}}
+</style>
+</head>
+<body>
+<button id="tt" title="Toggle light / dark">◐</button>
+<div class="wrap">
+<nav class="toc" id="toc">
+  <div class="brand">CCBS · 2026 · Week 2 · CORE</div>
+  <h2>Contents</h2>
+  <ol>
+    <li class="part">Block 1 · Notations</li>
+    <li><a href="#s1">1 · How a cell does chemistry</a></li>
+    <li><a href="#s2">2 · Elementary vs composite</a></li>
+    <li class="part">Block 2 · Rates</li>
+    <li><a href="#s3">3 · The diffusion-limited encounter</a></li>
+    <li><a href="#s4">4 · Catalysis and the real rates</a></li>
+    <li class="part">Block 3 · Mass action</li>
+    <li><a href="#s5">5 · The law of mass action</a></li>
+    <li><a href="#s6">6 · The CRN rate equation</a></li>
+    <li class="part">Block 4 · Worked models</li>
+    <li><a href="#s7">7 · Production, degradation, bistability</a></li>
+    <li><a href="#s8">8 · Michaelis–Menten from rates</a></li>
+    <li><a href="#s9">9 · The simulation toolkit</a></li>
+    <li class="part">Appendix</li>
+    <li><a href="#refs">References &amp; note sources</a></li>
+  </ol>
+</nav>
+<main>
+
+<h1>The reactor: chemical reaction networks</h1>
+<p class="sub">Notation, rates, mass action, and the equations that turn a soup of reactions into a machine.</p>
+<p class="byline">CCBS · CST 5034 · Fall 2026 · week 2 · core page · 4 student blocks</p>
+
+<p>Week 2 is vocabulary and the first equation. Everything the course later says about
+dynamics (week 3), control (week 4), stochasticity (week 5), energy (week 6), computation
+(week 7) and industry (week 8) is stated in the language fixed here: what a reaction is,
+how fast it goes, and how a network of them becomes a dynamical system. The 2025 lecture
+covered this in one sitting<sup class="c"><a href="#r-l2">1</a></sup>; the four blocks of
+week 2 are the same material, one point per block.</p>
+
+<div class="box note">
+<span class="lbl">Blocks and sessions</span>
+<p>Each block = one 30-minute session taught by one student, followed by the presenter's
+own TA-approved 5-minute quiz (it must test that block's core point, and anyone who got
+the session should solve it in ~30 seconds). The four blocks are coordinated by the day's
+students into one coherent lecture; the lecturer's 15-minute addendum closes the day.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Block 1</div>
+  <h2>Notations</h2>
+  <p>What a reaction is, and the two arrow vocabularies the course uses.</p>
+</div>
+
+<h2 id="s1"><span class="n">1</span>How a cell does chemistry</h2>
+<p class="lede">Changes in cells happen via chemical reactions, whose kinetics are ultimately governed by diffusion.</p>
+
+<p>A cell changes its state by reactions: molecules meet, decide, and become other
+molecules. Two facts set the frame. First, cellular chemistry happens at roughly constant
+temperature and pressure — so free energies, not heats, are the currency, and equilibrium
+questions (week 6) are the right background. Second, the rate at which molecules can
+meet is set by diffusion — which is the very first rate estimate in the course (block 2)
+and by which every enzyme must abide.</p>
+
+<p>The base notation is simple: <span class="m">E + S ⇌ C → E + P</span> is a mechanism —
+the straight arrow means the reaction actually proceeds through that collision. Kinetic
+detail is what distinguishes an elementary reaction from a summary. <sup class="c"><a href="#r-l2">1</a></sup></p>
+
+<h2 id="s2"><span class="n">2</span>Elementary vs composite</h2>
+<p class="lede">Straight arrows are mechanisms; squiggly arrows are bookkeeping for net change.</p>
+
+<div class="box def">
+<span class="lbl">Elementary reaction</span>
+<p>One step, straight arrow: <span class="m">E + S ⇌ C</span>. The arrow <em>is</em> the
+mechanism; stoichiometry and rate law follow from the arrow.</p>
+</div>
+
+<div class="box def">
+<span class="lbl">Composite reaction</span>
+<p>A summary of several steps, squiggly arrow: <span class="m">S ⇝ P</span> (or, tracking
+counts, <span class="m">(S,P) ⇝ (S−1, P+1)</span>, <span class="m">mRNA ⇝ mRNA+1</span>). Only
+the net change is claimed; the mechanism is not.</p>
+</div>
+
+<p>The distinction runs the whole course.<sup class="c"><a href="#r-l2">1</a></sup> An
+elementary reaction's rate law is forced by the arrow (block 3). A composite reaction's
+rate law must be <em>measured or derived</em> from the steps — Michaelis–Menten (block 4)
+is the first derived rate law; Hill functions and ultrasensitive fronts (week 3) are
+composite behaviors built from elementary steps. Whenever a claim says "the rate is…,"
+the first question to ask is: is that arrow elementary?</p>
+
+<div class="parthead">
+  <div class="k">Block 2</div>
+  <h2>Rates</h2>
+  <p>How fast can a reaction actually happen: the diffusion limit, and the catalytic reality below it.</p>
+</div>
+
+<h2 id="s3"><span class="n">3</span>The diffusion-limited encounter</h2>
+<p class="lede">The fastest possible bimolecular reaction is set by diffusion: k_on ≈ 10⁹ s⁻¹M⁻¹ — every enzyme starts here and can only go slower.</p>
+
+<p>Estimate the upper bound on a bimolecular rate. Put a sphere of radius a (the enzyme
+or molecule) in a sea of substrate at concentration <span class="m">C</span>. Molecules
+diffuse; any molecule that reaches the surface reacts. The flux at the surface is the
+diffusive flux <span class="m">J = D ∂C/∂R</span>; solving the boundary-value problem on
+the sphere gives the classic result<sup class="c"><a href="#r-l2">1</a></sup></p>
+
+<div class="eq">J = 4πDaC<sub>∞</sub> = k<sub>on</sub>C<sub>∞</sub>, &nbsp;&nbsp; k<sub>on</sub> = 4πDa ≈ <b>10<sup>9</sup> s<sup>−1</sup>M<sup>−1</sup></b> <span class="tag">(1)</span></div>
+
+<p>with D the diffusion constant of the substrate and a the reaction radius. The number
+itself is the lesson: <strong>no bimolecular association in a cell can beat
+10<sup>9</sup> M<sup>−1</sup>s<sup>−1</sup></strong>; real rates sit at or below it, and
+when a claimed on-rate exceeds it, the claim is wrong. With C ~ 1 mM, this says an enzyme
+can receive up to ~10<sup>6</sup> encounters per second — the full unit chain is worth
+doing once by hand: <span class="m">(10<sup>9</sup> s<sup>−1</sup>M<sup>−1</sup>)(10<sup>−3</sup> M) = 10<sup>6</sup> s<sup>−1</sup></span>.</p>
+
+<h2 id="s4"><span class="n">4</span>Catalysis and the real rates</h2>
+<p class="lede">Enzymes receive millions of encounters per second and convert tens per second: catalysis, not diffusion, is the bottleneck.</p>
+
+<p>An enzyme that could react with every encounter would be a perfect enzyme — but even
+the fastest enzymes turn over at 10–10<sup>2</sup> reactions per second. The gap of
+~10<sup>4</sup>–10<sup>5</sup> is catalysis: binding must be specific, the catalytic step
+has to happen, products must leave. This one OoM fact, plus the encounter limit, sets the
+definition of "fast" the course will use:
+<sup class="c"><a href="#r-l2">1</a></sup></p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 1. Rate scales to keep in the head.</caption>
+<thead><tr><th>Process</th><th>Scale</th><th>Where it appears</th></tr></thead>
+<tbody>
+<tr><td>diffusion-limited on-rate</td><td class="num">k<sub>on</sub> ≈ 10<sup>9</sup> M<sup>−1</sup>s<sup>−1</sup></td><td>caps every bimolecular step</td></tr>
+<tr><td>enzyme turnover (fast)</td><td class="num">k<sub>cat</sub> ≈ 10–10<sup>2</sup> s<sup>−1</sup></td><td>the catalytic bottleneck</td></tr>
+<tr><td>transcription/translation</td><td class="num">k<sub>d</sub> ≈ 10<sup>−3</sup> s<sup>−1</sup></td><td>~20 min timescale, week 7's numbers</td></tr>
+<tr><td>metabolite concentration</td><td class="num">~10<sup>−3</sup> M</td><td>the well-mixed regime</td></tr>
+<tr><td>protein/regulator concentration</td><td class="num">~10<sup>−6</sup> M</td><td>the counting regime (week 5)</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="box caution">
+<span class="lbl">Units are the answer</span>
+<p>Every rate estimate lives or dies on its unit chain. Practice the chain until it is
+reflexive: <span class="m">M<sup>−1</sup>s<sup>−1</sup> × M = s<sup>−1</sup></span>,
+volume <span class="m">1 µm³ = 10<sup>−15</sup> L</span>, mass <span class="m">1 pg =
+10<sup>−12</sup> g</span>.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Block 3</div>
+  <h2>Mass action</h2>
+  <p>The one law that turns arrows into equations.</p>
+</div>
+
+<h2 id="s5"><span class="n">5</span>The law of mass action</h2>
+<p class="lede">The rate of an elementary reaction is k times the product of reactant concentrations raised to their stoichiometries.</p>
+
+<p>For an elementary reaction with reactant stoichiometry <span class="m">α<sub>i</sub></span>
+(the exponent vector), the <strong>law of mass action</strong> says</p>
+
+<div class="eq">v<sub>i</sub> = k<sub>i</sub> x<sup>α<sub>i</sub></sup> = k<sub>i</sub> ∏ x<sub>j</sub><sup>α<sub>ij</sub></sup> <span class="tag">(2)</span></div>
+
+<p>The law is the "central organizing law of reaction kinetics": rate ∝ how often
+reactants collide, which scales as the product of their densities. It is what the
+course means by a well-mixed assumption — week 5's master equation relaxes it.</p>
+
+<h2 id="s6"><span class="n">6</span>The CRN rate equation</h2>
+<p class="lede">A whole network is dx/dt = Γv: the stoichiometric matrix times the flux vector. Conservation and steady states follow.</p>
+
+<p>Collect species <span class="m">x</span>, reactions with fluxes <span class="m">v</span>,
+net stoichiometry <span class="m">γ<sub>j</sub> = β<sub>j</sub> − α<sub>j</sub></span>
+(products minus reactants), and the network becomes<sup class="c"><a href="#r-l2">1</a></sup></p>
+
+<div class="eq">dx/dt = Γ v(x) = Γ Λ<sub>k</sub> x<sup>α</sup> = f<sup>+</sup>(x) − f<sup>−</sup>(x) <span class="tag">(3)</span></div>
+
+<p>where <span class="m">Λ<sub>k</sub></span> is the diagonal matrix of rate constants.
+Two consequences are immediate. First, <strong>conservation:</strong> the left-null
+space of Γ contains the conserved quantities; if the network is closed, Σx stays put.
+Second, <strong>steady states:</strong> <span class="m">Γv(x*) = 0</span> — the equation
+that week 3 will analyze for stability. Note also what (3) is not: it is a
+<span class="m">subset</span> of an arbitrary dynamical system <span class="m">ẋ = f(x)</span>.
+Polynomiality, positivity (the cone <span class="m">x ≥ 0</span> is forward-invariant)
+and parameter uncertainty constrain what a cell can realize — this is the structural
+rules story of week 3, block 3.</p>
+
+<div class="parthead">
+  <div class="k">Block 4</div>
+  <h2>Worked models</h2>
+  <p>Three models that carry the course: production–degradation, the TXTL circuit, and the derived Michaelis–Menten law.</p>
+</div>
+
+<h2 id="s7"><span class="n">7</span>Production, degradation, bistability</h2>
+<p class="lede">One ODE is biology's harmonic oscillator: everything later is a variation on it.</p>
+
+<p>Start with the workhorse<sup class="c"><a href="#r-l2">1</a></sup> — protein production
+at rate k, degradation at rate λ:</p>
+
+<div class="eq">dP/dt = k − λP <span class="tag">(4)</span></div>
+
+<p>Steady state <span class="m">P* = k/λ</span>; relaxation with timescale <span class="m">1/λ</span>.
+Add a second layer — the TXTL-style circuit (transcription with inducible rate, translation
+with dilution),</p>
+
+<div class="eq">dM/dt = k<sub>M</sub>G − γ<sub>M</sub>M, &nbsp; dP/dt = k<sub>H</sub>M − γ<sub>P</sub>P <span class="tag">(5)</span></div>
+
+<p>— and the machinery for week 3 is assembled: two variables, one matrix, and a
+qualitative question (when is the fixed point stable?). The third example of this block
+is the construction of a 1D bistable system, <span class="m">ẋ = f<sup>+</sup>(x) − x</span>
+with an S-shaped production term — the general shape behind every toggle switch, and the
+bridge to week 3's bifurcation language.</p>
+
+<div class="box sim">
+<span class="lbl">The block's exercise</span>
+<p>Simulate (4) and (5); then add a Hill term plus a delay-less S-shape and find the
+bistable window by hand: <span class="m">f<sup>+</sup>(x) = β x<sup>n</sup>/(K<sup>n</sup>+x<sup>n</sup>)</span>.
+Where (in β) does the middle fixed point appear? This is the same computation week 3
+does with phase portraits.</p>
+</div>
+
+<h2 id="s8"><span class="n">8</span>Michaelis–Menten from rates</h2>
+<p class="lede">The first derived rate law: three elementary steps, one quasi-steady assumption, one effective law.</p>
+
+<p>The canonical composite: <span class="m">E + S ⇌ C → E + P</span>. Under the
+quasi-steady-state assumption on the complex, the binding equilibrium gives
+<span class="m">C = ES/K</span> with <span class="m">K = (k<sub>off</sub>+k<sub>cat</sub>)/k<sub>on</sub></span>,
+and the quadratic solves to<sup class="c"><a href="#r-l2">1</a></sup></p>
+
+<div class="eq">C = ½ [ (E<sub>tot</sub>+S<sub>tot</sub>+K) ± √((E<sub>tot</sub>+S<sub>tot</sub>+K)² − 4E<sub>tot</sub>S<sub>tot</sub>) ] <span class="tag">(6)</span></div>
+
+<p>with rate <span class="m">v = k<sub>cat</sub>C</span>. The two branches of (6) pick
+out the two dominance regimes of the reaction — substrate-excess and enzyme-excess —
+and the transition between them is exactly the kind of thing week 3 handles as
+time-scale separation and week 7 sees in binding-based computation. The deep point:
+a composite reaction's rate law is <em>derived</em>, not assumed, and this derivation is
+the template.</p>
+
+<h2 id="s9"><span class="n">9</span>The simulation toolkit</h2>
+<p class="lede">Deterministic solvers first; the CRN zoo next; the Gillespie jump goes with week 5.</p>
+
+<p>For the rest of the course, "let's see" means "let's solve" — deterministic ODEs with
+any stiff-capable solver (scipy, ROSENBROCK-style) for weeks 2–4, and the Gillespie
+algorithm (week 5) when copy numbers get small. The zoo to keep on hand: birth–death
+(4), dimerization <span class="m">2A ⇌ A₂</span> (the first nonlinearity and the start of
+unit-problems in stoichiometry), autocatalysis, the MM module (6), and the repressible/
+inducible gene expressions of (5). During this block, each student should bring one CRN
+simulation with a number they can defend: that is the format of the week's exercises and
+of every later week.</p>
+
+<div class="box open">
+<span class="lbl">Week 2 extension micro-essay</span>
+<p>One of: (a) estimate + verify the turnover rate of your favorite enzyme against the
+10<sup>9</sup> limit; (b) derive the rate law of a composite reaction of your choice and
+show which regime it lives in; (c) build a CRN whose steady state is a conserved quantity
+the naive observer wouldn't see. Same format: one example, one number made by code, one
+source.</p>
+</div>
+
+<hr>
+
+<h2 id="refs"><span class="n">†</span>References &amp; note sources</h2>
+<p class="lede">Where this page's claims and numbers live.</p>
+
+<div class="refs">
+<ol>
+<li id="r-l2">F. Xiao, <em>CCBS 2025 Lecture 2 — Biochemical reaction networks and their
+dynamics</em> (§2.1 notation, §2.2 rate estimates, §2.3 CRN dynamics, §2.6 building
+blocks). <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf">PDF</a>
+<span class="venue">Blocks 1–4 trace here.</span></li>
+<li>M. Feinberg, <em>Foundations of Chemical Reaction Network Theory</em>.
+<a href="https://link.springer.com/book/10.1007/978-3-030-03858-8">Springer</a>
+<span class="venue">The mathematical formulation of CRNs; keep the biology in view.</span></li>
+<li>R. Phillips &amp; J. Kondev, <em>Cell biology by the numbers</em>.
+<a href="https://book.bionumbers.org">book.bionumbers.org</a>
+<span class="venue">Rate and concentration scales (encounter rates, enzyme numbers).</span></li>
+<li>R. Murray, <em>Biomolecular Feedback Systems</em>, Ch. 1–3.
+<a href="http://www.cds.caltech.edu/~murray/BFSwiki/index.php/Main_Page">free</a>
+<span class="venue">Modeling of biological circuits, time-scale separation, stochasticity.</span></li>
+</ol>
+</div>
+</main>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('tt');
+  function apply(){document.documentElement.setAttribute('data-theme',
+    (typeof localStorage!=='undefined'&&localStorage.getItem('th')==='dark')?'dark':'light');}
+  b.addEventListener('click',function(){var d=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
+    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();});
+  if(typeof localStorage!=='undefined'&&!localStorage.getItem('th')){var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';localStorage.setItem('th',d);}
+  apply();
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  function hi(){var y=window.scrollY+80,cur=null;links.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t&&t.offsetTop<=y)cur=a;});links.forEach(function(a){a.classList.toggle('on',a===cur);});}
+  addEventListener('scroll',hi,{passive:true});hi();
+})();
+</script>
+</body>
+</html>
