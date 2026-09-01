@@ -146,6 +146,13 @@ button.pri:hover{color:#fff;opacity:.9}
 canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--bg)}
 .pdf.no{color:var(--leader);border-color:var(--leader)}
 .pdf.no:hover{background:none;color:var(--leader)}
+
+/* Narrow screens: .m is nowrap so short formulas never break, but a long inline
+   formula or file path then pushes the page sideways. Below the tablet breakpoint,
+   let it wrap. Desktop rendering is unchanged. */
+@media (max-width:640px){
+  .m,code{white-space:normal;overflow-wrap:anywhere}
+}
 </style>
 </head>
 <body>
@@ -189,6 +196,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
     <li class="part">Appendix</li>
     <li><a href="#card">The reference card</a></li>
     <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#open">Open problems from 2025</a></li>
     <li><a href="#refs">References</a></li>
   </ol>
 </nav>
@@ -748,6 +756,29 @@ P<sub>1</sub> &#10547; P<sub>1</sub> + R<sub>1</sub> &nbsp;(composite, expressio
 R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span class="tag">(20)</span></div>
 <p>plus the same three with the indices swapped. The binding reactions are elementary and fast. The expression and degradation reactions are composite and slow. <strong>That split is the whole architecture of the course</strong>, and you have just written it down without being told to. Section 22 says why it is always there.</p>
 
+<h3>Four more, from the 2025 note</h3>
+<p>The 2025 lecture put four examples on the board in a row, and each one breaks a different intuition. Work out which arrow each deserves before reading on.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 3. The 2025 examples. The last column is the reason the example was chosen.</caption>
+<thead><tr><th>System</th><th>Written as</th><th>Type</th><th>Why it is on the list</th></tr></thead>
+<tbody>
+<tr><td>A cell divides</td><td class="num"><span class="m">N &#10547; 2N</span>, or <span class="m">N &#10547; N+1</span></td><td>composite</td><td>The hidden mechanism is an entire cell cycle. Population models write a mass-action rate anyway, and get away with it only because the composite rate happens to be first order in <span class="m">N</span>.</td></tr>
+<tr><td>A photon doubles in a laser</td><td class="num"><span class="m">&gamma; + A* &rarr; 2&gamma; + A</span></td><td class="hl">elementary</td><td>One of the few written steps that really is a single quantum event. Einstein derived that this reaction must exist in 1917, by requiring detailed balance between an atom and a radiation field. That is a reaction-network argument two decades before reaction networks, and lecture 7 uses the same balance condition.</td></tr>
+<tr><td>A molecule crosses a passive channel</td><td class="num"><span class="m">A<sub>out</sub> &rarr; A<sub>in</sub></span></td><td>elementary</td><td>Elementary as written, since it is one crossing. But the <em>rate constant</em> hides all the transport physics of the pore, so "elementary" does not mean "simple".</td></tr>
+<tr><td>An ATPase pumps a proton out</td><td class="num"><span class="m">H&#8314;<sub>in</sub> &#10547; H&#8314;<sub>out</sub></span></td><td class="hl">composite</td><td>Read literally it moves a proton up its own gradient and violates the second law. It does not, because ATP hydrolysis is hidden inside the squiggle. This is the arrow that most needs unpacking, and lecture 7 unpacks it.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="box key">
+<span class="lbl">The general lesson from the four</span>
+<p>A squiggly arrow is not a confession of ignorance. It is a claim about what you are choosing not to track, and it is often the right claim. What it is never allowed to do is carry a rate law you did not derive. Two of these four look like they break physics until you notice what the squiggle absorbs.</p>
+</div>
+
+<p>Then do it on real papers rather than on textbook cartoons. <a href="#open">Appendix C</a> is the 2025 course's own assignment: six papers, six networks, no answers supplied.</p>
+
 <h2 id="s16"><span class="n">16</span>Checkpoint 3</h2>
 <ol start="9">
 <li>Classify each arrow: (a) <span class="m">2H&#8322; + O&#8322; &rarr; 2H&#8322;O</span> as written for a burning gas; (b) <span class="m">glucose &#10547; 2 lactate</span>; (c) <span class="m">Ca&sup2;&#8314;<sub>out</sub> &rarr; Ca&sup2;&#8314;<sub>in</sub></span> through an open channel; (d) <span class="m">DNA + polymerase &rlarr; complex</span>.</li>
@@ -846,7 +877,7 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 
 <div class="tablewrap">
 <table>
-<caption>Table 3. Dimensional check on <span class="m">j = D&thinsp;&part;c/&part;R</span> and on the answer.</caption>
+<caption>Table 4. Dimensional check on <span class="m">j = D&thinsp;&part;c/&part;R</span> and on the answer.</caption>
 <thead><tr><th>Quantity</th><th>What it is</th><th>Dimensions</th></tr></thead>
 <tbody>
 <tr><td><span class="m">j</span></td><td>molecules per area per time</td><td class="num">N / (L&sup2;T)</td></tr>
@@ -950,7 +981,7 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 
 <div class="tablewrap">
 <table>
-<caption>Table 4. The measured distributions.<sup class="c"><a href="#r-barEven">10</a></sup></caption>
+<caption>Table 5. The measured distributions.<sup class="c"><a href="#r-barEven">10</a></sup></caption>
 <thead><tr><th>Parameter</th><th>median</th><th>middle 60%</th><th>ceiling</th></tr></thead>
 <tbody>
 <tr><td><span class="m">k<sub>cat</sub></span> (N = 1942)</td><td class="num">10 s<sup>&minus;1</sup></td><td class="num">1&ndash;100</td><td class="num">10<sup>6</sup>&ndash;10<sup>7</sup> s<sup>&minus;1</sup></td></tr>
@@ -1016,6 +1047,31 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 
 <p>Why so slow? Bar-Even et al. give an evolutionary answer: enzymes in central carbon and energy metabolism run at a median of <span class="m">79 s<sup>&minus;1</sup></span> against <span class="m">2.5 s<sup>&minus;1</sup></span> in secondary metabolism, thirty times faster where flux and enzyme cost are highest. Selection produces speed where speed pays.<sup class="c"><a href="#r-barEven">10</a></sup> That is a real explanation and it is not the only one available. Part 5 gives the other.</p>
 
+<h3>The one that looks impossible</h3>
+<p>One system on Figure 7 sits above the bound, and the explanation is better than the rule. In 1970 Riggs, Bourgeois and Cohn measured the lac repressor finding its operator at more than <span class="m">10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. Work out the bound it has to beat.</p>
+
+<p>The relevant bound is not <span class="m">4&pi;Da</span> with <span class="m">a</span> the protein radius, because the <em>target</em> is not the protein. It is an operator of about 20&nbsp;bp on a chromosome, and a diffusing protein has to land on that patch specifically. For a small absorbing disc of radius <span class="m">s</span> on an otherwise reflecting sphere of radius <span class="m">a</span>, the Berg-Purcell result replaces <span class="m">4&pi;Da</span> by</p>
+
+<div class="eq">k<sub>on</sub> = 4&pi;Da &middot; <b>s/(s + &pi;a)</b> &nbsp;&rarr;&nbsp; 4Ds &nbsp;for&nbsp; s &#8810; a <span class="tag">(26)</span></div>
+
+<p>so the rate is set by the <em>target</em> size, not the protein size, and it is linear in <span class="m">s</span> rather than quadratic. Put numbers in: with <span class="m">D = 50 &micro;m&sup2;/s</span> for the repressor and a target of <span class="m">s &asymp; 1</span>&nbsp;nm,</p>
+
+<div class="eq">k<sub>on</sub> &asymp; 4 &middot; 5.0&times;10<sup>&minus;11</sup> m&sup2;/s &middot; 10<sup>&minus;9</sup> m &middot; 10&sup3; L/m&sup3; &middot; N<sub>A</sub> = <b>1.2&times;10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></b> <span class="tag">(27)</span></div>
+
+<p>which is the figure Halford and Marko quote for a three-dimensional search.<sup class="c"><a href="#r-halford">9</a></sup> The 1970 measurement was <strong>a hundred times faster than that</strong>. Either the physics is wrong or the search is not three-dimensional.</p>
+
+<div class="box key">
+<span class="lbl">Facilitated diffusion, and how to recognise it</span>
+<p>The search is not three-dimensional. The repressor binds DNA non-specifically anywhere along its length, then <strong>slides in one dimension</strong> until it reaches the operator or falls off. A 1D search over a large effective target beats a 3D search for a small one, because the protein no longer has to find the operator directly. It has to find the chromosome, which is enormous.</p>
+<p>The signature is testable and it is unmistakable. <strong>More DNA around a target should make the target easier to find.</strong> For a 3D search that is impossible: extra flanking DNA is inert and the rate cannot change. For a 1D search it is automatic, because flanking DNA is extra antenna. EcoRI methyltransferase reaches <span class="m">5.1&times;10<sup>7</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> on a 14&nbsp;bp substrate and about four times that on a 429&nbsp;bp substrate, for the identical recognition site.<sup class="c"><a href="#r-stroppolo">8</a></sup></p>
+</div>
+
+<div class="box caution">
+<span class="lbl">And the correction the story usually needs</span>
+<p>Facilitated diffusion is real, and the generalisation drawn from it is not. Halford and Marko went through the record and found that the early lac experiments used DNA carrying several binding sites and a filter assay that could not resolve which one was occupied. Later footprinting did reproduce <span class="m">10<sup>10</sup></span> for lac, and Gal repressor and IHF are above <span class="m">10<sup>10</sup></span> too. But <strong>the majority of measured protein-DNA association rates sit within a factor of three of <span class="m">10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span></strong>, which is exactly equation (27).<sup class="c"><a href="#r-halford">9</a></sup> Electrostatic steering is real and is largely screened away at physiological ionic strength.</p>
+<p>So the honest statement has three parts, and most retellings keep only the middle one. The bound is sound. A few systems beat it by changing the dimension of the search. "DNA-binding proteins are all impossibly fast" is folklore.</p>
+</div>
+
 <h2 id="s21"><span class="n">21</span>Checkpoint 4</h2>
 <ol start="13">
 <li>Use tool 2 to find the bound for a proton (1&nbsp;Da, but take its radius as 0.1&nbsp;nm) meeting a 50&nbsp;kDa enzyme. Compare with the <span class="m">10<sup>10</sup></span> to <span class="m">10<sup>11</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> that Eigen measured for proton transfer. What do you conclude?</li>
@@ -1037,11 +1093,11 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 
 <p>Write <span class="m">C</span> for the complex and linearise about equilibrium. The gain is <span class="m">k<sub>on</sub>[E][S]</span> and the loss is <span class="m">k<sub>off</sub>[C]</span>, so</p>
 
-<div class="eq">dC/dt = k<sub>on</sub>(E<sub>T</sub>&minus;C)(S<sub>T</sub>&minus;C) &minus; k<sub>off</sub>C, &nbsp;&nbsp; &tau;<sub>bind</sub> = <sup>1</sup>&frasl;<sub>k<sub>on</sub>([E]+[S]) + k<sub>off</sub></sub> <span class="tag">(26)</span></div>
+<div class="eq">dC/dt = k<sub>on</sub>(E<sub>T</sub>&minus;C)(S<sub>T</sub>&minus;C) &minus; k<sub>off</sub>C, &nbsp;&nbsp; &tau;<sub>bind</sub> = <sup>1</sup>&frasl;<sub>k<sub>on</sub>([E]+[S]) + k<sub>off</sub></sub> <span class="tag">(28)</span></div>
 
 <p>Now put in the medians from parts 1 and 4, and nothing else. Enzyme at 1&nbsp;&micro;M. Substrate at 1&nbsp;mM. <span class="m">K<sub>D</sub> = 100 &micro;M</span> from the median <span class="m">K<sub>M</sub></span>, so <span class="m">k<sub>off</sub> = k<sub>on</sub>K<sub>D</sub></span>. And <span class="m">k<sub>on</sub> = 10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, which is already two decades below the ceiling you computed in section 18:</p>
 
-<div class="eq">&tau;<sub>bind</sub> = <sup>1</sup>&frasl;<sub>10<sup>8</sup>&times;1.001&times;10<sup>&minus;3</sup> + 10<sup>4</sup></sub> = <b>9 &micro;s</b>, &nbsp;&nbsp; &tau;<sub>cat</sub> = 1/k<sub>cat</sub> = <b>100 ms</b> <span class="tag">(27)</span></div>
+<div class="eq">&tau;<sub>bind</sub> = <sup>1</sup>&frasl;<sub>10<sup>8</sup>&times;1.001&times;10<sup>&minus;3</sup> + 10<sup>4</sup></sub> = <b>9 &micro;s</b>, &nbsp;&nbsp; &tau;<sub>cat</sub> = 1/k<sub>cat</sub> = <b>100 ms</b> <span class="tag">(29)</span></div>
 
 <div class="box key">
 <span class="lbl">The number the whole course rests on</span>
@@ -1113,13 +1169,13 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 
 <p><strong>Step 1. How long does a metabolite pool last?</strong> Turnover time is pool divided by flux. <i>E. coli</i> on glucose takes up about 8&nbsp;mmol per gram dry weight per hour. From section 5, one gram dry weight occupies <span class="m">1/(1.1 &times; 0.30) = 3.0</span> mL of cell. So</p>
 
-<div class="eq">J = <sup>8 mmol gDW<sup>&minus;1</sup>h<sup>&minus;1</sup></sup>&frasl;<sub>3.0 mL gDW<sup>&minus;1</sup></sub> = 2.6 <sup>mol</sup>&frasl;<sub>L h</sub> = <b>0.73 mM/s</b> <span class="tag">(28)</span></div>
+<div class="eq">J = <sup>8 mmol gDW<sup>&minus;1</sup>h<sup>&minus;1</sup></sup>&frasl;<sub>3.0 mL gDW<sup>&minus;1</sup></sub> = 2.6 <sup>mol</sup>&frasl;<sub>L h</sub> = <b>0.73 mM/s</b> <span class="tag">(30)</span></div>
 
 <p><strong>Step 2. Divide the measured pools by it.</strong> Remember that glycolysis carries two triose units per glucose, so anything below the aldolase step sees twice the flux.<sup class="c"><a href="#r-bennett">3</a></sup></p>
 
 <div class="tablewrap">
 <table>
-<caption>Table 5. Pool turnover, <span class="m">&tau; = [M]/J</span>.</caption>
+<caption>Table 6. Pool turnover, <span class="m">&tau; = [M]/J</span>.</caption>
 <thead><tr><th>Metabolite</th><th>pool</th><th>flux</th><th>&tau;</th></tr></thead>
 <tbody>
 <tr><td>phosphoenolpyruvate</td><td class="num">0.18 mM</td><td class="num">&times;2</td><td class="num hl">0.12 s</td></tr>
@@ -1132,18 +1188,18 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 
 <p><strong>Step 3. How fast can expression change an enzyme level?</strong> This is a derivation, not a lookup, and it is the most under-appreciated fact in gene regulation. Write the balance for a protein that is not actively degraded, in a cell growing at rate <span class="m">&mu;</span>. The only loss is dilution as the cell doubles:</p>
 
-<div class="eq">dP/dt = &beta; &minus; &mu;P <span class="tag">(29)</span></div>
+<div class="eq">dP/dt = &beta; &minus; &mu;P <span class="tag">(31)</span></div>
 
 <p>This relaxes with time constant <span class="m">1/&mu;</span>, so the half-time is <span class="m">ln2/&mu;</span>. But <span class="m">&mu; = ln2/T<sub>d</sub></span> by the definition of a doubling time. Therefore</p>
 
-<div class="eq">response half-time = <sup>ln2</sup>&frasl;<sub>&mu;</sub> = <b>T<sub>d</sub>, the doubling time itself</b> <span class="tag">(30)</span></div>
+<div class="eq">response half-time = <sup>ln2</sup>&frasl;<sub>&mu;</sub> = <b>T<sub>d</sub>, the doubling time itself</b> <span class="tag">(32)</span></div>
 
 <div class="box key">
-<span class="lbl">Read equation (30) twice</span>
+<span class="lbl">Read equation (32) twice</span>
 <p><strong>A cell cannot change the concentration of a stable protein faster than it can grow.</strong> Not "slowly". Not "in about a generation". Exactly one doubling time, and no amount of transcription helps, because the problem is the removal and not the production. For an <i>E. coli</i> at 40 minutes, halving an enzyme level takes 40 minutes. Even the fastest imaginable route is bounded: 80% of <i>E. coli</i> mRNA half-lives are between 3 and 8 minutes,<sup class="c"><a href="#r-bernstein">11</a></sup> so nothing transcriptional acts in under a few minutes.</p>
 </div>
 
-<p><strong>Step 4. Compare.</strong> Expression: 2400 seconds. The PEP pool: 0.12 seconds. The ratio is <span class="m">2&times;10<sup>4</sup></span>. Even the slowest pool in Table 5 is a hundred times too fast for expression to track.</p>
+<p><strong>Step 4. Compare.</strong> Expression: 2400 seconds. The PEP pool: 0.12 seconds. The ratio is <span class="m">2&times;10<sup>4</sup></span>. Even the slowest pool in Table 6 is a hundred times too fast for expression to track.</p>
 
 <div class="box key">
 <span class="lbl">The conclusion, and it is forced</span>
@@ -1152,7 +1208,7 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 
 <div class="box hist">
 <span class="lbl">And they were found, nine years before anyone made the argument</span>
-<p>In 1956 Umbarger showed that isoleucine inhibits the first enzyme of its own biosynthetic pathway, and Yates and Pardee showed the same for pyrimidines.<sup class="c"><a href="#r-umbarger">12</a></sup> Neither product resembles the substrate of the enzyme it shuts down, so the inhibition could not be competition for the active site: there had to be a second site. Monod, Wyman and Changeux named it allostery and gave it a two-state equilibrium model in 1965.<sup class="c"><a href="#r-mwc">13</a></sup> That the model contains no rate constants at all is not a simplification. It is equation (27).</p>
+<p>In 1956 Umbarger showed that isoleucine inhibits the first enzyme of its own biosynthetic pathway, and Yates and Pardee showed the same for pyrimidines.<sup class="c"><a href="#r-umbarger">12</a></sup> Neither product resembles the substrate of the enzyme it shuts down, so the inhibition could not be competition for the active site: there had to be a second site. Monod, Wyman and Changeux named it allostery and gave it a two-state equilibrium model in 1965.<sup class="c"><a href="#r-mwc">13</a></sup> That the model contains no rate constants at all is not a simplification. It is equation (29).</p>
 </div>
 
 <h2 id="s24"><span class="n">24</span>The habit, and where it goes</h2>
@@ -1182,7 +1238,7 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 
 <ol>
 <li><strong>Count.</strong> Volume, copy number, concentration. Put every species on the ladder in Table 1. This takes ten minutes and it changes what questions are worth asking.</li>
-<li><strong>Time it.</strong> Mixing time from <span class="m">&tau; = x&sup2;/D</span>. Turnover time from pool over flux. Response time from equation (30). Put them on one logarithmic axis, as in figure 8. Gaps in that axis are where the architecture is.</li>
+<li><strong>Time it.</strong> Mixing time from <span class="m">&tau; = x&sup2;/D</span>. Turnover time from pool over flux. Response time from equation (32). Put them on one logarithmic axis, as in figure 8. Gaps in that axis are where the architecture is.</li>
 <li><strong>Bound it.</strong> Compute <span class="m">4&pi;Da</span> for the pairs that matter. Anything claimed above it is wrong or is a mechanism.</li>
 <li><strong>Check the arrows.</strong> For each reaction, elementary or composite? If composite, what would have to be derived or measured?</li>
 <li><strong>Look for the gap.</strong> Where two timescales are far apart, one of them is a control layer and the other is the process being controlled. That is the finding, and it is usually the paper.</li>
@@ -1190,7 +1246,7 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 
 <div class="tablewrap">
 <table>
-<caption>Table 6. What this lecture hands forward.</caption>
+<caption>Table 7. What this lecture hands forward.</caption>
 <thead><tr><th>From here</th><th>To</th><th>Used for</th></tr></thead>
 <tbody>
 <tr><td>net-change notation, mass action</td><td>lecture 3</td><td>the rate equation <span class="m">dx/dt = &Gamma;v</span></td></tr>
@@ -1230,7 +1286,7 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 
 <div class="tablewrap">
 <table>
-<caption>Table 7. The card. Sources are in the reference list. Derivations are in the sections named.</caption>
+<caption>Table 8. The card. Sources are in the reference list. Derivations are in the sections named.</caption>
 <thead><tr><th>Quantity</th><th>Value</th><th>Where</th></tr></thead>
 <tbody>
 <tr><td>a cubic micron</td><td class="num">1 fL = 10<sup>&minus;15</sup> L</td><td>&sect;3</td></tr>
@@ -1284,6 +1340,54 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 <p><strong>14.</strong> A 300&nbsp;Da substrate has <span class="m">R = 0.066 &times; 300<sup>1/3</sup> = 0.44</span>&nbsp;nm and <span class="m">D = 550 &micro;m&sup2;/s</span>. With a 33&nbsp;kDa enzyme, <span class="m">k<sub>on</sub> = 4&pi;(650&times;10<sup>&minus;12</sup>)(2.5&times;10<sup>&minus;9</sup>)&times;10&sup3;&times;N<sub>A</sub> = 1.2&times;10<sup>10</sup></span>. The measured <span class="m">3&times;10<sup>8</sup></span> is 2.5% of that. So: fast, in the top few percent of all enzymes, but <strong>not</strong> diffusion-limited. About one encounter in forty is productive, which is what an orientational requirement looks like.</p>
 <p><strong>15.</strong> One encounter per turnover means <span class="m">k<sub>on</sub>C = k<sub>cat</sub></span>, so <span class="m">C = 10/1.4&times;10<sup>10</sup> = 7&times;10<sup>&minus;10</sup></span>&nbsp;M, which is 0.7&nbsp;nM, or under one molecule per cell. Every concentration in Table 1 is far above that. <strong>So substrate supply is essentially never the limitation on a metabolic enzyme in a cell.</strong> The limitation is always catalysis, which is the premise of everything in part 5.</p>
 <p><strong>16.</strong> In order: (i) the reactants are strongly and oppositely charged and the buffer is low-salt, so the rate is electrostatically steered and will fall by two orders of magnitude at physiological ionic strength; (ii) the reported constant is not an association rate but was inferred from <span class="m">K<sub>d</sub></span> and an off-rate assuming a single-step mechanism, which is invalid if binding is two-step; (iii) an error. Halford and Marko discuss both of the first two.<sup class="c"><a href="#r-halford">9</a></sup></p>
+
+<hr>
+
+<h2 id="open"><span class="n">C</span>Open problems from the 2025 course</h2>
+<p class="lede">Harder than the checkpoints, and open-ended. These are the 2025 problem-set questions for this material, kept because they are better than anything written to order. No solutions are supplied, and for most of them there is no single right answer.</p>
+
+<p>The 2025 problem sets are a second record of what this material is <em>for</em>, and they are more specific than the lecture notes. Three of the four blocks below became 2026 material directly: one is now a core exercise, one is now the argument the core ends on, and one is section 15 of this document. What remains open is still open.</p>
+
+<h3>C.1 Write down these networks</h3>
+<p>This was 2025 homework 1, problem 3, and it is the exercise that transfers furthest. For each paper, read enough to understand the mechanism and write a chemical reaction network for it. <strong>Keep the elementary and composite distinction correct throughout</strong>, which is the whole point: you will find yourself repeatedly wanting to write a mass-action rate under a squiggly arrow, and you must not.</p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 9. The six papers, and what each one will teach you that the others will not.</caption>
+<thead><tr><th>Paper</th><th>Network to write</th><th>What it exposes</th></tr></thead>
+<tbody>
+<tr><td>Gardner, Cantor &amp; Collins, <i>Nature</i> 403:339 (2000)</td><td>The genetic toggle switch</td><td>Worked in section 15, example C. Do it yourself first. The cooperativity is a binding equilibrium, not a fitted exponent.</td></tr>
+<tr><td>Elowitz &amp; Leibler, <i>Nature</i> 403:335 (2000)</td><td>The repressilator</td><td>Three repressors in a cycle. The network is nearly the toggle switch, and the dynamics are completely different. Lecture 9 explains why.</td></tr>
+<tr><td>Antebi et al., <i>Cell</i> 170:1184 (2017)</td><td>Combinatorial BMP signal perception</td><td class="hl">Many ligands, many receptors, promiscuous binding. The network is almost entirely binding, and it is where writing it down honestly is hardest. This is lecture 11's material.</td></tr>
+<tr><td>Zhu et al., <i>Science</i> 375:eabg9765 (2022)</td><td>Synthetic multistability in mammalian cells</td><td>How many stable states can a network of this size have? You will not be able to answer from the network alone, which is the point of lecture 4.</td></tr>
+<tr><td>Chandra, Buzi &amp; Doyle, <i>Science</i> 333:187 (2011)</td><td>Glycolytic oscillations</td><td class="hl">A control-theory paper, not a biology one. It argues that the oscillation is the price of robust efficiency. Write the network, then ask what the controller is.</td></tr>
+<tr><td>Ozbudak et al., <i>Nature</i> 427:737 (2004)</td><td>The lac utilization network</td><td>Bistability from positive feedback through a transporter. Note where the composite arrows are hiding transport, and what that costs you.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>What a good answer looks like.</strong> Species listed with their types. Every arrow marked elementary or composite. For each elementary arrow, the mass-action rate law written out. For each composite arrow, one sentence saying what it hides and why it is safe to hide it. Where the paper's own figure is ambiguous about a mechanism, say so rather than guessing: that ambiguity is a finding, and it is extremely common.</p>
+
+<h3>C.2 How much head space when culturing bacteria?</h3>
+<p>2025 homework 1, problem 2.3, and the only problem in the set that predicts something you can check in a lab this afternoon. The rule of thumb is to leave five-fold head space when culturing aerobic bacteria, so no more than about 2&nbsp;mL of culture in a 15&nbsp;mL tube. Where does the five come from?</p>
+<ol>
+<li>How much oxygen does <i>E. coli</i> need for aerobic growth on glucose? Express it as oxygen atoms per glucose consumed. Take glucose in the medium at 0.2% by mass, and a biomass yield of about 0.5, meaning half the glucose goes to energy and half is built into biomass.</li>
+<li>How much air is needed to grow a unit volume, say 1&nbsp;mL, of saturated <i>E. coli</i> culture? How much head space does that require if no air exchanges with the outside once the culture starts?</li>
+<li>Is the oxygen dissolved in the medium significant compared with the oxygen in the head space?</li>
+</ol>
+<p>Everything you need is in Part 2 of this document plus the ideal gas law. Part 3 of the problem is the one that surprises people.</p>
+
+<h3>C.3 Redo the payoff for a mammalian cell</h3>
+<p>Section 23 concluded that gene expression is <span class="m">10&sup2;</span> to <span class="m">10<sup>4</sup></span> times too slow to control metabolite pools in <i>E. coli</i>. A human cell is 2000&nbsp;&micro;m&sup3; and doubles in about 24 hours rather than 40 minutes. Metabolite concentrations are similar.</p>
+<p>Does the conclusion get stronger or weaker, and by how much? Then the part that is genuinely open: <strong>what does your answer predict about the fraction of mammalian metabolic regulation that should be post-translational rather than transcriptional?</strong> Go and find out whether that is what is observed. The 2025 problem stopped at the comparison. This version does not.</p>
+
+<h3>C.4 The blueprint and the machine, taken further</h3>
+<p>Checkpoint 1, problem 3 established that an mRNA is about ten times heavier than the protein it encodes, which inverts every macroscopic intuition about blueprints and buildings. The open part: a cell keeps a few copies of a typical mRNA and thousands of copies of the protein. Show that this ratio is roughly what you would predict if the cell were minimising the total mass devoted to a given protein output, given the mRNA and protein lifetimes from section 23. Then say which of your assumptions is doing the work, because one of them is doing almost all of it.</p>
+
+<div class="box note">
+<span class="lbl">Where these came from</span>
+<p>2025 homework 1, sections 2 and 3, archived in the course working folder. The 2025 problem sets for later topics carry the same value for later lectures, and the intention is that each 2026 lecture mines its own. The full 2025 material for this lecture, including what the notes got wrong, is in the lecture's <span class="m">core-template-2025</span> working page.</p>
+</div>
 
 <hr>
 

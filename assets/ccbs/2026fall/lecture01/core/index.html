@@ -11,6 +11,7 @@
 --ink:#20201E;--gray:#877F77;--leader:#B8AEA5;--gridc:#EDE7E0;
 --bg:#FCFAF7;--bg2:#FFFFFF;--fg:var(--ink);--muted:#6E675F;--rule:#E3DCD3;
 --shadow:0 1px 2px rgba(32,32,30,.05), 0 8px 28px rgba(32,32,30,.05);
+--paper:var(--bg);--paper2:var(--bg2);--accent:var(--teal);--blue:var(--peri);--warn:var(--coral);--grid:var(--gridc);
 --serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
 --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
 --mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;--maxw:44rem}
@@ -84,6 +85,11 @@ sub,sup{font-size:.7em;line-height:0}
 .box.open .lbl{color:var(--plum)}
 figure{margin:2rem 0;padding:0}
 figure svg{display:block;width:100%;height:auto;max-width:100%}
+svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo2{paint-order:stroke;stroke:var(--bg);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halopink{paint-order:stroke;stroke:var(--pinkf);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo3{paint-order:stroke;stroke:var(--bg);stroke-width:3.6px;stroke-linejoin:round}
+
 figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
 figcaption b{color:var(--fg);font-weight:700}
 .figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
@@ -103,8 +109,50 @@ caption{caption-side:bottom;text-align:left;padding:.7rem .8rem;font-family:var(
 .pdf:hover{background:var(--teal);color:var(--bg2)}
 sup.c{font-size:.68em;color:var(--rose);font-weight:700}
 sup.c a{color:inherit;text-decoration:none}
+.rundown{display:grid;grid-template-columns:6.2rem 1fr;gap:.45rem 1rem;margin:1.4rem 0;padding:1rem 1.15rem;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow);font-family:var(--sans);font-size:.84rem;line-height:1.45}
+.rundown dt{font-family:var(--mono);font-weight:700;color:var(--rose)}.rundown dd{margin:0 0 .25rem}.rundown dd strong{color:var(--fg)}
+.steps{counter-reset:worked;list-style:none;padding:0;margin:1.4rem 0}.steps>li{counter-increment:worked;position:relative;padding:.8rem 1rem .8rem 3.2rem;margin:.6rem 0;border-left:2px solid var(--peri);background:var(--bg2);border-radius:0 8px 8px 0}.steps>li:before{content:counter(worked);position:absolute;left:.85rem;top:.7rem;width:1.55rem;height:1.55rem;display:grid;place-items:center;border-radius:50%;background:var(--peri);color:var(--bg2);font:700 .72rem var(--sans)}
+.checkpoint{margin:1.6rem 0;padding:.9rem 1.05rem;border:1px dashed var(--teal);border-radius:9px;background:color-mix(in srgb,var(--powder) 55%,var(--bg2));font-family:var(--sans);font-size:.88rem}.checkpoint strong{color:var(--teal)}
+.formula-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.3rem 0}.formula-pair>*{margin:0}
+@media(max-width:700px){.rundown{grid-template-columns:1fr}.rundown dt{margin-top:.3rem}.formula-pair{grid-template-columns:1fr}}
 #tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
 @media print{#tt,nav.toc{display:none}.wrap{display:block}main>*{max-width:none}}
+
+/* ---- extras used by the lecture 2 lineage and exposition pages ---- */
+.box.thm{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.thm .lbl{color:var(--peri)}
+.box.hist{border-left:3px solid var(--leader)}
+.box.hist .lbl{color:var(--leader)}
+blockquote.quote{margin:1.4rem 0;padding:.15rem 0 .15rem 1.15rem;border-left:3px solid var(--leader);
+  color:var(--gray);font-style:italic;font-size:.96em;line-height:1.62}
+blockquote.quote cite{display:block;margin-top:.5rem;font-style:normal;font-family:var(--sans);
+  font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--leader)}
+blockquote.quote cite::before{content:"\2014 "}
+.demo{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:1.15rem;margin:2rem 0;box-shadow:var(--shadow)}
+.demo h4{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin:0 0 .1rem;font-weight:700}
+.demo .dsub{font-family:var(--sans);font-size:.83rem;color:var(--muted);margin:0 0 .9rem}
+.ctl{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;font-family:var(--sans);font-size:.78rem;margin:.9rem 0 .2rem}
+.ctl label{display:flex;flex-direction:column;gap:.15rem;min-width:9.5rem;flex:1 1 9.5rem}
+.ctl .lv{display:flex;justify-content:space-between;gap:.6rem;color:var(--muted)}
+.ctl .lv b{color:var(--fg);font-family:var(--mono);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--rose);height:1.1rem}
+button{font-family:var(--sans);font-size:.78rem;font-weight:600;padding:.42rem .85rem;border-radius:7px;
+  border:1px solid var(--rule);background:var(--bg);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--rose);color:var(--rose)}
+button.pri{background:var(--rose);border-color:var(--rose);color:#fff}
+button.pri:hover{color:#fff;opacity:.9}
+.readout{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:.6rem;line-height:1.7}
+.readout b{color:var(--fg)}
+canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--bg)}
+.pdf.no{color:var(--leader);border-color:var(--leader)}
+.pdf.no:hover{background:none;color:var(--leader)}
+
+/* Narrow screens: .m is nowrap so short formulas never break, but a long inline
+   formula or file path then pushes the page sideways. Below the tablet breakpoint,
+   let it wrap. Desktop rendering is unchanged. */
+@media (max-width:640px){
+  .m,code{white-space:normal;overflow-wrap:anywhere}
+}
 </style>
 </head>
 <body>
@@ -10774,7 +10822,7 @@ z
   function apply(){document.documentElement.setAttribute('data-theme',
     (typeof localStorage!=='undefined'&&localStorage.getItem('th')==='dark')?'dark':'light');}
   b.addEventListener('click',function(){var d=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
-    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();});
+    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();if(window.__redraw)window.__redraw();});
   if(typeof localStorage!=='undefined'&&!localStorage.getItem('th')){var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';localStorage.setItem('th',d);}
   apply();
   var links=[].slice.call(document.querySelectorAll('nav.toc a'));

@@ -146,6 +146,13 @@ button.pri:hover{color:#fff;opacity:.9}
 canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--bg)}
 .pdf.no{color:var(--leader);border-color:var(--leader)}
 .pdf.no:hover{background:none;color:var(--leader)}
+
+/* Narrow screens: .m is nowrap so short formulas never break, but a long inline
+   formula or file path then pushes the page sideways. Below the tablet breakpoint,
+   let it wrap. Desktop rendering is unchanged. */
+@media (max-width:640px){
+  .m,code{white-space:normal;overflow-wrap:anywhere}
+}
 </style>
 </head>
 <body>
@@ -806,6 +813,19 @@ The substitution force, other conditions being equal, is directly proportional t
 <p>That changed, and Phillips and Milo's 2009 essay is the moment it became a programme.<sup class="c"><a href="#r-phillipsmilo">26</a></sup> Their argument has two parts. The first is that biology now has enough good numbers to reason with. The second, and the interesting one, is that a number is only useful if you have a feel for the ones around it, so the numbers have to be learned as a connected system rather than looked up. BioNumbers was the infrastructure built for that, with each entry carrying its provenance so a reader can see how a number was obtained and decide whether to trust it.<sup class="c"><a href="#r-bionumbers">27</a></sup> <i>Cell Biology by the Numbers</i> and <i>Physical Biology of the Cell</i> are the textbooks.</p>
 
 <p>What this course adds to that tradition is the insistence that the ledger is a premise and not a product. Lecture 2 spends its first half counting, and the counting would be inert if it stopped there. It does not stop there because the counts have a consequence, and the consequence is the architecture of the rest of the course. A student who leaves with the table has half the lecture. A student who leaves with equation (4) has the lecture.</p>
+
+<h3>The problem set as a record of intent</h3>
+<p>There is a second record of what a course thinks its material is for, and it is more specific than the lecture notes: the problem set. What a lecturer chooses to make students do is a sharper statement than what the lecturer chooses to say.</p>
+
+<p>This lecture's own history makes the point. The argument the 2026 lecture ends on, that metabolite pools turn over far faster than gene expression can respond and that a fast regulatory layer is therefore forced, was not a result in the 2025 course. It was <strong>homework 1, problem 2.2</strong>, set as a three-part exercise with the conclusion left to the student: find the turnover time of a metabolite pool, find the time to change an enzyme level by expression, compare them, and then say whether the comparison justifies the existence of allostery and post-translational modification.</p>
+
+<div class="box hist">
+<span class="lbl">From exercise to result</span>
+<p>An argument that is set as an exercise is one the teacher believes a student can reconstruct. An argument that is stated as a result is one the course is willing to build on. Moving problem 2.2 from the first category to the second is the largest structural change between the 2025 and 2026 versions of this lecture, and it is what licenses lecture 8 to treat the two-layer architecture as established rather than as a modelling choice.</p>
+<p>The promotion also cost something, and it is worth naming. A student who derives the conclusion owns it. A student who is handed it has to be persuaded. That is why the 2026 core carries the argument twice, once through rate constants and once through pools and fluxes, and why the harder open-ended version of the problem survives in the exposition.</p>
+</div>
+
+<p>The same set's problem 3 is a different kind of statement. It asks students to read six papers and write a chemical reaction network for each, and the six are chosen so that no two fail in the same way: the toggle switch and the repressilator for synthetic circuits, combinatorial BMP signalling for promiscuous binding, mammalian multistability for the limits of counting steady states, the lac utilization network for feedback through a transporter, and Chandra, Buzi and Doyle's glycolytic oscillation paper, which is control theory rather than biology and is on the list because it asks what the controller is. The instruction attached to all six is a single sentence: keep the elementary and composite distinction in mind. That sentence is the lecture.</p>
 
 <h2 id="s18"><span class="n">18</span>What an agent does not remove</h2>
 <p class="lede">The arithmetic in this document is now free. The judgement in it is not, and it is what the lecture is for.</p>

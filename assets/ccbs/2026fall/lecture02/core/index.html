@@ -146,6 +146,13 @@ button.pri:hover{color:#fff;opacity:.9}
 canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--bg)}
 .pdf.no{color:var(--leader);border-color:var(--leader)}
 .pdf.no:hover{background:none;color:var(--leader)}
+
+/* Narrow screens: .m is nowrap so short formulas never break, but a long inline
+   formula or file path then pushes the page sideways. Below the tablet breakpoint,
+   let it wrap. Desktop rendering is unchanged. */
+@media (max-width:640px){
+  .m,code{white-space:normal;overflow-wrap:anywhere}
+}
 </style>
 </head>
 <body>
@@ -155,30 +162,22 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
   <div class="brand">CCBS &middot; 2026 &middot; Lecture 2 &middot; CORE</div>
   <h2>Contents</h2>
   <ol>
-    <li class="part">Part 1 &middot; The cell in numbers</li>
-    <li><a href="#s1">1 &middot; Three numbers and a conversion</a></li>
-    <li><a href="#s2">2 &middot; What a protein weighs, and how many there are</a></li>
-    <li><a href="#s3">3 &middot; The concentration ladder</a></li>
-    <li><a href="#s4">4 &middot; The genome is small, the proteome is not</a></li>
+    <li class="part">Part 1 &middot; The ledger</li>
+    <li><a href="#s1">1 &middot; A cubic micron is a femtolitre</a></li>
+    <li><a href="#s2">2 &middot; What is in it</a></li>
+    <li><a href="#s3">3 &middot; Why chemistry is all that happens</a></li>
     <li class="part">Part 2 &middot; How fast things move</li>
-    <li><a href="#s5">5 &middot; Brownian motion, and the formula that gives D</a></li>
-    <li><a href="#s6">6 &middot; From D to a mixing time</a></li>
-    <li><a href="#s7">7 &middot; What the mixing times predict</a></li>
-    <li class="part">Part 3 &middot; Reactions in a cell</li>
-    <li><a href="#s8">8 &middot; Why chemistry is the only thing that happens</a></li>
-    <li><a href="#s9">9 &middot; What an arrow promises</a></li>
-    <li><a href="#s10">10 &middot; Four biological examples</a></li>
-    <li><a href="#s11">11 &middot; Binding, then catalysis</a></li>
-    <li class="part">Part 4 &middot; How fast can a reaction be</li>
-    <li><a href="#s12">12 &middot; The diffusion-limited on-rate, derived</a></li>
-    <li><a href="#s13">13 &middot; The units, checked</a></li>
-    <li><a href="#s14">14 &middot; What reaches the limit, and what beats it</a></li>
-    <li><a href="#s15">15 &middot; The catalytic bottleneck</a></li>
-    <li class="part">Part 5 &middot; What the gap buys</li>
-    <li><a href="#s16">16 &middot; Binding equilibrates while catalysis works</a></li>
-    <li><a href="#s17">17 &middot; Metabolism cannot wait for gene expression</a></li>
-    <li><a href="#s18">18 &middot; Where this goes</a></li>
-    <li class="part">Appendix</li>
+    <li><a href="#s4">4 &middot; Brownian motion, and the formula for D</a></li>
+    <li><a href="#s5">5 &middot; &tau; &asymp; x&sup2;/D, and what it predicts</a></li>
+    <li class="part">Part 3 &middot; The ceiling on a rate</li>
+    <li><a href="#s6">6 &middot; What an arrow promises</a></li>
+    <li><a href="#s7">7 &middot; The diffusion-limited on-rate, derived</a></li>
+    <li><a href="#s8">8 &middot; What reaches the ceiling, and what falls short</a></li>
+    <li class="part">Part 4 &middot; What the gap buys</li>
+    <li><a href="#s9">9 &middot; Binding equilibrates while catalysis works</a></li>
+    <li><a href="#s10">10 &middot; Metabolism cannot wait for gene expression</a></li>
+    <li class="part">Addendum</li>
+    <li><a href="#s11">11 &middot; Where this goes</a></li>
     <li><a href="#exercises">Exercises</a></li>
     <li><a href="#refs">References &amp; note sources</a></li>
   </ol>
@@ -189,30 +188,50 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <p class="sub">Count what is in a cell and you get its timescales. Count how often molecules meet and you get its rates. The two counts land in the same place: a fast reversible layer sitting under a slow irreversible one, four orders of magnitude apart. That gap is where regulation lives, and it is why this course is built from exactly two kinds of reaction.</p>
 <p class="byline">CCBS &middot; EST 5053 &middot; Fall 2026 &middot; lecture 2 &middot; core page &middot; 2026-09-03 (Thu) 10:40&ndash;12:15 &middot; lecturer-taught</p>
 
-<p>Lecture 1 estimated the physics. This one estimates the cell, and the estimate does not stop at a table of numbers. Once you know how much stuff is in a cell and how fast it moves, you can bound how fast anything inside it can possibly happen. Two bounds come out. Molecules meet at up to about <span class="m">10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. Enzymes turn over at about <span class="m">10 s<sup>&minus;1</sup></span>. Those two numbers, and the enormous distance between them, are the whole lecture.</p>
+<p>Lecture 1 estimated the physics. This one estimates the cell, and the estimate does not stop at a table of numbers. Once you know how much stuff is in a cell and how fast it moves, you can bound how fast anything inside it can possibly happen. Two bounds come out. Molecules meet at up to about <span class="m">10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. Enzymes turn over at about <span class="m">10 s<sup>&minus;1</sup></span>. Those two numbers, and the distance between them, are the whole lecture.</p>
 
-<p>The distance is not a defect. It is the reason a cell can be controlled. Binding reaches equilibrium about ten thousand times during a single catalytic turnover, so the binding layer can be treated as a settled statistical-mechanics problem while the catalytic layer is still grinding forward. Lecture 8 will claim that a cell is nothing but those two things. Today we measure the premises of that claim.</p>
+<p>The distance is not a defect. It is the reason a cell can be controlled. Binding reaches equilibrium about ten thousand times during one catalytic turnover, so the binding layer is a settled statistical-mechanics problem while the catalytic layer is still grinding forward. Lecture 8 will claim a cell is nothing but those two things. Today we measure the premises of that claim.</p>
 
 <div class="box note">
-<span class="lbl">Three documents, and what each is for</span>
-<p>This page is the spine, and it is what happens in the room. The <a href="../lineage/">lineage essay</a> is the scholarship behind it: where each of these ideas came from, what their authors actually said, and the four places where the standard retelling turned out to be wrong. The <a href="../exposition/">exposition</a> is the fuller tutorial, written to be read afterwards, with every derivation carried in full, four checkpoints with worked solutions, and two interactive tools. If you only read one, read this page before the lecture and the exposition after it.</p>
+<span class="lbl">This page is the lecture note</span>
+<p>It carries what happens in the room, and nothing else. Derivations go as far as the board goes, and stop. The <a href="../exposition/">exposition</a> is the textbook chapter that finishes them: every step shown, four checkpoints with solutions, two interactive tools, written for someone studying alone. The <a href="../lineage/">lineage essay</a> is the history: who made these methods, and where the standard retelling turns out to be wrong. Read this page before the lecture, the exposition after it.</p>
 </div>
 
 <div class="box note">
-<span class="lbl">How to read this page</span>
-<p>Sections 1 to 4 build the cell's ledger, 5 to 7 turn sizes into timescales, 8 to 11 set up what a reaction is, 12 to 15 derive and then test the rate ceiling, and 16 to 18 are the payoff. <strong>Section 12 is the anchor derivation of the course</strong> and section 17 is the argument you should be able to reproduce on a napkin. Every number here traces to a paper in the reference list or to <span class="m">analysis/cell_ledger.py</span> in the lecture's research folder, which runs and prints all of them.</p>
+<span class="lbl">The 95 minutes</span>
+<div class="tablewrap">
+<table>
+<caption>The spine, as timed blocks. Section 7 is the anchor derivation of the course and gets the largest block. Section 10 is the argument you should be able to reproduce on a napkin.</caption>
+<thead><tr><th>Block</th><th>Section</th><th>min</th></tr></thead>
+<tbody>
+<tr><td>Admin</td><td>what is due, what is coming</td><td class="num">5</td></tr>
+<tr><td>1</td><td>&sect;1 a cubic micron is a femtolitre</td><td class="num">8</td></tr>
+<tr><td>2</td><td>&sect;2 what is in it</td><td class="num">9</td></tr>
+<tr><td>3</td><td>&sect;3 why chemistry is all that happens</td><td class="num">4</td></tr>
+<tr><td>4</td><td>&sect;4 Brownian motion and D</td><td class="num">9</td></tr>
+<tr><td>5</td><td>&sect;5 mixing times</td><td class="num">9</td></tr>
+<tr><td>6</td><td>&sect;6 the two arrows</td><td class="num">8</td></tr>
+<tr><td>7</td><td class="hl">&sect;7 the absorbing sphere</td><td class="num hl">13</td></tr>
+<tr><td>8</td><td>&sect;8 ceiling against reality</td><td class="num">8</td></tr>
+<tr><td>9</td><td>&sect;9 the separation</td><td class="num">7</td></tr>
+<tr><td>10</td><td class="hl">&sect;10 metabolism cannot wait</td><td class="num hl">10</td></tr>
+<tr><td>Addendum</td><td>&sect;11 where this goes</td><td class="num">5</td></tr>
+</tbody>
+</table>
+</div>
+<p>Every number traces to a reference below or to <span class="m">analysis/cell_ledger.py</span>, which runs with no arguments and prints all of them.</p>
 </div>
 
 <div class="parthead">
   <div class="k">Part 1</div>
-  <h2>The cell in numbers</h2>
-  <p>How much stuff a cell has, what it is made of, and why counting it is worth an hour.</p>
+  <h2>The ledger</h2>
+  <p>How much stuff a cell has, and what follows from the fact that there is so little of it.</p>
 </div>
 
-<h2 id="s1"><span class="n">1</span>Three numbers and a conversion</h2>
-<p class="lede">A volume, a mass, and a molecule count. Everything else in this course is these three times a scaling law.</p>
+<h2 id="s1"><span class="n">1</span>A cubic micron is a femtolitre</h2>
+<p class="lede">One identity, and the conversion that falls out of it. Memorise both.</p>
 
-<p>Start with the length ladder, because it fixes the scale of everything that follows.<sup class="c"><a href="#r-l1notes">14</a></sup> An atom is about 1&nbsp;&Aring;, which is <span class="m">10<sup>&minus;10</sup></span>&nbsp;m. A bacterium is about 1&nbsp;&micro;m. A human is about 1&nbsp;m. The ladder is not decoration: a bacterium stands to a human exactly as an atom stands to a bacterium, four orders of magnitude in each step. Every object this course cares about lives in the first two decades above the atom.</p>
+<p>Start with the length ladder, because it fixes the scale of everything that follows.<sup class="c"><a href="#r-l1notes">14</a></sup> An atom is about 1&nbsp;&Aring;. A bacterium is about 1&nbsp;&micro;m. A human is about 1&nbsp;m. A bacterium stands to a human exactly as an atom stands to a bacterium, four orders of magnitude in each step. Every object this course cares about lives in the first two decades above the atom.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 760 300" role="img" aria-label="The length ladder from an atom to a human, with the objects of this course marked, and the volume and concentration that follow" font-family="var(--sans)">
@@ -271,63 +290,40 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <line x1="550.0" y1="196.0" x2="550.0" y2="256.0" stroke="var(--rule)" stroke-width="1"/>
 <text x="50.0" y="200.0" font-size="10" text-anchor="start" fill="var(--gray)" font-weight="700" letter-spacing="1.4">ONE E. COLI</text>
 </svg>
-<figcaption><b>Figure 1.</b> The length ladder, with the objects of this course marked, and the four numbers that follow for one <i>E. coli</i>. The conversion in the third box is the one to memorise. In a volume this small, a single molecule is already a nanomolar concentration.</figcaption></figure>
-
-<p>Now the unit convention, which is doing more work than it looks:</p>
+<figcaption><b>Figure 1.</b> The length ladder, with the objects of this course marked, and the four numbers that follow for one <i>E. coli</i>. The conversion in the third box is the one to memorise.</figcaption></figure>
 
 <div class="eq">1 &micro;m&sup3; = 10<sup>&minus;18</sup> m&sup3; = 10<sup>&minus;15</sup> L = <b>1 fL</b> &nbsp;&nbsp;and&nbsp;&nbsp; 1 fL of water weighs <b>1 pg</b> <span class="tag">(1)</span></div>
 
-<p>A cubic micron is a femtolitre. That single identity is why a bacterium can be treated as a chemical reactor at all, and it immediately gives the conversion that the rest of the course leans on. One molecule in one femtolitre is</p>
+<p>That identity is why a bacterium can be treated as a chemical reactor at all, and it gives the conversion the rest of the course leans on. One molecule in one femtolitre is</p>
 
 <div class="eq">c = 1 / (N<sub>A</sub> &middot; 10<sup>&minus;15</sup> L) = 1 / (6.02&times;10<sup>23</sup> &middot; 10<sup>&minus;15</sup>) = <b>1.7 nM</b> <span class="tag">(2)</span></div>
 
-<p>Say that out loud. <em>One molecule per cell is 1.7 nanomolar.</em> A transcription factor present in ten copies is at 17&nbsp;nM, which is the same order as its dissociation constant for DNA. That is not a coincidence, and lecture 7 will explain why it cannot be one.</p>
+<p>Say it out loud. <em>One molecule per cell is 1.7 nanomolar.</em> A transcription factor present in ten copies is at 17&nbsp;nM, the same order as its dissociation constant for DNA. Lecture 7 will explain why that cannot be a coincidence.</p>
 
-<div class="box caution">
-<span class="lbl">Where the round number is wrong</span>
-<p>The <span class="m">1 &micro;m&sup3;</span> cell is the small end of the real range. Volkmer and Heinemann measured <i>E. coli</i> volumes across 22 growth conditions and found <strong>1.5&nbsp;fL in slow growth up to 4.4&nbsp;fL in rich medium</strong>, with the width roughly constant at 1.26&nbsp;&micro;m and the length doing the changing.<sup class="c"><a href="#r-volkmer">1</a></sup> Use 1&nbsp;fL for a bound, and remember that a fast-growing cell is three to four times bigger. Cell size tracks growth rate, and that dependence is itself a piece of physiology (lecture 12).</p>
-</div>
+<p>One caveat before we build on it. The 1&nbsp;&micro;m&sup3; cell is the small end of the range: <i>E. coli</i> runs <strong>1.5&nbsp;fL in slow growth to 4.4&nbsp;fL in rich medium</strong>, with the width fixed near 1.26&nbsp;&micro;m and the length doing the changing.<sup class="c"><a href="#r-volkmer">1</a></sup> Use 1&nbsp;fL for a bound, and remember that cell size tracks growth rate, which is itself physiology (lecture 14).</p>
 
-<h2 id="s2"><span class="n">2</span>What a protein weighs, and how many there are</h2>
-<p class="lede">Two estimates, one trick, and a factor-of-five correction to the number everyone quotes.</p>
+<h2 id="s2"><span class="n">2</span>What is in it</h2>
+<p class="lede">A protein weighs 33&nbsp;kDa, there are three million of them, and the classroom number for that count is five times too high.</p>
 
-<p>To count proteins we need the mass of one. That needs the mass of an amino acid and the length of a protein, and both are ranges rather than numbers. The trick is to average in log space, because the quantity spans orders of magnitude and the arithmetic mean would be dominated by the top end.</p>
-
-<div class="box def">
-<span class="lbl">The log-average</span>
-<p>Given a lower bound <span class="m">a</span> and an upper bound <span class="m">b</span>, the order-of-magnitude estimate is the geometric mean <span class="m">&radic;(ab)</span>, not <span class="m">(a+b)/2</span>. It is the arithmetic mean of the logarithms, so it sits in the middle of the <em>range of exponents</em>. That is the right thing to do whenever the spread is multiplicative.</p>
-</div>
-
-<p>Amino acids run from glycine at 75&nbsp;Da to tryptophan at 204&nbsp;Da. The two-endpoint estimate gives <span class="m">&radic;(75&times;204) = 124 Da</span>, and the full 20-residue geometric mean is 133&nbsp;Da. A residue inside a chain is 18&nbsp;Da lighter, because forming a peptide bond releases water, so <strong>110&nbsp;Da per residue</strong> is the number to carry. It is also the abundance-weighted value used in the professional literature.<sup class="c"><a href="#r-milo2013">2</a></sup></p>
-
-<p>Protein length is harder. Bounds of 50 and 5000 residues give <span class="m">&radic;(50&times;5000) = 500</span> residues. The measured abundance-weighted mean in <i>E. coli</i> is <strong>300 residues</strong>.<sup class="c"><a href="#r-milo2013">2</a></sup> The estimate is high by a factor of 1.7, which is exactly what order of magnitude promises and no better. Take 300 and get</p>
+<p>Two log-averages get the mass of one protein. Amino acids run 75 to 204&nbsp;Da, so <span class="m">&radic;(75&times;204) = 124</span>, and a residue in a chain is 18&nbsp;Da lighter because the peptide bond releases water. Carry <strong>110&nbsp;Da per residue</strong>.<sup class="c"><a href="#r-milo2013">2</a></sup> Lengths run 50 to 5000, so <span class="m">&radic;(50&times;5000) = 500</span> residues against a measured mean of <strong>300</strong>. High by 1.7, which is what order of magnitude promises and no better.</p>
 
 <div class="eq">m<sub>protein</sub> = 300 &times; 110 Da &asymp; <b>33 kDa</b> <span class="tag">(3)</span></div>
 
-<h3>Now count them</h3>
-<p>Here is where the standard classroom estimate goes wrong, and it is worth doing wrong first. Divide the whole wet mass of the cell by the mass of one protein:</p>
+<p>Now count them, and get it wrong first. Wet mass over protein mass gives <span class="m">1.1 pg / 33 kDa = 2&times;10<sup>7</sup></span>. That is the number usually quoted, and it is an upper bound that assumes the cell is dry. A cell is 70% water, so <span class="m">c<sub>p</sub> = 0.24</span> g/mL:<sup class="c"><a href="#r-milo2013">2</a></sup></p>
 
-<div class="eq">N &le; 1.1 pg / 33 kDa = 1.1&times;10<sup>&minus;12</sup> g / 5.5&times;10<sup>&minus;20</sup> g = <b>2&times;10<sup>7</sup></b> <span class="tag">(4)</span></div>
-
-<p>That is an upper bound and it is not close. A cell is about 70% water, and protein is about 55% of the dry mass, so the protein mass concentration is <span class="m">1.1 &times; 0.30 &times; 0.55 = 0.18</span> g/mL. The directly measured value for <i>E. coli</i> is <span class="m">c<sub>p</sub> = 0.24</span> g/mL.<sup class="c"><a href="#r-milo2013">2</a></sup> Either way:</p>
-
-<div class="eq">N = c<sub>p</sub> / (l<sub>aa</sub> &middot; m<sub>aa</sub>) = 0.24 g/mL / 5.5&times;10<sup>&minus;20</sup> g = <b>3&ndash;4 &times; 10<sup>6</sup> proteins per fL</b> <span class="tag">(5)</span></div>
+<div class="eq">N = c<sub>p</sub> / m<sub>protein</sub> = 0.24 g/mL &divide; 5.5&times;10<sup>&minus;20</sup> g = <b>3&ndash;4 &times; 10<sup>6</sup> proteins per fL</b> <span class="tag">(4)</span></div>
 
 <div class="box caution">
 <span class="lbl">A correction worth carrying</span>
-<p>The naive bound in (4) is <strong>about five times too high</strong>, and the error is entirely the water. Milo surveyed the published counts and found the same estimate, <strong>2 to 4 million proteins per cubic micron</strong>, holds for bacteria, yeast and mammalian cells alike, and that several proteome-wide mass-spectrometry censuses report values 3 to 10 times lower than that and are probably mis-calibrated.<sup class="c"><a href="#r-milo2013">2</a></sup> This is order-of-magnitude reasoning used exactly as lecture 1 advertised: as a benchmark that catches an experiment, not as a substitute for one.</p>
+<p>The naive bound is <strong>five times too high</strong>, and the error is entirely the water. Milo found 2 to 4 million per cubic micron holds for bacteria, yeast and mammalian cells alike, and that several proteome-wide censuses report values 3 to 10 times lower and are probably mis-calibrated.<sup class="c"><a href="#r-milo2013">2</a></sup> Order of magnitude used as lecture 1 advertised: a benchmark that catches an experiment.</p>
 </div>
 
-<h2 id="s3"><span class="n">3</span>The concentration ladder</h2>
-<p class="lede">Millimolar for metabolites, micromolar for proteins, nanomolar for one molecule. Every dissociation constant in biology is read against this ladder.</p>
-
-<p>Divide the count by the number of genes. <i>E. coli</i> has about 4400 protein-coding genes, so the mean copy number per protein species is <span class="m">3.5&times;10<sup>6</sup> / 4400 &asymp; 800</span>, which by equation (2) is about <strong>1.4 &micro;M</strong>. The real distribution is broad, from a few copies to tens of thousands, but the centre of it is micromolar.</p>
-
-<p>Metabolites are three orders higher. Bennett and colleagues measured more than a hundred metabolite concentrations in glucose-fed <i>E. coli</i> and found a <strong>total intracellular pool of about 300&nbsp;mM</strong>, dominated by a handful of compounds, with glutamate alone at <strong>96&nbsp;mM</strong> and more than 40% of the total.<sup class="c"><a href="#r-bennett">3</a></sup></p>
+<h3>The concentration ladder</h3>
+<p>Divide by 4400 protein-coding genes: about 800 copies per species, which by (2) is <strong>1.4&nbsp;&micro;M</strong>. Metabolites are three orders higher, with a measured total near <strong>300&nbsp;mM</strong> and glutamate alone at 96&nbsp;mM.<sup class="c"><a href="#r-bennett">3</a></sup></p>
 
 <div class="tablewrap">
 <table>
-<caption>Table 1. The concentration ladder. The right-hand column is the lecture in which each regime is analysed.</caption>
+<caption>Table 1. The concentration ladder. Every dissociation constant in biology is read against this.</caption>
 <thead><tr><th>Species</th><th>copies per cell</th><th>concentration</th><th>regime</th></tr></thead>
 <tbody>
 <tr><td>abundant metabolite (glutamate, ATP, FBP)</td><td class="num">10<sup>6</sup>&ndash;10<sup>8</sup></td><td class="num">1&ndash;100 mM</td><td>a well-stirred reactor (lecture 3)</td></tr>
@@ -338,63 +334,48 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 </table>
 </div>
 
-<div class="box key">
-<span class="lbl">Why this table is the point</span>
-<p>A dissociation constant tells you nothing on its own. It only means something next to the concentration of the thing that binds. Metabolic enzymes have <span class="m">K<sub>M</sub></span> around 100&nbsp;&micro;M against substrates at millimolar, so they are <em>saturated</em>. Transcription factors have <span class="m">K<sub>d</sub></span> around 1&ndash;10&nbsp;nM against themselves at tens of nanomolar, so they are <em>poised</em>. Same physics, opposite design, and the ladder is what tells them apart.</p>
-</div>
+<p>The table is the point, because a dissociation constant means nothing on its own. It means something next to the concentration of the thing that binds. Metabolic enzymes have <span class="m">K<sub>M</sub></span> near 100&nbsp;&micro;M against millimolar substrate, so they are <em>saturated</em>. Transcription factors have <span class="m">K<sub>d</sub></span> near 1&ndash;10&nbsp;nM against themselves at tens of nanomolar, so they are <em>poised</em>. Same physics, opposite design.</p>
 
-<h2 id="s4"><span class="n">4</span>The genome is small, the proteome is not</h2>
-<p class="lede">Length and volume are different questions, and DNA and protein answer them oppositely.</p>
+<h3>Long, and fat</h3>
+<p>Two entries close the ledger, and they point opposite ways. At 0.34&nbsp;nm per base pair the 4.64&nbsp;Mbp genome is <strong>1.6&nbsp;mm</strong> long, sixteen hundred cell lengths, and as a 1&nbsp;nm cylinder it occupies <strong>0.5% of the volume</strong>. Protein does the reverse. Erickson's formula sizes it from nothing but its weight,<sup class="c"><a href="#r-erickson">4</a></sup> and three million of them fill <strong>15% of the cell</strong>:</p>
 
-<p>The <i>E. coli</i> K-12 genome is 4&thinsp;641&thinsp;652 base pairs. B-form DNA rises 0.34&nbsp;nm per base pair, so end to end it is</p>
+<div class="eq">R<sub>min</sub> = (3V/4&pi;)<sup>1/3</sup> = 0.066 &middot; M<sup>1/3</sup> nm = <b>2.1 nm</b> for 33 kDa &nbsp;(M in daltons) <span class="tag">(5)</span></div>
 
-<div class="eq">L = 4.64&times;10<sup>6</sup> &times; 0.34 nm = 1.6&times;10<sup>6</sup> nm = <b>1.6 mm</b> <span class="tag">(6)</span></div>
+<p>That radius is a <em>minimum</em>, since a real protein drags a hydration shell and its hydrodynamic radius is 20 to 40 percent larger. Section 4 needs the distinction. And the asymmetry is the point: the genome is <em>long</em> and takes no room, the proteome is <em>short</em> and fills the cell. Information is cheap to store and expensive to execute. So crowding is not a nuisance correction, and section 4 shows it slowing every machine by elevenfold.</p>
 
-<p>which is sixteen hundred times the length of the cell holding it, so the genome must be folded at least that much. Its volume, though, is almost nothing. Treat the double helix as a cylinder of radius 1&nbsp;nm:</p>
+<h2 id="s3"><span class="n">3</span>Why chemistry is all that happens</h2>
+<p class="lede">Fixed temperature, fixed pressure, no mechanical work. What is left is bond rearrangement, and enzymes decide when.</p>
 
-<div class="eq">V<sub>DNA</sub> = &pi;(1 nm)&sup2; &times; 0.34 nm &times; 4.64&times;10<sup>6</sup> = 5&times;10<sup>6</sup> nm&sup3; = <b>0.005 &micro;m&sup3;</b>, about 0.5% of the cell <span class="tag">(7)</span></div>
+<p>A cell holds temperature and pressure essentially constant. It compresses nothing, heats nothing, does no macroscopic work. Every change of state it undergoes is therefore a chemical reaction. Two questions follow, and this course keeps them apart.</p>
 
-<p>Protein is the opposite. A protein's volume follows from its mass through the partial specific volume of protein, 0.73&nbsp;mL/g, which is 1.21&nbsp;&Aring;&sup3; per dalton. So a 33&nbsp;kDa protein occupies 40&nbsp;nm&sup3;, and if it were a sphere its radius would be</p>
+<ul>
+<li><strong>Whether</strong> a reaction can proceed is thermodynamics. At fixed <span class="m">T</span> and <span class="m">p</span> the currency is Gibbs free energy, not heat. That is lecture 7.</li>
+<li><strong>How fast</strong> it proceeds is kinetics, and it is almost entirely about enzymes. That is today.</li>
+</ul>
 
-<div class="eq">R<sub>min</sub> = (3V/4&pi;)<sup>1/3</sup> = 0.066 &middot; M<sup>1/3</sup> nm = <b>2.1 nm</b> &nbsp;(M in daltons) <span class="tag">(8)</span></div>
-
-<p>That formula is Erickson's, and it is the cleanest way to get a protein's size from nothing but its molecular weight.<sup class="c"><a href="#r-erickson">4</a></sup> Note that it is a <em>minimum</em>. A real protein moving through water drags a hydration shell and is not a perfect sphere, so its hydrodynamic radius is larger, typically by 20 to 40 percent. We will need that distinction in section 5.</p>
-
-<p>Multiply: <span class="m">3.5&times;10<sup>6</sup> &times; 40 nm&sup3; = 0.14 &micro;m&sup3;</span>, so protein alone occupies <strong>about 15% of the cell volume</strong>, and adding RNA and DNA brings the total macromolecular mass concentration to roughly <span class="m">0.26 g/mL</span>. The cell is not a dilute solution. It is closer to a gel, and every rate measured in water is an overestimate inside it.</p>
-
-<div class="box key">
-<span class="lbl">The asymmetry</span>
-<p>The genome is <em>long</em> and takes no room. The proteome is <em>short</em> and fills the cell. Information is cheap to store and expensive to execute, and the volume budget shows it. Crowding is not a nuisance correction, it is a design constraint: it caps how many machines fit, and it slows every one of them down.</p>
-</div>
+<p>Insist on it, because biology violates the naive coupling between the two. Favourable reactions sit untouched for years inside a cell: hydrolysis of ATP, cleavage of a peptide bond, degradation of glucose. Enzymes accelerate them by <span class="m">10<sup>10</sup></span> and more. Downhill tells you nothing about whether a reaction happens. A reaction happening tells you an enzyme decided it should.</p>
 
 <div class="parthead">
   <div class="k">Part 2</div>
   <h2>How fast things move</h2>
-  <p>One formula turns a size into a diffusion coefficient, and one scaling turns that into a time.</p>
+  <p>One formula turns a size into a diffusion coefficient. One scaling turns that into a time.</p>
 </div>
 
-<h2 id="s5"><span class="n">5</span>Brownian motion, and the formula that gives D</h2>
+<h2 id="s4"><span class="n">4</span>Brownian motion, and the formula for D</h2>
 <p class="lede">Watch something jiggle, measure how far it goes in a second, and you have measured a molecular constant.</p>
 
-<p>In June 1827 Robert Brown put pollen of <i>Clarkia pulchella</i> in water under a single-lens microscope and saw particles moving with no apparent cause. The detail that matters for us, and that most retellings get wrong, is <strong>what</strong> he was watching. It was not the pollen grain. A <i>Clarkia</i> pollen grain is about 100&nbsp;&micro;m across, far too large to jiggle visibly. What Brown saw were organelles ejected from the burst grain: oblong amyloplasts around 2&nbsp;&micro;m and spherical spherosomes with a modal radius of <strong>0.5&nbsp;&micro;m</strong>.<sup class="c"><a href="#r-pearle">5</a></sup></p>
+<p>In June 1827 Robert Brown put pollen of <i>Clarkia pulchella</i> in water and saw particles moving with no apparent cause. What matters for us is <strong>what</strong> he was watching, and most retellings get it wrong. Not the pollen grain: a <i>Clarkia</i> grain is 100&nbsp;&micro;m across and far too large to jiggle visibly. Brown saw organelles ejected from the burst grain, spherosomes of modal radius <strong>0.5&nbsp;&micro;m</strong>.<sup class="c"><a href="#r-pearle">5</a></sup></p>
 
 <div class="box hist">
 <span class="lbl">1827</span>
-<p>Brown's real contribution was not the observation but the control. He repeated it with dead plants, with fossilised wood, with ground glass, and with a fragment of the Sphinx, and saw the same motion. That is what killed the vital explanation. The lesson is the same one as lecture 1's null models: the interesting move was not measuring the effect, it was removing the only mechanism anyone believed in.</p>
+<p>Brown's contribution was not the observation but the control. He repeated it with dead plants, fossilised wood, ground glass, and a fragment of the Sphinx, and saw the same motion. That killed the vital explanation. Same lesson as lecture 1's null models: the interesting move was removing the only mechanism anyone believed in.</p>
 </div>
 
-<h3>The calibration, done honestly</h3>
-<p>Brown described displacements of about a micron over a second or so. For a sphere of radius 0.5&nbsp;&micro;m the mean one-dimensional displacement in one second is 0.74&nbsp;&micro;m.<sup class="c"><a href="#r-pearle">5</a></sup> Invert <span class="m">&lang;|x|&rang; = 0.80&radic;(2Dt)</span> and you get</p>
+<p>He described displacements of about a micron in a second. For a 0.5&nbsp;&micro;m sphere the mean one-dimensional displacement in one second is 0.74&nbsp;&micro;m,<sup class="c"><a href="#r-pearle">5</a></sup> so inverting <span class="m">&lang;|x|&rang; = 0.80&radic;(2Dt)</span> gives <span class="m">D = 0.43 &micro;m&sup2;/s</span>. Now the scaling that makes it useful. Diffusion balances thermal kicks against viscous drag. Stokes drag is <span class="m">F = 6&pi;&eta;av</span>, so mobility <span class="m">&mu; &prop; 1/a</span>, and Einstein's <span class="m">D = &mu;k<sub>B</sub>T</span> gives</p>
 
-<div class="eq">D = (0.74/0.80)&sup2; / 2 = <b>0.43 &micro;m&sup2;/s</b> for a particle of radius 0.5 &micro;m <span class="tag">(9)</span></div>
+<div class="eq">D = k<sub>B</sub>T / (6&pi;&eta;a) &nbsp;&nbsp;&rArr;&nbsp;&nbsp; <b>D &prop; 1/a</b> <span class="tag">(6)</span></div>
 
-<p>Now the scaling that makes this useful. Diffusion is a balance between thermal kicks and viscous drag. Drag on a sphere is Stokes' <span class="m">F = 6&pi;&eta;av</span>, so mobility <span class="m">&mu; = v/F &prop; 1/a</span>, and Einstein's relation <span class="m">D = &mu;k<sub>B</sub>T</span> gives</p>
-
-<div class="eq">D = k<sub>B</sub>T / (6&pi;&eta;a) &nbsp;&nbsp;&rArr;&nbsp;&nbsp; <b>D &prop; 1/a</b> <span class="tag">(10)</span></div>
-
-<p>The whole content of the calibration is therefore the single constant <span class="m">k<sub>B</sub>T/6&pi;&eta;</span>, which Brown's observation pins at <span class="m">D &middot; a = 0.43 &times; 0.5 = 0.21 &micro;m&sup3;/s</span>. The true value at 25&nbsp;&deg;C is 0.245&nbsp;&micro;m&sup3;/s. <strong>An 1827 qualitative observation gets a fundamental constant to 13%.</strong> Divide by the radius of a protein and you have its diffusion coefficient:</p>
-
-<div class="eq">D<sub>protein</sub> = 0.21 &micro;m&sup3;/s &divide; 2.1 nm &asymp; <b>100 &micro;m&sup2;/s</b> in water <span class="tag">(11)</span></div>
+<p>So the whole content of the calibration is one constant, <span class="m">k<sub>B</sub>T/6&pi;&eta; = D&middot;a = 0.21 &micro;m&sup3;/s</span>, against a true 0.245. <strong>An 1827 qualitative observation gets a fundamental constant to 13%.</strong> Divide by a protein's radius: <span class="m">D &asymp; 100 &micro;m&sup2;/s</span> in water.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 760 400" role="img" aria-label="Diffusion coefficient against particle radius, log-log, with the Stokes-Einstein line and measured values" font-family="var(--sans)">
@@ -446,21 +427,21 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <text x="602.0" y="140.0" font-size="11" text-anchor="start" fill="var(--gray)">slope −1 over</text>
 <text x="602.0" y="154.0" font-size="11" text-anchor="start" fill="var(--gray)">five decades</text>
 </svg>
-<figcaption><b>Figure 2.</b> Stokes-Einstein over five decades of particle size, with measured values on it. The line is <span class="m">D = k<sub>B</sub>T/6&pi;&eta;a</span> in water at 25&nbsp;&deg;C, computed and not fitted. Glucose lands on it. GFP lands on it once you use its hydrodynamic radius rather than <span class="m">R<sub>min</sub></span>. Water itself sits above it, which is correct and expected: the formula assumes the particle is large compared with the solvent, and a water molecule is not. The dashed line is the same relation divided by 11, which is what the <i>E. coli</i> cytoplasm actually does to a protein.</figcaption></figure>
+<figcaption><b>Figure 2.</b> Stokes-Einstein over five decades of size, computed and not fitted, with measured values on it. Glucose lands on the line. GFP lands on it once you use the hydrodynamic radius. Water sits above it, correctly: the formula assumes the particle is large compared with the solvent. The dashed line is the same relation divided by 11, which is what cytoplasm does to a protein.</figcaption></figure>
 
 <div class="box caution">
 <span class="lbl">The cytoplasm is not water</span>
-<p>Elowitz and colleagues measured GFP directly inside <i>E. coli</i> by photobleaching and photoactivation and found <span class="m">D = 7.7 &plusmn; 2.5 &micro;m&sup2;/s</span>, against about 87&nbsp;&micro;m&sup2;/s in dilute solution.<sup class="c"><a href="#r-elowitz">6</a></sup> That is an <strong>eleven-fold slowdown</strong>, and it gets worse fast with size: a 72&nbsp;kDa MBP-GFP fusion drops to <span class="m">2.5 &plusmn; 0.6</span>, and even adding a six-histidine tag to GFP halves it. The 2025 version of this lecture quoted 100&nbsp;&micro;m&sup2;/s inside the cell. Use <strong>10&nbsp;&micro;m&sup2;/s for a protein and 200&nbsp;&micro;m&sup2;/s for a metabolite</strong> in cytoplasm, and say which one you mean.</p>
+<p>Elowitz and colleagues measured GFP inside <i>E. coli</i> and found <span class="m">D = 7.7 &plusmn; 2.5 &micro;m&sup2;/s</span>, against 87 in dilute solution.<sup class="c"><a href="#r-elowitz">6</a></sup> An <strong>elevenfold slowdown</strong>, worsening fast with size: a 72&nbsp;kDa fusion drops to 2.5, and a six-histidine tag halves it. The 2025 version of this lecture quoted 100&nbsp;&micro;m&sup2;/s inside the cell, which is the water value. Use <strong>10 for a protein and 200 for a metabolite</strong> in cytoplasm, and say which you mean.</p>
 </div>
 
-<h2 id="s6"><span class="n">6</span>From D to a mixing time</h2>
-<p class="lede">The most useful scaling in the course, for the second time in two lectures.</p>
+<h2 id="s5"><span class="n">5</span>&tau; &asymp; x&sup2;/D, and what it predicts</h2>
+<p class="lede">The most useful scaling in the course, for the second time in two lectures. A null model earns its keep by being wrong in a specific place.</p>
 
-<p>Lecture 1 derived <span class="m">t &asymp; x&sup2;/&kappa;</span> for heat by stripping the derivatives off the diffusion equation. The same equation with the same argument, now for particles rather than temperature, gives the same answer:</p>
+<p>Lecture 1 got <span class="m">t &asymp; x&sup2;/&kappa;</span> for heat by stripping the derivatives off the diffusion equation. Same equation, same argument, for particles:</p>
 
-<div class="eq">&part;c/&part;t = D&nabla;&sup2;c &nbsp;&rArr;&nbsp; c/&tau; &asymp; D c/x&sup2; &nbsp;&rArr;&nbsp; <b>&tau; &asymp; x&sup2;/D</b> <span class="tag">(12)</span></div>
+<div class="eq">&part;c/&part;t = D&nabla;&sup2;c &nbsp;&rArr;&nbsp; c/&tau; &asymp; D c/x&sup2; &nbsp;&rArr;&nbsp; <b>&tau; &asymp; x&sup2;/D</b> <span class="tag">(7)</span></div>
 
-<p>Exactly, in three dimensions, <span class="m">&lang;r&sup2;&rang; = 6Dt</span>, so the order-of-magnitude form overestimates by six. That is inside the error bar of everything else here, so keep the simple form and remember the factor exists.</p>
+<p>Exactly, in three dimensions, <span class="m">&lang;r&sup2;&rang; = 6Dt</span>, so the simple form overestimates by six. That is inside the error bar of everything else here.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 760 420" role="img" aria-label="Diffusive mixing time against compartment size, log-log, showing where passive diffusion stops working" font-family="var(--sans)">
@@ -513,11 +494,11 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <circle cx="554.1" cy="44.0" r="4.60" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
 <text x="546.1" y="58.0" font-size="11" text-anchor="end" fill="var(--fg)" class="halo2">axon, 1 m</text>
 </svg>
-<figcaption><b>Figure 3.</b> Mixing time against distance, computed from <span class="m">&tau; = x&sup2;/D</span> with in-cytoplasm diffusion coefficients. The shaded band is the range of times a cell can plausibly wait, from a millisecond to an hour. The quadratic scaling is the whole story: everything smaller than a mammalian cell is inside the band, and everything larger falls out of it catastrophically.</figcaption></figure>
+<figcaption><b>Figure 3.</b> Mixing time against distance, from <span class="m">&tau; = x&sup2;/D</span> with in-cytoplasm coefficients. The band is what a cell can plausibly wait, a millisecond to an hour. The quadratic scaling is the whole story: everything up to a mammalian cell is inside the band, everything larger falls out of it catastrophically.</figcaption></figure>
 
 <div class="tablewrap">
 <table>
-<caption>Table 2. <span class="m">&tau; = x&sup2;/D</span> for a protein at <span class="m">D = 7.7 &micro;m&sup2;/s</span>, the measured value inside <i>E. coli</i>.</caption>
+<caption>Table 2. <span class="m">&tau; = x&sup2;/D</span> for a protein at the measured in-cell value <span class="m">D = 7.7 &micro;m&sup2;/s</span>, and for a metabolite at 200.</caption>
 <thead><tr><th>Compartment</th><th>size</th><th>&tau;, protein</th><th>&tau;, metabolite</th><th>verdict</th></tr></thead>
 <tbody>
 <tr><td><i>E. coli</i></td><td class="num">1 &micro;m</td><td class="num">0.13 s</td><td class="num">5 ms</td><td>well mixed</td></tr>
@@ -530,39 +511,19 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 </table>
 </div>
 
-<h2 id="s7"><span class="n">7</span>What the mixing times predict</h2>
-<p class="lede">A null model earns its keep by being wrong in a specific place.</p>
+<p>Read the last two rows as a prediction, not a curiosity. Passive diffusion cannot move protein along a metre-long axon. It is not slow, it is impossible: four thousand years against a lifetime. So something else must do it, and that something is kinesin and dynein on microtubules. The <em>existence</em> of motor-driven axonal transport is forced by <span class="m">&tau; &prop; x&sup2;</span> before anyone opens a cell.</p>
 
-<p>Read the last two rows of Table 2 as a prediction rather than a curiosity. Passive diffusion cannot move protein along a metre-long axon. It is not slow, it is impossible: four thousand years against a human lifetime. Therefore something else must do it. That something is kinesin and dynein walking on microtubules, and the <em>existence</em> of motor-driven axonal transport is forced by <span class="m">&tau; &prop; x&sup2;</span> before anyone opens a cell.</p>
+<p>The same reading works upward. A bacterium mixes a metabolite in five milliseconds, faster than any enzyme turns over. So one well-stirred concentration per species is not a modelling convenience inside a bacterium, it is a licensed approximation, and lecture 3's rate equations inherit their validity from this table. A <i>Xenopus</i> egg has no such licence, which is why developmental biology is full of gradients and bacterial physiology is not.</p>
 
-<p>The same reading works in the other direction. A bacterium mixes a metabolite in five milliseconds, which is faster than any enzyme turns over. So writing a single well-stirred concentration for each species inside a bacterium is not a modelling convenience, it is a licensed approximation, and lecture 3's rate equations inherit their validity from this table. A <i>Xenopus</i> egg does not have that licence, which is why developmental biology is full of gradients and bacterial physiology is not.</p>
-
-<div class="box key">
-<span class="lbl">The habit</span>
-<p>Compute the null model first. Then look for where it fails. The failure is where the biology is, and the size of the failure tells you how much biology is needed. Diffusion in an axon fails by a factor of <span class="m">10<sup>11</sup></span>, so it needs a motor. Diffusion in a bacterium does not fail at all, so it needs nothing, and a cell that built a transport system for its cytoplasm would be wasting energy.</p>
-</div>
+<p>That is the habit worth installing. Compute the null model first, then find where it fails. The failure is where the biology is, and its size tells you how much biology is needed. Diffusion in an axon fails by <span class="m">10<sup>11</sup></span>, so it needs a motor. In a bacterium it does not fail at all, so a cell that built a transport system for its cytoplasm would be wasting energy.</p>
 
 <div class="parthead">
   <div class="k">Part 3</div>
-  <h2>Reactions in a cell</h2>
-  <p>What a reaction is, what an arrow entitles you to write, and the two steps every enzyme takes.</p>
+  <h2>The ceiling on a rate</h2>
+  <p>What an arrow entitles you to write, one boundary-value problem, and what real enzymes do about the answer.</p>
 </div>
 
-<h2 id="s8"><span class="n">8</span>Why chemistry is the only thing that happens</h2>
-<p class="lede">Fixed temperature, fixed pressure, no mechanical work. What is left is bond rearrangement, and enzymes decide when.</p>
-
-<p>A cell holds its temperature and its pressure essentially constant. It does not compress anything, it does not heat anything, and it does not do macroscopic work on its surroundings. Every change of state it undergoes is therefore a chemical reaction, and the whole of cellular dynamics is a question about which reactions run and how fast.</p>
-
-<p>Two questions follow, and this course keeps them rigorously apart.</p>
-
-<ul>
-<li><strong>Whether</strong> a reaction can proceed is thermodynamics. At fixed <span class="m">T</span> and <span class="m">p</span> the currency is Gibbs free energy, not heat. That is lecture 7.</li>
-<li><strong>How fast</strong> it proceeds is kinetics, and it is almost entirely a question about enzymes. That is today.</li>
-</ul>
-
-<p>The separation is worth insisting on because biology violates the naive coupling between them. Thermodynamically favourable reactions in a cell can sit untouched for years: spontaneous hydrolysis of ATP, spontaneous cleavage of a peptide bond, spontaneous degradation of glucose. Enzymes accelerate them by factors of <span class="m">10<sup>10</sup></span> and more. So a reaction being downhill tells you nothing about whether it happens, and a reaction happening tells you an enzyme decided it should.</p>
-
-<h2 id="s9"><span class="n">9</span>What an arrow promises</h2>
+<h2 id="s6"><span class="n">6</span>What an arrow promises</h2>
 <p class="lede">Straight arrows are mechanisms and come with a rate law. Squiggly arrows are accounting and come with nothing.</p>
 
 <p>This is the most important notational distinction in the course, and it is routinely ignored in the literature to everyone's cost.</p>
@@ -596,71 +557,51 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <text x="344.0" y="234.0" font-size="12.5" text-anchor="start" fill="var(--fg)">one P appears, by some route not shown.</text>
 <text x="344.0" y="258.0" font-size="12.5" text-anchor="start" fill="var(--peri)" font-weight="700">So no rate law follows. It must be derived or measured.</text>
 </svg>
-<figcaption><b>Figure 4.</b> The two arrow vocabularies. An elementary arrow is a claim that the listed species are all the species, so mass action applies and the rate law is determined. A composite arrow claims only the net change, so the rate law has to be derived from an underlying mechanism or measured. Writing a mass-action rate law under a squiggly arrow is the single most common modelling error in systems biology.</figcaption></figure>
+<figcaption><b>Figure 4.</b> The two arrow vocabularies. An elementary arrow claims the listed species are all the species, so mass action applies. A composite arrow claims only the net change, so the rate law must be derived or measured. Writing a mass-action rate law under a squiggly arrow is the most common modelling error in systems biology.</figcaption></figure>
 
 <div class="tablewrap">
 <table>
-<caption>Table 3. The two notations, following the 2025 scribe note.<sup class="c"><a href="#r-l2scribe">13</a></sup></caption>
+<caption>Table 3. The two notations, following the 2025 note.<sup class="c"><a href="#r-l2scribe">13</a></sup></caption>
 <thead><tr><th>Type</th><th>Arrow</th><th>What it asserts</th><th>Examples</th></tr></thead>
 <tbody>
-<tr><td>Elementary<br><span class="small">基元反应</span></td><td>straight &rarr;</td><td>The <em>mechanism</em>, with all key players included. An irreducible step. You cannot break it down further, or it is useless to do so for your concern.</td><td><span class="m">E+S &rlarr; C &rarr; E+P</span><br><span class="m">gene + RNAP &rlarr; C&#8320; &rarr; &hellip; &rarr; gene + RNAP + mRNA</span></td></tr>
+<tr><td>Elementary<br><span class="small">基元反应</span></td><td>straight &rarr;</td><td>The <em>mechanism</em>, all key players included. An irreducible step. You cannot break it down further, or it is useless to do so for your concern.</td><td><span class="m">E+S &rlarr; C &rarr; E+P</span><br><span class="m">gene + RNAP &rlarr; C&#8320; &rarr; &hellip; &rarr; gene + RNAP + mRNA</span></td></tr>
 <tr><td>Composite<br><span class="small">复合反应</span></td><td>squiggly &#10547;</td><td>Only the <em>net change</em> of several steps. Reactants may be hidden.</td><td><span class="m">S &#10547; P</span><br><span class="m">gene &#10547; gene + mRNA</span><br><span class="m">(S,P) &#10547; (S&minus;1, P+1)</span></td></tr>
 </tbody>
 </table>
 </div>
 
-<p>The third form in the bottom row is the <strong>net-change notation</strong>, written on molecule counts instead of species symbols. It registers only who lost what and who gained what, which is precisely the information lecture 3's stoichiometric matrix needs. It is also the notation the stochastic simulation of lecture 5 runs on, because a Gillespie step <em>is</em> a net change applied to a count.</p>
+<p>The third composite form is the <strong>net-change notation</strong>, written on molecule counts rather than species symbols. It registers only who lost what and who gained what, which is exactly what lecture 3's stoichiometric matrix needs, and what lecture 5's stochastic simulation runs on, since a Gillespie step <em>is</em> a net change applied to a count.</p>
+
+<p>Two to argue about at the board. A cell dividing is <span class="m">N &#10547; 2N</span>, composite and spectacularly so, since the hidden mechanism is an entire cell cycle. An ATPase pumping a proton out is <span class="m">H&#8314;<sub>in</sub> &#10547; H&#8314;<sub>out</sub></span>, which read as written violates the second law, and the resolution is that ATP hydrolysis is hidden inside the squiggle. The <a href="../exposition/#s15">exposition</a> works through five more, from a laser to the lac operon.</p>
 
 <div class="box key">
 <span class="lbl">The habit to install now</span>
-<p>When anyone writes a rate law, ask: <em>is that arrow elementary?</em> If it is, mass action gives you the rate for free. If it is composite, the rate law must be derived (Michaelis-Menten, lecture 6) or measured. It may never be assumed from the shape of the arrowhead. Half of the modelling disputes you will meet are this question in disguise.</p>
+<p>When anyone writes a rate law, ask: <em>is that arrow elementary?</em> If it is, mass action gives the rate for free. If it is composite, the rate law must be derived (Michaelis-Menten, lecture 6) or measured, never assumed from the shape of the arrowhead. Half the modelling disputes you will meet are this question in disguise.</p>
 </div>
 
-<h2 id="s10"><span class="n">10</span>Four biological examples</h2>
-<p class="lede">The same two arrows, four real systems, and the habit of asking which one a diagram really is.</p>
+<h3>Binding, then catalysis</h3>
+<p>An enzyme and its substrate collide, bind, and then the enzyme's atoms hold the substrate in a geometry that lets the bond rearrange. Two steps, and only the first is physics:</p>
 
-<ol>
-<li><strong>A cell divides.</strong> <span class="m">N &#10547; 2N</span>, or <span class="m">N &#10547; N+1</span>. Composite, and spectacularly so: the hidden mechanism is an entire cell cycle. Nobody would write a mass-action rate for this, and yet population models do it constantly, and get away with it only because the composite rate happens to be first order in <span class="m">N</span>.</li>
-<li><strong>A photon doubles in a laser.</strong> <span class="m">photon + atom* &rarr; 2 photon + atom</span>. Elementary, and one of the few places where a written step really is a single quantum event. Einstein derived the existence of this reaction in 1917 by requiring detailed balance between an atom and a radiation field, which is a chemical-reaction-network argument two decades before chemical reaction networks. Lecture 7 will use the same balance condition.</li>
-<li><strong>A molecule crosses a membrane through a passive channel.</strong> <span class="m">A<sub>out</sub> &rarr; A<sub>in</sub></span>. Elementary as written, since it is one crossing, but the <em>rate constant</em> hides all the transport physics of the pore.</li>
-<li><strong>An ATPase pumps a proton out.</strong> <span class="m">H&#8314;<sub>in</sub> &#10547; H&#8314;<sub>out</sub></span>. Composite, and energy-driven. Written this way it looks like it violates the second law, and the resolution is that ATP hydrolysis is hidden inside the squiggle. This is exactly the kind of arrow lecture 7 interrogates.</li>
-</ol>
+<div class="eq">E + S &nbsp;<span style="letter-spacing:.1em">&rlarr;</span>&nbsp; C &nbsp;&#10547;&nbsp; E + P <span class="tag">(8)</span></div>
 
-<h2 id="s11"><span class="n">11</span>Binding, then catalysis</h2>
-<p class="lede">An enzymatic reaction is two steps, and only the first one is physics.</p>
+<p>The first step is how often two molecules meet, which is diffusion, which we can now compute. The second is chemistry inside a protein, which we cannot compute and which the enzyme's structure decides. So the fastest an enzymatic reaction can go is set by the first step alone, assuming catalysis is instant once the complex forms. That bound is the <strong>diffusion-limited on-rate</strong>. Notice what happened: we split a reaction into a part physics can bound and a part it cannot, and that split reappears in lecture 8 as the two components of a cell.</p>
 
-<p>An enzyme and its substrate collide, they bind, and then the enzyme's atoms hold the substrate in a geometry that lets the bond rearrange. Two steps:</p>
-
-<div class="eq">E + S &nbsp;<span style="letter-spacing:.1em">&rlarr;</span>&nbsp; C &nbsp;&#10547;&nbsp; E + P <span class="tag">(13)</span></div>
-
-<p>The first step is governed by how often the two molecules meet, which is diffusion, which we already know how to compute. The second step is chemistry inside a protein, which we cannot compute and which the enzyme's structure decides. So the fastest an enzymatic reaction can possibly go is set by the first step alone, on the assumption that catalysis is instantaneous once the complex forms. That upper bound has a name, the <strong>diffusion-limited on-rate</strong>, and section 12 derives it.</p>
-
-<p>Notice what has happened. We have separated a reaction into a part physics can bound and a part it cannot, and the bound is exactly the thing the rest of the course reasons against. This split is the same one that will reappear in lecture 8 as the two components of a cell.</p>
-
-<div class="parthead">
-  <div class="k">Part 4</div>
-  <h2>How fast can a reaction be</h2>
-  <p>One boundary-value problem, the number it gives, and what real enzymes do about it.</p>
-</div>
-
-<h2 id="s12"><span class="n">12</span>The diffusion-limited on-rate, derived</h2>
+<h2 id="s7"><span class="n">7</span>The diffusion-limited on-rate, derived</h2>
 <p class="lede">Fick's law in spherical symmetry, two boundary conditions, one integration. This is the anchor derivation of the course.</p>
 
-<p>The set-up. Put an enzyme at the origin and treat it as a perfectly absorbing sphere of radius <span class="m">a</span>: any substrate molecule that touches it is consumed instantly. Far away the substrate sits at bulk concentration <span class="m">C<sub>&infin;</sub></span>. Let the system reach steady state. The question is the total number of substrate molecules arriving at the surface per second.</p>
+<p>Put an enzyme at the origin, a perfectly absorbing sphere of radius <span class="m">a</span>: any substrate touching it is consumed instantly. Far away the substrate sits at bulk <span class="m">C<sub>&infin;</sub></span>. Let it reach steady state. How many molecules arrive at the surface per second?</p>
 
-<p><strong>Step 1. Steady state means constant flux through every shell.</strong> Nothing accumulates anywhere, so the number of molecules crossing a sphere of radius <span class="m">R</span> per second is the same for every <span class="m">R</span>. With <span class="m">j</span> the flux per unit area, <span class="m">4&pi;R&sup2;j</span> is a constant, and it is not zero.</p>
+<p><strong>Step 1. Steady state means constant flux through every shell.</strong> Nothing accumulates anywhere, so the number crossing a sphere of radius <span class="m">R</span> per second is the same for every <span class="m">R</span>. With <span class="m">j</span> the flux per unit area, <span class="m">4&pi;R&sup2;j</span> is a constant, and it is not zero.</p>
 
-<p><strong>Step 2. Solve the steady diffusion equation.</strong> Fick's second law is <span class="m">&part;C/&part;t = D&nabla;&sup2;C</span>. In spherical symmetry the angular terms vanish and the steady state reads</p>
+<p><strong>Step 2. Solve the steady diffusion equation.</strong> Fick's second law is <span class="m">&part;C/&part;t = D&nabla;&sup2;C</span>. In spherical symmetry the angular terms vanish:</p>
 
-<div class="eq">(1/R&sup2;) d/dR (R&sup2; dC/dR) = 0 &nbsp;&rArr;&nbsp; R&sup2; dC/dR = A &nbsp;&rArr;&nbsp; C(R) = &minus;A/R + B <span class="tag">(14)</span></div>
+<div class="eq">(1/R&sup2;) d/dR (R&sup2; dC/dR) = 0 &nbsp;&rArr;&nbsp; R&sup2; dC/dR = A &nbsp;&rArr;&nbsp; C(R) = &minus;A/R + B <span class="tag">(9)</span></div>
 
-<p><strong>Step 3. Fix the constants with the boundary conditions.</strong> Absorbing surface, <span class="m">C(a) = 0</span>. Bulk at infinity, <span class="m">C(&infin;) = C<sub>&infin;</sub></span>. Then <span class="m">B = C<sub>&infin;</sub></span> and <span class="m">A = aC<sub>&infin;</sub></span>:</p>
+<p><strong>Step 3. Fix the constants.</strong> Absorbing surface, <span class="m">C(a) = 0</span>. Bulk at infinity, <span class="m">C(&infin;) = C<sub>&infin;</sub></span>. So <span class="m">B = C<sub>&infin;</sub></span> and <span class="m">A = aC<sub>&infin;</sub></span>, giving <span class="m">C(R) = C<sub>&infin;</sub>(1 &minus; a/R)</span>.</p>
 
-<div class="eq">C(R) = C<sub>&infin;</sub>(1 &minus; a/R) <span class="tag">(15)</span></div>
+<p><strong>Step 4. Differentiate, multiply by the area.</strong> The surface gradient is <span class="m">&part;C/&part;R|<sub>a</sub> = C<sub>&infin;</sub>/a</span>, so <span class="m">j = DC<sub>&infin;</sub>/a</span> and</p>
 
-<p><strong>Step 4. Differentiate, and multiply by the area.</strong> The gradient at the surface is <span class="m">&part;C/&part;R|<sub>a</sub> = C<sub>&infin;</sub>/a</span>, so Fick's first law gives <span class="m">j = DC<sub>&infin;</sub>/a</span>, and</p>
-
-<div class="eq">J = j &middot; 4&pi;a&sup2; = <b>4&pi;Da C<sub>&infin;</sub></b> &nbsp;&equiv;&nbsp; k<sub>on</sub>C<sub>&infin;</sub>, &nbsp;&nbsp; k<sub>on</sub> = 4&pi;Da <span class="tag">(16)</span></div>
+<div class="eq">J = j &middot; 4&pi;a&sup2; = <b>4&pi;Da C<sub>&infin;</sub></b> &nbsp;&equiv;&nbsp; k<sub>on</sub>C<sub>&infin;</sub>, &nbsp;&nbsp; k<sub>on</sub> = 4&pi;Da <span class="tag">(10)</span></div>
 
 <figure class="figbox">
 <svg viewBox="0 0 760 320" role="img" aria-label="The absorbing-sphere problem: an enzyme as a perfect sink, the steady concentration profile, and the resulting capture rate" font-family="var(--sans)">
@@ -705,43 +646,25 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <text x="573.8" y="201.4" font-size="12" text-anchor="middle" fill="var(--fg)" font-weight="700">J = 4πa² · D C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8">/a = 4πDa C</tspan><tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"></tspan></text>
 <text x="720.0" y="308.0" font-size="12" text-anchor="end" fill="var(--gray)">R</text>
 <defs><marker id="l2ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--peri)"/></marker></defs></svg>
-<figcaption><b>Figure 5.</b> The absorbing-sphere problem and its solution. Left, the geometry: a sink of radius <span class="m">a</span> with substrate flowing in from a bulk reservoir. Right, the steady profile <span class="m">C(R) = C<sub>&infin;</sub>(1&minus;a/R)</span>, computed. The concentration reaches half of bulk only at <span class="m">R = 2a</span>, so an enzyme sits at the bottom of a depletion well two radii wide. The dashed tangent is the surface gradient, and the flux is that gradient times <span class="m">D</span> times the area.</figcaption></figure>
+<figcaption><b>Figure 5.</b> The absorbing sphere and its solution. Left, the geometry. Right, the steady profile <span class="m">C(R) = C<sub>&infin;</sub>(1&minus;a/R)</span>. Concentration reaches half of bulk only at <span class="m">R = 2a</span>, so an enzyme sits at the bottom of a depletion well two radii wide. The dashed tangent is the surface gradient.</figcaption></figure>
 
-<p><strong>Step 5. Put numbers in.</strong> For a small metabolite meeting an enzyme, use the relative diffusion coefficient <span class="m">D = D<sub>S</sub> + D<sub>E</sub></span> and the sum of radii <span class="m">a = a<sub>S</sub> + a<sub>E</sub></span>. In water, glucose has <span class="m">D = 670 &micro;m&sup2;/s</span> and radius 0.36&nbsp;nm, an enzyme has <span class="m">D = 100 &micro;m&sup2;/s</span> and radius 2.1&nbsp;nm:</p>
+<p><strong>Step 5. Check the dimensions, then put numbers in.</strong> <span class="m">k<sub>on</sub> = 4&pi;Da</span> has dimensions <span class="m">(L&sup2;/T)(L) = L&sup3;/T</span>, a volume swept per unit time, which is what a second-order rate constant is once you divide by a molar volume. So the conversion to <span class="m">M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> is a factor of <span class="m">N<sub>A</sub></span> and a factor of <span class="m">10&sup3;</span> and nothing else. If your conversion needs more factors than that, you have made an error. For a pair, use the relative coefficient <span class="m">D = D<sub>A</sub>+D<sub>B</sub></span> and the sum of radii. Glucose against an enzyme in water:</p>
 
-<div class="eq">k<sub>on</sub> = 4&pi; &middot; 7.7&times;10<sup>&minus;10</sup> m&sup2;/s &middot; 2.4&times;10<sup>&minus;9</sup> m &middot; 10&sup3; L/m&sup3; &middot; 6.02&times;10<sup>23</sup>/mol = <b>1.4&times;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></b> <span class="tag">(17)</span></div>
+<div class="eq">k<sub>on</sub> = 4&pi; &middot; 7.7&times;10<sup>&minus;10</sup> m&sup2;/s &middot; 2.4&times;10<sup>&minus;9</sup> m &middot; 10&sup3; L/m&sup3; &middot; 6.02&times;10<sup>23</sup>/mol = <b>1.4&times;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></b> <span class="tag">(11)</span></div>
 
-<p>Inside the cytoplasm, with both diffusion coefficients reduced by crowding, the same expression gives <span class="m">3.8&times;10<sup>9</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. For two proteins meeting each other in water it gives <span class="m">6&times;10<sup>9</sup></span>, which agrees with the standard published figure of <span class="m">7&times;10<sup>9</sup></span> for two 18&nbsp;&Aring; spheres that react on every contact.<sup class="c"><a href="#r-stroppolo">7</a></sup></p>
+<p>Inside cytoplasm, with both coefficients cut by crowding, it gives <span class="m">3.8&times;10<sup>9</sup></span>. For two proteins in water, <span class="m">6&times;10<sup>9</sup></span>, against the published <span class="m">7&times;10<sup>9</sup></span> for two 18&nbsp;&Aring; spheres reacting on every contact.<sup class="c"><a href="#r-stroppolo">7</a></sup></p>
 
 <div class="box thm">
 <span class="lbl">The bound</span>
-<p>For two species diffusing freely in solution and reacting on every contact, the second-order rate constant is <span class="m">k<sub>on</sub> = 4&pi;(D<sub>A</sub>+D<sub>B</sub>)(a<sub>A</sub>+a<sub>B</sub>)</span>. No unguided bimolecular reaction in solution can exceed it. For biological molecules this is <span class="m">10<sup>9</sup></span> to <span class="m">10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>.</p>
+<p>For two species diffusing freely in solution and reacting on every contact, <span class="m">k<sub>on</sub> = 4&pi;(D<sub>A</sub>+D<sub>B</sub>)(a<sub>A</sub>+a<sub>B</sub>)</span>. No unguided bimolecular reaction in solution exceeds it. For biological molecules that is <span class="m">10<sup>9</sup></span> to <span class="m">10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>.</p>
 </div>
 
-<p>The derivation is the point, more than the number. It converts "how fast can this be?" from a question of opinion into a boundary-value problem with one answer. If a paper reports an on-rate above <span class="m">10<sup>10</sup></span> for an uncharged pair, either the measurement is wrong or there is a mechanism, and section 14 is about which.</p>
+<p>The derivation matters more than the number. It turns "how fast can this be?" from a question of opinion into a boundary-value problem with one answer. If a paper reports an on-rate above <span class="m">10<sup>10</sup></span> for an uncharged pair, either the measurement is wrong or there is a mechanism.</p>
 
-<h2 id="s13"><span class="n">13</span>The units, checked</h2>
-<p class="lede">Before believing a rate, check its dimensions. This is the template for every estimate you will make this term.</p>
+<h2 id="s8"><span class="n">8</span>What reaches the ceiling, and what falls short</h2>
+<p class="lede">One enzyme gets to 73% of its own bound. One famous system appears to beat it. The median enzyme is five decades below.</p>
 
-<div class="tablewrap">
-<table>
-<caption>Table 4. Dimensional verification of <span class="m">j = D &part;c/&part;R</span>, with N a molecule count, L a length and T a time.</caption>
-<thead><tr><th>Quantity</th><th>Meaning</th><th>Dimensions</th></tr></thead>
-<tbody>
-<tr><td><span class="m">j</span></td><td>molecules per area per time</td><td class="num">N / (L&sup2;&middot;T)</td></tr>
-<tr><td><span class="m">D</span></td><td>diffusion coefficient</td><td class="num">L&sup2; / T</td></tr>
-<tr><td><span class="m">&part;c/&part;R</span></td><td>concentration gradient</td><td class="num">(N/L&sup3;)/L = N/L&#8308;</td></tr>
-<tr><td><span class="m">D &middot; &part;c/&part;R</span></td><td>the product</td><td class="num hl">(L&sup2;/T)(N/L&#8308;) = N/(L&sup2;&middot;T) &nbsp;&#10003;</td></tr>
-</tbody>
-</table>
-</div>
-
-<p>Do the same on the answer. <span class="m">k<sub>on</sub> = 4&pi;Da</span> has dimensions <span class="m">(L&sup2;/T)(L) = L&sup3;/T</span>, a volume swept per unit time, which is exactly what a second-order rate constant is once you divide by a molar volume. That is why the conversion in (17) is a factor of <span class="m">N<sub>A</sub></span> and a factor of <span class="m">10&sup3;</span> and nothing else. If your unit conversion needs more factors than that, you have made an error.</p>
-
-<h2 id="s14"><span class="n">14</span>What reaches the limit, and what beats it</h2>
-<p class="lede">A few enzymes sit at the bound. One famous system appears to sit above it, and the explanation is better than the rule.</p>
-
-<p>Real enzymes have to do more than collide. The substrate has to arrive at the active site, which is a small patch, and it has to arrive in the right orientation. Orientational constraints reduce the association rate below the geometric bound by up to three orders of magnitude.<sup class="c"><a href="#r-stroppolo">7</a></sup> The enzymes that get close to the bound are the ones that have found a way around this, and there are only two known ways: pull the substrate in with an electric field, or reduce the dimension of the search.</p>
+<p>Real enzymes must do more than collide. The substrate has to reach a small active-site patch in the right orientation, and orientational constraints cost up to three orders of magnitude.<sup class="c"><a href="#r-stroppolo">7</a></sup> There are only two known ways around that: pull the substrate in with an electric field, or reduce the dimension of the search.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 760 340" role="img" aria-label="Second-order rate constants on a logarithmic axis, from the median enzyme to the diffusion ceiling" font-family="var(--sans)">
@@ -794,31 +717,19 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <text x="659.6" y="104.0" font-size="10.8" text-anchor="middle" fill="var(--plum)" font-weight="700" class="halo">fastest enzyme</text>
 <text x="659.6" y="117.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">ever measured</text>
 </svg>
-<figcaption><b>Figure 6.</b> Second-order rate constants on one logarithmic axis. The wash marks rates above <span class="m">4&pi;Da</span> for superoxide meeting superoxide dismutase, computed here as <span class="m">2.3&times;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, which is the largest bound relevant to any enzyme on the axis. The median enzyme is five decades below it. Measured values are from the sources in the reference list, not read off a figure.</figcaption></figure>
+<figcaption><b>Figure 6.</b> Second-order rate constants on one logarithmic axis. The wash marks rates above <span class="m">4&pi;Da</span> for superoxide meeting SOD, computed here as <span class="m">2.3&times;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, the largest bound relevant to any enzyme on the axis. The median enzyme is five decades below it.</figcaption></figure>
 
 <div class="box sim">
 <span class="lbl">The best enzyme in the world, against its own bound</span>
-<p>Superoxide dismutase acts on <span class="m">O&#8322;<sup>&bull;&minus;</sup></span>, a tiny charged ion. Its Stokes-Einstein diffusion coefficient is 1230&nbsp;&micro;m&sup2;/s, and with a 32&nbsp;kDa enzyme the geometric bound for this specific pair is <span class="m">4&pi;Da = 2.3&times;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. Eukaryotic Cu,Zn SOD runs at <span class="m">2&times;10<sup>9</sup></span>. Prokaryotic versions reach <span class="m">8.5&times;10<sup>9</sup></span> and <span class="m">1.3&times;10<sup>10</sup></span>, and an engineered mutant reaches <span class="m">1.7&times;10<sup>10</sup></span>, the fastest rate ever measured for any enzyme.<sup class="c"><a href="#r-stroppolo">7</a></sup> That is <strong>73% of the physical ceiling</strong>. Computed in <span class="m">analysis/cell_ledger.py</span>.</p>
+<p>Superoxide dismutase acts on <span class="m">O&#8322;<sup>&bull;&minus;</sup></span>, a tiny charged ion with <span class="m">D = 1230 &micro;m&sup2;/s</span>. With a 32&nbsp;kDa enzyme the bound for this pair is <span class="m">4&pi;Da = 2.3&times;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. An engineered mutant reaches <span class="m">1.7&times;10<sup>10</sup></span>, the fastest rate ever measured for any enzyme.<sup class="c"><a href="#r-stroppolo">7</a></sup> That is <strong>73% of the physical ceiling</strong>.</p>
 </div>
 
-<h3>The one that looks impossible</h3>
-<p>The lac repressor was measured in 1970 to find its operator at more than <span class="m">10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>. For protein and DNA the relevant bound is not the one above. The target is an operator site much smaller than the protein, so with <span class="m">a/d &asymp; 0.1</span> the three-dimensional limit is about <span class="m">10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>.<sup class="c"><a href="#r-halford">8</a></sup> The measurement was a hundred times too fast.</p>
+<p>The second way is to change the dimension of the search. The lac repressor was measured in 1970 finding its operator a hundred times faster than the <span class="m">10<sup>8</sup></span> bound for a target that small,<sup class="c"><a href="#r-halford">8</a></sup> and the resolution is <strong>facilitated diffusion</strong>: bind DNA non-specifically anywhere, then slide in one dimension until the operator turns up. The signature is that more DNA around a site makes the site <em>easier</em> to find, which is impossible for a 3D search and automatic for a 1D one. The <a href="../exposition/#s20">exposition</a> works the numbers.</p>
 
-<p>The resolution is <strong>facilitated diffusion</strong>: the protein binds DNA non-specifically anywhere, then slides along it in one dimension until it finds the operator or falls off. A one-dimensional search over a large effective target beats a three-dimensional search for a small one. The signature is visible in the data. EcoRI methyltransferase reaches <span class="m">5.1&times;10<sup>7</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> on a 14&nbsp;bp substrate and four times that on a 429&nbsp;bp substrate, for the same site.<sup class="c"><a href="#r-stroppolo">7</a></sup> More DNA around the target makes the target easier to find, which is impossible for a 3D search and automatic for a 1D one.</p>
+<p>Correct the story while you tell it, though. Halford and Marko went through the record and found that <strong>most measured protein-DNA associations sit within a factor of three of <span class="m">10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span></strong>, the ordinary limit.<sup class="c"><a href="#r-halford">8</a></sup> The bound is sound, a few systems beat it by changing the search, and "DNA-binding proteins are all impossibly fast" is folklore.</p>
 
-<div class="box caution">
-<span class="lbl">And a correction to how that story is usually told</span>
-<p>Halford and Marko go through the record and find the generalisation does not hold. The early lac-repressor experiments used DNA with several binding sites and a filter assay that could not resolve which one was occupied. Later footprinting studies did reproduce <span class="m">10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> for lac, and Gal repressor and IHF are also above <span class="m">10<sup>10</sup></span>. But <strong>the majority of measured protein-DNA associations sit within a factor of three of <span class="m">10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span></strong>, which is the ordinary diffusion limit.<sup class="c"><a href="#r-halford">8</a></sup> Electrostatic acceleration is real, and it is largely screened away at physiological salt. So: the bound is sound, a few systems beat it by changing the search, and "DNA-binding proteins are all impossibly fast" is folklore.</p>
-</div>
-
-<h2 id="s15"><span class="n">15</span>The catalytic bottleneck</h2>
-<p class="lede">Now measure what enzymes actually do, and find that almost none of them are anywhere near the limit.</p>
-
-<p>Take the number from section 12 seriously for a moment. At a substrate concentration of 1&nbsp;mM, an enzyme working at the diffusion limit would see</p>
-
-<div class="eq">k<sub>on</sub>&middot;C = 1.4&times;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup> &times; 10<sup>&minus;3</sup> M &asymp; <b>10<sup>7</sup> encounters per second</b> <span class="tag">(18)</span></div>
-
-<p>Enzymes do not do that. Bar-Even and colleagues collected kinetic parameters for thousands of enzyme-substrate pairs from the literature, filtered to natural substrates, and reported the distribution.<sup class="c"><a href="#r-barEven">9</a></sup> The result is the central fact of enzyme kinetics and it should be uncomfortable.</p>
+<h3>Now the other side</h3>
+<p>At 1&nbsp;mM substrate an enzyme at the diffusion limit would see <span class="m">10<sup>7</sup></span> encounters per second. Enzymes do not do that. Bar-Even and colleagues collected kinetic parameters for thousands of pairs, filtered to natural substrates, and reported the distribution.<sup class="c"><a href="#r-barEven">9</a></sup> It is the central fact of enzyme kinetics and it should be uncomfortable.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 760 300" role="img" aria-label="The distribution of enzyme turnover numbers against the theoretical ceiling" font-family="var(--sans)">
@@ -862,11 +773,11 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <line x1="317.1" y1="234.0" x2="616.6" y2="234.0" stroke="var(--gray)" stroke-width="1.1" stroke-dasharray="2 3"/>
 <text x="466.9" y="227.0" font-size="10.5" text-anchor="middle" fill="var(--gray)" class="halo2">five orders of magnitude</text>
 </svg>
-<figcaption><b>Figure 7.</b> The distribution of turnover numbers. The curve is a log-normal pinned to the two statistics Bar-Even et al. report, a median of <span class="m">10 s<sup>&minus;1</sup></span> and 60% of values between 1 and <span class="m">100 s<sup>&minus;1</sup></span>, so it is derived rather than digitized. The band on the right is the theoretical ceiling on any turnover number, <span class="m">10<sup>6</sup></span> to <span class="m">10<sup>7</sup> s<sup>&minus;1</sup></span>. The median enzyme is five orders of magnitude short of it.</figcaption></figure>
+<figcaption><b>Figure 7.</b> The distribution of turnover numbers, as a log-normal pinned to the two statistics Bar-Even et al. report, so it is derived rather than digitized. The band on the right is the theoretical ceiling on any turnover number. The median enzyme is five orders of magnitude short of it.</figcaption></figure>
 
 <div class="tablewrap">
 <table>
-<caption>Table 5. What enzymes actually do, from 1882 enzyme-substrate pairs with both parameters measured.<sup class="c"><a href="#r-barEven">9</a></sup></caption>
+<caption>Table 4. What enzymes actually do, from 1882 enzyme-substrate pairs with both parameters measured.<sup class="c"><a href="#r-barEven">9</a></sup></caption>
 <thead><tr><th>Parameter</th><th>median</th><th>where 60% of values sit</th><th>the ceiling</th></tr></thead>
 <tbody>
 <tr><td><span class="m">k<sub>cat</sub></span> (N = 1942)</td><td class="num">10 s<sup>&minus;1</sup></td><td class="num">1&ndash;100 s<sup>&minus;1</sup></td><td class="num">10<sup>6</sup>&ndash;10<sup>7</sup> s<sup>&minus;1</sup></td></tr>
@@ -876,34 +787,26 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 </table>
 </div>
 
-<p>So the working numbers for this course are <strong><span class="m">k<sub>on</sub> &asymp; 10<sup>9</sup>&ndash;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> and <span class="m">k<sub>cat</sub> &asymp; 10&ndash;10&sup2; s<sup>&minus;1</sup></span></strong>. Keep both. The gap between them is the subject of enzyme engineering, and it is the answer to most "why is this pathway not faster?" questions.</p>
+<p>So the working numbers for this course are <strong><span class="m">k<sub>on</sub> &asymp; 10<sup>9</sup>&ndash;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> and <span class="m">k<sub>cat</sub> &asymp; 10&ndash;10&sup2; s<sup>&minus;1</sup></span></strong>. Keep both.</p>
 
-<div class="box open">
-<span class="lbl">Why so slow? Two readings, and the argument is live</span>
-<p>Bar-Even et al. argue the gap is <em>evolutionary</em>: enzymes are as fast as selection required, no faster. Their evidence is that context predicts speed. Enzymes of central carbon and energy metabolism have a median <span class="m">k<sub>cat</sub></span> of <span class="m">79 s<sup>&minus;1</sup></span>, about thirty times higher than the <span class="m">2.5 s<sup>&minus;1</sup></span> of secondary metabolism, and central metabolism is exactly where flux is high and enzyme cost matters.<sup class="c"><a href="#r-barEven">9</a></sup></p>
-<p>The reading this course will push is <em>structural</em>: the gap is what makes a cell controllable, because it is the gap that lets binding equilibrate. Both readings fit the histogram. They differ in what they predict, and section 17 is where the structural reading earns its keep.</p>
-</div>
+<p>Why so slow? Two readings, and the argument is live. Bar-Even et al. argue the gap is <em>evolutionary</em>: enzymes are as fast as selection required and no faster, and their evidence is that context predicts speed, with central carbon metabolism at a median <span class="m">79 s<sup>&minus;1</sup></span> against <span class="m">2.5 s<sup>&minus;1</sup></span> for secondary metabolism.<sup class="c"><a href="#r-barEven">9</a></sup> The reading this course pushes is <em>structural</em>: the gap is what makes a cell controllable, because it is the gap that lets binding equilibrate. Both fit the histogram. They differ in what they predict, and section 10 is where the structural reading earns its keep.</p>
 
 <div class="parthead">
-  <div class="k">Part 5</div>
+  <div class="k">Part 4</div>
   <h2>What the gap buys</h2>
   <p>Two independent arguments, both ending at the same architecture.</p>
 </div>
 
-<h2 id="s16"><span class="n">16</span>Binding equilibrates while catalysis works</h2>
-<p class="lede">Put the two rate constants in the same expression and the separation of timescales stops being an assumption.</p>
+<h2 id="s9"><span class="n">9</span>Binding equilibrates while catalysis works</h2>
+<p class="lede">Put the two rate constants in one expression and the separation of timescales stops being an assumption.</p>
 
-<p>Take the elementary binding step on its own. For <span class="m">E + S &rlarr; C</span> with association constant <span class="m">k<sub>on</sub></span> and dissociation constant <span class="m">k<sub>off</sub> = k<sub>on</sub>K<sub>D</sub></span>, a small perturbation relaxes back to equilibrium with time constant</p>
+<p>Take the binding step alone. For <span class="m">E + S &rlarr; C</span> with <span class="m">k<sub>off</sub> = k<sub>on</sub>K<sub>D</sub></span>, a small perturbation relaxes with <span class="m">&tau;<sub>bind</sub> = 1/(k<sub>on</sub>([E]+[S]) + k<sub>off</sub>)</span>. Use the medians from Tables 1 and 4: enzyme 1&nbsp;&micro;M, substrate 1&nbsp;mM, <span class="m">K<sub>D</sub> = 100 &micro;M</span>, <span class="m">k<sub>on</sub> = 10<sup>8</sup></span>, already an order below the ceiling.</p>
 
-<div class="eq">&tau;<sub>bind</sub> = 1 / ( k<sub>on</sub>([E] + [S]) + k<sub>off</sub> ) <span class="tag">(19)</span></div>
-
-<p>Use the medians from Table 1 and Table 5. An enzyme at 1&nbsp;&micro;M, a substrate at 1&nbsp;mM, <span class="m">K<sub>D</sub> = 100 &micro;M</span>, and <span class="m">k<sub>on</sub> = 10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, which is already an order below the ceiling:</p>
-
-<div class="eq">&tau;<sub>bind</sub> = 1/(10<sup>8</sup>&middot;1.001&times;10<sup>&minus;3</sup> + 10<sup>4</sup>) = <b>9 &micro;s</b>, &nbsp;against&nbsp; &tau;<sub>cat</sub> = 1/k<sub>cat</sub> = <b>100 ms</b> <span class="tag">(20)</span></div>
+<div class="eq">&tau;<sub>bind</sub> = 1/(10<sup>8</sup>&middot;1.001&times;10<sup>&minus;3</sup> + 10<sup>4</sup>) = <b>9 &micro;s</b>, &nbsp;against&nbsp; &tau;<sub>cat</sub> = 1/k<sub>cat</sub> = <b>100 ms</b> <span class="tag">(12)</span></div>
 
 <div class="box key">
 <span class="lbl">The number the whole course rests on</span>
-<p>Binding settles about <strong><span class="m">10<sup>4</sup></span> times</strong> during a single catalytic turnover. So when you write down a model in which the bound fraction is an equilibrium expression and the flux is a rate, you are not making a convenient assumption. You are quoting a measurement. This is the licence for every quasi-steady-state reduction in lectures 3, 6 and 8, and it is also the licence for lecture 7 to use equilibrium statistical mechanics on a cell that is manifestly not at equilibrium.</p>
+<p>Binding settles about <strong><span class="m">10<sup>4</sup></span> times</strong> during one catalytic turnover. So when you write a model in which the bound fraction is an equilibrium expression and the flux is a rate, you are not making a convenient assumption. You are quoting a measurement. This licenses every quasi-steady-state reduction in lectures 3, 6 and 8, and licenses lecture 7 to use equilibrium statistical mechanics on a cell that is manifestly not at equilibrium.</p>
 </div>
 
 <figure class="figbox">
@@ -959,24 +862,22 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <text x="726.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">3 h</text>
 <text x="461.0" y="346.0" font-size="12" text-anchor="middle" fill="var(--gray)">time</text>
 </svg>
-<figcaption><b>Figure 8.</b> Every timescale inside one bacterium on a single logarithmic axis. The shaded band is the four-decade gap between the fastest thing that has to happen and the slowest thing that can equilibrate. Binding is on the left of it, catalysis and everything downstream on the right. Metabolite pool turnover times are computed from measured concentrations and the glycolytic flux, in <span class="m">analysis/cell_ledger.py</span>.</figcaption></figure>
+<figcaption><b>Figure 8.</b> Every timescale inside one bacterium on a single logarithmic axis. The shaded band is the four-decade gap. Binding is on its left, catalysis and everything downstream on its right. Pool turnover times are computed from measured pools and the glycolytic flux.</figcaption></figure>
 
-<p>Two caveats, and both are honest. First, the separation is not universal. A transcription factor at 10&nbsp;nM binding an operator with <span class="m">K<sub>D</sub> = 1 nM</span> relaxes in tens of milliseconds, which is comparable to a catalytic turnover, so promoter occupancy is not always quasi-static. Lecture 6's telegraph model exists because of exactly that. Second, saturation matters: Bennett et al. found that metabolite concentrations exceed <span class="m">K<sub>M</sub></span> for most substrate-enzyme pairs, but that in lower glycolysis they sit near <span class="m">K<sub>M</sub></span> and every reaction is near equilibrium.<sup class="c"><a href="#r-bennett">3</a></sup> Where the cell needs reversible flux, it deliberately gives up the separation.</p>
+<p>Two honest caveats. The separation is not universal: a transcription factor at 10&nbsp;nM binding an operator with <span class="m">K<sub>D</sub> = 1 nM</span> relaxes in tens of milliseconds, comparable to a turnover, and lecture 6's telegraph model exists because of that. And in lower glycolysis the pools sit near <span class="m">K<sub>M</sub></span> with every reaction close to equilibrium.<sup class="c"><a href="#r-bennett">3</a></sup> Where the cell needs reversible flux, it gives up the separation deliberately.</p>
 
-<h2 id="s17"><span class="n">17</span>Metabolism cannot wait for gene expression</h2>
-<p class="lede">The same conclusion, reached from the other end, using nothing but two timescales.</p>
+<h2 id="s10"><span class="n">10</span>Metabolism cannot wait for gene expression</h2>
+<p class="lede">The same conclusion from the other end, using nothing but two timescales.</p>
 
-<p>Forget rate constants for a moment. Ask a physiological question instead. <em>Can a cell control its metabolism by changing how much enzyme it makes?</em></p>
+<p>Forget rate constants. Ask a physiological question instead. <em>Can a cell control its metabolism by changing how much enzyme it makes?</em></p>
 
-<p><strong>How fast does a metabolite pool turn over?</strong> Turnover time is pool size divided by flux. <i>E. coli</i> growing on glucose takes up about 8&nbsp;mmol per gram dry weight per hour. From the ledger in section 2, one gram dry weight occupies <span class="m">1/(1.1 &times; 0.30) = 3.0</span> mL of cell, so the glycolytic flux density is</p>
+<p><strong>How fast does a pool turn over?</strong> Turnover is pool over flux. <i>E. coli</i> on glucose takes up 8&nbsp;mmol per gram dry weight per hour, and from the ledger one gram dry weight occupies 3.0&nbsp;mL of cell, so</p>
 
-<div class="eq">J = 8 mmol&middot;gDW<sup>&minus;1</sup>h<sup>&minus;1</sup> &divide; 3.0 mL&middot;gDW<sup>&minus;1</sup> = 2.6 M/h = <b>0.73 mM/s</b> <span class="tag">(21)</span></div>
-
-<p>Divide the measured pools<sup class="c"><a href="#r-bennett">3</a></sup> by that flux, remembering that glycolysis carries two triose units per glucose:</p>
+<div class="eq">J = 8 mmol&middot;gDW<sup>&minus;1</sup>h<sup>&minus;1</sup> &divide; 3.0 mL&middot;gDW<sup>&minus;1</sup> = 2.6 M/h = <b>0.73 mM/s</b> <span class="tag">(13)</span></div>
 
 <div class="tablewrap">
 <table>
-<caption>Table 6. Turnover time of a metabolite pool, <span class="m">&tau; = [M]/J</span>. Concentrations measured in glucose-fed <i>E. coli</i>. Flux from equation (21).</caption>
+<caption>Table 5. Turnover time of a metabolite pool, <span class="m">&tau; = [M]/J</span>. Concentrations measured in glucose-fed <i>E. coli</i>,<sup class="c"><a href="#r-bennett">3</a></sup> flux from (13), counting two triose units per glucose.</caption>
 <thead><tr><th>Metabolite</th><th>pool</th><th>flux, relative to glucose uptake</th><th>turnover time</th></tr></thead>
 <tbody>
 <tr><td>phosphoenolpyruvate</td><td class="num">0.18 mM</td><td class="num">&times;2</td><td class="num hl">0.12 s</td></tr>
@@ -989,26 +890,32 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 </table>
 </div>
 
-<p><strong>How fast can gene expression change an enzyme level?</strong> Write the balance for a protein that is not actively degraded in a cell growing at rate <span class="m">&mu;</span>. Dilution by growth is the only loss term:</p>
+<p><strong>How fast can gene expression change an enzyme level?</strong> Write the balance for a protein that is not actively degraded, in a cell growing at rate <span class="m">&mu;</span>. Dilution by growth is the only loss term:</p>
 
-<div class="eq">dP/dt = &beta; &minus; &mu;P &nbsp;&rArr;&nbsp; response half-time = ln2/&mu; = <b>the doubling time</b> <span class="tag">(22)</span></div>
+<div class="eq">dP/dt = &beta; &minus; &mu;P &nbsp;&rArr;&nbsp; response half-time = ln2/&mu; = <b>the doubling time</b> <span class="tag">(14)</span></div>
 
-<p>That is a derivation, not a citation, and it is worth pausing on because it is the most under-appreciated fact in gene regulation. For a stable protein the cell cannot change the concentration faster than it can grow. At a 40-minute doubling time, halving an enzyme level takes 40 minutes. Even the fastest possible route is slow: <i>E. coli</i> mRNA half-lives are between 3 and 8 minutes for 80% of transcripts,<sup class="c"><a href="#r-bernstein">10</a></sup> so transcriptional control cannot beat a few minutes even in principle.</p>
+<p>That is a derivation, not a citation, and it is the most under-appreciated fact in gene regulation. For a stable protein a cell cannot change concentration faster than it can grow. At a 40-minute doubling time, halving an enzyme level takes 40 minutes. Even the fastest route is slow: 80% of <i>E. coli</i> mRNA half-lives fall between 3 and 8 minutes,<sup class="c"><a href="#r-bernstein">10</a></sup> so transcriptional control cannot beat a few minutes in principle.</p>
 
 <div class="box key">
 <span class="lbl">The conclusion, and it is forced</span>
-<p>Gene expression responds in <strong>2400 seconds</strong>. The PEP pool empties in <strong>0.12 seconds</strong>. Expression is <span class="m">2&times;10<sup>4</sup></span> times too slow to control it, and still 117 times too slow for the slowest pool in the table. <strong>A cell that regulated metabolism only through expression would run its metabolite pools to zero or overflow them thousands of times before the first new enzyme arrived.</strong> Therefore a faster regulatory layer must exist. There is only one candidate on the timescale ladder: binding, at 9&nbsp;&micro;s. That layer is allostery and covalent modification, and the argument above <em>predicts</em> them rather than describing them.</p>
+<p>Gene expression responds in <strong>2400 seconds</strong>. The PEP pool empties in <strong>0.12 seconds</strong>. Expression is <span class="m">2&times;10<sup>4</sup></span> times too slow to control it, and still 117 times too slow for the slowest pool in the table. <strong>A cell regulating metabolism only through expression would run its pools to zero or overflow them thousands of times before the first new enzyme arrived.</strong> So a faster layer must exist, and the timescale ladder offers one candidate: binding, at 9&nbsp;&micro;s. That layer is allostery and covalent modification, and this argument <em>predicts</em> them rather than describing them.</p>
 </div>
 
-<p>This is the same conclusion as section 16, reached without ever writing down a rate constant. Two independent routes, one architecture. That is what makes it a claim about the world rather than a modelling convention.</p>
+<p>Same conclusion as section 9, reached without writing a single rate constant. Two independent routes, one architecture. That is what makes it a claim about the world rather than a modelling convention.</p>
 
 <div class="box hist">
 <span class="lbl">1956, and what it took to see this</span>
-<p>The prediction was confirmed before it was made. In 1956 Umbarger showed that isoleucine inhibits the first enzyme of its own biosynthetic pathway, and Yates and Pardee showed the same for pyrimidines.<sup class="c"><a href="#r-umbarger">11</a></sup> Neither product resembles the substrate of the enzyme it inhibits, so the inhibition cannot be competitive, and the resolution was a second site. Monod, Wyman and Changeux named the phenomenon allostery in 1965 and gave it a two-state equilibrium model.<sup class="c"><a href="#r-mwc">12</a></sup> Lecture 7 derives that model. Lecture 8 argues that it is one of the only two things a cell does.</p>
+<p>The prediction was confirmed before it was made. In 1956 Umbarger showed isoleucine inhibiting the first enzyme of its own pathway, and Yates and Pardee showed the same for pyrimidines.<sup class="c"><a href="#r-umbarger">11</a></sup> Neither product resembles the substrate of the enzyme it inhibits, so the inhibition cannot be competitive, and the resolution was a second site. Monod, Wyman and Changeux named it allostery in 1965 and gave it a two-state equilibrium model.<sup class="c"><a href="#r-mwc">12</a></sup> Lecture 7 derives that model. Lecture 8 argues it is one of only two things a cell does.</p>
 </div>
 
-<h2 id="s18"><span class="n">18</span>Where this goes</h2>
-<p class="lede">The two components, and the rest of the course as a map.</p>
+<div class="parthead">
+  <div class="k">Addendum</div>
+  <h2>Where this goes</h2>
+  <p>The last five minutes. The two components, and the rest of the course as a map.</p>
+</div>
+
+<h2 id="s11"><span class="n">11</span>Where this goes</h2>
+<p class="lede">Everything in lectures 3 to 16 is one of two boxes, or the coupling between them.</p>
 
 <figure class="figbox">
 <svg viewBox="0 0 760 330" role="img" aria-label="The architecture the numbers license: a fast reversible binding layer regulating a slow irreversible catalytic layer" font-family="var(--sans)">
@@ -1029,18 +936,18 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <text x="400.0" y="166.0" font-size="12" text-anchor="middle" fill="var(--gray)">the two layers are separable because their timescales are</text>
 <text x="400.0" y="182.0" font-size="12" text-anchor="middle" fill="var(--gray)">four orders of magnitude apart, and that is a measurement</text>
 </svg>
-<figcaption><b>Figure 9.</b> The architecture the numbers licence. Binding is fast, reversible and at equilibrium, so it is described by statistical mechanics and it carries the regulation. Catalysis is slow, effectively irreversible and never at equilibrium, so it is described by differential equations and it carries the flux. Everything in lectures 3 to 16 is one of these two boxes, or the coupling between them.</figcaption></figure>
+<figcaption><b>Figure 9.</b> The architecture the numbers licence. Binding is fast, reversible and at equilibrium, so statistical mechanics describes it and it carries the regulation. Catalysis is slow, irreversible and never at equilibrium, so differential equations describe it and it carries the flux.</figcaption></figure>
 
 <div class="tablewrap">
 <table>
-<caption>Table 7. What lecture 2 hands to each later lecture.</caption>
+<caption>Table 6. What lecture 2 hands to each later lecture.</caption>
 <thead><tr><th>Handed on</th><th>To</th><th>Used for</th></tr></thead>
 <tbody>
 <tr><td>net-change notation, mass action for elementary steps</td><td>lecture 3</td><td>the rate equation <span class="m">dx/dt = &Gamma;v</span></td></tr>
 <tr><td>copy numbers at 1.7 nM per molecule</td><td>lecture 5</td><td>when noise becomes physics</td></tr>
 <tr><td>the <span class="m">10<sup>4</sup></span> timescale separation</td><td>lecture 6</td><td>the licence for quasi-steady state</td></tr>
 <tr><td>binding equilibrates</td><td>lecture 7</td><td>equilibrium statistical mechanics of regulation</td></tr>
-<tr><td>the whole of Part 5</td><td>lecture 8</td><td>the thesis that a cell is binding plus catalysis</td></tr>
+<tr><td>the whole of Part 4</td><td>lecture 8</td><td>the thesis that a cell is binding plus catalysis</td></tr>
 <tr><td>saturation, and <span class="m">K<sub>M</sub></span> against pool size</td><td>lecture 11</td><td>reaction order as a log-derivative</td></tr>
 <tr><td>flux, pools and turnover times</td><td>lecture 13</td><td>flux balance analysis</td></tr>
 </tbody>
@@ -1052,13 +959,13 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <ol>
 <li><span class="m">1 &micro;m&sup3; = 1 fL</span>, and one molecule in it is <span class="m">1.7 nM</span>.</li>
 <li><span class="m">D = k<sub>B</sub>T/6&pi;&eta;a</span>, so <span class="m">D &prop; 1/a</span>, and <span class="m">&tau; &asymp; x&sup2;/D</span>. A bacterium mixes in milliseconds and an axon never does.</li>
-<li><span class="m">k<sub>on</sub> = 4&pi;Da &asymp; 10<sup>9</sup>&ndash;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, derived from a boundary-value problem, and nothing unguided beats it.</li>
+<li><span class="m">k<sub>on</sub> = 4&pi;Da &asymp; 10<sup>9</sup>&ndash;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, from a boundary-value problem, and nothing unguided beats it.</li>
 <li><span class="m">k<sub>cat</sub> &asymp; 10 s<sup>&minus;1</sup></span> for the median enzyme, five decades below its own ceiling.</li>
 <li>Therefore binding equilibrates <span class="m">10<sup>4</sup></span> times per turnover, and therefore the regulatory layer is binding. Metabolism cannot wait for gene expression, and the numbers say so by four orders of magnitude.</li>
 </ol>
 </div>
 
-<p>If you want to go further before lecture 3, the two books to open are <i>Cell Biology by the Numbers</i>, which is this lecture at book length and free online, and Berg's <i>Random Walks in Biology</i>, which does sections 5 to 7 properly.<sup class="c"><a href="#r-books">15</a></sup></p>
+<p>Before lecture 3, the <a href="../exposition/">exposition</a> carries every derivation here in full, with checkpoints, five networks to write down, and an on-rate calculator you can point at any pair of molecules.<sup class="c"><a href="#r-books">15</a></sup></p>
 
 <hr>
 
@@ -1068,7 +975,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <ol>
 <li><strong>The blueprint and the machine.</strong> Which is bigger, an mRNA or the protein it encodes, in mass and in volume? Do it for a 300-residue protein, using 330&nbsp;Da per nucleotide, and draw the two to scale. Then say what the answer implies about the cost of holding a message versus holding a machine. <span class="small">(2025 homework 1, problem 2.1.)</span></li>
 <li><strong>Head space in a culture tube.</strong> The rule of thumb is to leave five-fold head space when growing aerobic bacteria. Estimate the oxygen a saturated 1&nbsp;mL <i>E. coli</i> culture needs, using 0.2% glucose by mass in the medium and a biomass yield of about 0.5, and check whether the rule follows. Does dissolved oxygen matter? <span class="small">(2025 homework 1, problem 2.3.)</span></li>
-<li><strong>Redo section 17 for a mammalian cell.</strong> A human cell is 2000&nbsp;&micro;m&sup3; and doubles in about 24 hours. Metabolite concentrations are similar. Does the conclusion of section 17 get stronger or weaker, and by how much? What does that predict about how much of mammalian metabolic regulation should be post-translational?</li>
+<li><strong>Redo section 10 for a mammalian cell.</strong> A human cell is 2000&nbsp;&micro;m&sup3; and doubles in about 24 hours. Metabolite concentrations are similar. Does the conclusion get stronger or weaker, and by how much? What does that predict about how much of mammalian metabolic regulation should be post-translational?</li>
 </ol>
 
 <hr>
@@ -1081,60 +988,60 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <li id="r-volkmer">B. Volkmer, M. Heinemann. Condition-dependent cell volume and concentration of <i>Escherichia coli</i> to facilitate data conversion for systems biology modeling.
   <span class="venue"><i>PLoS ONE</i> 6(7):e23126, 2011.</span>
   <a class="pdf" href="https://doi.org/10.1371/journal.pone.0023126">PDF</a>
-  <span class="venue">Measured cell volumes of 1.5 to 4.4 fL across 22 growth conditions, and the width held at 1.26 &micro;m.</span></li>
+  <span class="venue">Cell volume across 22 growth conditions.</span></li>
 <li id="r-milo2013">R. Milo. What is the total number of protein molecules per cell volume? A call to rethink some published values.
   <span class="venue"><i>BioEssays</i> 35:1050&ndash;1055, 2013.</span>
   <a class="pdf" href="https://doi.org/10.1002/bies.201300066">PDF</a>
-  <span class="venue">The 2 to 4 million proteins per &micro;m&sup3; estimate, the measured <span class="m">c<sub>p</sub> = 0.24</span> g/mL for <i>E. coli</i>, the abundance-weighted 300 residues per protein, and the finding that several published proteome censuses are 3 to 10 times low.</span></li>
+  <span class="venue">Every number in &sect;2: the protein count, <span class="m">c<sub>p</sub></span>, and the 300-residue mean.</span></li>
 <li id="r-bennett">B. D. Bennett, E. H. Kimball, M. Gao, R. Osterhout, S. J. Van Dien, J. D. Rabinowitz. Absolute metabolite concentrations and implied enzyme active site occupancy in <i>Escherichia coli</i>.
   <span class="venue"><i>Nature Chemical Biology</i> 5:593&ndash;599, 2009.</span>
   <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2754216/">PDF</a>
-  <span class="venue">Table 1 is the source of every metabolite concentration on this page. Also the finding that metabolite concentration exceeds <span class="m">K<sub>M</sub></span> for most pairs, with lower glycolysis the exception.</span></li>
+  <span class="venue">Every metabolite concentration here, and the saturation finding in &sect;9.</span></li>
 <li id="r-erickson">H. P. Erickson. Size and shape of protein molecules at the nanometer level determined by sedimentation, gel filtration, and electron microscopy.
   <span class="venue"><i>Biological Procedures Online</i> 11:32&ndash;51, 2009.</span>
   <a class="pdf" href="https://doi.org/10.1007/s12575-009-9008-x">PDF</a>
-  <span class="venue"><span class="m">R<sub>min</sub> = 0.066 M<sup>1/3</sup></span> nm, and why the hydrodynamic radius is larger.</span></li>
+  <span class="venue">Equation (5).</span></li>
 <li id="r-pearle">P. Pearle, B. Collett, K. Bart, D. Bilderback, D. Newman, S. Samuels. What Brown saw and you can too.
   <span class="venue"><i>American Journal of Physics</i> 78:1278&ndash;1289, 2010.</span>
   <a class="pdf" href="https://arxiv.org/abs/1008.0039">PDF</a>
-  <span class="venue">Identifies the particles as amyloplasts and spherosomes, gives the 0.5 &micro;m modal radius, and tabulates the displacement in 1 s that this page uses as the calibration.</span></li>
+  <span class="venue">What Brown was actually watching, and the calibration in &sect;4.</span></li>
 <li id="r-elowitz">M. B. Elowitz, M. G. Surette, P.-E. Wolf, J. B. Stock, S. Leibler. Protein mobility in the cytoplasm of <i>Escherichia coli</i>.
   <span class="venue"><i>Journal of Bacteriology</i> 181:197&ndash;203, 1999.</span>
   <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC103549/">PDF</a>
-  <span class="venue"><span class="m">D = 7.7 &plusmn; 2.5 &micro;m&sup2;/s</span> for GFP in vivo, and the size dependence.</span></li>
+  <span class="venue"><span class="m">D = 7.7 &micro;m&sup2;/s</span> for GFP in vivo, and the size dependence.</span></li>
 <li id="r-stroppolo">M. E. Stroppolo, M. Falconi, A. M. Caccuri, A. Desideri. Superefficient enzymes.
   <span class="venue"><i>Cellular and Molecular Life Sciences</i> 58:1451&ndash;1460, 2001.</span>
   <a class="pdf" href="https://doi.org/10.1007/PL00000788">PDF</a>
-  <span class="venue">The <span class="m">7&times;10<sup>9</sup></span> figure for two 18 &Aring; spheres, the three-order orientational penalty, every SOD rate quoted here, barnase-barstar, &beta;-lactamase, and the EcoRI methyltransferase length dependence.</span></li>
+  <span class="venue"><span class="m">D = 7.7 &micro;m&sup2;/s</span> for GFP in vivo.</span></li>
 <li id="r-halford">S. E. Halford, J. F. Marko. How do site-specific DNA-binding proteins find their targets?
   <span class="venue"><i>Nucleic Acids Research</i> 32:3040&ndash;3052, 2004.</span>
   <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC434431/">PDF</a>
-  <span class="venue">The protein-DNA diffusion limit of <span class="m">10<sup>8</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span>, the reinterpretation of the early lac-repressor measurements, and the finding that most protein-DNA rates are within a factor of three of the limit.</span></li>
+  <span class="venue">The protein-DNA limit, and the correction to the lac folklore.</span></li>
 <li id="r-barEven">A. Bar-Even, E. Noor, Y. Savir, W. Liebermeister, D. Davidi, D. S. Tawfik, R. Milo. The moderately efficient enzyme: evolutionary and physicochemical trends shaping enzyme parameters.
   <span class="venue"><i>Biochemistry</i> 50:4402&ndash;4410, 2011.</span>
   <a class="pdf" href="https://doi.org/10.1021/bi2002289">PDF</a>
-  <span class="venue">Every entry of Table 5, the central versus secondary metabolism comparison, and the evolutionary reading of the gap.</span></li>
+  <span class="venue">Table 4, and the evolutionary reading of the gap.</span></li>
 <li id="r-bernstein">J. A. Bernstein, A. B. Khodursky, P.-H. Lin, S. Lin-Chao, S. N. Cohen. Global analysis of mRNA decay and abundance in <i>Escherichia coli</i> at single-gene resolution.
   <span class="venue"><i>PNAS</i> 99:9697&ndash;9702, 2002.</span>
   <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC124983/">PDF</a>
-  <span class="venue">80% of mRNA half-lives between 3 and 8 minutes.</span></li>
+  <span class="venue">mRNA half-lives, 3 to 8 minutes.</span></li>
 <li id="r-umbarger">H. E. Umbarger. Evidence for a negative-feedback mechanism in the biosynthesis of isoleucine.
   <span class="venue"><i>Science</i> 123:848, 1956.</span> With R. A. Yates, A. B. Pardee, Control of pyrimidine biosynthesis in <i>E. coli</i> by a feedback mechanism, <i>J. Biol. Chem.</i> 221:757&ndash;770, 1956.
   <span class="pdf">read</span></li>
 <li id="r-mwc">J. Monod, J. Wyman, J.-P. Changeux. On the nature of allosteric transitions: a plausible model.
   <span class="venue"><i>Journal of Molecular Biology</i> 12:88&ndash;118, 1965.</span>
   <a class="pdf" href="https://doi.org/10.1016/S0022-2836(65)80285-6">PDF</a>
-  <span class="venue">The two-state equilibrium model of the binding layer. Derived in lecture 7.</span></li>
+  <span class="venue">The two-state model of the binding layer. Derived in lecture 7.</span></li>
 <li id="r-l2scribe">F. Xiao, <i>CCBS 2025 Lecture 2 &mdash; Biochemical reaction networks and their dynamics</i>, with the 2025 scribe note by Jiahe Wang, Yiqiao Deng and Zhi Zhou.
   <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf">notes</a>
   <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/2025FL_CCBS_scribe_lecture2.pdf">scribe</a>
-  <span class="venue">&sect;1.1 notations, &sect;1.2 the diffusion-limited derivation and the dimensional check. Sections 9, 10, 12 and 13 of this page follow it. The numerical corrections in sections 2, 5 and 12 are corrections to it.</span></li>
+  <span class="venue">&sect;2.1 and &sect;2.2 are the template for sections 6 and 7. The corrections in &sect;2, &sect;4 and &sect;8 are corrections to it.</span></li>
 <li id="r-l1notes">F. Xiao, <i>CCBS 2025 Lecture 1 &mdash; Order of magnitude reasoning</i>, with the 2025 scribe note by Qinguo Liu and Yihang Ding.
   <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/202509-CCBS-lecture-notes-01-OoM.pdf">notes</a>
   <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_scribe_lecture1.pdf">scribe</a>
-  <span class="venue">The cell-ledger and diffusion material of sections 1 to 7 was 2025's lecture 1. The 2025 homework 1 is the source of the exercises.</span></li>
+  <span class="venue">&sect;2.1 and &sect;2.2 are the template for sections 1 to 5. Homework 1 is the source of the exercises.</span></li>
 <li id="r-books">Background reading, none of it required.
-  <span class="venue">R. Phillips and R. Milo, <a href="https://book.bionumbers.org">Cell Biology by the Numbers</a>, for the ledger. R. Phillips, J. Kondev, J. Theriot, H. Garcia, <i>Physical Biology of the Cell</i>, for the scaling arguments. H. C. Berg, <i>Random Walks in Biology</i>, for diffusion done properly. R. Milo et al., <a href="https://bionumbers.hms.harvard.edu">BioNumbers</a>, when you need a number and want its provenance.</span></li>
+  <span class="venue">R. Phillips and R. Milo, <a href="https://book.bionumbers.org">Cell Biology by the Numbers</a>, the ledger at book length. R. Phillips et al., <i>Physical Biology of the Cell</i>, the scaling arguments. H. C. Berg, <i>Random Walks in Biology</i>, diffusion done properly. <a href="https://bionumbers.hms.harvard.edu">BioNumbers</a>, when you need a number with provenance.</span></li>
 </ol>
 </div>
 
