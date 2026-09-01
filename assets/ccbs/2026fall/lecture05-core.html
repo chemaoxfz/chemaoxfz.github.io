@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lecture 5 · Stochastic dynamics: the master equation and Gillespie · core · CCBS 2026</title>
-<meta name="description" content="Under a femtoliter, regularity is a lucky guess. The chemical master equation, exact sampling, and the two moments that answer most questions.">
+<meta name="description" content="Specify integer jumps and event clocks once. From that one object, derive the probability equation, sample exact paths, and know when the concentration ODE is allowed to replace them.">
 <style>
 :root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
 --blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
@@ -170,213 +170,511 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <body>
 <button id="tt" title="Toggle light / dark">&#9689;</button>
 <div class="wrap">
+<!--MATH:latex-->
 <nav class="toc" id="toc">
-  <div class="brand">CCBS &middot; 2026 &middot; Lecture 5 &middot; CORE</div>
+  <div class="brand">CCBS &middot; 2026 &middot; Lecture 5 &middot; CORE FULL</div>
   <h2>Contents</h2>
   <ol>
-    <li class="part">Part 1 &middot; The counting regime</li>
-    <li><a href="#s1">1 &middot; Why noise becomes physics</a></li>
-    <li><a href="#s2">2 &middot; The chemical master equation</a></li>
-    <li class="part">Part 2 &middot; Sampling</li>
-    <li><a href="#s3">3 &middot; The Gillespie algorithm</a></li>
-    <li><a href="#s4">4 &middot; Exactness, speed, and what it costs</a></li>
-    <li class="part">Part 3 &middot; Chains and moments</li>
-    <li><a href="#s5">5 &middot; Chains, transition matrices, stationary distributions</a></li>
-    <li><a href="#s6">6 &middot; Hitting times and first passages</a></li>
-    <li><a href="#s7">7 &middot; Mean = variance: Poisson universality</a></li>
-    <li><a href="#s8">8 &middot; Linear noise analysis</a></li>
+    <li class="part">Part 1 &middot; Turn reactions into probability</li>
+    <li><a href="#s1">1 &middot; Concentrations hide the first molecule</a></li>
+    <li><a href="#s2">2 &middot; A network becomes clocks</a></li>
+    <li><a href="#s3">3 &middot; Probability flows across a count ladder</a></li>
+    <li><a href="#s4">4 &middot; Zero closes the equation</a></li>
+    <li class="part">Part 2 &middot; Make analysis and simulation agree</li>
+    <li><a href="#s5">5 &middot; One solvable model calibrates everything</a></li>
+    <li><a href="#s6">6 &middot; One draw gives the next time</a></li>
+    <li><a href="#s7">7 &middot; A second draw chooses what happened</a></li>
+    <li><a href="#s8">8 &middot; A path is not a distribution</a></li>
+    <li class="part">Part 3 &middot; Know what was made exact</li>
+    <li><a href="#s9">9 &middot; Exact is conditional</a></li>
+    <li><a href="#s10">10 &middot; Build, simulate, falsify</a></li>
     <li class="part">Appendix</li>
-    <li><a href="#refs">References &amp; note sources</a></li>
+    <li><a href="#refs">References &amp; source packet</a></li>
   </ol>
 </nav>
 <main>
 
 <h1>Stochastic dynamics: the master equation and Gillespie</h1>
-<p class="sub">Under a femtoliter, regularity is a lucky guess. The chemical master equation, exact sampling, and the two moments that answer most questions.</p>
-<p class="byline">CCBS &middot; EST 5053 &middot; Fall 2026 &middot; lecture 5 &middot; core page &middot; 2026-09-15 (Tue) 10:40&ndash;12:15 &middot; students present, lecturer-backed</p>
+<p class="sub">Specify integer jumps and event clocks once. From that one object, derive the probability equation, sample exact paths, and know when the concentration ODE is allowed to replace them.</p>
+<p class="byline">CCBS &middot; EST 5053 &middot; Fall 2026 &middot; lecture 5 &middot; core page (full) &middot; 2026-09-15 (Tue) 10:40&ndash;12:15 &middot; students present, lecturer-backed</p>
 
-<p>Molecules are counted, not measured, and at cellular copy numbers the counting is the physics rather than an error bar on it. This lecture builds the chemical master equation as the exact description of a reaction network, shows that it is a Markov chain on the counting lattice, and gives the algorithm that samples it exactly. Then it asks how much of the distribution you actually need, and finds that two moments usually suffice.</p>
+<p>A deterministic rate equation says how a concentration moves. It does not say when the next molecule is made, whether zero can be reached, or how different two genetically identical cells may look. Today we rebuild a reaction network as a jump process. The payoff is a single specification that generates three distinct objects: a chemical master equation for probabilities, a Gillespie trajectory for events, and an ODE only after a large-system limit. This follows the derivation spine of the 2025 Lecture 5 and 6 notes, with the count conversion, notation, and exactness claim repaired.<sup class="c"><a href="#r-l5">1</a></sup></p>
 
+<div class="box key"><span class="lbl">The deliverable</span><p>By minute 95, every team should be able to turn a reaction list into state-change vectors and propensities, write the corresponding CME with the zero boundary correct, execute one direct-method step by hand, implement the loop, and test it against the Poisson birth&ndash;death model.</p></div>
 
-<div class="parthead">
-  <div class="k">Part 1</div>
-  <h2>The counting regime</h2>
-  <p>When randomness is a property of the design, not a measurement error.</p>
+<dl class="rundown">
+<dt>0&ndash;8 min</dt><dd><strong>Hook.</strong> Convert concentration to count and decide whether discreteness is visible.</dd>
+<dt>8&ndash;19 min</dt><dd><strong>Reaction object.</strong> State, jump, propensity, and units.</dd>
+<dt>19&ndash;34 min</dt><dd><strong>CME.</strong> Build gain and loss terms from the reaction list.</dd>
+<dt>34&ndash;43 min</dt><dd><strong>Boundary.</strong> Make state zero legal and probability-conserving.</dd>
+<dt>43&ndash;56 min</dt><dd><strong>Calibration.</strong> Derive the Poisson stationary law and its moments.</dd>
+<dt>56&ndash;68 min</dt><dd><strong>Next time.</strong> Derive exponential survival and invert one uniform draw.</dd>
+<dt>68&ndash;79 min</dt><dd><strong>Next channel.</strong> Race the clocks and hand-trace one event.</dd>
+<dt>79&ndash;88 min</dt><dd><strong>Evidence.</strong> Separate a path, an ensemble, and a deterministic limit.</dd>
+<dt>88&ndash;92 min</dt><dd><strong>Audit.</strong> State exactly what the direct method makes exact.</dd>
+<dt>92&ndash;95 min</dt><dd><strong>Exit.</strong> Specify one network and one statistic that could falsify it.</dd>
+</dl>
+
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="A stochastic reaction network is a state, jumps, and propensities">
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
+<rect x="18" y="42" width="200" height="126" rx="10" fill="var(--lavender,#E6E4F1)" stroke="var(--peri,#5A73CE)" stroke-width="1.6"/>
+<text x="36.00" y="68.00" font-size="11" fill="var(--peri,#5A73CE)" text-anchor="start" font-weight="700" letter-spacing="1.4">STATE</text>
+<text x="118.00" y="105.00" font-size="15" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >x = molecule counts</text>
+<text x="118.00" y="134.00" font-size="12" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="500" >integer vector</text>
+<rect x="260" y="42" width="200" height="126" rx="10" fill="var(--blush,#F5E6EB)" stroke="var(--rose,#D75567)" stroke-width="1.6"/>
+<text x="278.00" y="68.00" font-size="11" fill="var(--rose,#D75567)" text-anchor="start" font-weight="700" letter-spacing="1.4">JUMP</text>
+<text x="360.00" y="105.00" font-size="15" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >νᵣ = products − reactants</text>
+<text x="360.00" y="134.00" font-size="12" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="500" >one event's change</text>
+<rect x="502" y="42" width="200" height="126" rx="10" fill="var(--cream,#FAF0D5)" stroke="var(--lime,#8FB043)" stroke-width="1.6"/>
+<text x="520.00" y="68.00" font-size="11" fill="var(--lime,#8FB043)" text-anchor="start" font-weight="700" letter-spacing="1.4">CLOCK</text>
+<text x="602.00" y="105.00" font-size="15" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >aᵣ(x)</text>
+<text x="602.00" y="134.00" font-size="12" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="500" >events per unit time</text>
+<line x1="220.00" y1="105.00" x2="250.00" y2="105.00" stroke="var(--muted,#6E675F)" stroke-width="1.5" />
+<polygon points="250,105 241,100 241,110" fill="var(--muted,#6E675F)"/>
+<line x1="462.00" y1="105.00" x2="492.00" y2="105.00" stroke="var(--muted,#6E675F)" stroke-width="1.5" />
+<polygon points="492,105 483,100 483,110" fill="var(--muted,#6E675F)"/>
+<text x="360.00" y="211.00" font-size="12" fill="var(--rose,#D75567)" text-anchor="middle" font-weight="700" >reaction r fires</text>
+<text x="360.00" y="243.00" font-size="22" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >x  →  x + νᵣ</text>
+<text x="360.00" y="276.00" font-size="13" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="500" >at instantaneous rate aᵣ(x)</text>
+</g>
+</svg>
+</div><figcaption><b>Figure 1. The whole stochastic model fits in three columns.</b> A state says what exists, a jump says what one event changes, and a propensity says how quickly that event clock rings. Everything else in the lecture is generated from these columns.</figcaption></figure>
+
+<div class="parthead"><div class="k">Part 1</div><h2>Turn reactions into probability</h2><p>Counts make events visible. A reaction list then becomes a probability-flow machine.</p></div>
+
+<h2 id="s1"><span class="n">1</span>Concentrations hide the first molecule</h2>
+<p class="lede">The decision to use a stochastic model starts with a conversion, not with the word “cell.”</p>
+
+<p>For concentration <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span> in volume <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span>, the expected molecule count is</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>N</mi><mo>=</mo><mi>c</mi><mi>V</mi><msub><mi>N</mi><mi>A</mi></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">N=cVN_A. </annotation></semantics></math><span class="tag">(1)</span></div>
+
+<p>In a <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mtext> </mtext><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">1\,\mathrm{fL}</annotation></semantics></math></span> volume, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mtext> </mtext><mi>μ</mi><mi mathvariant="normal">M</mi></mrow><annotation encoding="application/x-tex">1\,\mu\mathrm{M}</annotation></semantics></math></span> is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>602.214</mn></mrow><annotation encoding="application/x-tex">602.214</annotation></semantics></math></span> molecules, not one. One molecule in that volume is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.66054</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">M</mi></mrow></mrow><annotation encoding="application/x-tex">1.66054\,\mathrm{nM}</annotation></semantics></math></span>.<sup class="c"><a href="#r-analysis">8</a></sup> That correction matters because “micromolar” does not by itself imply small-copy noise. A promoter with one genomic copy is discrete by construction. A metabolite with hundreds of thousands of copies may be well represented by concentration. Count the observed species before choosing the mathematics.</p>
+
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 250" role="img" aria-label="Molecule count and concentration in a one femtoliter cell">
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
+<rect x="18" y="24" width="214" height="174" rx="12" fill="var(--lavender,#E6E4F1)" stroke="var(--peri,#5A73CE)" stroke-width="1.5"/>
+<text x="125.00" y="53.00" font-size="11" fill="var(--peri,#5A73CE)" text-anchor="middle" font-weight="700" letter-spacing="1.5">ONE CELL</text>
+<text x="125.00" y="88.00" font-size="22" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >V = 1 fL</text>
+<text x="125.00" y="118.00" font-size="16" fill="var(--rose,#D75567)" text-anchor="middle" font-weight="700" >1 molecule</text>
+<text x="125.00" y="147.00" font-size="19" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >1.661 nM</text>
+<text x="125.00" y="177.00" font-size="12" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="600" >not 1 μM</text>
+<line x1="248.00" y1="108.00" x2="464.00" y2="108.00" stroke="var(--rose,#D75567)" stroke-width="2" stroke-dasharray="5 5"/>
+<text x="356.00" y="91.00" font-size="12" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="600" >multiply by NₐV</text>
+<polygon points="464,108 452,102 452,114" fill="var(--rose,#D75567)"/>
+<rect x="480" y="24" width="222" height="174" rx="12" fill="var(--blush,#F5E6EB)" stroke="var(--rose,#D75567)" stroke-width="1.5"/>
+<text x="591.00" y="53.00" font-size="11" fill="var(--rose,#D75567)" text-anchor="middle" font-weight="700" letter-spacing="1.3">ONE MICROMOLAR</text>
+<text x="591.00" y="88.00" font-size="22" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >c = 1 μM</text>
+<text x="591.00" y="125.00" font-size="28" fill="var(--rose,#D75567)" text-anchor="middle" font-weight="700" >602.2</text>
+<text x="591.00" y="151.00" font-size="14" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >molecules per cell</text>
+<text x="360.00" y="231.00" font-size="13" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="500" >The discreteness threshold is about 1.66 nM in 1 fL.</text>
+</g>
+</svg>
+</div><figcaption><b>Figure 2. Concentration and count are different scales.</b> The conversion depends linearly on volume. The shaded low-count region is where individual events, a hard boundary at zero, and cell-to-cell variability can remain visible.</figcaption></figure>
+
+<div class="checkpoint"><strong>Room check, 60 seconds.</strong> A transcription factor is present at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">M</mi></mrow></mrow><annotation encoding="application/x-tex">5\,\mathrm{nM}</annotation></semantics></math></span> in a <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mtext> </mtext><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">2\,\mathrm{fL}</annotation></semantics></math></span> bacterium. Estimate its mean count. Would a negative Gaussian fluctuation be a harmless approximation?</div>
+
+<h2 id="s2"><span class="n">2</span>A network becomes clocks</h2>
+<p class="lede">For every reaction, write one integer jump and one state-dependent clock.</p>
+
+<p>Let the state be the count vector <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>∈</mo><msubsup><mi mathvariant="double-struck">Z</mi><mrow><mo>≥</mo><mn>0</mn></mrow><mi>n</mi></msubsup></mrow><annotation encoding="application/x-tex">X(t)\in\mathbb{Z}_{\ge0}^{n}</annotation></semantics></math></span>. Reaction <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span> changes it by the stoichiometric vector <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ν</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">\nu_r</annotation></semantics></math></span>. Its propensity <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>r</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a_r(x)</annotation></semantics></math></span> is defined so that, conditional on state <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>,</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>Pr</mi><mo>⁡</mo><mo stretchy="false">{</mo><mtext>one </mtext><mi>r</mi><mtext> event in </mtext><mo stretchy="false">[</mo><mi>t</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mi>d</mi><mi>t</mi><mo stretchy="false">)</mo><mo>∣</mo><mi>X</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo stretchy="false">}</mo><mo>=</mo><msub><mi>a</mi><mi>r</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mtext> </mtext><mi>d</mi><mi>t</mi><mo>+</mo><mi>o</mi><mo stretchy="false">(</mo><mi>d</mi><mi>t</mi><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\Pr\{\text{one }r\text{ event in }[t,t+dt)\mid X(t)=x\}=a_r(x)\,dt+o(dt). </annotation></semantics></math><span class="tag">(2)</span></div>
+
+<p>The propensity has units of events per time. For <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∅</mi><mo>→</mo><mi>X</mi></mrow><annotation encoding="application/x-tex">\varnothing\to X</annotation></semantics></math></span> at constant production rate <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span>, use <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ν</mi><mo>+</mo></msub><mo>=</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\nu_+=+1</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mo>+</mo></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a_+(n)=b</annotation></semantics></math></span>. For <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>→</mo><mi mathvariant="normal">∅</mi></mrow><annotation encoding="application/x-tex">X\to\varnothing</annotation></semantics></math></span> with per-molecule loss rate <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span>, use <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ν</mi><mo>−</mo></msub><mo>=</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\nu_-=-1</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mo>−</mo></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>d</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">a_-(n)=dn</annotation></semantics></math></span>. The factor <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> counts eligible molecules. It also switches death off automatically at zero.</p>
+
+<p>The same counting rule scales. For <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">2X\to Y</annotation></semantics></math></span>, the eligible unordered pairs are <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>X</mi></msub><mo stretchy="false">(</mo><msub><mi>n</mi><mi>X</mi></msub><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n_X(n_X-1)/2</annotation></semantics></math></span>, so the propensity is a constant times that count and the jump is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>2</mn><mo separator="true">,</mo><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(-2,+1)</annotation></semantics></math></span>. For <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi><mo>+</mo><mi>Y</mi><mo>→</mo><mi>Z</mi></mrow><annotation encoding="application/x-tex">X+Y\to Z</annotation></semantics></math></span>, the eligible pairs are <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>X</mi></msub><msub><mi>n</mi><mi>Y</mi></msub></mrow><annotation encoding="application/x-tex">n_Xn_Y</annotation></semantics></math></span>. Writing eligibility before a formula prevents two common coding errors: allowing a reaction when a reactant count is zero and forgetting that identical reactants form unordered pairs.</p>
+
+<div class="box caution"><span class="lbl">Mass action changes when the state is a count</span><p>A bimolecular concentration constant and a count-based propensity constant are not numerically interchangeable. Volume and Avogadro's constant enter the conversion. Write the desired probability per unit time first, then check its units.</p></div>
+
+<h2 id="s3"><span class="n">3</span>Probability flows across a count ladder</h2>
+<p class="lede">Every CME term is either probability arriving through a jump or probability leaving through a clock.</p>
+
+<p>Let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>Pr</mi><mo>⁡</mo><mo stretchy="false">{</mo><mi>X</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">p(x,t)=\Pr\{X(t)=x\}</annotation></semantics></math></span>. During a short interval, state <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span> loses probability through every clock running at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>. It gains probability when reaction <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span> fires from the predecessor <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>−</mo><msub><mi>ν</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">x-\nu_r</annotation></semantics></math></span>. Adding those accounts gives the general chemical master equation:<sup class="c"><a href="#r-gillespie">3</a></sup></p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mrow><mi mathvariant="normal">∂</mi><mi>t</mi></mrow></mfrac><mo>=</mo><munder><mo>∑</mo><mi>r</mi></munder><mrow><mo fence="true">[</mo><msub><mi>a</mi><mi>r</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><msub><mi>ν</mi><mi>r</mi></msub><mo stretchy="false">)</mo><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><msub><mi>ν</mi><mi>r</mi></msub><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>a</mi><mi>r</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo><mo fence="true">]</mo></mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\frac{\partial p(x,t)}{\partial t}=\sum_r\left[a_r(x-\nu_r)p(x-\nu_r,t)-a_r(x)p(x,t)\right]. </annotation></semantics></math><span class="tag">(3)</span></div>
+
+<p>Apply the rule to birth and death. At count <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span>, birth arrives from <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math></span>, death arrives from <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n+1</annotation></semantics></math></span>, and both clocks remove probability from <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span>:</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mover accent="true"><mi>p</mi><mo>˙</mo></mover><mi>n</mi></msub><mo>=</mo><mi>b</mi><mtext> </mtext><msub><mi>p</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mi>d</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><msub><mi>p</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mo stretchy="false">(</mo><mi>b</mi><mo>+</mo><mi>d</mi><mi>n</mi><mo stretchy="false">)</mo><msub><mi>p</mi><mi>n</mi></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\dot p_n=b\,p_{n-1}+d(n+1)p_{n+1}-(b+dn)p_n. </annotation></semantics></math><span class="tag">(4)</span></div>
+
+<figure class="figbox">
+<svg viewBox="0 0 720 250" role="img" aria-label="Birth death count ladder with probability inflow and outflow at state n">
+  <defs><marker id="l5arr" markerWidth="9" markerHeight="9" refX="7.5" refY="3.5" orient="auto"><path d="M0,0 L8,3.5 L0,7 z" fill="var(--gray)"/></marker></defs>
+  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
+    <text x="360" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="var(--fg)">Read equation (4) from the arrows touching state n</text>
+    <g fill="var(--bg2)" stroke="var(--peri)" stroke-width="2">
+      <circle cx="110" cy="126" r="35"/><circle cx="280" cy="126" r="35"/><circle cx="450" cy="126" r="35"/><circle cx="620" cy="126" r="35"/>
+    </g>
+    <g text-anchor="middle" font-size="16" font-weight="700" fill="var(--fg)">
+      <text x="110" y="132">n − 1</text><text x="280" y="132">n</text><text x="450" y="132">n + 1</text><text x="620" y="132">n + 2</text>
+    </g>
+    <g stroke="var(--rose)" stroke-width="2.5" marker-end="url(#l5arr)">
+      <line x1="146" y1="104" x2="238" y2="104"/><line x1="316" y1="104" x2="408" y2="104"/><line x1="486" y1="104" x2="578" y2="104"/>
+    </g>
+    <g stroke="var(--teal)" stroke-width="2.5" marker-end="url(#l5arr)">
+      <line x1="414" y1="149" x2="322" y2="149"/><line x1="584" y1="149" x2="492" y2="149"/><line x1="244" y1="149" x2="152" y2="149"/>
+    </g>
+    <g text-anchor="middle" font-size="12" font-weight="600">
+      <text x="192" y="91" fill="var(--rose)">b pₙ₋₁</text><text x="362" y="91" fill="var(--rose)">b pₙ</text>
+      <text x="365" y="174" fill="var(--teal)">d(n+1)pₙ₊₁</text><text x="195" y="174" fill="var(--teal)">dn pₙ</text>
+    </g>
+    <rect x="222" y="55" width="116" height="142" rx="9" fill="none" stroke="var(--lime)" stroke-width="2" stroke-dasharray="6 5"/>
+    <text x="280" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="var(--lime)">gain minus loss at n</text>
+  </g>
+</svg>
+<figcaption><b>Figure 3. The count ladder writes the equation for you.</b> Red birth arrows move right at constant rate. Teal death arrows move left at a rate proportional to count. Focus on one state and label every arrow entering or leaving it.</figcaption></figure>
+
+<h2 id="s4"><span class="n">4</span>Zero closes the equation</h2>
+<p class="lede">The boundary is not bookkeeping trivia. It is part of the model's biology.</p>
+
+<p>Equation (4) appears to ask for <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mrow><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">p_{-1}</annotation></semantics></math></span> when <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n=0</annotation></semantics></math></span>. Negative molecules do not exist, so define <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mrow><mo>−</mo><mn>1</mn></mrow></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">p_{-1}=0</annotation></semantics></math></span>. Death already has propensity <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>⋅</mo><mn>0</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">d\cdot0=0</annotation></semantics></math></span>. The boundary equation is therefore</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mover accent="true"><mi>p</mi><mo>˙</mo></mover><mn>0</mn></msub><mo>=</mo><mi>d</mi><mtext> </mtext><msub><mi>p</mi><mn>1</mn></msub><mo>−</mo><mi>b</mi><mtext> </mtext><msub><mi>p</mi><mn>0</mn></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\dot p_0=d\,p_1-b\,p_0. </annotation></semantics></math><span class="tag">(5)</span></div>
+
+<p>Now summing equation (4) over all nonnegative counts makes every internal flow cancel, leaving <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><msub><mo>∑</mo><mi>n</mi></msub><msub><mi>p</mi><mi>n</mi></msub><mi mathvariant="normal">/</mi><mi>d</mi><mi>t</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">d\sum_n p_n/dt=0</annotation></semantics></math></span>. This is the probability analogue of a conservation law. A model of an autocatalyst may instead have zero as an absorbing state. Then extinction is not a numerical failure. It is a qualitative prediction that a concentration ODE cannot represent.</p>
+
+<p>This gives a quick CME audit. First, each gain term must point to a state that can reach the state being described. Second, each outgoing propensity must appear once with a minus sign. Third, summing over the admissible state space must conserve total probability unless probability is deliberately sent to a named absorbing or external state. These checks catch an index error before a simulator hides it inside a plausible-looking trace.</p>
+
+<div class="parthead"><div class="k">Part 2</div><h2>Make analysis and simulation agree</h2><p>A solvable process lets us audit the equation, the code, and the interpretation against one another.</p></div>
+
+<h2 id="s5"><span class="n">5</span>One solvable model calibrates everything</h2>
+<p class="lede">At stationarity, constant birth plus first-order death produces a Poisson distribution with mean <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mi mathvariant="normal">/</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">b/d</annotation></semantics></math></span>.</p>
+
+<p>At steady state, probability flow between neighboring counts balances:</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>b</mi><mtext> </mtext><msub><mi>p</mi><mi>n</mi></msub><mo>=</mo><mi>d</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><msub><mi>p</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mspace width="1em"/><mo>⟹</mo><mspace width="1em"/><msub><mi>p</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mfrac><mrow><mi>b</mi><mi mathvariant="normal">/</mi><mi>d</mi></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></mfrac><msub><mi>p</mi><mi>n</mi></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">b\,p_n=d(n+1)p_{n+1}\quad\Longrightarrow\quad p_{n+1}=\frac{b/d}{n+1}p_n. </annotation></semantics></math><span class="tag">(6)</span></div>
+
+<p>Iterating gives <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>n</mi></msub><mo>=</mo><msub><mi>p</mi><mn>0</mn></msub><mo stretchy="false">(</mo><mi>b</mi><mi mathvariant="normal">/</mi><mi>d</mi><msup><mo stretchy="false">)</mo><mi>n</mi></msup><mi mathvariant="normal">/</mi><mi>n</mi><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex">p_n=p_0(b/d)^n/n!</annotation></semantics></math></span>. Normalization sets <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mn>0</mn></msub><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>b</mi><mi mathvariant="normal">/</mi><mi>d</mi></mrow></msup></mrow><annotation encoding="application/x-tex">p_0=e^{-b/d}</annotation></semantics></math></span>. Thus <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>∼</mo><mi mathvariant="normal">Poisson</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>λ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">N\sim\operatorname{Poisson}(\lambda)</annotation></semantics></math></span> with <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo>=</mo><mi>b</mi><mi mathvariant="normal">/</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">\lambda=b/d</annotation></semantics></math></span>. The mean equation also closes directly: multiply the CME by <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span>, sum, and reindex to obtain <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo stretchy="false">⟨</mo><mi>N</mi><mo stretchy="false">⟩</mo><mi mathvariant="normal">/</mi><mi>d</mi><mi>t</mi><mo>=</mo><mi>b</mi><mo>−</mo><mi>d</mi><mo stretchy="false">⟨</mo><mi>N</mi><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">d\langle N\rangle/dt=b-d\langle N\rangle</annotation></semantics></math></span>. At stationarity,</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">⟨</mo><mi>N</mi><mo stretchy="false">⟩</mo><mo>=</mo><mi mathvariant="normal">Var</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mi>b</mi><mi>d</mi></mfrac><mo separator="true">,</mo><mspace width="2em"/><mi>F</mi><mo>=</mo><mfrac><mrow><mi mathvariant="normal">Var</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><mrow><mo stretchy="false">⟨</mo><mi>N</mi><mo stretchy="false">⟩</mo></mrow></mfrac><mo>=</mo><mn>1.</mn></mrow><annotation encoding="application/x-tex">\langle N\rangle=\operatorname{Var}(N)=\frac{b}{d},\qquad F=\frac{\operatorname{Var}(N)}{\langle N\rangle}=1. </annotation></semantics></math><span class="tag">(7)</span></div>
+
+<p>Homework 5 makes this derivation the baseline for every later burst model.<sup class="c"><a href="#r-hw5">2</a></sup> A Fano factor above one is evidence against this baseline, not a diagnosis by itself. Promoter switching, translation bursts, feedback, cell-cycle variation, and mixed cell states can all widen a histogram. The classic two-stage gene-expression analysis already shows how translation can lift protein variance above the Poisson reference.<sup class="c"><a href="#r-thattai">6</a></sup></p>
+
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 255" role="img" aria-label="Poisson calibration of a simulated birth-death process">
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
+<text x="18.00" y="70.00" font-size="12" fill="var(--muted,#6E675F)" text-anchor="start" font-weight="600" >theory mean</text>
+<rect x="154" y="54" width="423.73" height="25" rx="4" fill="var(--peri,#5A73CE)" opacity=".82"/>
+<text x="587.73" y="72.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="start" font-weight="700" >20.000</text>
+<text x="18.00" y="128.00" font-size="12" fill="var(--muted,#6E675F)" text-anchor="start" font-weight="600" >sample mean</text>
+<rect x="154" y="112" width="423.20" height="25" rx="4" fill="var(--teal,#1F9A8E)" opacity=".82"/>
+<text x="587.20" y="130.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="start" font-weight="700" >19.975</text>
+<text x="18.00" y="186.00" font-size="12" fill="var(--muted,#6E675F)" text-anchor="start" font-weight="600" >sample variance</text>
+<rect x="154" y="170" width="414.56" height="25" rx="4" fill="var(--rose,#D75567)" opacity=".82"/>
+<text x="578.56" y="188.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="start" font-weight="700" >19.567</text>
+<line x1="577.73" y1="34.00" x2="577.73" y2="219.00" stroke="var(--fg,#20201E)" stroke-width="1.2" stroke-dasharray="4 4"/>
+<text x="360.00" y="241.00" font-size="11" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >n = 5,000; λ = birth/death = 20</text>
+</g>
+</svg>
+</div><figcaption><b>Figure 4. The unit test for the stochastic code.</b> For <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mn>4</mn><mtext> </mtext><msup><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">b=4\,\mathrm{min}^{-1}</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>0.2</mn><mtext> </mtext><msup><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">d=0.2\,\mathrm{min}^{-1}</annotation></semantics></math></span>, theory gives mean and variance 20. Five thousand seeded simulations recover mean 19.975 and variance 19.567.<sup class="c"><a href="#r-analysis">8</a></sup></figcaption></figure>
+
+<h2 id="s6"><span class="n">6</span>One draw gives the next time</h2>
+<p class="lede">Do not march through empty timesteps. Sample the next event time directly.</p>
+
+<p>At fixed state <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span>, let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mo>∑</mo><mi>r</mi></msub><msub><mi>a</mi><mi>r</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a_0(x)=\sum_r a_r(x)</annotation></semantics></math></span>. If no reaction has fired, the state and all propensities remain unchanged. The probability <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>τ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">S(\tau)</annotation></semantics></math></span> that the system survives without an event for another <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi></mrow><annotation encoding="application/x-tex">\tau</annotation></semantics></math></span> obeys</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mo stretchy="false">(</mo><mi>τ</mi><mo>+</mo><mi>d</mi><mi>τ</mi><mo stretchy="false">)</mo><mo>=</mo><mi>S</mi><mo stretchy="false">(</mo><mi>τ</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo><mn>1</mn><mo>−</mo><msub><mi>a</mi><mn>0</mn></msub><mi>d</mi><mi>τ</mi><mo stretchy="false">]</mo><mspace width="1em"/><mo>⟹</mo><mspace width="1em"/><mi>S</mi><mo stretchy="false">(</mo><mi>τ</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><msub><mi>a</mi><mn>0</mn></msub><mi>τ</mi></mrow></msup><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">S(\tau+d\tau)=S(\tau)[1-a_0d\tau]\quad\Longrightarrow\quad S(\tau)=e^{-a_0\tau}. </annotation></semantics></math><span class="tag">(8)</span></div>
+
+<p>If <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">u_1</annotation></semantics></math></span> is uniform on <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,1)</annotation></semantics></math></span>, inverse-transform sampling gives</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>τ</mi><mo>=</mo><mo>−</mo><mfrac><mrow><mi>ln</mi><mo>⁡</mo><msub><mi>u</mi><mn>1</mn></msub></mrow><mrow><msub><mi>a</mi><mn>0</mn></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\tau=-\frac{\ln u_1}{a_0(x)}. </annotation></semantics></math><span class="tag">(9)</span></div>
+
+<p>The memoryless clock is not added noise. It follows from the Markov assumption encoded in equation (2). If molecular history changes the hazard while the count is fixed, then the stated CME was already the wrong model.</p>
+
+<h2 id="s7"><span class="n">7</span>A second draw chooses what happened</h2>
+<p class="lede">The total clock says when. Relative propensities say which channel won.</p>
+
+<p>Conditional on an event, reaction <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span> wins with probability <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>j</mi></msub><mi mathvariant="normal">/</mi><msub><mi>a</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">a_j/a_0</annotation></semantics></math></span>. Draw <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">u_2</annotation></semantics></math></span> and choose the first channel whose cumulative propensity exceeds <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mn>2</mn></msub><msub><mi>a</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">u_2a_0</annotation></semantics></math></span>. Then update <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>←</mo><mi>x</mi><mo>+</mo><msub><mi>ν</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">x\leftarrow x+\nu_j</annotation></semantics></math></span>, recompute every state-dependent propensity, and repeat.<sup class="c"><a href="#r-ghp">4</a></sup></p>
+
+<ol class="steps">
+<li>At <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n=3</annotation></semantics></math></span>, with <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">b=4</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>0.2</mn></mrow><annotation encoding="application/x-tex">d=0.2</annotation></semantics></math></span> per minute, write <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mo>+</mo></msub><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">a_+=4</annotation></semantics></math></span>, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mo>−</mo></msub><mo>=</mo><mn>0.6</mn></mrow><annotation encoding="application/x-tex">a_-=0.6</annotation></semantics></math></span>, and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>4.6</mn></mrow><annotation encoding="application/x-tex">a_0=4.6</annotation></semantics></math></span>.</li>
+<li>Take <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mn>1</mn></msub><mo>=</mo><mn>0.25</mn></mrow><annotation encoding="application/x-tex">u_1=0.25</annotation></semantics></math></span>. Equation (9) gives <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mn>0.3014</mn><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow></mrow><annotation encoding="application/x-tex">\tau=0.3014\,\mathrm{min}</annotation></semantics></math></span>.</li>
+<li>Take <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mn>2</mn></msub><mo>=</mo><mn>0.93</mn></mrow><annotation encoding="application/x-tex">u_2=0.93</annotation></semantics></math></span>. The threshold is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4.278</mn></mrow><annotation encoding="application/x-tex">4.278</annotation></semantics></math></span>. Birth occupies <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>4</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[0,4)</annotation></semantics></math></span>; death occupies <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>4</mn><mo separator="true">,</mo><mn>4.6</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[4,4.6)</annotation></semantics></math></span>. Death wins.</li>
+<li>Advance to <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>+</mo><mn>0.3014</mn></mrow><annotation encoding="application/x-tex">t+0.3014</annotation></semantics></math></span>, set <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n=2</annotation></semantics></math></span>, and recompute <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mo>−</mo></msub><mo>=</mo><mn>0.4</mn></mrow><annotation encoding="application/x-tex">a_-=0.4</annotation></semantics></math></span>. The old clocks no longer apply.</li>
+</ol>
+
+<figure class="figbox">
+<svg viewBox="0 0 720 245" role="img" aria-label="Two-uniform direct Gillespie step shown as a clock and propensity interval">
+  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
+    <text x="18" y="23" font-size="12" font-weight="700" fill="var(--peri)" letter-spacing="1.2">DRAW 1: WHEN</text>
+    <line x1="44" y1="93" x2="334" y2="93" stroke="var(--gray)" stroke-width="2"/>
+    <line x1="44" y1="84" x2="44" y2="102" stroke="var(--gray)" stroke-width="2"/>
+    <line x1="228" y1="78" x2="228" y2="108" stroke="var(--rose)" stroke-width="3"/>
+    <text x="44" y="122" text-anchor="middle" font-size="11" fill="var(--muted)">now</text>
+    <text x="228" y="122" text-anchor="middle" font-size="11" font-weight="700" fill="var(--rose)">τ = 0.3014 min</text>
+    <path d="M46,67 C100,27 178,48 327,87" fill="none" stroke="var(--peri)" stroke-width="2"/>
+    <text x="181" y="45" text-anchor="middle" font-size="12" fill="var(--peri)">survival e⁻ᵃ⁰ᵗ</text>
+    <text x="384" y="23" font-size="12" font-weight="700" fill="var(--rose)" letter-spacing="1.2">DRAW 2: WHICH</text>
+    <rect x="386" y="71" width="252" height="42" rx="6" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.5"/>
+    <rect x="638" y="71" width="38" height="42" rx="6" fill="var(--powder)" stroke="var(--teal)" stroke-width="1.5"/>
+    <text x="512" y="97" text-anchor="middle" font-size="12" font-weight="700" fill="var(--rose)">birth: width 4.0</text>
+    <text x="657" y="97" text-anchor="middle" font-size="10" font-weight="700" fill="var(--teal)">death</text>
+    <line x1="651" y1="55" x2="651" y2="122" stroke="var(--fg)" stroke-width="2"/>
+    <text x="651" y="143" text-anchor="middle" font-size="11" fill="var(--fg)">u₂a₀ = 4.278</text>
+    <rect x="106" y="175" width="508" height="45" rx="8" fill="var(--cream)" stroke="var(--lime)" stroke-width="1.5"/>
+    <text x="360" y="203" text-anchor="middle" font-size="13" font-weight="700" fill="var(--fg)">result: advance time, n: 3 → 2, then rebuild both clocks</text>
+  </g>
+</svg>
+<figcaption><b>Figure 5. Two uniforms perform one exact direct-method step.</b> The first is transformed into an exponential waiting time. The second lands on a propensity interval. The intervals must be rebuilt after the state changes.</figcaption></figure>
+
+<div class="demo" id="ssa-lab">
+<h4>Live direct-method trace</h4>
+<p class="dsub">Change the rates, rerun the seeded birth&ndash;death process, and compare its late-time average with <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mi mathvariant="normal">/</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">b/d</annotation></semantics></math></span>.</p>
+<div class="ctl">
+  <label><span class="lv"><span>birth <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span></span><b id="ssa-bv">4.0 /min</b></span><input id="ssa-b" type="range" min="1" max="8" step="0.5" value="4"></label>
+  <label><span class="lv"><span>death <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span></span><b id="ssa-dv">0.20 /min</b></span><input id="ssa-d" type="range" min="0.05" max="0.5" step="0.05" value="0.2"></label>
+  <button type="button" id="ssa-run" class="pri">New seeded path</button>
+</div>
+<canvas id="ssa-canvas" width="900" height="360" aria-label="Interactive Gillespie birth death trajectory"></canvas>
+<p class="readout" id="ssa-readout">Theory: mean 20.00. Path readout appears here.</p>
 </div>
 
-<h2 id="s1"><span class="n">1</span>Why noise becomes physics</h2>
-<p class="lede">At ~1 molecule per femtoliter, the mean-field picture loses its guarantee — and the Repressilator's fluctuations stop being a curiosity.</p>
+<h2 id="s8"><span class="n">8</span>A path is not a distribution</h2>
+<p class="lede">One jagged history answers “what happened.” An ensemble answers “how likely.” Neither is the mean trajectory.</p>
 
-<p>Start from the numbers of lectures 1 and 2: a 1 µM regulator over a 1 fL volume is order one
-molecule per cell. When a cell has a handful of copies, every event — transcription,
-binding, degradation — is a discrete jump, and averages over a cell population hide the
-single-cell truth that gene expression is bursty and noisy.<sup class="c"><a href="#r-w5-l56">1</a></sup>
-The lecture's opening example is the <em>Repressilator</em> (Elowitz &amp; Leibler):
-an engineered oscillator whose single-cell trajectories show substantial fluctuations —
-the deterministic equations predict oscillation; the stochastic system does not stay on
-that trajectory, and the fluctuations are not error, they are the system.</p>
+<p>A Gillespie run is one possible history. Repeating the same initial condition builds an empirical distribution at a chosen time. Solving the CME builds that distribution directly. Averaging many paths estimates <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mi>N</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">⟩</mo></mrow><annotation encoding="application/x-tex">\langle N(t)\rangle</annotation></semantics></math></span>, which for this linear model follows the deterministic rate equation exactly. That agreement of means does not make any individual path deterministic.</p>
 
-<h2 id="s2"><span class="n">2</span>The chemical master equation</h2>
-<p class="lede">The state is a probability distribution; the master equation moves probability between counts.</p>
+<p>The comparison must also align its question. A time average from one long path, an ensemble average across many cells at one time, and a stationary expectation coincide only under additional ergodic and equilibration conditions. A growing colony sampled after ten minutes may not have reached stationarity. A switching cell may not explore both promoter states during its lifetime. Record the initial condition, observation time, and averaging operation with every reported statistic.</p>
 
-<p>Let <span class="m">p<sub>n</sub>(t)</span> be the probability of n copies. For the
-birth–death process (production rate k, degradation rate μ per molecule) the master
-equation is the account book of probability flow:<sup class="c"><a href="#r-w5-l5">2</a></sup></p>
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 390" role="img" aria-label="Birth-death trajectories and their ensemble distribution">
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
+<line x1="50.00" y1="45.00" x2="50.00" y2="300.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="50.00" y="321.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >0</text>
+<line x1="176.67" y1="45.00" x2="176.67" y2="300.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="176.67" y="321.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >10</text>
+<line x1="303.33" y1="45.00" x2="303.33" y2="300.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="303.33" y="321.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >20</text>
+<line x1="430.00" y1="45.00" x2="430.00" y2="300.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="430.00" y="321.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >30</text>
+<line x1="50.00" y1="300.00" x2="430.00" y2="300.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="42.00" y="304.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >0</text>
+<line x1="50.00" y1="265.54" x2="430.00" y2="265.54" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="42.00" y="269.54" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >5</text>
+<line x1="50.00" y1="231.08" x2="430.00" y2="231.08" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="42.00" y="235.08" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >10</text>
+<line x1="50.00" y1="196.62" x2="430.00" y2="196.62" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="42.00" y="200.62" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >15</text>
+<line x1="50.00" y1="162.16" x2="430.00" y2="162.16" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="42.00" y="166.16" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >20</text>
+<line x1="50.00" y1="127.70" x2="430.00" y2="127.70" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="42.00" y="131.70" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >25</text>
+<line x1="50.00" y1="93.24" x2="430.00" y2="93.24" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="42.00" y="97.24" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >30</text>
+<line x1="50.00" y1="58.78" x2="430.00" y2="58.78" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="42.00" y="62.78" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >35</text>
+<path d="M50.00,300.00 L50.64,300.00 L50.64,293.11 L51.52,293.11 L51.52,286.22 L51.60,286.22 L51.60,279.32 L53.31,279.32 L53.31,286.22 L54.68,286.22 L54.68,279.32 L56.75,279.32 L56.75,272.43 L57.60,272.43 L57.60,279.32 L57.60,279.32 L57.60,272.43 L58.81,272.43 L58.81,265.54 L63.27,265.54 L63.27,272.43 L70.49,272.43 L70.49,279.32 L70.69,279.32 L70.69,272.43 L73.25,272.43 L73.25,265.54 L74.56,265.54 L74.56,258.65 L77.37,258.65 L77.37,251.76 L80.70,251.76 L80.70,258.65 L81.48,258.65 L81.48,251.76 L89.46,251.76 L89.46,244.86 L90.71,244.86 L90.71,237.97 L92.76,237.97 L92.76,231.08 L96.04,231.08 L96.04,237.97 L103.21,237.97 L103.21,231.08 L103.33,231.08 L103.33,224.19 L108.52,224.19 L108.52,217.30 L109.64,217.30 L109.64,210.41 L110.70,210.41 L110.70,203.51 L114.01,203.51 L114.01,196.62 L116.26,196.62 L116.26,189.73 L119.86,189.73 L119.86,196.62 L124.42,196.62 L124.42,203.51 L126.66,203.51 L126.66,210.41 L131.80,210.41 L131.80,203.51 L133.15,203.51 L133.15,196.62 L133.76,196.62 L133.76,189.73 L134.03,189.73 L134.03,182.84 L136.52,182.84 L136.52,175.95 L137.42,175.95 L137.42,169.05 L138.31,169.05 L138.31,162.16 L139.77,162.16 L139.77,155.27 L147.01,155.27 L147.01,148.38 L148.68,148.38 L148.68,141.49 L151.75,141.49 L151.75,148.38 L154.91,148.38 L154.91,141.49 L158.59,141.49 L158.59,148.38 L158.65,148.38 L158.65,141.49 L159.42,141.49 L159.42,148.38 L159.80,148.38 L159.80,141.49 L160.31,141.49 L160.31,148.38 L161.28,148.38 L161.28,155.27 L162.70,155.27 L162.70,162.16 L163.88,162.16 L163.88,169.05 L167.23,169.05 L167.23,175.95 L168.78,175.95 L168.78,169.05 L169.34,169.05 L169.34,162.16 L172.60,162.16 L172.60,155.27 L172.69,155.27 L172.69,148.38 L174.75,148.38 L174.75,141.49 L177.05,141.49 L177.05,148.38 L177.83,148.38 L177.83,155.27 L179.31,155.27 L179.31,148.38 L180.75,148.38 L180.75,155.27 L180.77,155.27 L180.77,148.38 L182.44,148.38 L182.44,141.49 L183.89,141.49 L183.89,148.38 L184.30,148.38 L184.30,155.27 L185.07,155.27 L185.07,148.38 L186.68,148.38 L186.68,155.27 L188.00,155.27 L188.00,162.16 L188.01,162.16 L188.01,155.27 L192.60,155.27 L192.60,148.38 L195.35,148.38 L195.35,141.49 L195.82,141.49 L195.82,134.59 L196.03,134.59 L196.03,127.70 L196.52,127.70 L196.52,134.59 L196.55,134.59 L196.55,127.70 L199.45,127.70 L199.45,120.81 L199.73,120.81 L199.73,113.92 L203.53,113.92 L203.53,120.81 L204.44,120.81 L204.44,113.92 L204.82,113.92 L204.82,120.81 L205.31,120.81 L205.31,113.92 L206.08,113.92 L206.08,107.03 L207.27,107.03 L207.27,100.14 L207.43,100.14 L207.43,107.03 L209.18,107.03 L209.18,113.92 L210.11,113.92 L210.11,107.03 L211.28,107.03 L211.28,113.92 L212.21,113.92 L212.21,120.81 L212.36,120.81 L212.36,127.70 L213.45,127.70 L213.45,134.59 L214.36,134.59 L214.36,127.70 L214.72,127.70 L214.72,120.81 L215.76,120.81 L215.76,113.92 L218.09,113.92 L218.09,120.81 L218.40,120.81 L218.40,113.92 L218.51,113.92 L218.51,107.03 L218.62,107.03 L218.62,100.14 L220.47,100.14 L220.47,93.24 L220.67,93.24 L220.67,86.35 L221.42,86.35 L221.42,93.24 L221.51,93.24 L221.51,86.35 L224.54,86.35 L224.54,93.24 L224.90,93.24 L224.90,100.14 L225.40,100.14 L225.40,107.03 L225.45,107.03 L225.45,100.14 L226.13,100.14 L226.13,107.03 L228.13,107.03 L228.13,113.92 L231.05,113.92 L231.05,120.81 L233.13,120.81 L233.13,113.92 L234.48,113.92 L234.48,120.81 L236.78,120.81 L236.78,113.92 L240.26,113.92 L240.26,120.81 L240.54,120.81 L240.54,127.70 L242.13,127.70 L242.13,134.59 L242.45,134.59 L242.45,127.70 L244.79,127.70 L244.79,134.59 L245.24,134.59 L245.24,141.49 L247.39,141.49 L247.39,148.38 L248.51,148.38 L248.51,155.27 L249.65,155.27 L249.65,162.16 L252.61,162.16 L252.61,155.27 L253.00,155.27 L253.00,162.16 L255.04,162.16 L255.04,155.27 L255.53,155.27 L255.53,162.16 L258.92,162.16 L258.92,155.27 L259.52,155.27 L259.52,162.16 L261.82,162.16 L261.82,169.05 L263.37,169.05 L263.37,162.16 L264.16,162.16 L264.16,169.05 L264.99,169.05 L264.99,162.16 L265.62,162.16 L265.62,169.05 L267.55,169.05 L267.55,175.95 L268.09,175.95 L268.09,182.84 L270.77,182.84 L270.77,175.95 L272.32,175.95 L272.32,169.05 L275.02,169.05 L275.02,162.16 L275.49,162.16 L275.49,169.05 L278.13,169.05 L278.13,175.95 L280.29,175.95 L280.29,169.05 L282.24,169.05 L282.24,162.16 L283.24,162.16 L283.24,155.27 L285.48,155.27 L285.48,148.38 L286.25,148.38 L286.25,155.27 L286.53,155.27 L286.53,162.16 L287.37,162.16 L287.37,155.27 L287.47,155.27 L287.47,148.38 L289.90,148.38 L289.90,141.49 L290.65,141.49 L290.65,134.59 L291.80,134.59 L291.80,141.49 L293.77,141.49 L293.77,148.38 L295.32,148.38 L295.32,141.49 L296.24,141.49 L296.24,134.59 L296.32,134.59 L296.32,127.70 L297.06,127.70 L297.06,134.59 L298.36,134.59 L298.36,141.49 L298.94,141.49 L298.94,134.59 L302.00,134.59 L302.00,141.49 L307.12,141.49 L307.12,134.59 L311.24,134.59 L311.24,127.70 L315.62,127.70 L315.62,120.81 L317.39,120.81 L317.39,113.92 L319.78,113.92 L319.78,107.03 L319.87,107.03 L319.87,100.14 L320.80,100.14 L320.80,107.03 L322.74,107.03 L322.74,113.92 L324.38,113.92 L324.38,120.81 L324.42,120.81 L324.42,127.70 L329.10,127.70 L329.10,120.81 L329.23,120.81 L329.23,113.92 L330.45,113.92 L330.45,120.81 L331.46,120.81 L331.46,113.92 L332.52,113.92 L332.52,120.81 L336.16,120.81 L336.16,113.92 L336.39,113.92 L336.39,107.03 L338.42,107.03 L338.42,100.14 L338.97,100.14 L338.97,93.24 L340.55,93.24 L340.55,86.35 L342.50,86.35 L342.50,93.24 L345.42,93.24 L345.42,100.14 L346.06,100.14 L346.06,107.03 L346.13,107.03 L346.13,100.14 L347.30,100.14 L347.30,107.03 L347.68,107.03 L347.68,100.14 L348.53,100.14 L348.53,93.24 L349.66,93.24 L349.66,86.35 L349.77,86.35 L349.77,79.46 L350.30,79.46 L350.30,72.57 L350.90,72.57 L350.90,79.46 L351.40,79.46 L351.40,72.57 L352.89,72.57 L352.89,65.68 L354.77,65.68 L354.77,58.78 L356.01,58.78 L356.01,65.68 L358.45,65.68 L358.45,58.78 L360.02,58.78 L360.02,65.68 L361.99,65.68 L361.99,72.57 L362.29,72.57 L362.29,65.68 L363.07,65.68 L363.07,72.57 L364.47,72.57 L364.47,79.46 L365.43,79.46 L365.43,86.35 L368.50,86.35 L368.50,79.46 L368.51,79.46 L368.51,72.57 L368.75,72.57 L368.75,79.46 L368.77,79.46 L368.77,86.35 L372.86,86.35 L372.86,93.24 L372.90,93.24 L372.90,86.35 L375.30,86.35 L375.30,93.24 L375.56,93.24 L375.56,86.35 L375.96,86.35 L375.96,79.46 L380.61,79.46 L380.61,86.35 L381.47,86.35 L381.47,93.24 L381.94,93.24 L381.94,100.14 L382.39,100.14 L382.39,93.24 L383.13,93.24 L383.13,86.35 L385.73,86.35 L385.73,79.46 L386.02,79.46 L386.02,72.57 L386.88,72.57 L386.88,65.68 L387.62,65.68 L387.62,58.78 L388.38,58.78 L388.38,65.68 L388.95,65.68 L388.95,72.57 L389.73,72.57 L389.73,79.46 L389.89,79.46 L389.89,72.57 L389.89,72.57 L389.89,65.68 L390.91,65.68 L390.91,72.57 L392.18,72.57 L392.18,79.46 L392.32,79.46 L392.32,86.35 L392.61,86.35 L392.61,79.46 L393.88,79.46 L393.88,86.35 L396.34,86.35 L396.34,93.24 L398.27,93.24 L398.27,86.35 L398.47,86.35 L398.47,79.46 L399.34,79.46 L399.34,86.35 L400.00,86.35 L400.00,93.24 L400.51,93.24 L400.51,86.35 L401.46,86.35 L401.46,93.24 L402.79,93.24 L402.79,100.14 L403.17,100.14 L403.17,93.24 L405.62,93.24 L405.62,100.14 L406.23,100.14 L406.23,107.03 L406.28,107.03 L406.28,100.14 L407.13,100.14 L407.13,93.24 L409.25,93.24 L409.25,86.35 L409.86,86.35 L409.86,79.46 L410.59,79.46 L410.59,86.35 L412.14,86.35 L412.14,93.24 L412.56,93.24 L412.56,86.35 L412.60,86.35 L412.60,93.24 L412.75,93.24 L412.75,100.14 L414.26,100.14 L414.26,93.24 L414.80,93.24 L414.80,86.35 L415.08,86.35 L415.08,93.24 L415.54,93.24 L415.54,86.35 L415.88,86.35 L415.88,79.46 L416.01,79.46 L416.01,86.35 L416.09,86.35 L416.09,93.24 L416.39,93.24 L416.39,100.14 L420.67,100.14 L420.67,107.03 L420.98,107.03 L420.98,113.92 L421.56,113.92 L421.56,107.03 L421.87,107.03 L421.87,113.92 L422.04,113.92 L422.04,107.03 L422.45,107.03 L422.45,100.14 L425.33,100.14 L425.33,93.24 L425.86,93.24 L425.86,100.14 L428.92,100.14 L428.92,107.03 L429.23,107.03 L429.23,100.14 L429.80,100.14 L429.80,107.03 L429.80,107.03 L429.80,113.92 L430.00,113.92 L430.00,113.92" fill="none" stroke="var(--peri,#5A73CE)" stroke-width="1.7" />
+<path d="M50.00,300.00 L51.39,300.00 L51.39,293.11 L62.97,293.11 L62.97,286.22 L63.60,286.22 L63.60,279.32 L69.47,279.32 L69.47,272.43 L69.52,272.43 L69.52,265.54 L74.41,265.54 L74.41,258.65 L76.48,258.65 L76.48,251.76 L78.29,251.76 L78.29,244.86 L78.60,244.86 L78.60,251.76 L79.02,251.76 L79.02,244.86 L82.98,244.86 L82.98,237.97 L88.04,237.97 L88.04,231.08 L88.30,231.08 L88.30,237.97 L92.49,237.97 L92.49,244.86 L93.37,244.86 L93.37,237.97 L93.58,237.97 L93.58,231.08 L96.37,231.08 L96.37,237.97 L96.46,237.97 L96.46,231.08 L97.44,231.08 L97.44,224.19 L99.96,224.19 L99.96,217.30 L101.54,217.30 L101.54,210.41 L106.92,210.41 L106.92,217.30 L107.12,217.30 L107.12,210.41 L107.90,210.41 L107.90,217.30 L109.27,217.30 L109.27,210.41 L111.25,210.41 L111.25,203.51 L113.78,203.51 L113.78,196.62 L114.32,196.62 L114.32,203.51 L126.36,203.51 L126.36,210.41 L129.65,210.41 L129.65,217.30 L131.26,217.30 L131.26,224.19 L132.79,224.19 L132.79,217.30 L134.13,217.30 L134.13,210.41 L134.58,210.41 L134.58,203.51 L140.30,203.51 L140.30,210.41 L142.83,210.41 L142.83,217.30 L143.67,217.30 L143.67,224.19 L144.89,224.19 L144.89,217.30 L149.76,217.30 L149.76,224.19 L150.45,224.19 L150.45,217.30 L150.75,217.30 L150.75,210.41 L154.96,210.41 L154.96,203.51 L155.06,203.51 L155.06,196.62 L162.01,196.62 L162.01,189.73 L165.09,189.73 L165.09,182.84 L166.87,182.84 L166.87,175.95 L169.44,175.95 L169.44,182.84 L170.51,182.84 L170.51,189.73 L171.52,189.73 L171.52,182.84 L174.07,182.84 L174.07,189.73 L176.46,189.73 L176.46,196.62 L183.62,196.62 L183.62,189.73 L183.70,189.73 L183.70,182.84 L185.28,182.84 L185.28,189.73 L187.16,189.73 L187.16,182.84 L187.40,182.84 L187.40,189.73 L188.32,189.73 L188.32,196.62 L189.69,196.62 L189.69,189.73 L190.62,189.73 L190.62,196.62 L191.18,196.62 L191.18,189.73 L191.44,189.73 L191.44,196.62 L191.87,196.62 L191.87,203.51 L192.44,203.51 L192.44,196.62 L192.70,196.62 L192.70,189.73 L193.20,189.73 L193.20,196.62 L194.54,196.62 L194.54,189.73 L195.81,189.73 L195.81,182.84 L197.24,182.84 L197.24,175.95 L197.37,175.95 L197.37,169.05 L198.54,169.05 L198.54,162.16 L198.68,162.16 L198.68,169.05 L202.17,169.05 L202.17,175.95 L204.34,175.95 L204.34,182.84 L205.10,182.84 L205.10,175.95 L207.58,175.95 L207.58,182.84 L208.50,182.84 L208.50,189.73 L210.05,189.73 L210.05,182.84 L210.71,182.84 L210.71,175.95 L211.83,175.95 L211.83,182.84 L213.65,182.84 L213.65,175.95 L214.42,175.95 L214.42,182.84 L219.22,182.84 L219.22,175.95 L219.93,175.95 L219.93,182.84 L220.11,182.84 L220.11,189.73 L223.48,189.73 L223.48,196.62 L225.18,196.62 L225.18,189.73 L229.73,189.73 L229.73,196.62 L230.92,196.62 L230.92,189.73 L232.29,189.73 L232.29,196.62 L234.80,196.62 L234.80,189.73 L237.78,189.73 L237.78,182.84 L238.77,182.84 L238.77,175.95 L240.76,175.95 L240.76,169.05 L241.30,169.05 L241.30,175.95 L244.38,175.95 L244.38,169.05 L245.46,169.05 L245.46,175.95 L246.03,175.95 L246.03,169.05 L246.58,169.05 L246.58,175.95 L249.16,175.95 L249.16,169.05 L251.06,169.05 L251.06,175.95 L253.95,175.95 L253.95,169.05 L254.97,169.05 L254.97,162.16 L261.07,162.16 L261.07,155.27 L261.66,155.27 L261.66,148.38 L262.09,148.38 L262.09,141.49 L263.31,141.49 L263.31,148.38 L264.60,148.38 L264.60,141.49 L269.63,141.49 L269.63,148.38 L271.09,148.38 L271.09,155.27 L275.39,155.27 L275.39,162.16 L275.99,162.16 L275.99,169.05 L276.83,169.05 L276.83,162.16 L277.01,162.16 L277.01,169.05 L278.81,169.05 L278.81,162.16 L279.21,162.16 L279.21,169.05 L279.47,169.05 L279.47,162.16 L282.56,162.16 L282.56,169.05 L282.96,169.05 L282.96,162.16 L284.53,162.16 L284.53,155.27 L288.85,155.27 L288.85,162.16 L289.98,162.16 L289.98,155.27 L291.85,155.27 L291.85,148.38 L293.16,148.38 L293.16,141.49 L296.26,141.49 L296.26,148.38 L296.96,148.38 L296.96,141.49 L297.02,141.49 L297.02,134.59 L298.06,134.59 L298.06,127.70 L298.60,127.70 L298.60,120.81 L298.61,120.81 L298.61,127.70 L299.00,127.70 L299.00,120.81 L300.66,120.81 L300.66,127.70 L301.44,127.70 L301.44,134.59 L307.12,134.59 L307.12,141.49 L308.99,141.49 L308.99,148.38 L309.25,148.38 L309.25,141.49 L311.48,141.49 L311.48,134.59 L311.57,134.59 L311.57,127.70 L313.46,127.70 L313.46,120.81 L316.00,120.81 L316.00,127.70 L319.35,127.70 L319.35,120.81 L322.73,120.81 L322.73,127.70 L322.75,127.70 L322.75,134.59 L324.65,134.59 L324.65,127.70 L324.79,127.70 L324.79,120.81 L324.93,120.81 L324.93,113.92 L325.02,113.92 L325.02,120.81 L325.35,120.81 L325.35,127.70 L326.36,127.70 L326.36,120.81 L327.58,120.81 L327.58,127.70 L327.92,127.70 L327.92,120.81 L328.19,120.81 L328.19,127.70 L328.36,127.70 L328.36,134.59 L328.67,134.59 L328.67,141.49 L332.11,141.49 L332.11,148.38 L332.67,148.38 L332.67,141.49 L335.10,141.49 L335.10,134.59 L336.63,134.59 L336.63,141.49 L337.92,141.49 L337.92,134.59 L338.44,134.59 L338.44,127.70 L338.90,127.70 L338.90,134.59 L342.75,134.59 L342.75,141.49 L343.82,141.49 L343.82,148.38 L346.16,148.38 L346.16,141.49 L346.50,141.49 L346.50,148.38 L349.54,148.38 L349.54,155.27 L349.65,155.27 L349.65,148.38 L350.34,148.38 L350.34,141.49 L350.48,141.49 L350.48,134.59 L351.37,134.59 L351.37,127.70 L353.24,127.70 L353.24,134.59 L354.72,134.59 L354.72,141.49 L355.64,141.49 L355.64,134.59 L356.51,134.59 L356.51,127.70 L357.08,127.70 L357.08,134.59 L357.11,134.59 L357.11,127.70 L357.64,127.70 L357.64,120.81 L359.09,120.81 L359.09,113.92 L360.07,113.92 L360.07,107.03 L361.17,107.03 L361.17,100.14 L364.51,100.14 L364.51,107.03 L364.82,107.03 L364.82,113.92 L366.95,113.92 L366.95,120.81 L367.20,120.81 L367.20,113.92 L367.85,113.92 L367.85,107.03 L368.57,107.03 L368.57,113.92 L368.76,113.92 L368.76,120.81 L374.93,120.81 L374.93,113.92 L375.06,113.92 L375.06,120.81 L378.82,120.81 L378.82,113.92 L379.03,113.92 L379.03,120.81 L380.29,120.81 L380.29,113.92 L381.45,113.92 L381.45,120.81 L381.60,120.81 L381.60,127.70 L381.63,127.70 L381.63,134.59 L383.26,134.59 L383.26,141.49 L383.78,141.49 L383.78,148.38 L385.62,148.38 L385.62,141.49 L385.66,141.49 L385.66,134.59 L386.95,134.59 L386.95,141.49 L387.27,141.49 L387.27,134.59 L387.55,134.59 L387.55,141.49 L388.30,141.49 L388.30,134.59 L388.73,134.59 L388.73,141.49 L392.16,141.49 L392.16,134.59 L392.48,134.59 L392.48,141.49 L393.19,141.49 L393.19,148.38 L393.51,148.38 L393.51,141.49 L394.76,141.49 L394.76,134.59 L395.02,134.59 L395.02,127.70 L395.98,127.70 L395.98,120.81 L397.22,120.81 L397.22,113.92 L397.90,113.92 L397.90,120.81 L397.93,120.81 L397.93,113.92 L398.21,113.92 L398.21,107.03 L402.49,107.03 L402.49,100.14 L404.98,100.14 L404.98,107.03 L409.24,107.03 L409.24,100.14 L411.25,100.14 L411.25,93.24 L413.87,93.24 L413.87,100.14 L414.07,100.14 L414.07,107.03 L414.18,107.03 L414.18,100.14 L414.61,100.14 L414.61,107.03 L416.76,107.03 L416.76,113.92 L418.43,113.92 L418.43,120.81 L418.56,120.81 L418.56,127.70 L421.83,127.70 L421.83,134.59 L422.15,134.59 L422.15,127.70 L423.89,127.70 L423.89,134.59 L425.69,134.59 L425.69,141.49 L430.00,141.49 L430.00,141.49" fill="none" stroke="var(--rose,#D75567)" stroke-width="1.7" />
+<path d="M50.00,300.00 L57.40,300.00 L57.40,293.11 L61.07,293.11 L61.07,286.22 L65.57,286.22 L65.57,279.32 L66.35,279.32 L66.35,286.22 L68.16,286.22 L68.16,279.32 L69.15,279.32 L69.15,286.22 L69.27,286.22 L69.27,279.32 L72.50,279.32 L72.50,272.43 L73.57,272.43 L73.57,265.54 L79.53,265.54 L79.53,258.65 L79.90,258.65 L79.90,251.76 L80.31,251.76 L80.31,244.86 L80.99,244.86 L80.99,251.76 L85.59,251.76 L85.59,244.86 L87.49,244.86 L87.49,237.97 L88.37,237.97 L88.37,231.08 L89.00,231.08 L89.00,224.19 L89.40,224.19 L89.40,217.30 L90.91,217.30 L90.91,210.41 L95.70,210.41 L95.70,203.51 L99.74,203.51 L99.74,210.41 L101.31,210.41 L101.31,203.51 L101.36,203.51 L101.36,196.62 L102.51,196.62 L102.51,189.73 L107.36,189.73 L107.36,196.62 L111.36,196.62 L111.36,189.73 L113.73,189.73 L113.73,196.62 L114.92,196.62 L114.92,203.51 L116.06,203.51 L116.06,196.62 L118.43,196.62 L118.43,189.73 L120.04,189.73 L120.04,196.62 L120.48,196.62 L120.48,203.51 L125.98,203.51 L125.98,196.62 L134.00,196.62 L134.00,189.73 L134.11,189.73 L134.11,182.84 L134.93,182.84 L134.93,189.73 L135.31,189.73 L135.31,196.62 L135.75,196.62 L135.75,189.73 L137.49,189.73 L137.49,182.84 L138.43,182.84 L138.43,189.73 L138.84,189.73 L138.84,182.84 L140.38,182.84 L140.38,175.95 L143.22,175.95 L143.22,169.05 L144.89,169.05 L144.89,162.16 L145.30,162.16 L145.30,155.27 L146.50,155.27 L146.50,162.16 L146.60,162.16 L146.60,169.05 L146.64,169.05 L146.64,162.16 L147.40,162.16 L147.40,155.27 L147.53,155.27 L147.53,162.16 L147.78,162.16 L147.78,169.05 L148.73,169.05 L148.73,175.95 L148.78,175.95 L148.78,169.05 L150.59,169.05 L150.59,175.95 L156.20,175.95 L156.20,182.84 L157.19,182.84 L157.19,175.95 L157.71,175.95 L157.71,182.84 L158.98,182.84 L158.98,175.95 L159.23,175.95 L159.23,169.05 L160.28,169.05 L160.28,162.16 L162.68,162.16 L162.68,169.05 L163.02,169.05 L163.02,162.16 L165.23,162.16 L165.23,155.27 L165.80,155.27 L165.80,162.16 L169.26,162.16 L169.26,155.27 L170.54,155.27 L170.54,148.38 L172.51,148.38 L172.51,141.49 L173.48,141.49 L173.48,148.38 L173.93,148.38 L173.93,141.49 L174.56,141.49 L174.56,134.59 L175.41,134.59 L175.41,141.49 L175.75,141.49 L175.75,134.59 L177.19,134.59 L177.19,141.49 L177.85,141.49 L177.85,148.38 L178.50,148.38 L178.50,155.27 L179.17,155.27 L179.17,162.16 L179.38,162.16 L179.38,169.05 L181.55,169.05 L181.55,175.95 L185.61,175.95 L185.61,182.84 L186.07,182.84 L186.07,189.73 L189.14,189.73 L189.14,182.84 L191.41,182.84 L191.41,175.95 L191.97,175.95 L191.97,182.84 L193.51,182.84 L193.51,175.95 L194.73,175.95 L194.73,182.84 L195.38,182.84 L195.38,175.95 L198.38,175.95 L198.38,182.84 L201.91,182.84 L201.91,189.73 L205.06,189.73 L205.06,196.62 L206.00,196.62 L206.00,189.73 L206.42,189.73 L206.42,182.84 L210.83,182.84 L210.83,189.73 L212.96,189.73 L212.96,196.62 L214.01,196.62 L214.01,189.73 L215.28,189.73 L215.28,196.62 L216.68,196.62 L216.68,203.51 L219.67,203.51 L219.67,196.62 L220.72,196.62 L220.72,189.73 L222.76,189.73 L222.76,182.84 L228.65,182.84 L228.65,175.95 L230.21,175.95 L230.21,169.05 L234.22,169.05 L234.22,162.16 L236.55,162.16 L236.55,169.05 L242.55,169.05 L242.55,162.16 L242.96,162.16 L242.96,155.27 L243.22,155.27 L243.22,148.38 L245.17,148.38 L245.17,155.27 L245.79,155.27 L245.79,148.38 L245.95,148.38 L245.95,155.27 L246.63,155.27 L246.63,162.16 L248.65,162.16 L248.65,155.27 L248.78,155.27 L248.78,162.16 L249.57,162.16 L249.57,169.05 L253.62,169.05 L253.62,175.95 L255.02,175.95 L255.02,169.05 L256.16,169.05 L256.16,162.16 L257.09,162.16 L257.09,169.05 L260.78,169.05 L260.78,175.95 L261.46,175.95 L261.46,182.84 L261.75,182.84 L261.75,189.73 L264.86,189.73 L264.86,196.62 L266.51,196.62 L266.51,189.73 L269.49,189.73 L269.49,196.62 L271.77,196.62 L271.77,203.51 L272.47,203.51 L272.47,196.62 L277.21,196.62 L277.21,189.73 L281.16,189.73 L281.16,196.62 L281.77,196.62 L281.77,189.73 L284.52,189.73 L284.52,182.84 L287.71,182.84 L287.71,189.73 L289.25,189.73 L289.25,196.62 L290.50,196.62 L290.50,189.73 L290.57,189.73 L290.57,182.84 L293.27,182.84 L293.27,175.95 L293.29,175.95 L293.29,169.05 L294.67,169.05 L294.67,162.16 L296.47,162.16 L296.47,155.27 L296.51,155.27 L296.51,162.16 L298.62,162.16 L298.62,155.27 L302.00,155.27 L302.00,148.38 L303.78,148.38 L303.78,155.27 L303.98,155.27 L303.98,148.38 L305.45,148.38 L305.45,141.49 L308.75,141.49 L308.75,134.59 L309.08,134.59 L309.08,141.49 L309.75,141.49 L309.75,134.59 L313.15,134.59 L313.15,141.49 L315.26,141.49 L315.26,148.38 L315.93,148.38 L315.93,155.27 L317.71,155.27 L317.71,162.16 L318.46,162.16 L318.46,169.05 L318.96,169.05 L318.96,162.16 L322.06,162.16 L322.06,169.05 L322.65,169.05 L322.65,162.16 L324.13,162.16 L324.13,155.27 L324.34,155.27 L324.34,148.38 L325.60,148.38 L325.60,141.49 L327.04,141.49 L327.04,134.59 L327.11,134.59 L327.11,141.49 L327.15,141.49 L327.15,148.38 L327.62,148.38 L327.62,155.27 L330.21,155.27 L330.21,148.38 L330.91,148.38 L330.91,155.27 L331.17,155.27 L331.17,148.38 L333.63,148.38 L333.63,155.27 L335.73,155.27 L335.73,162.16 L335.80,162.16 L335.80,155.27 L338.99,155.27 L338.99,162.16 L339.63,162.16 L339.63,169.05 L339.64,169.05 L339.64,175.95 L340.61,175.95 L340.61,182.84 L340.66,182.84 L340.66,189.73 L342.57,189.73 L342.57,182.84 L343.27,182.84 L343.27,189.73 L344.20,189.73 L344.20,182.84 L346.54,182.84 L346.54,175.95 L348.80,175.95 L348.80,182.84 L349.93,182.84 L349.93,175.95 L350.35,175.95 L350.35,182.84 L351.76,182.84 L351.76,189.73 L351.84,189.73 L351.84,196.62 L352.98,196.62 L352.98,189.73 L353.35,189.73 L353.35,182.84 L356.47,182.84 L356.47,175.95 L359.34,175.95 L359.34,169.05 L361.63,169.05 L361.63,175.95 L362.86,175.95 L362.86,169.05 L364.63,169.05 L364.63,162.16 L364.74,162.16 L364.74,169.05 L366.04,169.05 L366.04,162.16 L366.07,162.16 L366.07,155.27 L368.13,155.27 L368.13,148.38 L368.73,148.38 L368.73,155.27 L368.94,155.27 L368.94,148.38 L371.10,148.38 L371.10,155.27 L371.47,155.27 L371.47,148.38 L374.05,148.38 L374.05,155.27 L374.55,155.27 L374.55,148.38 L377.90,148.38 L377.90,141.49 L379.73,141.49 L379.73,148.38 L381.13,148.38 L381.13,155.27 L381.18,155.27 L381.18,162.16 L382.31,162.16 L382.31,155.27 L384.32,155.27 L384.32,162.16 L388.56,162.16 L388.56,155.27 L388.64,155.27 L388.64,162.16 L390.38,162.16 L390.38,155.27 L391.96,155.27 L391.96,148.38 L393.32,148.38 L393.32,141.49 L396.53,141.49 L396.53,148.38 L397.47,148.38 L397.47,155.27 L397.88,155.27 L397.88,148.38 L399.40,148.38 L399.40,141.49 L399.49,141.49 L399.49,148.38 L400.13,148.38 L400.13,155.27 L400.89,155.27 L400.89,148.38 L401.16,148.38 L401.16,141.49 L401.86,141.49 L401.86,148.38 L403.68,148.38 L403.68,155.27 L405.32,155.27 L405.32,162.16 L407.12,162.16 L407.12,169.05 L409.82,169.05 L409.82,175.95 L410.14,175.95 L410.14,169.05 L412.92,169.05 L412.92,175.95 L414.57,175.95 L414.57,182.84 L415.73,182.84 L415.73,189.73 L415.99,189.73 L415.99,196.62 L416.21,196.62 L416.21,203.51 L417.70,203.51 L417.70,196.62 L418.01,196.62 L418.01,203.51 L418.25,203.51 L418.25,210.41 L418.34,210.41 L418.34,217.30 L422.66,217.30 L422.66,210.41 L422.89,210.41 L422.89,203.51 L422.97,203.51 L422.97,210.41 L427.76,210.41 L427.76,217.30 L429.86,217.30 L429.86,210.41 L430.00,210.41 L430.00,210.41" fill="none" stroke="var(--teal,#1F9A8E)" stroke-width="1.7" />
+<text x="240.00" y="24.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >three exact paths</text>
+<text x="240.00" y="347.00" font-size="11" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >time (min)</text>
+<text x="14.00" y="177.00" font-size="11" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="500" transform="rotate(-90 14 177)">count</text>
+<rect x="500.00" y="300.00" width="3.52" height="0.00" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="504.52" y="300.00" width="3.52" height="0.00" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="509.05" y="300.00" width="3.52" height="0.00" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="513.57" y="300.00" width="3.52" height="0.00" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="518.10" y="300.00" width="3.52" height="0.00" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="522.62" y="299.50" width="3.52" height="0.50" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="527.14" y="299.50" width="3.52" height="0.50" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="531.67" y="298.99" width="3.52" height="1.01" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="536.19" y="297.48" width="3.52" height="2.52" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="540.71" y="294.46" width="3.52" height="5.54" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="545.24" y="285.40" width="3.52" height="14.60" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="549.76" y="272.81" width="3.52" height="27.19" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="554.29" y="256.20" width="3.52" height="43.80" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="558.81" y="231.53" width="3.52" height="68.47" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="563.33" y="207.37" width="3.52" height="92.63" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="567.86" y="171.62" width="3.52" height="128.38" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="572.38" y="133.36" width="3.52" height="166.64" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="576.90" y="106.18" width="3.52" height="193.82" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="581.43" y="75.97" width="3.52" height="224.03" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="585.95" y="63.89" width="3.52" height="236.11" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="590.48" y="89.56" width="3.52" height="210.44" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="595.00" y="89.56" width="3.52" height="210.44" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="599.52" y="110.71" width="3.52" height="189.29" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="604.05" y="135.88" width="3.52" height="164.12" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="608.57" y="153.50" width="3.52" height="146.50" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="613.10" y="191.26" width="3.52" height="108.74" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="617.62" y="202.33" width="3.52" height="97.67" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="622.14" y="232.04" width="3.52" height="67.96" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="626.67" y="260.23" width="3.52" height="39.77" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="631.19" y="272.81" width="3.52" height="27.19" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="635.71" y="278.86" width="3.52" height="21.14" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="640.24" y="287.41" width="3.52" height="12.59" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="644.76" y="295.47" width="3.52" height="4.53" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="649.29" y="296.98" width="3.52" height="3.02" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="653.81" y="297.99" width="3.52" height="2.01" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="658.33" y="297.48" width="3.52" height="2.52" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="662.86" y="298.99" width="3.52" height="1.01" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="667.38" y="297.99" width="3.52" height="2.01" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="671.90" y="300.00" width="3.52" height="0.00" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="676.43" y="300.00" width="3.52" height="0.00" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="680.95" y="300.00" width="3.52" height="0.00" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<rect x="685.48" y="299.50" width="3.52" height="0.50" fill="var(--peri,#5A73CE)" opacity=".65"/>
+<path d="M502.26,300.00 L506.79,300.00 L511.31,300.00 L515.83,299.99 L520.36,299.97 L524.88,299.86 L529.40,299.54 L533.93,298.68 L538.45,296.71 L542.98,292.68 L547.50,285.36 L552.02,273.38 L556.55,255.63 L561.07,231.75 L565.60,202.49 L570.12,169.99 L574.64,137.49 L579.17,108.81 L583.69,87.57 L588.21,76.39 L592.74,76.39 L597.26,87.03 L601.79,106.39 L606.31,131.65 L610.83,159.71 L615.36,187.77 L619.88,213.67 L624.40,236.05 L628.93,254.32 L633.45,268.50 L637.98,279.00 L642.50,286.45 L647.02,291.53 L651.55,294.87 L656.07,296.98 L660.60,298.27 L665.12,299.04 L669.64,299.48 L674.17,299.73 L678.69,299.86 L683.21,299.93 L687.74,299.97" fill="none" stroke="var(--rose,#D75567)" stroke-width="2.2" />
+<text x="502.26" y="321.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >0</text>
+<text x="547.50" y="321.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >10</text>
+<text x="592.74" y="321.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >20</text>
+<text x="637.98" y="321.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >30</text>
+<text x="683.21" y="321.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >40</text>
+<text x="595.00" y="24.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >one ensemble</text>
+<text x="595.00" y="347.00" font-size="11" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >count at 60 min</text>
+<text x="360.00" y="378.00" font-size="12" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="600" >A path jumps. A distribution moves smoothly. Neither is the other.</text>
+</g>
+</svg>
+</div><figcaption><b>Figure 6. Three questions require three views.</b> Left: individual event histories. Right: an endpoint ensemble compared with the analytic Poisson law. The smooth mean is an expectation across possible paths, not a hidden path that a cell follows.</figcaption></figure>
 
-<div class="eq">dp<sub>n</sub>/dt = k(n+1)p<sub>n+1</sub> − knp<sub>n</sub> + μp<sub>n−1</sub> − μp<sub>n</sub> <span class="tag">(1)</span></div>
+<p>Increasing volume while holding concentration and rate constants fixed increases event counts and reduces relative fluctuations. Kurtz's density-dependent limit makes this convergence precise.<sup class="c"><a href="#r-kurtz">5</a></sup> The deterministic ODE is therefore a large-system projection of the jump process under stated scaling, not the microscopic law with decorative noise added.</p>
 
-<p>Each term: probability leaving state n (rightward/leftward), and entering it from
-the neighbors. General form: a linear ODE on an infinite-dimensional space — the
-deterministic ODE is recovered as the mean and becomes exact only in the
-large-volume limit; the distribution is the full object. There is no escaping the
-discreteness here: states are integers, and "n = 0" is a special state (it can absorb
-probability but not produce it) — the seed of extinction, below.</p>
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" role="img" aria-label="Coefficient of variation falls as inverse square root of system size">
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
+<line x1="70.00" y1="38.00" x2="70.00" y2="260.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="70.00" y="282.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >0.5</text>
+<line x1="192.00" y1="38.00" x2="192.00" y2="260.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="192.00" y="282.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >1</text>
+<line x1="314.00" y1="38.00" x2="314.00" y2="260.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="314.00" y="282.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >2</text>
+<line x1="436.00" y1="38.00" x2="436.00" y2="260.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="436.00" y="282.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >4</text>
+<line x1="558.00" y1="38.00" x2="558.00" y2="260.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="558.00" y="282.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >8</text>
+<line x1="70.00" y1="235.33" x2="680.00" y2="235.33" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="58.00" y="239.33" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >0.1</text>
+<line x1="70.00" y1="186.00" x2="680.00" y2="186.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="58.00" y="190.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >0.2</text>
+<line x1="70.00" y1="136.67" x2="680.00" y2="136.67" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="58.00" y="140.67" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >0.3</text>
+<line x1="70.00" y1="87.33" x2="680.00" y2="87.33" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="58.00" y="91.33" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >0.4</text>
+<line x1="70.00" y1="38.00" x2="680.00" y2="38.00" stroke="var(--gridc,#EDE7E0)" stroke-width="0.8" />
+<text x="58.00" y="42.00" font-size="10" fill="var(--muted,#6E675F)" text-anchor="end" font-weight="400" >0.5</text>
+<path d="M70.00,128.66 L192.00,174.35 L314.00,206.66 L436.00,229.51 L558.00,245.67" fill="none" stroke="var(--peri,#5A73CE)" stroke-width="2.5" />
+<circle cx="70.00" cy="128.66" r="5" fill="var(--rose,#D75567)"/>
+<text x="70.00" y="118.66" font-size="10" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >⟨N⟩=10</text>
+<circle cx="192.00" cy="174.35" r="5" fill="var(--rose,#D75567)"/>
+<text x="192.00" y="164.35" font-size="10" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >⟨N⟩=20</text>
+<circle cx="314.00" cy="206.66" r="5" fill="var(--rose,#D75567)"/>
+<text x="314.00" y="196.66" font-size="10" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >⟨N⟩=40</text>
+<circle cx="436.00" cy="229.51" r="5" fill="var(--rose,#D75567)"/>
+<text x="436.00" y="219.51" font-size="10" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >⟨N⟩=80</text>
+<circle cx="558.00" cy="245.67" r="5" fill="var(--rose,#D75567)"/>
+<text x="558.00" y="235.67" font-size="10" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >⟨N⟩=160</text>
+<text x="375.00" y="19.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >same concentration, larger volume</text>
+<text x="375.00" y="309.00" font-size="11" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="400" >relative volume Ω</text>
+<text x="17.00" y="150.00" font-size="11" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="500" transform="rotate(-90 17 150)">CV</text>
+</g>
+</svg>
+</div><figcaption><b>Figure 7. The ODE emerges under system-size scaling.</b> Counts grow with volume while concentration fluctuations shrink. The boundary and rare-event questions can still demand the jump model even when the central part of the distribution looks smooth.</figcaption></figure>
 
-<div class="parthead">
-  <div class="k">Part 2</div>
-  <h2>Sampling</h2>
-  <p>Exact realizations of the master equation: the Gillespie algorithm, its correctness and its cost.</p>
-</div>
+<div class="parthead"><div class="k">Part 3</div><h2>Know what was made exact</h2><p>The algorithm is rigorous. Its biological adequacy still depends on the model it samples.</p></div>
 
-<h2 id="s3"><span class="n">3</span>The Gillespie algorithm</h2>
-<p class="lede">Two random draws, one exact trajectory: when does the next reaction occur, and which reaction is it?</p>
+<h2 id="s9"><span class="n">9</span>Exact is conditional</h2>
+<p class="lede">The direct SSA exactly samples the stated well-mixed Markov jump process. It does not make the process an exact cell.</p>
 
-<p>At state x, each reaction i has a propensity <span class="m">a<sub>i</sub>(x)</span>
-(its rate law, in molecules-per-time units). The total propensity
-<span class="m">a<sub>0</sub> = Σa<sub>i</sub></span>; the inter-event time is
-exponential,<sup class="c"><a href="#r-w5-l6">3</a></sup></p>
+<p>The claim requires discrete molecular counts, a well-mixed volume, reaction hazards determined by the current state, and propensities that remain fixed between events. Spatial gradients, molecular crowding, delayed reactions, hidden conformational memory, changing volume, and extrinsic cell states can violate those hypotheses. Gillespie and colleagues emphasize that “exact” belongs to the chemical master equation being simulated.<sup class="c"><a href="#r-ghp">4</a></sup></p>
 
-<div class="eq">τ ~ Exp(a<sub>0</sub>), &nbsp; reaction j chosen with probability a<sub>j</sub>/a<sub>0</sub> <span class="tag">(2)</span></div>
+<p>There is a second identification problem. A count histogram can be reproduced by mechanistically different promoter models while their waiting-time distributions differ.<sup class="c"><a href="#r-braichenko">7</a></sup> Keep event times and trajectories whenever possible. A histogram can reject a Poisson model, but it rarely names the missing mechanism alone.</p>
 
-<p>Advance time by τ, apply j, repeat. The derivation walks through all of it: the
-probability that no reaction happens in dt, the exponential waiting time for each
-reaction, and the competition-weighted selection. The essential virtue: <strong>the
-algorithm is exact</strong> — it samples the master equation's distribution with no
-approximation, which is why it is the reference method to check everything else
-(moment closure, tau-leaping, ODE limits) against.</p>
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-label="A four-question audit for any fast-variable reduction">
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Helvetica,Arial,sans-serif">
+<rect x="14" y="48" width="160" height="166" rx="10" fill="var(--lavender,#E6E4F1)" stroke="var(--peri,#5A73CE)" stroke-width="1.5"/>
+<text x="32.00" y="78.00" font-size="25" fill="var(--peri,#5A73CE)" text-anchor="start" font-weight="700" >1</text>
+<text x="94.00" y="105.00" font-size="10" fill="var(--peri,#5A73CE)" text-anchor="middle" font-weight="700" letter-spacing="1.3">RATIO</text>
+<text x="94.00" y="145.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >Which dimensionless</text>
+<text x="94.00" y="164.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >number is small?</text>
+<rect x="191" y="48" width="160" height="166" rx="10" fill="var(--blush,#F5E6EB)" stroke="var(--rose,#D75567)" stroke-width="1.5"/>
+<text x="209.00" y="78.00" font-size="25" fill="var(--rose,#D75567)" text-anchor="start" font-weight="700" >2</text>
+<text x="271.00" y="105.00" font-size="10" fill="var(--rose,#D75567)" text-anchor="middle" font-weight="700" letter-spacing="1.3">MANIFOLD</text>
+<text x="271.00" y="145.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >Which algebraic root</text>
+<text x="271.00" y="164.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >is physical and stable?</text>
+<rect x="368" y="48" width="160" height="166" rx="10" fill="var(--cream,#FAF0D5)" stroke="var(--lime,#8FB043)" stroke-width="1.5"/>
+<text x="386.00" y="78.00" font-size="25" fill="var(--lime,#8FB043)" text-anchor="start" font-weight="700" >3</text>
+<text x="448.00" y="105.00" font-size="10" fill="var(--lime,#8FB043)" text-anchor="middle" font-weight="700" letter-spacing="1.3">BOUNDARY</text>
+<text x="448.00" y="145.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >What happens during</text>
+<text x="448.00" y="164.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >the initial fast layer?</text>
+<rect x="545" y="48" width="160" height="166" rx="10" fill="var(--powder,#D0DAE4)" stroke="var(--teal,#1F9A8E)" stroke-width="1.5"/>
+<text x="563.00" y="78.00" font-size="25" fill="var(--teal,#1F9A8E)" text-anchor="start" font-weight="700" >4</text>
+<text x="625.00" y="105.00" font-size="10" fill="var(--teal,#1F9A8E)" text-anchor="middle" font-weight="700" letter-spacing="1.3">OBSERVABLE</text>
+<text x="625.00" y="145.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >Which statistic must</text>
+<text x="625.00" y="164.00" font-size="12" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="600" >the reduction preserve?</text>
+<text x="360.00" y="21.00" font-size="13" fill="var(--fg,#20201E)" text-anchor="middle" font-weight="700" >A reduction is a claim about an observable, not a deletion of equations.</text>
+<text x="360.00" y="257.00" font-size="12" fill="var(--muted,#6E675F)" text-anchor="middle" font-weight="600" >If one answer is missing, simulate the full and reduced models side by side.</text>
+</g>
+</svg>
+</div><figcaption><b>Figure 8. The audit that carries into Lecture 6.</b> For a stochastic model, question 1 becomes the scale or rate separation. Questions 2 and 3 ask what hidden dynamics were eliminated. Question 4 asks whether the retained object is a mean, a distribution, a waiting time, or a rare-event probability.</figcaption></figure>
 
-<h2 id="s4"><span class="n">4</span>Exactness, speed, and what it costs</h2>
-<p class="lede">Exactness comes at a price — one event at a time. That's the lesson, and the reason approximations exist.</p>
+<h2 id="s10"><span class="n">10</span>Build, simulate, falsify</h2>
+<p class="lede">A useful stochastic model ends with a comparison that could prove it inadequate.</p>
 
-<p>The exact algorithm is event-by-event, so a cell at 10⁵ molecules and ms timescales
-samples 10⁶+ events per second — expensive. Approximations, in order of faithfulness:
-<strong>tau-leaping</strong> (bundle many events per step), <strong>moment
-closure</strong> (part 3: track the first moments, close them approximately), and the
-<strong>LNA</strong> (part 3's systematic Gaussian approximation). For the course, the
-practise rule is: Gillespie when counts are small (regulators); ODEs when they're
-large (metabolites); moment equations when all you need is the noise level.</p>
+<p>Each team now chooses one small biological network and produces a six-line specification:</p>
 
-<div class="parthead">
-  <div class="k">Part 3</div>
-  <h2>Chains and moments</h2>
-  <p>The master equation is a Markov chain. Stationary distributions, first passages, and the two moments that answer 'how noisy is this cell?'</p>
-</div>
+<ol class="steps">
+<li>Name the integer state and the admissible state space.</li>
+<li>List every reaction, its jump vector, and its propensity with units.</li>
+<li>Write one interior CME equation and every special boundary equation.</li>
+<li>Hand-trace one direct-method event with two recorded uniform draws.</li>
+<li>Choose an observable: mean, Fano factor, zero probability, waiting time, or first passage.</li>
+<li>Name one data pattern that the model cannot explain and one hidden process that might repair it.</li>
+</ol>
 
-<h2 id="s5"><span class="n">5</span>Chains, transition matrices, stationary distributions</h2>
-<p class="lede">A CTMC is a master equation; a discrete chain is a transition matrix; the stationary distribution solves the balance equations.</p>
-
-<p>Markov chains are the same jump-process mathematics as the CME of part 1, read
-differently. In continuous time (CTMC) the master equation
-<span class="m">dp/dt = Qp</span> is the same object as equation (1) above; in
-discrete time the transition matrix <span class="m">πP<sub>t+1</sub> = πP<sub>t</sub></span>
-repeats. The stationary distribution solves the balance equations, and the finest
-version is detailed balance (1) per pair of states: <span class="m">π<sub>i</sub>q<sub>ij</sub> = π<sub>j</sub>q<sub>ji</sub></span>.
-The lecture's summary slide covers exactly this line: CTMC master equation → steady
-state → detailed balance → hitting &amp; first-passage times.<sup class="c"><a href="#r-w6-l8">3</a></sup></p>
-
-<h2 id="s6"><span class="n">6</span>Hitting times and first passages</h2>
-<p class="lede">How long before a chain gets somewhere? One linear system: Q^j τ^j = 0 with boundary conditions, and often a closed form.</p>
-
-<p>The first-passage problem: the expected time to first reach a set of states solves a
-linear system, <span class="m">Q<sup>(j)</sup>τ<sup>(j)</sup> = 0</span> with
-boundary values, and the notes carry the general recurrence plus the worked rotational
-example (the <span class="m">q<sub>ij</sub>/|q<sub>ii</sub>|</span> structure and the
-"wait" annotation: the expected time stays put — a standard random-walk result) and
-the finite-state projection remark for solving the CME by chain methods.<sup class="c"><a href="#r-w6-l7">1</a></sup>
-Compute: small systems by hand (two or three states), bigger ones by sparse linear
-algebra. And note the two face of this in the course: the same computation, run on a
-gene-state chain, gives switching/first-expression times — the bridge from the chain picture to
-the stochastic events of part 1.</p>
-
-<h2 id="s7"><span class="n">7</span>Mean = variance: Poisson universality</h2>
-<p class="lede">For a birth–death process in steady state the distribution is Poisson: mean equals variance, CV = 1/√λ.</p>
-
-<p>Solve the steady state of (1) for the crude birth–death process: the distribution is
-Poisson with rate <span class="m">λ = μ/k</span>.<sup class="c"><a href="#r-w5-l6">3</a></sup></p>
-
-<div class="eq">P{X = k} = λ<sup>k</sup>e<sup>−λ</sup>/k!, &nbsp; ⟨X⟩ = Var(X) = λ, &nbsp; CV = 1/√λ <span class="tag">(3)</span></div>
-
-<p>Two consequences to keep. First, <strong>the Poisson reference</strong>: if the
-measured variance exceeds the mean, the process is not Poisson — something (bursting,
-feedback, noise propagation) is at work; this is precisely the Fano factor
-<span class="m">F = Var/⟨X⟩</span> and its departure from 1. Second, the size of noise
-in biology's currency: CV ~ 1/√λ — noise goes down as copy number goes up, which is
-itself a design constraint: cells that need precision buy copies.</p>
-
-<h2 id="s8"><span class="n">8</span>Linear noise analysis</h2>
-<p class="lede">Linearity in the noise: the covariance of a linear-noise system obeys a Lyapunov equation, Mη + ηMᵀ = D.</p>
-
-<p>The general machinery: write the mean-field ODE, add small deterministic noise; the
-propagator matrix M comes from the Jacobian of the deterministic system, the noise
-matrix D from the net stoichiometric fluxes, and the steady-state covariance η solves
-the Lyapunov equation<sup class="c"><a href="#r-w5-l5">2</a></sup></p>
-
-<div class="eq">Mη + ηMᵀ = D <span class="tag">(4)</span></div>
-
-<p>This is the workhorse: any CRN with a stable fixed point gets a systematic
-noise level, without simulation. (The 2025 notes develop the index-heavy version and
-end mid-example — treat the margins: the classic pitfalls are cross-correlation terms
-and the sign conventions on the stoichiometric matrix; the homework in this block is
-exactly to carry (4) through one example twice: by hand and by simulation.)</p>
+<div class="box key"><span class="lbl">The core story</span><p>Counts reveal events. Events are specified by jumps and clocks. Probability bookkeeping gives the CME. Survival and competition give the SSA. The Poisson model makes equation and simulation check each other. Only then do we decide whether the observable permits an ODE, demands a distribution, or exposes missing biology.</p></div>
 
 <hr>
+<h2 id="refs"><span class="n">&dagger;</span>References &amp; source packet</h2>
+<p class="lede">The research essay behind this page contains the longer derivations, computed figures, analysis ledger, and verified full-text archive.</p>
+<div class="refs"><ol>
+<li id="r-l5">F. Xiao, <em>CCBS 2025 Lectures 5 and 6</em>, stochastic-kinetics portions, with the Lecture 6 scribe note. <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture5/202509-CCBS-lecture-notes-05-adaptation-biomachine_202510090338_05347.pdf">L5 notes</a><a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture6/202509-CCBS-lecture-notes-06-noise-and-energy-equi_202510161018_41883.pdf">L6 notes</a><span class="venue">Direct source packet for the CME, Gillespie derivation, moments, and stochastic phenomena.</span></li>
+<li id="r-hw5">F. Xiao, <em>CCBS 2025 Homework 5</em>, problem 1.1 and optional Gillespie exercise. <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture6/2025FL_CCBS_hw05.pdf">problem set</a></li>
+<li id="r-gillespie">D. T. Gillespie, “Stochastic Simulation of Chemical Kinetics,” <em>Annual Review of Physical Chemistry</em> 58, 35&ndash;55 (2007). <a href="https://doi.org/10.1146/annurev.physchem.58.032806.104637">DOI</a></li>
+<li id="r-ghp">D. T. Gillespie, A. Hellander, and L. R. Petzold, “Perspective: Stochastic algorithms for chemical kinetics,” <em>Journal of Chemical Physics</em> 138, 170901 (2013). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3656953/">full text</a></li>
+<li id="r-kurtz">T. G. Kurtz, “The Relationship between Stochastic and Deterministic Models for Chemical Reactions,” <em>Journal of Chemical Physics</em> 57, 2976&ndash;2978 (1972). <a href="https://doi.org/10.1063/1.1678692">DOI</a></li>
+<li id="r-thattai">M. Thattai and A. van Oudenaarden, “Intrinsic noise in gene regulatory networks,” <em>PNAS</em> 98, 8614&ndash;8619 (2001). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC37484/">full text</a><span class="venue">The Poisson reference and two-stage gene-expression noise.</span></li>
+<li id="r-braichenko">S. Braichenko, J. Holehouse, and R. Grima, “Distinguishing between models of mammalian gene expression,” <em>Journal of the Royal Society Interface</em> 18, 20210510 (2021). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8492181/">full text</a></li>
+<li id="r-analysis">Project analysis ledger, seed 20260902. <a href="../research-essays/lecture05-stochastic-kinetics/analysis/run_analysis.py">analysis code</a><a href="../research-essays/lecture05-stochastic-kinetics/analysis/output/results.json">results</a><span class="venue">Generates every numerical label and axis-based figure used here.</span></li>
+</ol></div>
 
-<h2 id="refs"><span class="n">&dagger;</span>References &amp; note sources</h2>
-<p class="lede">Where this page's claims and numbers live.</p>
-
-<div class="refs">
-<ol>
-<li id="r-w5-l56">F. Xiao, <em>CCBS 2025 Lecture 5</em> (half B) + <em>Lecture 6</em> (half A):
-the Repressilator, Poisson noise, bursty gene expression, CME, Gillespie/SSA, moment
-analysis, moment closure/LNA, stochastic phenomena (burstiness, multistability→
-multimodality, extinction, ergodicity).
-<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture5/202509-CCBS-lecture-notes-05-adaptation-biomachine_202510090338_05347.pdf">L5 PDF</a>
-<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture6/202509-CCBS-lecture-notes-06-noise-and-energy-equi_202510161018_41883.pdf">L6 PDF</a>
-<span class="venue">This lecture traces here.</span></li>
-<li id="r-w5-l5">F. Xiao, <em>CCBS 2025 Lecture 5</em> — Poisson distribution, CME, LNA
-derivation. <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture5/202509-CCBS-lecture-notes-05-adaptation-biomachine_202510090338_05347.pdf">PDF</a></li>
-<li id="r-w5-l6">F. Xiao, <em>CCBS 2025 Lecture 6</em> — Gillespie algorithm derivation and
-moment analysis.<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture6/202509-CCBS-lecture-notes-06-noise-and-energy-equi_202510161018_41883.pdf">PDF</a></li>
-<li>M. Elowitz, A. Levine, E. Siggia, P. Swain, <em>Science</em> 2002 — intrinsic vs
-extrinsic noise.
-<span class="venue">The classic single-cell noise experiment (the "go beyond" pointer).</span></li>
-<li>R. Erban, S. Chapman, P. Martin, <em>Stochastic Modelling of Reaction–Diffusion
-Processes</em> (2007).
-<span class="venue">Cited in the notes; the algorithmic companion.</span></li>
-<li id="r-w6-l7">F. Xiao, <em>CCBS 2025 Lecture 7 — Energy and equilibrium regulation</em>
-(statistical mechanics of TF binding, energy model, K₀/K accounting, 2–3 k_BT per H-bond,
-Markov chains, hitting times, kinetics proofreading note).
-<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture7/202509-CCBS-lecture-notes-07-energy-equilibrium-re_202510251507_57260.pdf">PDF</a>
-<span class="venue">This lecture traces here.</span></li>
-<li id="r-w6-l6">F. Xiao, <em>CCBS 2025 Lecture 6</em> (half B: Boltzmann, detailed balance,
-cycle condition, MWC/cooperativity, repression examples, the 0.9 worked estimate).
-<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture6/202509-CCBS-lecture-notes-06-noise-and-energy-equi_202510161018_41883.pdf">PDF</a>
-<span class="venue">This lecture traces here.</span></li>
-<li id="r-w6-l8">F. Xiao, <em>CCBS 2025 Lecture 8</em> (first part: CTMC master equation,
-steady state, detailed balance, hitting &amp; first-passage times, finite-state
-projection).
-<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture8/202509-CCBS-lecture-notes-08-markov-chain-computat_202510301235_28153.pdf">PDF</a>
-<span class="venue">This lecture traces here.</span></li>
-<li>J. Hopfield, <em>PNAS</em> 1974 — kinetic proofreading.
-<span class="venue">The canonical energy–accuracy argument.</span></li>
-<li>H. Berg &amp; S. Purcell, <em>Biophys. J.</em> 1977 — the physical limits of
-chemotaxis sensing.<span class="venue">Eq. (2) and the timing bound.</span></li>
-<li>M. Kardar, <em>Statistical Mechanics of Particles</em>; R. Phillips, <em>Physical
-Biology of the Cell</em> / <em>The Molecular Switch</em>.
-<span class="venue">The notes' cited companions.</span></li>
-</ol>
-</div>
-
+<script>
+(function(){
+  var canvas=document.getElementById('ssa-canvas'),ctx=canvas&&canvas.getContext('2d');
+  if(!ctx)return;
+  var bEl=document.getElementById('ssa-b'),dEl=document.getElementById('ssa-d'),runEl=document.getElementById('ssa-run');
+  var path=[],runNo=0;
+  function color(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim();}
+  function rng(seed){return function(){seed=(seed*1664525+1013904223)>>>0;return (seed+.5)/4294967296;};}
+  function simulate(){
+    var b=+bEl.value,d=+dEl.value,r=rng(20260902+runNo++),t=0,n=0,T=30;
+    path=[[0,0]];
+    while(t<T&&path.length<20000){
+      var a0=b+d*n,u=Math.max(r(),1e-12),tau=-Math.log(u)/a0;
+      if(t+tau>T)break;
+      path.push([t+tau,n]);
+      t+=tau;
+      n=(r()*a0<b)?n+1:Math.max(0,n-1);
+      path.push([t,n]);
+    }
+    path.push([T,n]);
+    draw();
+    var cut=20,sum=0,dur=0;
+    for(var i=0;i<path.length-1;i+=2){var lo=Math.max(cut,path[i][0]),hi=path[i+1][0];if(hi>lo){sum+=(hi-lo)*path[i][1];dur+=hi-lo;}}
+    document.getElementById('ssa-readout').innerHTML='<b>Theory b/d = '+(b/d).toFixed(2)+'.</b> This path ends at '+n+'; its time average over minutes 20–30 is '+(dur?sum/dur:0).toFixed(2)+'. One path is not the ensemble.';
+  }
+  function draw(){
+    if(!path.length)return;
+    var bg=color('--bg'),fg=color('--fg'),muted=color('--muted'),rule=color('--rule'),rose=color('--rose'),peri=color('--peri');
+    var W=canvas.width,H=canvas.height,L=58,R=20,T=22,B=48,maxN=Math.max(8,+bEl.value/+dEl.value*1.8);
+    function X(t){return L+t/30*(W-L-R);} function Y(n){return H-B-n/maxN*(H-T-B);}
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);ctx.font='13px system-ui';ctx.textAlign='center';
+    for(var i=0;i<=6;i++){var tv=i*5;ctx.strokeStyle=rule;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(X(tv),T);ctx.lineTo(X(tv),H-B);ctx.stroke();ctx.fillStyle=muted;ctx.fillText(tv,X(tv),H-22);}
+    for(var j=0;j<=4;j++){var nv=maxN*j/4;ctx.strokeStyle=rule;ctx.beginPath();ctx.moveTo(L,Y(nv));ctx.lineTo(W-R,Y(nv));ctx.stroke();ctx.textAlign='right';ctx.fillStyle=muted;ctx.fillText(nv.toFixed(0),L-10,Y(nv)+4);ctx.textAlign='center';}
+    var mean=+bEl.value/+dEl.value;ctx.strokeStyle=peri;ctx.setLineDash([8,6]);ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(L,Y(mean));ctx.lineTo(W-R,Y(mean));ctx.stroke();ctx.setLineDash([]);
+    ctx.strokeStyle=rose;ctx.lineWidth=2.5;ctx.beginPath();path.forEach(function(p,k){(k?ctx.lineTo:ctx.moveTo).call(ctx,X(p[0]),Y(p[1]));});ctx.stroke();
+    ctx.fillStyle=fg;ctx.font='600 14px system-ui';ctx.fillText('time (min)',(L+W-R)/2,H-5);ctx.save();ctx.translate(16,(T+H-B)/2);ctx.rotate(-Math.PI/2);ctx.fillText('molecule count',0,0);ctx.restore();
+    ctx.textAlign='right';ctx.fillStyle=peri;ctx.fillText('ensemble mean b/d',W-R-5,Y(mean)-8);
+  }
+  function labels(){document.getElementById('ssa-bv').textContent=(+bEl.value).toFixed(1)+' /min';document.getElementById('ssa-dv').textContent=(+dEl.value).toFixed(2)+' /min';simulate();}
+  bEl.addEventListener('input',labels);dEl.addEventListener('input',labels);runEl.addEventListener('click',simulate);
+  window.__redraw=draw;labels();
+})();
+</script>
 </main>
 </div>
 <script>
