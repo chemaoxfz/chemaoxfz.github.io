@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lecture 3 · Reaction networks, with the central dogma as the worked example · CCBS 2026</title>
-<meta name="description" content="The one law that turns arrows into equations, and then gene expression as the example that introduces lifetimes, Hill regulation and growth dilution.">
+<title>Lecture 3 · Reaction networks, with the central dogma as the worked example · core · CCBS 2026</title>
+<meta name="description" content="Start with molecular events, separate stoichiometry from kinetics, and carry one gene all the way from arrows to timescales, steady state, regulation, and a testable simulation.">
 <style>
 :root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
 --blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
 --ink:#20201E;--gray:#877F77;--leader:#B8AEA5;--gridc:#EDE7E0;
 --bg:#FCFAF7;--bg2:#FFFFFF;--fg:var(--ink);--muted:#6E675F;--rule:#E3DCD3;
 --shadow:0 1px 2px rgba(32,32,30,.05), 0 8px 28px rgba(32,32,30,.05);
+--paper:var(--bg);--paper2:var(--bg2);--accent:var(--teal);--blue:var(--peri);--warn:var(--coral);--grid:var(--gridc);
 --serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
 --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
 --mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;--maxw:44rem}
@@ -84,6 +85,11 @@ sub,sup{font-size:.7em;line-height:0}
 .box.open .lbl{color:var(--plum)}
 figure{margin:2rem 0;padding:0}
 figure svg{display:block;width:100%;height:auto;max-width:100%}
+svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo2{paint-order:stroke;stroke:var(--bg);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halopink{paint-order:stroke;stroke:var(--pinkf);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo3{paint-order:stroke;stroke:var(--bg);stroke-width:3.6px;stroke-linejoin:round}
+
 figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
 figcaption b{color:var(--fg);font-weight:700}
 .figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
@@ -103,214 +109,299 @@ caption{caption-side:bottom;text-align:left;padding:.7rem .8rem;font-family:var(
 .pdf:hover{background:var(--teal);color:var(--bg2)}
 sup.c{font-size:.68em;color:var(--rose);font-weight:700}
 sup.c a{color:inherit;text-decoration:none}
+.rundown{display:grid;grid-template-columns:6.2rem 1fr;gap:.45rem 1rem;margin:1.4rem 0;padding:1rem 1.15rem;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow);font-family:var(--sans);font-size:.84rem;line-height:1.45}
+.rundown dt{font-family:var(--mono);font-weight:700;color:var(--rose)}.rundown dd{margin:0 0 .25rem}.rundown dd strong{color:var(--fg)}
+.steps{counter-reset:worked;list-style:none;padding:0;margin:1.4rem 0}.steps>li{counter-increment:worked;position:relative;padding:.8rem 1rem .8rem 3.2rem;margin:.6rem 0;border-left:2px solid var(--peri);background:var(--bg2);border-radius:0 8px 8px 0}.steps>li:before{content:counter(worked);position:absolute;left:.85rem;top:.7rem;width:1.55rem;height:1.55rem;display:grid;place-items:center;border-radius:50%;background:var(--peri);color:var(--bg2);font:700 .72rem var(--sans)}
+.checkpoint{margin:1.6rem 0;padding:.9rem 1.05rem;border:1px dashed var(--teal);border-radius:9px;background:color-mix(in srgb,var(--powder) 55%,var(--bg2));font-family:var(--sans);font-size:.88rem}.checkpoint strong{color:var(--teal)}
+.formula-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.3rem 0}.formula-pair>*{margin:0}
+@media(max-width:700px){.rundown{grid-template-columns:1fr}.rundown dt{margin-top:.3rem}.formula-pair{grid-template-columns:1fr}}
 #tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
 @media print{#tt,nav.toc{display:none}.wrap{display:block}main>*{max-width:none}}
+
+/* ---- extras used by the lecture 2 lineage and exposition pages ---- */
+.box.thm{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.thm .lbl{color:var(--peri)}
+.box.hist{border-left:3px solid var(--leader)}
+.box.hist .lbl{color:var(--leader)}
+blockquote.quote{margin:1.4rem 0;padding:.15rem 0 .15rem 1.15rem;border-left:3px solid var(--leader);
+  color:var(--gray);font-style:italic;font-size:.96em;line-height:1.62}
+blockquote.quote cite{display:block;margin-top:.5rem;font-style:normal;font-family:var(--sans);
+  font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--leader)}
+blockquote.quote cite::before{content:"\2014 "}
+.demo{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:1.15rem;margin:2rem 0;box-shadow:var(--shadow)}
+.demo h4{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin:0 0 .1rem;font-weight:700}
+.demo .dsub{font-family:var(--sans);font-size:.83rem;color:var(--muted);margin:0 0 .9rem}
+.ctl{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;font-family:var(--sans);font-size:.78rem;margin:.9rem 0 .2rem}
+.ctl label{display:flex;flex-direction:column;gap:.15rem;min-width:9.5rem;flex:1 1 9.5rem}
+.ctl .lv{display:flex;justify-content:space-between;gap:.6rem;color:var(--muted)}
+.ctl .lv b{color:var(--fg);font-family:var(--mono);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--rose);height:1.1rem}
+button{font-family:var(--sans);font-size:.78rem;font-weight:600;padding:.42rem .85rem;border-radius:7px;
+  border:1px solid var(--rule);background:var(--bg);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--rose);color:var(--rose)}
+button.pri{background:var(--rose);border-color:var(--rose);color:#fff}
+button.pri:hover{color:#fff;opacity:.9}
+.readout{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:.6rem;line-height:1.7}
+.readout b{color:var(--fg)}
+canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--bg)}
+.pdf.no{color:var(--leader);border-color:var(--leader)}
+.pdf.no:hover{background:none;color:var(--leader)}
 </style>
 </head>
 <body>
 <button id="tt" title="Toggle light / dark">&#9689;</button>
 <div class="wrap">
 <nav class="toc" id="toc">
-  <div class="brand">CCBS &middot; 2026 &middot; Lecture 3 &middot; CORE</div>
+  <div class="brand">CCBS &middot; 2026 &middot; Lecture 3 &middot; CORE FULL</div>
   <h2>Contents</h2>
   <ol>
-    <li class="part">Part 1 &middot; Mass action</li>
-    <li><a href="#s1">1 &middot; A generic reaction, and the accounting</a></li>
-    <li><a href="#s2">2 &middot; The law of mass action</a></li>
-    <li><a href="#s3">3 &middot; The CRN rate equation</a></li>
-    <li class="part">Part 2 &middot; Worked models</li>
-    <li><a href="#s4">4 &middot; Three ODEs that carry the course</a></li>
-    <li><a href="#s5">5 &middot; The simulation toolkit</a></li>
-    <li><a href="#s6">6 &middot; What networks can do</a></li>
+    <li class="part">Part 1 &middot; Arrows become equations</li>
+    <li><a href="#s1">1 &middot; The modeling contract</a></li>
+    <li><a href="#s2">2 &middot; Work one network completely</a></li>
+    <li><a href="#s3">3 &middot; Invariants before solutions</a></li>
+    <li class="part">Part 2 &middot; One gene, worked through</li>
+    <li><a href="#s4">4 &middot; The two-stage model</a></li>
+    <li><a href="#s5">5 &middot; Lifetime and growth dilution</a></li>
+    <li><a href="#s6">6 &middot; Regulation as an effective rate</a></li>
+    <li class="part">Part 3 &middot; Eliminate a mechanism carefully</li>
+    <li><a href="#s7">7 &middot; Michaelis&ndash;Menten from rates</a></li>
+    <li><a href="#s8">8 &middot; Code and audit the model</a></li>
+    <li class="part">Part 4 &middot; Teach and extend</li>
+    <li><a href="#s9">9 &middot; The core story and beyond</a></li>
     <li class="part">Appendix</li>
-    <li><a href="#refs">References &amp; note sources</a></li>
+    <li><a href="#refs">References &amp; source packet</a></li>
   </ol>
 </nav>
 <main>
 
 <h1>Reaction networks, with the central dogma as the worked example</h1>
-<p class="sub">The one law that turns arrows into equations, and then gene expression as the example that introduces lifetimes, Hill regulation and growth dilution.</p>
-<p class="byline">CCBS &middot; EST 5053 &middot; Fall 2026 &middot; lecture 3 &middot; core page &middot; 2026-09-08 (Tue) 10:40&ndash;12:15 &middot; students present, lecturer-backed</p>
+<p class="sub">Start with molecular events, separate stoichiometry from kinetics, and carry one gene all the way from arrows to timescales, steady state, regulation, and a testable simulation.</p>
+<p class="byline">CCBS &middot; EST 5053 &middot; Fall 2026 &middot; lecture 3 &middot; core page (full) &middot; 2026-09-08 (Tue) 10:40&ndash;12:15 &middot; students present, lecturer-backed</p>
 
-<p>A cell is a soup of reactions. This lecture writes that soup as a dynamical system: mass action gives the rates, stoichiometry gives the bookkeeping, and the result is one matrix equation. The central dogma is the worked example throughout, because it is where the abstract machinery meets numbers you can look up: transcription and translation rates, mRNA and protein lifetimes, Hill functions for regulation, and the dilution term that a constant exponential growth rate contributes to every species in the cell.</p>
-
-<div class="box open">
-<span class="lbl">Still to be written into this core page</span>
-<p>This lecture is new in 2026 or substantially re-scoped, so parts of it are not yet carried over from the 2025 notes. The teaching team should treat this list as the commissioning brief, and the lecturer as the backlog.</p>
-<ul>
-<li>The central dogma as the running example: transcription and translation rates, mRNA and protein copy numbers, and the two-stage production model.</li>
-<li>Lifetime and the degradation rate: why 1/gamma is the only timescale a first-order species has.</li>
-<li>Growth dilution derived: a cell growing exponentially at rate mu contributes a mu*x dilution term to every species, so the effective lifetime is 1/(gamma+mu). Stable proteins in fast-growing cells are diluted, not degraded.</li>
-<li>The Hill function for regulation, presented as a summary of a binding equilibrium rather than a fitted curve.</li>
-</ul>
-</div>
-
-<div class="parthead">
-  <div class="k">Part 1</div>
-  <h2>Mass action</h2>
-  <p>The one law that turns arrows into equations, and the accounting that holds even when you know nothing about rates.</p>
-</div>
-
-<h2 id="s1"><span class="n">1</span>A generic reaction, and the accounting</h2>
-<p class="lede">γ = β − α; every time a reaction fires it changes species j by γⱼ·v.</p>
-
-<p>Write a generic reaction — elementary (→) or composite (⇝), n species, reactants
-<span class="m">αⱼ</span>, products <span class="m">βⱼ</span>:</p>
-
-<div class="eq">α₁X₁ + … + αₙXₙ → β₁X₁ + … + βₙXₙ, &nbsp; γⱼ = βⱼ − αⱼ <span class="tag">(7)</span></div>
-
-<p>The <strong>net-stoichiometry</strong> <span class="m">γⱼ</span> is the only thing the
-accounting needs. Every time the reaction fires with flux <span class="m">v</span>,
-species j changes by <span class="m">γⱼ·v</span>. This is the net-change notation of
-lecture 2 made algebraic.</p>
+<p>A reaction network is a compact causal story. Each reaction column says what one event changes. Each rate law says how often that event occurs in the current state. Multiply the two and the arrows become a vector field. This lecture installs that translation once, then uses transcription and translation to show why the same equation contains steady abundance, response time, regulation, and growth.</p>
 
 <div class="box key">
-<span class="lbl">The accounting statement (say it out loud)</span>
-<p>The equation of a chemical network is pure bookkeeping: where molecules went. It holds
-<em>always</em>, for elementary and composite reactions alike, and it depends only on γ
-— not on α, not on β. You can write it even if you know nothing about the mechanism.
-What you <em>cannot</em> do without kinetics is close the system: that is exactly what
-the next section supplies.</p>
+<span class="lbl">The deliverable</span>
+<p>By the end of 95 minutes, the room should be able to take a small reaction scheme, write <span class="m">ẋ=&Gamma;v(x)</span> with correct signs and units, find conserved totals, derive the two-stage gene-expression steady state, distinguish lifetime from half-life, add growth dilution, and explain exactly which assumption turns enzyme rates into Michaelis&ndash;Menten form.</p>
 </div>
 
-<h2 id="s2"><span class="n">2</span>The law of mass action</h2>
-<p class="lede">For an elementary reaction, the flux is k times the product of reactant concentrations raised to their stoichiometries.</p>
+<dl class="rundown">
+<dt>0&ndash;8 min</dt><dd><strong>Hook.</strong> How can one gene produce a steady protein level and still respond to an input?</dd>
+<dt>8&ndash;25 min</dt><dd><strong>Translation.</strong> Reaction events &rarr; stoichiometric columns &rarr; mass-action rates &rarr; ODE.</dd>
+<dt>25&ndash;37 min</dt><dd><strong>Structure.</strong> Units, positivity, conservation, and accessible state space.</dd>
+<dt>37&ndash;57 min</dt><dd><strong>Worked system.</strong> Build and solve the two-stage central-dogma model.</dd>
+<dt>57&ndash;70 min</dt><dd><strong>Timescales.</strong> Derive lifetime, half-life, and dilution from exponential growth.</dd>
+<dt>70&ndash;81 min</dt><dd><strong>Regulation.</strong> Derive the activating and repressing Hill forms as effective promoter occupancies.</dd>
+<dt>81&ndash;91 min</dt><dd><strong>Mechanism reduction.</strong> Derive Michaelis&ndash;Menten and name the QSSA assumption.</dd>
+<dt>91&ndash;95 min</dt><dd><strong>Exit.</strong> Audit one proposed model and choose a team extension.</dd>
+</dl>
 
-<p>Kinetics supplies the flux. For an elementary reaction, the law that organizes all
-reaction kinetics:</p>
-
-<div class="eq">v(x) = k · X₁<sup>α₁</sup> X₂<sup>α₂</sup> ··· Xₙ<sup>αₙ</sup> = k x<sup>α</sup> <span class="tag">(8)</span></div>
-
-<p>The rationale is the collision picture: the rate is proportional to how often
-reactants meet, which scales as the product of their densities. Example from the
-scribe: <span class="m">E + S → C</span> with rate constant K has
-<span class="m">rate = K·E·S</span> — and if the step is the elementary binding
-<em>of</em> an association-limited reaction, then that K is exactly
-<span class="m">k<sub>on</sub> ≈ 4πDa</span> from lecture 2: the same quantity, one
-derived from physics, one assumed from the arrow. That agreement is the reason the
-course calls (5) an anchor: <em>the law of mass action's</em> constants are not free —
-lecture 2's physics caps them.</p>
-
-<h2 id="s3"><span class="n">3</span>The CRN rate equation</h2>
-<p class="lede">dx/dt = Γv = f⁺ − f⁻: a network's dynamics, split into production and consumption — the form every later week starts from.</p>
-
-<p>Combine accounting (7) with kinetics (8). For m reactions, n species, the network
-obeys<sup class="c"><a href="#r-w2-l2">1</a></sup></p>
-
-<div class="eq">dxⱼ/dt = Σ<sub>i</sub> γ<sub>ij</sub> v<sub>i</sub> = Σ<sub>i: γ>0</sub> γ<sub>ij</sub>v<sub>i</sub> − Σ<sub>i: γ<0</sub> |γ<sub>ij</sub>| v<sub>i</sub> = f<sup>+</sup><sub>j</sub>(x) − f<sup>−</sup><sub>j</sub>(x)</div>
-
-<p>in matrix form</p>
-
-<div class="eq"><b>dx/dt = Γ v(x) = Γ Λ<sub>k</sub> x<sup>α</sup> = f<sup>+</sup>(x) − f<sup>−</sup>(x)</b> <span class="tag">(9)</span></div>
-
-<p>with <span class="m">Γ</span> the n×m net-stoichiometry matrix and
-<span class="m">Λ<sub>k</sub></span> the diagonal matrix of rate constants. Three
-immediate consequences:</p>
-
-<ul>
-<li><strong>Conservation.</strong> Any vector <span class="m">c</span> with
-<span class="m">c<sup>T</sup>Γ = 0</span> is conserved; closed networks have such
-quantities — the accounting's invariant.</li>
-<li><strong>Steady states.</strong> <span class="m">Γv(x*) = 0</span>. Note the split:
-<em>structure</em> (Γ) and <em>kinetics</em> (v) each constrain the fixed point
-separately, which is why lecture 11 can say surprising things about what a network's
-<em>shape</em> alone allows.</li>
-<li><strong>What (9) is not.</strong> It is a proper subset of arbitrary dynamical
-systems. Positivity (the orthant is forward-invariant), polynomiality and parameter
-uncertainty are the structural rules lecture 4 encodes as [P], [CP], [PU].</li>
-</ul>
-
-<div class="parthead">
-  <div class="k">Part 2</div>
-  <h2>Worked models</h2>
-  <p>Three ODEs that carry the course, and the toolkit that solves them.</p>
+<figure>
+<div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img" aria-label="Four-level workflow from reaction events to predictions">
+  <style>.l3a-b{fill:var(--bg);stroke:var(--rule);stroke-width:2}.l3a-a{stroke:var(--teal);stroke-width:3;fill:none}.l3a-t{fill:var(--fg);font:700 18px var(--sans)}.l3a-s{fill:var(--muted);font:15px var(--sans)}.l3a-k{fill:var(--rose);font:700 13px var(--mono)}</style>
+  <defs><marker id="l3a-arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="var(--teal)"/></marker></defs>
+  <g transform="translate(30 75)"><rect class="l3a-b" width="180" height="170" rx="14"/><text class="l3a-k" x="18" y="30">EVENTS</text><text class="l3a-t" x="90" y="77" text-anchor="middle">E + S ⇌ C</text><text class="l3a-s" x="90" y="112" text-anchor="middle">what one firing</text><text class="l3a-s" x="90" y="135" text-anchor="middle">consumes / produces</text></g>
+  <path class="l3a-a" marker-end="url(#l3a-arr)" d="M218 160H252"/>
+  <g transform="translate(260 75)"><rect class="l3a-b" width="180" height="170" rx="14"/><text class="l3a-k" x="18" y="30">ACCOUNTING</text><text class="l3a-t" x="90" y="78" text-anchor="middle">Γ</text><text class="l3a-s" x="90" y="112" text-anchor="middle">columns are</text><text class="l3a-s" x="90" y="135" text-anchor="middle">products − reactants</text></g>
+  <path class="l3a-a" marker-end="url(#l3a-arr)" d="M448 160H482"/>
+  <g transform="translate(490 75)"><rect class="l3a-b" width="180" height="170" rx="14"/><text class="l3a-k" x="18" y="30">KINETICS</text><text class="l3a-t" x="90" y="78" text-anchor="middle">v(x)</text><text class="l3a-s" x="90" y="112" text-anchor="middle">mass action or a</text><text class="l3a-s" x="90" y="135" text-anchor="middle">declared effective law</text></g>
+  <path class="l3a-a" marker-end="url(#l3a-arr)" d="M678 160H712"/>
+  <g transform="translate(720 75)"><rect class="l3a-b" width="150" height="170" rx="14"/><text class="l3a-k" x="18" y="30">DYNAMICS</text><text class="l3a-t" x="75" y="78" text-anchor="middle">ẋ = Γv(x)</text><text class="l3a-s" x="75" y="112" text-anchor="middle">trajectory, steady</text><text class="l3a-s" x="75" y="135" text-anchor="middle">state, experiment</text></g>
+  <text class="l3a-s" x="450" y="320" text-anchor="middle">Keep the levels separate: a reaction drawing fixes Γ, but only an elementary mechanism fixes v(x).</text>
+</svg>
 </div>
+<figcaption><b>Figure 1. The modeling contract.</b> Do not jump from a cartoon to a differential equation. Stoichiometry and kinetics provide separate pieces of evidence, and a composite arrow does not specify a mass-action rate.</figcaption>
+</figure>
 
-<h2 id="s4"><span class="n">4</span>Three ODEs that carry the course</h2>
-<p class="lede">Production–degradation, the TXTL circuit, and the S-shaped bistable — every later week is a variation on these.</p>
+<div class="parthead"><div class="k">Part 1</div><h2>Arrows become equations</h2><p>One convention for signs, one rule for elementary rates, and three structural checks before any solver is opened.</p></div>
 
-<p>The 2025 handwritten notes develop the gallery in order:<sup class="c"><a href="#r-w2-l2">2</a></sup></p>
+<h2 id="s1"><span class="n">1</span>The modeling contract</h2>
+<p class="lede">A reaction drawing answers “what changes?” A kinetic law answers “how often?” Only together do they close the dynamics.</p>
+<p>For reaction <span class="m">i</span>, write its reactant vector <span class="m">&alpha;<sub>i</sub></span> and product vector <span class="m">&beta;<sub>i</sub></span>. The net change from one firing is</p>
+<div class="eq">&gamma;<sub>i</sub> = &beta;<sub>i</sub> &minus; &alpha;<sub>i</sub>. <span class="tag">(1)</span></div>
+<p>Place these columns in the stoichiometric matrix <span class="m">&Gamma;</span>. If <span class="m">v<sub>i</sub>(x)</span> is the firing rate per volume, bookkeeping gives</p>
+<div class="eq"><b>ẋ = &Gamma;v(x)</b>. <span class="tag">(2)</span></div>
+<p>Equation (2) is an identity once the species, reactions, and rates are chosen. For an <em>elementary</em> reaction, mass action supplies</p>
+<div class="eq">v<sub>i</sub>(x)=k<sub>i</sub>&prod;<sub>j</sub>x<sub>j</sub><sup>&alpha;<sub>ji</sub></sup>. <span class="tag">(3)</span></div>
+<p>The product contains reactants only. The net stoichiometric coefficients belong in <span class="m">&Gamma;</span>, not in the rate monomial. The 2025 notes introduce this two-way relation as <span class="m">x&rarr;v</span> from mechanism and <span class="m">v&rarr;x</span> from bookkeeping.<sup class="c"><a href="#r-l3">2</a></sup></p>
 
-<div class="eq">ẋ = μ − x <span class="tag">(10)</span></div>
+<div class="tablewrap"><table><caption>Table 1. Units are a fast error detector. Concentration is measured here in M and time in s.</caption><thead><tr><th>Elementary step</th><th>Mass-action rate</th><th>Units of k</th></tr></thead><tbody>
+<tr><td><span class="m">A &rarr; B</span></td><td><span class="m">kA</span></td><td class="num">s<sup>&minus;1</sup></td></tr>
+<tr><td><span class="m">A+B &rarr; C</span></td><td><span class="m">kAB</span></td><td class="num">M<sup>&minus;1</sup>s<sup>&minus;1</sup></td></tr>
+<tr><td><span class="m">2A &rarr; C</span></td><td><span class="m">kA<sup>2</sup></span></td><td class="num">M<sup>&minus;1</sup>s<sup>&minus;1</sup></td></tr>
+<tr><td><span class="m">A+B+C &rarr; D</span></td><td><span class="m">kABC</span></td><td class="num">M<sup>&minus;2</sup>s<sup>&minus;1</sup></td></tr>
+</tbody></table></div>
+<div class="checkpoint"><strong>Room check, 90 seconds.</strong> For <span class="m">2A+B&rarr;3B</span>, one firing changes <span class="m">(A,B)</span> by <span class="m">(&minus;2,+2)</span>, while its elementary rate is <span class="m">kA<sup>2</sup>B</span>. Therefore <span class="m">Ȧ=&minus;2kA<sup>2</sup>B</span> and <span class="m">Ḃ=+2kA<sup>2</sup>B</span>.</div>
 
-<p><strong>Production–degradation</strong> (the scribe's Exp 4). Fixed point
-<span class="m">x* = μ</span>; relaxation with timescale 1. Nothing else happens — and
-that "nothing else" is the null model of every gene-expression circuit.</p>
+<h2 id="s2"><span class="n">2</span>Work one network completely</h2>
+<p class="lede">Binding plus catalysis is the smallest network that exposes reversible events, an intermediate, conservation, and a composite rate law.</p>
+<div class="eq">E+S ⇌ C &rarr; E+P. <span class="tag">(4)</span></div>
+<p>Use species order <span class="m">(E,S,C,P)</span> and reaction order association, dissociation, catalysis. Build one column at a time:</p>
+<div class="tablewrap"><table><thead><tr><th>event</th><th>&Delta;E</th><th>&Delta;S</th><th>&Delta;C</th><th>&Delta;P</th><th>rate</th></tr></thead><tbody>
+<tr><td><span class="m">E+S&rarr;C</span></td><td class="num">&minus;1</td><td class="num">&minus;1</td><td class="num">+1</td><td class="num">0</td><td><span class="m">k<sub>on</sub>ES</span></td></tr>
+<tr><td><span class="m">C&rarr;E+S</span></td><td class="num">+1</td><td class="num">+1</td><td class="num">&minus;1</td><td class="num">0</td><td><span class="m">k<sub>off</sub>C</span></td></tr>
+<tr><td><span class="m">C&rarr;E+P</span></td><td class="num">+1</td><td class="num">0</td><td class="num">&minus;1</td><td class="num">+1</td><td><span class="m">k<sub>cat</sub>C</span></td></tr>
+</tbody></table></div>
+<div class="eq">&Gamma; = [ &minus;1 &nbsp; +1 &nbsp; +1<br>&minus;1 &nbsp; +1 &nbsp;&nbsp; 0<br>+1 &nbsp; &minus;1 &nbsp; &minus;1<br>&nbsp;0 &nbsp;&nbsp;&nbsp; 0 &nbsp; +1 ], &nbsp;&nbsp; v = [k<sub>on</sub>ES,;k<sub>off</sub>C,;k<sub>cat</sub>C]<sup>T</sup>. <span class="tag">(5)</span></div>
+<p>Multiply the rows by the rate column. Nothing is guessed:</p>
+<div class="eq">Ė=&minus;k<sub>on</sub>ES+k<sub>off</sub>C+k<sub>cat</sub>C<br>Ṡ=&minus;k<sub>on</sub>ES+k<sub>off</sub>C<br>Ċ=&nbsp;k<sub>on</sub>ES&minus;(k<sub>off</sub>+k<sub>cat</sub>)C<br>Ṗ=&nbsp;k<sub>cat</sub>C. <span class="tag">(6)</span></div>
+<p>The distinction between an elementary straight arrow and a composite net arrow is essential. Lecture 2 derives the diffusion ceiling for an elementary bimolecular association. A squiggly arrow such as <span class="m">S&#8669;P</span> only records net change; it does not license <span class="m">v=kS</span>.<sup class="c"><a href="#r-l2">1</a></sup></p>
 
-<div class="eq">dM/dt = k<sub>M</sub>G − γ<sub>M</sub>M, &nbsp; dP/dt = k<sub>H</sub>M − γ<sub>P</sub>P <span class="tag">(11)</span></div>
+<h2 id="s3"><span class="n">3</span>Invariants before solutions</h2>
+<p class="lede">The reaction matrix already identifies the physical state space. Solve inside it, not in all of Euclidean space.</p>
+<p>A row vector <span class="m">ℓ<sup>T</sup></span> in the left nullspace of <span class="m">&Gamma;</span> obeys</p>
+<div class="eq">d(ℓ<sup>T</sup>x)/dt = ℓ<sup>T</sup>&Gamma;v(x)=0. <span class="tag">(7)</span></div>
+<p>For (4), add the enzyme equations and add the substrate-containing equations:</p>
+<div class="formula-pair"><div class="eq">E+C=E<sub>T</sub></div><div class="eq">S+C+P=S<sub>T</sub></div></div>
+<p>Those conserved totals reduce four variables to two. They also provide two exact simulation checks. Mass action preserves nonnegativity: at a boundary where one concentration is zero, every reaction that consumes it has zero rate. Horn and Jackson made stoichiometric compatibility classes central to chemical reaction network theory.<sup class="c"><a href="#r-horn">3</a></sup></p>
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430">
+  <style>.plane{fill:color-mix(in srgb,var(--accent) 13%,transparent);stroke:var(--accent);stroke-width:3}.ax{stroke:var(--ink);stroke-width:2}.traj{fill:none;stroke:var(--blue);stroke-width:4}.t{fill:var(--ink);font:600 18px system-ui}.s{fill:var(--muted);font:15px system-ui}</style>
+  <defs><marker id="aa" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0 0L0 6L8 3z" fill="var(--blue)"/></marker></defs>
+  <line class="ax" x1="120" y1="350" x2="790" y2="350"/><line class="ax" x1="120" y1="350" x2="120" y2="55"/><line class="ax" x1="120" y1="350" x2="350" y2="110"/>
+  <text class="t" x="805" y="356">A</text><text class="t" x="105" y="48">B</text><text class="t" x="357" y="105">C</text>
+  <polygon class="plane" points="210,320 650,320 315,105"/><text class="t" x="405" y="180" text-anchor="middle">A + B + C = T</text>
+  <path class="traj" marker-end="url(#aa)" d="M255 285 C330 250 440 270 520 220 C555 197 575 175 590 145"/><circle cx="590" cy="145" r="9" fill="var(--accent)"/>
+  <text class="s" x="450" y="395" text-anchor="middle">stoichiometry confines the trajectory before stability analysis begins</text>
+</svg>
+</div><figcaption><b>Figure 2. Chemistry shrinks state space.</b> A conservation law cuts an invariant slice from the nonnegative orthant. Equilibria outside that slice are mathematically present but unreachable from the chosen initial condition.</figcaption></figure>
+<div class="box caution"><span class="lbl">Three checks before simulation</span><ol><li>Every term in each ODE has concentration-per-time units.</li><li>The vector field points inward on every zero-concentration boundary.</li><li>Every claimed conserved total has derivative exactly zero after substitution.</li></ol></div>
 
-<p><strong>The TXTL-style circuit</strong> — transcription (with inducible rate) and
-translation, both diluted/degraded. Two variables, one matrix; its stability analysis
-is lecture 4's first exercise.</p>
+<div class="parthead"><div class="k">Part 2</div><h2>One gene, worked through</h2><p>The central dogma becomes a two-stage filter. Its rates determine abundance; its losses determine memory.</p></div>
 
-<div class="eq">ẋ = f<sup>+</sup>(x) − x, &nbsp; f<sup>+</sup> an S-shaped (Hill-type) production term <span class="tag">(12)</span></div>
+<h2 id="s4"><span class="n">4</span>The two-stage central-dogma model</h2>
+<p class="lede">Transcription produces a short-lived message; translation turns that message into a longer-lived output.</p>
+<p>Write four composite events, each with its declared effective rate:</p>
+<div class="eq">G ⇝ G+M &nbsp;(k<sub>tx</sub>G), &nbsp; M&rarr;&empty; &nbsp;(&delta;<sub>M</sub>M),<br>M ⇝ M+P &nbsp;(k<sub>tl</sub>M), &nbsp; P&rarr;&empty; &nbsp;(&delta;<sub>P</sub>P). <span class="tag">(8)</span></div>
+<p>At the concentration level in exponentially growing cells, growth adds dilution rate <span class="m">&mu;</span>. The model is</p>
+<div class="eq"><b>Ṁ=k<sub>tx</sub>G&minus;(&delta;<sub>M</sub>+&mu;)M</b><br><b>Ṗ=k<sub>tl</sub>M&minus;(&delta;<sub>P</sub>+&mu;)P.</b> <span class="tag">(9)</span></div>
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-label="Two-stage central dogma model with production degradation and dilution">
+  <style>.l3b-node{fill:var(--bg2);stroke:var(--fg);stroke-width:2}.l3b-prod{stroke:var(--teal);stroke-width:5;fill:none}.l3b-loss{stroke:var(--coral);stroke-width:4;fill:none}.l3b-t{fill:var(--fg);font:700 20px var(--sans)}.l3b-s{fill:var(--muted);font:15px var(--sans)}.l3b-eq{fill:var(--rose);font:700 16px var(--mono)}</style>
+  <defs><marker id="l3b-p" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3z" fill="var(--teal)"/></marker><marker id="l3b-l" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3z" fill="var(--coral)"/></marker></defs>
+  <rect class="l3b-node" x="80" y="105" width="160" height="90" rx="45"/><text class="l3b-t" x="160" y="145" text-anchor="middle">gene G</text><text class="l3b-s" x="160" y="170" text-anchor="middle">fixed copy number</text>
+  <rect class="l3b-node" x="370" y="105" width="160" height="90" rx="45"/><text class="l3b-t" x="450" y="145" text-anchor="middle">mRNA M</text><text class="l3b-s" x="450" y="170" text-anchor="middle">short memory</text>
+  <rect class="l3b-node" x="660" y="105" width="160" height="90" rx="45"/><text class="l3b-t" x="740" y="145" text-anchor="middle">protein P</text><text class="l3b-s" x="740" y="170" text-anchor="middle">output</text>
+  <path class="l3b-prod" marker-end="url(#l3b-p)" d="M245 150H355"/><text class="l3b-eq" x="300" y="130" text-anchor="middle">k<tspan baseline-shift="sub" font-size="11">tx</tspan>G</text>
+  <path class="l3b-prod" marker-end="url(#l3b-p)" d="M535 150H645"/><text class="l3b-eq" x="590" y="130" text-anchor="middle">k<tspan baseline-shift="sub" font-size="11">tl</tspan>M</text>
+  <path class="l3b-loss" marker-end="url(#l3b-l)" d="M450 205V285"/><text class="l3b-eq" x="465" y="250">(δ<tspan baseline-shift="sub" font-size="11">M</tspan>+μ)M</text>
+  <path class="l3b-loss" marker-end="url(#l3b-l)" d="M740 205V285"/><text class="l3b-eq" x="755" y="250">(δ<tspan baseline-shift="sub" font-size="11">P</tspan>+μ)P</text>
+  <text class="l3b-t" x="450" y="350" text-anchor="middle">Ṁ = k<tspan baseline-shift="sub" font-size="13">tx</tspan>G − (δ<tspan baseline-shift="sub" font-size="13">M</tspan>+μ)M</text>
+  <text class="l3b-t" x="450" y="385" text-anchor="middle">Ṗ = k<tspan baseline-shift="sub" font-size="13">tl</tspan>M − (δ<tspan baseline-shift="sub" font-size="13">P</tspan>+μ)P</text>
+</svg>
+</div><figcaption><b>Figure 3. The central dogma as a cascade of two leaky integrators.</b> Messenger RNA is the intermediate state. Every production arrow has a matching rate; every loss arrow contributes to the diagonal decay term.</figcaption></figure>
+<p>Set the derivatives to zero in causal order:</p>
+<ol class="steps"><li>Solve the mRNA balance: <span class="m">M* = k<sub>tx</sub>G/(&delta;<sub>M</sub>+&mu;)</span>.</li><li>Insert that result into the protein balance: <span class="m">P* = k<sub>tl</sub>M*/(&delta;<sub>P</sub>+&mu;)</span>.</li><li>Combine them: <span class="m">P*=k<sub>tx</sub>k<sub>tl</sub>G/[(&delta;<sub>M</sub>+&mu;)(&delta;<sub>P</sub>+&mu;)]</span>.</li></ol>
 
-<p><strong>The bistable construction.</strong> With an S-shaped production, (12) has
-three fixed points: two stable, one unstable. This is the toggle switch's skeleton —
-and lecture 8 will say exactly how the S-shape can arise from a CRN (cooperativity, or
-the saturation/bottleneck/ultrasensitivity regimes of one binding reaction).</p>
+<h3>A concrete classroom parameter set</h3>
+<p>Use minutes and nM. These are deliberately round teaching values, not a fit to a particular promoter: <span class="m">k<sub>tx</sub>G=2 nM min<sup>&minus;1</sup></span>, <span class="m">k<sub>tl</sub>=10 min<sup>&minus;1</sup></span>, mRNA intrinsic half-life 3 min, protein intrinsic half-life 60 min, and cell doubling time 30 min.</p>
+<div class="tablewrap"><table><thead><tr><th>quantity</th><th>calculation</th><th>value</th></tr></thead><tbody>
+<tr><td>growth rate</td><td><span class="m">&mu;=ln2/30</span></td><td class="num">0.0231 min<sup>&minus;1</sup></td></tr>
+<tr><td>mRNA degradation</td><td><span class="m">&delta;<sub>M</sub>=ln2/3</span></td><td class="num">0.231 min<sup>&minus;1</sup></td></tr>
+<tr><td>protein degradation</td><td><span class="m">&delta;<sub>P</sub>=ln2/60</span></td><td class="num">0.0116 min<sup>&minus;1</sup></td></tr>
+<tr><td>mRNA steady state</td><td><span class="m">2/(0.231+0.0231)</span></td><td class="num">7.87 nM</td></tr>
+<tr><td>protein steady state</td><td><span class="m">10&times;7.87/(0.0116+0.0231)</span></td><td class="num">2.27 &micro;M</td></tr>
+</tbody></table></div>
+<p>In a 1 fL cell, 1 nM corresponds to 0.602 molecule on average, so this parameter set corresponds to about 4.7 mRNAs and 1.37&times;10<sup>3</sup> proteins. The conversion is not needed by the ODE, but it tells us that mRNA discreteness will matter in Lecture 5. Single-molecule measurements confirm that bacterial mRNAs often occupy this low-copy regime while proteins span a much wider range.<sup class="c"><a href="#r-taniguchi">7</a></sup></p>
+<div class="checkpoint"><strong>Room check, 2 minutes.</strong> If translation doubles while every loss rate stays fixed, <span class="m">M*</span> is unchanged and <span class="m">P*</span> doubles. If growth doubles, both denominators change, so the effect is stronger than “protein is diluted faster.”</div>
 
-<h2 id="s5"><span class="n">5</span>The simulation toolkit</h2>
-<p class="lede">Deterministic solvers first; the CRN zoo next; Gillespie in lecture 5.</p>
+<h2 id="s5"><span class="n">5</span>Lifetime, half-life, and growth dilution</h2>
+<p class="lede">For <span class="m">ẋ=a&minus;bx</span>, the same coefficient <span class="m">b</span> sets steady abundance and response speed.</p>
+<p>Subtract the steady state <span class="m">x*=a/b</span>. The deviation <span class="m">q=x&minus;x*</span> obeys <span class="m">q̇=&minus;bq</span>, hence</p>
+<div class="eq">x(t)=x*+[x(0)&minus;x*]e<sup>&minus;bt</sup>, &nbsp;&nbsp; &tau;=1/b, &nbsp;&nbsp; t<sub>1/2</sub>=ln2/b. <span class="tag">(10)</span></div>
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-label="First order production loss response and its time constant and half-life">
+  <style>.l3c-ax{stroke:var(--fg);stroke-width:2}.l3c-guide{stroke:var(--gridc);stroke-width:2;stroke-dasharray:7 6}.l3c-curve{stroke:var(--teal);stroke-width:6;fill:none}.l3c-t{fill:var(--fg);font:700 18px var(--sans)}.l3c-s{fill:var(--muted);font:15px var(--sans)}.l3c-k{fill:var(--rose);font:700 16px var(--mono)}</style>
+  <line class="l3c-ax" x1="90" y1="350" x2="830" y2="350"/><line class="l3c-ax" x1="90" y1="350" x2="90" y2="55"/><text class="l3c-t" x="840" y="356">time</text><text class="l3c-t" x="76" y="45">x</text>
+  <line class="l3c-guide" x1="90" y1="100" x2="820" y2="100"/><text class="l3c-k" x="815" y="88" text-anchor="end">x* = a/b</text>
+  <path class="l3c-curve" d="M90 350 C180 250 245 170 355 122 C485 76 655 102 820 100"/>
+  <line class="l3c-guide" x1="250" y1="350" x2="250" y2="192"/><text class="l3c-k" x="250" y="380" text-anchor="middle">t<tspan baseline-shift="sub" font-size="11">1/2</tspan> = ln2/b</text><text class="l3c-s" x="262" y="186">50% of final</text>
+  <line class="l3c-guide" x1="320" y1="350" x2="320" y2="142"/><text class="l3c-k" x="320" y="410" text-anchor="middle">τ = 1/b</text><text class="l3c-s" x="332" y="137">63% of final</text>
+  <text class="l3c-s" x="500" y="315">x(t) = x* + [x(0) − x*]e<tspan baseline-shift="super" font-size="11">−bt</tspan></text>
+</svg>
+</div><figcaption><b>Figure 4. One coefficient, two clocks.</b> The time constant is when 63% of a step response is complete. The half-life is when 50% of an initial excess remains. They differ by the factor <span class="m">ln2</span>.</figcaption></figure>
+<p>Growth dilution is not an extra degradation reaction. Derive it from concentration. If molecule amount is <span class="m">N</span>, cell volume is <span class="m">V</span>, and <span class="m">x=N/V</span>, then</p>
+<ol class="steps"><li>Balanced exponential growth gives <span class="m">V̇=&mu;V</span>.</li><li>Differentiate the quotient: <span class="m">ẋ=Ṅ/V&minus;(N/V)(V̇/V)</span>.</li><li>Substitute <span class="m">V̇/V=&mu;</span>: <span class="m">ẋ=Ṅ/V&minus;&mu;x</span>.</li><li>If molecular degradation adds <span class="m">&minus;&delta;x</span>, the total concentration loss is <span class="m">&minus;(&delta;+&mu;)x</span>.</li></ol>
+<p>For the worked protein, intrinsic half-life 60 min and dilution half-life 30 min combine to an effective half-life of 20 min:</p>
+<div class="eq">t<sub>1/2,eff</sub> = ln2/(&delta;<sub>P</sub>+&mu;) = [1/60+1/30]<sup>&minus;1</sup> = 20 min. <span class="tag">(11)</span></div>
+<p>For a perfectly stable protein, <span class="m">&delta;<sub>P</sub>=0</span>; its concentration still forgets with the doubling time. Growth also changes gene copy number, polymerase and ribosome supply, and cell volume, so dilution is only the first layer of growth coupling.<sup class="c"><a href="#r-klumpp">6</a></sup> In contrast, a genome-wide study found that roughly 80% of measured <em>E. coli</em> mRNAs had half-lives between 3 and 8 min.<sup class="c"><a href="#r-bernstein">5</a></sup></p>
 
-<p>"Let's see" means "let's solve" from here on. Deterministic ODEs (any stiff-aware
-solver; the 2025 course's scribes and code are published with each lecture) for lectures
-3 and 4; the Gillespie algorithm enters in lecture 5 when copy numbers get small. The zoo to
-keep on hand: birth–death (10), dimerization <span class="m">2A ⇌ A₂</span> (the
-first nonlinearity and a conservation check on (9)), autocatalysis, the enzyme module
-(1), and the inducible/repressible genes of (11). Every model in the zoo should be
-written as (9) first: <em>Γ, then v.</em></p>
+<h2 id="s6"><span class="n">6</span>Regulation as an effective production rate</h2>
+<p class="lede">A Hill function can summarize promoter occupancy. It is not itself an elementary reaction and its exponent is not automatically a molecule count.</p>
+<p>Suppose a promoter is inactive when free and active when bound by an <span class="m">n</span>-mer of activator:</p>
+<div class="eq">P<sub>0</sub>+nA ⇌ P<sub>A</sub>, &nbsp;&nbsp; K<sup>n</sup>=[P<sub>0</sub>]A<sup>n</sup>/[P<sub>A</sub>]. <span class="tag">(12)</span></div>
+<p>With <span class="m">P<sub>T</sub>=P<sub>0</sub>+P<sub>A</sub></span>, solve for the active fraction:</p>
+<div class="eq">p<sub>on</sub>=[P<sub>A</sub>]/P<sub>T</sub>=A<sup>n</sup>/(K<sup>n</sup>+A<sup>n</sup>). <span class="tag">(13)</span></div>
+<p>If transcription is fast enough to be summarized by occupancy, replace the constant source in (9) by <span class="m">k<sub>max</sub>p<sub>on</sub>(A)</span>. For a repressor that blocks transcription when bound, the unbound fraction is</p>
+<div class="eq">p<sub>on</sub>=K<sup>n</sup>/(K<sup>n</sup>+R<sup>n</sup>)=1/[1+(R/K)<sup>n</sup>]. <span class="tag">(14)</span></div>
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img" aria-label="Promoter occupancy and activating and repressing Hill curves">
+  <style>.l3d-ax{stroke:var(--fg);stroke-width:2}.l3d-a{stroke:var(--teal);stroke-width:6;fill:none}.l3d-r{stroke:var(--coral);stroke-width:6;fill:none}.l3d-g{stroke:var(--gridc);stroke-width:2;stroke-dasharray:7 6}.l3d-t{fill:var(--fg);font:700 18px var(--sans)}.l3d-s{fill:var(--muted);font:15px var(--sans)}.l3d-k{fill:var(--rose);font:700 15px var(--mono)}</style>
+  <line class="l3d-ax" x1="100" y1="370" x2="820" y2="370"/><line class="l3d-ax" x1="100" y1="370" x2="100" y2="60"/><text class="l3d-t" x="830" y="376">regulator u</text><text class="l3d-t" x="40" y="48">fractional rate</text>
+  <line class="l3d-g" x1="100" y1="215" x2="820" y2="215"/><line class="l3d-g" x1="420" y1="370" x2="420" y2="70"/><text class="l3d-k" x="420" y="400" text-anchor="middle">u = K</text><text class="l3d-s" x="112" y="208">1/2</text>
+  <path class="l3d-a" d="M100 370 C260 369 350 345 400 255 C450 165 545 92 820 82"/><path class="l3d-r" d="M100 80 C260 81 350 105 400 195 C450 285 545 358 820 368"/>
+  <text class="l3d-k" x="640" y="112">activation u<tspan baseline-shift="super" font-size="10">n</tspan>/(K<tspan baseline-shift="super" font-size="10">n</tspan>+u<tspan baseline-shift="super" font-size="10">n</tspan>)</text>
+  <text class="l3d-k" x="570" y="338">repression K<tspan baseline-shift="super" font-size="10">n</tspan>/(K<tspan baseline-shift="super" font-size="10">n</tspan>+u<tspan baseline-shift="super" font-size="10">n</tspan>)</text>
+  <text class="l3d-s" x="450" y="435" text-anchor="middle">K fixes the midpoint; n fixes local steepness. Neither identifies a unique molecular mechanism.</text>
+</svg>
+</div><figcaption><b>Figure 5. The Hill pair.</b> Both curves are half-maximal at <span class="m">u=K</span>. The exponent controls steepness. A fitted exponent can summarize cooperativity, multiple hidden steps, or heterogeneity, so mechanism must be justified separately.</figcaption></figure>
+<div class="box caution"><span class="lbl">Do not over-read n</span><p>The derivation in (12)&ndash;(13) gives a literal binding stoichiometry only for the stated concerted equilibrium. In real promoter models, a Hill coefficient is often an effective log-slope. Use it to describe input&ndash;output shape; do not infer a unique microscopic mechanism from the fit.</p></div>
 
-<h2 id="s6"><span class="n">6</span>What networks can do</h2>
-<p class="lede">The teaser that opens lecture 4, and the reason this lecture's vocabulary is worth the effort.</p>
+<div class="parthead"><div class="k">Part 3</div><h2>Eliminate a mechanism carefully</h2><p>Michaelis&ndash;Menten is the first example where an intermediate disappears from the final rate law, but its assumptions must remain visible.</p></div>
 
-<p>With (9) in hand, the course's first big question appears: <em>what can a network
-do?</em> The CRN equation is a constrained dynamical system, so its behaviors are
-restricted — but within the restrictions lie bistability, oscillations, adaptation,
-computation. The lecturer's addendum states the question cleanly: lecture 4 will
-map what (9) can draw (phase portraits, stability, time-scale separation), lecture 10 will
-ask how a network adapts, lecture 5 how it behaves when the counts are small, and lecture 12
-what it computes. Every one of those questions starts with the same two sentences:
-write Γ; write v.</p>
+<h2 id="s7"><span class="n">7</span>Michaelis&ndash;Menten from rates</h2>
+<p class="lede">Conservation removes free enzyme. Quasi-steady state removes the complex derivative. The resulting constant is <span class="m">K<sub>M</sub></span>, not generally <span class="m">K<sub>d</sub></span>.</p>
+<p>Return to (4) and use <span class="m">E=E<sub>T</sub>&minus;C</span>:</p>
+<div class="eq">Ċ=k<sub>on</sub>(E<sub>T</sub>&minus;C)S&minus;(k<sub>off</sub>+k<sub>cat</sub>)C. <span class="tag">(15)</span></div>
+<ol class="steps"><li>After the initial complex-building transient, assume <span class="m">Ċ&asymp;0</span>. Lecture 6 derives when this standard QSSA is valid.</li><li>Move the loss term: <span class="m">k<sub>on</sub>E<sub>T</sub>S=[k<sub>on</sub>S+k<sub>off</sub>+k<sub>cat</sub>]C</span>.</li><li>Divide by <span class="m">k<sub>on</sub></span> and define <span class="m">K<sub>M</sub>=(k<sub>off</sub>+k<sub>cat</sub>)/k<sub>on</sub></span>.</li><li>Solve <span class="m">C=E<sub>T</sub>S/(K<sub>M</sub>+S)</span>.</li><li>Product forms at <span class="m">v=Ṗ=k<sub>cat</sub>C</span>, so <span class="m">v=V<sub>max</sub>S/(K<sub>M</sub>+S)</span> with <span class="m">V<sub>max</sub>=k<sub>cat</sub>E<sub>T</sub></span>.</li></ol>
+<figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img" aria-label="Michaelis Menten reaction scheme, complex balance and saturation curve">
+  <style>.l3e-ax{stroke:var(--fg);stroke-width:2}.l3e-c{stroke:var(--teal);stroke-width:6;fill:none}.l3e-g{stroke:var(--gridc);stroke-width:2;stroke-dasharray:7 6}.l3e-t{fill:var(--fg);font:700 18px var(--sans)}.l3e-s{fill:var(--muted);font:15px var(--sans)}.l3e-k{fill:var(--rose);font:700 16px var(--mono)}.l3e-b{fill:var(--bg2);stroke:var(--rule);stroke-width:2}</style>
+  <rect class="l3e-b" x="45" y="60" width="810" height="90" rx="12"/><text class="l3e-t" x="450" y="96" text-anchor="middle">E + S ⇌ C → E + P</text><text class="l3e-k" x="450" y="130" text-anchor="middle">Ċ = k<tspan baseline-shift="sub" font-size="11">on</tspan>(E<tspan baseline-shift="sub" font-size="11">T</tspan>−C)S − (k<tspan baseline-shift="sub" font-size="11">off</tspan>+k<tspan baseline-shift="sub" font-size="11">cat</tspan>)C</text>
+  <line class="l3e-ax" x1="100" y1="405" x2="830" y2="405"/><line class="l3e-ax" x1="100" y1="405" x2="100" y2="185"/><text class="l3e-t" x="838" y="411">S</text><text class="l3e-t" x="77" y="178">v</text>
+  <line class="l3e-g" x1="100" y1="215" x2="820" y2="215"/><text class="l3e-k" x="810" y="202" text-anchor="end">V<tspan baseline-shift="sub" font-size="11">max</tspan> = k<tspan baseline-shift="sub" font-size="11">cat</tspan>E<tspan baseline-shift="sub" font-size="11">T</tspan></text>
+  <path class="l3e-c" d="M100 405 C210 310 330 260 460 238 C590 222 700 217 820 215"/>
+  <line class="l3e-g" x1="300" y1="405" x2="300" y2="310"/><line class="l3e-g" x1="100" y1="310" x2="300" y2="310"/><text class="l3e-k" x="300" y="438" text-anchor="middle">K<tspan baseline-shift="sub" font-size="11">M</tspan></text><text class="l3e-s" x="112" y="302">V<tspan baseline-shift="sub" font-size="10">max</tspan>/2</text>
+  <text class="l3e-k" x="520" y="375">v = V<tspan baseline-shift="sub" font-size="11">max</tspan>S/(K<tspan baseline-shift="sub" font-size="11">M</tspan>+S)</text>
+</svg>
+</div><figcaption><b>Figure 6. The saturation curve remembers its mechanism.</b> At <span class="m">S=K<sub>M</sub></span>, the rate is half maximum. At low substrate it is approximately first order in <span class="m">S</span>; at high substrate the enzyme pool is the bottleneck.</figcaption></figure>
+<p>Briggs and Haldane's 1925 argument is a steady-state argument for the enzyme complex.<sup class="c"><a href="#r-briggs">4</a></sup> Rapid equilibrium instead assumes catalysis is slow compared with dissociation and uses <span class="m">K<sub>d</sub>=k<sub>off</sub>/k<sub>on</sub></span>. The constants agree only when <span class="m">k<sub>cat</sub>&ll;k<sub>off</sub></span>.</p>
+<div class="checkpoint"><strong>Room check, 2 minutes.</strong> If <span class="m">k<sub>cat</sub></span> doubles, <span class="m">V<sub>max</sub></span> doubles and <span class="m">K<sub>M</sub></span> also changes. If a derivation calls <span class="m">K<sub>M</sub></span> a binding affinity without checking <span class="m">k<sub>cat</sub>&ll;k<sub>off</sub></span>, the interpretation is not justified.</div>
 
-<div class="box open">
-<span class="lbl">Extension mini-essay prompts</span>
-<p>One of: (a) estimate + verify the turnover rate of your favorite enzyme against the
-10⁹ limit (the derivation of (6) is the reference); (b) derive the rate law of a
-composite reaction you choose, and show which dominance regime it lives in; (c) build a
-CRN whose steady state hides a conserved quantity and show (9)'s accounting on it.
-Same format: one example, one number made by code, one source.</p>
-</div>
+<h2 id="s8"><span class="n">8</span>Code and audit the model</h2>
+<p class="lede">A simulation is useful when it tests the equations and their regime, not when it merely redraws the expected curve.</p>
+<p>A minimal implementation should keep the reaction representation visible:</p>
+<div class="eq">state x; parameters k; matrix &Gamma;<br>rate(x): return [k<sub>on</sub>ES, k<sub>off</sub>C, k<sub>cat</sub>C]<br>rhs(t,x): return &Gamma; @ rate(x)<br>integrate rhs; verify x&ge;0 and conserved totals. <span class="tag">(16)</span></div>
+<div class="tablewrap"><table><thead><tr><th>Test</th><th>Expected result</th><th>Failure means</th></tr></thead><tbody>
+<tr><td>halve the solver step</td><td>claimed observable barely changes</td><td>numerical artifact or stiffness</td></tr>
+<tr><td>track <span class="m">E+C</span></td><td>constant to tolerance</td><td>sign or integration error</td></tr>
+<tr><td>start on a zero boundary</td><td>no negative concentration</td><td>invalid kinetic implementation</td></tr>
+<tr><td>compare full and QSSA models</td><td>agreement after a short boundary layer in the stated regime</td><td>timescale assumption fails</td></tr>
+<tr><td>change units min &harr; s</td><td>same physical trajectory after parameter conversion</td><td>mixed units</td></tr>
+</tbody></table></div>
+<div class="box sim"><span class="lbl">The one plot worth showing live</span><p>Step the promoter source from 0 to its working value and plot <span class="m">M(t)</span> and <span class="m">P(t)</span> on the same normalized axis. Mark each time constant. Then double growth rate and predict, before running the code, which steady state and response time move. The prediction is the learning; the solver is the check.</p></div>
+
+<div class="parthead"><div class="k">Part 4</div><h2>Teach and extend</h2><p>The core page supplies the complete spine. The student team should deepen one link without breaking the chain.</p></div>
+
+<h2 id="s9"><span class="n">9</span>The core story and beyond</h2>
+<p class="lede">Every later biomachine starts with the same move: list events, write <span class="m">&Gamma;</span>, write <span class="m">v</span>, then ask what structure survives parameter uncertainty.</p>
+<div class="box key"><span class="lbl">The story in six sentences</span><ol><li>Reaction events fix net changes.</li><li>Elementary mechanisms fix mass-action rates.</li><li>The product <span class="m">&Gamma;v(x)</span> is the vector field.</li><li>Stoichiometry and positivity restrict where that field can move.</li><li>For gene expression, production sets level while loss sets both level and memory, with growth contributing a universal dilution loss.</li><li>Hill and Michaelis&ndash;Menten laws are reduced descriptions whose hidden assumptions must travel with them.</li></ol></div>
+<div class="tablewrap"><table><caption>Table 2. Extension seams. Each starts from a finished core calculation and changes one assumption.</caption><thead><tr><th>Team extension</th><th>Build</th><th>Evidence to bring</th><th>Decisive question</th></tr></thead><tbody>
+<tr><td>Promoter mechanism</td><td>replace the Hill function with explicit promoter states</td><td>binding constants and state diagram</td><td>when does the reduced Hill curve preserve the input&ndash;output relation?</td></tr>
+<tr><td>Cell-cycle gene dosage</td><td>make <span class="m">G(t)</span> jump at replication and reset at division</td><td>replication timing and growth condition</td><td>does the continuous dilution model miss a measurable oscillation?</td></tr>
+<tr><td>Stochastic expression</td><td>translate the four reactions in (8) into Gillespie propensities</td><td>copy-number scale and burst statistics</td><td>when does the deterministic mean hide the relevant phenotype?</td></tr>
+<tr><td>QSSA failure</td><td>simulate full enzyme kinetics and the reduced rate side by side</td><td>dimensionless timescale ratio and error map</td><td>which observable fails first: initial transient, steady flux, or threshold?</td></tr>
+<tr><td>Growth feedback</td><td>let protein burden reduce <span class="m">&mu;</span></td><td>one measured growth&ndash;burden relation</td><td>can a constitutive gene create multiple growth states?</td></tr>
+</tbody></table></div>
+<div class="checkpoint"><strong>Exit ticket.</strong> Given <span class="m">A+B&rarr;C</span>, <span class="m">C&rarr;A+B</span>, and <span class="m">C&rarr;B+D</span>: write one conserved total, one correct rate-vector entry with units, and one sentence saying whether the final arrow is elementary or composite. A student who can do all three has the lecture's core.</div>
 
 <hr>
-
-<h2 id="refs"><span class="n">&dagger;</span>References &amp; note sources</h2>
-<p class="lede">Where this page's claims and numbers live.</p>
-
-<div class="refs">
-<ol>
-<li id="r-w2-l2">F. Xiao, <em>CCBS 2025 Lecture 2 — Biochemical reaction networks and their
-dynamics</em>; 2025 scribe note by Jiahe Wang, Yiqiao Deng &amp; Zhi Zhou
-(§1.1 notations, §1.2 estimates of enzymatic reaction rates incl. the full
-diffusion-limited derivation and the dimensional check, §1.3 CRN dynamics).
-<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf">notes PDF</a>
-<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/2025FL_CCBS_scribe_lecture2.pdf">scribe PDF</a>
-<span class="venue">This lecture traces here; the scribe's derivation (5) is the anchor.</span></li>
-<li id="r-w2-l2b">F. Xiao, <em>CCBS 2025 Lecture 2</em>, handwritten notes — Exp 1–5 and the
-The ODE gallery.<a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf">PDF</a></li>
-<li>M. Feinberg, <em>Foundations of Chemical Reaction Network Theory</em>.
-<a href="https://link.springer.com/book/10.1007/978-3-030-03858-8">Springer</a>
-<span class="venue">The mathematical formulation of CRNs — equilibrium classes,
-deficiency; keep the biology in view.</span></li>
-<li>R. Phillips &amp; J. Kondev, <em>Cell biology by the numbers</em>.
-<a href="https://book.bionumbers.org">book.bionumbers.org</a>
-<span class="venue">Rate and concentration scales (encounter rates, enzyme numbers).</span></li>
-<li>R. Murray, <em>Biomolecular Feedback Systems</em>, Ch. 1–3.
-<a href="http://www.cds.caltech.edu/~murray/BFSwiki/index.php/Main_Page">free</a>
-<span class="venue">Modeling biological circuits, time-scale separation, stochasticity.</span></li>
-</ol>
-</div>
-
+<h2 id="refs"><span class="n">&dagger;</span>References &amp; source packet</h2>
+<p class="lede">The archived 2025 materials supply the course lineage. Full texts used for the numerical and conceptual checks are preserved in this project's literature folders.</p>
+<div class="refs"><ol>
+<li id="r-l2">F. Xiao, <em>CCBS 2025 Lecture 2: Biochemical reaction networks and their dynamics</em>, with its scribe note. <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf">notes</a><a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/2025FL_CCBS_scribe_lecture2.pdf">scribe</a><span class="venue">Elementary/composite arrows, diffusion-limited association, and the original course derivation of <span class="m">ẋ=&Gamma;v</span>.</span></li>
+<li id="r-l3">F. Xiao, <em>CCBS 2025 Lecture 3: Dynamical systems</em>, with the 2025 scribe note. <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture3/202509-CCBS-lecture-notes-03-bioregulation_202509181251_21385.pdf">notes</a><a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture3/2025FL_CCBS_scribe_lecture03_v3.pdf">scribe</a><span class="venue">The reaction-to-flow bridge, positivity, polynomial constraints, and timescale separation.</span></li>
+<li id="r-horn">F. Horn and R. Jackson, “General mass action kinetics,” <em>Archive for Rational Mechanics and Analysis</em> 47, 81&ndash;116 (1972). <a href="https://doi.org/10.1007/BF00251225">DOI</a><span class="venue">Stoichiometric compatibility classes and structural mass-action dynamics.</span></li>
+<li id="r-briggs">G. E. Briggs and J. B. S. Haldane, “A note on the kinetics of enzyme action,” <em>Biochemical Journal</em> 19, 338&ndash;339 (1925). <a href="https://doi.org/10.1042/bj0190338">DOI</a><span class="venue">The steady-state enzyme-complex argument and <span class="m">K<sub>M</sub></span>.</span></li>
+<li id="r-bernstein">J. A. Bernstein et al., “Global analysis of mRNA decay and abundance in <em>Escherichia coli</em> at single-gene resolution using two-color fluorescent DNA microarrays,” <em>PNAS</em> 99, 9697&ndash;9702 (2002). <a href="https://doi.org/10.1073/pnas.112318199">DOI</a><span class="venue">Genome-wide bacterial mRNA half-lives.</span></li>
+<li id="r-klumpp">S. Klumpp, Z. Zhang, and T. Hwa, “Growth rate-dependent global effects on gene expression in bacteria,” <em>Cell</em> 139, 1366&ndash;1375 (2009). <a href="https://doi.org/10.1016/j.cell.2009.12.001">DOI</a><span class="venue">Dilution and the additional ways balanced growth changes gene expression.</span></li>
+<li id="r-taniguchi">Y. Taniguchi et al., “Quantifying <em>E. coli</em> proteome and transcriptome with single-molecule sensitivity in single cells,” <em>Science</em> 329, 533&ndash;538 (2010). <a href="https://doi.org/10.1126/science.1188308">DOI</a><span class="venue">The low-copy mRNA and broad protein-abundance regimes.</span></li>
+</ol></div>
 </main>
 </div>
 <script>
@@ -319,7 +410,7 @@ deficiency; keep the biology in view.</span></li>
   function apply(){document.documentElement.setAttribute('data-theme',
     (typeof localStorage!=='undefined'&&localStorage.getItem('th')==='dark')?'dark':'light');}
   b.addEventListener('click',function(){var d=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
-    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();});
+    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();if(window.__redraw)window.__redraw();});
   if(typeof localStorage!=='undefined'&&!localStorage.getItem('th')){var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';localStorage.setItem('th',d);}
   apply();
   var links=[].slice.call(document.querySelectorAll('nav.toc a'));
