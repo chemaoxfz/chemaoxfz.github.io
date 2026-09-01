@@ -6686,6 +6686,40 @@ z
 
 <p>This pattern, load slowly and release through a latch, is now known to be general across small fast biological systems. It is also the reason the estimate was worth making: it did not tell us the flea uses a spring, it told us that the flea <em>must</em> use something other than muscle, which is a question sharp enough to go and answer.</p>
 
+<p>Someone went and answered it. Sutton and Burrows filmed ten hedgehog fleas at 5000 frames per second, and their Table 2 is worth setting beside the estimate line by line.<sup class="c"><a href="#r15">15</a></sup></p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 4. The jump estimate against Sutton and Burrows' Table 2, quantity by quantity.</caption>
+<thead><tr><th>Quantity</th><th>Estimated here</th><th>Measured</th><th>Off by</th></tr></thead>
+<tbody>
+<tr><td>body length <span class="m">L</span></td><td class="num">2 mm</td><td class="num">1.8 &plusmn; 0.19 mm</td><td>agrees</td></tr>
+<tr><td>release time <span class="m">&tau;</span></td><td class="num">0.7 ms</td><td class="num">1.4 &plusmn; 0.25 ms</td><td class="num">2</td></tr>
+<tr><td>take-off speed <span class="m">v</span></td><td class="num">3 m/s</td><td class="num">1.3 &plusmn; 0.21 m/s</td><td class="num">2.3</td></tr>
+<tr><td>power per muscle mass</td><td class="num">1.4&times;10<sup>5</sup> W/kg</td><td class="num">6.0&times;10<sup>3</sup> W/kg</td><td class="num hl">24</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Read the last column downward. The geometry is right, the two kinematic quantities are each off by about a factor of two, and the power is off by a factor of twenty-four. That is not four independent errors. It is one error, propagating.</p>
+
+<p>The one error is <span class="m">v</span>. Equation (15) said every animal jumps <span class="m">1.5 m</span>, so <span class="m">v = &radic;(2gh) &asymp; 3 m/s</span> for all of them. The flea leaves at <span class="m">1.3 m/s</span>, at <span class="m">39&deg;</span>, which lifts its centre of mass about <span class="m">3 cm</span>. It is a factor of twenty below the flat line rather than on it.</p>
+
+<p>Everything else follows. <span class="m">&tau; = L/v</span> is exact: put the measured <span class="m">1.8 mm</span> and <span class="m">1.3 m/s</span> in and you get <span class="m">1.4 ms</span>, the measured value to two figures. Equation (17) then carries the error into the power squared, because <span class="m">P/V = wv/L</span> is linear in <span class="m">v</span> and the <span class="m">&tau;</span> in the denominator carries another factor. The relations were all correct. One input was wrong, and the estimate amplified it, which is what estimates do and why you propagate the uncertainty rather than only the value.</p>
+
+<div class="box caution">
+<span class="lbl">The conclusion survives the correction</span>
+<p>Being wrong by twenty-four sounds fatal until you ask what the estimate was for. It was for deciding whether muscle could power the jump. Muscle gives about <span class="m">190 W/kg</span>. The estimate demanded <span class="m">140 000</span>, and the measurement demands <span class="m">6000</span>. Both are far outside what muscle can do, so the verdict is identical and the margin is a factor of thirty instead of seven hundred.</p>
+<p>This is the ordinary fate of a good order-of-magnitude argument. It is used to cross a threshold, not to hit a target, and a factor of twenty-four in the wrong direction still leaves it on the correct side of a factor of thirty. Had the answer come out at <span class="m">200 W/kg</span> the argument would have been dead and the lecture would say so.</p>
+</div>
+
+<div class="box open">
+<span class="lbl">And then the story gets better</span>
+<p>Why is the flea below the flat line at all? Because there is a second wall behind the first. Ilton and co-authors show that a spring cannot be shrunk indefinitely either.<sup class="c"><a href="#r16">16</a></sup> Stiffness is a modulus times a cross-section, so a small spring is either too soft to store much energy or too stressed to survive being loaded. Below a threshold set by the material, the smallest jumpers cannot load a spring without breaking it.</p>
+<p>Their data show it plainly: take-off speed peaks in the tens of milligrams and falls away on both sides. Froghoppers hit <span class="m">5&ndash;6 m/s</span> at <span class="m">20&ndash;50 mg</span>, pygmy mole crickets the same at <span class="m">10 mg</span>, and the flea manages <span class="m">1.3 m/s</span> at <span class="m">0.7 mg</span>. The animal every textbook uses to illustrate "small things need a spring" is, among the animals with springs, a bad jumper.</p>
+<p>Notice the shape of what just happened. A monotone scaling law predicted that smaller is faster. It was right for four decades of body size and then it stopped, and the thing that stopped it was a second scaling law about the storage element rather than the engine. That is worth more than the original argument, and you only get to it by taking the first one seriously enough to check.</p>
+</div>
+
 <h2 id="s14"><span class="n">14</span>Heat: deriving t = x&sup2;/&kappa;</h2>
 <p class="lede">The long way, so that you know what the short way in &sect;6(b) was standing on.</p>
 
@@ -10746,7 +10780,7 @@ z
 
 <div class="tablewrap">
 <table>
-<caption>Table 4. Mixing time by passive diffusion, <span class="m">t = x&sup2;/D</span>, for a typical protein.</caption>
+<caption>Table 5. Mixing time by passive diffusion, <span class="m">t = x&sup2;/D</span>, for a typical protein.</caption>
 <thead><tr><th>Compartment</th><th>x</th><th>t</th><th>What it implies</th></tr></thead>
 <tbody>
 <tr><td><em>E. coli</em></td><td class="num">1 &micro;m</td><td class="num">9 ms</td><td>well mixed for free; no transport machinery needed</td></tr>
@@ -10763,7 +10797,7 @@ z
 <h2 id="s18"><span class="n">18</span>The null model, and its limit</h2>
 <p class="lede">In biology the estimate is usually not the answer, and that is the point. Except when it is.</p>
 
-<p>The standard use is as a null hypothesis. Compute what plain physics does with no regulation, compare, and interpret the gap. Table 4 has both of the common outcomes in it: the axon row is "physics is far too slow, so a mechanism must exist", and the <em>E. coli</em> row is "physics is fast enough, so stop modelling it".</p>
+<p>The standard use is as a null hypothesis. Compute what plain physics does with no regulation, compare, and interpret the gap. Table 5 has both of the common outcomes in it: the axon row is "physics is far too slow, so a mechanism must exist", and the <em>E. coli</em> row is "physics is fast enough, so stop modelling it".</p>
 
 <p>The third outcome is the one that complicates the framing, and it deserves its own statement. Berg and Purcell asked how precisely a bacterium could possibly measure a chemical concentration, given that molecules arrive by diffusion and arrival is a counting process with its own noise.<sup class="c"><a href="#r10">10</a></sup> They derived a bound that no receptor design can beat, then compared it with what bacteria achieve in chemotaxis, and found them close to it.</p>
 
@@ -10785,7 +10819,7 @@ z
 
 <div class="tablewrap">
 <table>
-<caption>Table 5. The routine. Steps 3 and 7 are the ones people skip, and they are the ones that catch errors.</caption>
+<caption>Table 6. The routine. Steps 3 and 7 are the ones people skip, and they are the ones that catch errors.</caption>
 <thead><tr><th>#</th><th>Step</th><th>Why</th></tr></thead>
 <tbody>
 <tr><td class="num">1</td><td>Say what you are estimating, in words, with units</td><td>Half of all disagreements are definitional</td></tr>
@@ -10820,7 +10854,7 @@ z
 
 <div class="box sim">
 <span class="lbl">This week</span>
-<p>The first extension mini-essay is due <strong>Monday 09-07, 23:59</strong>, on anything from lectures 1 or 2. Two open threads from this page would make good ones. The flea's measured jump height is not pinned down here because the primary sources are paywalled, and the potato anchor is a correction found while writing. Finding a third error of the same kind, anywhere in these three pages, would be better than either. The <a href="../extension/">worked example</a> shows the shape.</p>
+<p>The first extension mini-essay is due <strong>Monday 09-07, 23:59</strong>, on anything from lectures 1 or 2. Both threads this page opened with have since closed. The flea's jump was pinned down by Sutton and Burrows and it cost the estimate a factor of twenty-four, and the potato anchor was a correction found while writing. Finding a third error of the same kind, anywhere in these three pages or in the 2025 notes, would be better than either. Eight further topics with the work already scoped are listed in <a href="../core/#s11">&sect;11 of the core page</a>, and the <a href="../extension/">worked example</a> shows the shape.</p>
 </div>
 
 <hr>
@@ -10848,6 +10882,12 @@ z
 <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_hw01.pdf">PDF</a>
 <span class="venue">Sections 10 and 11 are worked versions of its problem 1.</span></li>
 <li id="r14"><code>lectures/lecture01/research/analysis/</code>: <code>oom_numbers.py</code> for every number on this page, <code>make_figures.py</code> for Figures 1 to 3, <code>theme_svgs.py</code> for the embedding.</li>
+
+<li id="r15">G. P. Sutton and M. Burrows, "Biomechanics of jumping in the flea", <em>J. Exp. Biol.</em> <strong>214</strong>, 836&ndash;847 (2011). <span class="pdf">PDF</span>
+<span class="venue">Table 2, page 838. Ten <em>Archaeopsyllus erinacei</em> at 5000 frames per second. The measured column in &sect;13 is theirs, including the <span class="m">6000 W/kg</span>, which assumes a flea gives 11% of its mass to jumping muscle as a locust does.</span></li>
+
+<li id="r16">M. Ilton <em>et al.</em>, "The principles of cascading power limits in small, fast biological and engineered systems", <em>Science</em> <strong>360</strong>, eaao1082 (2018). <span class="pdf">PDF</span>
+<span class="venue">The second wall. Spring stiffness scales as modulus times cross-section, so performance falls off below a material-set threshold, and take-off speed across insects is not monotone in mass.</span></li>
 </ol>
 </div>
 

@@ -424,6 +424,20 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 
 <p>Now the budget. Three and a half million proteins at 40&nbsp;nm&sup3; each is <span class="m">1.4&times;10<sup>8</sup> nm&sup3; = 0.14 &micro;m&sup3;</span>, so protein alone is about <strong>15% of the cell volume</strong>. Add RNA and DNA and the total macromolecular mass concentration is around 0.26&nbsp;g/mL. The cell is not a dilute solution.</p>
 
+<div class="box caution">
+<span class="lbl">Both of those numbers are low, and for different reasons</span>
+<p>Zimmerman and Trach measured this directly, on <i>E. coli</i> cytoplasm, in exponential and stationary phase.<sup class="c"><a href="#r-zimmerman">14</a></sup> Two of their numbers are worth putting beside the two just derived.</p>
+<p><strong>Mass concentration.</strong> They get <strong>0.3 to 0.4&nbsp;g/mL</strong>, with their own experimental value at <strong>0.34&nbsp;g/mL</strong> of RNA plus protein, or about 0.35 including DNA. The 0.26 derived above is low by a factor of 1.3. That is inside what an order-of-magnitude estimate promises, and the direction is the informative part: the estimate started from a protein concentration and added RNA and DNA by eye, and eyeballing them undercounts.</p>
+<p><strong>Volume fraction.</strong> They get an occupancy of about <strong>0.43&nbsp;mL per mL of cytoplasm</strong>. The 15% above is low by a factor of three, and this one is not an arithmetic slip. It is a different quantity wearing the same name.</p>
+</div>
+
+<div class="box key">
+<span class="lbl">Which volume you meant</span>
+<p>The 15% used <span class="m">0.73 mL/g</span>, the partial specific volume of protein. That is the volume the protein's own atoms occupy, and it is the right number for converting mass to displaced water.</p>
+<p>Excluded volume is a different question. A second protein cannot approach closer than contact, so each molecule denies its neighbours a shell around itself, and irregular objects do not pack to fill space. Zimmerman and Trach back out the specific volume of an equivalent hard sphere and get <span class="m">1.2 to 1.3 mL/g</span>, roughly <strong>1.7 times</strong> the anhydrous value. Multiply their <span class="m">0.34 g/mL</span> by that and the <span class="m">0.43</span> occupancy follows.</p>
+<p>So there are two right answers. About 15% of the cell is protein <em>matter</em>, and about 43% of it is <em>unavailable</em> to the next protein. Crowding arguments need the second. Mass-balance arguments need the first. Quoting one where the other belongs is the most common error in this corner of the subject, and it is a factor of three.</p>
+</div>
+
 <p>Compare the genome. The <i>E. coli</i> chromosome is 4&thinsp;641&thinsp;652 base pairs. B-form DNA rises 0.34&nbsp;nm per base pair and is 2&nbsp;nm across, so</p>
 
 <div class="eq">L = 4.64&times;10<sup>6</sup> &times; 0.34 nm = <b>1.6 mm</b>, &nbsp;&nbsp; V = &pi;(1 nm)&sup2; &times; 0.34 nm &times; 4.64&times;10<sup>6</sup> = <b>0.005 &micro;m&sup3;</b> <span class="tag">(9)</span></div>
@@ -1409,6 +1423,7 @@ R<sub>1</sub> &#10547; &empty; &nbsp;(composite, degradation and dilution)<span 
 <li id="r-bernstein">J. A. Bernstein <i>et al.</i> Global analysis of mRNA decay and abundance in <i>Escherichia coli</i>. <span class="venue"><i>PNAS</i> 99:9697&ndash;9702, 2002.</span> <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC124983/">PDF</a></li>
 <li id="r-umbarger">H. E. Umbarger. Evidence for a negative-feedback mechanism in the biosynthesis of isoleucine. <span class="venue"><i>Science</i> 123:848, 1956.</span> With R. A. Yates, A. B. Pardee, <i>J. Biol. Chem.</i> 221:757&ndash;770, 1956. <span class="pdf">read</span></li>
 <li id="r-mwc">J. Monod, J. Wyman, J.-P. Changeux. On the nature of allosteric transitions. <span class="venue"><i>Journal of Molecular Biology</i> 12:88&ndash;118, 1965.</span> <a class="pdf" href="https://doi.org/10.1016/S0022-2836(65)80285-6">PDF</a></li>
+<li id="r-zimmerman">S. B. Zimmerman, S. O. Trach. Estimation of macromolecule concentrations and excluded volume effects for the cytoplasm of <i>Escherichia coli</i>. <span class="venue"><i>Journal of Molecular Biology</i> 222:599&ndash;620, 1991.</span> <a class="pdf" href="https://doi.org/10.1016/0022-2836(91)90499-V">PDF</a></li>
 </ol>
 </div>
 

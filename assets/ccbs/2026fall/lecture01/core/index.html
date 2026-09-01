@@ -176,6 +176,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
     <li class="part">Part 4 &middot; Using it</li>
     <li><a href="#s9">9 &middot; Null models</a></li>
     <li><a href="#s10">10 &middot; This week</a></li>
+    <li><a href="#s11">11 &middot; Eight things worth extending</a></li>
     <li class="part">Appendix</li>
     <li><a href="#refs">References &amp; sources</a></li>
   </ol>
@@ -6646,14 +6647,29 @@ z
 
 <p>The resolution is that small jumpers do not power the jump at all. They contract muscle slowly against an elastic element, load it over hundreds of milliseconds, hold it with a latch, and release it in under a millisecond. The spring, not the muscle, sets the power. Energy is conserved and power is amplified, because power is energy over time and the spring shortens the time.</p>
 
+<div class="box key">
+<span class="lbl">What the flea actually does, measured</span>
+<p>Sutton and Burrows filmed ten hedgehog fleas, <em>Archaeopsyllus erinacei</em>, at 5000 frames per second and tabulated the jump.<sup>15</sup> Body mass <span class="m">0.7 &plusmn; 0.16 mg</span>. Body length <span class="m">1.8 &plusmn; 0.19 mm</span>. Time to take-off <span class="m">1.4 &plusmn; 0.25 ms</span>. Take-off speed <span class="m">1.3 &plusmn; 0.21 m/s</span> at <span class="m">39 &plusmn; 5.7&deg;</span>. Acceleration <span class="m">960 &plusmn; 233 m/s&sup2;</span>, which is about <span class="m">98 g</span>.</p>
+<p>Divide the mechanical power by the jumping muscle mass, charging the flea the same 11% of body mass that a locust devotes to jumping, and the requirement is <span class="m">6000 &plusmn; 2100 W/kg</span>, rising to <span class="m">14 000 W/kg</span> in the fastest jump they recorded. Muscle delivers about <span class="m">190 W/kg</span>. The spring is not optional.</p>
+</div>
+
 <div class="box caution">
 <span class="lbl">Haldane had the constraint and missed the mechanism</span>
 <p>His sentence carries the caveat "provided it can be developed quickly enough in the small animal", which is equation (6) in words, in 1926. But his explanation for why a flea does not clear a man's height is that insect muscle "appears to be less efficient". That is the wrong answer, and the right one is more interesting: the flea is not using muscle as an engine, it is using it as a winch. Getting the constraint right and the mechanism wrong is the normal outcome of a good estimate, and it is what makes the estimate worth doing. It tells you exactly which question to go and ask.</p>
 </div>
 
+<div class="box caution">
+<span class="lbl">The form of the estimate survives, the input does not</span>
+<p>Two of the numbers above are now measured, and they meet the estimate in opposite ways.</p>
+<p>Equation (6) survives intact. Put the measured speed and length into <span class="m">&tau; = L/v</span> and you get <span class="m">1.8 mm / 1.3 m/s = 1.4 ms</span>, which is the measured take-off time to two figures. The relation is right.</p>
+<p>The premise feeding it is not. Equation (5) says every animal jumps <span class="m">1.5 m</span>, so <span class="m">v = &radic;(2gh) &asymp; 3 m/s</span> for everyone. The flea leaves the ground at <span class="m">1.3 m/s</span>, at <span class="m">39&deg;</span>. Ballistically that lifts its centre of mass about <span class="m">3 cm</span>, and no more than <span class="m">9 cm</span> even if every bit of the speed were vertical and the air were not there. The flea is roughly a factor of twenty <em>below</em> the flat line, not on it. Haldane's "about two feet" is high by about the same factor, and his hedge, "more nearly independent than proportional", was the right instinct spent on the wrong datum.</p>
+<p>So the <span class="m">&times;750</span> power deficit computed above is inflated: it charged the flea with reaching <span class="m">1.5 m</span>. The honest deficit is <span class="m">6000 / 190 &asymp; 30</span>. The conclusion does not move and the margin shrinks, which is the usual result when an estimate finally meets a measurement.</p>
+</div>
+
 <div class="box open">
-<span class="lbl">One number here is borrowed and flagged</span>
-<p>Haldane's flea figure of two feet is high compared with published measurements, which are species-dependent and generally smaller. The primary sources are recorded in <code>literature/NEEDED.md</code> and have not been read, so this page quotes the figure as Haldane's and does not assert a corrected one. The scaling argument does not depend on it.</p>
+<span class="lbl">And the flea is not the champion</span>
+<p>Why does the flea fall short of the flat line at all? Ilton and twenty co-authors give the answer as a second wall standing behind the first.<sup>16</sup> Shrinking helps only until the spring itself becomes the limit. Stiffness is the material's modulus times a cross-section, so a small spring is either too compliant to store much or too stressed to survive, and below a threshold set by the material the smallest jumpers cannot load a spring without breaking it. Their data show the consequence directly: take-off speed peaks in the tens of milligrams and falls away on both sides. Froghoppers reach <span class="m">5&ndash;6 m/s</span> at <span class="m">20&ndash;50 mg</span>, pygmy mole crickets the same at <span class="m">10 mg</span>, against the flea's <span class="m">1.3 m/s</span> at <span class="m">0.7 mg</span>.</p>
+<p>The textbook animal for "small things must use a spring" is, among spring users, a poor jumper. A scaling law that is monotone in size has to stop somewhere, and this is where.</p>
 </div>
 
 <h2 id="s7"><span class="n">7</span>Heat, and t &asymp; x&sup2;/&kappa;</h2>
@@ -10757,7 +10773,37 @@ z
 <li><strong>Monday 09-07, 23:59: the first extension mini-essay.</strong> Anything from lectures 1 or 2 that you want to push on. The <a href="../../extension-example/">worked example</a> shows the shape and the expected length. Eight of these run over the term and your best six count, so you have two free skips built in.</li>
 </ul>
 
-<p>Two things in this lecture are open invitations rather than settled results. The flea's measured jump height is not pinned down here because the primary sources are behind a paywall, and the potato anchor is a correction that arrived while preparing this page. Either would make a perfectly good first mini-essay, and finding a third correction of the same kind would make a better one.</p>
+<p>Both of the gaps this page opened with have since closed. The flea's jump was pinned down once Sutton and Burrows arrived, and it cost the estimate a factor of twenty. The potato anchor was a correction found while preparing the page. Finding a third error of the same kind, anywhere in these three pages or in the 2025 notes, would make an excellent first mini-essay. The section below lists eight other places to push.</p>
+
+<hr>
+
+<h2 id="s11"><span class="n">11</span>Eight things worth extending</h2>
+<p class="lede">Every one of these is a real question with a reachable answer. None is a reading exercise. Each names where to start and what a finished answer looks like.</p>
+
+<p>An extension mini-essay is short, so pick one and go all the way down rather than surveying three. The mark of a good one is a number at the end that was not in the lecture, with an honest statement of what it rests on.</p>
+
+<ol>
+<li><b>Where the jumping peak actually sits.</b> Ilton et al. argue that shrinking stops helping once the spring itself becomes the limit, but they do not give the threshold for any one lineage.<sup>16</sup> Take resilin at <span class="m">E &asymp; 1 MPa</span> and chitinous cuticle at <span class="m">1&ndash;40 GPa</span>, the flea's measured <span class="m">0.6 &micro;J</span> over <span class="m">1.4 ms</span>, and predict the body mass at which take-off speed peaks. Check it against froghoppers at <span class="m">5&ndash;6 m/s</span> and <span class="m">20&ndash;50 mg</span>. A finished answer is one curve, one predicted mass, and a sentence saying which input you trust least.</li>
+
+<li><b>Galileo's bone, against real bones.</b> The square-cube law says a supporting bone's cross-section must grow like <span class="m">L&sup3;</span>, so its diameter like <span class="m">L<sup>1.5</sup></span>. Go and find what measured limb bones actually do across a few decades of mammal mass. If the exponent is not 1.5, then either the argument has a hidden assumption or the animals are compensating some other way, and both possibilities have a literature. This is the course's founding example, and checking whether its prediction holds is more useful than repeating it.</li>
+
+<li><b>Two thirds against three quarters.</b> A pure heat-loss argument gives metabolic rate <span class="m">&prop; M<sup>2/3</sup></span>. The number usually quoted is <span class="m">3/4</span>, and the gap has been argued over for eighty years. Get one published dataset, fit the exponent yourself, and put an honest interval on it. The interesting question is not which value is right. It is whether the data can distinguish the two at all, which is a question about error bars and about the range of masses you need.</li>
+
+<li><b>The constant the theorem withholds.</b> &Pi; gives you the form and never the prefactor. This lecture gets away with it because Taylor's blast-wave constant sits near 1. Find a published dimensional-analysis result whose dimensionless prefactor is nowhere near 1, and explain what physical fact is hiding inside it. Where a large constant comes from is usually a geometry or a small parameter that the dimension count could not see.</li>
+
+<li><b>Is the 0.1 s wall a wall?</b> The whole jump argument turns on "fast muscle needs roughly 0.1 s to shorten by half its length." Find where that number comes from and how much it varies. Insect asynchronous flight muscle oscillates at hundreds of hertz, which looks like a counterexample until you ask what is actually shortening. A finished answer says whether &sect;6 is describing a wall or a slope.</li>
+
+<li><b>A third correction.</b> Two numbers on these pages were wrong and were caught by going to the source: the potato anchor, and Haldane's flea. There will be others. Find one, in these three pages or in the 2025 notes, say what the number should be, and say how you know. This is the most valuable essay on the list and the one most likely to be publishable inside the course.</li>
+
+<li><b>Dimensional analysis with more dimensions.</b> Huntley's refinement treats length along a direction as dimensionally distinct from length across it, which raises <span class="m">k</span> in the <span class="m">n &minus; k</span> count and leaves fewer &Pi; groups. Apply it to one problem from &sect;3 or &sect;6. Does it sharpen the answer, or does it quietly smuggle in physics you have not justified? Both outcomes make a good essay, and the second is the more instructive.</li>
+
+<li><b>Estimate something nobody has measured.</b> The point of the method is not to re-derive known numbers. Pick a quantity in your own research area with no published value, estimate it two independent ways, and compare. If the two agree to a factor of three you have learned something. If they disagree by a hundred, you have learned more, and the essay is about which input carries the discrepancy.</li>
+</ol>
+
+<div class="box note">
+<span class="lbl">What makes one of these good rather than long</span>
+<p>State the question in one sentence. Say what you assumed and where each input came from. Do the arithmetic in the open. Give the answer with the right number of digits, which is usually one. Then say what would change it. An essay that does those five things in a page beats one that does none of them in six.</p>
+</div>
 
 <hr>
 
@@ -10811,6 +10857,12 @@ z
 
 <li id="r14"><code>lectures/lecture01/research/analysis/oom_numbers.py</code> and <code>make_figures.py</code>.
 <span class="venue">Every number on this page. Runs with no arguments and prints all 92 of them, with each input marked as either a value read from a full text or a standard constant.</span></li>
+<li id="r15">G. P. Sutton and M. Burrows, "Biomechanics of jumping in the flea", <em>J. Exp. Biol.</em> <strong>214</strong>, 836&ndash;847 (2011). <span class="pdf">PDF</span>
+<span class="venue">Table 2, page 838, is every measured flea number on this page: <span class="m">0.7 mg</span>, <span class="m">1.8 mm</span>, <span class="m">1.4 ms</span>, <span class="m">1.3 m/s</span>, <span class="m">39&deg;</span>, <span class="m">6000 W/kg</span>. Ten <em>Archaeopsyllus erinacei</em> at 5000 frames per second. The paper's own subject is where the flea pushes from, and the answer is the tibia and tarsus, not the trochanter.</span></li>
+
+<li id="r16">M. Ilton <em>et al.</em>, "The principles of cascading power limits in small, fast biological and engineered systems", <em>Science</em> <strong>360</strong>, eaao1082 (2018). <span class="pdf">PDF</span>
+<span class="venue">The spring-failure wall behind the muscle-power wall, and the observation that take-off speed peaks in the tens of milligrams. The froghopper and pygmy mole cricket figures are theirs.</span></li>
+
 </ol>
 </div>
 

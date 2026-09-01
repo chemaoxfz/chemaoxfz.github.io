@@ -178,6 +178,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
     <li><a href="#s10">10 &middot; Metabolism cannot wait for gene expression</a></li>
     <li class="part">Addendum</li>
     <li><a href="#s11">11 &middot; Where this goes</a></li>
+    <li><a href="#s12">12 &middot; Eight things worth extending</a></li>
     <li><a href="#exercises">Exercises</a></li>
     <li><a href="#refs">References &amp; note sources</a></li>
   </ol>
@@ -789,6 +790,19 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 
 <p>So the working numbers for this course are <strong><span class="m">k<sub>on</sub> &asymp; 10<sup>9</sup>&ndash;10<sup>10</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></span> and <span class="m">k<sub>cat</sub> &asymp; 10&ndash;10&sup2; s<sup>&minus;1</sup></span></strong>. Keep both.</p>
 
+<div class="box key">
+<span class="lbl">The distribution to compare it against is the uncatalysed one</span>
+<p>Figure 7 looks like a story about how slow enzymes are. Put the other histogram beside it and it becomes a story about how narrow they are.</p>
+<p>Wolfenden and Snider measured the spontaneous rates of biological reactions in neutral solution at 25&nbsp;&deg;C, some by Arrhenius extrapolation from high temperature because they are too slow to watch.<sup class="c"><a href="#r-wolfenden">16</a></sup> The half-times span <strong>more than sixteen orders of magnitude</strong>: 5 seconds for the hydration of CO<sub>2</sub>, 38 hours for the isomerisation of chorismate, two months for the isomerisation of glyceraldehyde 3-phosphate, 400 years for a peptide bond, 140&thinsp;000 years for a phosphodiester, 78 million years for the decarboxylation of orotidine 5&prime;-phosphate, and 1.1 billion years for the decarboxylation of an amino acid.</p>
+<p>The catalysed rates span about one decade. Most <span class="m">k<sub>cat</sub></span> values sit between <span class="m">10<sup>2</sup></span> and <span class="m">10<sup>3</sup> s<sup>&minus;1</sup></span> in their sample, and Bar-Even's median across a wider set is <span class="m">10 s<sup>&minus;1</sup></span>. Sixteen decades in, one decade out. The rate enhancement is therefore not a number an enzyme has, it is whatever the substrate needed: <span class="m">10<sup>7</sup></span>-fold at one end and <span class="m">10<sup>19</sup></span>-fold at the other.</p>
+</div>
+
+<div class="box open">
+<span class="lbl">Read that as a control statement, because it is one</span>
+<p>A plant whose gain varies over sixteen decades, and an output held inside one. Every control course would call that a compensator, and would immediately ask the two questions that follow. Is the flatness the controlled variable, or is it a consequence of something else? And what supplies the loop, given that no single enzyme knows what the others are doing?</p>
+<p>The honest answer is that nobody has settled it. Selection acting on each enzyme separately can produce the same flat output without any loop at all, because the useful output range is set by what the cell can consume, not by what the chemistry offers. That is a real alternative and the histogram alone does not choose between them. It is the first topic in &sect;12.</p>
+</div>
+
 <p>Why so slow? Two readings, and the argument is live. Bar-Even et al. argue the gap is <em>evolutionary</em>: enzymes are as fast as selection required and no faster, and their evidence is that context predicts speed, with central carbon metabolism at a median <span class="m">79 s<sup>&minus;1</sup></span> against <span class="m">2.5 s<sup>&minus;1</sup></span> for secondary metabolism.<sup class="c"><a href="#r-barEven">9</a></sup> The reading this course pushes is <em>structural</em>: the gap is what makes a cell controllable, because it is the gap that lets binding equilibrate. Both fit the histogram. They differ in what they predict, and section 10 is where the structural reading earns its keep.</p>
 
 <div class="parthead">
@@ -969,6 +983,36 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 
 <hr>
 
+<h2 id="s12"><span class="n">12</span>Eight things worth extending</h2>
+<p class="lede">Eight questions that this lecture opens and does not close. Each one is reachable with the numbers on this page plus one paper, and each names what a finished answer looks like.</p>
+
+<p>An extension mini-essay is short. Take one of these all the way down rather than surveying three. What makes a good one is a number at the end that was not in the lecture, together with an honest account of what it rests on.</p>
+
+<ol>
+<li><b>Sixteen decades in, one decade out.</b> Uncatalysed half-times span <span class="m">10<sup>16</sup></span>; turnover numbers span about <span class="m">10<sup>1</sup></span>.<sup class="c"><a href="#r-wolfenden">16</a></sup> Is the narrow output a controlled variable or a coincidence of what cells happen to consume? Take Wolfenden's reactions, pair each with its enzyme's <span class="m">k<sub>cat</sub></span>, and plot enhancement against uncatalysed rate. A slope of exactly <span class="m">&minus;1</span> means perfect compensation, and anything else says how much of the flattening is real. This is the best question on the page and it has a plot at the end of it.</li>
+
+<li><b>The factor of four in <span class="m">4&pi;Da</span>.</b> Smoluchowski's radius is an encounter radius, so for two identical spheres the constant is <span class="m">16&pi;Da</span>, not <span class="m">4&pi;Da</span>. Go and check a dozen papers and textbooks that quote the bound for a self-association and count how many get the factor right. A finished answer is a table with a column headed "which radius did they mean", and a statement of how much the published conclusions would move.</li>
+
+<li><b>Which volume do you mean.</b> &sect;7 of the <a href="../exposition/#s7">exposition</a> gets 15% of cell volume as protein using the anhydrous partial specific volume, 0.73&nbsp;mL/g. Zimmerman and Trach measure an occupancy near 0.43&nbsp;mL per mL of cytoplasm, using an effective specific volume of 1.2 to 1.3&nbsp;mL/g.<sup class="c"><a href="#r-zimmerman">17</a></sup> The factor of three between them is entirely a definition. Work out which one governs the excluded-volume effect, which one governs the mass balance, and where each is the right answer. Then say which one belongs in the crowding argument.</li>
+
+<li><b>Does the diffusion limit ever bind in vivo?</b> The ceiling in this lecture is computed for water. In cytoplasm <span class="m">D</span> drops elevenfold for a protein, so the in-cell ceiling drops with it. Davidi and colleagues measured apparent catalytic rates in living cells.<sup class="c"><a href="#r-davidi">18</a></sup> Take their distribution, compute the pair-specific in-cell bound for each enzyme, and ask how many are within a decade of it. If none are, the ceiling is not what shapes the distribution and this course should say so.</li>
+
+<li><b>Perfection, on the original definition.</b> "Catalytic perfection" was defined by Albery and Knowles as a property of the whole free-energy profile at a given substrate concentration, not as a threshold on <span class="m">k<sub>cat</sub>/K<sub>M</sub></span>. The <a href="../lineage/#s6">lineage page</a> states the criterion. Pick one enzyme other than triosephosphate isomerase for which the profile is known, evaluate their efficiency function, and compare the verdict with what its <span class="m">k<sub>cat</sub>/K<sub>M</sub></span> alone would suggest. Any disagreement is the essay.</li>
+
+<li><b>Berg and Purcell's receptors, for a real cell.</b> A sphere covered in <span class="m">N</span> small absorbing patches of radius <span class="m">s</span> captures at <span class="m">4&pi;Da &middot; Ns/(Ns + &pi;a)</span>, so half the maximum rate arrives at a coverage far below complete. Put in measured receptor counts and sizes for one chemotactic bacterium and say where it sits on that curve. If it sits near the knee, that is a design statement. If it sits far below, ask what else the receptors are for.</li>
+
+<li><b>Where the timescale separation fails.</b> &sect;9 licenses quasi-steady state from a factor of <span class="m">10<sup>4</sup></span>. That factor is a median. Find the enzymes in the tail where it is not <span class="m">10<sup>4</sup></span>, and work out what a model that assumed separation would get wrong about them. Briggs and Haldane's condition is two lines long and stating it exactly is half the essay.</li>
+
+<li><b>The ledger for something that is not <em>E. coli</em>.</b> Every number in Part 1 is for one bacterium. Redo the whole ledger for a yeast cell, a human cell, or a mitochondrion: volume, protein count, mean spacing, mixing time, on-rate, turnover. Which conclusions survive the change of scale, and which quietly stop being true? Mixing time is the one to watch, because it goes as <span class="m">x&sup2;</span>.</li>
+</ol>
+
+<div class="box note">
+<span class="lbl">What makes one of these good rather than long</span>
+<p>State the question in one sentence. Say what you assumed and where each input came from. Do the arithmetic in the open. Give the answer to one digit. Then say what would change it. An essay doing those five things in a page beats one doing none of them in six.</p>
+</div>
+
+<hr>
+
 <h2 id="exercises"><span class="n">&sect;</span>Exercises</h2>
 <p class="lede">Three that can be done on paper, in the order the lecture built them. The first two are from the 2025 problem set.<sup class="c"><a href="#r-l1notes">14</a></sup> The first extension mini-essay may be on any of them.</p>
 
@@ -1042,6 +1086,9 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
   <span class="venue">&sect;2.1 and &sect;2.2 are the template for sections 1 to 5. Homework 1 is the source of the exercises.</span></li>
 <li id="r-books">Background reading, none of it required.
   <span class="venue">R. Phillips and R. Milo, <a href="https://book.bionumbers.org">Cell Biology by the Numbers</a>, the ledger at book length. R. Phillips et al., <i>Physical Biology of the Cell</i>, the scaling arguments. H. C. Berg, <i>Random Walks in Biology</i>, diffusion done properly. <a href="https://bionumbers.hms.harvard.edu">BioNumbers</a>, when you need a number with provenance.</span></li>
+<li id="r-wolfenden">R. Wolfenden, M. J. Snider. The depth of chemical time and the power of enzymes as catalysts. <span class="venue"><i>Accounts of Chemical Research</i> 34:938&ndash;945, 2001.</span> <a class="pdf" href="https://doi.org/10.1021/ar000058i">PDF</a> <span class="venue">Figure 4 is the sixteen decades of uncatalysed half-times; the <span class="m">10<sup>7</sup></span> to <span class="m">10<sup>19</sup></span> range of rate enhancements is their Figure 5.</span></li>
+<li id="r-zimmerman">S. B. Zimmerman, S. O. Trach. Estimation of macromolecule concentrations and excluded volume effects for the cytoplasm of <i>Escherichia coli</i>. <span class="venue"><i>Journal of Molecular Biology</i> 222:599&ndash;620, 1991.</span> <a class="pdf" href="https://doi.org/10.1016/0022-2836(91)90499-V">PDF</a> <span class="venue">0.3 to 0.4&nbsp;g/mL of macromolecule, their own experimental value 0.34&nbsp;g (RNA + protein)/mL, and an occupancy near 0.43&nbsp;mL/mL from an effective specific volume of 1.2 to 1.3&nbsp;mL/g.</span></li>
+<li id="r-davidi">D. Davidi, E. Noor, W. Liebermeister, A. Bar-Even, A. Flamholz, K. Tummler, U. Barenholz, M. Goldenfeld, T. Shlomi, R. Milo. Global characterization of in vivo enzyme catalytic rates and their correspondence to in vitro k<sub>cat</sub> measurements. <span class="venue"><i>PNAS</i> 113:3401&ndash;3406, 2016.</span> <a class="pdf" href="https://doi.org/10.1073/pnas.1514240113">PDF</a></li>
 </ol>
 </div>
 
