@@ -1,0 +1,1125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 2 · From order of magnitude in biology to binding and catalysis · core · CCBS 2026</title>
+<meta name="description" content="Count what is in a cell and you get its timescales. Count how often molecules meet and you get its rates. The two counts land in the same place: a fast reversible layer sitting under a slow irreversible one, four orders of magnitude apart. That gap is where regulation lives, and it is why this course is built from exactly two kinds of reaction.">
+<style>
+:root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
+--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--ink:#20201E;--gray:#877F77;--leader:#B8AEA5;--gridc:#EDE7E0;
+--bg:#FCFAF7;--bg2:#FFFFFF;--fg:var(--ink);--muted:#6E675F;--rule:#E3DCD3;
+--shadow:0 1px 2px rgba(32,32,30,.05), 0 8px 28px rgba(32,32,30,.05);
+--paper:var(--bg);--paper2:var(--bg2);--accent:var(--teal);--blue:var(--peri);--warn:var(--coral);--grid:var(--gridc);
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+--mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;--maxw:44rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;
+--gridc:#2C2E28;--leader:#5C574F;--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;--gridc:#2C2E28;--leader:#5C574F;
+--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}
+:root[data-theme="light"]{--bg:#FCFAF7;--bg2:#FFFFFF;--fg:#20201E;--muted:#6E675F;--rule:#E3DCD3;--gridc:#EDE7E0;--leader:#B8AEA5;
+--ink:#20201E;--gray:#877F77;--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--serif);font-size:18px;line-height:1.62;
+font-kerning:normal;text-rendering:optimizeLegibility}
+.wrap{max-width:78rem;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:3rem}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr;gap:0}}
+nav.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:2.5rem 0 3rem;
+font-family:var(--sans);font-size:.8rem;line-height:1.45}
+nav.toc .brand{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700;margin:0 0 1.1rem}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 .9rem;font-weight:600}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li{margin:0 0 .1rem}
+nav.toc a{display:block;padding:.26rem .55rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;border-radius:0 4px 4px 0}
+nav.toc a:hover{color:var(--fg);background:var(--bg2)}
+nav.toc a.on{color:var(--fg);border-left-color:var(--rose);background:var(--bg2);font-weight:600}
+nav.toc .part{margin:1.1rem 0 .35rem;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--leader);font-weight:700}
+@media (max-width:1000px){nav.toc{position:static;max-height:none;border-bottom:1px solid var(--rule);margin-bottom:1rem}}
+main{padding:2.5rem 0 6rem;min-width:0}
+main > *{max-width:var(--maxw)}
+main > figure,main > .wide,main > .demo,main > .tablewrap{max-width:56rem}
+h1{font-size:2.5rem;line-height:1.1;letter-spacing:-.02em;margin:.4rem 0 .8rem;font-weight:700;max-width:26ch}
+.sub{font-size:1.18rem;color:var(--muted);margin:0 0 1.6rem;line-height:1.5;max-width:38rem}
+.byline{font-family:var(--sans);font-size:.8rem;color:var(--muted);letter-spacing:.02em;margin-bottom:2.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--rule)}
+h2{font-size:1.05rem;font-family:var(--sans);font-weight:700;letter-spacing:.02em;margin:3.6rem 0 .2rem;scroll-margin-top:1.5rem}
+h2 .n{color:var(--rose);font-variant-numeric:tabular-nums;margin-right:.5rem}
+h2 + .lede{color:var(--muted);font-size:1.02rem;margin:.1rem 0 1.1rem}
+h3{font-size:.95rem;font-family:var(--sans);font-weight:700;margin:2.1rem 0 .5rem;color:var(--fg)}
+.parthead{margin:4.5rem 0 1.2rem;padding-top:1.6rem;border-top:2px solid var(--fg)}
+.parthead .k{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700}
+.parthead h2{font-size:1.8rem;margin:.35rem 0 .3rem;letter-spacing:-.01em;font-family:var(--serif)}
+.parthead p{color:var(--muted);margin:0;font-size:1.02rem}
+p{margin:0 0 1.05rem}
+a{color:var(--fg);text-underline-offset:2px;text-decoration-color:var(--leader)}
+a:hover{text-decoration-color:var(--rose)}
+ul,ol{margin:0 0 1.05rem;padding-left:1.35rem}
+li{margin:.28rem 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.6rem 0}
+.small{font-size:.88rem;color:var(--muted)}
+/* Math. Sources carrying <!--MATH:latex--> have their .m / .eq contents rendered
+   to MathML at build time; the browser's own math font does the typesetting, so
+   no webfont is loaded. Pages not yet migrated still hold entity HTML here, and
+   the monospace fallback below is what they get. */
+.m{font-family:var(--mono);font-size:.92em;font-style:normal;white-space:nowrap}
+.m:has(math){font-family:inherit;font-size:1em;white-space:normal}
+math{font-size:1.06em;font-style:normal}
+math .pf,mstyle.pf{color:var(--rose);font-weight:700}
+.eq:has(math){font-family:inherit;font-size:1rem;line-height:1.4}
+.eq math[display="block"]{margin:0}
+/* Do not set display on <math>: the browser's own "inline math" / "block math"
+   layout modes are what typeset it, and overriding them breaks the inline flow. */
+math annotation{display:none}
+.eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);font-size:.95rem;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;line-height:1.9}
+.eq .tag{float:right;color:var(--leader);font-size:.85em}
+.eq b{color:var(--rose);font-weight:700}
+sub,sup{font-size:.7em;line-height:0}
+.box{border:1px solid var(--rule);background:var(--bg2);border-radius:10px;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow)}
+.box .lbl{font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.45rem;display:block}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+.box.key{border-left:3px solid var(--rose);background:linear-gradient(94deg,var(--blush),var(--bg2) 62%)}
+.box.key .lbl{color:var(--rose)}
+.box.def{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.def .lbl{color:var(--peri)}
+.box.note{border-left:3px solid var(--lime)}
+.box.note .lbl{color:var(--lime)}
+.box.caution{border-left:3px solid var(--coral);background:linear-gradient(94deg,var(--pinkf),var(--bg2) 62%)}
+.box.caution .lbl{color:var(--coral)}
+.box.sim{border-left:3px solid var(--teal);background:linear-gradient(94deg,var(--powder),var(--bg2) 62%)}
+.box.sim .lbl{color:var(--teal)}
+.box.open{border-left:3px solid var(--plum);background:linear-gradient(94deg,var(--lilac),var(--bg2) 62%)}
+.box.open .lbl{color:var(--plum)}
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo2{paint-order:stroke;stroke:var(--bg);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halopink{paint-order:stroke;stroke:var(--pinkf);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo3{paint-order:stroke;stroke:var(--bg);stroke-width:3.6px;stroke-linejoin:round}
+
+figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
+figcaption b{color:var(--fg);font-weight:700}
+.figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
+.tablewrap{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.83rem;line-height:1.45}
+th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:700;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hl{color:var(--rose);font-weight:600}
+caption{caption-side:bottom;text-align:left;padding:.7rem .8rem;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
+.refs{font-size:.88rem;line-height:1.5}
+.refs ol{padding-left:1.8rem}
+.refs li{margin:.5rem 0}
+.refs .venue{color:var(--muted)}
+.pdf{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.04em;color:var(--teal);border:1px solid var(--teal);border-radius:4px;padding:.02rem .3rem;text-decoration:none;margin-left:.3rem;white-space:nowrap}
+.pdf:hover{background:var(--teal);color:var(--bg2)}
+sup.c{font-size:.68em;color:var(--rose);font-weight:700}
+sup.c a{color:inherit;text-decoration:none}
+.rundown{display:grid;grid-template-columns:6.2rem 1fr;gap:.45rem 1rem;margin:1.4rem 0;padding:1rem 1.15rem;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow);font-family:var(--sans);font-size:.84rem;line-height:1.45}
+.rundown dt{font-family:var(--mono);font-weight:700;color:var(--rose)}.rundown dd{margin:0 0 .25rem}.rundown dd strong{color:var(--fg)}
+.steps{counter-reset:worked;list-style:none;padding:0;margin:1.4rem 0}.steps>li{counter-increment:worked;position:relative;padding:.8rem 1rem .8rem 3.2rem;margin:.6rem 0;border-left:2px solid var(--peri);background:var(--bg2);border-radius:0 8px 8px 0}.steps>li:before{content:counter(worked);position:absolute;left:.85rem;top:.7rem;width:1.55rem;height:1.55rem;display:grid;place-items:center;border-radius:50%;background:var(--peri);color:var(--bg2);font:700 .72rem var(--sans)}
+.checkpoint{margin:1.6rem 0;padding:.9rem 1.05rem;border:1px dashed var(--teal);border-radius:9px;background:color-mix(in srgb,var(--powder) 55%,var(--bg2));font-family:var(--sans);font-size:.88rem}.checkpoint strong{color:var(--teal)}
+.formula-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.3rem 0}.formula-pair>*{margin:0}
+@media(max-width:700px){.rundown{grid-template-columns:1fr}.rundown dt{margin-top:.3rem}.formula-pair{grid-template-columns:1fr}}
+#tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
+@media print{#tt,nav.toc{display:none}.wrap{display:block}main>*{max-width:none}}
+
+/* ---- extras used by the lecture 2 lineage and exposition pages ---- */
+.box.thm{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.thm .lbl{color:var(--peri)}
+.box.hist{border-left:3px solid var(--leader)}
+.box.hist .lbl{color:var(--leader)}
+blockquote.quote{margin:1.4rem 0;padding:.15rem 0 .15rem 1.15rem;border-left:3px solid var(--leader);
+  color:var(--gray);font-style:italic;font-size:.96em;line-height:1.62}
+blockquote.quote cite{display:block;margin-top:.5rem;font-style:normal;font-family:var(--sans);
+  font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--leader)}
+blockquote.quote cite::before{content:"\2014 "}
+.demo{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:1.15rem;margin:2rem 0;box-shadow:var(--shadow)}
+.demo h4{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin:0 0 .1rem;font-weight:700}
+.demo .dsub{font-family:var(--sans);font-size:.83rem;color:var(--muted);margin:0 0 .9rem}
+.ctl{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;font-family:var(--sans);font-size:.78rem;margin:.9rem 0 .2rem}
+.ctl label{display:flex;flex-direction:column;gap:.15rem;min-width:9.5rem;flex:1 1 9.5rem}
+.ctl .lv{display:flex;justify-content:space-between;gap:.6rem;color:var(--muted)}
+.ctl .lv b{color:var(--fg);font-family:var(--mono);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--rose);height:1.1rem}
+button{font-family:var(--sans);font-size:.78rem;font-weight:600;padding:.42rem .85rem;border-radius:7px;
+  border:1px solid var(--rule);background:var(--bg);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--rose);color:var(--rose)}
+button.pri{background:var(--rose);border-color:var(--rose);color:#fff}
+button.pri:hover{color:#fff;opacity:.9}
+.readout{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:.6rem;line-height:1.7}
+.readout b{color:var(--fg)}
+canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--bg)}
+.pdf.no{color:var(--leader);border-color:var(--leader)}
+.pdf.no:hover{background:none;color:var(--leader)}
+
+/* Narrow screens: .m is nowrap so short formulas never break, but a long inline
+   formula or file path then pushes the page sideways. Below the tablet breakpoint,
+   let it wrap. Desktop rendering is unchanged. */
+@media (max-width:640px){
+  .m,code{white-space:normal;overflow-wrap:anywhere}
+}
+</style>
+</head>
+<body>
+<button id="tt" title="Toggle light / dark">&#9689;</button>
+<div class="wrap">
+<!--MATH:latex-->
+<nav class="toc" id="toc">
+  <div class="brand">CCBS &middot; 2026 &middot; Lecture 2 &middot; CORE</div>
+  <h2>Contents</h2>
+  <ol>
+    <li class="part">Part 1 &middot; The ledger</li>
+    <li><a href="#s1">1 &middot; A cubic micron is a femtolitre</a></li>
+    <li><a href="#s2">2 &middot; What is in it</a></li>
+    <li><a href="#s3">3 &middot; Why chemistry is all that happens</a></li>
+    <li class="part">Part 2 &middot; How fast things move</li>
+    <li><a href="#s4">4 &middot; Brownian motion, and the formula for D</a></li>
+    <li><a href="#s5">5 &middot; &tau; &asymp; x&sup2;/D, and what it predicts</a></li>
+    <li class="part">Part 3 &middot; The ceiling on a rate</li>
+    <li><a href="#s6">6 &middot; What an arrow promises</a></li>
+    <li><a href="#s7">7 &middot; The diffusion-limited on-rate, derived</a></li>
+    <li><a href="#s8">8 &middot; What reaches the ceiling, and what falls short</a></li>
+    <li class="part">Part 4 &middot; What the gap buys</li>
+    <li><a href="#s9">9 &middot; Binding equilibrates while catalysis works</a></li>
+    <li><a href="#s10">10 &middot; Metabolism cannot wait for gene expression</a></li>
+    <li class="part">Addendum</li>
+    <li><a href="#s11">11 &middot; Where this goes</a></li>
+    <li><a href="#s12">12 &middot; Eight things worth extending</a></li>
+    <li><a href="#exercises">Exercises</a></li>
+    <li><a href="#refs">References &amp; note sources</a></li>
+  </ol>
+</nav>
+<main>
+
+<h1>From order of magnitude in biology to binding and catalysis</h1>
+<p class="sub">Count what is in a cell and you get its timescales. Count how often molecules meet and you get its rates. The two counts land in the same place: a fast reversible layer sitting under a slow irreversible one, four orders of magnitude apart. That gap is where regulation lives, and it is why this course is built from exactly two kinds of reaction.</p>
+<p class="byline">CCBS &middot; EST 5053 &middot; Fall 2026 &middot; lecture 2 &middot; core page &middot; 2026-09-03 (Thu) 10:40&ndash;12:15 &middot; lecturer-taught</p>
+
+<p>Lecture 1 estimated the physics. This one estimates the cell, and the estimate does not stop at a table of numbers. Once you know how much stuff is in a cell and how fast it moves, you can bound how fast anything inside it can possibly happen. Two bounds come out. Molecules meet at up to about <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>10</mn></msup><mtext> </mtext><msup><mi mathvariant="normal">M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{10}\,\mathrm{M}^{-1}\mathrm{s}^{-1}</annotation></semantics></math></span>. Enzymes turn over at about <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mtext> </mtext><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10\,\mathrm{s}^{-1}</annotation></semantics></math></span>. Those two numbers, and the distance between them, are the whole lecture.</p>
+
+<p>The distance is not a defect. It is the reason a cell can be controlled. Binding reaches equilibrium about ten thousand times during one catalytic turnover, so the binding layer is a settled statistical-mechanics problem while the catalytic layer is still grinding forward. Lecture 8 will claim a cell is nothing but those two things. Today we measure the premises of that claim.</p>
+
+<div class="box note">
+<span class="lbl">This page is the lecture note</span>
+<p>It carries what happens in the room, and nothing else. Derivations go as far as the board goes, and stop. The <a href="lecture02-exposition.html">exposition</a> is the textbook chapter that finishes them: every step shown, four checkpoints with solutions, two interactive tools, written for someone studying alone. The <a href="lecture02-lineage.html">lineage essay</a> is the history: who made these methods, and where the standard retelling turns out to be wrong. Read this page before the lecture, the exposition after it.</p>
+</div>
+
+<div class="box note">
+<span class="lbl">The 95 minutes</span>
+<div class="tablewrap">
+<table>
+<caption>The spine, as timed blocks. Section 7 is the anchor derivation of the course and gets the largest block. Section 10 is the argument you should be able to reproduce on a napkin.</caption>
+<thead><tr><th>Block</th><th>Section</th><th>min</th></tr></thead>
+<tbody>
+<tr><td>Admin</td><td>what is due, what is coming</td><td class="num">5</td></tr>
+<tr><td>1</td><td>&sect;1 a cubic micron is a femtolitre</td><td class="num">8</td></tr>
+<tr><td>2</td><td>&sect;2 what is in it</td><td class="num">9</td></tr>
+<tr><td>3</td><td>&sect;3 why chemistry is all that happens</td><td class="num">4</td></tr>
+<tr><td>4</td><td>&sect;4 Brownian motion and D</td><td class="num">9</td></tr>
+<tr><td>5</td><td>&sect;5 mixing times</td><td class="num">9</td></tr>
+<tr><td>6</td><td>&sect;6 the two arrows</td><td class="num">8</td></tr>
+<tr><td>7</td><td class="hl">&sect;7 the absorbing sphere</td><td class="num hl">13</td></tr>
+<tr><td>8</td><td>&sect;8 ceiling against reality</td><td class="num">8</td></tr>
+<tr><td>9</td><td>&sect;9 the separation</td><td class="num">7</td></tr>
+<tr><td>10</td><td class="hl">&sect;10 metabolism cannot wait</td><td class="num hl">10</td></tr>
+<tr><td>Addendum</td><td>&sect;11 where this goes</td><td class="num">5</td></tr>
+</tbody>
+</table>
+</div>
+<p>Every number traces to a reference below or to <code>analysis/cell_ledger.py</code>, which runs with no arguments and prints all of them.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Part 1</div>
+  <h2>The ledger</h2>
+  <p>How much stuff a cell has, and what follows from the fact that there is so little of it.</p>
+</div>
+
+<h2 id="s1"><span class="n">1</span>A cubic micron is a femtolitre</h2>
+<p class="lede">One identity, and the conversion that falls out of it. Memorise both.</p>
+
+<p>Start with the length ladder, because it fixes the scale of everything that follows.<sup class="c"><a href="#r-l1notes">14</a></sup> An atom is about 1&nbsp;&Aring;. A bacterium is about 1&nbsp;&micro;m. A human is about 1&nbsp;m. A bacterium stands to a human exactly as an atom stands to a bacterium, four orders of magnitude in each step. Every object this course cares about lives in the first two decades above the atom.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 300" role="img" aria-label="The length ladder from an atom to a human, with the objects of this course marked, and the volume and concentration that follow" font-family="var(--sans)">
+<line x1="40.0" y1="132.0" x2="720.0" y2="132.0" stroke="var(--fg)" stroke-width="1.6"/>
+<line x1="64.7" y1="127.0" x2="64.7" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<line x1="126.5" y1="127.0" x2="126.5" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<line x1="188.4" y1="127.0" x2="188.4" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<line x1="250.2" y1="127.0" x2="250.2" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<line x1="312.0" y1="127.0" x2="312.0" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<line x1="373.8" y1="127.0" x2="373.8" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<line x1="435.6" y1="127.0" x2="435.6" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<line x1="497.5" y1="127.0" x2="497.5" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<line x1="559.3" y1="127.0" x2="559.3" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<line x1="621.1" y1="127.0" x2="621.1" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<line x1="682.9" y1="127.0" x2="682.9" y2="137.0" stroke="var(--gray)" stroke-width="1.1"/>
+<text x="64.7" y="154.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 Å</text>
+<text x="126.5" y="154.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 nm</text>
+<text x="312.0" y="154.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 µm</text>
+<text x="497.5" y="154.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 mm</text>
+<text x="682.9" y="154.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 m</text>
+<circle cx="64.7" cy="132.0" r="4.60" fill="var(--gray)" stroke="var(--bg2)" stroke-width="1.6"/>
+<line x1="64.7" y1="125.0" x2="64.7" y2="86.0" stroke="var(--gray)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="40.0" y="80.0" font-size="11" text-anchor="start" fill="var(--gray)" font-weight="700">atom</text>
+<circle cx="101.8" cy="132.0" r="4.60" fill="var(--lime)" stroke="var(--bg2)" stroke-width="1.6"/>
+<line x1="101.8" y1="125.0" x2="101.8" y2="60.0" stroke="var(--lime)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="101.8" y="54.0" font-size="11" text-anchor="middle" fill="var(--lime)" font-weight="700">glucose</text>
+<circle cx="146.9" cy="132.0" r="4.60" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
+<line x1="146.9" y1="125.0" x2="146.9" y2="86.0" stroke="var(--rose)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="146.9" y="80.0" font-size="11" text-anchor="middle" fill="var(--rose)" font-weight="700">protein</text>
+<circle cx="189.6" cy="132.0" r="4.60" fill="var(--teal)" stroke="var(--bg2)" stroke-width="1.6"/>
+<line x1="189.6" y1="125.0" x2="189.6" y2="60.0" stroke="var(--teal)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="189.6" y="54.0" font-size="11" text-anchor="middle" fill="var(--teal)" font-weight="700">ribosome</text>
+<circle cx="312.0" cy="132.0" r="4.60" fill="var(--peri)" stroke="var(--bg2)" stroke-width="1.6"/>
+<line x1="312.0" y1="125.0" x2="312.0" y2="86.0" stroke="var(--peri)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="312.0" y="80.0" font-size="11" text-anchor="middle" fill="var(--peri)" font-weight="700">E. coli</text>
+<circle cx="373.8" cy="132.0" r="4.60" fill="var(--plum)" stroke="var(--bg2)" stroke-width="1.6"/>
+<line x1="373.8" y1="125.0" x2="373.8" y2="60.0" stroke="var(--plum)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="373.8" y="54.0" font-size="11" text-anchor="middle" fill="var(--plum)" font-weight="700">human cell</text>
+<circle cx="497.5" cy="132.0" r="4.60" fill="var(--coral)" stroke="var(--bg2)" stroke-width="1.6"/>
+<line x1="497.5" y1="125.0" x2="497.5" y2="86.0" stroke="var(--coral)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="497.5" y="80.0" font-size="11" text-anchor="middle" fill="var(--coral)" font-weight="700">frog egg</text>
+<circle cx="682.9" cy="132.0" r="4.60" fill="var(--gray)" stroke="var(--bg2)" stroke-width="1.6"/>
+<line x1="682.9" y1="125.0" x2="682.9" y2="60.0" stroke="var(--gray)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="682.9" y="54.0" font-size="11" text-anchor="middle" fill="var(--gray)" font-weight="700">human</text>
+<rect x="40.0" y="184.0" width="680.0" height="84.0" rx="8" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+<text x="125.0" y="218.0" font-size="13.5" text-anchor="middle" fill="var(--rose)" font-weight="700">1 µm³ = 1 fL</text>
+<text x="125.0" y="238.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">the volume</text>
+<text x="295.0" y="218.0" font-size="13.5" text-anchor="middle" fill="var(--rose)" font-weight="700">1.1 pg</text>
+<text x="295.0" y="238.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">the wet mass</text>
+<line x1="210.0" y1="196.0" x2="210.0" y2="256.0" stroke="var(--rule)" stroke-width="1"/>
+<text x="465.0" y="218.0" font-size="13.5" text-anchor="middle" fill="var(--rose)" font-weight="700">1 molecule = 1.7 nM</text>
+<text x="465.0" y="238.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">the conversion</text>
+<line x1="380.0" y1="196.0" x2="380.0" y2="256.0" stroke="var(--rule)" stroke-width="1"/>
+<text x="635.0" y="218.0" font-size="13.5" text-anchor="middle" fill="var(--rose)" font-weight="700">3 × 10⁶ proteins</text>
+<text x="635.0" y="238.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">the count</text>
+<line x1="550.0" y1="196.0" x2="550.0" y2="256.0" stroke="var(--rule)" stroke-width="1"/>
+<text x="50.0" y="200.0" font-size="10" text-anchor="start" fill="var(--gray)" font-weight="700" letter-spacing="1.4">ONE E. COLI</text>
+</svg>
+<figcaption><b>Figure 1.</b> The length ladder, with the objects of this course marked, and the four numbers that follow for one <i>E. coli</i>. The conversion in the third box is the one to memorise.</figcaption></figure>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>1</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">m</mi><mn>3</mn></msup><mo>=</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>18</mn></mrow></msup><mtext> </mtext><msup><mi mathvariant="normal">m</mi><mn>3</mn></msup><mo>=</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>15</mn></mrow></msup><mtext> </mtext><mi mathvariant="normal">L</mi><mo>=</mo><mstyle class="pf"><mrow><mn mathvariant="bold">1</mn><mtext> </mtext><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">L</mi></mrow></mrow></mstyle><mtext> </mtext><mtext> </mtext><mtext> and </mtext><mtext> </mtext><mtext> </mtext><mn>1</mn><mtext> </mtext><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">L</mi></mrow><mtext>of  water  weighs</mtext><mstyle class="pf"><mrow><mn mathvariant="bold">1</mn><mtext> </mtext><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">g</mi></mrow></mrow></mstyle></mrow><annotation encoding="application/x-tex">1\,\mu\mathrm{m}^{3} = 10^{-18}\,\mathrm{m}^{3} = 10^{-15}\,\mathrm{L} = \pf{1\,\mathrm{fL}} \,\,\text{ and }\,\, 1\,\mathrm{fL} \text{of \text{ water } weighs} \pf{1\,\mathrm{pg}}</annotation></semantics></math><span class="tag">(1)</span></div>
+
+<p>That identity is why a bacterium can be treated as a chemical reactor at all, and it gives the conversion the rest of the course leans on. One molecule in one femtolitre is</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>c</mi><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><msub><mi>N</mi><mi>A</mi></msub><mo>⋅</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>15</mn></mrow></msup><mtext> </mtext><mi mathvariant="normal">L</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>6.02</mn><mo>×</mo><msup><mn>10</mn><mn>23</mn></msup><mo>⋅</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>15</mn></mrow></msup><mo stretchy="false">)</mo><mo>=</mo><mstyle class="pf"><mrow><mn mathvariant="bold">1.7</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">M</mi></mrow></mrow></mstyle></mrow><annotation encoding="application/x-tex">c = 1 / (N_{A} \cdot 10^{-15}\,\mathrm{L}) = 1 / (6.02\times 10^{23} \cdot 10^{-15}) = \pf{1.7\,\mathrm{nM}}</annotation></semantics></math><span class="tag">(2)</span></div>
+
+<p>Say it out loud. <em>One molecule per cell is 1.7 nanomolar.</em> A transcription factor present in ten copies is at 17&nbsp;nM, the same order as its dissociation constant for DNA. Lecture 7 will explain why that cannot be a coincidence.</p>
+
+<p>One caveat before we build on it. The 1&nbsp;&micro;m&sup3; cell is the small end of the range: <i>E. coli</i> runs <strong>1.5&nbsp;fL in slow growth to 4.4&nbsp;fL in rich medium</strong>, with the width fixed near 1.26&nbsp;&micro;m and the length doing the changing.<sup class="c"><a href="#r-volkmer">1</a></sup> Use 1&nbsp;fL for a bound, and remember that cell size tracks growth rate, which is itself physiology (lecture 14).</p>
+
+<h2 id="s2"><span class="n">2</span>What is in it</h2>
+<p class="lede">A protein weighs 33&nbsp;kDa, there are three million of them, and the classroom number for that count is five times too high.</p>
+
+<p>Two log-averages get the mass of one protein. Amino acids run 75 to 204&nbsp;Da, so <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><mn>75</mn><mo>×</mo><mn>204</mn></mrow></msqrt><mo>=</mo><mn>124</mn></mrow><annotation encoding="application/x-tex">\sqrt{75\times 204} = 124</annotation></semantics></math></span>, and a residue in a chain is 18&nbsp;Da lighter because the peptide bond releases water. Carry <strong>110&nbsp;Da per residue</strong>.<sup class="c"><a href="#r-milo2013">2</a></sup> Lengths run 50 to 5000, so <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mrow><mn>50</mn><mo>×</mo><mn>5000</mn></mrow></msqrt><mo>=</mo><mn>500</mn></mrow><annotation encoding="application/x-tex">\sqrt{50\times 5000} = 500</annotation></semantics></math></span> residues against a measured mean of <strong>300</strong>. High by 1.7, which is what order of magnitude promises and no better.</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>m</mi><mtext>protein</mtext></msub><mo>=</mo><mn>300</mn><mo>×</mo><mn>110</mn><mtext> </mtext><mrow><mi mathvariant="normal">D</mi><mi mathvariant="normal">a</mi></mrow><mo>≈</mo><mstyle class="pf"><mrow><mn mathvariant="bold">33</mn><mtext> </mtext><mrow><mi mathvariant="normal">k</mi><mi mathvariant="normal">D</mi><mi mathvariant="normal">a</mi></mrow></mrow></mstyle></mrow><annotation encoding="application/x-tex">m_{\text{protein}} = 300 \times 110\,\mathrm{Da} \approx \pf{33\,\mathrm{kDa}}</annotation></semantics></math><span class="tag">(3)</span></div>
+
+<p>Now count them, and get it wrong first. Wet mass over protein mass gives <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.1</mn><mtext> </mtext><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">g</mi></mrow><mi mathvariant="normal">/</mi><mn>33</mn><mtext> </mtext><mrow><mi mathvariant="normal">k</mi><mi mathvariant="normal">D</mi><mi mathvariant="normal">a</mi></mrow><mo>=</mo><mn>2</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">1.1\,\mathrm{pg} / 33\,\mathrm{kDa} = 2\times 10^{7}</annotation></semantics></math></span>. That is the number usually quoted, and it is an upper bound that assumes the cell is dry. A cell is 70% water, so <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>p</mi></msub><mo>=</mo><mn>0.24</mn></mrow><annotation encoding="application/x-tex">c_{p} = 0.24</annotation></semantics></math></span> g/mL:<sup class="c"><a href="#r-milo2013">2</a></sup></p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>N</mi><mo>=</mo><msub><mi>c</mi><mi>p</mi></msub><mi mathvariant="normal">/</mi><msub><mi>m</mi><mtext>protein</mtext></msub><mo>=</mo><mn>0.24</mn><mtext> </mtext><mi mathvariant="normal">g</mi><mi mathvariant="normal">/</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><mo>÷</mo><mn>5.5</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>20</mn></mrow></msup><mtext> </mtext><mi mathvariant="normal">g</mi><mo>=</mo><mstyle class="pf"><mrow><mn mathvariant="bold">3</mn><mo>−</mo><mn mathvariant="bold">4</mn><mo>×</mo><msup><mn mathvariant="bold">10</mn><mn mathvariant="bold">6</mn></msup><mtext> proteins per </mtext><mtext> </mtext><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">L</mi></mrow></mrow></mstyle></mrow><annotation encoding="application/x-tex">N = c_{p} / m_{\text{protein}} = 0.24\,\mathrm{g}/\mathrm{mL} \div 5.5\times 10^{-20}\,\mathrm{g} = \pf{3-4 \times 10^{6} \text{ proteins per }\,\mathrm{fL}}</annotation></semantics></math><span class="tag">(4)</span></div>
+
+<div class="box caution">
+<span class="lbl">A correction worth carrying</span>
+<p>The naive bound is <strong>five times too high</strong>, and the error is entirely the water. Milo found 2 to 4 million per cubic micron holds for bacteria, yeast and mammalian cells alike, and that several proteome-wide censuses report values 3 to 10 times lower and are probably mis-calibrated.<sup class="c"><a href="#r-milo2013">2</a></sup> Order of magnitude used as lecture 1 advertised: a benchmark that catches an experiment.</p>
+</div>
+
+<h3>The concentration ladder</h3>
+<p>Divide by 4400 protein-coding genes: about 800 copies per species, which by (2) is <strong>1.4&nbsp;&micro;M</strong>. Metabolites are three orders higher, with a measured total near <strong>300&nbsp;mM</strong> and glutamate alone at 96&nbsp;mM.<sup class="c"><a href="#r-bennett">3</a></sup></p>
+
+<div class="tablewrap">
+<table>
+<caption>Table 1. The concentration ladder. Every dissociation constant in biology is read against this.</caption>
+<thead><tr><th>Species</th><th>copies per cell</th><th>concentration</th><th>regime</th></tr></thead>
+<tbody>
+<tr><td>abundant metabolite (glutamate, ATP, FBP)</td><td class="num">10<sup>6</sup>&ndash;10<sup>8</sup></td><td class="num">1&ndash;100 mM</td><td>a well-stirred reactor (lecture 3)</td></tr>
+<tr><td>typical enzyme</td><td class="num">10<sup>2</sup>&ndash;10<sup>4</sup></td><td class="num">0.1&ndash;10 &micro;M</td><td>the regulated layer (lectures 7, 8)</td></tr>
+<tr><td>transcription factor</td><td class="num">10&ndash;10<sup>2</sup></td><td class="num">10&ndash;100 nM</td><td class="hl">counting starts to matter (lecture 5)</td></tr>
+<tr><td>one molecule</td><td class="num">1</td><td class="num">1.7 nM</td><td>discreteness (lecture 5)</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The table is the point, because a dissociation constant means nothing on its own. It means something next to the concentration of the thing that binds. Metabolic enzymes have <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>M</mi></msub></mrow><annotation encoding="application/x-tex">K_{M}</annotation></semantics></math></span> near 100&nbsp;&micro;M against millimolar substrate, so they are <em>saturated</em>. Transcription factors have <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>d</mi></msub></mrow><annotation encoding="application/x-tex">K_{d}</annotation></semantics></math></span> near 1&ndash;10&nbsp;nM against themselves at tens of nanomolar, so they are <em>poised</em>. Same physics, opposite design.</p>
+
+<h3>Long, and fat</h3>
+<p>Two entries close the ledger, and they point opposite ways. At 0.34&nbsp;nm per base pair the 4.64&nbsp;Mbp genome is <strong>1.6&nbsp;mm</strong> long, sixteen hundred cell lengths, and as a 1&nbsp;nm cylinder it occupies <strong>0.5% of the volume</strong>. Protein does the reverse. Erickson's formula sizes it from nothing but its weight,<sup class="c"><a href="#r-erickson">4</a></sup> and three million of them fill <strong>15% of the cell</strong>:</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>R</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow></msub><mo>=</mo><mo stretchy="false">(</mo><mn>3</mn><mi>V</mi><mi mathvariant="normal">/</mi><mn>4</mn><mi>π</mi><msup><mo stretchy="false">)</mo><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></msup><mo>=</mo><mn>0.066</mn><mo>⋅</mo><msup><mi>M</mi><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></msup><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">m</mi></mrow><mo>=</mo><mstyle class="pf"><mrow><mn mathvariant="bold">2.1</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">m</mi></mrow></mrow></mstyle><mtext> for </mtext><mn>33</mn><mtext> </mtext><mrow><mi mathvariant="normal">k</mi><mi mathvariant="normal">D</mi><mi mathvariant="normal">a</mi></mrow><mtext> </mtext><mo stretchy="false">(</mo><mi>M</mi><mtext> in daltons</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R_{\mathrm{min}} = (3V/4\pi )^{1/3} = 0.066 \cdot M^{1/3}\,\mathrm{nm} = \pf{2.1\,\mathrm{nm}} \text{ for } 33\,\mathrm{kDa} \,(M \text{ in daltons})</annotation></semantics></math><span class="tag">(5)</span></div>
+
+<p>That radius is a <em>minimum</em>, since a real protein drags a hydration shell and its hydrodynamic radius is 20 to 40 percent larger. Section 4 needs the distinction. And the asymmetry is the point: the genome is <em>long</em> and takes no room, the proteome is <em>short</em> and fills the cell. Information is cheap to store and expensive to execute. So crowding is not a nuisance correction, and section 4 shows it slowing every machine by elevenfold.</p>
+
+<h2 id="s3"><span class="n">3</span>Why chemistry is all that happens</h2>
+<p class="lede">Fixed temperature, fixed pressure, no mechanical work. What is left is bond rearrangement, and enzymes decide when.</p>
+
+<p>A cell holds temperature and pressure essentially constant. It compresses nothing, heats nothing, does no macroscopic work. Every change of state it undergoes is therefore a chemical reaction. Two questions follow, and this course keeps them apart.</p>
+
+<ul>
+<li><strong>Whether</strong> a reaction can proceed is thermodynamics. At fixed <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> the currency is Gibbs free energy, not heat. That is lecture 7.</li>
+<li><strong>How fast</strong> it proceeds is kinetics, and it is almost entirely about enzymes. That is today.</li>
+</ul>
+
+<p>Insist on it, because biology violates the naive coupling between the two. Favourable reactions sit untouched for years inside a cell: hydrolysis of ATP, cleavage of a peptide bond, degradation of glucose. Enzymes accelerate them by <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">10^{10}</annotation></semantics></math></span> and more. Downhill tells you nothing about whether a reaction happens. A reaction happening tells you an enzyme decided it should.</p>
+
+<div class="parthead">
+  <div class="k">Part 2</div>
+  <h2>How fast things move</h2>
+  <p>One formula turns a size into a diffusion coefficient. One scaling turns that into a time.</p>
+</div>
+
+<h2 id="s4"><span class="n">4</span>Brownian motion, and the formula for D</h2>
+<p class="lede">Watch something jiggle, measure how far it goes in a second, and you have measured a molecular constant.</p>
+
+<p>In June 1827 Robert Brown put pollen of <i>Clarkia pulchella</i> in water and saw particles moving with no apparent cause. What matters for us is <strong>what</strong> he was watching, and most retellings get it wrong. Not the pollen grain: a <i>Clarkia</i> grain is 100&nbsp;&micro;m across and far too large to jiggle visibly. Brown saw organelles ejected from the burst grain, spherosomes of modal radius <strong>0.5&nbsp;&micro;m</strong>.<sup class="c"><a href="#r-pearle">5</a></sup></p>
+
+<div class="box hist">
+<span class="lbl">1827</span>
+<p>Brown's contribution was not the observation but the control. He repeated it with dead plants, fossilised wood, ground glass, and a fragment of the Sphinx, and saw the same motion. That killed the vital explanation. Same lesson as lecture 1's null models: the interesting move was removing the only mechanism anyone believed in.</p>
+</div>
+
+<p>He described displacements of about a micron in a second. For a 0.5&nbsp;&micro;m sphere the mean one-dimensional displacement in one second is 0.74&nbsp;&micro;m,<sup class="c"><a href="#r-pearle">5</a></sup> so inverting <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><mi mathvariant="normal">∣</mi><mi>x</mi><mi mathvariant="normal">∣</mi><mo stretchy="false">⟩</mo><mo>=</mo><mn>0.80</mn><msqrt><mrow><mn>2</mn><mi>D</mi><mi>t</mi></mrow></msqrt></mrow><annotation encoding="application/x-tex">\langle |x|\rangle = 0.80\sqrt{2Dt}</annotation></semantics></math></span> gives <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mn>0.43</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">D = 0.43\,\mu\mathrm{m}^{2}/\mathrm{s}</annotation></semantics></math></span>. Now the scaling that makes it useful. Diffusion balances thermal kicks against viscous drag. Stokes drag is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>=</mo><mn>6</mn><mi>π</mi><mi>η</mi><mi>a</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">F = 6\pi \eta av</annotation></semantics></math></span>, so mobility <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>∝</mo><mn>1</mn><mi mathvariant="normal">/</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">\mu \propto 1/a</annotation></semantics></math></span>, and Einstein's <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mi>μ</mi><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi></mrow><annotation encoding="application/x-tex">D = \mu k_{B}T</annotation></semantics></math></span> gives</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>D</mi><mo>=</mo><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>6</mn><mi>π</mi><mi>η</mi><mi>a</mi><mo stretchy="false">)</mo><mtext> </mtext><mtext> </mtext><mo>⇒</mo><mtext> </mtext><mtext> </mtext><mstyle class="pf"><mrow><mi mathvariant="bold">D</mi><mo>∝</mo><mn mathvariant="bold">1</mn><mi mathvariant="bold">/</mi><mi mathvariant="bold">a</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">D = k_{B}T / (6\pi \eta a) \,\,\Rightarrow \,\, \pf{D \propto 1/a}</annotation></semantics></math><span class="tag">(6)</span></div>
+
+<p>So the whole content of the calibration is one constant, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi><mi mathvariant="normal">/</mi><mn>6</mn><mi>π</mi><mi>η</mi><mo>=</mo><mi>D</mi><mo>⋅</mo><mi>a</mi><mo>=</mo><mn>0.21</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">m</mi><mn>3</mn></msup><mi mathvariant="normal">/</mi><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">k_{B}T/6\pi \eta = D\cdot a = 0.21\,\mu\mathrm{m}^{3}/\mathrm{s}</annotation></semantics></math></span>, against a true 0.245. <strong>An 1827 qualitative observation gets a fundamental constant to 13%.</strong> Divide by a protein's radius: <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>≈</mo><mn>100</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">D \approx 100\,\mu\mathrm{m}^{2}/\mathrm{s}</annotation></semantics></math></span> in water.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 400" role="img" aria-label="Diffusion coefficient against particle radius, log-log, with the Stokes-Einstein line and measured values" font-family="var(--sans)">
+<defs><clipPath id="l2clipD"><rect x="76" y="34" width="514" height="312"/></clipPath></defs><rect x="76.0" y="34.0" width="514.0" height="312.0" rx="4" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+<line x1="94.4" y1="34.0" x2="94.4" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="94.4" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">0.1</text>
+<line x1="186.1" y1="34.0" x2="186.1" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="186.1" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">1</text>
+<line x1="277.9" y1="34.0" x2="277.9" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="277.9" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">10</text>
+<line x1="369.7" y1="34.0" x2="369.7" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="369.7" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">100</text>
+<line x1="461.5" y1="34.0" x2="461.5" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="461.5" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 µm</text>
+<line x1="553.3" y1="34.0" x2="553.3" y2="346.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="553.3" y="364.0" font-size="11" text-anchor="middle" fill="var(--gray)">10 µm</text>
+<line x1="76.0" y1="335.2" x2="590.0" y2="335.2" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="339.2" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">-2</tspan><tspan dy="5"></tspan></text>
+<line x1="76.0" y1="281.4" x2="590.0" y2="281.4" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="285.4" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">-1</tspan><tspan dy="5"></tspan></text>
+<line x1="76.0" y1="227.7" x2="590.0" y2="227.7" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="231.7" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">0</tspan><tspan dy="5"></tspan></text>
+<line x1="76.0" y1="173.9" x2="590.0" y2="173.9" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="177.9" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">1</tspan><tspan dy="5"></tspan></text>
+<line x1="76.0" y1="120.1" x2="590.0" y2="120.1" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="124.1" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">2</tspan><tspan dy="5"></tspan></text>
+<line x1="76.0" y1="66.3" x2="590.0" y2="66.3" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="70.3" font-size="11" text-anchor="end" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">3</tspan><tspan dy="5"></tspan></text>
+<text x="333.0" y="390.0" font-size="12" text-anchor="middle" fill="var(--gray)">particle radius a</text>
+<text x="-190.0" y="18.0" font-size="12" text-anchor="middle" fill="var(--gray)" transform="rotate(-90)">D  (µm² s⁻¹)</text>
+<g clip-path="url(#l2clipD)"><path d="M 76.0,34.5 L 80.3,37.1 L 84.6,39.6 L 88.8,42.1 L 93.1,44.6 L 97.4,47.1 L 101.7,49.6 L 106.0,52.1 L 110.3,54.6 L 114.5,57.1 L 118.8,59.7 L 123.1,62.2 L 127.4,64.7 L 131.7,67.2 L 136.0,69.7 L 140.2,72.2 L 144.5,74.7 L 148.8,77.2 L 153.1,79.7 L 157.4,82.2 L 161.7,84.8 L 165.9,87.3 L 170.2,89.8 L 174.5,92.3 L 178.8,94.8 L 183.1,97.3 L 187.4,99.8 L 191.7,102.3 L 195.9,104.8 L 200.2,107.3 L 204.5,109.9 L 208.8,112.4 L 213.1,114.9 L 217.3,117.4 L 221.6,119.9 L 225.9,122.4 L 230.2,124.9 L 234.5,127.4 L 238.8,129.9 L 243.1,132.5 L 247.3,135.0 L 251.6,137.5 L 255.9,140.0 L 260.2,142.5 L 264.5,145.0 L 268.8,147.5 L 273.0,150.0 L 277.3,152.5 L 281.6,155.0 L 285.9,157.6 L 290.2,160.1 L 294.5,162.6 L 298.7,165.1 L 303.0,167.6 L 307.3,170.1 L 311.6,172.6 L 315.9,175.1 L 320.1,177.6 L 324.4,180.1 L 328.7,182.7 L 333.0,185.2 L 337.3,187.7 L 341.6,190.2 L 345.8,192.7 L 350.1,195.2 L 354.4,197.7 L 358.7,200.2 L 363.0,202.7 L 367.3,205.3 L 371.6,207.8 L 375.8,210.3 L 380.1,212.8 L 384.4,215.3 L 388.7,217.8 L 393.0,220.3 L 397.3,222.8 L 401.5,225.3 L 405.8,227.8 L 410.1,230.4 L 414.4,232.9 L 418.7,235.4 L 422.9,237.9 L 427.2,240.4 L 431.5,242.9 L 435.8,245.4 L 440.1,247.9 L 444.4,250.4 L 448.6,252.9 L 452.9,255.5 L 457.2,258.0 L 461.5,260.5 L 465.8,263.0 L 470.1,265.5 L 474.4,268.0 L 478.6,270.5 L 482.9,273.0 L 487.2,275.5 L 491.5,278.1 L 495.8,280.6 L 500.1,283.1 L 504.3,285.6 L 508.6,288.1 L 512.9,290.6 L 517.2,293.1 L 521.5,295.6 L 525.8,298.1 L 530.0,300.6 L 534.3,303.2 L 538.6,305.7 L 542.9,308.2 L 547.2,310.7 L 551.5,313.2 L 555.7,315.7 L 560.0,318.2 L 564.3,320.7 L 568.6,323.2 L 572.9,325.7 L 577.1,328.3 L 581.4,330.8 L 585.7,333.3 L 590.0,335.8" fill="none" stroke="var(--peri)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 76.0,91.2 L 80.3,93.7 L 84.6,96.2 L 88.8,98.7 L 93.1,101.2 L 97.4,103.7 L 101.7,106.3 L 106.0,108.8 L 110.3,111.3 L 114.5,113.8 L 118.8,116.3 L 123.1,118.8 L 127.4,121.3 L 131.7,123.8 L 136.0,126.3 L 140.2,128.8 L 144.5,131.4 L 148.8,133.9 L 153.1,136.4 L 157.4,138.9 L 161.7,141.4 L 165.9,143.9 L 170.2,146.4 L 174.5,148.9 L 178.8,151.4 L 183.1,154.0 L 187.4,156.5 L 191.7,159.0 L 195.9,161.5 L 200.2,164.0 L 204.5,166.5 L 208.8,169.0 L 213.1,171.5 L 217.3,174.0 L 221.6,176.5 L 225.9,179.1 L 230.2,181.6 L 234.5,184.1 L 238.8,186.6 L 243.1,189.1 L 247.3,191.6 L 251.6,194.1 L 255.9,196.6 L 260.2,199.1 L 264.5,201.6 L 268.8,204.2 L 273.0,206.7 L 277.3,209.2 L 281.6,211.7 L 285.9,214.2 L 290.2,216.7 L 294.5,219.2 L 298.7,221.7 L 303.0,224.2 L 307.3,226.8 L 311.6,229.3 L 315.9,231.8 L 320.1,234.3 L 324.4,236.8 L 328.7,239.3 L 333.0,241.8 L 337.3,244.3 L 341.6,246.8 L 345.8,249.3 L 350.1,251.9 L 354.4,254.4 L 358.7,256.9 L 363.0,259.4 L 367.3,261.9 L 371.6,264.4 L 375.8,266.9 L 380.1,269.4 L 384.4,271.9 L 388.7,274.4 L 393.0,277.0 L 397.3,279.5 L 401.5,282.0 L 405.8,284.5 L 410.1,287.0 L 414.4,289.5 L 418.7,292.0 L 422.9,294.5 L 427.2,297.0 L 431.5,299.6 L 435.8,302.1 L 440.1,304.6 L 444.4,307.1 L 448.6,309.6 L 452.9,312.1 L 457.2,314.6 L 461.5,317.1 L 465.8,319.6 L 470.1,322.1 L 474.4,324.7 L 478.6,327.2 L 482.9,329.7 L 487.2,332.2 L 491.5,334.7 L 495.8,337.2 L 500.1,339.7 L 504.3,342.2 L 508.6,344.7 L 512.9,347.2 L 517.2,349.8 L 521.5,352.3 L 525.8,354.8 L 530.0,357.3 L 534.3,359.8 L 538.6,362.3 L 542.9,364.8 L 547.2,367.3 L 551.5,369.8 L 555.7,372.4 L 560.0,374.9 L 564.3,377.4 L 568.6,379.9 L 572.9,382.4 L 577.1,384.9 L 581.4,387.4 L 585.7,389.9 L 590.0,392.4" fill="none" stroke="var(--coral)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 4"/>
+</g><circle cx="146.0" cy="75.6" r="5.00" fill="var(--lime)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="154.0" y="61.6" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">glucose</text>
+<circle cx="227.5" cy="123.3" r="5.00" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="237.5" y="109.3" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">GFP in water</text>
+<circle cx="227.5" cy="180.0" r="5.00" fill="var(--coral)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="237.5" y="200.0" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">GFP in E. coli</text>
+<circle cx="107.8" cy="46.8" r="5.00" fill="var(--plum)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="115.8" y="32.8" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">water</text>
+<circle cx="433.9" cy="247.5" r="5.00" fill="var(--teal)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="424.9" y="236.5" font-size="11" text-anchor="end" fill="var(--fg)" class="halo2">what Brown watched, 1827</text>
+<text x="602.0" y="46.0" font-size="12" text-anchor="start" fill="var(--peri)" font-weight="700">D = kT / 6πηa</text>
+<text x="602.0" y="62.0" font-size="11" text-anchor="start" fill="var(--gray)">in water, 25 °C</text>
+<line x1="602.0" y1="78.0" x2="628.0" y2="78.0" stroke="var(--coral)" stroke-width="1.8" stroke-dasharray="6 4"/>
+<text x="634.0" y="82.0" font-size="11" text-anchor="start" fill="var(--coral)">÷ 11</text>
+<text x="602.0" y="98.0" font-size="11" text-anchor="start" fill="var(--gray)">measured in the</text>
+<text x="602.0" y="112.0" font-size="11" text-anchor="start" fill="var(--gray)">E. coli cytoplasm</text>
+<text x="602.0" y="140.0" font-size="11" text-anchor="start" fill="var(--gray)">slope −1 over</text>
+<text x="602.0" y="154.0" font-size="11" text-anchor="start" fill="var(--gray)">five decades</text>
+</svg>
+<figcaption><b>Figure 2.</b> Stokes-Einstein over five decades of size, computed and not fitted, with measured values on it. Glucose lands on the line. GFP lands on it once you use the hydrodynamic radius. Water sits above it, correctly: the formula assumes the particle is large compared with the solvent. The dashed line is the same relation divided by 11, which is what cytoplasm does to a protein.</figcaption></figure>
+
+<div class="box caution">
+<span class="lbl">The cytoplasm is not water</span>
+<p>Elowitz and colleagues measured GFP inside <i>E. coli</i> and found <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mn>7.7</mn><mo>±</mo><mn>2.5</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">D = 7.7 \pm 2.5\,\mu\mathrm{m}^{2}/\mathrm{s}</annotation></semantics></math></span>, against 87 in dilute solution.<sup class="c"><a href="#r-elowitz">6</a></sup> An <strong>elevenfold slowdown</strong>, worsening fast with size: a 72&nbsp;kDa fusion drops to 2.5, and a six-histidine tag halves it. The 2025 version of this lecture quoted 100&nbsp;&micro;m&sup2;/s inside the cell, which is the water value. Use <strong>10 for a protein and 200 for a metabolite</strong> in cytoplasm, and say which you mean.</p>
+</div>
+
+<h2 id="s5"><span class="n">5</span>&tau; &asymp; x&sup2;/D, and what it predicts</h2>
+<p class="lede">The most useful scaling in the course, for the second time in two lectures. A null model earns its keep by being wrong in a specific place.</p>
+
+<p>Lecture 1 got <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>≈</mo><msup><mi>x</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi>κ</mi></mrow><annotation encoding="application/x-tex">t \approx x^{2}/\kappa</annotation></semantics></math></span> for heat by stripping the derivatives off the diffusion equation. Same equation, same argument, for particles:</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">∂</mi><mi>c</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">∂</mi><mi>t</mi><mo>=</mo><mi>D</mi><msup><mi mathvariant="normal">∇</mi><mn>2</mn></msup><mi>c</mi><mtext> </mtext><mo>⇒</mo><mtext> </mtext><mi>c</mi><mi mathvariant="normal">/</mi><mi>τ</mi><mo>≈</mo><mi>D</mi><mi>c</mi><mi mathvariant="normal">/</mi><msup><mi>x</mi><mn>2</mn></msup><mtext> </mtext><mo>⇒</mo><mtext> </mtext><mstyle class="pf"><mrow><mi mathvariant="bold">τ</mi><mo>≈</mo><msup><mi mathvariant="bold">x</mi><mn mathvariant="bold">2</mn></msup><mi mathvariant="bold">/</mi><mi mathvariant="bold">D</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">\partial c/\partial t = D\nabla^{2}c \,\Rightarrow \, c/\tau \approx D c/x^{2} \,\Rightarrow \, \pf{\tau \approx x^{2}/D}</annotation></semantics></math><span class="tag">(7)</span></div>
+
+<p>Exactly, in three dimensions, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">⟨</mo><msup><mi>r</mi><mn>2</mn></msup><mo stretchy="false">⟩</mo><mo>=</mo><mn>6</mn><mi>D</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\langle r^{2}\rangle = 6Dt</annotation></semantics></math></span>, so the simple form overestimates by six. That is inside the error bar of everything else here.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 420" role="img" aria-label="Diffusive mixing time against compartment size, log-log, showing where passive diffusion stops working" font-family="var(--sans)">
+<rect x="76.0" y="36.0" width="508.0" height="330.0" rx="4" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+<rect x="77.0" y="199.8" width="506.0" height="135.2" rx="0" fill="var(--cream)"/>
+<text x="84.0" y="214.8" font-size="11" text-anchor="start" fill="var(--gray)" class="halo3">a cell can wait this long</text>
+<line x1="105.9" y1="36.0" x2="105.9" y2="366.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="105.9" y="384.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 µm</text>
+<line x1="180.6" y1="36.0" x2="180.6" y2="366.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="180.6" y="384.0" font-size="11" text-anchor="middle" fill="var(--gray)">10 µm</text>
+<line x1="255.3" y1="36.0" x2="255.3" y2="366.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="255.3" y="384.0" font-size="11" text-anchor="middle" fill="var(--gray)">100 µm</text>
+<line x1="330.0" y1="36.0" x2="330.0" y2="366.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="330.0" y="384.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 mm</text>
+<line x1="404.7" y1="36.0" x2="404.7" y2="366.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="404.7" y="384.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 cm</text>
+<line x1="479.4" y1="36.0" x2="479.4" y2="366.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="479.4" y="384.0" font-size="11" text-anchor="middle" fill="var(--gray)">10 cm</text>
+<line x1="554.1" y1="36.0" x2="554.1" y2="366.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="554.1" y="384.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 m</text>
+<line x1="76.0" y1="335.1" x2="584.0" y2="335.1" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="339.1" font-size="11" text-anchor="end" fill="var(--gray)">1 ms</text>
+<line x1="76.0" y1="273.2" x2="584.0" y2="273.2" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="277.2" font-size="11" text-anchor="end" fill="var(--gray)">1 s</text>
+<line x1="76.0" y1="211.3" x2="584.0" y2="211.3" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="215.3" font-size="11" text-anchor="end" fill="var(--gray)">17 min</text>
+<line x1="76.0" y1="149.4" x2="584.0" y2="149.4" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="153.4" font-size="11" text-anchor="end" fill="var(--gray)">12 days</text>
+<line x1="76.0" y1="87.6" x2="584.0" y2="87.6" stroke="var(--gridc)" stroke-width="1"/>
+<text x="68.0" y="91.6" font-size="11" text-anchor="end" fill="var(--gray)">30 yr</text>
+<text x="330.0" y="410.0" font-size="12" text-anchor="middle" fill="var(--gray)">distance x</text>
+<text x="-201.0" y="18.0" font-size="12" text-anchor="middle" fill="var(--gray)" transform="rotate(-90)">τ = x² / D</text>
+<path d="M 76.0,337.1 L 81.1,334.3 L 86.2,331.5 L 91.2,328.7 L 96.3,325.9 L 101.4,323.1 L 106.5,320.3 L 111.6,317.5 L 116.6,314.7 L 121.7,311.9 L 126.8,309.1 L 131.9,306.3 L 137.0,303.5 L 142.0,300.7 L 147.1,297.9 L 152.2,295.1 L 157.3,292.3 L 162.4,289.5 L 167.4,286.7 L 172.5,283.9 L 177.6,281.0 L 182.7,278.2 L 187.8,275.4 L 192.8,272.6 L 197.9,269.8 L 203.0,267.0 L 208.1,264.2 L 213.2,261.4 L 218.2,258.6 L 223.3,255.8 L 228.4,253.0 L 233.5,250.2 L 238.6,247.4 L 243.6,244.6 L 248.7,241.8 L 253.8,239.0 L 258.9,236.2 L 264.0,233.4 L 269.0,230.6 L 274.1,227.8 L 279.2,224.9 L 284.3,222.1 L 289.4,219.3 L 294.4,216.5 L 299.5,213.7 L 304.6,210.9 L 309.7,208.1 L 314.8,205.3 L 319.8,202.5 L 324.9,199.7 L 330.0,196.9 L 335.1,194.1 L 340.2,191.3 L 345.2,188.5 L 350.3,185.7 L 355.4,182.9 L 360.5,180.1 L 365.6,177.3 L 370.6,174.5 L 375.7,171.7 L 380.8,168.8 L 385.9,166.0 L 391.0,163.2 L 396.0,160.4 L 401.1,157.6 L 406.2,154.8 L 411.3,152.0 L 416.4,149.2 L 421.4,146.4 L 426.5,143.6 L 431.6,140.8 L 436.7,138.0 L 441.8,135.2 L 446.8,132.4 L 451.9,129.6 L 457.0,126.8 L 462.1,124.0 L 467.2,121.2 L 472.2,118.4 L 477.3,115.6 L 482.4,112.7 L 487.5,109.9 L 492.6,107.1 L 497.6,104.3 L 502.7,101.5 L 507.8,98.7 L 512.9,95.9 L 518.0,93.1 L 523.0,90.3 L 528.1,87.5 L 533.2,84.7 L 538.3,81.9 L 543.4,79.1 L 548.4,76.3 L 553.5,73.5 L 558.6,70.7 L 563.7,67.9 L 568.8,65.1 L 573.8,62.3 L 578.9,59.5 L 584.0,56.6" fill="none" stroke="var(--lime)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="584.0" y1="56.6" x2="589.0" y2="70.6" stroke="var(--lime)" stroke-width="1" stroke-dasharray="2 2"/>
+<text x="592.0" y="74.6" font-size="11" text-anchor="start" fill="var(--lime)" font-weight="700">metabolite</text>
+<path d="M 76.0,308.0 L 81.1,305.2 L 86.2,302.4 L 91.2,299.6 L 96.3,296.8 L 101.4,293.9 L 106.5,291.1 L 111.6,288.3 L 116.6,285.5 L 121.7,282.7 L 126.8,279.9 L 131.9,277.1 L 137.0,274.3 L 142.0,271.5 L 147.1,268.7 L 152.2,265.9 L 157.3,263.1 L 162.4,260.3 L 167.4,257.5 L 172.5,254.7 L 177.6,251.9 L 182.7,249.1 L 187.8,246.3 L 192.8,243.5 L 197.9,240.7 L 203.0,237.8 L 208.1,235.0 L 213.2,232.2 L 218.2,229.4 L 223.3,226.6 L 228.4,223.8 L 233.5,221.0 L 238.6,218.2 L 243.6,215.4 L 248.7,212.6 L 253.8,209.8 L 258.9,207.0 L 264.0,204.2 L 269.0,201.4 L 274.1,198.6 L 279.2,195.8 L 284.3,193.0 L 289.4,190.2 L 294.4,187.4 L 299.5,184.6 L 304.6,181.7 L 309.7,178.9 L 314.8,176.1 L 319.8,173.3 L 324.9,170.5 L 330.0,167.7 L 335.1,164.9 L 340.2,162.1 L 345.2,159.3 L 350.3,156.5 L 355.4,153.7 L 360.5,150.9 L 365.6,148.1 L 370.6,145.3 L 375.7,142.5 L 380.8,139.7 L 385.9,136.9 L 391.0,134.1 L 396.0,131.3 L 401.1,128.5 L 406.2,125.6 L 411.3,122.8 L 416.4,120.0 L 421.4,117.2 L 426.5,114.4 L 431.6,111.6 L 436.7,108.8 L 441.8,106.0 L 446.8,103.2 L 451.9,100.4 L 457.0,97.6 L 462.1,94.8 L 467.2,92.0 L 472.2,89.2 L 477.3,86.4 L 482.4,83.6 L 487.5,80.8 L 492.6,78.0 L 497.6,75.2 L 502.7,72.4 L 507.8,69.5 L 512.9,66.7 L 518.0,63.9 L 523.0,61.1 L 528.1,58.3 L 533.2,55.5 L 538.3,52.7 L 543.4,49.9 L 548.4,47.1 L 553.5,44.3 L 558.6,41.5 L 563.7,38.7 L 568.8,35.9" fill="none" stroke="var(--rose)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="568.8" y1="35.9" x2="573.8" y2="33.9" stroke="var(--rose)" stroke-width="1" stroke-dasharray="2 2"/>
+<text x="576.8" y="37.9" font-size="11" text-anchor="start" fill="var(--rose)" font-weight="700">protein</text>
+<path d="M 76.0,260.9 L 81.1,258.0 L 86.2,255.2 L 91.2,252.4 L 96.3,249.6 L 101.4,246.8 L 106.5,244.0 L 111.6,241.2 L 116.6,238.4 L 121.7,235.6 L 126.8,232.8 L 131.9,230.0 L 137.0,227.2 L 142.0,224.4 L 147.1,221.6 L 152.2,218.8 L 157.3,216.0 L 162.4,213.2 L 167.4,210.4 L 172.5,207.6 L 177.6,204.8 L 182.7,201.9 L 187.8,199.1 L 192.8,196.3 L 197.9,193.5 L 203.0,190.7 L 208.1,187.9 L 213.2,185.1 L 218.2,182.3 L 223.3,179.5 L 228.4,176.7 L 233.5,173.9 L 238.6,171.1 L 243.6,168.3 L 248.7,165.5 L 253.8,162.7 L 258.9,159.9 L 264.0,157.1 L 269.0,154.3 L 274.1,151.5 L 279.2,148.7 L 284.3,145.8 L 289.4,143.0 L 294.4,140.2 L 299.5,137.4 L 304.6,134.6 L 309.7,131.8 L 314.8,129.0 L 319.8,126.2 L 324.9,123.4 L 330.0,120.6 L 335.1,117.8 L 340.2,115.0 L 345.2,112.2 L 350.3,109.4 L 355.4,106.6 L 360.5,103.8 L 365.6,101.0 L 370.6,98.2 L 375.7,95.4 L 380.8,92.6 L 385.9,89.7 L 391.0,86.9 L 396.0,84.1 L 401.1,81.3 L 406.2,78.5 L 411.3,75.7 L 416.4,72.9 L 421.4,70.1 L 426.5,67.3 L 431.6,64.5 L 436.7,61.7 L 441.8,58.9 L 446.8,56.1 L 451.9,53.3 L 457.0,50.5 L 462.1,47.7 L 467.2,44.9 L 472.2,42.1 L 477.3,39.3 L 482.4,36.5" fill="none" stroke="var(--peri)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="482.4" y1="36.5" x2="487.4" y2="18.5" stroke="var(--peri)" stroke-width="1" stroke-dasharray="2 2"/>
+<text x="490.4" y="22.5" font-size="11" text-anchor="start" fill="var(--peri)" font-weight="700">in a membrane</text>
+<circle cx="105.9" cy="291.5" r="4.60" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="105.9" y="275.5" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">E. coli</text>
+<circle cx="158.1" cy="262.6" r="4.60" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="164.1" y="250.6" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">yeast</text>
+<circle cx="203.1" cy="237.8" r="4.60" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="211.1" y="243.8" font-size="11" text-anchor="start" fill="var(--fg)" class="halo2">mammalian cell</text>
+<circle cx="335.9" cy="164.5" r="4.60" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="329.9" y="150.5" font-size="11" text-anchor="end" fill="var(--fg)" class="halo2">Xenopus egg</text>
+<circle cx="554.1" cy="44.0" r="4.60" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
+<text x="546.1" y="58.0" font-size="11" text-anchor="end" fill="var(--fg)" class="halo2">axon, 1 m</text>
+</svg>
+<figcaption><b>Figure 3.</b> Mixing time against distance, from <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">\tau = x^{2}/D</annotation></semantics></math></span> with in-cytoplasm coefficients. The band is what a cell can plausibly wait, a millisecond to an hour. The quadratic scaling is the whole story: everything up to a mammalian cell is inside the band, everything larger falls out of it catastrophically.</figcaption></figure>
+
+<div class="tablewrap">
+<table>
+<caption>Table 2. <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">\tau = x^{2}/D</annotation></semantics></math></span> for a protein at the measured in-cell value <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mn>7.7</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">D = 7.7\,\mu\mathrm{m}^{2}/\mathrm{s}</annotation></semantics></math></span>, and for a metabolite at 200.</caption>
+<thead><tr><th>Compartment</th><th>size</th><th>&tau;, protein</th><th>&tau;, metabolite</th><th>verdict</th></tr></thead>
+<tbody>
+<tr><td><i>E. coli</i></td><td class="num">1 &micro;m</td><td class="num">0.13 s</td><td class="num">5 ms</td><td>well mixed</td></tr>
+<tr><td>yeast</td><td class="num">5 &micro;m</td><td class="num">3.2 s</td><td class="num">0.12 s</td><td>well mixed</td></tr>
+<tr><td>mammalian cell</td><td class="num">20 &micro;m</td><td class="num">52 s</td><td class="num">2 s</td><td>mixed, but slowly</td></tr>
+<tr><td><i>Xenopus</i> egg</td><td class="num">1.2 mm</td><td class="num">2 days</td><td class="num">2 h</td><td class="hl">gradients persist by design</td></tr>
+<tr><td>squid giant axon</td><td class="num">1 cm</td><td class="num">150 days</td><td class="num">6 days</td><td class="hl">diffusion has failed</td></tr>
+<tr><td>human motor axon</td><td class="num">1 m</td><td class="num">4000 yr</td><td class="num">160 yr</td><td class="hl">diffusion has failed</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Read the last two rows as a prediction, not a curiosity. Passive diffusion cannot move protein along a metre-long axon. It is not slow, it is impossible: four thousand years against a lifetime. So something else must do it, and that something is kinesin and dynein on microtubules. The <em>existence</em> of motor-driven axonal transport is forced by <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>∝</mo><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\tau \propto x^{2}</annotation></semantics></math></span> before anyone opens a cell.</p>
+
+<p>The same reading works upward. A bacterium mixes a metabolite in five milliseconds, faster than any enzyme turns over. So one well-stirred concentration per species is not a modelling convenience inside a bacterium, it is a licensed approximation, and lecture 3's rate equations inherit their validity from this table. A <i>Xenopus</i> egg has no such licence, which is why developmental biology is full of gradients and bacterial physiology is not.</p>
+
+<p>That is the habit worth installing. Compute the null model first, then find where it fails. The failure is where the biology is, and its size tells you how much biology is needed. Diffusion in an axon fails by <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>11</mn></msup></mrow><annotation encoding="application/x-tex">10^{11}</annotation></semantics></math></span>, so it needs a motor. In a bacterium it does not fail at all, so a cell that built a transport system for its cytoplasm would be wasting energy.</p>
+
+<div class="parthead">
+  <div class="k">Part 3</div>
+  <h2>The ceiling on a rate</h2>
+  <p>What an arrow entitles you to write, one boundary-value problem, and what real enzymes do about the answer.</p>
+</div>
+
+<h2 id="s6"><span class="n">6</span>What an arrow promises</h2>
+<p class="lede">Straight arrows are mechanisms and come with a rate law. Squiggly arrows are accounting and come with nothing.</p>
+
+<p>This is the most important notational distinction in the course, and it is routinely ignored in the literature to everyone's cost.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 300" role="img" aria-label="Elementary and composite reaction arrows, and what each one entitles you to write down" font-family="var(--sans)">
+<defs><marker id="l2a1" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--rose)"/></marker><marker id="l2a2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--peri)"/></marker></defs><rect x="20.0" y="34.0" width="720.0" height="116.0" rx="10" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.4"/>
+<text x="38.0" y="58.0" font-size="10.5" text-anchor="start" fill="var(--rose)" font-weight="700" letter-spacing="1.6">ELEMENTARY</text>
+<rect x="20.0" y="170.0" width="720.0" height="116.0" rx="10" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.4"/>
+<text x="38.0" y="194.0" font-size="10.5" text-anchor="start" fill="var(--peri)" font-weight="700" letter-spacing="1.6">COMPOSITE</text>
+<text x="38.0" y="86.0" font-size="17" text-anchor="start" fill="var(--fg)" font-weight="700">E + S</text>
+<line x1="94.0" y1="80.0" x2="132.0" y2="80.0" stroke="var(--rose)" stroke-width="1.6" marker-end="url(#l2a1)"/>
+<text x="113.0" y="70.0" font-size="11" text-anchor="middle" fill="var(--gray)">k<tspan font-size=".72em" dy="2.8">on</tspan><tspan dy="-2.8"></tspan></text>
+<line x1="132.0" y1="92.0" x2="94.0" y2="92.0" stroke="var(--rose)" stroke-width="1.6" marker-end="url(#l2a1)"/>
+<text x="113.0" y="110.0" font-size="11" text-anchor="middle" fill="var(--gray)">k<tspan font-size=".72em" dy="2.8">off</tspan><tspan dy="-2.8"></tspan></text>
+<text x="146.0" y="86.0" font-size="17" text-anchor="start" fill="var(--fg)" font-weight="700">C</text>
+<line x1="168.0" y1="80.0" x2="206.0" y2="80.0" stroke="var(--rose)" stroke-width="1.6" marker-end="url(#l2a1)"/>
+<text x="187.0" y="70.0" font-size="11" text-anchor="middle" fill="var(--gray)">k<tspan font-size=".72em" dy="2.8">cat</tspan><tspan dy="-2.8"></tspan></text>
+<text x="218.0" y="86.0" font-size="17" text-anchor="start" fill="var(--fg)" font-weight="700">E + P</text>
+<line x1="320.0" y1="54.0" x2="320.0" y2="142.0" stroke="var(--rose)" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="344.0" y="78.0" font-size="12.5" text-anchor="start" fill="var(--fg)">a claim about mechanism: these are all the players,</text>
+<text x="344.0" y="98.0" font-size="12.5" text-anchor="start" fill="var(--fg)">and nothing is hidden inside the arrow.</text>
+<text x="344.0" y="122.0" font-size="12.5" text-anchor="start" fill="var(--rose)" font-weight="700">So the rate law is forced:  v = k<tspan font-size=".72em" dy="2.8">on</tspan><tspan dy="-2.8"> · [E][S].</tspan></text>
+<text x="38.0" y="222.0" font-size="17" text-anchor="start" fill="var(--fg)" font-weight="700">S</text>
+<path d="M 60,216 q 10,-9 20,0 q 10,9 20,0 q 10,-9 20,0" fill="none" stroke="var(--peri)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="120.0" y1="216.0" x2="138.0" y2="216.0" stroke="var(--peri)" stroke-width="1.6" marker-end="url(#l2a2)"/>
+<text x="152.0" y="222.0" font-size="17" text-anchor="start" fill="var(--fg)" font-weight="700">P</text>
+<text x="38.0" y="256.0" font-size="12.5" text-anchor="start" fill="var(--gray)">(S, P) ⇝ (S−1, P+1)</text>
+<line x1="320.0" y1="190.0" x2="320.0" y2="278.0" stroke="var(--peri)" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="344.0" y="214.0" font-size="12.5" text-anchor="start" fill="var(--fg)">a claim about accounting only: one S disappears,</text>
+<text x="344.0" y="234.0" font-size="12.5" text-anchor="start" fill="var(--fg)">one P appears, by some route not shown.</text>
+<text x="344.0" y="258.0" font-size="12.5" text-anchor="start" fill="var(--peri)" font-weight="700">So no rate law follows. It must be derived or measured.</text>
+</svg>
+<figcaption><b>Figure 4.</b> The two arrow vocabularies. An elementary arrow claims the listed species are all the species, so mass action applies. A composite arrow claims only the net change, so the rate law must be derived or measured. Writing a mass-action rate law under a squiggly arrow is the most common modelling error in systems biology.</figcaption></figure>
+
+<div class="tablewrap">
+<table>
+<caption>Table 3. The two notations, following the 2025 note.<sup class="c"><a href="#r-l2scribe">13</a></sup></caption>
+<thead><tr><th>Type</th><th>Arrow</th><th>What it asserts</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td>Elementary<br><span class="small">基元反应</span></td><td>straight &rarr;</td><td>The <em>mechanism</em>, all key players included. An irreducible step. You cannot break it down further, or it is useless to do so for your concern.</td><td><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>+</mo><mi>S</mi><mo>⇌</mo><mi>C</mi><mo>→</mo><mi>E</mi><mo>+</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">E+S \rightleftharpoons C \to E+P</annotation></semantics></math></span><br><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi></mrow><mo>+</mo><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">N</mi><mi mathvariant="normal">A</mi><mi mathvariant="normal">P</mi></mrow><mo>⇌</mo><msub><mi mathvariant="normal">C</mi><mn>0</mn></msub><mo>→</mo><mo>⋯</mo><mo>→</mo><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi></mrow><mo>+</mo><mrow><mi mathvariant="normal">R</mi><mi mathvariant="normal">N</mi><mi mathvariant="normal">A</mi><mi mathvariant="normal">P</mi></mrow><mo>+</mo><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">R</mi><mi mathvariant="normal">N</mi><mi mathvariant="normal">A</mi></mrow></mrow><annotation encoding="application/x-tex">\mathrm{gene} + \mathrm{RNAP} \rightleftharpoons \mathrm{C}_0 \to \dots \to \mathrm{gene} + \mathrm{RNAP} + \mathrm{mRNA}</annotation></semantics></math></span></td></tr>
+<tr><td>Composite<br><span class="small">复合反应</span></td><td>squiggly &#10547;</td><td>Only the <em>net change</em> of several steps. Reactants may be hidden.</td><td><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>⇝</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">S \rightsquigarrow P</annotation></semantics></math></span><br><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi></mrow><mo>⇝</mo><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">e</mi></mrow><mo>+</mo><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">R</mi><mi mathvariant="normal">N</mi><mi mathvariant="normal">A</mi></mrow></mrow><annotation encoding="application/x-tex">\mathrm{gene} \rightsquigarrow \mathrm{gene} + \mathrm{mRNA}</annotation></semantics></math></span><br><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>S</mi><mo separator="true">,</mo><mi>P</mi><mo stretchy="false">)</mo><mo>⇝</mo><mo stretchy="false">(</mo><mi>S</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>P</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(S,P) \rightsquigarrow (S-1, P+1)</annotation></semantics></math></span></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The third composite form is the <strong>net-change notation</strong>, written on molecule counts rather than species symbols. It registers only who lost what and who gained what, which is exactly what lecture 3's stoichiometric matrix needs, and what lecture 5's stochastic simulation runs on, since a Gillespie step <em>is</em> a net change applied to a count.</p>
+
+<p>Two to argue about at the board. A cell dividing is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>⇝</mo><mn>2</mn><mi>N</mi></mrow><annotation encoding="application/x-tex">N \rightsquigarrow 2N</annotation></semantics></math></span>, composite and spectacularly so, since the hidden mechanism is an entire cell cycle. An ATPase pumping a proton out is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi mathvariant="normal">H</mi><mrow><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow><mo lspace="0em" rspace="0em">+</mo></msubsup><mo>⇝</mo><msubsup><mi mathvariant="normal">H</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow><mo lspace="0em" rspace="0em">+</mo></msubsup></mrow><annotation encoding="application/x-tex">\mathrm{H}^{+}_{\mathrm{in}} \rightsquigarrow \mathrm{H}^{+}_{\mathrm{out}}</annotation></semantics></math></span>, which read as written violates the second law, and the resolution is that ATP hydrolysis is hidden inside the squiggle. The <a href="lecture02-exposition.html#s15">exposition</a> works through five more, from a laser to the lac operon.</p>
+
+<div class="box key">
+<span class="lbl">The habit to install now</span>
+<p>When anyone writes a rate law, ask: <em>is that arrow elementary?</em> If it is, mass action gives the rate for free. If it is composite, the rate law must be derived (Michaelis-Menten, lecture 6) or measured, never assumed from the shape of the arrowhead. Half the modelling disputes you will meet are this question in disguise.</p>
+</div>
+
+<h3>Binding, then catalysis</h3>
+<p>An enzyme and its substrate collide, bind, and then the enzyme's atoms hold the substrate in a geometry that lets the bond rearrange. Two steps, and only the first is physics:</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo>+</mo><mi>S</mi><mtext> </mtext><mo>⇌</mo><mtext> </mtext><mi>C</mi><mtext> </mtext><mo>⇝</mo><mtext> </mtext><mi>E</mi><mo>+</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">E + S \,\rightleftharpoons\, C \,\rightsquigarrow\, E + P</annotation></semantics></math><span class="tag">(8)</span></div>
+
+<p>The first step is how often two molecules meet, which is diffusion, which we can now compute. The second is chemistry inside a protein, which we cannot compute and which the enzyme's structure decides. So the fastest an enzymatic reaction can go is set by the first step alone, assuming catalysis is instant once the complex forms. That bound is the <strong>diffusion-limited on-rate</strong>. Notice what happened: we split a reaction into a part physics can bound and a part it cannot, and that split reappears in lecture 8 as the two components of a cell.</p>
+
+<h2 id="s7"><span class="n">7</span>The diffusion-limited on-rate, derived</h2>
+<p class="lede">Fick's law in spherical symmetry, two boundary conditions, one integration. This is the anchor derivation of the course.</p>
+
+<p>Put an enzyme at the origin, a perfectly absorbing sphere of radius <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span>: any substrate touching it is consumed instantly. Far away the substrate sits at bulk <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi mathvariant="normal">∞</mi></msub></mrow><annotation encoding="application/x-tex">C_{\infty}</annotation></semantics></math></span>. Let it reach steady state. How many molecules arrive at the surface per second?</p>
+
+<p><strong>Step 1. Steady state means constant flux through every shell.</strong> Nothing accumulates anywhere, so the number crossing a sphere of radius <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span> per second is the same for every <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span>. With <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span> the flux per unit area, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>π</mi><msup><mi>R</mi><mn>2</mn></msup><mi>j</mi></mrow><annotation encoding="application/x-tex">4\pi R^{2}j</annotation></semantics></math></span> is a constant, and it is not zero.</p>
+
+<p><strong>Step 2. Solve the steady diffusion equation.</strong> Fick's second law is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∂</mi><mi>C</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">∂</mi><mi>t</mi><mo>=</mo><mi>D</mi><msup><mi mathvariant="normal">∇</mi><mn>2</mn></msup><mi>C</mi></mrow><annotation encoding="application/x-tex">\partial C/\partial t = D\nabla^{2}C</annotation></semantics></math></span>. In spherical symmetry the angular terms vanish:</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mi mathvariant="normal">/</mi><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="false">)</mo><mi>d</mi><mi mathvariant="normal">/</mi><mi>d</mi><mi>R</mi><mo stretchy="false">(</mo><msup><mi>R</mi><mn>2</mn></msup><mi>d</mi><mi>C</mi><mi mathvariant="normal">/</mi><mi>d</mi><mi>R</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mtext> </mtext><mo>⇒</mo><mtext> </mtext><msup><mi>R</mi><mn>2</mn></msup><mi>d</mi><mi>C</mi><mi mathvariant="normal">/</mi><mi>d</mi><mi>R</mi><mo>=</mo><mi>A</mi><mtext> </mtext><mo>⇒</mo><mtext> </mtext><mi>C</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mi>A</mi><mi mathvariant="normal">/</mi><mi>R</mi><mo>+</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">(1/R^{2}) d/dR (R^{2} dC/dR) = 0 \,\Rightarrow \, R^{2} dC/dR = A \,\Rightarrow \, C(R) = -A/R + B</annotation></semantics></math><span class="tag">(9)</span></div>
+
+<p><strong>Step 3. Fix the constants.</strong> Absorbing surface, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">C(a) = 0</annotation></semantics></math></span>. Bulk at infinity, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi mathvariant="normal">∞</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>C</mi><mi mathvariant="normal">∞</mi></msub></mrow><annotation encoding="application/x-tex">C(\infty ) = C_{\infty}</annotation></semantics></math></span>. So <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><msub><mi>C</mi><mi mathvariant="normal">∞</mi></msub></mrow><annotation encoding="application/x-tex">B = C_{\infty}</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>a</mi><msub><mi>C</mi><mi mathvariant="normal">∞</mi></msub></mrow><annotation encoding="application/x-tex">A = aC_{\infty}</annotation></semantics></math></span>, giving <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>C</mi><mi mathvariant="normal">∞</mi></msub><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>a</mi><mi mathvariant="normal">/</mi><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C(R) = C_{\infty}(1 - a/R)</annotation></semantics></math></span>.</p>
+
+<p><strong>Step 4. Differentiate, multiply by the area.</strong> The surface gradient is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∂</mi><mi>C</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">∂</mi><mi>R</mi><msub><mi mathvariant="normal">∣</mi><mi>a</mi></msub><mo>=</mo><msub><mi>C</mi><mi mathvariant="normal">∞</mi></msub><mi mathvariant="normal">/</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">\partial C/\partial R|_{a} = C_{\infty}/a</annotation></semantics></math></span>, so <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi><mo>=</mo><mi>D</mi><msub><mi>C</mi><mi mathvariant="normal">∞</mi></msub><mi mathvariant="normal">/</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">j = DC_{\infty}/a</annotation></semantics></math></span> and</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>J</mi><mo>=</mo><mi>j</mi><mo>⋅</mo><mn>4</mn><mi>π</mi><msup><mi>a</mi><mn>2</mn></msup><mo>=</mo><mstyle class="pf"><mrow><mn mathvariant="bold">4</mn><mi mathvariant="bold">π</mi><mi mathvariant="bold">D</mi><mi mathvariant="bold">a</mi><msub><mi mathvariant="bold">C</mi><mi mathvariant="bold">∞</mi></msub></mrow></mstyle><mtext> </mtext><mo>≡</mo><mtext> </mtext><msub><mi>k</mi><mtext>on</mtext></msub><msub><mi>C</mi><mi mathvariant="normal">∞</mi></msub><mo separator="true">,</mo><mtext> </mtext><mtext> </mtext><msub><mi>k</mi><mtext>on</mtext></msub><mo>=</mo><mn>4</mn><mi>π</mi><mi>D</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">J = j \cdot 4\pi a^{2} = \pf{4\pi Da C_{\infty}} \,\equiv \, k_{\text{on}}C_{\infty}, \,\, k_{\text{on}} = 4\pi Da</annotation></semantics></math><span class="tag">(10)</span></div>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 320" role="img" aria-label="The absorbing-sphere problem: an enzyme as a perfect sink, the steady concentration profile, and the resulting capture rate" font-family="var(--sans)">
+<rect x="24.0" y="30.0" width="250.0" height="258.0" rx="8" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+<text x="36.0" y="48.0" font-size="10.5" text-anchor="start" fill="var(--gray)" font-weight="700" letter-spacing="1.4">THE SET-UP</text>
+<circle cx="150.0" cy="160.0" r="108.00" fill="none" stroke="var(--peri)" stroke-width="1" opacity="0.16"/>
+<circle cx="150.0" cy="160.0" r="78.00" fill="none" stroke="var(--peri)" stroke-width="1" opacity="0.28"/>
+<circle cx="150.0" cy="160.0" r="51.00" fill="none" stroke="var(--peri)" stroke-width="1" opacity="0.5"/>
+<circle cx="150.0" cy="160.0" r="30.00" fill="var(--blush)" stroke="var(--rose)" stroke-width="2"/>
+<text x="150.0" y="165.0" font-size="15" text-anchor="middle" fill="var(--rose)" font-weight="700">E</text>
+<line x1="267.0" y1="160.0" x2="188.4" y2="160.0" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="232.7" y1="242.7" x2="177.2" y2="187.2" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="150.0" y1="277.0" x2="150.0" y2="198.4" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="67.3" y1="242.7" x2="122.8" y2="187.2" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="33.0" y1="160.0" x2="111.6" y2="160.0" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="67.3" y1="77.3" x2="122.8" y2="132.8" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="150.0" y1="43.0" x2="150.0" y2="121.6" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<line x1="232.7" y1="77.3" x2="177.2" y2="132.8" stroke="var(--peri)" stroke-width="1.4" marker-end="url(#l2ar)"/>
+<text x="150.0" y="280.0" font-size="11.5" text-anchor="middle" fill="var(--gray)" class="halo3">C(a) = 0   ·   C(∞) = C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"></tspan></text>
+<text x="150.0" y="68.0" font-size="11" text-anchor="middle" fill="var(--gray)" class="halo3">absorbing sphere, radius a</text>
+<rect x="330.0" y="56.0" width="390.0" height="202.0" rx="4" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+<text x="330.0" y="44.0" font-size="10.5" text-anchor="start" fill="var(--gray)" font-weight="700" letter-spacing="1.2">THE STEADY PROFILE   C(R) = C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"> (1 − a/R)</tspan></text>
+<line x1="330.0" y1="258.0" x2="720.0" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="323.0" y="262.0" font-size="11" text-anchor="end" fill="var(--gray)">0</text>
+<line x1="330.0" y1="157.0" x2="720.0" y2="157.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="323.0" y="161.0" font-size="11" text-anchor="end" fill="var(--gray)">0.5</text>
+<line x1="330.0" y1="56.0" x2="720.0" y2="56.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="323.0" y="60.0" font-size="11" text-anchor="end" fill="var(--gray)">C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"></tspan></text>
+<line x1="330.0" y1="56.0" x2="330.0" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="330.0" y="275.0" font-size="11" text-anchor="middle" fill="var(--gray)">a</text>
+<line x1="427.5" y1="56.0" x2="427.5" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="427.5" y="275.0" font-size="11" text-anchor="middle" fill="var(--gray)">2a</text>
+<line x1="525.0" y1="56.0" x2="525.0" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="525.0" y="275.0" font-size="11" text-anchor="middle" fill="var(--gray)">3a</text>
+<line x1="622.5" y1="56.0" x2="622.5" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="622.5" y="275.0" font-size="11" text-anchor="middle" fill="var(--gray)">4a</text>
+<line x1="720.0" y1="56.0" x2="720.0" y2="258.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="720.0" y="275.0" font-size="11" text-anchor="middle" fill="var(--gray)">5a</text>
+<path d="M 330.0,258.0 L 331.9,254.0 L 333.9,250.2 L 335.9,246.6 L 337.8,243.0 L 339.8,239.6 L 341.7,236.4 L 343.7,233.2 L 345.6,230.1 L 347.6,227.2 L 349.5,224.3 L 351.4,221.6 L 353.4,218.9 L 355.4,216.3 L 357.3,213.8 L 359.2,211.4 L 361.2,209.0 L 363.1,206.7 L 365.1,204.5 L 367.1,202.4 L 369.0,200.3 L 370.9,198.3 L 372.9,196.3 L 374.9,194.4 L 376.8,192.5 L 378.8,190.7 L 380.7,188.9 L 382.6,187.2 L 384.6,185.5 L 386.6,183.8 L 388.5,182.2 L 390.4,180.7 L 392.4,179.2 L 394.4,177.7 L 396.3,176.2 L 398.2,174.8 L 400.2,173.4 L 402.1,172.1 L 404.1,170.8 L 406.1,169.5 L 408.0,168.2 L 409.9,167.0 L 411.9,165.8 L 413.9,164.6 L 415.8,163.4 L 417.8,162.3 L 419.7,161.2 L 421.6,160.1 L 423.6,159.1 L 425.6,158.0 L 427.5,157.0 L 429.4,156.0 L 431.4,155.0 L 433.4,154.1 L 435.3,153.1 L 437.2,152.2 L 439.2,151.3 L 441.1,150.4 L 443.1,149.5 L 445.0,148.7 L 447.0,147.8 L 448.9,147.0 L 450.9,146.2 L 452.8,145.4 L 454.8,144.6 L 456.8,143.8 L 458.7,143.1 L 460.6,142.3 L 462.6,141.6 L 464.5,140.9 L 466.5,140.2 L 468.4,139.5 L 470.4,138.8 L 472.4,138.1 L 474.3,137.5 L 476.2,136.8 L 478.2,136.2 L 480.1,135.5 L 482.1,134.9 L 484.1,134.3 L 486.0,133.7 L 488.0,133.1 L 489.9,132.5 L 491.9,131.9 L 493.8,131.4 L 495.8,130.8 L 497.7,130.3 L 499.7,129.7 L 501.6,129.2 L 503.6,128.7 L 505.5,128.1 L 507.5,127.6 L 509.4,127.1 L 511.4,126.6 L 513.3,126.1 L 515.2,125.7 L 517.2,125.2 L 519.1,124.7 L 521.1,124.2 L 523.0,123.8 L 525.0,123.3 L 527.0,122.9 L 528.9,122.4 L 530.9,122.0 L 532.8,121.6 L 534.8,121.2 L 536.7,120.7 L 538.6,120.3 L 540.6,119.9 L 542.5,119.5 L 544.5,119.1 L 546.5,118.7 L 548.4,118.3 L 550.3,118.0 L 552.3,117.6 L 554.2,117.2 L 556.2,116.8 L 558.1,116.5 L 560.1,116.1 L 562.0,115.8 L 564.0,115.4 L 566.0,115.1 L 567.9,114.7 L 569.9,114.4 L 571.8,114.0 L 573.8,113.7 L 575.7,113.4 L 577.6,113.1 L 579.6,112.7 L 581.5,112.4 L 583.5,112.1 L 585.5,111.8 L 587.4,111.5 L 589.4,111.2 L 591.3,110.9 L 593.2,110.6 L 595.2,110.3 L 597.2,110.0 L 599.1,109.7 L 601.0,109.4 L 603.0,109.2 L 605.0,108.9 L 606.9,108.6 L 608.8,108.3 L 610.8,108.1 L 612.8,107.8 L 614.7,107.5 L 616.6,107.3 L 618.6,107.0 L 620.5,106.8 L 622.5,106.5 L 624.4,106.2 L 626.4,106.0 L 628.4,105.8 L 630.3,105.5 L 632.2,105.3 L 634.2,105.0 L 636.2,104.8 L 638.1,104.6 L 640.0,104.3 L 642.0,104.1 L 644.0,103.9 L 645.9,103.6 L 647.8,103.4 L 649.8,103.2 L 651.8,103.0 L 653.7,102.8 L 655.6,102.5 L 657.6,102.3 L 659.5,102.1 L 661.5,101.9 L 663.5,101.7 L 665.4,101.5 L 667.4,101.3 L 669.3,101.1 L 671.2,100.9 L 673.2,100.7 L 675.1,100.5 L 677.1,100.3 L 679.0,100.1 L 681.0,99.9 L 683.0,99.7 L 684.9,99.5 L 686.9,99.3 L 688.8,99.2 L 690.8,99.0 L 692.7,98.8 L 694.7,98.6 L 696.6,98.4 L 698.5,98.3 L 700.5,98.1 L 702.5,97.9 L 704.4,97.7 L 706.3,97.6 L 708.3,97.4 L 710.2,97.2 L 712.2,97.1 L 714.1,96.9 L 716.1,96.7 L 718.1,96.6 L 720.0,96.4" fill="none" stroke="var(--rose)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="330.0" y1="258.0" x2="417.8" y2="76.2" stroke="var(--teal)" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="432.4" y="84.3" font-size="11" text-anchor="start" fill="var(--teal)">slope C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"> / a  =  ∂C/∂R at R = a</tspan></text>
+<text x="573.8" y="201.4" font-size="12" text-anchor="middle" fill="var(--fg)" font-weight="700">J = 4πa² · D C<tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8">/a = 4πDa C</tspan><tspan font-size=".72em" dy="2.8">∞</tspan><tspan dy="-2.8"></tspan></text>
+<text x="720.0" y="308.0" font-size="12" text-anchor="end" fill="var(--gray)">R</text>
+<defs><marker id="l2ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--peri)"/></marker></defs></svg>
+<figcaption><b>Figure 5.</b> The absorbing sphere and its solution. Left, the geometry. Right, the steady profile <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false">(</mo><mi>R</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>C</mi><mi mathvariant="normal">∞</mi></msub><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>a</mi><mi mathvariant="normal">/</mi><mi>R</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C(R) = C_{\infty}(1-a/R)</annotation></semantics></math></span>. Concentration reaches half of bulk only at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mn>2</mn><mi>a</mi></mrow><annotation encoding="application/x-tex">R = 2a</annotation></semantics></math></span>, so an enzyme sits at the bottom of a depletion well two radii wide. The dashed tangent is the surface gradient.</figcaption></figure>
+
+<p><strong>Step 5. Check the dimensions, then put numbers in.</strong> <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mtext>on</mtext></msub><mo>=</mo><mn>4</mn><mi>π</mi><mi>D</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">k_{\text{on}} = 4\pi Da</annotation></semantics></math></span> has dimensions <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msup><mi>L</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi>T</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>L</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>L</mi><mn>3</mn></msup><mi mathvariant="normal">/</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">(L^{2}/T)(L) = L^{3}/T</annotation></semantics></math></span>, a volume swept per unit time, which is what a second-order rate constant is once you divide by a molar volume. So the conversion to <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi>s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">M^{-1}s^{-1}</annotation></semantics></math></span> is a factor of <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mi>A</mi></msub></mrow><annotation encoding="application/x-tex">N_{A}</annotation></semantics></math></span> and a factor of <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">10^{3}</annotation></semantics></math></span> and nothing else. If your conversion needs more factors than that, you have made an error. For a pair, use the relative coefficient <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><msub><mi>D</mi><mi>A</mi></msub><mo>+</mo><msub><mi>D</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">D = D_{A}+D_{B}</annotation></semantics></math></span> and the sum of radii. Glucose against an enzyme in water:</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>k</mi><mtext>on</mtext></msub><mo>=</mo><mn>4</mn><mi>π</mi><mo>⋅</mo><mn>7.7</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup><mtext> </mtext><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi mathvariant="normal">s</mi><mo>⋅</mo><mn>2.4</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup><mtext> </mtext><mi mathvariant="normal">m</mi><mo>⋅</mo><msup><mn>10</mn><mn>3</mn></msup><mtext> </mtext><mi mathvariant="normal">L</mi><mi mathvariant="normal">/</mi><msup><mi mathvariant="normal">m</mi><mn>3</mn></msup><mo>⋅</mo><mn>6.02</mn><mo>×</mo><msup><mn>10</mn><mn>23</mn></msup><mi mathvariant="normal">/</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi></mrow><mo>=</mo><mstyle class="pf"><mrow><mn mathvariant="bold">1.4</mn><mo>×</mo><msup><mn mathvariant="bold">10</mn><mn mathvariant="bold">10</mn></msup><mtext> </mtext><msup><mi mathvariant="normal">M</mi><mrow><mo>−</mo><mn mathvariant="bold">1</mn></mrow></msup><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn mathvariant="bold">1</mn></mrow></msup></mrow></mstyle></mrow><annotation encoding="application/x-tex">k_{\text{on}} = 4\pi \cdot 7.7\times 10^{-10}\,\mathrm{m}^{2}/\mathrm{s} \cdot 2.4\times 10^{-9}\,\mathrm{m} \cdot 10^{3}\,\mathrm{L}/\mathrm{m}^{3} \cdot 6.02\times 10^{23}/\mathrm{mol} = \pf{1.4\times 10^{10}\,\mathrm{M}^{-1}\mathrm{s}^{-1}}</annotation></semantics></math><span class="tag">(11)</span></div>
+
+<p>Inside cytoplasm, with both coefficients cut by crowding, it gives <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3.8</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">3.8\times 10^{9}</annotation></semantics></math></span>. For two proteins in water, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">6\times 10^{9}</annotation></semantics></math></span>, against the published <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">7\times 10^{9}</annotation></semantics></math></span> for two 18&nbsp;&Aring; spheres reacting on every contact.<sup class="c"><a href="#r-stroppolo">7</a></sup></p>
+
+<div class="box thm">
+<span class="lbl">The bound</span>
+<p>For two species diffusing freely in solution and reacting on every contact, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mtext>on</mtext></msub><mo>=</mo><mn>4</mn><mi>π</mi><mo stretchy="false">(</mo><msub><mi>D</mi><mi>A</mi></msub><mo>+</mo><msub><mi>D</mi><mi>B</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mi>A</mi></msub><mo>+</mo><msub><mi>a</mi><mi>B</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">k_{\text{on}} = 4\pi (D_{A}+D_{B})(a_{A}+a_{B})</annotation></semantics></math></span>. No unguided bimolecular reaction in solution exceeds it. For biological molecules that is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">10^{9}</annotation></semantics></math></span> to <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>10</mn></msup><mtext> </mtext><msup><mi mathvariant="normal">M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{10}\,\mathrm{M}^{-1}\mathrm{s}^{-1}</annotation></semantics></math></span>.</p>
+</div>
+
+<p>The derivation matters more than the number. It turns "how fast can this be?" from a question of opinion into a boundary-value problem with one answer. If a paper reports an on-rate above <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">10^{10}</annotation></semantics></math></span> for an uncharged pair, either the measurement is wrong or there is a mechanism.</p>
+
+<h2 id="s8"><span class="n">8</span>What reaches the ceiling, and what falls short</h2>
+<p class="lede">One enzyme gets to 73% of its own bound. One famous system appears to beat it. The median enzyme is five decades below.</p>
+
+<p>Real enzymes must do more than collide. The substrate has to reach a small active-site patch in the right orientation, and orientational constraints cost up to three orders of magnitude.<sup class="c"><a href="#r-stroppolo">7</a></sup> There are only two known ways around that: pull the substrate in with an electric field, or reduce the dimension of the search.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 340" role="img" aria-label="Second-order rate constants on a logarithmic axis, from the median enzyme to the diffusion ceiling" font-family="var(--sans)">
+<rect x="669.7" y="26.0" width="46.3" height="252.0" rx="4" fill="var(--pinkf)"/>
+<text x="710.0" y="318.0" font-size="10.5" text-anchor="end" fill="var(--coral)" font-weight="700">faster than molecules meet</text>
+<line x1="56.0" y1="278.0" x2="716.0" y2="278.0" stroke="var(--fg)" stroke-width="1.6"/>
+<line x1="56.0" y1="278.0" x2="56.0" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="56.0" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">2</tspan><tspan dy="5"></tspan></text>
+<line x1="129.3" y1="278.0" x2="129.3" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="129.3" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">3</tspan><tspan dy="5"></tspan></text>
+<line x1="202.7" y1="278.0" x2="202.7" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="202.7" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">4</tspan><tspan dy="5"></tspan></text>
+<line x1="276.0" y1="278.0" x2="276.0" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="276.0" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">5</tspan><tspan dy="5"></tspan></text>
+<line x1="349.3" y1="278.0" x2="349.3" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="349.3" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">6</tspan><tspan dy="5"></tspan></text>
+<line x1="422.7" y1="278.0" x2="422.7" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="422.7" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">7</tspan><tspan dy="5"></tspan></text>
+<line x1="496.0" y1="278.0" x2="496.0" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="496.0" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">8</tspan><tspan dy="5"></tspan></text>
+<line x1="569.3" y1="278.0" x2="569.3" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="569.3" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">9</tspan><tspan dy="5"></tspan></text>
+<line x1="642.7" y1="278.0" x2="642.7" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="642.7" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">10</tspan><tspan dy="5"></tspan></text>
+<line x1="716.0" y1="278.0" x2="716.0" y2="284.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="716.0" y="300.0" font-size="11" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">11</tspan><tspan dy="5"></tspan></text>
+<text x="386.0" y="324.0" font-size="12" text-anchor="middle" fill="var(--gray)">second-order rate constant  (M⁻¹ s⁻¹)</text>
+<circle cx="276.0" cy="278.0" r="5.00" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="276.0" y1="271.0" x2="276.0" y2="61.0" stroke="var(--rose)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="276.0" y="40.0" font-size="10.8" text-anchor="middle" fill="var(--rose)" font-weight="700" class="halo">the median enzyme</text>
+<text x="276.0" y="53.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">k<tspan font-size=".72em" dy="2.8">cat</tspan><tspan dy="-2.8">/</tspan>K<tspan font-size=".72em" dy="2.8">M</tspan><tspan dy="-2.8"></tspan> ≈ 10⁵</text>
+<circle cx="474.6" cy="278.0" r="5.00" fill="var(--coral)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="474.6" y1="271.0" x2="474.6" y2="61.0" stroke="var(--coral)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="474.6" y="40.0" font-size="10.8" text-anchor="middle" fill="var(--coral)" font-weight="700" class="halo">EcoRI</text>
+<text x="474.6" y="53.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">methyltransferase</text>
+<circle cx="496.0" cy="278.0" r="5.00" fill="var(--lime)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="496.0" y1="271.0" x2="496.0" y2="93.0" stroke="var(--lime)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="496.0" y="72.0" font-size="10.8" text-anchor="middle" fill="var(--lime)" font-weight="700" class="halo">β-lactamase,</text>
+<text x="496.0" y="85.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">good substrate</text>
+<circle cx="620.6" cy="278.0" r="5.00" fill="var(--teal)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="620.6" y1="271.0" x2="620.6" y2="61.0" stroke="var(--teal)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="620.6" y="40.0" font-size="10.8" text-anchor="middle" fill="var(--teal)" font-weight="700" class="halo">barnase binding</text>
+<text x="620.6" y="53.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">barstar</text>
+<circle cx="653.5" cy="278.0" r="5.00" fill="var(--peri)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="653.5" y1="271.0" x2="653.5" y2="93.0" stroke="var(--peri)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="653.5" y="72.0" font-size="10.8" text-anchor="middle" fill="var(--peri)" font-weight="700" class="halo">4πDa: metabolite</text>
+<text x="653.5" y="85.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">meeting an enzyme</text>
+<circle cx="659.6" cy="278.0" r="5.00" fill="var(--plum)" stroke="var(--bg2)" stroke-width="1.7"/>
+<line x1="659.6" y1="271.0" x2="659.6" y2="125.0" stroke="var(--plum)" stroke-width="1.3" stroke-dasharray="3 3"/>
+<text x="659.6" y="104.0" font-size="10.8" text-anchor="middle" fill="var(--plum)" font-weight="700" class="halo">fastest enzyme</text>
+<text x="659.6" y="117.0" font-size="10.8" text-anchor="middle" fill="var(--gray)" class="halo">ever measured</text>
+</svg>
+<figcaption><b>Figure 6.</b> Second-order rate constants on one logarithmic axis. The wash marks rates above <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>π</mi><mi>D</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">4\pi Da</annotation></semantics></math></span> for superoxide meeting SOD, computed here as <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.3</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mtext> </mtext><msup><mi mathvariant="normal">M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2.3\times 10^{10}\,\mathrm{M}^{-1}\mathrm{s}^{-1}</annotation></semantics></math></span>, the largest bound relevant to any enzyme on the axis. The median enzyme is five decades below it.</figcaption></figure>
+
+<div class="box sim">
+<span class="lbl">The best enzyme in the world, against its own bound</span>
+<p>Superoxide dismutase acts on <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi mathvariant="normal">O</mi><mn>2</mn><mrow><mo>⋅</mo><mo>−</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">\mathrm{O}_2^{\cdot-}</annotation></semantics></math></span>, a tiny charged ion with <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mn>1230</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">D = 1230\,\mu\mathrm{m}^{2}/\mathrm{s}</annotation></semantics></math></span>. With a 32&nbsp;kDa enzyme the bound for this pair is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>π</mi><mi>D</mi><mi>a</mi><mo>=</mo><mn>2.3</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mtext> </mtext><msup><mi mathvariant="normal">M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">4\pi Da = 2.3\times 10^{10}\,\mathrm{M}^{-1}\mathrm{s}^{-1}</annotation></semantics></math></span>. An engineered mutant reaches <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.7</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">1.7\times 10^{10}</annotation></semantics></math></span>, the fastest rate ever measured for any enzyme.<sup class="c"><a href="#r-stroppolo">7</a></sup> That is <strong>73% of the physical ceiling</strong>.</p>
+</div>
+
+<p>The second way is to change the dimension of the search. The lac repressor was measured in 1970 finding its operator a hundred times faster than the <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>8</mn></msup></mrow><annotation encoding="application/x-tex">10^{8}</annotation></semantics></math></span> bound for a target that small,<sup class="c"><a href="#r-halford">8</a></sup> and the resolution is <strong>facilitated diffusion</strong>: bind DNA non-specifically anywhere, then slide in one dimension until the operator turns up. The signature is that more DNA around a site makes the site <em>easier</em> to find, which is impossible for a 3D search and automatic for a 1D one. The <a href="lecture02-exposition.html#s20">exposition</a> works the numbers.</p>
+
+<p>Correct the story while you tell it, though. Halford and Marko went through the record and found that <strong>most measured protein-DNA associations sit within a factor of three of <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>8</mn></msup><mtext> </mtext><msup><mi mathvariant="normal">M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{8}\,\mathrm{M}^{-1}\mathrm{s}^{-1}</annotation></semantics></math></span></strong>, the ordinary limit.<sup class="c"><a href="#r-halford">8</a></sup> The bound is sound, a few systems beat it by changing the search, and "DNA-binding proteins are all impossibly fast" is folklore.</p>
+
+<h3>Now the other side</h3>
+<p>At 1&nbsp;mM substrate an enzyme at the diffusion limit would see <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">10^{7}</annotation></semantics></math></span> encounters per second. Enzymes do not do that. Bar-Even and colleagues collected kinetic parameters for thousands of pairs, filtered to natural substrates, and reported the distribution.<sup class="c"><a href="#r-barEven">9</a></sup> It is the central fact of enzyme kinetics and it should be uncomfortable.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 300" role="img" aria-label="The distribution of enzyme turnover numbers against the theoretical ceiling" font-family="var(--sans)">
+<rect x="62.0" y="34.0" width="654.0" height="208.0" rx="4" fill="var(--bg)" stroke="var(--rule)" stroke-width="1"/>
+<line x1="62.0" y1="34.0" x2="62.0" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="62.0" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">-3</tspan><tspan dy="5"></tspan></text>
+<line x1="124.3" y1="34.0" x2="124.3" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="124.3" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">-2</tspan><tspan dy="5"></tspan></text>
+<line x1="186.6" y1="34.0" x2="186.6" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="186.6" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">-1</tspan><tspan dy="5"></tspan></text>
+<line x1="248.9" y1="34.0" x2="248.9" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="248.9" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">0</tspan><tspan dy="5"></tspan></text>
+<line x1="311.1" y1="34.0" x2="311.1" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="311.1" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">1</tspan><tspan dy="5"></tspan></text>
+<line x1="373.4" y1="34.0" x2="373.4" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="373.4" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">2</tspan><tspan dy="5"></tspan></text>
+<line x1="435.7" y1="34.0" x2="435.7" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="435.7" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">3</tspan><tspan dy="5"></tspan></text>
+<line x1="498.0" y1="34.0" x2="498.0" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="498.0" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">4</tspan><tspan dy="5"></tspan></text>
+<line x1="560.3" y1="34.0" x2="560.3" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="560.3" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">5</tspan><tspan dy="5"></tspan></text>
+<line x1="622.6" y1="34.0" x2="622.6" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="622.6" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">6</tspan><tspan dy="5"></tspan></text>
+<line x1="684.9" y1="34.0" x2="684.9" y2="242.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="684.9" y="260.0" font-size="10.5" text-anchor="middle" fill="var(--gray)">10<tspan font-size=".70em" dy="-5">7</tspan><tspan dy="5"></tspan></text>
+<text x="389.0" y="288.0" font-size="12" text-anchor="middle" fill="var(--gray)">turnover number k<tspan font-size=".72em" dy="2.8">cat</tspan><tspan dy="-2.8">  (s⁻¹)</tspan></text>
+<path d="M 62.0,241.3 L 64.7,241.3 L 67.4,241.2 L 70.2,241.0 L 72.9,240.9 L 75.6,240.8 L 78.4,240.6 L 81.1,240.5 L 83.8,240.3 L 86.5,240.1 L 89.2,239.9 L 92.0,239.6 L 94.7,239.3 L 97.4,239.0 L 100.1,238.7 L 102.9,238.4 L 105.6,238.0 L 108.3,237.5 L 111.1,237.1 L 113.8,236.5 L 116.5,236.0 L 119.2,235.4 L 121.9,234.7 L 124.7,234.0 L 127.4,233.2 L 130.1,232.4 L 132.8,231.5 L 135.6,230.5 L 138.3,229.5 L 141.0,228.4 L 143.8,227.2 L 146.5,225.9 L 149.2,224.5 L 151.9,223.1 L 154.6,221.5 L 157.4,219.9 L 160.1,218.2 L 162.8,216.3 L 165.6,214.4 L 168.3,212.3 L 171.0,210.1 L 173.7,207.9 L 176.4,205.5 L 179.2,203.0 L 181.9,200.4 L 184.6,197.6 L 187.4,194.8 L 190.1,191.8 L 192.8,188.7 L 195.5,185.5 L 198.2,182.2 L 201.0,178.8 L 203.7,175.3 L 206.4,171.7 L 209.1,168.0 L 211.9,164.2 L 214.6,160.3 L 217.3,156.3 L 220.1,152.3 L 222.8,148.2 L 225.5,144.0 L 228.2,139.8 L 230.9,135.6 L 233.7,131.4 L 236.4,127.1 L 239.1,122.8 L 241.9,118.6 L 244.6,114.3 L 247.3,110.1 L 250.0,105.9 L 252.8,101.8 L 255.5,97.8 L 258.2,93.8 L 260.9,90.0 L 263.6,86.3 L 266.4,82.6 L 269.1,79.2 L 271.8,75.8 L 274.6,72.7 L 277.3,69.7 L 280.0,66.9 L 282.7,64.2 L 285.5,61.8 L 288.2,59.6 L 290.9,57.7 L 293.6,55.9 L 296.4,54.4 L 299.1,53.2 L 301.8,52.2 L 304.5,51.4 L 307.2,50.9 L 310.0,50.7 L 312.7,50.7 L 315.4,51.0 L 318.1,51.5 L 320.9,52.3 L 323.6,53.3 L 326.3,54.6 L 329.1,56.2 L 331.8,57.9 L 334.5,59.9 L 337.2,62.2 L 340.0,64.6 L 342.7,67.2 L 345.4,70.1 L 348.1,73.1 L 350.9,76.3 L 353.6,79.6 L 356.3,83.1 L 359.0,86.8 L 361.8,90.5 L 364.5,94.4 L 367.2,98.4 L 369.9,102.4 L 372.6,106.5 L 375.4,110.7 L 378.1,114.9 L 380.8,119.2 L 383.6,123.4 L 386.3,127.7 L 389.0,132.0 L 391.7,136.2 L 394.5,140.4 L 397.2,144.6 L 399.9,148.8 L 402.6,152.9 L 405.4,156.9 L 408.1,160.8 L 410.8,164.7 L 413.5,168.5 L 416.2,172.2 L 419.0,175.8 L 421.7,179.3 L 424.4,182.7 L 427.2,186.0 L 429.9,189.2 L 432.6,192.2 L 435.3,195.2 L 438.0,198.0 L 440.8,200.7 L 443.5,203.3 L 446.2,205.8 L 448.9,208.2 L 451.7,210.5 L 454.4,212.6 L 457.1,214.7 L 459.9,216.6 L 462.6,218.4 L 465.3,220.1 L 468.0,221.8 L 470.8,223.3 L 473.5,224.7 L 476.2,226.1 L 478.9,227.4 L 481.6,228.5 L 484.4,229.6 L 487.1,230.7 L 489.8,231.6 L 492.6,232.5 L 495.3,233.3 L 498.0,234.1 L 500.7,234.8 L 503.5,235.5 L 506.2,236.1 L 508.9,236.6 L 511.6,237.1 L 514.3,237.6 L 517.1,238.0 L 519.8,238.4 L 522.5,238.8 L 525.2,239.1 L 528.0,239.4 L 530.7,239.7 L 533.4,239.9 L 536.1,240.1 L 538.9,240.3 L 541.6,240.5 L 544.3,240.7 L 547.0,240.8 L 549.8,240.9 L 552.5,241.1 L 555.2,241.2 L 558.0,241.3 L 560.7,241.3 L 563.4,241.4 L 566.1,241.5 L 568.8,241.6 L 571.6,241.6 L 574.3,241.7 L 577.0,241.7 L 579.8,241.7 L 582.5,241.8 L 585.2,241.8 L 587.9,241.8 L 590.6,241.8 L 593.4,241.9 L 596.1,241.9 L 598.8,241.9 L 601.5,241.9 L 604.3,241.9 L 607.0,241.9 L 609.7,241.9 L 612.5,242.0 L 615.2,242.0 L 617.9,242.0 L 620.6,242.0 L 623.4,242.0 L 626.1,242.0 L 628.8,242.0 L 631.5,242.0 L 634.2,242.0 L 637.0,242.0 L 639.7,242.0 L 642.4,242.0 L 645.1,242.0 L 647.9,242.0 L 650.6,242.0 L 653.3,242.0 L 656.0,242.0 L 658.8,242.0 L 661.5,242.0 L 664.2,242.0 L 667.0,242.0 L 669.7,242.0 L 672.4,242.0 L 675.1,242.0 L 677.9,242.0 L 680.6,242.0 L 683.3,242.0 L 686.0,242.0 L 688.8,242.0 L 691.5,242.0 L 694.2,242.0 L 696.9,242.0 L 699.7,242.0 L 702.4,242.0 L 705.1,242.0 L 707.8,242.0 L 710.5,242.0 L 713.3,242.0 L 716.0,242.0 L 716.0,242.0 L 62.0,242.0 Z" fill="var(--blush)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 62.0,241.3 L 64.7,241.3 L 67.4,241.2 L 70.2,241.0 L 72.9,240.9 L 75.6,240.8 L 78.4,240.6 L 81.1,240.5 L 83.8,240.3 L 86.5,240.1 L 89.2,239.9 L 92.0,239.6 L 94.7,239.3 L 97.4,239.0 L 100.1,238.7 L 102.9,238.4 L 105.6,238.0 L 108.3,237.5 L 111.1,237.1 L 113.8,236.5 L 116.5,236.0 L 119.2,235.4 L 121.9,234.7 L 124.7,234.0 L 127.4,233.2 L 130.1,232.4 L 132.8,231.5 L 135.6,230.5 L 138.3,229.5 L 141.0,228.4 L 143.8,227.2 L 146.5,225.9 L 149.2,224.5 L 151.9,223.1 L 154.6,221.5 L 157.4,219.9 L 160.1,218.2 L 162.8,216.3 L 165.6,214.4 L 168.3,212.3 L 171.0,210.1 L 173.7,207.9 L 176.4,205.5 L 179.2,203.0 L 181.9,200.4 L 184.6,197.6 L 187.4,194.8 L 190.1,191.8 L 192.8,188.7 L 195.5,185.5 L 198.2,182.2 L 201.0,178.8 L 203.7,175.3 L 206.4,171.7 L 209.1,168.0 L 211.9,164.2 L 214.6,160.3 L 217.3,156.3 L 220.1,152.3 L 222.8,148.2 L 225.5,144.0 L 228.2,139.8 L 230.9,135.6 L 233.7,131.4 L 236.4,127.1 L 239.1,122.8 L 241.9,118.6 L 244.6,114.3 L 247.3,110.1 L 250.0,105.9 L 252.8,101.8 L 255.5,97.8 L 258.2,93.8 L 260.9,90.0 L 263.6,86.3 L 266.4,82.6 L 269.1,79.2 L 271.8,75.8 L 274.6,72.7 L 277.3,69.7 L 280.0,66.9 L 282.7,64.2 L 285.5,61.8 L 288.2,59.6 L 290.9,57.7 L 293.6,55.9 L 296.4,54.4 L 299.1,53.2 L 301.8,52.2 L 304.5,51.4 L 307.2,50.9 L 310.0,50.7 L 312.7,50.7 L 315.4,51.0 L 318.1,51.5 L 320.9,52.3 L 323.6,53.3 L 326.3,54.6 L 329.1,56.2 L 331.8,57.9 L 334.5,59.9 L 337.2,62.2 L 340.0,64.6 L 342.7,67.2 L 345.4,70.1 L 348.1,73.1 L 350.9,76.3 L 353.6,79.6 L 356.3,83.1 L 359.0,86.8 L 361.8,90.5 L 364.5,94.4 L 367.2,98.4 L 369.9,102.4 L 372.6,106.5 L 375.4,110.7 L 378.1,114.9 L 380.8,119.2 L 383.6,123.4 L 386.3,127.7 L 389.0,132.0 L 391.7,136.2 L 394.5,140.4 L 397.2,144.6 L 399.9,148.8 L 402.6,152.9 L 405.4,156.9 L 408.1,160.8 L 410.8,164.7 L 413.5,168.5 L 416.2,172.2 L 419.0,175.8 L 421.7,179.3 L 424.4,182.7 L 427.2,186.0 L 429.9,189.2 L 432.6,192.2 L 435.3,195.2 L 438.0,198.0 L 440.8,200.7 L 443.5,203.3 L 446.2,205.8 L 448.9,208.2 L 451.7,210.5 L 454.4,212.6 L 457.1,214.7 L 459.9,216.6 L 462.6,218.4 L 465.3,220.1 L 468.0,221.8 L 470.8,223.3 L 473.5,224.7 L 476.2,226.1 L 478.9,227.4 L 481.6,228.5 L 484.4,229.6 L 487.1,230.7 L 489.8,231.6 L 492.6,232.5 L 495.3,233.3 L 498.0,234.1 L 500.7,234.8 L 503.5,235.5 L 506.2,236.1 L 508.9,236.6 L 511.6,237.1 L 514.3,237.6 L 517.1,238.0 L 519.8,238.4 L 522.5,238.8 L 525.2,239.1 L 528.0,239.4 L 530.7,239.7 L 533.4,239.9 L 536.1,240.1 L 538.9,240.3 L 541.6,240.5 L 544.3,240.7 L 547.0,240.8 L 549.8,240.9 L 552.5,241.1 L 555.2,241.2 L 558.0,241.3 L 560.7,241.3 L 563.4,241.4 L 566.1,241.5 L 568.8,241.6 L 571.6,241.6 L 574.3,241.7 L 577.0,241.7 L 579.8,241.7 L 582.5,241.8 L 585.2,241.8 L 587.9,241.8 L 590.6,241.8 L 593.4,241.9 L 596.1,241.9 L 598.8,241.9 L 601.5,241.9 L 604.3,241.9 L 607.0,241.9 L 609.7,241.9 L 612.5,242.0 L 615.2,242.0 L 617.9,242.0 L 620.6,242.0 L 623.4,242.0 L 626.1,242.0 L 628.8,242.0 L 631.5,242.0 L 634.2,242.0 L 637.0,242.0 L 639.7,242.0 L 642.4,242.0 L 645.1,242.0 L 647.9,242.0 L 650.6,242.0 L 653.3,242.0 L 656.0,242.0 L 658.8,242.0 L 661.5,242.0 L 664.2,242.0 L 667.0,242.0 L 669.7,242.0 L 672.4,242.0 L 675.1,242.0 L 677.9,242.0 L 680.6,242.0 L 683.3,242.0 L 686.0,242.0 L 688.8,242.0 L 691.5,242.0 L 694.2,242.0 L 696.9,242.0 L 699.7,242.0 L 702.4,242.0 L 705.1,242.0 L 707.8,242.0 L 710.5,242.0 L 713.3,242.0 L 716.0,242.0" fill="none" stroke="var(--rose)" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M 248.9,107.7 L 250.4,105.3 L 252.0,103.0 L 253.5,100.7 L 255.1,98.4 L 256.6,96.1 L 258.2,93.8 L 259.8,91.6 L 261.3,89.5 L 262.9,87.3 L 264.4,85.2 L 266.0,83.1 L 267.5,81.1 L 269.1,79.2 L 270.7,77.2 L 272.2,75.4 L 273.8,73.5 L 275.3,71.8 L 276.9,70.1 L 278.4,68.4 L 280.0,66.9 L 281.6,65.3 L 283.1,63.9 L 284.7,62.5 L 286.2,61.2 L 287.8,59.9 L 289.3,58.8 L 290.9,57.7 L 292.5,56.6 L 294.0,55.7 L 295.6,54.8 L 297.1,54.0 L 298.7,53.3 L 300.2,52.7 L 301.8,52.2 L 303.4,51.7 L 304.9,51.3 L 306.5,51.0 L 308.0,50.8 L 309.6,50.7 L 311.1,50.6 L 312.7,50.7 L 314.3,50.8 L 315.8,51.0 L 317.4,51.3 L 318.9,51.7 L 320.5,52.2 L 322.0,52.7 L 323.6,53.3 L 325.2,54.0 L 326.7,54.8 L 328.3,55.7 L 329.8,56.6 L 331.4,57.7 L 332.9,58.8 L 334.5,59.9 L 336.1,61.2 L 337.6,62.5 L 339.2,63.9 L 340.7,65.3 L 342.3,66.9 L 343.8,68.4 L 345.4,70.1 L 347.0,71.8 L 348.5,73.5 L 350.1,75.4 L 351.6,77.2 L 353.2,79.2 L 354.7,81.1 L 356.3,83.1 L 357.9,85.2 L 359.4,87.3 L 361.0,89.5 L 362.5,91.6 L 364.1,93.8 L 365.6,96.1 L 367.2,98.4 L 368.8,100.7 L 370.3,103.0 L 371.9,105.3 L 373.4,107.7 L 373.4,242.0 L 248.9,242.0 Z" fill="var(--pinkf)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="248.9" y1="242.0" x2="248.9" y2="107.7" stroke="var(--rose)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<line x1="373.4" y1="242.0" x2="373.4" y2="107.7" stroke="var(--rose)" stroke-width="1.2" stroke-dasharray="3 3"/>
+<text x="254.9" y="222.0" font-size="11" text-anchor="start" fill="var(--rose)" font-weight="700" class="halo2">60% of all enzymes</text>
+<line x1="311.1" y1="242.0" x2="311.1" y2="50.6" stroke="var(--rose)" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="311.1" y="38.6" font-size="11.5" text-anchor="middle" fill="var(--rose)" font-weight="700">median ≈ 10 s⁻¹</text>
+<rect x="622.6" y="35.0" width="62.3" height="207.0" rx="0" fill="var(--lavender)" opacity="0.75"/>
+<text x="612.6" y="54.0" font-size="11" text-anchor="end" fill="var(--peri)" font-weight="700">the ceiling on any</text>
+<text x="612.6" y="68.0" font-size="11" text-anchor="end" fill="var(--peri)" font-weight="700">turnover number</text>
+<text x="612.6" y="84.0" font-size="11" text-anchor="end" fill="var(--peri)">10⁶ to 10⁷ s⁻¹</text>
+<text x="653.7" y="276.0" font-size="11" text-anchor="middle" fill="var(--peri)">▲</text>
+<line x1="317.1" y1="234.0" x2="616.6" y2="234.0" stroke="var(--gray)" stroke-width="1.1" stroke-dasharray="2 3"/>
+<text x="466.9" y="227.0" font-size="10.5" text-anchor="middle" fill="var(--gray)" class="halo2">five orders of magnitude</text>
+</svg>
+<figcaption><b>Figure 7.</b> The distribution of turnover numbers, as a log-normal pinned to the two statistics Bar-Even et al. report, so it is derived rather than digitized. The band on the right is the theoretical ceiling on any turnover number. The median enzyme is five orders of magnitude short of it.</figcaption></figure>
+
+<div class="tablewrap">
+<table>
+<caption>Table 4. What enzymes actually do, from 1882 enzyme-substrate pairs with both parameters measured.<sup class="c"><a href="#r-barEven">9</a></sup></caption>
+<thead><tr><th>Parameter</th><th>median</th><th>where 60% of values sit</th><th>the ceiling</th></tr></thead>
+<tbody>
+<tr><td><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">k_{\mathrm{cat}}</annotation></semantics></math></span> (N = 1942)</td><td class="num">10 s<sup>&minus;1</sup></td><td class="num">1&ndash;100 s<sup>&minus;1</sup></td><td class="num">10<sup>6</sup>&ndash;10<sup>7</sup> s<sup>&minus;1</sup></td></tr>
+<tr><td><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>K</mi><mi>M</mi></msub></mrow><annotation encoding="application/x-tex">k_{\mathrm{cat}}/K_{M}</annotation></semantics></math></span> (N = 1882)</td><td class="num">10<sup>5</sup> M<sup>&minus;1</sup>s<sup>&minus;1</sup></td><td class="num">10&sup3;&ndash;10<sup>6</sup></td><td class="num">10<sup>8</sup>&ndash;10<sup>9</sup></td></tr>
+<tr><td><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>M</mi></msub></mrow><annotation encoding="application/x-tex">K_{M}</annotation></semantics></math></span> (N = 5194)</td><td class="num">100 &micro;M</td><td class="num">10&ndash;1000 &micro;M</td><td class="num">&gt;99% above 0.1 &micro;M</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>So the working numbers for this course are <strong><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mtext>on</mtext></msub><mo>≈</mo><msup><mn>10</mn><mn>9</mn></msup><mo>−</mo><msup><mn>10</mn><mn>10</mn></msup><mtext> </mtext><msup><mi mathvariant="normal">M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">k_{\text{on}} \approx 10^{9}-10^{10}\,\mathrm{M}^{-1}\mathrm{s}^{-1}</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>≈</mo><mn>10</mn><mtext> – </mtext><msup><mn>10</mn><mn>2</mn></msup><mtext> </mtext><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">k_{\mathrm{cat}} \approx 10\text{ – }10^{2}\,\mathrm{s}^{-1}</annotation></semantics></math></span></strong>. Keep both.</p>
+
+<div class="box key">
+<span class="lbl">The distribution to compare it against is the uncatalysed one</span>
+<p>Figure 7 looks like a story about how slow enzymes are. Put the other histogram beside it and it becomes a story about how narrow they are.</p>
+<p>Wolfenden and Snider measured the spontaneous rates of biological reactions in neutral solution at 25&nbsp;&deg;C, some by Arrhenius extrapolation from high temperature because they are too slow to watch.<sup class="c"><a href="#r-wolfenden">16</a></sup> The half-times span <strong>more than sixteen orders of magnitude</strong>: 5 seconds for the hydration of CO<sub>2</sub>, 38 hours for the isomerisation of chorismate, two months for the isomerisation of glyceraldehyde 3-phosphate, 400 years for a peptide bond, 140&thinsp;000 years for a phosphodiester, 78 million years for the decarboxylation of orotidine 5&prime;-phosphate, and 1.1 billion years for the decarboxylation of an amino acid.</p>
+<p>The catalysed rates span about one decade. Most <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">k_{\mathrm{cat}}</annotation></semantics></math></span> values sit between <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">10^{2}</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>3</mn></msup><mtext> </mtext><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{3}\,\mathrm{s}^{-1}</annotation></semantics></math></span> in their sample, and Bar-Even's median across a wider set is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10</mn><mtext> </mtext><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10\,\mathrm{s}^{-1}</annotation></semantics></math></span>. Sixteen decades in, one decade out. The rate enhancement is therefore not a number an enzyme has, it is whatever the substrate needed: <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">10^{7}</annotation></semantics></math></span>-fold at one end and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>19</mn></msup></mrow><annotation encoding="application/x-tex">10^{19}</annotation></semantics></math></span>-fold at the other.</p>
+</div>
+
+<div class="box open">
+<span class="lbl">Read that as a control statement, because it is one</span>
+<p>A plant whose gain varies over sixteen decades, and an output held inside one. Every control course would call that a compensator, and would immediately ask the two questions that follow. Is the flatness the controlled variable, or is it a consequence of something else? And what supplies the loop, given that no single enzyme knows what the others are doing?</p>
+<p>The honest answer is that nobody has settled it. Selection acting on each enzyme separately can produce the same flat output without any loop at all, because the useful output range is set by what the cell can consume, not by what the chemistry offers. That is a real alternative and the histogram alone does not choose between them. It is the first topic in &sect;12.</p>
+</div>
+
+<p>Why so slow? Two readings, and the argument is live. Bar-Even et al. argue the gap is <em>evolutionary</em>: enzymes are as fast as selection required and no faster, and their evidence is that context predicts speed, with central carbon metabolism at a median <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>79</mn><mtext> </mtext><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">79\,\mathrm{s}^{-1}</annotation></semantics></math></span> against <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.5</mn><mtext> </mtext><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2.5\,\mathrm{s}^{-1}</annotation></semantics></math></span> for secondary metabolism.<sup class="c"><a href="#r-barEven">9</a></sup> The reading this course pushes is <em>structural</em>: the gap is what makes a cell controllable, because it is the gap that lets binding equilibrate. Both fit the histogram. They differ in what they predict, and section 10 is where the structural reading earns its keep.</p>
+
+<div class="parthead">
+  <div class="k">Part 4</div>
+  <h2>What the gap buys</h2>
+  <p>Two independent arguments, both ending at the same architecture.</p>
+</div>
+
+<h2 id="s9"><span class="n">9</span>Binding equilibrates while catalysis works</h2>
+<p class="lede">Put the two rate constants in one expression and the separation of timescales stops being an assumption.</p>
+
+<p>Take the binding step alone. For <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>+</mo><mi>S</mi><mo>⇌</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">E + S \rightleftharpoons C</annotation></semantics></math></span> with <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mtext>off</mtext></msub><mo>=</mo><msub><mi>k</mi><mtext>on</mtext></msub><msub><mi>K</mi><mi>D</mi></msub></mrow><annotation encoding="application/x-tex">k_{\text{off}} = k_{\text{on}}K_{D}</annotation></semantics></math></span>, a small perturbation relaxes with <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>τ</mi><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">d</mi></mrow></msub><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><msub><mi>k</mi><mtext>on</mtext></msub><mo stretchy="false">(</mo><mo stretchy="false">[</mo><mi>E</mi><mo stretchy="false">]</mo><mo>+</mo><mo stretchy="false">[</mo><mi>S</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>+</mo><msub><mi>k</mi><mtext>off</mtext></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\tau_{\mathrm{bind}} = 1/(k_{\text{on}}([E]+[S]) + k_{\text{off}})</annotation></semantics></math></span>. Use the medians from Tables 1 and 4: enzyme 1&nbsp;&micro;M, substrate 1&nbsp;mM, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>D</mi></msub><mo>=</mo><mn>100</mn><mtext> </mtext><mi>μ</mi><mi mathvariant="normal">M</mi></mrow><annotation encoding="application/x-tex">K_{D} = 100\,\mu\mathrm{M}</annotation></semantics></math></span>, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mtext>on</mtext></msub><mo>=</mo><msup><mn>10</mn><mn>8</mn></msup></mrow><annotation encoding="application/x-tex">k_{\text{on}} = 10^{8}</annotation></semantics></math></span>, already an order below the ceiling.</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>τ</mi><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">d</mi></mrow></msub><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><msup><mn>10</mn><mn>8</mn></msup><mo>⋅</mo><mn>1.001</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>3</mn></mrow></msup><mo>+</mo><msup><mn>10</mn><mn>4</mn></msup><mo stretchy="false">)</mo><mo>=</mo><mstyle class="pf"><mrow><mn mathvariant="bold">9</mn><mtext> </mtext><mi mathvariant="bold">μ</mi><mi mathvariant="normal">s</mi></mrow></mstyle><mo separator="true">,</mo><mtext> </mtext><mtext> against </mtext><mtext> </mtext><msub><mi>τ</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><msub><mi>k</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>=</mo><mstyle class="pf"><mrow><mn mathvariant="bold">100</mn><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow></mstyle></mrow><annotation encoding="application/x-tex">\tau_{\mathrm{bind}} = 1/(10^{8}\cdot 1.001\times 10^{-3} + 10^{4}) = \pf{9\,\mu\mathrm{s}}, \,\text{ against }\, \tau_{\mathrm{cat}} = 1/k_{\mathrm{cat}} = \pf{100\,\mathrm{ms}}</annotation></semantics></math><span class="tag">(12)</span></div>
+
+<div class="box key">
+<span class="lbl">The number the whole course rests on</span>
+<p>Binding settles about <strong><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^{4}</annotation></semantics></math></span> times</strong> during one catalytic turnover. So when you write a model in which the bound fraction is an equilibrium expression and the flux is a rate, you are not making a convenient assumption. You are quoting a measurement. This licenses every quasi-steady-state reduction in lectures 3, 6 and 8, and licenses lecture 7 to use equilibrium statistical mechanics on a cell that is manifestly not at equilibrium.</p>
+</div>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 380" role="img" aria-label="The timescales inside one cell on a logarithmic axis, showing the gap between the fast reversible layer and the slow irreversible one" font-family="var(--sans)">
+<rect x="246.8" y="34.0" width="214.2" height="286.0" rx="5" fill="var(--lavender)"/>
+<text x="353.9" y="28.0" font-size="11.5" text-anchor="middle" fill="var(--plum)" font-weight="700">10<tspan font-size=".70em" dy="-5">4</tspan><tspan dy="5">-fold separation</tspan></text>
+<text x="184.0" y="62.0" font-size="11.5" text-anchor="end" fill="var(--fg)">binding equilibrates</text>
+<line x1="196.0" y1="58.0" x2="726.0" y2="58.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="246.8" cy="58.0" r="5.20" fill="var(--peri)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="258.8" y="62.0" font-size="10.5" text-anchor="start" fill="var(--peri)" font-weight="700">fast, reversible</text>
+<text x="184.0" y="90.0" font-size="11.5" text-anchor="end" fill="var(--fg)">metabolite crosses the cell</text>
+<line x1="196.0" y1="86.0" x2="726.0" y2="86.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="392.0" cy="86.0" r="5.20" fill="var(--peri)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="118.0" font-size="11.5" text-anchor="end" fill="var(--fg)">protein crosses the cell</text>
+<line x1="196.0" y1="114.0" x2="726.0" y2="114.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="467.0" cy="114.0" r="5.20" fill="var(--peri)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="146.0" font-size="11.5" text-anchor="end" fill="var(--fg)">one catalytic turnover</text>
+<line x1="196.0" y1="142.0" x2="726.0" y2="142.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="461.0" cy="142.0" r="5.20" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="473.0" y="146.0" font-size="10.5" text-anchor="start" fill="var(--rose)" font-weight="700">slow, irreversible</text>
+<text x="184.0" y="174.0" font-size="11.5" text-anchor="end" fill="var(--fg)">PEP pool turns over</text>
+<line x1="196.0" y1="170.0" x2="726.0" y2="170.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="514.5" cy="170.0" r="5.20" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="202.0" font-size="11.5" text-anchor="end" fill="var(--fg)">ATP pool turns over</text>
+<line x1="196.0" y1="198.0" x2="726.0" y2="198.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="494.9" cy="198.0" r="5.20" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="230.0" font-size="11.5" text-anchor="end" fill="var(--fg)">FBP pool turns over</text>
+<line x1="196.0" y1="226.0" x2="726.0" y2="226.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="583.5" cy="226.0" r="5.20" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="258.0" font-size="11.5" text-anchor="end" fill="var(--fg)">mRNA decays</text>
+<line x1="196.0" y1="254.0" x2="726.0" y2="254.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="645.3" cy="254.0" r="5.20" fill="var(--coral)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="184.0" y="286.0" font-size="11.5" text-anchor="end" fill="var(--fg)">protein pool is diluted</text>
+<line x1="196.0" y1="282.0" x2="726.0" y2="282.0" stroke="var(--gridc)" stroke-width="1"/>
+<circle cx="693.2" cy="282.0" r="5.20" fill="var(--coral)" stroke="var(--bg2)" stroke-width="1.7"/>
+<text x="681.2" y="286.0" font-size="10.5" text-anchor="end" fill="var(--coral)" font-weight="700">far too slow to regulate</text>
+<line x1="196.0" y1="304.0" x2="726.0" y2="304.0" stroke="var(--fg)" stroke-width="1.4"/>
+<line x1="196.0" y1="304.0" x2="196.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="249.0" y1="304.0" x2="249.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="302.0" y1="304.0" x2="302.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="355.0" y1="304.0" x2="355.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="408.0" y1="304.0" x2="408.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="461.0" y1="304.0" x2="461.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="514.0" y1="304.0" x2="514.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="567.0" y1="304.0" x2="567.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="620.0" y1="304.0" x2="620.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="673.0" y1="304.0" x2="673.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<line x1="726.0" y1="304.0" x2="726.0" y2="309.0" stroke="var(--gray)" stroke-width="1.2"/>
+<text x="196.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 µs</text>
+<text x="355.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 ms</text>
+<text x="514.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">1 s</text>
+<text x="620.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">2 min</text>
+<text x="726.0" y="324.0" font-size="11" text-anchor="middle" fill="var(--gray)">3 h</text>
+<text x="461.0" y="346.0" font-size="12" text-anchor="middle" fill="var(--gray)">time</text>
+</svg>
+<figcaption><b>Figure 8.</b> Every timescale inside one bacterium on a single logarithmic axis. The shaded band is the four-decade gap. Binding is on its left, catalysis and everything downstream on its right. Pool turnover times are computed from measured pools and the glycolytic flux.</figcaption></figure>
+
+<p>Two honest caveats. The separation is not universal: a transcription factor at 10&nbsp;nM binding an operator with <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>D</mi></msub><mo>=</mo><mn>1</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">M</mi></mrow></mrow><annotation encoding="application/x-tex">K_{D} = 1\,\mathrm{nM}</annotation></semantics></math></span> relaxes in tens of milliseconds, comparable to a turnover, and lecture 6's telegraph model exists because of that. And in lower glycolysis the pools sit near <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>M</mi></msub></mrow><annotation encoding="application/x-tex">K_{M}</annotation></semantics></math></span> with every reaction close to equilibrium.<sup class="c"><a href="#r-bennett">3</a></sup> Where the cell needs reversible flux, it gives up the separation deliberately.</p>
+
+<h2 id="s10"><span class="n">10</span>Metabolism cannot wait for gene expression</h2>
+<p class="lede">The same conclusion from the other end, using nothing but two timescales.</p>
+
+<p>Forget rate constants. Ask a physiological question instead. <em>Can a cell control its metabolism by changing how much enzyme it makes?</em></p>
+
+<p><strong>How fast does a pool turn over?</strong> Turnover is pool over flux. <i>E. coli</i> on glucose takes up 8&nbsp;mmol per gram dry weight per hour, and from the ledger one gram dry weight occupies 3.0&nbsp;mL of cell, so</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>J</mi><mo>=</mo><mn>8</mn><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi></mrow><mo>⋅</mo><msup><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">D</mi><mi mathvariant="normal">W</mi></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi>h</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>÷</mo><mn>3.0</mn><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">L</mi></mrow><mo>⋅</mo><msup><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">D</mi><mi mathvariant="normal">W</mi></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mn>2.6</mn><mtext> </mtext><mi mathvariant="normal">M</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">h</mi><mo>=</mo><mstyle class="pf"><mrow><mn mathvariant="bold">0.73</mn><mtext> </mtext><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">M</mi></mrow><mi mathvariant="bold">/</mi><mi mathvariant="normal">s</mi></mrow></mstyle></mrow><annotation encoding="application/x-tex">J = 8\,\mathrm{mmol}\cdot \mathrm{gDW}^{-1}h^{-1} \div 3.0\,\mathrm{mL}\cdot \mathrm{gDW}^{-1} = 2.6\,\mathrm{M}/\mathrm{h} = \pf{0.73\,\mathrm{mM}/\mathrm{s}}</annotation></semantics></math><span class="tag">(13)</span></div>
+
+<div class="tablewrap">
+<table>
+<caption>Table 5. Turnover time of a metabolite pool, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mo stretchy="false">[</mo><mi>M</mi><mo stretchy="false">]</mo><mi mathvariant="normal">/</mi><mi>J</mi></mrow><annotation encoding="application/x-tex">\tau = [M]/J</annotation></semantics></math></span>. Concentrations measured in glucose-fed <i>E. coli</i>,<sup class="c"><a href="#r-bennett">3</a></sup> flux from (13), counting two triose units per glucose.</caption>
+<thead><tr><th>Metabolite</th><th>pool</th><th>flux, relative to glucose uptake</th><th>turnover time</th></tr></thead>
+<tbody>
+<tr><td>phosphoenolpyruvate</td><td class="num">0.18 mM</td><td class="num">&times;2</td><td class="num hl">0.12 s</td></tr>
+<tr><td>ATP</td><td class="num">9.6 mM</td><td class="num">&times;30</td><td class="num hl">0.44 s</td></tr>
+<tr><td>dihydroxyacetone phosphate</td><td class="num">0.37 mM</td><td class="num">&times;1</td><td class="num">0.5 s</td></tr>
+<tr><td>3-phosphoglycerate</td><td class="num">1.5 mM</td><td class="num">&times;2</td><td class="num">1.0 s</td></tr>
+<tr><td>hexose phosphate</td><td class="num">8.8 mM</td><td class="num">&times;1</td><td class="num">12 s</td></tr>
+<tr><td>fructose-1,6-bisphosphate</td><td class="num">15 mM</td><td class="num">&times;1</td><td class="num">21 s</td></tr>
+</tbody>
+</table>
+</div>
+
+<p><strong>How fast can gene expression change an enzyme level?</strong> Write the balance for a protein that is not actively degraded, in a cell growing at rate <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span>. Dilution by growth is the only loss term:</p>
+
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mi>P</mi><mi mathvariant="normal">/</mi><mi>d</mi><mi>t</mi><mo>=</mo><mi>β</mi><mo>−</mo><mi>μ</mi><mi>P</mi><mtext> </mtext><mo>⇒</mo><mtext> </mtext><mtext> response half </mtext><mo>−</mo><mtext>time </mtext><mo>=</mo><mi>ln</mi><mo>⁡</mo><mn>2</mn><mi mathvariant="normal">/</mi><mi>μ</mi><mo>=</mo><mstyle class="pf"><mtext>the doubling time</mtext></mstyle></mrow><annotation encoding="application/x-tex">dP/dt = \beta - \mu P \,\Rightarrow \, \text{ response half }-\text{time } = \ln2/\mu = \pf{\text{the doubling time}}</annotation></semantics></math><span class="tag">(14)</span></div>
+
+<p>That is a derivation, not a citation, and it is the most under-appreciated fact in gene regulation. For a stable protein a cell cannot change concentration faster than it can grow. At a 40-minute doubling time, halving an enzyme level takes 40 minutes. Even the fastest route is slow: 80% of <i>E. coli</i> mRNA half-lives fall between 3 and 8 minutes,<sup class="c"><a href="#r-bernstein">10</a></sup> so transcriptional control cannot beat a few minutes in principle.</p>
+
+<div class="box key">
+<span class="lbl">The conclusion, and it is forced</span>
+<p>Gene expression responds in <strong>2400 seconds</strong>. The PEP pool empties in <strong>0.12 seconds</strong>. Expression is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><msup><mn>10</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">2\times 10^{4}</annotation></semantics></math></span> times too slow to control it, and still 117 times too slow for the slowest pool in the table. <strong>A cell regulating metabolism only through expression would run its pools to zero or overflow them thousands of times before the first new enzyme arrived.</strong> So a faster layer must exist, and the timescale ladder offers one candidate: binding, at 9&nbsp;&micro;s. That layer is allostery and covalent modification, and this argument <em>predicts</em> them rather than describing them.</p>
+</div>
+
+<p>Same conclusion as section 9, reached without writing a single rate constant. Two independent routes, one architecture. That is what makes it a claim about the world rather than a modelling convention.</p>
+
+<div class="box hist">
+<span class="lbl">1956, and what it took to see this</span>
+<p>The prediction was confirmed before it was made. In 1956 Umbarger showed isoleucine inhibiting the first enzyme of its own pathway, and Yates and Pardee showed the same for pyrimidines.<sup class="c"><a href="#r-umbarger">11</a></sup> Neither product resembles the substrate of the enzyme it inhibits, so the inhibition cannot be competitive, and the resolution was a second site. Monod, Wyman and Changeux named it allostery in 1965 and gave it a two-state equilibrium model.<sup class="c"><a href="#r-mwc">12</a></sup> Lecture 7 derives that model. Lecture 8 argues it is one of only two things a cell does.</p>
+</div>
+
+<div class="parthead">
+  <div class="k">Addendum</div>
+  <h2>Where this goes</h2>
+  <p>The last five minutes. The two components, and the rest of the course as a map.</p>
+</div>
+
+<h2 id="s11"><span class="n">11</span>Where this goes</h2>
+<p class="lede">Everything in lectures 3 to 16 is one of two boxes, or the coupling between them.</p>
+
+<figure class="figbox">
+<svg viewBox="0 0 760 330" role="img" aria-label="The architecture the numbers license: a fast reversible binding layer regulating a slow irreversible catalytic layer" font-family="var(--sans)">
+<defs><marker id="l2b1" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--rose)"/></marker><marker id="l2b2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--peri)"/></marker></defs><rect x="28.0" y="30.0" width="704.0" height="108.0" rx="10" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.5"/>
+<text x="46.0" y="54.0" font-size="10.5" text-anchor="start" fill="var(--rose)" font-weight="700" letter-spacing="1.6">CATALYSIS</text>
+<text x="46.0" y="80.0" font-size="13" text-anchor="start" fill="var(--fg)">slow, effectively irreversible, never equilibrates</text>
+<text x="46.0" y="104.0" font-size="12.5" text-anchor="start" fill="var(--gray)">k<tspan font-size=".72em" dy="2.8">cat</tspan><tspan dy="-2.8"> ≈ 10 s⁻¹, so one turnover takes ~100 ms</tspan></text>
+<text x="46.0" y="124.0" font-size="12.5" text-anchor="start" fill="var(--gray)">carries the flux, and the dynamics of lecture 4</text>
+<rect x="28.0" y="192.0" width="704.0" height="108.0" rx="10" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.5"/>
+<text x="46.0" y="216.0" font-size="10.5" text-anchor="start" fill="var(--peri)" font-weight="700" letter-spacing="1.6">BINDING</text>
+<text x="46.0" y="242.0" font-size="13" text-anchor="start" fill="var(--fg)">fast, reversible, always at equilibrium</text>
+<text x="46.0" y="266.0" font-size="12.5" text-anchor="start" fill="var(--gray)">relaxes in ~10 µs, so it settles 10⁴ times per turnover</text>
+<text x="46.0" y="286.0" font-size="12.5" text-anchor="start" fill="var(--gray)">carries the regulation, and the statistics of lecture 7</text>
+<line x1="600.0" y1="190.0" x2="600.0" y2="142.0" stroke="var(--peri)" stroke-width="2.2" marker-end="url(#l2b2)"/>
+<text x="612.0" y="176.0" font-size="11.5" text-anchor="start" fill="var(--peri)" font-weight="700">sets the fraction</text>
+<text x="612.0" y="192.0" font-size="11.5" text-anchor="start" fill="var(--gray)">of enzyme that is</text>
+<text x="612.0" y="208.0" font-size="11.5" text-anchor="start" fill="var(--gray)">loaded and active</text>
+<text x="400.0" y="166.0" font-size="12" text-anchor="middle" fill="var(--gray)">the two layers are separable because their timescales are</text>
+<text x="400.0" y="182.0" font-size="12" text-anchor="middle" fill="var(--gray)">four orders of magnitude apart, and that is a measurement</text>
+</svg>
+<figcaption><b>Figure 9.</b> The architecture the numbers licence. Binding is fast, reversible and at equilibrium, so statistical mechanics describes it and it carries the regulation. Catalysis is slow, irreversible and never at equilibrium, so differential equations describe it and it carries the flux.</figcaption></figure>
+
+<div class="tablewrap">
+<table>
+<caption>Table 6. What lecture 2 hands to each later lecture.</caption>
+<thead><tr><th>Handed on</th><th>To</th><th>Used for</th></tr></thead>
+<tbody>
+<tr><td>net-change notation, mass action for elementary steps</td><td>lecture 3</td><td>the rate equation <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>x</mi><mi mathvariant="normal">/</mi><mi>d</mi><mi>t</mi><mo>=</mo><mi mathvariant="normal">Γ</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">dx/dt = \Gamma v</annotation></semantics></math></span></td></tr>
+<tr><td>copy numbers at 1.7 nM per molecule</td><td>lecture 5</td><td>when noise becomes physics</td></tr>
+<tr><td>the <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^{4}</annotation></semantics></math></span> timescale separation</td><td>lecture 6</td><td>the licence for quasi-steady state</td></tr>
+<tr><td>binding equilibrates</td><td>lecture 7</td><td>equilibrium statistical mechanics of regulation</td></tr>
+<tr><td>the whole of Part 4</td><td>lecture 8</td><td>the thesis that a cell is binding plus catalysis</td></tr>
+<tr><td>saturation, and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>M</mi></msub></mrow><annotation encoding="application/x-tex">K_{M}</annotation></semantics></math></span> against pool size</td><td>lecture 11</td><td>reaction order as a log-derivative</td></tr>
+<tr><td>flux, pools and turnover times</td><td>lecture 13</td><td>flux balance analysis</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="box key">
+<span class="lbl">Five things to leave with</span>
+<ol>
+<li><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">m</mi><mn>3</mn></msup><mo>=</mo><mn>1</mn><mtext> </mtext><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">L</mi></mrow></mrow><annotation encoding="application/x-tex">1\,\mu\mathrm{m}^{3} = 1\,\mathrm{fL}</annotation></semantics></math></span>, and one molecule in it is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.7</mn><mtext> </mtext><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">M</mi></mrow></mrow><annotation encoding="application/x-tex">1.7\,\mathrm{nM}</annotation></semantics></math></span>.</li>
+<li><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi><mi mathvariant="normal">/</mi><mn>6</mn><mi>π</mi><mi>η</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">D = k_{B}T/6\pi \eta a</annotation></semantics></math></span>, so <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>∝</mo><mn>1</mn><mi mathvariant="normal">/</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">D \propto 1/a</annotation></semantics></math></span>, and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>≈</mo><msup><mi>x</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">\tau \approx x^{2}/D</annotation></semantics></math></span>. A bacterium mixes in milliseconds and an axon never does.</li>
+<li><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mtext>on</mtext></msub><mo>=</mo><mn>4</mn><mi>π</mi><mi>D</mi><mi>a</mi><mo>≈</mo><msup><mn>10</mn><mn>9</mn></msup><mo>−</mo><msup><mn>10</mn><mn>10</mn></msup><mtext> </mtext><msup><mi mathvariant="normal">M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">k_{\text{on}} = 4\pi Da \approx 10^{9}-10^{10}\,\mathrm{M}^{-1}\mathrm{s}^{-1}</annotation></semantics></math></span>, from a boundary-value problem, and nothing unguided beats it.</li>
+<li><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>≈</mo><mn>10</mn><mtext> </mtext><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">k_{\mathrm{cat}} \approx 10\,\mathrm{s}^{-1}</annotation></semantics></math></span> for the median enzyme, five decades below its own ceiling.</li>
+<li>Therefore binding equilibrates <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^{4}</annotation></semantics></math></span> times per turnover, and therefore the regulatory layer is binding. Metabolism cannot wait for gene expression, and the numbers say so by four orders of magnitude.</li>
+</ol>
+</div>
+
+<p>Before lecture 3, the <a href="lecture02-exposition.html">exposition</a> carries every derivation here in full, with checkpoints, five networks to write down, and an on-rate calculator you can point at any pair of molecules.<sup class="c"><a href="#r-books">15</a></sup></p>
+
+<hr>
+
+<h2 id="s12"><span class="n">12</span>Eight things worth extending</h2>
+<p class="lede">Eight questions that this lecture opens and does not close. Each one is reachable with the numbers on this page plus one paper, and each names what a finished answer looks like.</p>
+
+<p>An extension mini-essay is short. Take one of these all the way down rather than surveying three. What makes a good one is a number at the end that was not in the lecture, together with an honest account of what it rests on.</p>
+
+<ol>
+<li><b>Sixteen decades in, one decade out.</b> Uncatalysed half-times span <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>16</mn></msup></mrow><annotation encoding="application/x-tex">10^{16}</annotation></semantics></math></span>; turnover numbers span about <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">10^{1}</annotation></semantics></math></span>.<sup class="c"><a href="#r-wolfenden">16</a></sup> Is the narrow output a controlled variable or a coincidence of what cells happen to consume? Take Wolfenden's reactions, pair each with its enzyme's <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">k_{\mathrm{cat}}</annotation></semantics></math></span>, and plot enhancement against uncatalysed rate. A slope of exactly <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span> means perfect compensation, and anything else says how much of the flattening is real. This is the best question on the page and it has a plot at the end of it.</li>
+
+<li><b>The factor of four in <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>π</mi><mi>D</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">4\pi Da</annotation></semantics></math></span>.</b> Smoluchowski's radius is an encounter radius, so for two identical spheres the constant is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mi>π</mi><mi>D</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">16\pi Da</annotation></semantics></math></span>, not <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>π</mi><mi>D</mi><mi>a</mi></mrow><annotation encoding="application/x-tex">4\pi Da</annotation></semantics></math></span>. Go and check a dozen papers and textbooks that quote the bound for a self-association and count how many get the factor right. A finished answer is a table with a column headed "which radius did they mean", and a statement of how much the published conclusions would move.</li>
+
+<li><b>Which volume do you mean.</b> &sect;7 of the <a href="lecture02-exposition.html#s7">exposition</a> gets 15% of cell volume as protein using the anhydrous partial specific volume, 0.73&nbsp;mL/g. Zimmerman and Trach measure an occupancy near 0.43&nbsp;mL per mL of cytoplasm, using an effective specific volume of 1.2 to 1.3&nbsp;mL/g.<sup class="c"><a href="#r-zimmerman">17</a></sup> The factor of three between them is entirely a definition. Work out which one governs the excluded-volume effect, which one governs the mass balance, and where each is the right answer. Then say which one belongs in the crowding argument.</li>
+
+<li><b>Does the diffusion limit ever bind in vivo?</b> The ceiling in this lecture is computed for water. In cytoplasm <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span> drops elevenfold for a protein, so the in-cell ceiling drops with it. Davidi and colleagues measured apparent catalytic rates in living cells.<sup class="c"><a href="#r-davidi">18</a></sup> Take their distribution, compute the pair-specific in-cell bound for each enzyme, and ask how many are within a decade of it. If none are, the ceiling is not what shapes the distribution and this course should say so.</li>
+
+<li><b>Perfection, on the original definition.</b> "Catalytic perfection" was defined by Albery and Knowles as a property of the whole free-energy profile at a given substrate concentration, not as a threshold on <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>K</mi><mi>M</mi></msub></mrow><annotation encoding="application/x-tex">k_{\mathrm{cat}}/K_{M}</annotation></semantics></math></span>. The <a href="lecture02-lineage.html#s6">lineage page</a> states the criterion. Pick one enzyme other than triosephosphate isomerase for which the profile is known, evaluate their efficiency function, and compare the verdict with what its <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>K</mi><mi>M</mi></msub></mrow><annotation encoding="application/x-tex">k_{\mathrm{cat}}/K_{M}</annotation></semantics></math></span> alone would suggest. Any disagreement is the essay.</li>
+
+<li><b>Berg and Purcell's receptors, for a real cell.</b> A sphere covered in <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span> small absorbing patches of radius <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span> captures at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mi>π</mi><mi>D</mi><mi>a</mi><mo>⋅</mo><mi>N</mi><mi>s</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mi>N</mi><mi>s</mi><mo>+</mo><mi>π</mi><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">4\pi Da \cdot Ns/(Ns + \pi a)</annotation></semantics></math></span>, so half the maximum rate arrives at a coverage far below complete. Put in measured receptor counts and sizes for one chemotactic bacterium and say where it sits on that curve. If it sits near the knee, that is a design statement. If it sits far below, ask what else the receptors are for.</li>
+
+<li><b>Where the timescale separation fails.</b> &sect;9 licenses quasi-steady state from a factor of <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^{4}</annotation></semantics></math></span>. That factor is a median. Find the enzymes in the tail where it is not <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10^{4}</annotation></semantics></math></span>, and work out what a model that assumed separation would get wrong about them. Briggs and Haldane's condition is two lines long and stating it exactly is half the essay.</li>
+
+<li><b>The ledger for something that is not <em>E. coli</em>.</b> Every number in Part 1 is for one bacterium. Redo the whole ledger for a yeast cell, a human cell, or a mitochondrion: volume, protein count, mean spacing, mixing time, on-rate, turnover. Which conclusions survive the change of scale, and which quietly stop being true? Mixing time is the one to watch, because it goes as <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>x</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">x^{2}</annotation></semantics></math></span>.</li>
+</ol>
+
+<div class="box note">
+<span class="lbl">What makes one of these good rather than long</span>
+<p>State the question in one sentence. Say what you assumed and where each input came from. Do the arithmetic in the open. Give the answer to one digit. Then say what would change it. An essay doing those five things in a page beats one doing none of them in six.</p>
+</div>
+
+<hr>
+
+<h2 id="exercises"><span class="n">&sect;</span>Exercises</h2>
+<p class="lede">Three that can be done on paper, in the order the lecture built them. The first two are from the 2025 problem set.<sup class="c"><a href="#r-l1notes">14</a></sup> The first extension mini-essay may be on any of them.</p>
+
+<ol>
+<li><strong>The blueprint and the machine.</strong> Which is bigger, an mRNA or the protein it encodes, in mass and in volume? Do it for a 300-residue protein, using 330&nbsp;Da per nucleotide, and draw the two to scale. Then say what the answer implies about the cost of holding a message versus holding a machine. <span class="small">(2025 homework 1, problem 2.1.)</span></li>
+<li><strong>Head space in a culture tube.</strong> The rule of thumb is to leave five-fold head space when growing aerobic bacteria. Estimate the oxygen a saturated 1&nbsp;mL <i>E. coli</i> culture needs, using 0.2% glucose by mass in the medium and a biomass yield of about 0.5, and check whether the rule follows. Does dissolved oxygen matter? <span class="small">(2025 homework 1, problem 2.3.)</span></li>
+<li><strong>Redo section 10 for a mammalian cell.</strong> A human cell is 2000&nbsp;&micro;m&sup3; and doubles in about 24 hours. Metabolite concentrations are similar. Does the conclusion get stronger or weaker, and by how much? What does that predict about how much of mammalian metabolic regulation should be post-translational?</li>
+</ol>
+
+<hr>
+
+<h2 id="refs"><span class="n">&dagger;</span>References &amp; note sources</h2>
+<p class="lede">Every number on this page traces to one of these, or to <code>lectures/research/lecture02/analysis/cell_ledger.py</code>, which runs and prints all of them. Where a badge says <span class="pdf">read</span>, the full text is in the course's local literature archive and was read for this page. The archive is not redistributed.</p>
+
+<div class="refs">
+<ol>
+<li id="r-volkmer">B. Volkmer, M. Heinemann. Condition-dependent cell volume and concentration of <i>Escherichia coli</i> to facilitate data conversion for systems biology modeling.
+  <span class="venue"><i>PLoS ONE</i> 6(7):e23126, 2011.</span>
+  <a class="pdf" href="https://doi.org/10.1371/journal.pone.0023126">PDF</a>
+  <span class="venue">Cell volume across 22 growth conditions.</span></li>
+<li id="r-milo2013">R. Milo. What is the total number of protein molecules per cell volume? A call to rethink some published values.
+  <span class="venue"><i>BioEssays</i> 35:1050&ndash;1055, 2013.</span>
+  <a class="pdf" href="https://doi.org/10.1002/bies.201300066">PDF</a>
+  <span class="venue">Every number in &sect;2: the protein count, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">c_{p}</annotation></semantics></math></span>, and the 300-residue mean.</span></li>
+<li id="r-bennett">B. D. Bennett, E. H. Kimball, M. Gao, R. Osterhout, S. J. Van Dien, J. D. Rabinowitz. Absolute metabolite concentrations and implied enzyme active site occupancy in <i>Escherichia coli</i>.
+  <span class="venue"><i>Nature Chemical Biology</i> 5:593&ndash;599, 2009.</span>
+  <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2754216/">PDF</a>
+  <span class="venue">Every metabolite concentration here, and the saturation finding in &sect;9.</span></li>
+<li id="r-erickson">H. P. Erickson. Size and shape of protein molecules at the nanometer level determined by sedimentation, gel filtration, and electron microscopy.
+  <span class="venue"><i>Biological Procedures Online</i> 11:32&ndash;51, 2009.</span>
+  <a class="pdf" href="https://doi.org/10.1007/s12575-009-9008-x">PDF</a>
+  <span class="venue">Equation (5).</span></li>
+<li id="r-pearle">P. Pearle, B. Collett, K. Bart, D. Bilderback, D. Newman, S. Samuels. What Brown saw and you can too.
+  <span class="venue"><i>American Journal of Physics</i> 78:1278&ndash;1289, 2010.</span>
+  <a class="pdf" href="https://arxiv.org/abs/1008.0039">PDF</a>
+  <span class="venue">What Brown was actually watching, and the calibration in &sect;4.</span></li>
+<li id="r-elowitz">M. B. Elowitz, M. G. Surette, P.-E. Wolf, J. B. Stock, S. Leibler. Protein mobility in the cytoplasm of <i>Escherichia coli</i>.
+  <span class="venue"><i>Journal of Bacteriology</i> 181:197&ndash;203, 1999.</span>
+  <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC103549/">PDF</a>
+  <span class="venue"><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mn>7.7</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">D = 7.7\,\mu\mathrm{m}^{2}/\mathrm{s}</annotation></semantics></math></span> for GFP in vivo, and the size dependence.</span></li>
+<li id="r-stroppolo">M. E. Stroppolo, M. Falconi, A. M. Caccuri, A. Desideri. Superefficient enzymes.
+  <span class="venue"><i>Cellular and Molecular Life Sciences</i> 58:1451&ndash;1460, 2001.</span>
+  <a class="pdf" href="https://doi.org/10.1007/PL00000788">PDF</a>
+  <span class="venue"><span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mn>7.7</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">m</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">D = 7.7\,\mu\mathrm{m}^{2}/\mathrm{s}</annotation></semantics></math></span> for GFP in vivo.</span></li>
+<li id="r-halford">S. E. Halford, J. F. Marko. How do site-specific DNA-binding proteins find their targets?
+  <span class="venue"><i>Nucleic Acids Research</i> 32:3040&ndash;3052, 2004.</span>
+  <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC434431/">PDF</a>
+  <span class="venue">The protein-DNA limit, and the correction to the lac folklore.</span></li>
+<li id="r-barEven">A. Bar-Even, E. Noor, Y. Savir, W. Liebermeister, D. Davidi, D. S. Tawfik, R. Milo. The moderately efficient enzyme: evolutionary and physicochemical trends shaping enzyme parameters.
+  <span class="venue"><i>Biochemistry</i> 50:4402&ndash;4410, 2011.</span>
+  <a class="pdf" href="https://doi.org/10.1021/bi2002289">PDF</a>
+  <span class="venue">Table 4, and the evolutionary reading of the gap.</span></li>
+<li id="r-bernstein">J. A. Bernstein, A. B. Khodursky, P.-H. Lin, S. Lin-Chao, S. N. Cohen. Global analysis of mRNA decay and abundance in <i>Escherichia coli</i> at single-gene resolution.
+  <span class="venue"><i>PNAS</i> 99:9697&ndash;9702, 2002.</span>
+  <a class="pdf" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC124983/">PDF</a>
+  <span class="venue">mRNA half-lives, 3 to 8 minutes.</span></li>
+<li id="r-umbarger">H. E. Umbarger. Evidence for a negative-feedback mechanism in the biosynthesis of isoleucine.
+  <span class="venue"><i>Science</i> 123:848, 1956.</span> With R. A. Yates, A. B. Pardee, Control of pyrimidine biosynthesis in <i>E. coli</i> by a feedback mechanism, <i>J. Biol. Chem.</i> 221:757&ndash;770, 1956.
+  <span class="pdf">read</span></li>
+<li id="r-mwc">J. Monod, J. Wyman, J.-P. Changeux. On the nature of allosteric transitions: a plausible model.
+  <span class="venue"><i>Journal of Molecular Biology</i> 12:88&ndash;118, 1965.</span>
+  <a class="pdf" href="https://doi.org/10.1016/S0022-2836(65)80285-6">PDF</a>
+  <span class="venue">The two-state model of the binding layer. Derived in lecture 7.</span></li>
+<li id="r-l2scribe">F. Xiao, <i>CCBS 2025 Lecture 2 &mdash; Biochemical reaction networks and their dynamics</i>, with the 2025 scribe note by Jiahe Wang, Yiqiao Deng and Zhi Zhou.
+  <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/202509-CCBS-lecture-notes-02-CRN_202509092201_32013.pdf">notes</a>
+  <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture2/2025FL_CCBS_scribe_lecture2.pdf">scribe</a>
+  <span class="venue">&sect;2.1 and &sect;2.2 are the template for sections 6 and 7. The corrections in &sect;2, &sect;4 and &sect;8 are corrections to it.</span></li>
+<li id="r-l1notes">F. Xiao, <i>CCBS 2025 Lecture 1 &mdash; Order of magnitude reasoning</i>, with the 2025 scribe note by Qinguo Liu and Yihang Ding.
+  <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/202509-CCBS-lecture-notes-01-OoM.pdf">notes</a>
+  <a class="pdf" href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture1/2025FL_CCBS_scribe_lecture1.pdf">scribe</a>
+  <span class="venue">&sect;2.1 and &sect;2.2 are the template for sections 1 to 5. Homework 1 is the source of the exercises.</span></li>
+<li id="r-books">Background reading, none of it required.
+  <span class="venue">R. Phillips and R. Milo, <a href="https://book.bionumbers.org">Cell Biology by the Numbers</a>, the ledger at book length. R. Phillips et al., <i>Physical Biology of the Cell</i>, the scaling arguments. H. C. Berg, <i>Random Walks in Biology</i>, diffusion done properly. <a href="https://bionumbers.hms.harvard.edu">BioNumbers</a>, when you need a number with provenance.</span></li>
+<li id="r-wolfenden">R. Wolfenden, M. J. Snider. The depth of chemical time and the power of enzymes as catalysts. <span class="venue"><i>Accounts of Chemical Research</i> 34:938&ndash;945, 2001.</span> <a class="pdf" href="https://doi.org/10.1021/ar000058i">PDF</a> <span class="venue">Figure 4 is the sixteen decades of uncatalysed half-times; the <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">10^{7}</annotation></semantics></math></span> to <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>19</mn></msup></mrow><annotation encoding="application/x-tex">10^{19}</annotation></semantics></math></span> range of rate enhancements is their Figure 5.</span></li>
+<li id="r-zimmerman">S. B. Zimmerman, S. O. Trach. Estimation of macromolecule concentrations and excluded volume effects for the cytoplasm of <i>Escherichia coli</i>. <span class="venue"><i>Journal of Molecular Biology</i> 222:599&ndash;620, 1991.</span> <a class="pdf" href="https://doi.org/10.1016/0022-2836(91)90499-V">PDF</a> <span class="venue">0.3 to 0.4&nbsp;g/mL of macromolecule, their own experimental value 0.34&nbsp;g (RNA + protein)/mL, and an occupancy near 0.43&nbsp;mL/mL from an effective specific volume of 1.2 to 1.3&nbsp;mL/g.</span></li>
+<li id="r-davidi">D. Davidi, E. Noor, W. Liebermeister, A. Bar-Even, A. Flamholz, K. Tummler, U. Barenholz, M. Goldenfeld, T. Shlomi, R. Milo. Global characterization of in vivo enzyme catalytic rates and their correspondence to in vitro k<sub>cat</sub> measurements. <span class="venue"><i>PNAS</i> 113:3401&ndash;3406, 2016.</span> <a class="pdf" href="https://doi.org/10.1073/pnas.1514240113">PDF</a></li>
+</ol>
+</div>
+
+</main>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('tt');
+  function apply(){document.documentElement.setAttribute('data-theme',
+    (typeof localStorage!=='undefined'&&localStorage.getItem('th')==='dark')?'dark':'light');}
+  b.addEventListener('click',function(){var d=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
+    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();if(window.__redraw)window.__redraw();});
+  if(typeof localStorage!=='undefined'&&!localStorage.getItem('th')){var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';localStorage.setItem('th',d);}
+  apply();
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  function hi(){var y=window.scrollY+80,cur=null;links.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t&&t.offsetTop<=y)cur=a;});links.forEach(function(a){a.classList.toggle('on',a===cur);});}
+  addEventListener('scroll',hi,{passive:true});hi();
+})();
+</script>
+</body>
+</html>
