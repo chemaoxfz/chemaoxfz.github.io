@@ -164,6 +164,10 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
    let it wrap. Desktop rendering is unchanged. */
 @media (max-width:640px){
   .m,code{white-space:normal;overflow-wrap:anywhere}
+  /* MathML only breaks at some operators, so a long chain of arithmetic stays one
+     unbreakable run even here. Mark those .m wide and they scroll inside their own
+     box, the way .eq already does, instead of pushing the page sideways. */
+  .m.wide{display:inline-block;max-width:100%;overflow-x:auto;vertical-align:bottom}
 }
 </style>
 </head>
@@ -371,6 +375,8 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <p>Buckingham was at the National Bureau of Standards, an institution whose business is units, which is the right place from which to notice that units are a constraint rather than a bookkeeping convention. His paper is titled <em>On physically similar systems; illustrations of the use of dimensional equations</em>, and the illustrations are half of it.<sup class="c"><a href="#r2">2</a></sup></p>
 
 <p>The argument is short. A physical relation among <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> quantities must hold whatever units you measure them in. Changing the size of the fundamental units multiplies each quantity by a known factor, and demanding that the relation survive this imposes one equation per fundamental unit. With <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span> independent fundamental units, that is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span> equations on the exponents, leaving <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">n - k</annotation></semantics></math></span> free combinations. Buckingham's own phrasing of the count is that the number of independent arguments "is the maximum number of independent dimensionless products ... which can be made by combining the <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> quantities", and that there are "<span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mi>k</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n - k)</annotation></semantics></math></span> equations" determining them.</p>
+
+<p>The theorem has been restated and generalised many times since, and a centenary survey collects the versions.<sup class="c"><a href="#r14">14</a></sup> None of them changes what a working estimate does with it, which is the count and nothing else.</p>
 
 <div class="box key">
 <span class="lbl">Why the theorem changed the status of the method</span>
@@ -3931,7 +3937,7 @@ z
 <h2 id="s18"><span class="n">18</span>What is still an argument</h2>
 <p class="lede">Where this page is on firm ground, and where it is telling a story.</p>
 
-<p>The historical claims here rest on full texts that were read, and the quotations are given rather than paraphrased so that you can check the reading. Galileo's scaling argument, Buckingham's count, Taylor's 1941 date and his half-efficiency prediction, Haldane's four moves and his wrong mechanism, Purcell's numbers and his admission about the P&eacute;clet number: all are quoted from the sources listed below.</p>
+<p>The historical claims here rest on full texts that were read, and the quotations are given rather than paraphrased so that you can check the reading. Galileo's scaling argument, Buckingham's count, Taylor's 1941 date and his half-efficiency prediction, Haldane's four moves and his wrong mechanism, Purcell's numbers and his admission about the P&eacute;clet number: all are quoted from the sources listed below. The reading itself is logged in the lecture's research folder, including the corrections it forced.<sup class="c"><a href="#r16">16</a></sup></p>
 
 <p>Three things are weaker, and it is better to say so.</p>
 

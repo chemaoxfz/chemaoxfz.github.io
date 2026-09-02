@@ -164,6 +164,10 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
    let it wrap. Desktop rendering is unchanged. */
 @media (max-width:640px){
   .m,code{white-space:normal;overflow-wrap:anywhere}
+  /* MathML only breaks at some operators, so a long chain of arithmetic stays one
+     unbreakable run even here. Mark those .m wide and they scroll inside their own
+     box, the way .eq already does, instead of pushing the page sideways. */
+  .m.wide{display:inline-block;max-width:100%;overflow-x:auto;vertical-align:bottom}
 }
 </style>
 </head>
@@ -286,6 +290,8 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 
 <h2 id="s4"><span class="n">4</span>Both lecture results, in four lines each</h2>
 <p class="lede">The point of the essay. Two of the lecture's three derivations collapse to the same routine.</p>
+
+<p>Both are done at length elsewhere, and the versions below are deliberately shorter than those.<sup class="c"><a href="#r4">4</a></sup> The claim is that the length was never necessary.</p>
 
 <h3>Diffusion, which the lecture derives from a PDE</h3>
 <p>The lecture spends a page on this: Fourier's law, a flux balance on a slab, a limit, then <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∂</mi><mi>T</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">∂</mi><mi>t</mi><mo>=</mo><mi>κ</mi><msup><mi mathvariant="normal">∇</mi><mn>2</mn></msup><mi>T</mi></mrow><annotation encoding="application/x-tex">\partial T/\partial t = \kappa \nabla^{2}T</annotation></semantics></math></span>, then replace the derivatives by their characteristic scales. Here is the same result by counting.</p>

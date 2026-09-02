@@ -164,6 +164,10 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
    let it wrap. Desktop rendering is unchanged. */
 @media (max-width:640px){
   .m,code{white-space:normal;overflow-wrap:anywhere}
+  /* MathML only breaks at some operators, so a long chain of arithmetic stays one
+     unbreakable run even here. Mark those .m wide and they scroll inside their own
+     box, the way .eq already does, instead of pushing the page sideways. */
+  .m.wide{display:inline-block;max-width:100%;overflow-x:auto;vertical-align:bottom}
 }
 </style>
 </head>
@@ -352,7 +356,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <div class="eq">p<sub>on</sub>=K<sup>n</sup>/(K<sup>n</sup>+R<sup>n</sup>)=1/[1+(R/K)<sup>n</sup>]. <span class="tag">(14)</span></div>
 <figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img" aria-label="Promoter occupancy and activating and repressing Hill curves">
   <style>.l3d-ax{stroke:var(--fg);stroke-width:2}.l3d-a{stroke:var(--teal);stroke-width:6;fill:none}.l3d-r{stroke:var(--coral);stroke-width:6;fill:none}.l3d-g{stroke:var(--gridc);stroke-width:2;stroke-dasharray:7 6}.l3d-t{fill:var(--fg);font:700 18px var(--sans)}.l3d-s{fill:var(--muted);font:15px var(--sans)}.l3d-k{fill:var(--rose);font:700 15px var(--mono)}</style>
-  <line class="l3d-ax" x1="100" y1="370" x2="820" y2="370"/><line class="l3d-ax" x1="100" y1="370" x2="100" y2="60"/><text class="l3d-t" x="830" y="376">regulator u</text><text class="l3d-t" x="40" y="48">fractional rate</text>
+  <line class="l3d-ax" x1="100" y1="370" x2="820" y2="370"/><line class="l3d-ax" x1="100" y1="370" x2="100" y2="60"/><text class="l3d-t" x="894" y="396" text-anchor="end">regulator u</text><text class="l3d-t" x="40" y="48">fractional rate</text>
   <line class="l3d-g" x1="100" y1="215" x2="820" y2="215"/><line class="l3d-g" x1="420" y1="370" x2="420" y2="70"/><text class="l3d-k" x="420" y="400" text-anchor="middle">u = K</text><text class="l3d-s" x="112" y="208">1/2</text>
   <path class="l3d-a" d="M100 370 C260 369 350 345 400 255 C450 165 545 92 820 82"/><path class="l3d-r" d="M100 80 C260 81 350 105 400 195 C450 285 545 358 820 368"/>
   <text class="l3d-k" x="640" y="112">activation u<tspan baseline-shift="super" font-size="10">n</tspan>/(K<tspan baseline-shift="super" font-size="10">n</tspan>+u<tspan baseline-shift="super" font-size="10">n</tspan>)</text>

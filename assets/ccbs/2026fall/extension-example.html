@@ -164,6 +164,10 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
    let it wrap. Desktop rendering is unchanged. */
 @media (max-width:640px){
   .m,code{white-space:normal;overflow-wrap:anywhere}
+  /* MathML only breaks at some operators, so a long chain of arithmetic stays one
+     unbreakable run even here. Mark those .m wide and they scroll inside their own
+     box, the way .eq already does, instead of pushing the page sideways. */
+  .m.wide{display:inline-block;max-width:100%;overflow-x:auto;vertical-align:bottom}
 }
 </style>
 </head>
