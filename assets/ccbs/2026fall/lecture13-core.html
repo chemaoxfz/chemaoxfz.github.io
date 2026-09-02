@@ -75,6 +75,13 @@ math .pf,mstyle.pf{color:var(--rose);font-weight:700}
 /* Do not set display on <math>: the browser's own "inline math" / "block math"
    layout modes are what typeset it, and overriding them breaks the inline flow. */
 math annotation{display:none}
+/* Pseudocode is not mathematics. It sits in the same card as an .eq so the page
+   reads as one column, but it stays upright, keeps its own line breaks, and is its
+   own horizontal scroller so a long line cannot push a phone page sideways. */
+pre.code{display:block;margin:1.3rem 0;padding:.85rem 1rem;text-align:left;
+font-family:var(--mono);font-size:.86rem;line-height:1.65;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;white-space:pre;
+color:var(--fg)}
 .eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);font-size:.95rem;background:var(--bg2);
 border:1px solid var(--rule);border-radius:8px;overflow-x:auto;line-height:1.9}
 .eq .tag{float:right;color:var(--leader);font-size:.85em}

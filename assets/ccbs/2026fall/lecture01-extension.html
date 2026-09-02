@@ -75,6 +75,13 @@ math .pf,mstyle.pf{color:var(--rose);font-weight:700}
 /* Do not set display on <math>: the browser's own "inline math" / "block math"
    layout modes are what typeset it, and overriding them breaks the inline flow. */
 math annotation{display:none}
+/* Pseudocode is not mathematics. It sits in the same card as an .eq so the page
+   reads as one column, but it stays upright, keeps its own line breaks, and is its
+   own horizontal scroller so a long line cannot push a phone page sideways. */
+pre.code{display:block;margin:1.3rem 0;padding:.85rem 1rem;text-align:left;
+font-family:var(--mono);font-size:.86rem;line-height:1.65;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;white-space:pre;
+color:var(--fg)}
 .eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);font-size:.95rem;background:var(--bg2);
 border:1px solid var(--rule);border-radius:8px;overflow-x:auto;line-height:1.9}
 .eq .tag{float:right;color:var(--leader);font-size:.85em}
@@ -268,17 +275,17 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
     <text x="538" y="70" font-size="12" fill="var(--muted)">below</text>
 
     <rect x="14" y="104" width="222" height="80" rx="8" fill="var(--cream)" stroke="var(--lime)" stroke-width="1.6"/>
-    <text x="32" y="128" font-size="15" font-family="ui-monospace,SF Mono,Menlo,monospace" font-weight="700" fill="var(--lime)">n &#8722; k = 1</text>
+    <foreignObject x="32" y="116" width="720" height="30" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:15px;line-height:1;color:var(--lime);font-weight:700"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mi>k</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n - k = 1</annotation></semantics></math></div></foreignObject>
     <text x="32" y="150" font-size="12.5" fill="var(--fg)">Solved, up to one constant.</text>
     <text x="32" y="169" font-size="12" fill="var(--muted)">Nothing left to choose.</text>
 
     <rect x="248" y="104" width="222" height="80" rx="8" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.6"/>
-    <text x="266" y="128" font-size="15" font-family="ui-monospace,SF Mono,Menlo,monospace" font-weight="700" fill="var(--peri)">n &#8722; k = 2</text>
+    <foreignObject x="266" y="116" width="720" height="30" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:15px;line-height:1;color:var(--peri);font-weight:700"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mi>k</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n - k = 2</annotation></semantics></math></div></foreignObject>
     <text x="266" y="150" font-size="12.5" fill="var(--fg)">One universal curve.</text>
     <text x="266" y="169" font-size="12" fill="var(--muted)">One experiment pins it down.</text>
 
     <rect x="482" y="104" width="222" height="80" rx="8" fill="var(--pinkf)" stroke="var(--coral)" stroke-width="1.6"/>
-    <text x="500" y="128" font-size="15" font-family="ui-monospace,SF Mono,Menlo,monospace" font-weight="700" fill="var(--coral)">n &#8722; k &#8805; 3</text>
+    <foreignObject x="500" y="116" width="720" height="30" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:15px;line-height:1;color:var(--coral);font-weight:700"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mi>k</mi><mo>≥</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n - k \ge 3</annotation></semantics></math></div></foreignObject>
     <text x="500" y="150" font-size="12.5" fill="var(--fg)">Units have run out.</text>
     <text x="500" y="169" font-size="12" fill="var(--muted)">You need actual physics.</text>
 
@@ -316,23 +323,23 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 
     <rect x="14" y="36" width="336" height="140" rx="10" fill="var(--powder)" stroke="var(--teal)" stroke-width="1.6"/>
     <text x="34" y="60" font-size="13.5" font-weight="700" fill="var(--teal)">Diffusion</text>
-    <text x="34" y="84" font-size="12.5" fill="var(--fg)">t, x, &#954;</text>
-    <text x="200" y="84" font-size="12.5" fill="var(--muted)">n = 3</text>
-    <text x="34" y="106" font-size="12.5" fill="var(--fg)">L, T</text>
-    <text x="200" y="106" font-size="12.5" fill="var(--muted)">k = 2</text>
+    <foreignObject x="34" y="74" width="720" height="25" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:12.5px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo separator="true">,</mo><mtext> </mtext><mi>x</mi><mo separator="true">,</mo><mtext> </mtext><mi>κ</mi></mrow><annotation encoding="application/x-tex">t,\, x,\, \kappa</annotation></semantics></math></div></foreignObject>
+    <foreignObject x="200" y="74" width="720" height="25" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:12.5px;line-height:1;color:var(--muted)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 3</annotation></semantics></math></div></foreignObject>
+    <foreignObject x="34" y="96" width="720" height="25" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:12.5px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo separator="true">,</mo><mtext> </mtext><mi>T</mi></mrow><annotation encoding="application/x-tex">L,\, T</annotation></semantics></math></div></foreignObject>
+    <foreignObject x="200" y="96" width="720" height="25" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:12.5px;line-height:1;color:var(--muted)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">k = 2</annotation></semantics></math></div></foreignObject>
     <line x1="34" y1="118" x2="330" y2="118" stroke="var(--teal)" stroke-width="1" opacity=".45"/>
-    <text x="34" y="140" font-size="12.5" fill="var(--muted)">n &#8722; k = 1</text>
-    <text x="34" y="164" font-size="15" font-family="ui-monospace,SF Mono,Menlo,monospace" font-weight="700" fill="var(--fg)">t &#8733; x&#178;/&#954;</text>
+    <foreignObject x="34" y="130" width="720" height="25" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:12.5px;line-height:1;color:var(--muted)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mi>k</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n - k = 1</annotation></semantics></math></div></foreignObject>
+    <foreignObject x="34" y="152" width="720" height="30" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:15px;line-height:1;color:var(--fg);font-weight:700"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>∝</mo><msup><mi>x</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi>κ</mi></mrow><annotation encoding="application/x-tex">t \propto x^{2}/\kappa</annotation></semantics></math></div></foreignObject>
 
     <rect x="370" y="36" width="336" height="140" rx="10" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.6"/>
     <text x="390" y="60" font-size="13.5" font-weight="700" fill="var(--rose)">Blast wave</text>
-    <text x="390" y="84" font-size="12.5" fill="var(--fg)">E, t, R, &#961;&#8320;</text>
-    <text x="556" y="84" font-size="12.5" fill="var(--muted)">n = 4</text>
-    <text x="390" y="106" font-size="12.5" fill="var(--fg)">M, L, T</text>
-    <text x="556" y="106" font-size="12.5" fill="var(--muted)">k = 3</text>
+    <foreignObject x="390" y="74" width="720" height="25" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:12.5px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo separator="true">,</mo><mtext> </mtext><mi>t</mi><mo separator="true">,</mo><mtext> </mtext><mi>R</mi><mo separator="true">,</mo><mtext> </mtext><msub><mi>ρ</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">E,\, t,\, R,\, \rho_{0}</annotation></semantics></math></div></foreignObject>
+    <foreignObject x="556" y="74" width="720" height="25" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:12.5px;line-height:1;color:var(--muted)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">n = 4</annotation></semantics></math></div></foreignObject>
+    <foreignObject x="390" y="96" width="720" height="25" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:12.5px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo separator="true">,</mo><mtext> </mtext><mi>L</mi><mo separator="true">,</mo><mtext> </mtext><mi>T</mi></mrow><annotation encoding="application/x-tex">M,\, L,\, T</annotation></semantics></math></div></foreignObject>
+    <foreignObject x="556" y="96" width="720" height="25" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:12.5px;line-height:1;color:var(--muted)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">k = 3</annotation></semantics></math></div></foreignObject>
     <line x1="390" y1="118" x2="686" y2="118" stroke="var(--rose)" stroke-width="1" opacity=".45"/>
-    <text x="390" y="140" font-size="12.5" fill="var(--muted)">n &#8722; k = 1</text>
-    <text x="390" y="164" font-size="15" font-family="ui-monospace,SF Mono,Menlo,monospace" font-weight="700" fill="var(--fg)">R &#8733; (Et&#178;/&#961;&#8320;)<tspan font-size="10.5" dy="-5">1/5</tspan></text>
+    <foreignObject x="390" y="130" width="720" height="25" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:12.5px;line-height:1;color:var(--muted)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mi>k</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n - k = 1</annotation></semantics></math></div></foreignObject>
+    <foreignObject x="390" y="152" width="720" height="30" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:15px;line-height:1;color:var(--fg);font-weight:700"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>∝</mo><mo stretchy="false">(</mo><mi>E</mi><msup><mi>t</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><msub><mi>ρ</mi><mn>0</mn></msub><msup><mo stretchy="false">)</mo><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>5</mn></mrow></msup></mrow><annotation encoding="application/x-tex">R \propto (Et^{2}/\rho_{0})^{1/5}</annotation></semantics></math></div></foreignObject>
 
     <text x="14" y="200" font-size="12" fill="var(--muted)">The lecture derives the left one from a partial differential equation and the right one by counting. Only the list differs.</text>
   </g>

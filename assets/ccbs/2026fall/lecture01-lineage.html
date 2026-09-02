@@ -75,6 +75,13 @@ math .pf,mstyle.pf{color:var(--rose);font-weight:700}
 /* Do not set display on <math>: the browser's own "inline math" / "block math"
    layout modes are what typeset it, and overriding them breaks the inline flow. */
 math annotation{display:none}
+/* Pseudocode is not mathematics. It sits in the same card as an .eq so the page
+   reads as one column, but it stays upright, keeps its own line breaks, and is its
+   own horizontal scroller so a long line cannot push a phone page sideways. */
+pre.code{display:block;margin:1.3rem 0;padding:.85rem 1rem;text-align:left;
+font-family:var(--mono);font-size:.86rem;line-height:1.65;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;white-space:pre;
+color:var(--fg)}
 .eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);font-size:.95rem;background:var(--bg2);
 border:1px solid var(--rule);border-radius:8px;overflow-x:auto;line-height:1.9}
 .eq .tag{float:right;color:var(--leader);font-size:.85em}
@@ -448,16 +455,16 @@ z
      <g id="taylor-trinity-line2d_1">
       <path d="M 58.733189 192.336483 
 L 58.733189 20.472483 
-" clip-path="url(#taylor-trinity-p09debb2073)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-p69843f8397)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
      </g>
      <g id="taylor-trinity-line2d_2">
       <defs>
-       <path id="taylor-trinity-m5359e3a6f5" d="M 0 0 
+       <path id="taylor-trinity-md9537334a6" d="M 0 0 
 L 0 3.5 
 " style="stroke: var(--gray); stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#taylor-trinity-m5359e3a6f5" x="58.733189" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
+       <use xlink:href="#taylor-trinity-md9537334a6" x="58.733189" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
       </g>
      </g>
      <g id="taylor-trinity-text_1">
@@ -550,11 +557,11 @@ z
      <g id="taylor-trinity-line2d_3">
       <path d="M 111.036441 192.336483 
 L 111.036441 20.472483 
-" clip-path="url(#taylor-trinity-p09debb2073)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-p69843f8397)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
      </g>
      <g id="taylor-trinity-line2d_4">
       <g>
-       <use xlink:href="#taylor-trinity-m5359e3a6f5" x="111.036441" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
+       <use xlink:href="#taylor-trinity-md9537334a6" x="111.036441" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
       </g>
      </g>
      <g id="taylor-trinity-text_2">
@@ -602,11 +609,11 @@ z
      <g id="taylor-trinity-line2d_5">
       <path d="M 163.339693 192.336483 
 L 163.339693 20.472483 
-" clip-path="url(#taylor-trinity-p09debb2073)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-p69843f8397)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
      </g>
      <g id="taylor-trinity-line2d_6">
       <g>
-       <use xlink:href="#taylor-trinity-m5359e3a6f5" x="163.339693" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
+       <use xlink:href="#taylor-trinity-md9537334a6" x="163.339693" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
       </g>
      </g>
      <g id="taylor-trinity-text_3">
@@ -647,11 +654,11 @@ z
      <g id="taylor-trinity-line2d_7">
       <path d="M 215.642946 192.336483 
 L 215.642946 20.472483 
-" clip-path="url(#taylor-trinity-p09debb2073)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-p69843f8397)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
      </g>
      <g id="taylor-trinity-line2d_8">
       <g>
-       <use xlink:href="#taylor-trinity-m5359e3a6f5" x="215.642946" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
+       <use xlink:href="#taylor-trinity-md9537334a6" x="215.642946" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
       </g>
      </g>
      <g id="taylor-trinity-text_4">
@@ -667,208 +674,208 @@ L 215.642946 20.472483
     <g id="taylor-trinity-xtick_5">
      <g id="taylor-trinity-line2d_9">
       <defs>
-       <path id="taylor-trinity-m89376f0264" d="M 0 0 
+       <path id="taylor-trinity-m449e8611e4" d="M 0 0 
 L 0 2 
 " style="stroke: var(--gray); stroke-width: 0.6"/>
       </defs>
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="42.988341" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="42.988341" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_6">
      <g id="taylor-trinity-line2d_10">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="47.129778" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="47.129778" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_7">
      <g id="taylor-trinity-line2d_11">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="50.631312" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="50.631312" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_8">
      <g id="taylor-trinity-line2d_12">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="53.66448" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="53.66448" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_9">
      <g id="taylor-trinity-line2d_13">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="56.339923" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="56.339923" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_10">
      <g id="taylor-trinity-line2d_14">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="74.478037" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="74.478037" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_11">
      <g id="taylor-trinity-line2d_15">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="83.688182" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="83.688182" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_12">
      <g id="taylor-trinity-line2d_16">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="90.222884" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="90.222884" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_13">
      <g id="taylor-trinity-line2d_17">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="95.291593" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="95.291593" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_14">
      <g id="taylor-trinity-line2d_18">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="99.43303" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="99.43303" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_15">
      <g id="taylor-trinity-line2d_19">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="102.934565" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="102.934565" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_16">
      <g id="taylor-trinity-line2d_20">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="105.967732" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="105.967732" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_17">
      <g id="taylor-trinity-line2d_21">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="108.643176" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="108.643176" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_18">
      <g id="taylor-trinity-line2d_22">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="126.781289" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="126.781289" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_19">
      <g id="taylor-trinity-line2d_23">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="135.991434" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="135.991434" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_20">
      <g id="taylor-trinity-line2d_24">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="142.526137" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="142.526137" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_21">
      <g id="taylor-trinity-line2d_25">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="147.594846" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="147.594846" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_22">
      <g id="taylor-trinity-line2d_26">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="151.736282" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="151.736282" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_23">
      <g id="taylor-trinity-line2d_27">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="155.237817" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="155.237817" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_24">
      <g id="taylor-trinity-line2d_28">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="158.270985" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="158.270985" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_25">
      <g id="taylor-trinity-line2d_29">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="160.946428" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="160.946428" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_26">
      <g id="taylor-trinity-line2d_30">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="179.084541" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="179.084541" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_27">
      <g id="taylor-trinity-line2d_31">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="188.294687" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="188.294687" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_28">
      <g id="taylor-trinity-line2d_32">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="194.829389" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="194.829389" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_29">
      <g id="taylor-trinity-line2d_33">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="199.898098" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="199.898098" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_30">
      <g id="taylor-trinity-line2d_34">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="204.039535" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="204.039535" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_31">
      <g id="taylor-trinity-line2d_35">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="207.541069" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="207.541069" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_32">
      <g id="taylor-trinity-line2d_36">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="210.574237" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="210.574237" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_33">
      <g id="taylor-trinity-line2d_37">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="213.24968" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="213.24968" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
@@ -1246,16 +1253,16 @@ z
      <g id="taylor-trinity-line2d_38">
       <path d="M 40.034776 189.924202 
 L 221.265545 189.924202 
-" clip-path="url(#taylor-trinity-p09debb2073)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-p69843f8397)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
      </g>
      <g id="taylor-trinity-line2d_39">
       <defs>
-       <path id="taylor-trinity-m676158ab46" d="M 0 0 
+       <path id="taylor-trinity-m778de23e8f" d="M 0 0 
 L -3.5 0 
 " style="stroke: var(--gray); stroke-width: 0.8"/>
       </defs>
       <g>
-       <use xlink:href="#taylor-trinity-m676158ab46" x="40.034776" y="189.924202" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
+       <use xlink:href="#taylor-trinity-m778de23e8f" x="40.034776" y="189.924202" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
       </g>
      </g>
      <g id="taylor-trinity-text_6">
@@ -1271,11 +1278,11 @@ L -3.5 0
      <g id="taylor-trinity-line2d_40">
       <path d="M 40.034776 70.785554 
 L 221.265545 70.785554 
-" clip-path="url(#taylor-trinity-p09debb2073)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-p69843f8397)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
      </g>
      <g id="taylor-trinity-line2d_41">
       <g>
-       <use xlink:href="#taylor-trinity-m676158ab46" x="40.034776" y="70.785554" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
+       <use xlink:href="#taylor-trinity-m778de23e8f" x="40.034776" y="70.785554" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
       </g>
      </g>
      <g id="taylor-trinity-text_7">
@@ -1290,68 +1297,68 @@ L 221.265545 70.785554
     <g id="taylor-trinity-ytick_3">
      <g id="taylor-trinity-line2d_42">
       <defs>
-       <path id="taylor-trinity-mcd1c80c188" d="M 0 0 
+       <path id="taylor-trinity-m38a430d20c" d="M 0 0 
 L -2 0 
 " style="stroke: var(--gray); stroke-width: 0.6"/>
       </defs>
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="40.034776" y="154.059895" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="40.034776" y="154.059895" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_4">
      <g id="taylor-trinity-line2d_43">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="40.034776" y="133.080621" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="40.034776" y="133.080621" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_5">
      <g id="taylor-trinity-line2d_44">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="40.034776" y="118.195588" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="40.034776" y="118.195588" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_6">
      <g id="taylor-trinity-line2d_45">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="40.034776" y="106.64986" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="40.034776" y="106.64986" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_7">
      <g id="taylor-trinity-line2d_46">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="40.034776" y="97.216314" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="40.034776" y="97.216314" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_8">
      <g id="taylor-trinity-line2d_47">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="40.034776" y="89.240364" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="40.034776" y="89.240364" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_9">
      <g id="taylor-trinity-line2d_48">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="40.034776" y="82.331282" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="40.034776" y="82.331282" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_10">
      <g id="taylor-trinity-line2d_49">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="40.034776" y="76.237039" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="40.034776" y="76.237039" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_11">
      <g id="taylor-trinity-line2d_50">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="40.034776" y="34.921247" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="40.034776" y="34.921247" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
@@ -1572,7 +1579,7 @@ L 202.940727 37.475179
 L 206.303079 34.411614 
 L 209.665431 31.348049 
 L 213.027783 28.284483 
-" clip-path="url(#taylor-trinity-p09debb2073)" style="fill: none; stroke: var(--leader); stroke-width: 1.6; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-p69843f8397)" style="fill: none; stroke: var(--leader); stroke-width: 1.6; stroke-linecap: square"/>
    </g>
    <g id="taylor-trinity-patch_3">
     <path d="M 40.034776 192.336483 
@@ -1801,7 +1808,7 @@ z
    </g>
    <g id="taylor-trinity-line2d_52">
     <defs>
-     <path id="taylor-trinity-m0eab12f224" d="M 0 2.75 
+     <path id="taylor-trinity-m49306b4969" d="M 0 2.75 
 C 0.729309 2.75 1.428845 2.460243 1.944544 1.944544 
 C 2.460243 1.428845 2.75 0.729309 2.75 0 
 C 2.75 -0.729309 2.460243 -1.428845 1.944544 -1.944544 
@@ -1813,19 +1820,19 @@ C -1.428845 2.460243 -0.729309 2.75 0 2.75
 z
 " style="stroke: var(--bg2); stroke-width: 1.2"/>
     </defs>
-    <g clip-path="url(#taylor-trinity-p09debb2073)">
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="58.733189" y="184.524483" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="78.619473" y="154.31925" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="89.057757" y="141.69286" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="96.182492" y="135.192802" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="101.598002" y="129.903261" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="105.967732" y="126.301054" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="109.63094" y="123.217683" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+    <g clip-path="url(#taylor-trinity-p69843f8397)">
+     <use xlink:href="#taylor-trinity-m49306b4969" x="58.733189" y="184.524483" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="78.619473" y="154.31925" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="89.057757" y="141.69286" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="96.182492" y="135.192802" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="101.598002" y="129.903261" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="105.967732" y="126.301054" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="109.63094" y="123.217683" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
     </g>
    </g>
    <g id="taylor-trinity-line2d_53">
     <defs>
-     <path id="taylor-trinity-m73830c2c8e" d="M 0 2.75 
+     <path id="taylor-trinity-m883bdd8579" d="M 0 2.75 
 C 0.729309 2.75 1.428845 2.460243 1.944544 1.944544 
 C 2.460243 1.428845 2.75 0.729309 2.75 0 
 C 2.75 -0.729309 2.460243 -1.428845 1.944544 -1.944544 
@@ -1837,19 +1844,19 @@ C -1.428845 2.460243 -0.729309 2.75 0 2.75
 z
 " style="stroke: var(--bg2); stroke-width: 1.2"/>
     </defs>
-    <g clip-path="url(#taylor-trinity-p09debb2073)">
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="112.784612" y="119.638404" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="115.553341" y="116.917962" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="118.02096" y="114.694845" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="120.246587" y="112.79587" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="122.411559" y="110.96413" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="124.261477" y="109.961577" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="125.972017" y="108.012931" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+    <g clip-path="url(#taylor-trinity-p69843f8397)">
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="112.784612" y="119.638404" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="115.553341" y="116.917962" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="118.02096" y="114.694845" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="120.246587" y="112.79587" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="122.411559" y="110.96413" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="124.261477" y="109.961577" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="125.972017" y="108.012931" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
     </g>
    </g>
    <g id="taylor-trinity-line2d_54">
     <defs>
-     <path id="taylor-trinity-m3a8f3f9651" d="M 0 2.75 
+     <path id="taylor-trinity-m9db5b6f139" d="M 0 2.75 
 C 0.729309 2.75 1.428845 2.460243 1.944544 1.944544 
 C 2.460243 1.428845 2.75 0.729309 2.75 0 
 C 2.75 -0.729309 2.460243 -1.428845 1.944544 -1.944544 
@@ -1861,18 +1868,18 @@ C -1.428845 2.460243 -0.729309 2.75 0 2.75
 z
 " style="stroke: var(--bg2); stroke-width: 1.2"/>
     </defs>
-    <g clip-path="url(#taylor-trinity-p09debb2073)">
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="137.879391" y="98.085935" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="139.68684" y="96.276315" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="141.361009" y="94.774044" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="142.920211" y="93.635039" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="144.379227" y="92.599383" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="145.750158" y="91.275606" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+    <g clip-path="url(#taylor-trinity-p69843f8397)">
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="137.879391" y="98.085935" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="139.68684" y="96.276315" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="141.361009" y="94.774044" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="142.920211" y="93.635039" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="144.379227" y="92.599383" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="145.750158" y="91.275606" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
     </g>
    </g>
    <g id="taylor-trinity-line2d_55">
     <defs>
-     <path id="taylor-trinity-m86047943f7" d="M 0 2.75 
+     <path id="taylor-trinity-m353df69150" d="M 0 2.75 
 C 0.729309 2.75 1.428845 2.460243 1.944544 1.944544 
 C 2.460243 1.428845 2.75 0.729309 2.75 0 
 C 2.75 -0.729309 2.460243 -1.428845 1.944544 -1.944544 
@@ -1884,12 +1891,12 @@ C -1.428845 2.460243 -0.729309 2.75 0 2.75
 z
 " style="stroke: var(--bg2); stroke-width: 1.2"/>
     </defs>
-    <g clip-path="url(#taylor-trinity-p09debb2073)">
-     <use xlink:href="#taylor-trinity-m86047943f7" x="172.549839" y="67.527158" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m86047943f7" x="184.15325" y="57.210497" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m86047943f7" x="191.137769" y="51.560388" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m86047943f7" x="201.221677" y="41.830329" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m86047943f7" x="204.784356" y="38.955075" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+    <g clip-path="url(#taylor-trinity-p69843f8397)">
+     <use xlink:href="#taylor-trinity-m353df69150" x="172.549839" y="67.527158" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m353df69150" x="184.15325" y="57.210497" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m353df69150" x="191.137769" y="51.560388" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m353df69150" x="201.221677" y="41.830329" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m353df69150" x="204.784356" y="38.955075" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
     </g>
    </g>
    <g id="taylor-trinity-text_10">
@@ -2426,7 +2433,7 @@ z
    <g id="taylor-trinity-legend_1">
     <g id="taylor-trinity-line2d_56">
      <g>
-      <use xlink:href="#taylor-trinity-m0eab12f224" x="117.167402" y="166.218441" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+      <use xlink:href="#taylor-trinity-m49306b4969" x="117.167402" y="166.218441" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
      </g>
     </g>
     <g id="taylor-trinity-text_12">
@@ -2533,7 +2540,7 @@ z
     </g>
     <g id="taylor-trinity-line2d_57">
      <g>
-      <use xlink:href="#taylor-trinity-m73830c2c8e" x="117.167402" y="174.224455" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+      <use xlink:href="#taylor-trinity-m883bdd8579" x="117.167402" y="174.224455" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
      </g>
     </g>
     <g id="taylor-trinity-text_13">
@@ -2577,7 +2584,7 @@ z
     </g>
     <g id="taylor-trinity-line2d_58">
      <g>
-      <use xlink:href="#taylor-trinity-m86047943f7" x="117.167402" y="182.230469" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+      <use xlink:href="#taylor-trinity-m353df69150" x="117.167402" y="182.230469" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
      </g>
     </g>
     <g id="taylor-trinity-text_14">
@@ -2624,11 +2631,11 @@ z
      <g id="taylor-trinity-line2d_59">
       <path d="M 291.121769 192.336483 
 L 291.121769 20.472483 
-" clip-path="url(#taylor-trinity-p656358e8f1)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-pe928edfad0)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
      </g>
      <g id="taylor-trinity-line2d_60">
       <g>
-       <use xlink:href="#taylor-trinity-m5359e3a6f5" x="291.121769" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
+       <use xlink:href="#taylor-trinity-md9537334a6" x="291.121769" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
       </g>
      </g>
      <g id="taylor-trinity-text_15">
@@ -2645,11 +2652,11 @@ L 291.121769 20.472483
      <g id="taylor-trinity-line2d_61">
       <path d="M 350.12325 192.336483 
 L 350.12325 20.472483 
-" clip-path="url(#taylor-trinity-p656358e8f1)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-pe928edfad0)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
      </g>
      <g id="taylor-trinity-line2d_62">
       <g>
-       <use xlink:href="#taylor-trinity-m5359e3a6f5" x="350.12325" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
+       <use xlink:href="#taylor-trinity-md9537334a6" x="350.12325" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
       </g>
      </g>
      <g id="taylor-trinity-text_16">
@@ -2666,11 +2673,11 @@ L 350.12325 20.472483
      <g id="taylor-trinity-line2d_63">
       <path d="M 409.124731 192.336483 
 L 409.124731 20.472483 
-" clip-path="url(#taylor-trinity-p656358e8f1)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-pe928edfad0)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
      </g>
      <g id="taylor-trinity-line2d_64">
       <g>
-       <use xlink:href="#taylor-trinity-m5359e3a6f5" x="409.124731" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
+       <use xlink:href="#taylor-trinity-md9537334a6" x="409.124731" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
       </g>
      </g>
      <g id="taylor-trinity-text_17">
@@ -2686,175 +2693,175 @@ L 409.124731 20.472483
     <g id="taylor-trinity-xtick_37">
      <g id="taylor-trinity-line2d_65">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="285.403935" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="285.403935" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_38">
      <g id="taylor-trinity-line2d_66">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="288.422009" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="288.422009" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_39">
      <g id="taylor-trinity-line2d_67">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="308.882985" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="308.882985" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_40">
      <g id="taylor-trinity-line2d_68">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="319.27263" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="319.27263" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_41">
      <g id="taylor-trinity-line2d_69">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="326.6442" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="326.6442" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_42">
      <g id="taylor-trinity-line2d_70">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="332.362034" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="332.362034" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_43">
      <g id="taylor-trinity-line2d_71">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="337.033845" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="337.033845" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_44">
      <g id="taylor-trinity-line2d_72">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="340.983805" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="340.983805" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_45">
      <g id="taylor-trinity-line2d_73">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="344.405416" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="344.405416" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_46">
      <g id="taylor-trinity-line2d_74">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="347.42349" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="347.42349" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_47">
      <g id="taylor-trinity-line2d_75">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="367.884465" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="367.884465" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_48">
      <g id="taylor-trinity-line2d_76">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="378.27411" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="378.27411" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_49">
      <g id="taylor-trinity-line2d_77">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="385.645681" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="385.645681" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_50">
      <g id="taylor-trinity-line2d_78">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="391.363515" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="391.363515" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_51">
      <g id="taylor-trinity-line2d_79">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="396.035326" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="396.035326" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_52">
      <g id="taylor-trinity-line2d_80">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="399.985286" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="399.985286" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_53">
      <g id="taylor-trinity-line2d_81">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="403.406896" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="403.406896" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_54">
      <g id="taylor-trinity-line2d_82">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="406.424971" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="406.424971" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_55">
      <g id="taylor-trinity-line2d_83">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="426.885946" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="426.885946" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_56">
      <g id="taylor-trinity-line2d_84">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="437.275591" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="437.275591" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_57">
      <g id="taylor-trinity-line2d_85">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="444.647162" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="444.647162" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_58">
      <g id="taylor-trinity-line2d_86">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="450.364996" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="450.364996" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_59">
      <g id="taylor-trinity-line2d_87">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="455.036807" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="455.036807" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_60">
      <g id="taylor-trinity-line2d_88">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="458.986767" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="458.986767" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-xtick_61">
      <g id="taylor-trinity-line2d_89">
       <g>
-       <use xlink:href="#taylor-trinity-m89376f0264" x="462.408377" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m449e8611e4" x="462.408377" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
@@ -2892,11 +2899,11 @@ L 409.124731 20.472483
      <g id="taylor-trinity-line2d_90">
       <path d="M 282.884007 115.927419 
 L 464.114776 115.927419 
-" clip-path="url(#taylor-trinity-p656358e8f1)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-pe928edfad0)" style="fill: none; stroke: var(--gridc); stroke-width: 0.7; stroke-linecap: square"/>
      </g>
      <g id="taylor-trinity-line2d_91">
       <g>
-       <use xlink:href="#taylor-trinity-m676158ab46" x="282.884007" y="115.927419" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
+       <use xlink:href="#taylor-trinity-m778de23e8f" x="282.884007" y="115.927419" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.8"/>
       </g>
      </g>
      <g id="taylor-trinity-text_19">
@@ -2911,70 +2918,70 @@ L 464.114776 115.927419
     <g id="taylor-trinity-ytick_13">
      <g id="taylor-trinity-line2d_92">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="282.884007" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="282.884007" y="192.336483" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_14">
      <g id="taylor-trinity-line2d_93">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="282.884007" y="174.078996" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="282.884007" y="174.078996" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_15">
      <g id="taylor-trinity-line2d_94">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="282.884007" y="159.917389" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="282.884007" y="159.917389" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_16">
      <g id="taylor-trinity-line2d_95">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="282.884007" y="148.346513" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="282.884007" y="148.346513" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_17">
      <g id="taylor-trinity-line2d_96">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="282.884007" y="138.563478" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="282.884007" y="138.563478" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_18">
      <g id="taylor-trinity-line2d_97">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="282.884007" y="130.089026" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="282.884007" y="130.089026" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_19">
      <g id="taylor-trinity-line2d_98">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="282.884007" y="122.614031" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="282.884007" y="122.614031" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_20">
      <g id="taylor-trinity-line2d_99">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="282.884007" y="71.937449" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="282.884007" y="71.937449" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_21">
      <g id="taylor-trinity-line2d_100">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="282.884007" y="46.204966" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="282.884007" y="46.204966" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
     <g id="taylor-trinity-ytick_22">
      <g id="taylor-trinity-line2d_101">
       <g>
-       <use xlink:href="#taylor-trinity-mcd1c80c188" x="282.884007" y="27.947479" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
+       <use xlink:href="#taylor-trinity-m38a430d20c" x="282.884007" y="27.947479" style="fill: var(--gray); stroke: var(--gray); stroke-width: 0.6"/>
       </g>
      </g>
     </g>
@@ -3133,12 +3140,12 @@ z
    <g id="taylor-trinity-line2d_102">
     <path d="M 282.884007 83.002632 
 L 464.114776 83.002632 
-" clip-path="url(#taylor-trinity-p656358e8f1)" style="fill: none; stroke: var(--rose); stroke-width: 1.6; stroke-linecap: square"/>
+" clip-path="url(#taylor-trinity-pe928edfad0)" style="fill: none; stroke: var(--rose); stroke-width: 1.6; stroke-linecap: square"/>
    </g>
    <g id="taylor-trinity-line2d_103">
     <path d="M 282.884007 68.841025 
 L 464.114776 68.841025 
-" clip-path="url(#taylor-trinity-p656358e8f1)" style="fill: none; stroke-dasharray: 6,3.6; stroke-dashoffset: 0; stroke: var(--gray); stroke-width: 1.2"/>
+" clip-path="url(#taylor-trinity-pe928edfad0)" style="fill: none; stroke-dasharray: 6,3.6; stroke-dashoffset: 0; stroke: var(--gray); stroke-width: 1.2"/>
    </g>
    <g id="taylor-trinity-patch_7">
     <path d="M 282.884007 192.336483 
@@ -3151,44 +3158,44 @@ L 464.114776 192.336483
 " style="fill: none; stroke: var(--gray); stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="taylor-trinity-line2d_104">
-    <g clip-path="url(#taylor-trinity-p656358e8f1)">
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="291.121769" y="169.352079" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="313.554795" y="95.230082" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="325.32986" y="76.122145" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="333.367027" y="76.070361" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="339.476075" y="73.891571" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="344.405416" y="76.217252" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m0eab12f224" x="348.537753" y="77.776934" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+    <g clip-path="url(#taylor-trinity-pe928edfad0)">
+     <use xlink:href="#taylor-trinity-m49306b4969" x="291.121769" y="169.352079" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="313.554795" y="95.230082" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="325.32986" y="76.122145" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="333.367027" y="76.070361" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="339.476075" y="73.891571" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="344.405416" y="76.217252" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m49306b4969" x="348.537753" y="77.776934" style="fill: var(--rose); stroke: var(--bg2); stroke-width: 1.2"/>
     </g>
    </g>
    <g id="taylor-trinity-line2d_105">
-    <g clip-path="url(#taylor-trinity-p656358e8f1)">
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="352.095301" y="73.448069" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="355.218608" y="72.235305" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="358.002243" y="72.389999" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="360.512895" y="73.18038" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="362.955125" y="74.044172" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="365.041953" y="78.232757" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m73830c2c8e" x="366.971554" y="75.840287" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+    <g clip-path="url(#taylor-trinity-pe928edfad0)">
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="352.095301" y="73.448069" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="355.218608" y="72.235305" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="358.002243" y="72.389999" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="360.512895" y="73.18038" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="362.955125" y="74.044172" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="365.041953" y="78.232757" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m883bdd8579" x="366.971554" y="75.840287" style="fill: var(--peri); stroke: var(--bg2); stroke-width: 1.2"/>
     </g>
    </g>
    <g id="taylor-trinity-line2d_106">
-    <g clip-path="url(#taylor-trinity-p656358e8f1)">
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="380.403848" y="81.496355" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="382.442769" y="80.498017" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="384.331341" y="80.639853" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="386.090223" y="82.367126" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="387.736088" y="84.168388" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m3a8f3f9651" x="389.282587" y="83.710451" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+    <g clip-path="url(#taylor-trinity-pe928edfad0)">
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="380.403848" y="81.496355" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="382.442769" y="80.498017" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="384.331341" y="80.639853" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="386.090223" y="82.367126" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="387.736088" y="84.168388" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m9db5b6f139" x="389.282587" y="83.710451" style="fill: var(--lime); stroke: var(--bg2); stroke-width: 1.2"/>
     </g>
    </g>
    <g id="taylor-trinity-line2d_107">
-    <g clip-path="url(#taylor-trinity-p656358e8f1)">
-     <use xlink:href="#taylor-trinity-m86047943f7" x="419.514376" y="87.817908" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m86047943f7" x="432.603781" y="89.38572" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m86047943f7" x="440.482774" y="93.763027" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m86047943f7" x="451.85808" y="90.43761" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
-     <use xlink:href="#taylor-trinity-m86047943f7" x="455.877014" y="92.71189" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+    <g clip-path="url(#taylor-trinity-pe928edfad0)">
+     <use xlink:href="#taylor-trinity-m353df69150" x="419.514376" y="87.817908" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m353df69150" x="432.603781" y="89.38572" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m353df69150" x="440.482774" y="93.763027" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m353df69150" x="451.85808" y="90.43761" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
+     <use xlink:href="#taylor-trinity-m353df69150" x="455.877014" y="92.71189" style="fill: var(--plum); stroke: var(--bg2); stroke-width: 1.2"/>
     </g>
    </g>
    <g id="taylor-trinity-text_21">
@@ -3721,10 +3728,10 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="taylor-trinity-p09debb2073">
+  <clipPath id="taylor-trinity-p69843f8397">
    <rect x="40.034776" y="20.472483" width="181.230769" height="171.864"/>
   </clipPath>
-  <clipPath id="taylor-trinity-p656358e8f1">
+  <clipPath id="taylor-trinity-pe928edfad0">
    <rect x="282.884007" y="20.472483" width="181.230769" height="171.864"/>
   </clipPath>
  </defs>
