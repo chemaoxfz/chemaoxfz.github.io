@@ -196,7 +196,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
     <li><a href="#s6">6 &middot; The rubric and the grade</a></li>
     <li><a href="#s7">7 &middot; The tools, and where to get them</a></li>
     <li class="part">What you hand in</li>
-    <li><a href="#s8">8 &middot; Assignment 1: teach one lecture</a></li>
+    <li><a href="#s8">8 &middot; Assignment 1: teach at least one lecture</a></li>
     <li><a href="#s9">9 &middot; Assignment 2: the extension mini-essay</a></li>
     <li><a href="#s10">10 &middot; Assignment 3: participation</a></li>
     <li><a href="#s11">11 &middot; Assignment 4: the research essay</a></li>
@@ -214,7 +214,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <div class="box key">
 <span class="lbl">The whole course in five lines</span>
 <ul>
-<li><strong>I teach lectures 1 and 2. You teach lectures 3 to 16.</strong> Two or three of you form a team and own one entire 95-minute lecture.</li>
+<li><strong>I teach lectures 1 and 2. You teach lectures 3 to 16.</strong> One to three of you may own one entire 95-minute lecture. Every student teaches at least once; volunteers may teach additional lectures for extra credit.</li>
 <li><strong>The last 5 minutes of every lecture are mine</strong>, for the gap, the take-away, and what the field says next.</li>
 <li><strong>I hand you a core page per lecture, one week ahead.</strong> That is the floor, not the ceiling. Going beyond it is the assignment.</li>
 <li><strong>Quality is guaranteed by design.</strong> If a lecture does not hold up, I step in and teach it. That is the fallback, and it is built into the grading.</li>
@@ -350,7 +350,7 @@ easier. It became a fire-hose.</p>
   <rect x="426" y="248" width="176" height="44" rx="6" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.5"/>
   <text x="514" y="275" text-anchor="middle" font-family="var(--sans)" font-size="12.5" font-weight="700" fill="var(--rose)">output</text>
   <path d="M228,306 L228,318 L602,318 L602,306" fill="none" stroke="var(--lime)" stroke-width="2"/>
-  <text x="415" y="340" text-anchor="middle" font-family="var(--sans)" font-size="12.5" font-weight="700" fill="var(--lime)">still exactly as wide as they ever were &#8212; and this is where the course spends its hours</text>
+  <text x="415" y="340" text-anchor="middle" font-family="var(--sans)" font-size="12.5" font-weight="700" fill="var(--lime)">still exactly as wide as they ever were; this is where the course spends its hours</text>
 </svg>
 </div>
 <figcaption><b>Figure 2. Where the bottleneck went.</b> The pipes are throughput. The input
@@ -486,11 +486,15 @@ you afterwards.</p>
 </div>
 
 <h2 id="s4"><span class="n">4</span>The format</h2>
-<p class="lede">Sixteen lectures. Fourteen teams. Everybody teaches exactly once.</p>
+<p class="lede">Sixteen lectures. Fourteen teaching slots. Everybody teaches at least once; volunteers may return.</p>
 
-<p>There are 35 of you. Lectures 3 to 16 are fourteen lectures, and each is owned by a
-team of <strong>two or three students</strong>. Seven teams of three and seven teams of two
-uses all 35 of you exactly once. The TAs help every team.</p>
+<p>Enrollment can change during the first two weeks, so the format does not depend on a
+fixed class size. Lectures 3 to 16 are fourteen lectures, and each may be owned by
+<strong>one, two or three students</strong>. Every student teaches one lecture as the
+required assignment. After that sign-up merges, a student may volunteer for another
+lecture with room; completing each additional lecture earns extra credit. If a lecture
+has no student teacher, I teach it. The TAs support every student team, including a team
+of one.</p>
 
 <figure>
 <div class="figbox">
@@ -498,7 +502,7 @@ uses all 35 of you exactly once. The TAs help every team.</p>
   <rect x="30" y="40" width="34" height="44" rx="5" fill="var(--cream)" stroke="var(--gray)" stroke-width="1.4"/>
   <rect x="68" y="40" width="546" height="44" rx="5" fill="var(--powder)" stroke="var(--teal)" stroke-width="1.8"/>
   <rect x="618" y="40" width="34" height="44" rx="5" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.4"/>
-  <text x="341" y="68" text-anchor="middle" font-family="var(--sans)" font-size="15" font-weight="700" fill="var(--teal)">the team teaches &#8212; 85 minutes</text>
+  <text x="341" y="68" text-anchor="middle" font-family="var(--sans)" font-size="15" font-weight="700" fill="var(--teal)">the team teaches &#183; 85 minutes</text>
   <text x="47" y="30" text-anchor="middle" font-family="var(--sans)" font-size="10.5" font-weight="700" fill="var(--gray)">admin</text>
   <text x="635" y="30" text-anchor="middle" font-family="var(--sans)" font-size="10.5" font-weight="700" fill="var(--rose)">addendum</text>
   <g font-family="var(--mono)" font-size="10.5" fill="var(--muted)" text-anchor="middle">
@@ -610,6 +614,8 @@ is a good answer. Bluffing is not, and it is visible from the back of the room.<
 <h3>The fallback, and why it exists</h3>
 <div class="box caution">
 <span class="lbl">If a lecture does not hold up, I teach it</span>
+<p>An unclaimed lecture is mine from the start and carries no student score. That planned
+coverage is different from interrupting a student-taught lecture.</p>
 <p>If the material is simply not getting across, if the communication and the teaching and
 the understanding have all stopped, I step in and teach that part myself, on the spot. That
 is a score of 0 for the team on that segment, and it is the only case where I interrupt.</p>
@@ -626,9 +632,9 @@ your chance to show you know the material after all.</p>
 <p>Your teaching material goes into the submissions repo and then onto the course site. Each
 lecture ends up with three artifacts, and together they make the page for that lecture:</p>
 <ul>
-<li><strong>core</strong> &mdash; mine, posted a week ahead.</li>
-<li><strong>exposition</strong> &mdash; yours, posted after you teach: the HTML page, notebook or slide deck you taught from.</li>
-<li><strong>extension</strong> &mdash; the audience's, assembled by the TAs from that week's mini-essays into one themed writeup.</li>
+<li><strong>core:</strong> mine, posted a week ahead.</li>
+<li><strong>exposition:</strong> yours, posted after you teach: the HTML page, notebook or slide deck you taught from.</li>
+<li><strong>extension:</strong> the audience's, assembled by the TAs from that week's mini-essays into one themed writeup.</li>
 </ul>
 <p>The site grows into a textbook this way, one year at a time. Your name is on your part of it.</p>
 
@@ -712,7 +718,7 @@ on.</p>
 <p class="lede">If you do not already have an AI agent you use daily, get one before Thursday.</p>
 
 <div class="box sim">
-<span class="lbl">Westlake AI Campus &mdash; free, internal, use it</span>
+<span class="lbl">Westlake AI Campus: free, internal, use it</span>
 <p><a href="https://hpc.westlake.edu.cn/#/ai-campus"><strong>hpc.westlake.edu.cn/#/ai-campus</strong></a>
 is the university's internal platform, with locally deployed models (DeepSeek, GLM and
 others) available to every Westlake student and faculty member. It costs you nothing and
@@ -745,12 +751,14 @@ difference is whether you can defend the output, and that is exactly what is gra
   <p>Four assignments. One of them is due this Thursday.</p>
 </div>
 
-<h2 id="s8"><span class="n">8</span>Assignment 1: teach one lecture</h2>
-<p class="lede">Two or three of you own one lecture. You sign up by opening a pull request, and the pull request is itself the first test.</p>
+<h2 id="s8"><span class="n">8</span>Assignment 1: teach at least one lecture</h2>
+<p class="lede">One, two or three of you may own a lecture. Every student claims one; volunteers may claim more for extra credit.</p>
 
-<p>Every student teaches exactly once, as part of a team of two or three, on one of
-lectures 3 to 16. You choose your lecture and your teammates yourself, first come first
-served.</p>
+<p>Every student teaches at least once, alone or as part of a team of up to three, on one
+of lectures 3 to 16. You choose your first lecture and any teammates yourself, first come
+first served. Once that required sign-up has merged, you may volunteer for another lecture
+that still has room. The required lecture carries the 40-point teaching grade. Completing
+each additional lecture earns extra credit.</p>
 
 <h3>How to sign up</h3>
 <p>You sign up by adding one small file to the course submissions repository and opening a
@@ -792,11 +800,11 @@ course-staff approval; if you see that message, tell a TA and keep the same pull
   </g>
   <path d="M472,86 L472,124 L208,124 L208,88" fill="none" stroke="var(--coral)" stroke-width="1.8" stroke-dasharray="6 4"/>
   <path d="M204,96 L208,88 L212,96" fill="none" stroke="var(--coral)" stroke-width="1.8"/>
-  <text x="340" y="144" text-anchor="middle" font-family="var(--sans)" font-size="11.5" font-weight="700" fill="var(--coral)">if it refuses, it names the file and the reason &#8212; fix it and push again</text>
+  <text x="340" y="144" text-anchor="middle" font-family="var(--sans)" font-size="11.5" font-weight="700" fill="var(--coral)">if it refuses, it names the file and the reason; fix it and push again</text>
   <text x="340" y="164" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--muted)">the check re-runs by itself; you never wait for a human</text>
 </svg>
 </div>
-<figcaption><b>Figure 7. Every submission in this course works this way</b> &mdash; the
+<figcaption><b>Figure 7. Every submission in this course works this way:</b> the
 sign-up, the weekly mini-essays, your exposition and the final research essay. Learn it
 once on Thursday and the rest of the term is muscle memory.</figcaption>
 </figure>
@@ -811,18 +819,24 @@ once on Thursday and the rest of the term is muscle memory.</figcaption>
 name, student ID, email, GitHub handle, the lecture number, and who your teammates are.
 The <code>github</code> field must be the account that opens the pull request.</li>
 <li>Open a pull request against <code>main</code>. Nothing else. Do not edit any other file.</li>
-<li>A bot checks the name, size, sign-up fields, lecture capacity and ownership, then merges
-it. If it refuses, it tells you every problem in a comment. Fix and push again to the same
-branch.</li>
+<li>A bot checks the name, size, sign-up fields, lecture capacity and ownership. On a repeat
+sign-up it also checks that your identity matches your first one. It then merges the pull
+request. If it refuses, it tells you every problem in a comment. Fix and push again to the
+same branch.</li>
 <li>The live team roster is at <code>signup/ROSTER.md</code>, rebuilt on every merge. Check it to see which lectures still have room.</li>
+<li>To volunteer for another lecture, repeat these steps with that lecture number in a new
+file and a new pull request. Reuse the same <code>yourname</code>, student ID, email and
+GitHub account. One student may occupy only one place in any one lecture.</li>
 </ol>
 </div>
 
 <div class="box caution">
 <span class="lbl">Sign-up closes Thursday 2026-09-03, 23:59</span>
-<p>Each lecture takes <strong>at most 3</strong> students and needs <strong>at least 2</strong>.
-After the deadline I assign anyone who has not signed up, and I fill the thin lectures first.
-Lectures 3 and 4 are on 09-08 and 09-10, so those two teams should sign up first and start
+<p>Each lecture accepts <strong>1 to 3</strong> students, and a solo student is a complete
+team. After the deadline I assign a first lecture to anyone who has not signed up. If a
+lecture remains empty, I, Fangzhou Xiao, teach it. Empty and partly filled lectures remain
+open to volunteers for extra credit, up to the three-student limit. Lectures 3 and 4 are on
+09-08 and 09-10, so those sign-ups should come first and preparation should begin
 immediately.</p>
 </div>
 
@@ -960,11 +974,11 @@ PCAPS chain that follows, and formulating it is the real work.</p>
 <div class="box def">
 <span class="lbl">PCAPS: the chain of logic every essay must have</span>
 <ul>
-<li><strong>P</strong>roblem &mdash; what question, and why it matters.</li>
-<li><strong>C</strong>hallenge &mdash; why it is not already answered. What makes it hard.</li>
-<li><strong>A</strong>pproach &mdash; what you do about it.</li>
-<li><strong>P</strong>roof &mdash; the evidence, the derivation, the numbers, the simulation.</li>
-<li><strong>S</strong>ignificance &mdash; what changes if you are right.</li>
+<li><strong>P</strong>roblem: what question, and why it matters.</li>
+<li><strong>C</strong>hallenge: why it is not already answered. What makes it hard.</li>
+<li><strong>A</strong>pproach: what you do about it.</li>
+<li><strong>P</strong>roof: the evidence, the derivation, the numbers, the simulation.</li>
+<li><strong>S</strong>ignificance: what changes if you are right.</li>
 </ul>
 <p class="small">These do not need to be five headed sections. They need to be visibly there,
 in that order, so a reader can follow the argument without reconstructing it.</p>
@@ -1092,7 +1106,7 @@ the research essay on 11-05.</figcaption>
 
 <ol>
 <li><strong>Tonight or tomorrow:</strong> get an agent working. <a href="https://hpc.westlake.edu.cn/#/ai-campus">Westlake AI Campus</a> if you do not already have one. Bring a real question to Thursday's lecture.</li>
-<li><strong>Before Thursday 23:59:</strong> get a GitHub account, find two or three people you want to work with, pick a lecture, and open your sign-up pull request. The <a href="https://github.com/chemaoxfz/ccbs-2026-submissions">repository README</a> walks through it.</li>
+<li><strong>Before Thursday 23:59:</strong> get a GitHub account, pick a lecture, optionally find one or two teammates, and open your required sign-up pull request. The <a href="https://github.com/chemaoxfz/ccbs-2026-submissions">repository README</a> also explains how to volunteer for an additional lecture.</li>
 <li><strong>Before Monday 23:59:</strong> write your first extension mini-essay, on anything from lectures 1 or 2. Use <a href="lecture01-extension.html">my lecture 1 example</a> as the model for shape.</li>
 </ol>
 
