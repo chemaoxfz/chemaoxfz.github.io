@@ -231,7 +231,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
   <path class="input" d="M95 310H270V120H820"/><text class="s" x="705" y="108">persistent input step</text>
   <path class="res" d="M95 290H270 C330 150 420 170 820 190"/><text class="s" x="700" y="180">resistance: shifted baseline</text>
   <path class="near" d="M95 290H270 C330 125 450 260 820 272"/><text class="s" x="690" y="260">near-perfect return</text>
-  <path class="adapt" d="M95 290H270 C330 95 430 245 560 286 C650 290 740 290 820 290"/><text class="s" x="670" y="320">perfect adaptation: same output baseline</text>
+  <path class="adapt" d="M95 290H270 C330 95 430 245 560 286 C650 290 740 290 820 290"/><text class="s" x="820" y="320" text-anchor="end">perfect adaptation: same output baseline</text>
 </svg>
 </div><figcaption><b>Figure 1. Read the phenotype before naming the controller.</b> A step experiment separates response amplitude, final error, adaptation time, and sensitivity to baseline. A pulse alone is not proof of robust perfect adaptation.</figcaption></figure>
 
@@ -329,8 +329,8 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <figure><div class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430">
   <style>.sp{fill:var(--paper2);stroke:var(--ink);stroke-width:3}.a{stroke:var(--accent);stroke-width:4;fill:none}.w{stroke:var(--warn);stroke-width:4;fill:none}.t{fill:var(--ink);font:600 18px system-ui}.s{fill:var(--muted);font:15px system-ui}</style>
   <defs><marker id="an" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3z" fill="var(--accent)"/></marker><marker id="wn" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3z" fill="var(--warn)"/></marker></defs>
-  <circle class="sp" cx="230" cy="170" r="55"/><text class="t" x="230" y="165" text-anchor="middle">Z₁</text><text class="s" x="230" y="192" text-anchor="middle">reference species</text>
-  <circle class="sp" cx="670" cy="170" r="55"/><text class="t" x="670" y="165" text-anchor="middle">Z₂</text><text class="s" x="670" y="192" text-anchor="middle">sensor species</text>
+  <circle class="sp" cx="230" cy="170" r="55"/><text class="t" x="230" y="165" text-anchor="middle">Z₁</text><text class="s" x="230" y="138" text-anchor="middle">reference species</text>
+  <circle class="sp" cx="670" cy="170" r="55"/><text class="t" x="670" y="165" text-anchor="middle">Z₂</text><text class="s" x="670" y="138" text-anchor="middle">sensor species</text>
   <circle class="sp" cx="670" cy="345" r="45"/><text class="t" x="670" y="351" text-anchor="middle">X</text>
   <path class="a" marker-end="url(#an)" d="M230 225V345H617"/><text class="s" x="380" y="334">actuation</text><path class="a" marker-end="url(#an)" d="M670 300V233"/><text class="s" x="686" y="273">measurement</text>
   <path class="w" d="M285 170H615"/><text class="t" x="450" y="149" text-anchor="middle">Z₁ + Z₂ → ∅</text><text class="s" x="450" y="201" text-anchor="middle">annihilation performs subtraction without negative concentration</text>
@@ -354,7 +354,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
   <circle class="sp" cx="455" cy="95" r="55"/><text class="t" x="455" y="101" text-anchor="middle">x₂</text>
   <circle class="sp" cx="735" cy="200" r="55"/><text class="t" x="735" y="206" text-anchor="middle">x₁</text>
   <path class="a" marker-end="url(#ia)" d="M192 182L402 112"/><path class="a" marker-end="url(#ia)" d="M195 200H672"/><path class="w" d="M505 118L681 179"/><line class="w" x1="674" y1="166" x2="686" y2="192"/>
-  <text class="s" x="310" y="125">slow proportioner</text><text class="s" x="430" y="230">fast activation</text><text class="s" x="610" y="125">multiplicative removal</text>
+  <text class="s" x="250" y="105">slow proportioner</text><text class="s" x="430" y="230">fast activation</text><text class="s" x="610" y="125">multiplicative removal</text>
   <text class="t" x="450" y="325" text-anchor="middle">ẋ₁ = k₁w − δx₁x₂,  ẋ₂ = k₂w − γx₂</text><text class="t" x="450" y="365" text-anchor="middle">x₁* = k₁γ/(k₂δ), independent of w</text>
 </svg>
 </div><figcaption><b>Figure 6. Same final cancellation, different memory.</b> The feedback integrator stores output error. The IFFL's opposing branch stores input scale. Perturbing the output directly therefore produces different recovery behavior.</figcaption></figure>
@@ -377,7 +377,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
   <style>.ax{stroke:var(--ink);stroke-width:2}.good{fill:color-mix(in srgb,var(--accent) 18%,transparent)}.bad{fill:color-mix(in srgb,var(--warn) 16%,transparent)}.line{stroke:var(--blue);stroke-width:4;fill:none}.t{fill:var(--ink);font:600 18px system-ui}.s{fill:var(--muted);font:15px system-ui}</style>
   <rect class="good" x="95" y="65" width="345" height="330"/><rect class="bad" x="440" y="65" width="365" height="330"/>
   <line class="ax" x1="95" y1="395" x2="805" y2="395"/><line class="ax" x1="95" y1="395" x2="95" y2="65"/>
-  <text class="t" x="820" y="401">kinetic mismatch</text><text class="t" x="105" y="48">steady-state error</text>
+  <text class="t" x="805" y="401" text-anchor="end">kinetic mismatch</text><text class="t" x="105" y="48">steady-state error</text>
   <path class="line" d="M110 380 C245 375 340 360 440 310 C560 250 665 165 790 80"/>
   <text class="t" x="255" y="120" text-anchor="middle">structural regime</text><text class="s" x="255" y="148" text-anchor="middle">open parameter set; stable return</text>
   <text class="t" x="630" y="330" text-anchor="middle">fragile cancellation</text><text class="s" x="630" y="356" text-anchor="middle">exact at a formula, not robust to its perturbation</text>
@@ -397,7 +397,7 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
   <rect class="all" x="65" y="70" width="770" height="285" rx="18"/><text class="big" x="115" y="125">16,038</text><text class="s" x="115" y="154">three-node topologies searched</text>
   <rect class="nf" x="305" y="190" width="205" height="105" rx="12"/><text class="big" x="407" y="238" text-anchor="middle">166</text><text class="t" x="407" y="271" text-anchor="middle">NFBLB</text>
   <rect class="if" x="530" y="190" width="255" height="105" rx="12"/><text class="big" x="657" y="238" text-anchor="middle">229</text><text class="t" x="657" y="271" text-anchor="middle">IFFLP</text>
-  <text class="big" x="545" y="150" text-anchor="middle">395 robust adaptors (2.46%)</text>
+  <text class="big" x="545" y="125" text-anchor="middle">395 robust adaptors (2.46%)</text>
   <text class="s" x="450" y="397" text-anchor="middle">function-first search, not motif abundance: each topology was sampled at 10,000 parameter sets</text>
 </svg>
 </div><figcaption><b>Figure 8. Never lose the denominator.</b> One study counts signs in an observed network. The other searches a specified model class for a function. Neither denominator is “all biochemical networks.”</figcaption></figure>
