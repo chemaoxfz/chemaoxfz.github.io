@@ -240,7 +240,7 @@ nav_order: 5
         <p class="person-name">Xinyu Wang</p>
         <p class="person-role">PhD student · 2025–present</p>
         <p class="person-focus">Data-driven design of bionetworks</p>
-        <p class="person-contact"><a href="mailto:wangxinyu@westlake.edu.cn">wangxinyu@westlake.edu.cn</a></p>
+        <p class="person-contact"><a href="mailto:wangxinyu68@westlake.edu.cn">wangxinyu68@westlake.edu.cn</a></p>
       </div>
     </article>
 
