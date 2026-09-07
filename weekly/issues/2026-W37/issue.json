@@ -1,0 +1,200 @@
+{
+  "end_date": "2026-09-07",
+  "papers": [
+    {
+      "authors": [
+        "Tuan Anh Phan",
+        "Anuja Shrestha",
+        "Jacob Schow",
+        "Craig R. Miller",
+        "Tracey L. Peters",
+        "James T. Van Leuven"
+      ],
+      "category": "core",
+      "key_finding": "Competitive interactions and fitness costs, not mutation rates, primarily determine phage resistance patterns, with three distinct growth patterns emerging as initial phage concentration increases.",
+      "pdf_url": "https://link.springer.com/content/pdf/10.1007/s11538-026-01704-5.pdf",
+      "published": "2026-08-20",
+      "title": "Bacteriophage Density Influences the Rate of Resistance Evolution",
+      "tldr": "A mathematical model of phage-bacteria interactions shows that phage resistance evolution is governed by competitive dynamics and fitness costs rather than intrinsic mutation rates, yielding distinct growth patterns depending on phage density.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division",
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1007/s11538-026-01704-5",
+      "venue": "Bulletin of Mathematical Biology",
+      "why_relevant": "This connects to Fangzhou's interest in microbial population dynamics and community ecology by linking ecological competition to evolutionary outcomes in bacteria-phage systems, relevant to his work on microbial physiology and growth."
+    },
+    {
+      "authors": [
+        "Authen Promariya",
+        "Sekbunkorn Treenarat",
+        "Chanchanok Duangsri",
+        "Niyada Lansubsakul",
+        "Sorawit Powtongsook",
+        "Wanthanee Khetkorn",
+        "Wuttinun Raksajit"
+      ],
+      "category": "core",
+      "key_finding": "A. platensis cultivation removed 98.5% ammonium and 80% orthophosphate, shifted microbial community composition, and left tet(X) as the only detectable ARG after cultivation.",
+      "pdf_url": "",
+      "published": "2026-09-01",
+      "title": "Dynamics of Microbial Communities and Antibiotic Resistance Genes During Arthrospira platensis Cultivation in Swine Wastewater",
+      "tldr": "Cultivating Arthrospira platensis in 25% swine wastewater achieved high biomass productivity and nutrient removal while altering bacterial community composition and reducing antibiotic resistance gene diversity.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.3390/biology15171484",
+      "venue": "Biology",
+      "why_relevant": "This study connects to Fangzhou's focus on microbial communities and antibiotic resistance by examining how cyanobacterial cultivation alters community structure and resistance gene profiles in wastewater."
+    },
+    {
+      "authors": [
+        "Muneer Yaqub",
+        "Namrata Bonde",
+        "Suman Tiwari",
+        "Ravali Arugonda",
+        "Tuhina Maity",
+        "William Cutts",
+        "Samuel Cornelius",
+        "Jon Sin",
+        "Nicole J. De Nisco",
+        "Ingrid Cornax",
+        "Brandon Kim",
+        "Nicholas Dillon"
+      ],
+      "category": "core",
+      "key_finding": "Microplastic exposure enhanced resistance emergence across multiple antibiotic classes, impaired macrophage clearance, and worsened disease severity in mice.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/01/2026.08.27.747551.full.pdf",
+      "published": "2026-09-01",
+      "title": "Polystyrene Microplastics Accelerate Antibiotic Resistance Evolution and Exacerbate Pathogenicity in Acinetobacter Baumannii",
+      "tldr": "Exposure to polystyrene microplastics accelerates antibiotic resistance evolution and increases pathogenicity in Acinetobacter baumannii, as shown by experimental evolution and a murine pneumonia model.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.64898/2026.08.27.747551",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "This ties to Fangzhou's interest in antibiotic resistance and microbial adaptation, suggesting environmental factors like microplastics can modulate resistance evolution and host-pathogen interactions."
+    },
+    {
+      "authors": [
+        "Aliyu Jalaluddeen Kware",
+        "Mustapha Gani",
+        "U. B. Ibrahim",
+        "A. A. Farouq",
+        "A. Y. Fardami"
+      ],
+      "category": "core",
+      "key_finding": "Initial high-dose acetate (MFC B) yielded a peak voltage of 140.4 mV and power output of 3942.43 μW, with a strong correlation (r=0.9975) between microbial counts and voltage.",
+      "pdf_url": "https://josrar.esrgngr.org/index.php/josrar/article/download/258/175",
+      "published": "2026-08-31",
+      "title": "Influence of Acetate Enrichment on Bacterial Community and Bio-electrochemical Performance of Low-Cost Dual-Chamber Microbial Fuel Cell",
+      "tldr": "Acetate enrichment in a low-cost dual-chamber microbial fuel cell improved bio-electrochemical performance, with high initial acetate loading accelerating electrogenic biofilm formation dominated by Bacillus spp.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.70882/josrar.2026.v3i4.258",
+      "venue": "Journal of Science Research and Reviews",
+      "why_relevant": "This relates to Fangzhou's interest in fermentation ecology and microbial communities, illustrating how substrate enrichment shapes community function in bioelectrochemical systems."
+    },
+    {
+      "authors": [
+        "Serena Falcioni",
+        "Leandro Di Gloria",
+        "A. Manmeen",
+        "Eleftherios Touloupakis",
+        "Matteo Ramazzotti",
+        "María Eugenia Suárez‐Ojeda",
+        "David Gabriel",
+        "Giulio Munz"
+      ],
+      "category": "core",
+      "key_finding": "Nitrogen limitation associated with higher polyhydroxybutyrate accumulation than phosphorus limitation, with filamentous Neomegalonema dominating under N limitation and Thauera/Paracoccus increasing under P limitation.",
+      "pdf_url": "https://link.springer.com/content/pdf/10.1007/s13762-026-07412-w.pdf",
+      "published": "2026-08-31",
+      "title": "Nitrogen-to-phosphorus limitation shift in a polyhydroxyalkanoate-enriched mixed microbial community",
+      "tldr": "Transitioning a mixed microbial community from nitrogen to phosphorus limitation in a reactor altered polyhydroxyalkanoate accumulation and microbial community composition, with nitrogen limitation yielding higher polyhydroxybutyrate.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1007/s13762-026-07412-w",
+      "venue": "International Journal of Environmental Science and Technology",
+      "why_relevant": "This connects to Fangzhou's interest in microbial metabolism and community dynamics, as nutrient limitation shapes resource allocation and community structure in biopolymer production."
+    },
+    {
+      "authors": [
+        "Yazhen Chen",
+        "Yichen Xu",
+        "Haobo Xu",
+        "Juan Chen",
+        "Xiaozhou Huang",
+        "Wenqiong Jiang",
+        "Jinsong He",
+        "Xiaohong Wu",
+        "Xinxing He",
+        "Jun Wang",
+        "Xiaocui Liang",
+        "Wende Yan"
+      ],
+      "category": "core",
+      "key_finding": "Reduced mineral N plus manure (RNM) showed the most balanced CUE-NUE trade-off, increasing NUE by 1.13-fold while decreasing CUE by 7.5% at 120 days.",
+      "pdf_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/ldr.70890",
+      "published": "2026-09-04",
+      "title": "Optimized Fertilization Balances Microbial Carbon and Nitrogen Use Efficiency: Evidence From Microbial Communities",
+      "tldr": "Optimized fertilization with reduced mineral nitrogen and manure increased microbial nitrogen use efficiency and balanced carbon vs nitrogen efficiency, with time-dependent effects on microbial network properties.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1002/ldr.70890",
+      "venue": "Land Degradation and Development",
+      "why_relevant": "This relates to Fangzhou's interest in microbial communities and ecosystem function, showing how resource stoichiometry alters microbial efficiency and network structure in soil."
+    },
+    {
+      "authors": [
+        "Agathe Chave",
+        "Régis Ferrière"
+      ],
+      "category": "core",
+      "key_finding": "Small changes in microsite density across a threshold can reverse the ecosystem-level effect of adaptation, with high density typically buffering carbon loss and low density amplifying it in warm ecosystems.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/03/2026.09.03.749071.full.pdf",
+      "published": "2026-09-03",
+      "title": "Spatial heterogeneity shapes microbial eco-evolutionary dynamics of soil carbon",
+      "tldr": "A spatially structured model of soil organic matter decomposition shows that microsite density determines whether microbial adaptation to warming buffers or amplifies soil carbon loss.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.64898/2026.09.03.749071",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "This aligns with Fangzhou's interest in eco-evolutionary dynamics and microbial communities, linking spatial heterogeneity to evolutionary adaptation and ecosystem-level carbon fluxes."
+    },
+    {
+      "authors": [
+        "Prabuddha Mukhopadhyay",
+        "Deepayan Kundu",
+        "Abhishake Lahiri",
+        "Debangana Mukherjee",
+        "Sayantan Mitra",
+        "K. Surekha",
+        "Poulami Mukherjee",
+        "Rukhshana Chowdhury",
+        "S Lawal Paul"
+      ],
+      "category": "core",
+      "key_finding": "Microbial diversity declined over ICU stay, with commensals like Neisseria and Rothia depleted and opportunistic pathogens like Acinetobacter and Klebsiella enriched.",
+      "pdf_url": "https://www.nature.com/articles/s41598-026-69181-3_reference.pdf",
+      "published": "2026-09-03",
+      "title": "Tracking upper respiratory microbiome dynamics in patients admitted to intensive care unit: insights from a pilot study",
+      "tldr": "Longitudinal 16S rRNA profiling of ICU patients revealed progressive upper respiratory microbiome dysbiosis with depletion of commensals and enrichment of pathogens during antibiotic treatment.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1038/s41598-026-69181-3",
+      "venue": "Scientific Reports",
+      "why_relevant": "This connects to Fangzhou's interest in microbial community dynamics and antibiotic resistance, providing insights into microbiome shifts in clinical settings."
+    }
+  ],
+  "run_key": "2026-W37",
+  "schema_version": 1,
+  "start_date": "2026-09-01",
+  "title": "BMAC Weekly — 2026-W37"
+}
