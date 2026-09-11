@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How this course works · CCBS 2026</title>
+<title>ARCHIVED · Before 11 September 2026 · How this course works · CCBS 2026</title>
 <meta name="description" content="EST 5053 · Control and Computation in Biological Systems · Fall 2026. The rules, the topics, the format, the rubric, and the four things you hand in.">
 <style>
 :root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
@@ -132,14 +132,6 @@ sup.c a{color:inherit;text-decoration:none}
 .rundown dt{font-family:var(--mono);font-weight:700;color:var(--rose)}.rundown dd{margin:0 0 .25rem}.rundown dd strong{color:var(--fg)}
 .steps{counter-reset:worked;list-style:none;padding:0;margin:1.4rem 0}.steps>li{counter-increment:worked;position:relative;padding:.8rem 1rem .8rem 3.2rem;margin:.6rem 0;border-left:2px solid var(--peri);background:var(--bg2);border-radius:0 8px 8px 0}.steps>li:before{content:counter(worked);position:absolute;left:.85rem;top:.7rem;width:1.55rem;height:1.55rem;display:grid;place-items:center;border-radius:50%;background:var(--peri);color:var(--bg2);font:700 .72rem var(--sans)}
 .checkpoint{margin:1.6rem 0;padding:.9rem 1.05rem;border:1px dashed var(--teal);border-radius:9px;background:color-mix(in srgb,var(--powder) 55%,var(--bg2));font-family:var(--sans);font-size:.88rem}.checkpoint strong{color:var(--teal)}
-/* A section's takeaway: the capability the reader leaves with. Global design rule 2,
-   ARTIFACTS.md. One per numbered section, last thing in it, enforced by tools/check.py. */
-.takeaway{margin:1.5rem 0 .4rem;padding:.62rem 0 .62rem 1.05rem;border-left:3px solid var(--lime);
-  font-family:var(--sans);font-size:.95rem;line-height:1.55;color:var(--fg)}
-.takeaway:before{content:"You can now";display:block;font-size:.63rem;letter-spacing:.14em;
-  text-transform:uppercase;font-weight:700;color:var(--lime);margin-bottom:.28rem}
-.takeaway.keep:before{content:"Worth keeping"}
-.takeaway.rule:before{content:"The rule"}
 .formula-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.3rem 0}.formula-pair>*{margin:0}
 @media(max-width:700px){.rundown{grid-template-columns:1fr}.rundown dt{margin-top:.3rem}.formula-pair{grid-template-columns:1fr}}
 #tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
@@ -162,7 +154,6 @@ blockquote.quote cite::before{content:"\2014 "}
 .ctl label{display:flex;flex-direction:column;gap:.15rem;min-width:9.5rem;flex:1 1 9.5rem}
 .ctl .lv{display:flex;justify-content:space-between;gap:.6rem;color:var(--muted)}
 .ctl .lv b{color:var(--fg);font-family:var(--mono);font-weight:600}
-select{width:100%;font-family:var(--sans);font-size:.8rem;padding:.36rem .5rem;border-radius:7px;border:1px solid var(--rule);background:var(--bg);color:var(--fg)}
 input[type=range]{width:100%;accent-color:var(--rose);height:1.1rem}
 button{font-family:var(--sans);font-size:.78rem;font-weight:600;padding:.42rem .85rem;border-radius:7px;
   border:1px solid var(--rule);background:var(--bg);color:var(--fg);cursor:pointer}
@@ -186,7 +177,8 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
   .m.wide{display:inline-block;max-width:100%;overflow-x:auto;vertical-align:bottom}
 }
 </style>
-<link rel="canonical" href="https://chemaoxfz.github.io/assets/ccbs/2026fall/intro.html">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://chemaoxfz.github.io/assets/ccbs/2026fall/intro-before-20260911.html">
 </head>
 <body>
 <button id="tt" title="Toggle light / dark">&#9689;</button>
@@ -206,31 +198,36 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
     <li><a href="#s6">6 &middot; The rubric and the grade</a></li>
     <li><a href="#s7">7 &middot; The tools, and where to get them</a></li>
     <li class="part">What you hand in</li>
-    <li><a href="#s8">8 &middot; Assignment 1: teach one point</a></li>
+    <li><a href="#s8">8 &middot; Assignment 1: teach at least one lecture</a></li>
     <li><a href="#s9">9 &middot; Assignment 2: the extension mini-essay</a></li>
     <li><a href="#s10">10 &middot; Assignment 3: participation</a></li>
     <li><a href="#s11">11 &middot; Assignment 4: the research essay</a></li>
     <li class="part">Reference</li>
     <li><a href="#s12">12 &middot; Every deadline</a></li>
-    <li><a href="#s13">13 &middot; Your next steps</a></li>
-    <li><a href="#history">Format history (optional)</a></li>
+    <li><a href="#s13">13 &middot; This week</a></li>
   </ol>
 </nav>
 <main>
+<div class="box caution" id="archive-notice">
+<span class="lbl">Historical version · before 11 September 2026</span>
+<p>This is the former course guide, retained for transparency. Its whole-lecture teaching
+rules have been superseded. Read <a href="intro.html"><strong>the current course guide</strong></a>
+for the rules that apply now. The original text below has not been rewritten.</p>
+</div>
+
 
 <h1>How this course works</h1>
 <p class="sub">EST 5053 &middot; Control and Computation in Biological Systems &middot; Fall 2026. The rules, the topics, the format, the rubric, and the four things you hand in.</p>
 <p class="byline">Westlake University &middot; Tue &amp; Thu 10:40&ndash;12:15 &middot; E10-305, Yungu campus &middot; lecturer Fangzhou Xiao &middot; TAs Wenqin Zhou and Xinyu Wang &middot; 16 lectures, 2026-09-01 to 2026-10-29</p>
-<p class="small"><strong>Updated 11 September 2026.</strong> The teaching format below applies from Lecture 5 (15 September). Existing lecture assignments and preparation dates stay in place. <a href="#history">What changed and why</a>.</p>
 
 <div class="box key">
 <span class="lbl">The whole course in five lines</span>
 <ul>
-<li><strong>Teach one concrete point, in roughly 10 minutes or less.</strong> Choose a question, worked example, figure or claim from your assigned lecture and make it exceptionally clear. This is the complete required teaching assignment.</li>
-<li><strong>I lead the lecture and hand over when your point comes.</strong> Up to three students contribute to one lecture. I cover the rest and manage the connections and pace.</li>
-<li><strong>Prepare from the core page and rehearse with the TAs.</strong> The preparation timeline stays the same. Your exposition covers the point or points you teach.</li>
-<li><strong>More points are an optional challenge, agreed at rehearsal.</strong> Only a full normal score of 3 for the whole approved contribution earns the +5-course-point bonus.</li>
-<li><strong>The weights stay the same:</strong> teaching (40), extension mini-essays (30), research essay (20), participation (10). One excellent point can earn all 40 ordinary teaching points.</li>
+<li><strong>I teach lectures 1 and 2. You teach lectures 3 to 16.</strong> One to three of you may own one entire 95-minute lecture. Every student teaches at least once; volunteers may teach additional lectures for extra credit.</li>
+<li><strong>The last 5 minutes of every lecture are mine</strong>, for the gap, the take-away, and what the field says next.</li>
+<li><strong>I hand you a core page per lecture, one week ahead.</strong> That is the floor, not the ceiling. Going beyond it is the assignment.</li>
+<li><strong>Quality is guaranteed by design.</strong> If a lecture does not hold up, I step in and teach it. That is the fallback, and it is built into the grading.</li>
+<li><strong>Four things are graded:</strong> your lecture (40), your extension mini-essays (30), your research essay (20), your participation (10).</li>
 </ul>
 </div>
 
@@ -314,12 +311,18 @@ biological machine at a time.</p>
 <p>No background is needed. An exuberant love for biology is mandatory.</p>
 
 <h2 id="s2"><span class="n">2</span>The AI-native take</h2>
-<p class="lede">Use AI to prepare material. Use the course to learn, check and explain it.</p>
+<p class="lede">The bottleneck moved. The format of this course is the response to where it moved to.</p>
 
-<p><strong>The learning loop is input, learn, output.</strong> An AI agent can help you
-find explanations, draft code and produce a first figure. It cannot remove your task of
-checking the result, understanding why it works and explaining it to another person.
-This course asks you to practice that whole loop.</p>
+<p>Learning anything runs one loop: take material in, understand it well enough to work
+with, then put something back out. <strong>Input, learn, output.</strong> A lecture existed,
+historically, because the input stage was hard. Material was scarce, scattered, in the
+wrong language, behind a paywall, or in a book nobody could read without a guide. A
+lecturer standing at a board was the highest-bandwidth input channel available.</p>
+
+<p>That has stopped being true, and it stopped being true recently and completely. An
+agent will digest a paper, draft the code, and produce a first figure on demand, at any
+hour, on any topic, at whatever depth you ask for. The input stage did not get a bit
+easier. It became a fire-hose.</p>
 
 <figure>
 <div class="figbox">
@@ -359,9 +362,11 @@ This course asks you to practice that whole loop.</p>
   <text x="415" y="340" text-anchor="middle" font-family="var(--sans)" font-size="12.5" font-weight="700" fill="var(--lime)">still exactly as wide as they ever were; this is where the course spends its hours</text>
 </svg>
 </div>
-<figcaption><b>Figure 2. The design idea.</b> A conceptual picture, not a measured
-throughput comparison. Ready access to drafts and explanations does not make understanding
-or communication automatic. Those are central tasks in this course.</figcaption>
+<figcaption><b>Figure 2. Where the bottleneck went.</b> The pipes are throughput. The input
+stage widened by orders of magnitude in about two years; the human stages did not widen at
+all, because understanding something and explaining it to a room are still done at the
+speed a person can do them. A course that still spends its contact hours on input is
+optimizing the part that is no longer scarce.</figcaption>
 </figure>
 
 <p>So this course puts its contact hours where the narrow part is. The loop we run, every
@@ -369,9 +374,10 @@ week, is:</p>
 
 <div class="eq prose"><b>ask AI to digest and write</b> &rarr; <b>understand it and use it to work and iterate</b> &rarr; <b>present it to others to communicate</b></div>
 
-<p><strong>Teaching makes your understanding visible.</strong> You will explain a point
-and answer questions about it. A polished AI-generated page is preparation material,
-not a substitute for being able to do that yourself.</p>
+<p>And the output stage is the one that cannot be faked. You can generate a beautiful
+lecture you do not understand. You cannot deliver it to a room of people who will ask
+questions. That is the whole design: <strong>you will teach</strong>, because teaching is
+the only test of understanding that an agent cannot sit for you.</p>
 
 <div class="box def">
 <span class="lbl">The four commandments of research with AI</span>
@@ -391,15 +397,22 @@ not a substitute for being able to do that yourself.</p>
 </ul>
 
 <h2 id="s3"><span class="n">3</span>The contents: 16 lectures</h2>
-<p class="lede">One topic per lecture, and one argument running through all of them. See the <a href="https://chemaoxfz.github.io/ccbs/2026fall/#schedule">course schedule</a> for student presenters.</p>
+<p class="lede">One topic per lecture, one team per lecture, and one argument running through all of them.</p>
 
 <div class="box key">
 <span class="lbl">The test these sixteen topics had to pass</span>
-<p><strong>Would a first-year PhD student be short of an important tool without this
-topic?</strong> That is how I chose the list. It is not exhaustive. It aims to give you
-several ways to approach a biological problem, the judgment to choose among them, and
-a rough expectation of the answer before computing it. The confidence to attempt a new
-problem is what I most want you to leave with.</p>
+<p>There is one judgement behind this list, and it is worth stating because it explains
+every inclusion and every omission. I imagined myself back in the first year of a PhD,
+wanting to learn what I would need in order to go and work on understanding and
+engineering biological systems. Then I asked of each candidate topic: <strong>would its
+absence leave that person short?</strong></p>
+<p>What survived is this list. The claim I am making is not that it is complete, because
+nothing is. It is that <strong>a first-year student who has this material is
+powerful</strong>. Powerful enough to walk up to essentially any problem in biological
+systems and have several ways to reason about it, know which one to reach for, know roughly
+what the answer should be before computing it, and be right that they can do it. That last
+part, the confidence, is not a bonus. It is the thing that decides which problems you are
+willing to attempt, and it is what I most want you to leave with.</p>
 </div>
 
 <figure>
@@ -420,7 +433,10 @@ problem is what I most want you to leave with.</p>
   <text x="348" y="142" text-anchor="middle" font-family="var(--sans)" font-size="12" font-weight="700" fill="var(--rose)">a cell is</text>
   <text x="348" y="158" text-anchor="middle" font-family="var(--sans)" font-size="12" font-weight="700" fill="var(--rose)">binding + catalysis</text>
   <text x="527" y="56" text-anchor="middle" font-family="var(--sans)" font-size="13" font-weight="700" fill="var(--teal)">spend the claim, one machine at a time</text>
-  <text x="350" y="190" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--muted)">Lecturer-led, with focused student contributions from Lecture 5</text>
+  <rect x="28" y="176" width="86" height="20" rx="10" fill="var(--cream)" stroke="var(--gray)" stroke-width="1.2"/>
+  <text x="71" y="190" text-anchor="middle" font-family="var(--sans)" font-size="10.5" font-weight="700" fill="var(--gray)">1&#8211;2: I teach</text>
+  <rect x="124" y="176" width="130" height="20" rx="10" fill="var(--bg2)" stroke="var(--gray)" stroke-width="1.2"/>
+  <text x="189" y="190" text-anchor="middle" font-family="var(--sans)" font-size="10.5" font-weight="700" fill="var(--gray)">3&#8211;16: you teach</text>
 </svg>
 </div>
 <figcaption><b>Figure 3. The arc.</b> Seven lectures of build-up, one keystone, eight of
@@ -431,7 +447,7 @@ same reduction, so the two sit adjacent and make one argument twice.</figcaption
 
 <div class="tablewrap">
 <table>
-<caption>Table 2. The 16 lectures. Fangzhou leads the course. Student assignments are on the course schedule.</caption>
+<caption>Table 2. The 16 lectures. Lectures 1 and 2 are lecturer-taught; the rest are yours.</caption>
 <thead><tr><th>#</th><th>Date</th><th>Topic</th></tr></thead>
 <tbody>
 <tr><td class="num">1</td><td class="num">09-01 Tue</td><td><strong>How this course works, and order of magnitude: the physics.</strong> Dimensional analysis, scaling, estimating from constraints, energy and motion, heat and diffusion, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>≈</mo><msup><mi>x</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi>κ</mi></mrow><annotation encoding="application/x-tex">t \approx x^{2}/\kappa</annotation></semantics></math></span>, null models. <em>Lecturer.</em></td></tr>
@@ -479,77 +495,64 @@ you afterwards.</p>
 </div>
 
 <h2 id="s4"><span class="n">4</span>The format</h2>
-<p class="lede">One point per student by default. The whole lecture remains my responsibility.</p>
+<p class="lede">Sixteen lectures. Fourteen teaching slots. Everybody teaches at least once; volunteers may return.</p>
 
-<p><strong>Your assignment is to teach one concrete point.</strong> Choose something within
-your assigned lecture that you can explain, demonstrate and defend in roughly ten minutes
-or less. A point is something the audience should understand or be able to do afterwards,
-not a broad topic heading. For example: explain why a particular approximation fails,
-work one example through, or teach the conclusion a figure establishes.</p>
-
-<p><strong>Each lecture has up to three student contributors.</strong> Each student proposes
-their own point and receives an individual teaching score. Coordinate with the other
-presenters so the points fit together. Existing lecture assignments remain valid, and
-nobody has to take a second assignment to fill an empty lecture.</p>
+<p>Enrollment can change during the first two weeks, so the format does not depend on a
+fixed class size. Lectures 3 to 16 are fourteen lectures, and each may be owned by
+<strong>one, two or three students</strong>. Every student teaches one lecture as the
+required assignment. After that sign-up merges, a student may volunteer for another
+lecture with room; completing each additional lecture earns extra credit. If a lecture
+has no student teacher, I teach it. The TAs support every student team, including a team
+of one.</p>
 
 <figure>
 <div class="figbox">
-<svg viewBox="0 0 680 144" role="img" aria-label="Fangzhou introduces the context, hands over for a student's point, then connects it to the rest of the lecture. This is a sequence, not a time scale.">
-  <rect x="20" y="36" width="190" height="64" rx="8" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.5"/>
-  <rect x="244" y="36" width="192" height="64" rx="8" fill="var(--powder)" stroke="var(--teal)" stroke-width="1.8"/>
-  <rect x="470" y="36" width="190" height="64" rx="8" fill="var(--lavender)" stroke="var(--peri)" stroke-width="1.5"/>
-  <g font-family="var(--sans)" font-size="13" font-weight="700" text-anchor="middle">
-    <text x="115" y="61" fill="var(--peri)">Fangzhou sets up</text>
-    <text x="340" y="61" fill="var(--teal)">You teach one point</text>
-    <text x="565" y="61" fill="var(--peri)">Fangzhou connects</text>
+<svg viewBox="0 0 680 132" role="img" aria-label="A 95-minute lecture: five minutes of admin, eighty-five minutes for the team, five minutes of lecturer addendum">
+  <rect x="30" y="40" width="34" height="44" rx="5" fill="var(--cream)" stroke="var(--gray)" stroke-width="1.4"/>
+  <rect x="68" y="40" width="546" height="44" rx="5" fill="var(--powder)" stroke="var(--teal)" stroke-width="1.8"/>
+  <rect x="618" y="40" width="34" height="44" rx="5" fill="var(--blush)" stroke="var(--rose)" stroke-width="1.4"/>
+  <text x="341" y="68" text-anchor="middle" font-family="var(--sans)" font-size="15" font-weight="700" fill="var(--teal)">the team teaches &#183; 85 minutes</text>
+  <text x="47" y="30" text-anchor="middle" font-family="var(--sans)" font-size="10.5" font-weight="700" fill="var(--gray)">admin</text>
+  <text x="635" y="30" text-anchor="middle" font-family="var(--sans)" font-size="10.5" font-weight="700" fill="var(--rose)">addendum</text>
+  <g font-family="var(--mono)" font-size="10.5" fill="var(--muted)" text-anchor="middle">
+    <text x="30" y="102">10:40</text><text x="68" y="102">10:45</text><text x="614" y="102">12:10</text><text x="652" y="102">12:15</text>
   </g>
-  <g font-family="var(--sans)" font-size="11.5" text-anchor="middle" fill="var(--fg)">
-    <text x="115" y="83">context and prerequisites</text>
-    <text x="340" y="83">roughly 10 minutes or less</text>
-    <text x="565" y="83">the result to what comes next</text>
-  </g>
-  <g stroke="var(--gray)" stroke-width="1.5" fill="none">
-    <path d="M214,68 H239 M234,63 L239,68 L234,73"/>
-    <path d="M440,68 H465 M460,63 L465,68 L460,73"/>
-  </g>
-  <text x="340" y="128" text-anchor="middle" font-family="var(--sans)" font-size="11.5" fill="var(--muted)">Each student takes over when their agreed point enters the lecture.</text>
+  <text x="47" y="120" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--muted)">5 min</text>
+  <text x="635" y="120" text-anchor="middle" font-family="var(--sans)" font-size="10" fill="var(--muted)">5 min</text>
 </svg>
 </div>
-<figcaption><b>Figure 4. The handover.</b> Your point is part of one continuous lecture,
-not a separate talk. This shows the sequence, not proportions of the class time.</figcaption>
+<figcaption><b>Figure 4. One lecture.</b> Five minutes of admin from me, eighty-five that
+belong to the team, and five at the end for my addendum: the gap, the take-away, and what
+the field says next. Nothing finer than this is prescribed.</figcaption>
 </figure>
 
-<p><strong>I normally deliver most of the lecture.</strong> I handle its overall argument,
-harder connections, pacing and conclusion, and hand over when your point comes. A live
-simulation, a worked calculation or a question to the room is welcome when it helps make
-that point. I teach any lecture with no student contributor.</p>
+<p>The default shape of those 85 minutes is simple: <strong>you lecture, and the room asks
+questions.</strong> A lot of questions. Students ask a student lecturer things they would
+never ask me, and that is most of the value of this format, so build in the room for it and
+invite it explicitly.</p>
 
-<h3>Optional challenge: more teaching points</h3>
-<p><strong>Propose more only if you can deliver all of it exceptionally well.</strong>
-Bring the actual presentation to rehearsal. The TAs and I may approve it, suggest changes
-or narrow it to one point. The ordinary limit is half of the lecture's main teaching points
-per student, rounded down. We count the agreed live points, not slides, sub-bullets or
-optional reading. Timing and handovers are agreed at rehearsal, not awarded automatically
-with each extra point.</p>
-
-<p><strong>A whole lecture needs exceptional, explicit approval.</strong> A student or team
-may request this as an exception to the normal scope limit. I must approve the complete
-plan after rehearsal, including its coverage, timing and each student's contribution.
-Requesting it does not reserve the whole lecture or displace another student's agreed
-point. Without that approval, the lecturer-led format applies.</p>
+<p>A live simulation, a debate, a calculation the room does together: any of these can be
+part of the show, and they usually make a lecture better. But the show is not the
+assignment. <strong>The core story has to be covered.</strong> A lecture that was
+entertaining and left the room unable to reconstruct the argument has not done the job.</p>
 
 <div class="box note">
-<span class="lbl">The core page is your starting point</span>
-<p>The <strong>core page</strong> is posted one week ahead. Read the whole argument so you
-know where your point fits, then concentrate your preparation on that point. Teach it
-with your own explanation, a useful illustration and checked reasoning. You are not
-required to survey beyond the whole core or produce new research to earn full marks.
-The <a href="https://github.com/chemaoxfz/idea-to-essay"><code>research-essay</code> skill</a>
-can help you investigate and build the material. You remain responsible for understanding it.</p>
+<span class="lbl">What you are handed, and what you owe</span>
+<p>One week before your lecture, the <strong>core page</strong> for your topic is posted on
+the course site. It is a self-contained HTML digest: the argument, the derivations, the
+numbers, the sources, and a list of what is deliberately left open. It is the floor. Your
+job is to understand it, go past it, and teach the result. A lecture that only re-presents
+the core page has not done the assignment.</p>
+<p>The fastest way to go past it is the <strong><code>research-essay</code> skill</strong>
+on <a href="https://chemaoxfz.github.io/essays/">chemaoxfz.github.io/essays</a>, also called
+idea-to-essay. Point it at your topic and it runs the whole loop for you: thesis, literature
+sweep with the full texts actually fetched, numbers from code, and a single self-contained
+page at the end. It is what the core pages themselves are built with, and it will save you
+days.</p>
 </div>
 
 <h2 id="s5"><span class="n">5</span>The rules, part by part</h2>
-<p class="lede">The preparation dates stay the same. The scope you prepare is smaller.</p>
+<p class="lede">What happens before, during and after your lecture, and what the fallback means.</p>
 
 <h3>Before: the preparation loop</h3>
 
@@ -599,98 +602,89 @@ end.</figcaption>
 </figure>
 
 <ol>
-<li><strong>Seven days out</strong>, the core page goes up. Choose your point and tell the
-TAs what the audience should learn, which example or figure you will use, and where it fits
-in the lecture. Check the claims and rerun the calculations you will present.</li>
+<li><strong>Seven days out</strong>, on the same weekday you will teach, the core page for
+your lecture goes up. Read it, then run the loop on it: digest with an agent, check every
+claim against the core page and the sources, and remake the numbers with code rather than
+quoting them. The <code>research-essay</code> skill is the shortcut here.</li>
 <li><strong>The rehearsal</strong> is on the <strong>Friday before</strong> if you teach on a
 Tuesday, and on the <strong>Monday before</strong> if you teach on a Thursday. Roughly 30
-minutes with the TAs. Deliver your point, including the illustration and likely questions.
-If you want to cover more, propose and demonstrate all of it here. Fix the content,
-clarity and timing problems they find. Agree the final points and handovers with us.
-Nothing teaches that was not rehearsed.</li>
+minutes with the TAs. They check the content against the core page and tell you where a
+strong student would catch an error, where the story is missing a step, and where you are
+going to run out of time. Fix what they find. Nothing teaches that was not rehearsed.</li>
 <li><strong>The day before</strong>, there is still room for a second pass or another round
 of feedback if you want it, and that is also when your materials go final and get posted.</li>
 </ol>
 
-<h3>During: teach your agreed point</h3>
-<p><strong>Answering questions is part of the assignment.</strong> Leave room for the
-audience to think and ask. &ldquo;I do not know, but here is how I would find out&rdquo;
-is an honest answer. Bluffing is not.</p>
+<h3>During: the lecture is yours</h3>
+<p>I will not interrupt you except in the one case below. The room will ask questions, and
+answering them is part of the assessment. "I do not know, but here is how I would find out"
+is a good answer. Bluffing is not, and it is visible from the back of the room.</p>
 
-<p><strong>I may clarify, connect, correct or take over to keep the lecture on track.</strong>
-A routine handover or correction is not an automatic zero. Your score reflects the
-quality of your approved contribution, including any substantive errors or unfinished
-reasoning. If it cannot communicate the material and receives a 0, the existing make-up
-remains: an oral presentation of that material to me after the sixteen lectures.</p>
+<h3>The fallback, and why it exists</h3>
+<div class="box caution">
+<span class="lbl">If a lecture does not hold up, I teach it</span>
+<p>An unclaimed lecture is mine from the start and carries no student score. That planned
+coverage is different from interrupting a student-taught lecture.</p>
+<p>If the material is simply not getting across, if the communication and the teaching and
+the understanding have all stopped, I step in and teach that part myself, on the spot. That
+is a score of 0 for the team on that segment, and it is the only case where I interrupt.</p>
+<p>This is a feature, not a threat. It means <strong>the class cannot lose the material</strong>
+no matter what happens, so student-taught is not a gamble the audience pays for. The
+website's schedule says <em>students present, lecturer-backed</em> for exactly this reason.</p>
+<p>A score of 0 comes with a <strong>make-up</strong>: after all sixteen lectures are over,
+you present the same material orally to me, with the TAs or just me. It is a make-up exam,
+scheduled outside class, so it costs the course nothing and takes nobody else's time. It is
+your chance to show you know the material after all.</p>
+</div>
 
 <h3>After: the artifacts</h3>
-<p><strong>Your exposition matches what you taught.</strong> Submit your corrected teaching
-material after class, in the teaching week. Explain your approved point or points clearly
-enough for someone who missed them. No full-lecture chapter is required for a ten-minute
-contribution. Joint materials should identify who taught which point.</p>
+<p>Your teaching material goes into the submissions repo and then onto the course site. Each
+lecture ends up with three artifacts, and together they make the page for that lecture:</p>
 <ul>
 <li><strong>core:</strong> mine, posted a week ahead.</li>
-<li><strong>exposition:</strong> yours, submitted to <code>lectureNN/</code> as self-contained HTML, a PDF, notebook or slide deck after teaching.</li>
+<li><strong>exposition:</strong> yours, posted after you teach: the HTML page, notebook or slide deck you taught from.</li>
 <li><strong>extension:</strong> the audience's, assembled by the TAs from that week's mini-essays into one themed writeup.</li>
 </ul>
-<p class="small">A merged submission is a receipt, not a grade or approval of extra teaching
-scope. Staff check expositions before publishing them on the course site with your name.</p>
+<p>The site grows into a textbook this way, one year at a time. Your name is on your part of it.</p>
 
 <h2 id="s6"><span class="n">6</span>The rubric and the grade</h2>
-<p class="lede">The same 0&ndash;3 scale, applied to your agreed contribution. One excellent point earns full ordinary marks.</p>
+<p class="lede">Zero to three on the lecture, anchored on whether the room can use the material afterwards. Everything else is graded on doing it.</p>
 
-<p>Your teaching is rated 0 to 3 by <strong>me and the TAs</strong>, averaged, and separately
+<p>Your lecture is rated 0 to 3 by <strong>me and the TAs</strong>, averaged, and separately
 by your peers. The two are combined <strong>60% the teaching side and 40% the trimmed mean
-of the class</strong>. Peer ratings are anonymous and published only in aggregate. The
-combined score is scaled to the 40-point teaching component: a 3 earns 40 points.</p>
+of the class</strong>. Peer ratings are anonymous and published only in aggregate.</p>
 
 <div class="tablewrap">
 <table>
 <caption>Table 3. The 0&ndash;3 scale, and what each score looks like from the back of the room.</caption>
 <thead><tr><th>Score</th><th>Meaning</th><th>Detectable in class</th></tr></thead>
 <tbody>
-<tr><td class="num hl">3</td><td>Excellent. The audience can use the point, and it was a pleasure to follow.</td><td>A classmate can explain the reasoning or redo the worked example afterwards. The claims withstand substantive questions. The presentation is accurate, clear, well illustrated and well paced, with assumptions stated and calculations checked.</td></tr>
-<tr><td class="num hl">2</td><td>Good. The main idea was delivered.</td><td>The argument landed, but an important qualification within the agreed scope was missing or hand-waved, or a question got a fuzzy answer.</td></tr>
+<tr><td class="num hl">3</td><td>Excellent. The audience got the material, and it was a pleasure to follow.</td><td>A random student can redo the worked example afterwards. Claims survive two or more hostile questions. The presentation was clear and well illustrated: figures that carried the argument, a story with a spine, numbers traceable to something you ran.</td></tr>
+<tr><td class="num hl">2</td><td>Good. The core ideas were delivered.</td><td>The main argument landed and the room can state it. Some important side aspects or branches were missing or hand-waved, or a question got a fuzzy answer.</td></tr>
 <tr><td class="num hl">1</td><td>The key ideas landed, a lot of the detail did not.</td><td>The worked example failed, or the class and the TA had to supply the fix. The room has the headline but not the mechanism.</td></tr>
-<tr><td class="num hl">0</td><td>The contribution did not communicate the material.</td><td>Communication and understanding broke down enough that the audience could not learn the agreed point. A lecturer intervention alone does not establish this. Make-up by oral presentation after the term.</td></tr>
+<tr><td class="num hl">0</td><td>The lecture could not keep going.</td><td>Communication, teaching and understanding all stopped, and the room plainly could not learn the topic from it. I stepped in. Make-up by oral presentation after the term.</td></tr>
 </tbody>
 </table>
 </div>
 
 <p>The sub-criteria I use, so the number is reproducible rather than a mood:</p>
 <ul>
-<li><strong>Correctness and depth.</strong> Is the reasoning right? Are the mechanism, assumptions and important limits of your point understood?</li>
+<li><strong>Correctness and depth.</strong> Is it right, and is it deeper than the core page?</li>
 <li><strong>Pedagogy.</strong> Does the room end up able to <em>use</em> it, not just to have heard it?</li>
 <li><strong>Communication.</strong> Structure, figures, pacing, and whether the argument has a spine.</li>
 <li><strong>AI-use standards.</strong> Every claim owned and explainable. Commandments 1 and 4.</li>
 <li><strong>Defense under questioning.</strong> What happens when someone pushes.</li>
 </ul>
 
-<div class="box note" id="teaching-bonus">
-<span class="lbl">Optional extra credit: +5 course points</span>
-<p><strong>More than one approved point earns a bonus only with a full combined score
-of 3 for the whole contribution.</strong> The same voting and staff assessment above apply.
-A score rounded up to 3 does not qualify. More material or more minutes alone earn nothing.
-Weak additional points can lower your ordinary score: we do not grade only your best point.</p>
-<p><strong>The bonus is five points on the 100-point course total.</strong> It is separate
-from the ordinary 40-point teaching component, awarded at most once per student, with
-the final total capped at 100. One excellent point earns 40 teaching points. Qualifying
-multi-point teaching earns those same 40 points plus the five-point bonus.</p>
-<p>A distinct contribution at another lecture may also be proposed in advance. It can earn
-the same one-time bonus if both the required and the additional contribution score 3 and
-complete the preparation and exposition requirements. It does not replace a lower required
-score. Any earlier individual extra-credit agreement will be honored.</p>
-</div>
-
 <figure>
 <div class="figbox">
-<svg viewBox="0 0 680 190" role="img" aria-label="Ordinary grade breakdown: teaching 40, extension mini-essays 30, research essay 20, participation 10. The optional teaching bonus is separate.">
+<svg viewBox="0 0 680 190" role="img" aria-label="Grade breakdown: lecture 40, extension mini-essays 30, research essay 20, participation 10">
   <rect x="30" y="46" width="248" height="46" rx="5" fill="var(--rose)"/>
   <rect x="282" y="46" width="184" height="46" rx="5" fill="var(--peri)"/>
   <rect x="470" y="46" width="120" height="46" rx="5" fill="var(--lime)"/>
   <rect x="594" y="46" width="56" height="46" rx="5" fill="var(--plum)"/>
   <g font-family="var(--sans)" font-size="10.5" font-weight="700" letter-spacing="1.1" fill="var(--muted)">
-    <text x="30" y="36">YOUR TEACHING</text>
+    <text x="30" y="36">YOUR LECTURE</text>
     <text x="282" y="36">MINI-ESSAYS</text>
     <text x="470" y="36">RESEARCH ESSAY</text>
     <text x="594" y="36">PART.</text>
@@ -715,22 +709,31 @@ C 70&ndash;79, D 60&ndash;69, F below 60.</figcaption>
 
 <div class="box key">
 <span class="lbl">How the other 60 points are actually graded</span>
-<p><strong>The other assignments are graded on doing the work properly.</strong>
-Hand in a mini-essay that is genuinely an extension,
+<p>The lecture carries a real rubric because a lecture is a performance in front of
+thirty-five people and there is something to judge. <strong>Everything else is graded
+mostly on whether you did it.</strong> Hand in a mini-essay that is genuinely an extension,
 clearly told and honestly sourced, and you get the five points. Hand in a research essay
 that does the four things asked of it, and you get the twenty.</p>
-<p>Excellence is invited and rewarded with attention. It is not a reason to deduct points
-from an otherwise complete, honest essay.</p>
+<p>This is deliberate and I want to be explicit about why. Excellence is something a course
+can invite, provoke and reward with attention. It is not something that can be manufactured
+by docking points against a rubric. Grading the difference between good work and excellent
+work mostly teaches people to write for the rubric, which is the opposite of what this
+course is for. So: do the work properly and the points are yours. Do something remarkable
+and you will hear about it from me, from the room, and from the page it gets published
+on.</p>
 </div>
 
 <h2 id="s7"><span class="n">7</span>The tools, and where to get them</h2>
-<p class="lede">Use an AI agent, then check and own what you present.</p>
+<p class="lede">If you do not already have an AI agent you use daily, get one before Thursday.</p>
 
 <div class="box sim">
 <span class="lbl">Westlake AI Campus: free, internal, use it</span>
-<p><a href="https://hpc.westlake.edu.cn/#/ai-campus"><strong>Westlake AI Campus</strong></a>
-is the university's AI platform and the starting point for this course. If you have never
-used it, start with a question you actually care about.</p>
+<p><a href="https://hpc.westlake.edu.cn/#/ai-campus"><strong>hpc.westlake.edu.cn/#/ai-campus</strong></a>
+is the university's internal platform, with locally deployed models (DeepSeek, GLM and
+others) available to every Westlake student and faculty member. It costs you nothing and
+your data stays inside the university. <strong>This is the baseline tool for the course.</strong>
+If you have never used it, set it up tonight, and bring a question you actually care about
+on Thursday.</p>
 </div>
 
 <p>Two more things you will use constantly:</p>
@@ -738,9 +741,11 @@ used it, start with a question you actually care about.</p>
 <li><strong>The <code>research-essay</code> skill</strong> (also called idea-to-essay), on
 <a href="https://chemaoxfz.github.io/essays/">chemaoxfz.github.io/essays</a> and at
 <a href="https://github.com/chemaoxfz/idea-to-essay">github.com/chemaoxfz/idea-to-essay</a>.
-It provides a workflow from an idea through verified literature and reproducible analysis
-to a self-contained HTML essay. Use it for your exposition and research essay, keeping
-the scope appropriate to the assignment.</li>
+This is the reference pipeline for every digest in this course: idea, thesis, literature
+sweep with verified full texts, numbers from code, and one self-contained HTML page at the
+end. The core pages are built with it. So should your exposition be, and so should your
+research essay. Point it at a lecture topic and it will find you the frontier of that topic
+in an afternoon.</li>
 <li><strong>The essays</strong> at the same address. <em>Three Schools, Three Shocks</em>
 frames the whole course. <em>The Biomachine Perspective</em> is the lens. <em>Structure is
 Sparsity</em> and <em>The Order of a Reaction</em> sit behind lecture 11.</li>
@@ -752,17 +757,17 @@ difference is whether you can defend the output, and that is exactly what is gra
 <div class="parthead">
   <div class="k">Part 3</div>
   <h2>What you hand in</h2>
-  <p>Four assignments. The weights and weekly deadlines are unchanged.</p>
+  <p>Four assignments. One of them is due this Thursday.</p>
 </div>
 
-<h2 id="s8"><span class="n">8</span>Assignment 1: teach one point</h2>
-<p class="lede">Keep your lecture assignment. Propose a point, rehearse it, teach it, and submit its exposition.</p>
+<h2 id="s8"><span class="n">8</span>Assignment 1: teach at least one lecture</h2>
+<p class="lede">One, two or three of you may own a lecture. Every student claims one; volunteers may claim more for extra credit.</p>
 
-<p><strong>Every student has one required teaching assignment, worth 40%.</strong>
-The <a href="https://chemaoxfz.github.io/ccbs/2026fall/#schedule">course schedule</a>
-lists the presenters, reconciled with the final 11 September registration roster. If your
-lecture was assigned by me, complete the GitHub signup below so the submission system
-recognizes your account. Ask me if you need to change the assignment.</p>
+<p>Every student teaches at least once, alone or as part of a team of up to three, on one
+of lectures 3 to 16. You choose your first lecture and any teammates yourself, first come
+first served. Once that required sign-up has merged, you may volunteer for another lecture
+that still has room. The required lecture carries the 40-point teaching grade. Completing
+each additional lecture earns extra credit.</p>
 
 <h3>How to sign up</h3>
 <p>You sign up by adding one small file to the course submissions repository and opening a
@@ -792,7 +797,7 @@ course-staff approval; if you see that message, tell a TA and keep the same pull
 
     <rect x="548" y="40" width="112" height="46" rx="8" fill="var(--powder)" stroke="var(--teal)" stroke-width="1.8"/>
     <text x="604" y="60" fill="var(--teal)">5 &#183; Merged</text>
-    <text x="604" y="76" font-size="10.5" font-weight="400" fill="var(--muted)">submission received</text>
+    <text x="604" y="76" font-size="10.5" font-weight="400" fill="var(--muted)">in a minute or two</text>
   </g>
   <g stroke="var(--gray)" stroke-width="1.4" fill="none">
     <path d="M132,63 L150,63"/><path d="M144,59 L150,63 L144,67"/>
@@ -805,12 +810,12 @@ course-staff approval; if you see that message, tell a TA and keep the same pull
   <path d="M472,86 L472,124 L208,124 L208,88" fill="none" stroke="var(--coral)" stroke-width="1.8" stroke-dasharray="6 4"/>
   <path d="M204,96 L208,88 L212,96" fill="none" stroke="var(--coral)" stroke-width="1.8"/>
   <text x="340" y="144" text-anchor="middle" font-family="var(--sans)" font-size="11.5" font-weight="700" fill="var(--coral)">if it refuses, it names the file and the reason; fix it and push again</text>
-  <text x="340" y="164" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--muted)">first-time workflow approval may need a TA; a merge is not a grade</text>
+  <text x="340" y="164" text-anchor="middle" font-family="var(--sans)" font-size="11" fill="var(--muted)">the check re-runs by itself; you never wait for a human</text>
 </svg>
 </div>
 <figcaption><b>Figure 7. Every submission in this course works this way:</b> the
 sign-up, the weekly mini-essays, your exposition and the final research essay. Learn it
-once and reuse it throughout the term.</figcaption>
+once on Thursday and the rest of the term is muscle memory.</figcaption>
 </figure>
 
 <div class="box def">
@@ -827,7 +832,7 @@ The <code>github</code> field must be the account that opens the pull request.</
 sign-up it also checks that your identity matches your first one. It then merges the pull
 request. If it refuses, it tells you every problem in a comment. Fix and push again to the
 same branch.</li>
-<li><code>signup/ROSTER.md</code> records merged GitHub signups. The <a href="https://chemaoxfz.github.io/ccbs/2026fall/#schedule">course schedule</a> is the current teaching allocation, including lecturer assignments and enrollment changes.</li>
+<li>The live team roster is at <code>signup/ROSTER.md</code>, rebuilt on every merge. Check it to see which lectures still have room.</li>
 <li>To volunteer for another lecture, repeat these steps with that lecture number in a new
 file and a new pull request. Reuse the same <code>yourname</code>, student ID, email and
 GitHub account. One student may occupy only one place in any one lecture.</li>
@@ -835,15 +840,19 @@ GitHub account. One student may occupy only one place in any one lecture.</li>
 </div>
 
 <div class="box caution">
-<span class="lbl">Existing signups stay valid</span>
-<p>Registration closes on 11 September. You do not need a new signup for the one-point
-format. A lecture accepts at most three students. Discuss any move or voluntary additional
-assignment with me first, then update your signup. If the bot's ledger still includes an
-outdated record or blocks an agreed change, contact a TA. Do not edit another student's file.</p>
+<span class="lbl">Sign-up closes Thursday 2026-09-03, 23:59</span>
+<p>Each lecture accepts <strong>1 to 3</strong> students, and a solo student is a complete
+team. After the deadline I assign a first lecture to anyone who has not signed up. If a
+lecture remains empty, I, Fangzhou Xiao, teach it. Empty and partly filled lectures remain
+open to volunteers for extra credit, up to the three-student limit. Lectures 3 and 4 are on
+09-08 and 09-10, so those sign-ups should come first and preparation should begin
+immediately.</p>
 </div>
 
-<p>If you get stuck with GitHub, ask the TAs, a classmate or an agent. Once the signup
-works, the same submission routine serves the rest of the course.</p>
+<p>Yes, this is deliberately also a test. If you can open a pull request, you can submit
+everything else in this course, and you have used the tool that essentially all
+collaborative technical work now runs on. If you get stuck, ask the TAs, ask the room, or
+ask an agent. Getting stuck and then unstuck is the point.</p>
 
 <h2 id="s9"><span class="n">9</span>Assignment 2: the extension mini-essay</h2>
 <p class="lede">One short piece per week, on one thing the lecture did not say. Eight of them, best six counted.</p>
@@ -912,9 +921,10 @@ It is worth more than another paragraph of argument.</p>
 </div>
 
 <h3>When and how</h3>
-<p>One essay per teaching week, eight in total, <strong>including the week you teach</strong>.
-Your best six scores count, so you have two free skips. This written assignment is unchanged
-and is separate from volunteering to teach additional points.</p>
+<p>One essay per teaching week, eight in total, <strong>including the weeks you teach and
+including this first week</strong>. Writing one this week is how you learn the routine while
+the stakes are low. Your best six scores count, so you have two free skips to spend on a
+bad week.</p>
 
 <p>Each is due on the <strong>Monday night before the next Tuesday lecture</strong>, so the
 TAs can assemble the week's page before we move on.</p>
@@ -950,8 +960,8 @@ clearly told, illustrated, with something you made and sources you read.</p>
 <p>Participation means three things, all of them observable:</p>
 <ul>
 <li><strong>You ask questions.</strong> During lectures, of your classmates. This is the one that matters. A room that does not push is a room the presenter cannot learn from, and it makes the 0 to 3 rating meaningless. You will find it much easier to interrogate a fellow student than to interrogate me, and that is precisely the advantage this format buys.</li>
-<li><strong>You take part in discussion and exercises</strong> led by the lecturer or a student.</li>
-<li><strong>You submit your peer ratings</strong> for the student contributions you hear. Not submitting is the one reliable way to lose these points.</li>
+<li><strong>You take part in discussion and exercises</strong> when a team runs one.</li>
+<li><strong>You submit your peer ratings</strong> after each lecture. Not submitting is the one reliable way to lose these points.</li>
 </ul>
 <p>Attendance alone is not participation. Being present and silent for sixteen lectures is
 worth very little here.</p>
@@ -1012,7 +1022,7 @@ not possible.</p>
 <div class="parthead">
   <div class="k">Part 4</div>
   <h2>Reference</h2>
-  <p>Every date in one place, your next steps, and an optional record of the format change.</p>
+  <p>Every date in one place, and what to do in the next three days.</p>
 </div>
 
 <h2 id="s12"><span class="n">12</span>Every deadline</h2>
@@ -1020,7 +1030,7 @@ not possible.</p>
 
 <figure>
 <div class="figbox">
-<svg viewBox="0 0 720 230" role="img" aria-label="Term timeline: sixteen lectures, the National Day gap, eight essay deadlines, the format update from Lecture 5 and the research essay deadline">
+<svg viewBox="0 0 720 230" role="img" aria-label="Term timeline: sixteen lectures, the National Day gap, eight essay deadlines, the sign-up deadline and the research essay deadline">
   <rect x="336.9" y="34" width="55.4" height="82" rx="4" fill="var(--blush)" stroke="var(--coral)" stroke-width="1.2" stroke-dasharray="4 3"/>
   <text x="364.6" y="28" text-anchor="middle" font-family="var(--sans)" font-size="10" font-weight="700" fill="var(--coral)">holiday</text>
   <line x1="46" y1="116" x2="678" y2="116" stroke="var(--gray)" stroke-width="1.6"/>
@@ -1060,9 +1070,9 @@ not possible.</p>
   </g>
   <text x="374" y="140" text-anchor="middle" font-family="var(--sans)" font-size="10" font-weight="700" letter-spacing="1.2" fill="var(--lime)">MINI-ESSAYS</text>
 
-  <circle cx="189.2" cy="196" r="6" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
-  <path d="M189.2,116 L189.2,190" stroke="var(--rose)" stroke-width="1.2" stroke-dasharray="3 3"/>
-  <text x="202" y="200" font-family="var(--sans)" font-size="11" font-weight="700" fill="var(--rose)">new format, 09-15</text>
+  <circle cx="78.5" cy="196" r="6" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
+  <path d="M78.5,116 L78.5,190" stroke="var(--rose)" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <text x="90" y="200" font-family="var(--sans)" font-size="11" font-weight="700" fill="var(--rose)">sign-up closes, 09-03</text>
   <circle cx="660" cy="196" r="6" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.6"/>
   <path d="M660,116 L660,190" stroke="var(--rose)" stroke-width="1.2" stroke-dasharray="3 3"/>
   <text x="648" y="200" text-anchor="end" font-family="var(--sans)" font-size="11" font-weight="700" fill="var(--rose)">research essay, 11-05</text>
@@ -1076,8 +1086,8 @@ not possible.</p>
 </svg>
 </div>
 <figcaption><b>Figure 8. The whole term.</b> Sixteen lectures above the line, eight
-mini-essay deadlines below it, the new teaching format from 09-15, and the research essay
-on 11-05.</figcaption>
+mini-essay deadlines below it, and the two dates that are not weekly: sign-up on 09-03 and
+the research essay on 11-05.</figcaption>
 </figure>
 
 <div class="tablewrap">
@@ -1085,7 +1095,7 @@ on 11-05.</figcaption>
 <caption>Table 6. All deadlines for the term.</caption>
 <thead><tr><th>When</th><th>What</th></tr></thead>
 <tbody>
-<tr><td class="num">Fri 2026-09-11</td><td>Registration closes. Check your lecture assignment on the course schedule.</td></tr>
+<tr><td class="num">Thu 2026-09-03, 23:59</td><td class="hl">Team sign-up pull request merged</td></tr>
 <tr><td class="num">Mon 2026-09-07, 23:59</td><td>Extension mini-essay, week 1</td></tr>
 <tr><td class="num">Mon 2026-09-14, 23:59</td><td>Extension mini-essay, week 2</td></tr>
 <tr><td class="num">Mon 2026-09-21, 23:59</td><td>Extension mini-essay, week 3</td></tr>
@@ -1100,13 +1110,13 @@ on 11-05.</figcaption>
 </table>
 </div>
 
-<h2 id="s13"><span class="n">13</span>Your next steps</h2>
-<p class="lede">Keep your date. Choose your point. Rehearse it well.</p>
+<h2 id="s13"><span class="n">13</span>This week</h2>
+<p class="lede">Three things, none of them large.</p>
 
 <ol>
-<li><strong>Check your assignment</strong> on the <a href="https://chemaoxfz.github.io/ccbs/2026fall/#schedule">course schedule</a>. If it was lecturer-assigned, complete your GitHub signup. Contact me if the date needs changing.</li>
-<li><strong>Choose one point</strong> from your lecture and contact the TAs about the rehearsal. If you are already preparing, narrow your existing material with them. Additional points need rehearsal approval.</li>
-<li><strong>Keep the weekly routine.</strong> Extension mini-essays still follow the deadlines above. Teaching does not replace that week's mini-essay.</li>
+<li><strong>Tonight or tomorrow:</strong> get an agent working. <a href="https://hpc.westlake.edu.cn/#/ai-campus">Westlake AI Campus</a> if you do not already have one. Bring a real question to Thursday's lecture.</li>
+<li><strong>Before Thursday 23:59:</strong> get a GitHub account, pick a lecture, optionally find one or two teammates, and open your required sign-up pull request. The <a href="https://github.com/chemaoxfz/ccbs-2026-submissions">repository README</a> also explains how to volunteer for an additional lecture.</li>
+<li><strong>Before Monday 23:59:</strong> write your first extension mini-essay, on anything from lectures 1 or 2. Use <a href="lecture01-extension.html">my lecture 1 example</a> as the model for shape.</li>
 </ol>
 
 <div class="box key">
@@ -1123,33 +1133,6 @@ on 11-05.</figcaption>
 TAs: Wenqin Zhou (<a href="mailto:zhouwenqin@westlake.edu.cn">zhouwenqin@westlake.edu.cn</a>),
 Xinyu Wang (<a href="mailto:wangxinyu68@westlake.edu.cn">wangxinyu68@westlake.edu.cn</a>).</p>
 </div>
-
-<h2 id="history">Format history (optional)</h2>
-<details class="box note">
-<summary><strong>11 September 2026: what changed, why, and the previous version</strong></summary>
-<p><strong>The original assignment was to teach most of a whole lecture.</strong> One to
-three students shared the 95-minute meeting, with five minutes of opening administration
-and five minutes for my closing addendum. I normally intervened only if the teaching
-broke down. Registration closes today with 17 students enrolled.</p>
-<p><strong>Yesterday's Lecture 4 made me reconsider the workload I had assigned.</strong>
-Álvaro's teaching was excellent, patient, detailed and very well prepared. It also helped
-me see how much whole-lecture preparation asks of a student: not only understanding the
-content, but choosing its depth, managing dependencies and keeping a dense lecture moving.
-That is a course-design responsibility for me to address, not a reason to ask students
-to work still harder.</p>
-<p><strong>From Lecture 5, the required task is one carefully prepared point.</strong>
-I lead the lecture and hand over at each student's point. Broader teaching remains an
-approved challenge, with a five-course-point bonus only for full-score work. The aim is a
-more manageable preparation load and consistently high-quality contributions. We will
-keep discussing how this works in practice.</p>
-<p><strong>Earlier work keeps the terms under which it was prepared.</strong> Completed
-teaching is not retrospectively regraded. Existing assignments, the preparation timeline,
-ordinary grading weights and written assignments remain. Students already preparing can
-adapt their material with the TAs, without a new retrospective deadline.</p>
-<p><a href="intro-before-20260911.html"><strong>Read the archived pre-update course guide</strong></a>.
-It records the former rules, including the original 3 September signup deadline.
-You do not need to read it to follow the current course.</p>
-</details>
 
 </main>
 </div>
