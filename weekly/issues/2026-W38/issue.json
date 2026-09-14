@@ -1,0 +1,184 @@
+{
+  "end_date": "2026-09-14",
+  "papers": [
+    {
+      "authors": [
+        "Brooke E. Propson",
+        "William A. Argiroff",
+        "Grace A. Cagle",
+        "Rima A. Upchurch",
+        "Donald R. Zak",
+        "A. Stuart Grandy",
+        "Zachary B. Freedman"
+      ],
+      "category": "core",
+      "key_finding": "N deposition changed decomposing microbial communities and mineral SOM biochemical composition, particularly lignin- and lipid-derived compounds, while leaving undecomposed and 1-year decomposed root litter unchanged.",
+      "pdf_url": "https://www.nature.com/articles/s44485-026-00003-0.pdf",
+      "published": "2026-09-09",
+      "title": "Anthropogenic nitrogen deposition restructures decomposing microbial communities, altering SOM molecular composition, but not molecular complexity or diversity",
+      "tldr": "In a long-term nitrogen-deposition field experiment, N deposition did not alter undecomposed or 1-year decomposed root litter but did restructure decomposing microbial communities and mineral soil organic matter biochemistry, mainly in lignin- and lipid-derived compounds.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Dynamic metabolism \u0026 engineering"
+      ],
+      "url": "https://doi.org/10.1038/s44485-026-00003-0",
+      "venue": "npj Soil Ecology",
+      "why_relevant": "Directly connects to Fangzhou's interest in microbial community ecology and dynamic metabolism, since the study links microbial community restructuring to altered decomposition of specific soil carbon substrates."
+    },
+    {
+      "authors": [
+        "Peer H. A. Timmers",
+        "Giovanni Sandrini",
+        "Julia Wunderer",
+        "Goffe Elsinga",
+        "Michiel H. in ‘t Zandt",
+        "Wim Hijnen",
+        "Leonie Marang"
+      ],
+      "category": "core",
+      "key_finding": "Treatment established the initial community, but ultrafiltration post-treatment and storage reshaped it by increasing cell numbers and promoting Comamonadaceae and Brevundimonas dominance, with loose deposits increasingly contributing to bulk water communities during distribution.",
+      "pdf_url": "https://www.nature.com/articles/s41522-026-01145-x_reference.pdf",
+      "published": "2026-09-05",
+      "title": "Biological stability shapes habitat-specific microbial community dynamics from treatment to distribution in non-chlorinated drinking water distribution systems",
+      "tldr": "Comparing two full-scale non-chlorinated drinking water distribution systems, the study found that improved biological stability reduced regrowth potential and Aeromonas occurrence while altering habitat-specific microbial communities in bulk water, biofilms, and loose deposits.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1038/s41522-026-01145-x",
+      "venue": "npj Biofilms and Microbiomes",
+      "why_relevant": "Relevant to Fangzhou's microbial population dynamics and community ecology interests, as it tracks habitat-specific community assembly and regrowth across engineered freshwater systems."
+    },
+    {
+      "authors": [
+        "Smitha Maretvadakethope",
+        "Içvara Aor",
+        "Matthias M. Fischer",
+        "Àngela Pantebre Pedrosa",
+        "Yolanda Schaerli",
+        "Rubén Perez‐Carrasco"
+      ],
+      "category": "core",
+      "key_finding": "The AC-DC circuit can produce more than thirty topologically distinct bifurcation diagrams, challenging the view that network topology rigidly constrains dynamical outcomes.",
+      "pdf_url": "https://www.cell.com/cell-systems/pdf/S2405-4712(26)00197-3.pdf",
+      "published": "2026-09-01",
+      "title": "Let there be multifunctionality: Uncovering the dynamical zoo of the AC-DC genetic circuit",
+      "tldr": "Using thermodynamic formalism and Bayesian inference, the authors show that a single-inducer version of the three-gene AC-DC circuit can display multifunctional dynamics including coexisting oscillations and multistability.",
+      "topics": [
+        "Synthetic biology circuits"
+      ],
+      "url": "https://doi.org/10.1016/j.cels.2026.101715",
+      "venue": "Cell Systems",
+      "why_relevant": "Directly tied to Fangzhou's synthetic biology circuit and cell-fate circuit interests, showing how a minimal gene regulatory network can generate diverse dynamical behaviors relevant to designing biological decision circuits."
+    },
+    {
+      "authors": [
+        "Laure Le Blanc",
+        "Baptiste Alric",
+        "Romain Rollin",
+        "Laura Xénard",
+        "Merisa Avdović",
+        "Sylvie Goussard",
+        "Laurent Mazenq",
+        "Matthieu Piel",
+        "Jean-Yves Tinévez",
+        "Morgan Delarue",
+        "Guillaume Duménil",
+        "Daria Bonazzi"
+      ],
+      "category": "core",
+      "key_finding": "Growth-induced pressure keeps increasing under confinement in a regime the authors call overpressurization, and rcs mutants display abnormal shapes only in this overpressurized state, indicating transcriptional adaptation is needed to resist pressure buildup.",
+      "pdf_url": "https://www.nature.com/articles/s41467-026-76492-6_reference.pdf",
+      "published": "2026-09-01",
+      "title": "Bacterial growth under confinement requires transcriptional adaptation to resist turgor pressure build-up",
+      "tldr": "E. coli growing under confinement generate forces in the hundreds of kPa range, decoupling growth and division, producing shorter cells, increasing cytoplasmic crowding, and activating the Rcs stress pathway.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.1038/s41467-026-76492-6",
+      "venue": "Nature Communications",
+      "why_relevant": "Directly connects to Fangzhou's core work on bacterial growth and division, growth laws, and cell-size homeostasis by linking mechanical confinement to division arrest and altered cell size."
+    },
+    {
+      "authors": [
+        "Huimin Gao",
+        "Sangar Khan",
+        "Xinxin Qi",
+        "Zongwei Lin",
+        "Guohao Liu",
+        "Yuanyuan Lv",
+        "Min Zhang",
+        "Zhijun Xia",
+        "Naicheng Wu"
+      ],
+      "category": "core",
+      "key_finding": "Deterministic assembly processes dominated in summer while stochastic processes prevailed in winter, and predicted functional profiling suggested the hydropower plant may regulate carbon and nutrient metabolism.",
+      "pdf_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/ece3.74330",
+      "published": "2026-09-01",
+      "title": "Seasonal Effect of a Small Hydropower Plant on Benthic Biofilm Microbial Community Structure and Predicted Functional Potential",
+      "tldr": "A one-year survey across four river sections affected by a small hydropower plant found distinct bacterial composition in the reservoir, highest diversity and broader niche breadth in the dewatered reach, and seasonal shifts between deterministic and stochastic assembly.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1002/ece3.74330",
+      "venue": "Ecology and Evolution",
+      "why_relevant": "Relevant to Fangzhou's microbial community ecology interests, particularly how hydrological alteration and seasonality shape community assembly and predicted metabolic function in freshwater biofilms."
+    },
+    {
+      "authors": [
+        "Wensi Zhang"
+      ],
+      "category": "core",
+      "key_finding": "Low-oxygen conditions downregulated ROS-scavenging enzymes and resistance proteins including beta-lactamases and efflux pump components in E. coli, and continuous oxygen oscillation at 25°C provided the best balance between ARG control and cyanobacterial suppression.",
+      "pdf_url": "",
+      "published": "2026-09-01",
+      "title": "The Effect of Climate Warming on Microbial Community Functions and Antibiotic Resistance in Freshwater Ecosystems",
+      "tldr": "This thesis examines how temperature-oxygen interactions shape freshwater microbial community structure, oxidative stress responses, and antibiotic resistance gene dynamics using metagenomics, E. coli evolution experiments, proteomics, and pond oxygen-manipulation experiments.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://hdl.handle.net/2292/76873",
+      "venue": "ResearchSpace (University of Auckland)",
+      "why_relevant": "Directly connects to Fangzhou's interests in antibiotic resistance, microbial physiology, and community ecology by linking oxygen availability to metabolic adaptation, stress responses, and resistance-associated protein abundance."
+    },
+    {
+      "authors": [
+        "Jacob Mead"
+      ],
+      "category": "core",
+      "key_finding": "A water chestnut canopy influenced microbial integrity at the air-water and sediment-water interfaces by affecting cellular motility and morphotype diversity, leading the authors to conclude that the canopy creates localized microbial stress.",
+      "pdf_url": "https://eartharxiv.org/repository/object/14702/download/25570/",
+      "published": "2026-08-31",
+      "title": "Assessing the Impact of Invasive Trapa natans on Freshwater Microbial Communities in Collins Lake, New York",
+      "tldr": "A field study of Collins Lake, New York, compared water and sediment samples with and without invasive Trapa natans canopies and assessed microbial integrity via morphotype diversity and cellular motility.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.31223/x5tz28",
+      "venue": "",
+      "why_relevant": "Relevant to Fangzhou's microbial population and community ecology interests by examining how an invasive plant alters microbial community structure and motility in freshwater habitats."
+    },
+    {
+      "authors": [
+        "Jin Sub Lee",
+        "Philip M. Kim"
+      ],
+      "category": "explorer",
+      "key_finding": "NCFlow outperforms AlphaFold3-based methods in structure prediction of unseen non-canonical amino acids, and in four protein-peptide test cases incorporating non-canonicals improved predicted binding affinity by up to -7.0 kcal/mol.",
+      "pdf_url": "https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btag654/70885944/btag654.pdf",
+      "published": "2026-08-31",
+      "title": "Design of peptides with non-canonical amino acids using flow matching",
+      "tldr": "The authors present NCFlow, a flow matching generative model that places arbitrary non-canonical amino acids into a given protein backbone using only atom types and bond connectivity, pretrained on small molecules and protein-ligand complexes before finetuning on native non-canonicals.",
+      "topics": [
+        "Biology-enabling generative methods"
+      ],
+      "url": "https://doi.org/10.1093/bioinformatics/btag654",
+      "venue": "Bioinformatics",
+      "why_relevant": "This biology-enabling generative method connects to Fangzhou's interest in flow matching and data-driven design of biological networks; although it does not itself study microbial physiology, its flow-matching framework and peptide design pipeline could inform future generative design of proteins and peptides with non-canonical building blocks."
+    }
+  ],
+  "run_key": "2026-W38",
+  "schema_version": 1,
+  "start_date": "2026-09-08",
+  "title": "BMAC Weekly — 2026-W38"
+}
