@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 4 · What stable memory actually promises · audience extension · CCBS 2026</title>
+<meta name="description" content="The Week 2 submissions turn “stable” into a sequence of testable claims about conserved pools, uncertain rates, basin geometry, pulse duration and individual molecules.">
+<style>
+:root{--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567;
+--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--ink:#20201E;--gray:#877F77;--leader:#B8AEA5;--gridc:#EDE7E0;
+--bg:#FCFAF7;--bg2:#FFFFFF;--fg:var(--ink);--muted:#6E675F;--rule:#E3DCD3;
+--shadow:0 1px 2px rgba(32,32,30,.05), 0 8px 28px rgba(32,32,30,.05);
+--paper:var(--bg);--paper2:var(--bg2);--accent:var(--teal);--blue:var(--peri);--warn:var(--coral);--grid:var(--gridc);
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+--mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;--maxw:44rem}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;
+--gridc:#2C2E28;--leader:#5C574F;--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;
+--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#141513;--bg2:#1C1D1A;--fg:#EDE9E2;--muted:#A9A197;--rule:#33352F;--gridc:#2C2E28;--leader:#5C574F;
+--ink:#EDE9E2;--gray:#9A9289;--blush:#33262B;--lavender:#262538;--powder:#1F2A33;--lilac:#2E2634;--pinkf:#3A2626;--cream:#332F20;
+--coral:#F2937D;--peri:#8497E0;--lime:#A6C55C;--plum:#B183C6;--teal:#4FC0B3;--rose:#E8768A;--shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px rgba(0,0,0,.4)}
+:root[data-theme="light"]{--bg:#FCFAF7;--bg2:#FFFFFF;--fg:#20201E;--muted:#6E675F;--rule:#E3DCD3;--gridc:#EDE7E0;--leader:#B8AEA5;
+--ink:#20201E;--gray:#877F77;--blush:#F5E6EB;--lavender:#E6E4F1;--powder:#D0DAE4;--lilac:#D8CDDD;--pinkf:#F8CFCD;--cream:#FAF0D5;
+--coral:#EE8168;--peri:#5A73CE;--lime:#8FB043;--plum:#77488C;--teal:#1F9A8E;--rose:#D75567}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--serif);font-size:18px;line-height:1.62;
+font-kerning:normal;text-rendering:optimizeLegibility}
+.wrap{max-width:78rem;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:3rem}
+@media (max-width:1000px){.wrap{grid-template-columns:1fr;gap:0}}
+nav.toc{position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding:2.5rem 0 3rem;
+font-family:var(--sans);font-size:.8rem;line-height:1.45}
+nav.toc .brand{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700;margin:0 0 1.1rem}
+nav.toc h2{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 .9rem;font-weight:600}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li{margin:0 0 .1rem}
+nav.toc a{display:block;padding:.26rem .55rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;border-radius:0 4px 4px 0}
+nav.toc a:hover{color:var(--fg);background:var(--bg2)}
+nav.toc a.on{color:var(--fg);border-left-color:var(--rose);background:var(--bg2);font-weight:600}
+nav.toc .part{margin:1.1rem 0 .35rem;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--leader);font-weight:700}
+@media (max-width:1000px){nav.toc{position:static;max-height:none;border-bottom:1px solid var(--rule);margin-bottom:1rem}}
+main{padding:2.5rem 0 6rem;min-width:0}
+main > *{max-width:var(--maxw)}
+main > figure,main > .wide,main > .demo,main > .tablewrap{max-width:56rem}
+h1{font-size:2.5rem;line-height:1.1;letter-spacing:-.02em;margin:.4rem 0 .8rem;font-weight:700;max-width:26ch}
+.sub{font-size:1.18rem;color:var(--muted);margin:0 0 1.6rem;line-height:1.5;max-width:38rem}
+.byline{font-family:var(--sans);font-size:.8rem;color:var(--muted);letter-spacing:.02em;margin-bottom:2.6rem;padding-bottom:1.6rem;border-bottom:1px solid var(--rule)}
+h2{font-size:1.05rem;font-family:var(--sans);font-weight:700;letter-spacing:.02em;margin:3.6rem 0 .2rem;scroll-margin-top:1.5rem}
+h2 .n{color:var(--rose);font-variant-numeric:tabular-nums;margin-right:.5rem}
+h2 + .lede{color:var(--muted);font-size:1.02rem;margin:.1rem 0 1.1rem}
+h3{font-size:.95rem;font-family:var(--sans);font-weight:700;margin:2.1rem 0 .5rem;color:var(--fg)}
+.parthead{margin:4.5rem 0 1.2rem;padding-top:1.6rem;border-top:2px solid var(--fg)}
+.parthead .k{font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:700}
+.parthead h2{font-size:1.8rem;margin:.35rem 0 .3rem;letter-spacing:-.01em;font-family:var(--serif)}
+.parthead p{color:var(--muted);margin:0;font-size:1.02rem}
+p{margin:0 0 1.05rem}
+a{color:var(--fg);text-underline-offset:2px;text-decoration-color:var(--leader)}
+a:hover{text-decoration-color:var(--rose)}
+ul,ol{margin:0 0 1.05rem;padding-left:1.35rem}
+li{margin:.28rem 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.6rem 0}
+.small{font-size:.88rem;color:var(--muted)}
+/* Math. Sources carrying <!--MATH:latex--> have their .m / .eq contents rendered
+   to MathML at build time; the browser's own math font does the typesetting, so
+   no webfont is loaded. Pages not yet migrated still hold entity HTML here, and
+   the monospace fallback below is what they get. */
+.m{font-family:var(--mono);font-size:.92em;font-style:normal;white-space:nowrap}
+.m:has(math){font-family:inherit;font-size:1em;white-space:normal}
+math{font-size:1.06em;font-style:normal}
+math .pf,mstyle.pf{color:var(--rose);font-weight:700}
+.eq:has(math){font-family:inherit;font-size:1rem;line-height:1.4}
+.eq math[display="block"]{margin:0}
+/* Do not set display on <math>: the browser's own "inline math" / "block math"
+   layout modes are what typeset it, and overriding them breaks the inline flow. */
+math annotation{display:none}
+/* Pseudocode is not mathematics. It sits in the same card as an .eq so the page
+   reads as one column, but it stays upright, keeps its own line breaks, and is its
+   own horizontal scroller so a long line cannot push a phone page sideways. */
+pre.code{display:block;margin:1.3rem 0;padding:.85rem 1rem;text-align:left;
+font-family:var(--mono);font-size:.86rem;line-height:1.65;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;white-space:pre;
+color:var(--fg)}
+.eq{display:block;margin:1.3rem auto;padding:.85rem 1rem;text-align:center;font-family:var(--mono);font-size:.95rem;background:var(--bg2);
+border:1px solid var(--rule);border-radius:8px;overflow-x:auto;line-height:1.9}
+.eq .tag{float:right;color:var(--leader);font-size:.85em}
+.eq b{color:var(--rose);font-weight:700}
+sub,sup{font-size:.7em;line-height:0}
+.box{border:1px solid var(--rule);background:var(--bg2);border-radius:10px;padding:1rem 1.15rem;margin:1.5rem 0;box-shadow:var(--shadow)}
+.box .lbl{font-family:var(--sans);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.45rem;display:block}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+.box.key{border-left:3px solid var(--rose);background:linear-gradient(94deg,var(--blush),var(--bg2) 62%)}
+.box.key .lbl{color:var(--rose)}
+.box.def{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.def .lbl{color:var(--peri)}
+.box.note{border-left:3px solid var(--lime)}
+.box.note .lbl{color:var(--lime)}
+.box.caution{border-left:3px solid var(--coral);background:linear-gradient(94deg,var(--pinkf),var(--bg2) 62%)}
+.box.caution .lbl{color:var(--coral)}
+.box.sim{border-left:3px solid var(--teal);background:linear-gradient(94deg,var(--powder),var(--bg2) 62%)}
+.box.sim .lbl{color:var(--teal)}
+.box.open{border-left:3px solid var(--plum);background:linear-gradient(94deg,var(--lilac),var(--bg2) 62%)}
+.box.open .lbl{color:var(--plum)}
+figure{margin:2rem 0;padding:0}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+svg text.halo{paint-order:stroke;stroke:var(--bg2);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo2{paint-order:stroke;stroke:var(--bg);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halopink{paint-order:stroke;stroke:var(--pinkf);stroke-width:3.2px;stroke-linejoin:round}
+svg text.halo3{paint-order:stroke;stroke:var(--bg);stroke-width:3.6px;stroke-linejoin:round}
+
+figcaption{font-family:var(--sans);font-size:.8rem;line-height:1.5;color:var(--muted);margin-top:.7rem;max-width:44rem}
+figcaption b{color:var(--fg);font-weight:700}
+.figbox{background:var(--bg2);border:1px solid var(--rule);border-radius:10px;padding:1.1rem;box-shadow:var(--shadow)}
+.tablewrap{overflow-x:auto;margin:1.6rem 0;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:.83rem;line-height:1.45}
+th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:700;font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tbody tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hl{color:var(--rose);font-weight:600}
+caption{caption-side:bottom;text-align:left;padding:.7rem .8rem;font-family:var(--sans);font-size:.78rem;color:var(--muted)}
+.refs{font-size:.88rem;line-height:1.5}
+.refs ol{padding-left:1.8rem}
+.refs li{margin:.5rem 0}
+.refs .venue{color:var(--muted)}
+.pdf{font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.04em;color:var(--teal);border:1px solid var(--teal);border-radius:4px;padding:.02rem .3rem;text-decoration:none;margin-left:.3rem;white-space:nowrap}
+.pdf:hover{background:var(--teal);color:var(--bg2)}
+sup.c{font-size:.68em;color:var(--rose);font-weight:700}
+sup.c a{color:inherit;text-decoration:none}
+.rundown{display:grid;grid-template-columns:6.2rem 1fr;gap:.45rem 1rem;margin:1.4rem 0;padding:1rem 1.15rem;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);box-shadow:var(--shadow);font-family:var(--sans);font-size:.84rem;line-height:1.45}
+.rundown dt{font-family:var(--mono);font-weight:700;color:var(--rose)}.rundown dd{margin:0 0 .25rem}.rundown dd strong{color:var(--fg)}
+.steps{counter-reset:worked;list-style:none;padding:0;margin:1.4rem 0}.steps>li{counter-increment:worked;position:relative;padding:.8rem 1rem .8rem 3.2rem;margin:.6rem 0;border-left:2px solid var(--peri);background:var(--bg2);border-radius:0 8px 8px 0}.steps>li:before{content:counter(worked);position:absolute;left:.85rem;top:.7rem;width:1.55rem;height:1.55rem;display:grid;place-items:center;border-radius:50%;background:var(--peri);color:var(--bg2);font:700 .72rem var(--sans)}
+.checkpoint{margin:1.6rem 0;padding:.9rem 1.05rem;border:1px dashed var(--teal);border-radius:9px;background:color-mix(in srgb,var(--powder) 55%,var(--bg2));font-family:var(--sans);font-size:.88rem}.checkpoint strong{color:var(--teal)}
+/* A section's takeaway: the capability the reader leaves with. Global design rule 2,
+   ARTIFACTS.md. One per numbered section, last thing in it, enforced by tools/check.py. */
+.takeaway{margin:1.5rem 0 .4rem;padding:.62rem 0 .62rem 1.05rem;border-left:3px solid var(--lime);
+  font-family:var(--sans);font-size:.95rem;line-height:1.55;color:var(--fg)}
+.takeaway:before{content:"You can now";display:block;font-size:.63rem;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:700;color:var(--lime);margin-bottom:.28rem}
+.takeaway.keep:before{content:"Worth keeping"}
+.takeaway.rule:before{content:"The rule"}
+.formula-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.3rem 0}.formula-pair>*{margin:0}
+@media(max-width:700px){.rundown{grid-template-columns:1fr}.rundown dt{margin-top:.3rem}.formula-pair{grid-template-columns:1fr}}
+#tt{position:fixed;right:1rem;bottom:1rem;z-index:50;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-size:1rem;background:var(--bg2);box-shadow:var(--shadow);border:1px solid var(--rule)}
+@media print{#tt,nav.toc{display:none}.wrap{display:block}main>*{max-width:none}}
+
+/* ---- extras used by the lecture 2 lineage and exposition pages ---- */
+.box.thm{border-left:3px solid var(--peri);background:linear-gradient(94deg,var(--lavender),var(--bg2) 62%)}
+.box.thm .lbl{color:var(--peri)}
+.box.hist{border-left:3px solid var(--leader)}
+.box.hist .lbl{color:var(--leader)}
+blockquote.quote{margin:1.4rem 0;padding:.15rem 0 .15rem 1.15rem;border-left:3px solid var(--leader);
+  color:var(--gray);font-style:italic;font-size:.96em;line-height:1.62}
+blockquote.quote cite{display:block;margin-top:.5rem;font-style:normal;font-family:var(--sans);
+  font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--leader)}
+blockquote.quote cite::before{content:"\2014 "}
+.demo{background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:1.15rem;margin:2rem 0;box-shadow:var(--shadow)}
+.demo h4{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin:0 0 .1rem;font-weight:700}
+.demo .dsub{font-family:var(--sans);font-size:.83rem;color:var(--muted);margin:0 0 .9rem}
+.ctl{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:center;font-family:var(--sans);font-size:.78rem;margin:.9rem 0 .2rem}
+.ctl label{display:flex;flex-direction:column;gap:.15rem;min-width:9.5rem;flex:1 1 9.5rem}
+.ctl .lv{display:flex;justify-content:space-between;gap:.6rem;color:var(--muted)}
+.ctl .lv b{color:var(--fg);font-family:var(--mono);font-weight:600}
+select{width:100%;font-family:var(--sans);font-size:.8rem;padding:.36rem .5rem;border-radius:7px;border:1px solid var(--rule);background:var(--bg);color:var(--fg)}
+input[type=range]{width:100%;accent-color:var(--rose);height:1.1rem}
+button{font-family:var(--sans);font-size:.78rem;font-weight:600;padding:.42rem .85rem;border-radius:7px;
+  border:1px solid var(--rule);background:var(--bg);color:var(--fg);cursor:pointer}
+button:hover{border-color:var(--rose);color:var(--rose)}
+button.pri{background:var(--rose);border-color:var(--rose);color:#fff}
+button.pri:hover{color:#fff;opacity:.9}
+.readout{font-family:var(--mono);font-size:.78rem;color:var(--muted);margin-top:.6rem;line-height:1.7}
+.readout b{color:var(--fg)}
+canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--bg)}
+.pdf.no{color:var(--leader);border-color:var(--leader)}
+.pdf.no:hover{background:none;color:var(--leader)}
+
+/* Narrow screens: .m is nowrap so short formulas never break, but a long inline
+   formula or file path then pushes the page sideways. Below the tablet breakpoint,
+   let it wrap. Desktop rendering is unchanged. */
+@media (max-width:640px){
+  .m,code{white-space:normal;overflow-wrap:anywhere}
+  /* MathML only breaks at some operators, so a long chain of arithmetic stays one
+     unbreakable run even here. Mark those .m wide and they scroll inside their own
+     box, the way .eq already does, instead of pushing the page sideways. */
+  .m.wide{display:inline-block;max-width:100%;overflow-x:auto;vertical-align:bottom}
+}
+</style>
+</head>
+<body>
+<button id="tt" title="Toggle light / dark">&#9689;</button>
+<div class="wrap">
+<!--MATH:latex-->
+<nav class="toc" id="toc">
+<div class="brand">CCBS · 2026 · Lecture 4 · AUDIENCE EXTENSION</div>
+<h2>Contents</h2>
+<ol>
+<li><a href="#s1">1 · Stable against which perturbation?</a></li>
+<li><a href="#s2">2 · The nonlinearity need not be in production</a></li>
+<li><a href="#s3">3 · One stable matrix is not a stable family</a></li>
+<li><a href="#s4">4 · Two memories need not be equally accessible</a></li>
+<li><a href="#s5">5 · A switch is not a clock</a></li>
+<li><a href="#s6">6 · A pulse must last long enough</a></li>
+<li><a href="#s7">7 · The same curve can hide another clock</a></li>
+<li><a href="#s8">8 · A stable mean is not a quiet cell</a></li>
+<li><a href="#s9">9 · Specify the memory you need</a></li>
+<li><a href="#reproduce">Models and provenance</a></li>
+<li><a href="#refs">References</a></li>
+</ol>
+</nav>
+<main>
+<h1>What stable memory actually promises</h1>
+<p class="sub">The Week 2 submissions turn “stable” into a sequence of testable claims about conserved pools, uncertain rates, basin geometry, pulse duration and individual molecules.</p>
+<p class="byline">CCBS · EST 5053 · Lecture 4 audience extension<br>Editorial synthesis of nine Week 2 student submissions · prepared with Codex · 15 September 2026</p>
+
+<p>A phase portrait with two attracting points is a promising memory design. It is not yet a specification for a memory device. We still need to know which disturbances it withstands, which state a preparation reaches, how long a writing pulse must last and whether molecular fluctuations erase the result.</p>
+<p>The students' Week 2 extensions make those missing questions concrete. Some change the allowed perturbation. Others change a parameter, a hidden timescale or the object being measured. Their arguments fit together when we stop using “stable” as a single verdict and ask exactly what each calculation guarantees.</p>
+<p>We will build that specification in three stages. First define the state and the feedback that can support two outcomes. Then distinguish robustness of a family from accessibility of a particular basin. Finally ask whether a finite pulse and a finite molecular population can realize the promised memory.</p>
+<p class="small">Names link to the accepted submissions used here. New connections and calculations are editorial synthesis, not quotations or an invented discussion. Read beside the <a href="lecture04-core.html">core</a>, the lecturer-written <a href="lecture04-exposition.html">exposition</a> and <a href="lecture04-lineage.html">lineage</a>. All numerical examples below are declared models, not fitted measurements.</p>
+
+<h2 id="s1"><span class="n">1</span>Stable against which perturbation?</h2>
+<p>A stability test must use perturbations the physical system can actually make. <a href="https://github.com/chemaoxfz/ccbs-2026-submissions/blob/94162042f6dfad701f14cccb954890a33ade4af4/week2/week2-kehan-ext.html">Kehan Lang</a> exposes this requirement with reversible binding rather than a complicated gene circuit.</p>
+<p>For the elementary pair <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>+</mo><mi>S</mi><munderover><mo stretchy="true" minsize="3.0em">⇌</mo><mpadded width="+0.6em" lspace="0.3em"><msub><mi>k</mi><mo>−</mo></msub></mpadded><mpadded width="+0.6em" lspace="0.3em"><msub><mi>k</mi><mo>+</mo></msub></mpadded></munderover><mi>C</mi></mrow><annotation encoding="application/x-tex">E+S\xrightleftharpoons[k_-]{k_+}C</annotation></semantics></math></span>, the totals <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>E</mi></msub><mo>=</mo><mi>E</mi><mo>+</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">q_E=E+C</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>S</mi></msub><mo>=</mo><mi>S</mi><mo>+</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">q_S=S+C</annotation></semantics></math></span> are conserved. The three species therefore move on a one-dimensional slice. On that slice the exact equation is</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>C</mi><mo>˙</mo></mover><mo>=</mo><msub><mi>k</mi><mo>+</mo></msub><mo stretchy="false">(</mo><msub><mi>q</mi><mi>E</mi></msub><mo>−</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><msub><mi>q</mi><mi>S</mi></msub><mo>−</mo><mi>C</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>k</mi><mo>−</mo></msub><mi>C</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mspace width="2em"/><mn>0</mn><mo>≤</mo><mi>C</mi><mo>≤</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>q</mi><mi>E</mi></msub><mo separator="true">,</mo><msub><mi>q</mi><mi>S</mi></msub><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\dot C=k_+(q_E-C)(q_S-C)-k_-C=f(C),
+\qquad 0\le C\le\min(q_E,q_S).</annotation></semantics></math></div>
+<p>This is a coordinate reduction by conservation, not a fast-binding approximation. For positive totals and rate constants, the field points inward at both endpoints and</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>f</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><msub><mi>k</mi><mo>+</mo></msub><mo stretchy="false">(</mo><msub><mi>q</mi><mi>E</mi></msub><mo>+</mo><msub><mi>q</mi><mi>S</mi></msub><mo>−</mo><mn>2</mn><mi>C</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>k</mi><mo>−</mo></msub><mo>&lt;</mo><mn>0.</mn></mrow><annotation encoding="application/x-tex">f&#x27;(C)=-k_+(q_E+q_S-2C)-k_-&lt;0.</annotation></semantics></math></div>
+<p>There is one equilibrium, and every point in the allowed interval approaches it. With <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>E</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">q_E=1</annotation></semantics></math></span>, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>S</mi></msub><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">q_S=3</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mo>+</mo></msub><mo>=</mo><msub><mi>k</mi><mo>−</mo></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k_+=k_-=1</annotation></semantics></math></span> in chosen units, the complex level is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>5</mn><mo>−</mo><msqrt><mn>13</mn></msqrt><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>0.6972</mn></mrow><annotation encoding="application/x-tex">(5-\sqrt{13})/2=0.6972</annotation></semantics></math></span> and its restoring eigenvalue is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msqrt><mn>13</mn></msqrt></mrow><annotation encoding="application/x-tex">-\sqrt{13}</annotation></semantics></math></span>.</p>
+<p>The full three-species Jacobian also has two zero eigenvalues. They describe directions that change the conserved totals. An equilibrium for one total need not return to itself after the total is altered. That does not invalidate attraction within its original slice. Chemical reaction network theory calls these slices stoichiometric compatibility classes.<sup class="c"><a href="#r-horn">1</a></sup></p>
+<p>Kehan's example establishes the first line of a memory specification: what is held fixed during the disturbance? Adding molecules, redistributing existing molecules and changing an environment are different experiments. Their stability questions need not have the same answer.</p>
+<p class="takeaway">Reduce by exact conservation before interpreting zero eigenvalues, and name which totals an admissible perturbation preserves.</p>
+
+<h2 id="s2"><span class="n">2</span>The nonlinearity need not be in production</h2>
+<p>Positive feedback permits a switch only when the complete addition–removal balance has the right shape. <a href="https://github.com/chemaoxfz/ccbs-2026-submissions/blob/94162042f6dfad701f14cccb954890a33ade4af4/week2/week2-zhuxiaomeng-ext.html">Xiaomeng Zhu</a> tests this by changing the steepness of a self-activating production law:</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>x</mi><mo>˙</mo></mover><mo>=</mo><mn>0.08</mn><mo>+</mo><mfrac><mrow><mn>2.5</mn><msup><mi>x</mi><mi>n</mi></msup></mrow><mrow><mn>1</mn><mo>+</mo><msup><mi>x</mi><mi>n</mi></msup></mrow></mfrac><mo>−</mo><mi>x</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\dot x=0.08+\frac{2.5x^n}{1+x^n}-x.</annotation></semantics></math></div>
+<p>All variables and time are dimensionless. With <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n=1</annotation></semantics></math></span>, there is one positive equilibrium, 1.6291. With <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">n=4</annotation></semantics></math></span>, the equilibria are 0.0801, 0.7959 and 2.5195. Their net slopes alternate negative, positive, negative. The same positive feedback sign accompanies two different repertoires.</p>
+<p>Read next to that construction, <a href="https://github.com/chemaoxfz/ccbs-2026-submissions/blob/94162042f6dfad701f14cccb954890a33ade4af4/week2/week2-wangsiheng-ext.html">Siheng Wang</a>'s growth-feedback example shifts the question. Must the steep nonlinearity be in transcription? Let production be constant and let protein burden slow growth:</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>x</mi><mo>˙</mo></mover><mo>=</mo><mi>α</mi><mo>−</mo><mi>r</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mspace width="2em"/><mi>r</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>x</mi><mo stretchy="false">[</mo><mi>δ</mi><mo>+</mo><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo separator="true">,</mo><mspace width="2em"/><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\dot x=\alpha-r(x),
+\qquad r(x)=x[\delta+\lambda(x)],
+\qquad \lambda(x)=\frac{1}{1+x^4}.</annotation></semantics></math></div>
+<p>Here <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi></mrow><annotation encoding="application/x-tex">\delta</annotation></semantics></math></span> is degradation, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\lambda(x)</annotation></semantics></math></span> is growth dilution and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span> is production, in dimensionless units. With <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>0.55</mn></mrow><annotation encoding="application/x-tex">\alpha=0.55</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mo>=</mo><mn>0.20</mn></mrow><annotation encoding="application/x-tex">\delta=0.20</annotation></semantics></math></span>, the three equilibria are 0.4781, 1.4864 and 2.3981. The middle state is unstable.</p>
+<figure class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 384" role="img" aria-label="Nonlinearity can live in removal. Constant production; growth slows with protein burden">
+<title>Nonlinearity can live in removal</title>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif">
+<text x="16.0" y="25.0" font-size="20" fill="var(--fg,#252821)" font-weight="700">Nonlinearity can live in removal</text>
+
+<text x="16.0" y="49.0" font-size="16" fill="var(--muted,#69695F)" font-weight="400">Constant production; growth slows with protein burden</text>
+
+<text x="74.0" y="82.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">Production or removal (dimensionless)</text>
+
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="74.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">0</text>
+
+<line x1="179.000" y1="100.000" x2="179.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="179.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">0.8</text>
+
+<line x1="284.000" y1="100.000" x2="284.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="284.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">1.6</text>
+
+<line x1="389.000" y1="100.000" x2="389.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="389.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">2.4</text>
+
+<line x1="494.000" y1="100.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="494.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">3.2</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="283.0" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0</text>
+
+<line x1="74.000" y1="233.500" x2="494.000" y2="233.500" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="238.5" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0.2</text>
+
+<line x1="74.000" y1="155.625" x2="494.000" y2="155.625" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="160.6" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0.55</text>
+
+<line x1="74.000" y1="100.000" x2="494.000" y2="100.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="105.0" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0.8</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<text x="284.0" y="331.0" font-size="17" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">Protein (dimensionless)</text>
+
+<polyline data-curve="removal" points="74.0000,278.0000 74.8400,276.2912 75.6800,274.5824 76.5200,272.8736 77.3600,271.1648 78.2000,269.4560 79.0400,267.7472 79.8800,266.0384 80.7200,264.3297 81.5600,262.6209 82.4000,260.9122 83.2400,259.2036 84.0800,257.4950 84.9200,255.7865 85.7600,254.0781 86.6000,252.3698 87.4400,250.6617 88.2800,248.9538 89.1200,247.2461 89.9600,245.5387 90.8000,243.8316 91.6400,242.1250 92.4800,240.4187 93.3200,238.7130 94.1600,237.0078 95.0000,235.3033 95.8400,233.5996 96.6800,231.8967 97.5200,230.1947 98.3600,228.4937 99.2000,226.7940 100.0400,225.0955 100.8800,223.3984 101.7200,221.7029 102.5600,220.0091 103.4000,218.3172 104.2400,216.6273 105.0800,214.9395 105.9200,213.2542 106.7600,211.5715 107.6000,209.8916 108.4400,208.2147 109.2800,206.5410 110.1200,204.8708 110.9600,203.2043 111.8000,201.5418 112.6400,199.8836 113.4800,198.2299 114.3200,196.5810 115.1600,194.9372 116.0000,193.2988 116.8400,191.6662 117.6800,190.0397 118.5200,188.4196 119.3600,186.8064 120.2000,185.2002 121.0400,183.6016 121.8800,182.0109 122.7200,180.4285 123.5600,178.8548 124.4000,177.2902 125.2400,175.7352 126.0800,174.1902 126.9200,172.6556 127.7600,171.1318 128.6000,169.6194 129.4400,168.1188 130.2800,166.6305 131.1200,165.1549 131.9600,163.6925 132.8000,162.2438 133.6400,160.8094 134.4800,159.3896 135.3200,157.9851 136.1600,156.5962 137.0000,155.2236 137.8400,153.8677 138.6800,152.5290 139.5200,151.2080 140.3600,149.9052 141.2000,148.6211 142.0400,147.3563 142.8800,146.1112 143.7200,144.8862 144.5600,143.6820 145.4000,142.4988 146.2400,141.3373 147.0800,140.1979 147.9200,139.0810 148.7600,137.9870 149.6000,136.9164 150.4400,135.8695 151.2800,134.8469 152.1200,133.8488 152.9600,132.8756 153.8000,131.9277 154.6400,131.0055 155.4800,130.1091 156.3200,129.2390 157.1600,128.3953 158.0000,127.5784 158.8400,126.7885 159.6800,126.0258 160.5200,125.2904 161.3600,124.5826 162.2000,123.9025 163.0400,123.2503 163.8800,122.6259 164.7200,122.0295 165.5600,121.4612 166.4000,120.9209 167.2400,120.4087 168.0800,119.9245 168.9200,119.4682 169.7600,119.0399 170.6000,118.6394 171.4400,118.2665 172.2800,117.9211 173.1200,117.6031 173.9600,117.3122 174.8000,117.0483 175.6400,116.8110 176.4800,116.6002 177.3200,116.4154 178.1600,116.2565 179.0000,116.1230 179.8400,116.0147 180.6800,115.9312 181.5200,115.8720 182.3600,115.8368 183.2000,115.8251 184.0400,115.8365 184.8800,115.8706 185.7200,115.9269 186.5600,116.0049 187.4000,116.1041 188.2400,116.2241 189.0800,116.3642 189.9200,116.5240 190.7600,116.7030 191.6000,116.9007 192.4400,117.1164 193.2800,117.3496 194.1200,117.5998 194.9600,117.8664 195.8000,118.1489 196.6400,118.4467 197.4800,118.7593 198.3200,119.0860 199.1600,119.4263 200.0000,119.7797 200.8400,120.1457 201.6800,120.5235 202.5200,120.9128 203.3600,121.3129 204.2000,121.7233 205.0400,122.1435 205.8800,122.5729 206.7200,123.0111 207.5600,123.4575 208.4000,123.9115 209.2400,124.3728 210.0800,124.8408 210.9200,125.3149 211.7600,125.7949 212.6000,126.2801 213.4400,126.7701 214.2800,127.2646 215.1200,127.7629 215.9600,128.2648 216.8000,128.7698 217.6400,129.2775 218.4800,129.7875 219.3200,130.2995 220.1600,130.8129 221.0000,131.3276 221.8400,131.8431 222.6800,132.3591 223.5200,132.8753 224.3600,133.3914 225.2000,133.9070 226.0400,134.4218 226.8800,134.9356 227.7200,135.4481 228.5600,135.9590 229.4000,136.4681 230.2400,136.9751 231.0800,137.4798 231.9200,137.9819 232.7600,138.4813 233.6000,138.9778 234.4400,139.4710 235.2800,139.9610 236.1200,140.4474 236.9600,140.9301 237.8000,141.4089 238.6400,141.8838 239.4800,142.3544 240.3200,142.8208 241.1600,143.2828 242.0000,143.7402 242.8400,144.1929 243.6800,144.6409 244.5200,145.0839 245.3600,145.5221 246.2000,145.9551 247.0400,146.3830 247.8800,146.8057 248.7200,147.2231 249.5600,147.6351 250.4000,148.0417 251.2400,148.4429 252.0800,148.8385 252.9200,149.2286 253.7600,149.6131 254.6000,149.9919 255.4400,150.3650 256.2800,150.7325 257.1200,151.0942 257.9600,151.4502 258.8000,151.8005 259.6400,152.1449 260.4800,152.4836 261.3200,152.8166 262.1600,153.1437 263.0000,153.4651 263.8400,153.7807 264.6800,154.0905 265.5200,154.3945 266.3600,154.6929 267.2000,154.9854 268.0400,155.2723 268.8800,155.5534 269.7200,155.8289 270.5600,156.0987 271.4000,156.3629 272.2400,156.6215 273.0800,156.8745 273.9200,157.1219 274.7600,157.3638 275.6000,157.6002 276.4400,157.8312 277.2800,158.0567 278.1200,158.2769 278.9600,158.4917 279.8000,158.7012 280.6400,158.9054 281.4800,159.1043 282.3200,159.2981 283.1600,159.4867 284.0000,159.6702 284.8400,159.8485 285.6800,160.0219 286.5200,160.1903 287.3600,160.3537 288.2000,160.5122 289.0400,160.6658 289.8800,160.8146 290.7200,160.9587 291.5600,161.0980 292.4000,161.2326 293.2400,161.3626 294.0800,161.4879 294.9200,161.6087 295.7600,161.7250 296.6000,161.8369 297.4400,161.9443 298.2800,162.0474 299.1200,162.1461 299.9600,162.2405 300.8000,162.3307 301.6400,162.4167 302.4800,162.4985 303.3200,162.5763 304.1600,162.6500 305.0000,162.7196 305.8400,162.7853 306.6800,162.8470 307.5200,162.9049 308.3600,162.9589 309.2000,163.0091 310.0400,163.0556 310.8800,163.0984 311.7200,163.1374 312.5600,163.1729 313.4000,163.2047 314.2400,163.2330 315.0800,163.2578 315.9200,163.2791 316.7600,163.2970 317.6000,163.3115 318.4400,163.3227 319.2800,163.3305 320.1200,163.3351 320.9600,163.3364 321.8000,163.3346 322.6400,163.3296 323.4800,163.3215 324.3200,163.3103 325.1600,163.2960 326.0000,163.2788 326.8400,163.2585 327.6800,163.2354 328.5200,163.2093 329.3600,163.1804 330.2000,163.1486 331.0400,163.1140 331.8800,163.0767 332.7200,163.0367 333.5600,162.9939 334.4000,162.9485 335.2400,162.9005 336.0800,162.8498 336.9200,162.7966 337.7600,162.7409 338.6000,162.6826 339.4400,162.6219 340.2800,162.5587 341.1200,162.4931 341.9600,162.4251 342.8000,162.3548 343.6400,162.2821 344.4800,162.2072 345.3200,162.1299 346.1600,162.0504 347.0000,161.9687 347.8400,161.8849 348.6800,161.7988 349.5200,161.7106 350.3600,161.6203 351.2000,161.5280 352.0400,161.4335 352.8800,161.3371 353.7200,161.2386 354.5600,161.1381 355.4000,161.0357 356.2400,160.9314 357.0800,160.8251 357.9200,160.7170 358.7600,160.6069 359.6000,160.4951 360.4400,160.3814 361.2800,160.2659 362.1200,160.1486 362.9600,160.0296 363.8000,159.9089 364.6400,159.7864 365.4800,159.6623 366.3200,159.5365 367.1600,159.4090 368.0000,159.2799 368.8400,159.1492 369.6800,159.0169 370.5200,158.8830 371.3600,158.7476 372.2000,158.6106 373.0400,158.4721 373.8800,158.3321 374.7200,158.1907 375.5600,158.0477 376.4000,157.9034 377.2400,157.7576 378.0800,157.6104 378.9200,157.4618 379.7600,157.3118 380.6000,157.1605 381.4400,157.0078 382.2800,156.8538 383.1200,156.6984 383.9600,156.5418 384.8000,156.3839 385.6400,156.2248 386.4800,156.0643 387.3200,155.9027 388.1600,155.7398 389.0000,155.5757 389.8400,155.4105 390.6800,155.2440 391.5200,155.0764 392.3600,154.9076 393.2000,154.7377 394.0400,154.5667 394.8800,154.3945 395.7200,154.2213 396.5600,154.0469 397.4000,153.8715 398.2400,153.6951 399.0800,153.5175 399.9200,153.3390 400.7600,153.1594 401.6000,152.9788 402.4400,152.7972 403.2800,152.6147 404.1200,152.4311 404.9600,152.2466 405.8000,152.0611 406.6400,151.8747 407.4800,151.6873 408.3200,151.4990 409.1600,151.3098 410.0000,151.1197 410.8400,150.9287 411.6800,150.7369 412.5200,150.5441 413.3600,150.3505 414.2000,150.1560 415.0400,149.9607 415.8800,149.7646 416.7200,149.5676 417.5600,149.3699 418.4000,149.1713 419.2400,148.9719 420.0800,148.7717 420.9200,148.5708 421.7600,148.3691 422.6000,148.1666 423.4400,147.9634 424.2800,147.7594 425.1200,147.5547 425.9600,147.3492 426.8000,147.1431 427.6400,146.9362 428.4800,146.7286 429.3200,146.5203 430.1600,146.3114 431.0000,146.1017 431.8400,145.8914 432.6800,145.6804 433.5200,145.4688 434.3600,145.2565 435.2000,145.0435 436.0400,144.8299 436.8800,144.6157 437.7200,144.4009 438.5600,144.1854 439.4000,143.9693 440.2400,143.7526 441.0800,143.5354 441.9200,143.3175 442.7600,143.0990 443.6000,142.8800 444.4400,142.6604 445.2800,142.4402 446.1200,142.2195 446.9600,141.9982 447.8000,141.7764 448.6400,141.5540 449.4800,141.3310 450.3200,141.1076 451.1600,140.8836 452.0000,140.6591 452.8400,140.4341 453.6800,140.2085 454.5200,139.9825 455.3600,139.7560 456.2000,139.5289 457.0400,139.3014 457.8800,139.0734 458.7200,138.8449 459.5600,138.6160 460.4000,138.3866 461.2400,138.1567 462.0800,137.9263 462.9200,137.6955 463.7600,137.4642 464.6000,137.2325 465.4400,137.0004 466.2800,136.7678 467.1200,136.5348 467.9600,136.3014 468.8000,136.0675 469.6400,135.8332 470.4800,135.5985 471.3200,135.3634 472.1600,135.1279 473.0000,134.8919 473.8400,134.6556 474.6800,134.4189 475.5200,134.1818 476.3600,133.9443 477.2000,133.7064 478.0400,133.4682 478.8800,133.2295 479.7200,132.9905 480.5600,132.7512 481.4000,132.5114 482.2400,132.2713 483.0800,132.0309 483.9200,131.7901 484.7600,131.5489 485.6000,131.3074 486.4400,131.0656 487.2800,130.8234 488.1200,130.5808 488.9600,130.3380 489.8000,130.0948 490.6400,129.8513 491.4800,129.6074 492.3200,129.3633 493.1600,129.1188 494.0000,128.8740" fill="none" stroke="var(--coral)" stroke-width="2.6" stroke-dasharray=""/>
+<polyline data-curve="production" points="74.0000,155.6250 74.8400,155.6250 75.6800,155.6250 76.5200,155.6250 77.3600,155.6250 78.2000,155.6250 79.0400,155.6250 79.8800,155.6250 80.7200,155.6250 81.5600,155.6250 82.4000,155.6250 83.2400,155.6250 84.0800,155.6250 84.9200,155.6250 85.7600,155.6250 86.6000,155.6250 87.4400,155.6250 88.2800,155.6250 89.1200,155.6250 89.9600,155.6250 90.8000,155.6250 91.6400,155.6250 92.4800,155.6250 93.3200,155.6250 94.1600,155.6250 95.0000,155.6250 95.8400,155.6250 96.6800,155.6250 97.5200,155.6250 98.3600,155.6250 99.2000,155.6250 100.0400,155.6250 100.8800,155.6250 101.7200,155.6250 102.5600,155.6250 103.4000,155.6250 104.2400,155.6250 105.0800,155.6250 105.9200,155.6250 106.7600,155.6250 107.6000,155.6250 108.4400,155.6250 109.2800,155.6250 110.1200,155.6250 110.9600,155.6250 111.8000,155.6250 112.6400,155.6250 113.4800,155.6250 114.3200,155.6250 115.1600,155.6250 116.0000,155.6250 116.8400,155.6250 117.6800,155.6250 118.5200,155.6250 119.3600,155.6250 120.2000,155.6250 121.0400,155.6250 121.8800,155.6250 122.7200,155.6250 123.5600,155.6250 124.4000,155.6250 125.2400,155.6250 126.0800,155.6250 126.9200,155.6250 127.7600,155.6250 128.6000,155.6250 129.4400,155.6250 130.2800,155.6250 131.1200,155.6250 131.9600,155.6250 132.8000,155.6250 133.6400,155.6250 134.4800,155.6250 135.3200,155.6250 136.1600,155.6250 137.0000,155.6250 137.8400,155.6250 138.6800,155.6250 139.5200,155.6250 140.3600,155.6250 141.2000,155.6250 142.0400,155.6250 142.8800,155.6250 143.7200,155.6250 144.5600,155.6250 145.4000,155.6250 146.2400,155.6250 147.0800,155.6250 147.9200,155.6250 148.7600,155.6250 149.6000,155.6250 150.4400,155.6250 151.2800,155.6250 152.1200,155.6250 152.9600,155.6250 153.8000,155.6250 154.6400,155.6250 155.4800,155.6250 156.3200,155.6250 157.1600,155.6250 158.0000,155.6250 158.8400,155.6250 159.6800,155.6250 160.5200,155.6250 161.3600,155.6250 162.2000,155.6250 163.0400,155.6250 163.8800,155.6250 164.7200,155.6250 165.5600,155.6250 166.4000,155.6250 167.2400,155.6250 168.0800,155.6250 168.9200,155.6250 169.7600,155.6250 170.6000,155.6250 171.4400,155.6250 172.2800,155.6250 173.1200,155.6250 173.9600,155.6250 174.8000,155.6250 175.6400,155.6250 176.4800,155.6250 177.3200,155.6250 178.1600,155.6250 179.0000,155.6250 179.8400,155.6250 180.6800,155.6250 181.5200,155.6250 182.3600,155.6250 183.2000,155.6250 184.0400,155.6250 184.8800,155.6250 185.7200,155.6250 186.5600,155.6250 187.4000,155.6250 188.2400,155.6250 189.0800,155.6250 189.9200,155.6250 190.7600,155.6250 191.6000,155.6250 192.4400,155.6250 193.2800,155.6250 194.1200,155.6250 194.9600,155.6250 195.8000,155.6250 196.6400,155.6250 197.4800,155.6250 198.3200,155.6250 199.1600,155.6250 200.0000,155.6250 200.8400,155.6250 201.6800,155.6250 202.5200,155.6250 203.3600,155.6250 204.2000,155.6250 205.0400,155.6250 205.8800,155.6250 206.7200,155.6250 207.5600,155.6250 208.4000,155.6250 209.2400,155.6250 210.0800,155.6250 210.9200,155.6250 211.7600,155.6250 212.6000,155.6250 213.4400,155.6250 214.2800,155.6250 215.1200,155.6250 215.9600,155.6250 216.8000,155.6250 217.6400,155.6250 218.4800,155.6250 219.3200,155.6250 220.1600,155.6250 221.0000,155.6250 221.8400,155.6250 222.6800,155.6250 223.5200,155.6250 224.3600,155.6250 225.2000,155.6250 226.0400,155.6250 226.8800,155.6250 227.7200,155.6250 228.5600,155.6250 229.4000,155.6250 230.2400,155.6250 231.0800,155.6250 231.9200,155.6250 232.7600,155.6250 233.6000,155.6250 234.4400,155.6250 235.2800,155.6250 236.1200,155.6250 236.9600,155.6250 237.8000,155.6250 238.6400,155.6250 239.4800,155.6250 240.3200,155.6250 241.1600,155.6250 242.0000,155.6250 242.8400,155.6250 243.6800,155.6250 244.5200,155.6250 245.3600,155.6250 246.2000,155.6250 247.0400,155.6250 247.8800,155.6250 248.7200,155.6250 249.5600,155.6250 250.4000,155.6250 251.2400,155.6250 252.0800,155.6250 252.9200,155.6250 253.7600,155.6250 254.6000,155.6250 255.4400,155.6250 256.2800,155.6250 257.1200,155.6250 257.9600,155.6250 258.8000,155.6250 259.6400,155.6250 260.4800,155.6250 261.3200,155.6250 262.1600,155.6250 263.0000,155.6250 263.8400,155.6250 264.6800,155.6250 265.5200,155.6250 266.3600,155.6250 267.2000,155.6250 268.0400,155.6250 268.8800,155.6250 269.7200,155.6250 270.5600,155.6250 271.4000,155.6250 272.2400,155.6250 273.0800,155.6250 273.9200,155.6250 274.7600,155.6250 275.6000,155.6250 276.4400,155.6250 277.2800,155.6250 278.1200,155.6250 278.9600,155.6250 279.8000,155.6250 280.6400,155.6250 281.4800,155.6250 282.3200,155.6250 283.1600,155.6250 284.0000,155.6250 284.8400,155.6250 285.6800,155.6250 286.5200,155.6250 287.3600,155.6250 288.2000,155.6250 289.0400,155.6250 289.8800,155.6250 290.7200,155.6250 291.5600,155.6250 292.4000,155.6250 293.2400,155.6250 294.0800,155.6250 294.9200,155.6250 295.7600,155.6250 296.6000,155.6250 297.4400,155.6250 298.2800,155.6250 299.1200,155.6250 299.9600,155.6250 300.8000,155.6250 301.6400,155.6250 302.4800,155.6250 303.3200,155.6250 304.1600,155.6250 305.0000,155.6250 305.8400,155.6250 306.6800,155.6250 307.5200,155.6250 308.3600,155.6250 309.2000,155.6250 310.0400,155.6250 310.8800,155.6250 311.7200,155.6250 312.5600,155.6250 313.4000,155.6250 314.2400,155.6250 315.0800,155.6250 315.9200,155.6250 316.7600,155.6250 317.6000,155.6250 318.4400,155.6250 319.2800,155.6250 320.1200,155.6250 320.9600,155.6250 321.8000,155.6250 322.6400,155.6250 323.4800,155.6250 324.3200,155.6250 325.1600,155.6250 326.0000,155.6250 326.8400,155.6250 327.6800,155.6250 328.5200,155.6250 329.3600,155.6250 330.2000,155.6250 331.0400,155.6250 331.8800,155.6250 332.7200,155.6250 333.5600,155.6250 334.4000,155.6250 335.2400,155.6250 336.0800,155.6250 336.9200,155.6250 337.7600,155.6250 338.6000,155.6250 339.4400,155.6250 340.2800,155.6250 341.1200,155.6250 341.9600,155.6250 342.8000,155.6250 343.6400,155.6250 344.4800,155.6250 345.3200,155.6250 346.1600,155.6250 347.0000,155.6250 347.8400,155.6250 348.6800,155.6250 349.5200,155.6250 350.3600,155.6250 351.2000,155.6250 352.0400,155.6250 352.8800,155.6250 353.7200,155.6250 354.5600,155.6250 355.4000,155.6250 356.2400,155.6250 357.0800,155.6250 357.9200,155.6250 358.7600,155.6250 359.6000,155.6250 360.4400,155.6250 361.2800,155.6250 362.1200,155.6250 362.9600,155.6250 363.8000,155.6250 364.6400,155.6250 365.4800,155.6250 366.3200,155.6250 367.1600,155.6250 368.0000,155.6250 368.8400,155.6250 369.6800,155.6250 370.5200,155.6250 371.3600,155.6250 372.2000,155.6250 373.0400,155.6250 373.8800,155.6250 374.7200,155.6250 375.5600,155.6250 376.4000,155.6250 377.2400,155.6250 378.0800,155.6250 378.9200,155.6250 379.7600,155.6250 380.6000,155.6250 381.4400,155.6250 382.2800,155.6250 383.1200,155.6250 383.9600,155.6250 384.8000,155.6250 385.6400,155.6250 386.4800,155.6250 387.3200,155.6250 388.1600,155.6250 389.0000,155.6250 389.8400,155.6250 390.6800,155.6250 391.5200,155.6250 392.3600,155.6250 393.2000,155.6250 394.0400,155.6250 394.8800,155.6250 395.7200,155.6250 396.5600,155.6250 397.4000,155.6250 398.2400,155.6250 399.0800,155.6250 399.9200,155.6250 400.7600,155.6250 401.6000,155.6250 402.4400,155.6250 403.2800,155.6250 404.1200,155.6250 404.9600,155.6250 405.8000,155.6250 406.6400,155.6250 407.4800,155.6250 408.3200,155.6250 409.1600,155.6250 410.0000,155.6250 410.8400,155.6250 411.6800,155.6250 412.5200,155.6250 413.3600,155.6250 414.2000,155.6250 415.0400,155.6250 415.8800,155.6250 416.7200,155.6250 417.5600,155.6250 418.4000,155.6250 419.2400,155.6250 420.0800,155.6250 420.9200,155.6250 421.7600,155.6250 422.6000,155.6250 423.4400,155.6250 424.2800,155.6250 425.1200,155.6250 425.9600,155.6250 426.8000,155.6250 427.6400,155.6250 428.4800,155.6250 429.3200,155.6250 430.1600,155.6250 431.0000,155.6250 431.8400,155.6250 432.6800,155.6250 433.5200,155.6250 434.3600,155.6250 435.2000,155.6250 436.0400,155.6250 436.8800,155.6250 437.7200,155.6250 438.5600,155.6250 439.4000,155.6250 440.2400,155.6250 441.0800,155.6250 441.9200,155.6250 442.7600,155.6250 443.6000,155.6250 444.4400,155.6250 445.2800,155.6250 446.1200,155.6250 446.9600,155.6250 447.8000,155.6250 448.6400,155.6250 449.4800,155.6250 450.3200,155.6250 451.1600,155.6250 452.0000,155.6250 452.8400,155.6250 453.6800,155.6250 454.5200,155.6250 455.3600,155.6250 456.2000,155.6250 457.0400,155.6250 457.8800,155.6250 458.7200,155.6250 459.5600,155.6250 460.4000,155.6250 461.2400,155.6250 462.0800,155.6250 462.9200,155.6250 463.7600,155.6250 464.6000,155.6250 465.4400,155.6250 466.2800,155.6250 467.1200,155.6250 467.9600,155.6250 468.8000,155.6250 469.6400,155.6250 470.4800,155.6250 471.3200,155.6250 472.1600,155.6250 473.0000,155.6250 473.8400,155.6250 474.6800,155.6250 475.5200,155.6250 476.3600,155.6250 477.2000,155.6250 478.0400,155.6250 478.8800,155.6250 479.7200,155.6250 480.5600,155.6250 481.4000,155.6250 482.2400,155.6250 483.0800,155.6250 483.9200,155.6250 484.7600,155.6250 485.6000,155.6250 486.4400,155.6250 487.2800,155.6250 488.1200,155.6250 488.9600,155.6250 489.8000,155.6250 490.6400,155.6250 491.4800,155.6250 492.3200,155.6250 493.1600,155.6250 494.0000,155.6250" fill="none" stroke="var(--teal)" stroke-width="2.6" stroke-dasharray=""/>
+<circle cx="136.7533" cy="155.6250" r="4.5" fill="var(--rose)"/>
+<circle cx="269.1" cy="155.6" r="5" fill="var(--paper)" stroke="var(--rose)" stroke-width="2.2"/>
+
+<circle cx="388.7484" cy="155.6250" r="4.5" fill="var(--rose)"/>
+<line x1="16.000" y1="360.000" x2="38.000" y2="360.000" stroke="var(--teal)" stroke-width="2" stroke-dasharray=""/>
+<text x="45.0" y="365.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">production</text>
+
+<line x1="261.000" y1="360.000" x2="283.000" y2="360.000" stroke="var(--coral)" stroke-width="2" stroke-dasharray=""/>
+<text x="290.0" y="365.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">removal</text>
+
+</g></svg>
+<figcaption><b>Figure 1. A constant production rate can cross removal three times.</b> Filled markers are stable and the open marker is unstable. The steep growth-burden relation is a modeling assumption, not a measured law for a specified strain. The feedback runs through host growth: more protein slows dilution, which allows more protein to accumulate.</figcaption></figure>
+<p>The required shape has a compact test. Since <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>δ</mi><mo>+</mo><mi>λ</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>+</mo><mi>x</mi><msup><mi>λ</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">r&#x27;(x)=\delta+\lambda(x)+x\lambda&#x27;(x)</annotation></semantics></math></span>, removal decreases locally only if</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo>−</mo><mfrac><mrow><mi>d</mi><mi>log</mi><mo>⁡</mo><mi>λ</mi></mrow><mrow><mi>d</mi><mi>log</mi><mo>⁡</mo><mi>x</mi></mrow></mfrac><mo>&gt;</mo><mn>1</mn><mo>+</mo><mfrac><mi>δ</mi><mi>λ</mi></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">-\frac{d\log\lambda}{d\log x}&gt;1+\frac{\delta}{\lambda}.</annotation></semantics></math></div>
+<p>Slower growth alone is insufficient. Growth must fall steeply enough that the reduced removal per molecule outweighs the larger number of molecules being removed. Three crossings additionally require the production level to lie between the removal curve's local extrema.</p>
+<p>There is literature behind this distinction, but two results should not be conflated. Tan, Marguet and You observed bistability in a noncooperative self-activating circuit coupled to growth. Melendez-Alvarez and Tian later analyzed how an ultrasensitive growth response can permit bistability even with a constitutive promoter. The constant-production example here belongs to the latter modeling argument.<sup class="c"><a href="#r-tan">2</a></sup><sup class="c"><a href="#r-melendez">3</a></sup></p>
+<p class="takeaway">Locate the nonlinearity in the full production–removal balance, and test its slope rather than treating a feedback sign or a Hill exponent as a universal memory criterion.</p>
+
+<h2 id="s3"><span class="n">3</span>One stable matrix is not a stable family</h2>
+<p>Robustness to rate uncertainty is a stronger question than local recovery at one parameter point. <a href="https://github.com/chemaoxfz/ccbs-2026-submissions/blob/94162042f6dfad701f14cccb954890a33ade4af4/week2/week2-leosin-ext.html">Leo Sin</a> asks which Jacobian sign patterns remain Hurwitz for every assignment of magnitudes.</p>
+<p>A matrix is <em>sign stable</em> when every real matrix with exactly the same signs, including the same zero entries, has eigenvalues with strictly negative real parts. With every diagonal entry strictly negative, the characterization excludes positive two-node cycles and every directed cycle involving three or more distinct nodes. Opposite-sign two-node interactions remain allowed. The strict diagonal assumption matters.<sup class="c"><a href="#r-jeffries">4</a></sup></p>
+<p>The distinction is already visible in two variables. Compare these matrices with positive parameters.</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>J</mi><mo>−</mo></msub><mo>=</mo><mrow><mo fence="true">[</mo><mtable rowspacing="0.16em" columnalign="center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>a</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>b</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>c</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>d</mi></mrow></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow><mo separator="true">,</mo><mspace width="2em"/><msub><mi>J</mi><mo>+</mo></msub><mo>=</mo><mrow><mo fence="true">[</mo><mtable rowspacing="0.16em" columnalign="center center" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>a</mi></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>b</mi></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mi>c</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mi>d</mi></mrow></mstyle></mtd></mtr></mtable><mo fence="true">]</mo></mrow><mo separator="true">,</mo><mspace width="2em"/><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mo separator="true">,</mo><mi>d</mi><mo>&gt;</mo><mn>0.</mn></mrow><annotation encoding="application/x-tex">J_- = \begin{bmatrix}-a&amp;b\\-c&amp;-d\end{bmatrix},
+\qquad J_+ = \begin{bmatrix}-a&amp;b\\c&amp;-d\end{bmatrix},
+\qquad a,b,c,d&gt;0.</annotation></semantics></math></div>
+<p>Both traces are negative. The first determinant is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>d</mi><mo>+</mo><mi>b</mi><mi>c</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">ad+bc&gt;0</annotation></semantics></math></span>, so every allowed magnitude is stable. The second is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>d</mi><mo>−</mo><mi>b</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">ad-bc</annotation></semantics></math></span>, so stability depends on loop strength relative to removal. A positive loop can be locally stable without being sign stable.</p>
+<p>Independent enumeration reproduces Leo's finite counts. Among all off-diagonal sign patterns with a fixed strictly negative diagonal, the sign-stable counts are 7 of 9 in two dimensions, 223 of 729 in three, and 28,321 of 531,441 in four. These count labeled sign patterns. They do not estimate how frequently stable networks occur in biology.</p>
+<p>Nor does adding dilution automatically make the full diagonal negative. A self-activating term can contribute a positive derivative larger than the dilution derivative. The actual Jacobian, evaluated at the actual state, must satisfy the assumption.</p>
+<p>For memory, losing a universal guarantee can be useful. A circuit that must support two stable states cannot be understood solely through a promise that every allowed linearization restores the same state. But failure of sign stability does not itself establish multistability, oscillation or any particular nonlinear outcome.</p>
+<p class="takeaway">Separate a Hurwitz test at one state from a guarantee over a sign family, and check the full diagonal before invoking a structural criterion.</p>
+
+<h2 id="s4"><span class="n">4</span>Two memories need not be equally accessible</h2>
+<p>The number of attractors does not determine how a preparation is divided between them. <a href="https://github.com/chemaoxfz/ccbs-2026-submissions/blob/94162042f6dfad701f14cccb954890a33ade4af4/week2/week2-lichangkai-ext.html">Changkai Li</a> perturbs the lecture's toggle while keeping both stable expression states.</p>
+<p>The dimensionless system is</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>x</mi><mo>˙</mo></mover><mo>=</mo><mfrac><msub><mi>a</mi><mi>x</mi></msub><mrow><mn>1</mn><mo>+</mo><msup><mi>y</mi><mn>2</mn></msup></mrow></mfrac><mo>−</mo><mi>x</mi><mo separator="true">,</mo><mspace width="2em"/><mover accent="true"><mi>y</mi><mo>˙</mo></mover><mo>=</mo><mfrac><mn>4</mn><mrow><mn>1</mn><mo>+</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></mfrac><mo>−</mo><mi>y</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\dot x=\frac{a_x}{1+y^2}-x,
+\qquad \dot y=\frac{4}{1+x^2}-y.</annotation></semantics></math></div>
+<p>At <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>x</mi></msub><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">a_x=4</annotation></semantics></math></span>, exchange symmetry makes the diagonal an invariant basin boundary. The two stable states are <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>2</mn><mo>−</mo><msqrt><mn>3</mn></msqrt><mo separator="true">,</mo><mn>2</mn><mo>+</mo><msqrt><mn>3</mn></msqrt><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(2-\sqrt3,2+\sqrt3)</annotation></semantics></math></span> and its reflection. Increasing only <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">a_x</annotation></semantics></math></span> to 4.4 preserves bistability but moves both equilibria and the separating curve.</p>
+<figure class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 384" role="img" aria-label="Two memories, unequal basins. Uniform grid on the concentration square [0, 5]²">
+<title>Two memories, unequal basins</title>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif">
+<text x="16.0" y="25.0" font-size="20" fill="var(--fg,#252821)" font-weight="700">Two memories, unequal basins</text>
+
+<text x="16.0" y="49.0" font-size="16" fill="var(--muted,#69695F)" font-weight="400">Uniform grid on the concentration square [0, 5]²</text>
+
+<text x="74.0" y="82.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">Initial second repressor</text>
+
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="74.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">0</text>
+
+<line x1="158.000" y1="100.000" x2="158.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="158.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">1</text>
+
+<line x1="242.000" y1="100.000" x2="242.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="242.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">2</text>
+
+<line x1="326.000" y1="100.000" x2="326.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="326.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">3</text>
+
+<line x1="410.000" y1="100.000" x2="410.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="410.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">4</text>
+
+<line x1="494.000" y1="100.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="494.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">5</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="283.0" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0</text>
+
+<line x1="74.000" y1="242.400" x2="494.000" y2="242.400" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="247.4" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">1</text>
+
+<line x1="74.000" y1="206.800" x2="494.000" y2="206.800" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="211.8" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">2</text>
+
+<line x1="74.000" y1="171.200" x2="494.000" y2="171.200" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="176.2" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">3</text>
+
+<line x1="74.000" y1="135.600" x2="494.000" y2="135.600" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="140.6" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">4</text>
+
+<line x1="74.000" y1="100.000" x2="494.000" y2="100.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="105.0" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">5</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<text x="284.0" y="331.0" font-size="17" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">Initial first repressor (dimensionless)</text>
+
+<rect x="74.0" y="277.1" width="420.0" height="0.9" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="275.3" width="420.0" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="273.6" width="420.0" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="271.8" width="420.0" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="270.0" width="420.0" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="268.2" width="420.0" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="266.4" width="2.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="76.1" y="266.4" width="417.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="264.6" width="6.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="80.3" y="264.6" width="413.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="262.9" width="10.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="84.5" y="262.9" width="409.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="261.1" width="14.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="88.7" y="261.1" width="405.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="259.3" width="18.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="92.9" y="259.3" width="401.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="257.5" width="23.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="97.1" y="257.5" width="396.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="255.8" width="27.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="101.3" y="255.8" width="392.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="254.0" width="31.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="105.5" y="254.0" width="388.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="252.2" width="35.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="109.7" y="252.2" width="384.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="250.4" width="39.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="113.9" y="250.4" width="380.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="248.6" width="44.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="118.1" y="248.6" width="375.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="246.8" width="44.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="118.1" y="246.8" width="375.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="245.1" width="48.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="122.3" y="245.1" width="371.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="243.3" width="52.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="126.5" y="243.3" width="367.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="241.5" width="56.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="130.7" y="241.5" width="363.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="239.7" width="60.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="134.9" y="239.7" width="359.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="237.9" width="65.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="139.1" y="237.9" width="354.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="236.2" width="69.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="143.3" y="236.2" width="350.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="234.4" width="73.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="147.5" y="234.4" width="346.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="232.6" width="73.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="147.5" y="232.6" width="346.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="230.8" width="77.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="151.7" y="230.8" width="342.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="229.1" width="81.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="155.9" y="229.1" width="338.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="227.3" width="86.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="160.1" y="227.3" width="333.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="225.5" width="90.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="164.3" y="225.5" width="329.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="223.7" width="94.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="168.5" y="223.7" width="325.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="221.9" width="94.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="168.5" y="221.9" width="325.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="220.2" width="98.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="172.7" y="220.2" width="321.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="218.4" width="102.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="176.9" y="218.4" width="317.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="216.6" width="107.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="181.1" y="216.6" width="312.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="214.8" width="111.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="185.3" y="214.8" width="308.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="213.0" width="115.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="189.5" y="213.0" width="304.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="211.2" width="115.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="189.5" y="211.2" width="304.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="209.5" width="119.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="193.7" y="209.5" width="300.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="207.7" width="123.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="197.9" y="207.7" width="296.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="205.9" width="128.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="202.1" y="205.9" width="291.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="204.1" width="132.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="206.3" y="204.1" width="287.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="202.3" width="132.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="206.3" y="202.3" width="287.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="200.6" width="136.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="210.5" y="200.6" width="283.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="198.8" width="140.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="214.7" y="198.8" width="279.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="197.0" width="144.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="218.9" y="197.0" width="275.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="195.2" width="149.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="223.1" y="195.2" width="270.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="193.4" width="149.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="223.1" y="193.4" width="270.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="191.7" width="153.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="227.3" y="191.7" width="266.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="189.9" width="157.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="231.5" y="189.9" width="262.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="188.1" width="161.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="235.7" y="188.1" width="258.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="186.3" width="165.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="239.9" y="186.3" width="254.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="184.6" width="165.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="239.9" y="184.6" width="254.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="182.8" width="170.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="244.1" y="182.8" width="249.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="181.0" width="174.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="248.3" y="181.0" width="245.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="179.2" width="178.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="252.5" y="179.2" width="241.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="177.4" width="182.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="256.7" y="177.4" width="237.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="175.7" width="182.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="256.7" y="175.7" width="237.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="173.9" width="186.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="260.9" y="173.9" width="233.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="172.1" width="191.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="265.1" y="172.1" width="228.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="170.3" width="195.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="269.3" y="170.3" width="224.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="168.5" width="199.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="273.5" y="168.5" width="220.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="166.8" width="199.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="273.5" y="166.8" width="220.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="165.0" width="203.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="277.7" y="165.0" width="216.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="163.2" width="207.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="281.9" y="163.2" width="212.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="161.4" width="212.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="286.1" y="161.4" width="207.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="159.6" width="212.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="286.1" y="159.6" width="207.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="157.8" width="216.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="290.3" y="157.8" width="203.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="156.1" width="220.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="294.5" y="156.1" width="199.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="154.3" width="224.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="298.7" y="154.3" width="195.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="152.5" width="228.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="302.9" y="152.5" width="191.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="150.7" width="228.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="302.9" y="150.7" width="191.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="148.9" width="233.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="307.1" y="148.9" width="186.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="147.2" width="237.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="311.3" y="147.2" width="182.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="145.4" width="241.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="315.5" y="145.4" width="178.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="143.6" width="245.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="319.7" y="143.6" width="174.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="141.8" width="245.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="319.7" y="141.8" width="174.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="140.1" width="249.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="323.9" y="140.1" width="170.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="138.3" width="254.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="328.1" y="138.3" width="165.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="136.5" width="258.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="332.3" y="136.5" width="161.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="134.7" width="258.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="332.3" y="134.7" width="161.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="132.9" width="262.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="336.5" y="132.9" width="157.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="131.2" width="266.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="340.7" y="131.2" width="153.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="129.4" width="270.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="344.9" y="129.4" width="149.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="127.6" width="275.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="349.1" y="127.6" width="144.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="125.8" width="275.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="349.1" y="125.8" width="144.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="124.0" width="279.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="353.3" y="124.0" width="140.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="122.2" width="283.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="357.5" y="122.2" width="136.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="120.5" width="287.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="361.7" y="120.5" width="132.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="118.7" width="291.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="365.9" y="118.7" width="128.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="116.9" width="291.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="365.9" y="116.9" width="128.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="115.1" width="296.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="370.1" y="115.1" width="123.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="113.3" width="300.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="374.3" y="113.3" width="119.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="111.6" width="304.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="378.5" y="111.6" width="115.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="109.8" width="304.5" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="378.5" y="109.8" width="115.5" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="108.0" width="308.7" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="382.7" y="108.0" width="111.3" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="106.2" width="312.9" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="386.9" y="106.2" width="107.1" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="104.4" width="317.1" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="391.1" y="104.4" width="102.9" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="102.7" width="321.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="395.3" y="102.7" width="98.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="100.9" width="321.3" height="1.8" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="395.3" y="100.9" width="98.7" height="1.8" fill="var(--teal)" opacity="0.45"/>
+
+<rect x="74.0" y="100.0" width="325.5" height="0.9" fill="var(--peri)" opacity="0.45"/>
+
+<rect x="399.5" y="100.0" width="94.5" height="0.9" fill="var(--teal)" opacity="0.45"/>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="100.000" stroke="var(--muted,#69695F)" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="99.7" cy="147.8" r="5" fill="var(--rose)" stroke="var(--paper)" stroke-width="1.3"/>
+
+<circle cx="175.6" cy="220.2" r="5" fill="var(--paper)" stroke="var(--rose)" stroke-width="2.2"/>
+
+<circle cx="427.4" cy="270.4" r="5" fill="var(--rose)" stroke="var(--paper)" stroke-width="1.3"/>
+
+<line x1="16.000" y1="360.000" x2="38.000" y2="360.000" stroke="var(--teal)" stroke-width="2" stroke-dasharray=""/>
+<text x="45.0" y="365.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">high first: 62.0%</text>
+
+<line x1="261.000" y1="360.000" x2="283.000" y2="360.000" stroke="var(--peri)" stroke-width="2" stroke-dasharray=""/>
+<text x="290.0" y="365.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">high second: 38.0%</text>
+
+</g></svg>
+<figcaption><b>Figure 2. A modest asymmetry changes basin accessibility before removing either memory.</b> Colors show numerical outcomes from a 101 × 101 initial-condition grid at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>x</mi></msub><mo>=</mo><mn>4.4</mn></mrow><annotation encoding="application/x-tex">a_x=4.4</annotation></semantics></math></span>. The high-first-repressor basin contains 62.02% of these seeds. The dashed diagonal is the boundary of the symmetric comparison, not the boundary of the asymmetric system. Dots mark the asymmetric equilibria, with the saddle open.</figcaption></figure>
+<p>“Basin size” needs a measure. Here we sample initial concentrations uniformly on <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>5</mn><msup><mo stretchy="false">]</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">[0,5]^2</annotation></semantics></math></span>. A biological preparation concentrated near one corner would have a different outcome frequency. Uniform area is a geometric benchmark, not a distribution measured from cells.</p>
+<p>The numerical classification also needs a stopping rule. We integrated to time 60 and assigned a seed only when it lay within <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>5</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-5}</annotation></semantics></math></span> of a stable equilibrium. The 201 × 201 grid gives about 62.08% among resolved seeds, with one seed still unclassified near the boundary. Symmetry gives exactly half on each side in the symmetric case, excluding the diagonal seeds that approach the saddle.</p>
+<p>The folds lie near <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>x</mi></msub><mo>=</mo><mn>3.229</mn></mrow><annotation encoding="application/x-tex">a_x=3.229</annotation></semantics></math></span> and 5.796 when the other capacity remains 4. Changkai's change from 4 to 4.4 is well inside that interval. The accessible fraction changes before the count of stable states does. This is why a device can remain mathematically bistable yet become harder to initialize in its less-favored state.</p>
+<p class="takeaway">Specify an initial-condition distribution and a numerical classification rule before turning basin geometry into a claim about memory accessibility.</p>
+
+<h2 id="s5"><span class="n">5</span>A switch is not a clock</h2>
+<p>The same equations can support two stable states while forbidding a periodic orbit. <a href="https://github.com/chemaoxfz/ccbs-2026-submissions/blob/94162042f6dfad701f14cccb954890a33ade4af4/week2/week2-wangzixuan-ext.html">Zixuan Wang</a> gives a global exclusion argument for the reduced two-protein toggle.</p>
+<p>Write its broader form as <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>x</mi><mo>˙</mo></mover><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>δ</mi><mi>x</mi></msub><mi>x</mi></mrow><annotation encoding="application/x-tex">\dot x=p(y)-\delta_xx</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>y</mi><mo>˙</mo></mover><mo>=</mo><mi>q</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>δ</mi><mi>y</mi></msub><mi>y</mi></mrow><annotation encoding="application/x-tex">\dot y=q(x)-\delta_yy</annotation></semantics></math></span>, with continuously differentiable production functions and positive constant removal rates. Its divergence throughout the positive quadrant is</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mover accent="true"><mi>x</mi><mo>˙</mo></mover></mrow><mrow><mi mathvariant="normal">∂</mi><mi>x</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><mi mathvariant="normal">∂</mi><mover accent="true"><mi>y</mi><mo>˙</mo></mover></mrow><mrow><mi mathvariant="normal">∂</mi><mi>y</mi></mrow></mfrac><mo>=</mo><mo>−</mo><msub><mi>δ</mi><mi>x</mi></msub><mo>−</mo><msub><mi>δ</mi><mi>y</mi></msub><mo>&lt;</mo><mn>0.</mn></mrow><annotation encoding="application/x-tex">\frac{\partial\dot x}{\partial x}+\frac{\partial\dot y}{\partial y}
+=-\delta_x-\delta_y&lt;0.</annotation></semantics></math></div>
+<p>Suppose a nonconstant periodic orbit enclosed an area. The vector field is tangent to that orbit, so its net outward flux across the boundary is zero. Green's theorem equates that flux with the area integral of the divergence, which is strictly negative. The contradiction excludes the orbit. Smoothness and a simply connected planar domain containing the enclosed region are essential to this Bendixson argument.</p>
+<p>Negative divergence means area contracts. It does not mean every pair of trajectories gets closer. At the symmetric toggle's saddle, one eigenvalue is approximately +0.311 and the other −2.311. One direction expands even though their sum is −2.</p>
+<p>This exclusion is about the declared two-dimensional model. Promoter dynamics, mRNA, growth or explicit delay can enlarge the state and remove the planar proof. The appropriate response to a simulated oscillation is therefore to inspect the equations and integration, then ask whether a different state model is actually being used.</p>
+<p class="takeaway">Use the divergence and domain hypotheses to exclude planar cycles, without confusing area contraction with pointwise attraction or extending the proof to a larger model.</p>
+
+<h2 id="s6"><span class="n">6</span>A pulse must last long enough</h2>
+<p>Destroying the ON equilibrium during a pulse does not guarantee that the pulse erases the memory. <a href="https://github.com/chemaoxfz/ccbs-2026-submissions/blob/94162042f6dfad701f14cccb954890a33ade4af4/week2/week2-supeng-ext.html">Peng Su</a> adds the missing clock to the lecture's fold diagram.</p>
+<p>Let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0.15</mn><mo>+</mo><mn>3</mn><msup><mi>x</mi><mn>4</mn></msup><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><msup><mi>x</mi><mn>4</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(x)=0.15+3x^4/(1+x^4)</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>x</mi><mo>˙</mo></mover><mo>=</mo><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>−</mo><mi>d</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">\dot x=p(x)-d(t)x</annotation></semantics></math></span>, in dimensionless units. With <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">d=1</annotation></semantics></math></span>, the OFF state, threshold and ON state are 0.1516, 0.6810 and 3.1186. A pulse raises removal to <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">d_p</annotation></semantics></math></span> before restoring the original value.</p>
+<p>The ON branch disappears at the upper fold <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>p</mi></msub><mo>=</mo><mn>1.82488</mn></mrow><annotation encoding="application/x-tex">d_p=1.82488</annotation></semantics></math></span>. For a stronger pulse starting at the original ON state, the trajectory moves downward. The writing question is whether it crosses the <em>restored system's</em> threshold before the pulse ends.</p>
+<figure class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 384" role="img" aria-label="The same strong pulse can fail. Removal doubles at time 5; durations 3 and 7">
+<title>The same strong pulse can fail</title>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif">
+<text x="16.0" y="25.0" font-size="20" fill="var(--fg,#252821)" font-weight="700">The same strong pulse can fail</text>
+
+<text x="16.0" y="49.0" font-size="16" fill="var(--muted,#69695F)" font-weight="400">Removal doubles at time 5; durations 3 and 7</text>
+
+<text x="74.0" y="82.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">Protein (dimensionless)</text>
+
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="74.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">0</text>
+
+<line x1="179.000" y1="100.000" x2="179.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="179.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">7.5</text>
+
+<line x1="284.000" y1="100.000" x2="284.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="284.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">15</text>
+
+<line x1="389.000" y1="100.000" x2="389.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="389.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">22.5</text>
+
+<line x1="494.000" y1="100.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="494.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">30</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="283.0" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0</text>
+
+<line x1="74.000" y1="243.367" x2="494.000" y2="243.367" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="248.4" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0.681</text>
+
+<line x1="74.000" y1="176.286" x2="494.000" y2="176.286" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="181.3" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">2</text>
+
+<line x1="74.000" y1="119.397" x2="494.000" y2="119.397" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="124.4" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">3.119</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<text x="284.0" y="331.0" font-size="17" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">Time (dimensionless)</text>
+
+<polyline data-curve="3" points="74.0000,119.3961 74.7000,119.3961 75.4000,119.3961 76.1000,119.3961 76.8000,119.3961 77.5000,119.3961 78.2000,119.3961 78.9000,119.3961 79.6000,119.3961 80.3000,119.3961 81.0000,119.3961 81.7000,119.3961 82.4000,119.3961 83.1000,119.3961 83.8000,119.3961 84.5000,119.3961 85.2000,119.3961 85.9000,119.3961 86.6000,119.3961 87.3000,119.3961 88.0000,119.3961 88.7000,119.3961 89.4000,119.3961 90.1000,119.3961 90.8000,119.3961 91.5000,119.3961 92.2000,119.3961 92.9000,119.3961 93.6000,119.3961 94.3000,119.3961 95.0000,119.3961 95.7000,119.3961 96.4000,119.3961 97.1000,119.3961 97.8000,119.3961 98.5000,119.3961 99.2000,119.3961 99.9000,119.3961 100.6000,119.3961 101.3000,119.3961 102.0000,119.3961 102.7000,119.3961 103.4000,119.3961 104.1000,119.3961 104.8000,119.3961 105.5000,119.3961 106.2000,119.3961 106.9000,119.3961 107.6000,119.3961 108.3000,119.3961 109.0000,119.3961 109.7000,119.3961 110.4000,119.3961 111.1000,119.3961 111.8000,119.3961 112.5000,119.3961 113.2000,119.3961 113.9000,119.3961 114.6000,119.3961 115.3000,119.3961 116.0000,119.3961 116.7000,119.3961 117.4000,119.3961 118.1000,119.3961 118.8000,119.3961 119.5000,119.3961 120.2000,119.3961 120.9000,119.3961 121.6000,119.3961 122.3000,119.3961 123.0000,119.3961 123.7000,119.3961 124.4000,119.3961 125.1000,119.3961 125.8000,119.3961 126.5000,119.3961 127.2000,119.3961 127.9000,119.3961 128.6000,119.3961 129.3000,119.3961 130.0000,119.3961 130.7000,119.3961 131.4000,119.3961 132.1000,119.3961 132.8000,119.3961 133.5000,119.3961 134.2000,119.3961 134.9000,119.3961 135.6000,119.3961 136.3000,119.3961 137.0000,119.3961 137.7000,119.3961 138.4000,119.3961 139.1000,119.3961 139.8000,119.3961 140.5000,119.3961 141.2000,119.3961 141.9000,119.3961 142.6000,119.3961 143.3000,119.3961 144.0000,119.3961 144.7000,126.9503 145.4000,133.8033 146.1000,140.0244 146.8000,145.6749 147.5000,150.8128 148.2000,155.4892 148.9000,159.7497 149.6000,163.6370 150.3000,167.1887 151.0000,170.4382 151.7000,173.4167 152.4000,176.1516 153.1000,178.6672 153.8000,180.9860 154.5000,183.1277 155.2000,185.1098 155.9000,186.9485 156.6000,188.6580 157.3000,190.2507 158.0000,191.7383 158.7000,193.1310 159.4000,194.4377 160.1000,195.6667 160.8000,196.8256 161.5000,197.9206 162.2000,198.9580 162.9000,199.9430 163.6000,200.8805 164.3000,201.7749 165.0000,202.6302 165.7000,203.4498 166.4000,204.2373 167.1000,204.9956 167.8000,205.7274 168.5000,206.4353 169.2000,207.1216 169.9000,207.7884 170.6000,208.4379 171.3000,209.0718 172.0000,209.6920 172.7000,210.3001 173.4000,210.8977 174.1000,211.4863 174.8000,212.0674 175.5000,212.6423 176.2000,213.2124 176.9000,213.7791 177.6000,214.3436 178.3000,214.9074 179.0000,215.4717 179.7000,216.0379 180.4000,216.6074 181.1000,217.1815 181.8000,217.7618 182.5000,218.3498 183.2000,218.9471 183.9000,219.5555 184.6000,220.1767 185.3000,220.8127 186.0000,221.4657 186.7000,219.2133 187.4000,216.8016 188.1000,214.2454 188.8000,211.5644 189.5000,208.7815 190.2000,205.9203 190.9000,203.0084 191.6000,200.0718 192.3000,197.1324 193.0000,194.2094 193.7000,191.3191 194.4000,188.4785 195.1000,185.6962 195.8000,182.9803 196.5000,180.3372 197.2000,177.7714 197.9000,175.2882 198.6000,172.8896 199.3000,170.5744 200.0000,168.3425 200.7000,166.1935 201.4000,164.1263 202.1000,162.1440 202.8000,160.2404 203.5000,158.4135 204.2000,156.6612 204.9000,154.9816 205.6000,153.3741 206.3000,151.8362 207.0000,150.3638 207.7000,148.9546 208.4000,147.6061 209.1000,146.3162 209.8000,145.0857 210.5000,143.9090 211.2000,142.7842 211.9000,141.7090 212.6000,140.6816 213.3000,139.7011 214.0000,138.7656 214.7000,137.8719 215.4000,137.0182 216.1000,136.2030 216.8000,135.4245 217.5000,134.6830 218.2000,133.9750 218.9000,133.2991 219.6000,132.6538 220.3000,132.0379 221.0000,131.4507 221.7000,130.8909 222.4000,130.3567 223.1000,129.8468 223.8000,129.3603 224.5000,128.8960 225.2000,128.4541 225.9000,128.0323 226.6000,127.6300 227.3000,127.2460 228.0000,126.8797 228.7000,126.5307 229.4000,126.1981 230.1000,125.8809 230.8000,125.5782 231.5000,125.2894 232.2000,125.0139 232.9000,124.7519 233.6000,124.5018 234.3000,124.2633 235.0000,124.0358 235.7000,123.8188 236.4000,123.6121 237.1000,123.4152 237.8000,123.2273 238.5000,123.0482 239.2000,122.8773 239.9000,122.7143 240.6000,122.5593 241.3000,122.4114 242.0000,122.2703 242.7000,122.1358 243.4000,122.0075 244.1000,121.8853 244.8000,121.7689 245.5000,121.6579 246.2000,121.5520 246.9000,121.4510 247.6000,121.3547 248.3000,121.2631 249.0000,121.1758 249.7000,121.0924 250.4000,121.0130 251.1000,120.9372 251.8000,120.8650 252.5000,120.7963 253.2000,120.7307 253.9000,120.6682 254.6000,120.6086 255.3000,120.5518 256.0000,120.4977 256.7000,120.4461 257.4000,120.3969 258.1000,120.3500 258.8000,120.3053 259.5000,120.2627 260.2000,120.2221 260.9000,120.1835 261.6000,120.1466 262.3000,120.1114 263.0000,120.0778 263.7000,120.0459 264.4000,120.0155 265.1000,119.9865 265.8000,119.9588 266.5000,119.9324 267.2000,119.9073 267.9000,119.8833 268.6000,119.8605 269.3000,119.8388 270.0000,119.8180 270.7000,119.7982 271.4000,119.7794 272.1000,119.7614 272.8000,119.7443 273.5000,119.7280 274.2000,119.7124 274.9000,119.6976 275.6000,119.6835 276.3000,119.6700 277.0000,119.6572 277.7000,119.6449 278.4000,119.6333 279.1000,119.6222 279.8000,119.6116 280.5000,119.6015 281.2000,119.5918 281.9000,119.5827 282.6000,119.5739 283.3000,119.5656 284.0000,119.5576 284.7000,119.5501 285.4000,119.5428 286.1000,119.5360 286.8000,119.5294 287.5000,119.5232 288.2000,119.5172 288.9000,119.5115 289.6000,119.5061 290.3000,119.5010 291.0000,119.4961 291.7000,119.4914 292.4000,119.4869 293.1000,119.4826 293.8000,119.4786 294.5000,119.4747 295.2000,119.4710 295.9000,119.4675 296.6000,119.4642 297.3000,119.4610 298.0000,119.4579 298.7000,119.4550 299.4000,119.4523 300.1000,119.4496 300.8000,119.4471 301.5000,119.4447 302.2000,119.4425 302.9000,119.4403 303.6000,119.4382 304.3000,119.4362 305.0000,119.4344 305.7000,119.4326 306.4000,119.4309 307.1000,119.4292 307.8000,119.4277 308.5000,119.4262 309.2000,119.4248 309.9000,119.4234 310.6000,119.4222 311.3000,119.4209 312.0000,119.4198 312.7000,119.4187 313.4000,119.4176 314.1000,119.4166 314.8000,119.4156 315.5000,119.4147 316.2000,119.4138 316.9000,119.4130 317.6000,119.4122 318.3000,119.4115 319.0000,119.4107 319.7000,119.4101 320.4000,119.4094 321.1000,119.4088 321.8000,119.4082 322.5000,119.4076 323.2000,119.4071 323.9000,119.4066 324.6000,119.4061 325.3000,119.4056 326.0000,119.4052 326.7000,119.4047 327.4000,119.4043 328.1000,119.4039 328.8000,119.4036 329.5000,119.4032 330.2000,119.4029 330.9000,119.4026 331.6000,119.4023 332.3000,119.4020 333.0000,119.4017 333.7000,119.4014 334.4000,119.4012 335.1000,119.4009 335.8000,119.4007 336.5000,119.4005 337.2000,119.4003 337.9000,119.4001 338.6000,119.3999 339.3000,119.3997 340.0000,119.3996 340.7000,119.3994 341.4000,119.3992 342.1000,119.3991 342.8000,119.3990 343.5000,119.3988 344.2000,119.3987 344.9000,119.3986 345.6000,119.3985 346.3000,119.3983 347.0000,119.3982 347.7000,119.3981 348.4000,119.3980 349.1000,119.3980 349.8000,119.3979 350.5000,119.3978 351.2000,119.3977 351.9000,119.3976 352.6000,119.3976 353.3000,119.3975 354.0000,119.3974 354.7000,119.3974 355.4000,119.3973 356.1000,119.3972 356.8000,119.3972 357.5000,119.3971 358.2000,119.3971 358.9000,119.3970 359.6000,119.3970 360.3000,119.3970 361.0000,119.3969 361.7000,119.3969 362.4000,119.3968 363.1000,119.3968 363.8000,119.3968 364.5000,119.3967 365.2000,119.3967 365.9000,119.3967 366.6000,119.3967 367.3000,119.3966 368.0000,119.3966 368.7000,119.3966 369.4000,119.3966 370.1000,119.3965 370.8000,119.3965 371.5000,119.3965 372.2000,119.3965 372.9000,119.3965 373.6000,119.3964 374.3000,119.3964 375.0000,119.3964 375.7000,119.3964 376.4000,119.3964 377.1000,119.3964 377.8000,119.3964 378.5000,119.3963 379.2000,119.3963 379.9000,119.3963 380.6000,119.3963 381.3000,119.3963 382.0000,119.3963 382.7000,119.3963 383.4000,119.3963 384.1000,119.3963 384.8000,119.3963 385.5000,119.3962 386.2000,119.3962 386.9000,119.3962 387.6000,119.3962 388.3000,119.3962 389.0000,119.3962 389.7000,119.3962 390.4000,119.3962 391.1000,119.3962 391.8000,119.3962 392.5000,119.3962 393.2000,119.3962 393.9000,119.3962 394.6000,119.3962 395.3000,119.3962 396.0000,119.3962 396.7000,119.3962 397.4000,119.3962 398.1000,119.3962 398.8000,119.3962 399.5000,119.3962 400.2000,119.3961 400.9000,119.3961 401.6000,119.3961 402.3000,119.3961 403.0000,119.3961 403.7000,119.3961 404.4000,119.3961 405.1000,119.3961 405.8000,119.3961 406.5000,119.3961 407.2000,119.3961 407.9000,119.3961 408.6000,119.3961 409.3000,119.3961 410.0000,119.3961 410.7000,119.3961 411.4000,119.3961 412.1000,119.3961 412.8000,119.3961 413.5000,119.3961 414.2000,119.3961 414.9000,119.3961 415.6000,119.3961 416.3000,119.3961 417.0000,119.3961 417.7000,119.3961 418.4000,119.3961 419.1000,119.3961 419.8000,119.3961 420.5000,119.3961 421.2000,119.3961 421.9000,119.3961 422.6000,119.3961 423.3000,119.3961 424.0000,119.3961 424.7000,119.3961 425.4000,119.3961 426.1000,119.3961 426.8000,119.3961 427.5000,119.3961 428.2000,119.3961 428.9000,119.3961 429.6000,119.3961 430.3000,119.3961 431.0000,119.3961 431.7000,119.3961 432.4000,119.3961 433.1000,119.3961 433.8000,119.3961 434.5000,119.3961 435.2000,119.3961 435.9000,119.3961 436.6000,119.3961 437.3000,119.3961 438.0000,119.3961 438.7000,119.3961 439.4000,119.3961 440.1000,119.3961 440.8000,119.3961 441.5000,119.3961 442.2000,119.3961 442.9000,119.3961 443.6000,119.3961 444.3000,119.3961 445.0000,119.3961 445.7000,119.3961 446.4000,119.3961 447.1000,119.3961 447.8000,119.3961 448.5000,119.3961 449.2000,119.3961 449.9000,119.3961 450.6000,119.3961 451.3000,119.3961 452.0000,119.3961 452.7000,119.3961 453.4000,119.3961 454.1000,119.3961 454.8000,119.3961 455.5000,119.3961 456.2000,119.3961 456.9000,119.3961 457.6000,119.3961 458.3000,119.3961 459.0000,119.3961 459.7000,119.3961 460.4000,119.3961 461.1000,119.3961 461.8000,119.3961 462.5000,119.3961 463.2000,119.3961 463.9000,119.3961 464.6000,119.3961 465.3000,119.3961 466.0000,119.3961 466.7000,119.3961 467.4000,119.3961 468.1000,119.3961 468.8000,119.3961 469.5000,119.3961 470.2000,119.3961 470.9000,119.3961 471.6000,119.3961 472.3000,119.3961 473.0000,119.3961 473.7000,119.3961 474.4000,119.3961 475.1000,119.3961 475.8000,119.3961 476.5000,119.3961 477.2000,119.3961 477.9000,119.3961 478.6000,119.3961 479.3000,119.3961 480.0000,119.3961 480.7000,119.3961 481.4000,119.3961 482.1000,119.3961 482.8000,119.3961 483.5000,119.3961 484.2000,119.3961 484.9000,119.3961 485.6000,119.3961 486.3000,119.3961 487.0000,119.3961 487.7000,119.3961 488.4000,119.3961 489.1000,119.3961 489.8000,119.3961 490.5000,119.3961 491.2000,119.3961 491.9000,119.3961 492.6000,119.3961 493.3000,119.3961 494.0000,119.3961" fill="none" stroke="var(--peri)" stroke-width="2.6" stroke-dasharray=""/>
+<polyline data-curve="7" points="74.0000,119.3961 74.7000,119.3961 75.4000,119.3961 76.1000,119.3961 76.8000,119.3961 77.5000,119.3961 78.2000,119.3961 78.9000,119.3961 79.6000,119.3961 80.3000,119.3961 81.0000,119.3961 81.7000,119.3961 82.4000,119.3961 83.1000,119.3961 83.8000,119.3961 84.5000,119.3961 85.2000,119.3961 85.9000,119.3961 86.6000,119.3961 87.3000,119.3961 88.0000,119.3961 88.7000,119.3961 89.4000,119.3961 90.1000,119.3961 90.8000,119.3961 91.5000,119.3961 92.2000,119.3961 92.9000,119.3961 93.6000,119.3961 94.3000,119.3961 95.0000,119.3961 95.7000,119.3961 96.4000,119.3961 97.1000,119.3961 97.8000,119.3961 98.5000,119.3961 99.2000,119.3961 99.9000,119.3961 100.6000,119.3961 101.3000,119.3961 102.0000,119.3961 102.7000,119.3961 103.4000,119.3961 104.1000,119.3961 104.8000,119.3961 105.5000,119.3961 106.2000,119.3961 106.9000,119.3961 107.6000,119.3961 108.3000,119.3961 109.0000,119.3961 109.7000,119.3961 110.4000,119.3961 111.1000,119.3961 111.8000,119.3961 112.5000,119.3961 113.2000,119.3961 113.9000,119.3961 114.6000,119.3961 115.3000,119.3961 116.0000,119.3961 116.7000,119.3961 117.4000,119.3961 118.1000,119.3961 118.8000,119.3961 119.5000,119.3961 120.2000,119.3961 120.9000,119.3961 121.6000,119.3961 122.3000,119.3961 123.0000,119.3961 123.7000,119.3961 124.4000,119.3961 125.1000,119.3961 125.8000,119.3961 126.5000,119.3961 127.2000,119.3961 127.9000,119.3961 128.6000,119.3961 129.3000,119.3961 130.0000,119.3961 130.7000,119.3961 131.4000,119.3961 132.1000,119.3961 132.8000,119.3961 133.5000,119.3961 134.2000,119.3961 134.9000,119.3961 135.6000,119.3961 136.3000,119.3961 137.0000,119.3961 137.7000,119.3961 138.4000,119.3961 139.1000,119.3961 139.8000,119.3961 140.5000,119.3961 141.2000,119.3961 141.9000,119.3961 142.6000,119.3961 143.3000,119.3961 144.0000,119.3961 144.7000,126.9485 145.4000,133.8014 146.1000,140.0233 146.8000,145.6743 147.5000,150.8114 148.2000,155.4879 148.9000,159.7499 149.6000,163.6361 150.3000,167.1875 151.0000,170.4379 151.7000,173.4164 152.4000,176.1508 153.1000,178.6667 153.8000,180.9861 154.5000,183.1272 155.2000,185.1094 155.9000,186.9484 156.6000,188.6578 157.3000,190.2504 158.0000,191.7381 158.7000,193.1310 159.4000,194.4375 160.1000,195.6665 160.8000,196.8255 161.5000,197.9206 162.2000,198.9578 162.9000,199.9429 163.6000,200.8805 164.3000,201.7748 165.0000,202.6300 165.7000,203.4498 166.4000,204.2373 167.1000,204.9955 167.8000,205.7273 168.5000,206.4353 169.2000,207.1215 169.9000,207.7884 170.6000,208.4379 171.3000,209.0718 172.0000,209.6920 172.7000,210.3001 173.4000,210.8977 174.1000,211.4863 174.8000,212.0674 175.5000,212.6423 176.2000,213.2124 176.9000,213.7791 177.6000,214.3436 178.3000,214.9074 179.0000,215.4717 179.7000,216.0379 180.4000,216.6074 181.1000,217.1815 181.8000,217.7618 182.5000,218.3498 183.2000,218.9471 183.9000,219.5555 184.6000,220.1767 185.3000,220.8127 186.0000,221.4658 186.7000,222.1381 187.4000,222.8321 188.1000,223.5506 188.8000,224.2968 189.5000,225.0736 190.2000,225.8846 190.9000,226.7339 191.6000,227.6258 192.3000,228.5646 193.0000,229.5551 193.7000,230.6029 194.4000,231.7130 195.1000,232.8904 195.8000,234.1403 196.5000,235.4669 197.2000,236.8728 197.9000,238.3587 198.6000,239.9235 199.3000,241.5611 200.0000,243.2621 200.7000,245.0130 201.4000,246.7957 202.1000,248.5897 202.8000,250.3728 203.5000,252.1229 204.2000,253.8205 204.9000,255.4494 205.6000,256.9965 206.3000,258.4535 207.0000,259.8160 207.7000,261.0824 208.4000,262.2528 209.1000,263.3308 209.8000,264.3205 210.5000,265.2263 211.2000,266.0535 211.9000,266.8081 212.6000,267.4954 213.3000,268.1202 214.0000,268.6882 214.7000,269.2042 215.4000,269.6724 216.1000,270.0972 216.8000,270.4824 217.5000,270.8318 218.2000,271.1483 218.9000,271.4351 219.6000,271.6951 220.3000,271.9305 221.0000,272.1437 221.7000,272.3368 222.4000,272.5118 223.1000,272.6701 223.8000,272.8135 224.5000,272.9434 225.2000,273.0609 225.9000,273.1673 226.6000,273.2637 227.3000,273.3509 228.0000,273.4298 228.7000,273.5013 229.4000,273.5660 230.1000,273.6246 230.8000,273.6776 231.5000,273.7256 232.2000,273.7690 232.9000,273.8083 233.6000,273.8439 234.3000,273.8761 235.0000,273.9053 235.7000,273.9317 236.4000,273.9555 237.1000,273.9772 237.8000,273.9967 238.5000,274.0144 239.2000,274.0305 239.9000,274.0450 240.6000,274.0581 241.3000,274.0700 242.0000,274.0807 242.7000,273.8997 243.4000,273.7273 244.1000,273.5633 244.8000,273.4070 245.5000,273.2585 246.2000,273.1171 246.9000,272.9826 247.6000,272.8544 248.3000,272.7324 249.0000,272.6165 249.7000,272.5060 250.4000,272.4009 251.1000,272.3007 251.8000,272.2054 252.5000,272.1147 253.2000,272.0283 253.9000,271.9460 254.6000,271.8676 255.3000,271.7931 256.0000,271.7221 256.7000,271.6545 257.4000,271.5900 258.1000,271.5287 258.8000,271.4703 259.5000,271.4146 260.2000,271.3616 260.9000,271.3111 261.6000,271.2630 262.3000,271.2173 263.0000,271.1736 263.7000,271.1320 264.4000,271.0924 265.1000,271.0547 265.8000,271.0188 266.5000,270.9845 267.2000,270.9519 267.9000,270.9208 268.6000,270.8912 269.3000,270.8630 270.0000,270.8361 270.7000,270.8105 271.4000,270.7861 272.1000,270.7629 272.8000,270.7407 273.5000,270.7196 274.2000,270.6995 274.9000,270.6803 275.6000,270.6620 276.3000,270.6446 277.0000,270.6280 277.7000,270.6122 278.4000,270.5971 279.1000,270.5828 279.8000,270.5691 280.5000,270.5560 281.2000,270.5436 281.9000,270.5318 282.6000,270.5205 283.3000,270.5097 284.0000,270.4995 284.7000,270.4897 285.4000,270.4804 286.1000,270.4715 286.8000,270.4630 287.5000,270.4550 288.2000,270.4473 288.9000,270.4400 289.6000,270.4330 290.3000,270.4263 291.0000,270.4200 291.7000,270.4139 292.4000,270.4082 293.1000,270.4027 293.8000,270.3975 294.5000,270.3925 295.2000,270.3877 295.9000,270.3832 296.6000,270.3789 297.3000,270.3748 298.0000,270.3708 298.7000,270.3671 299.4000,270.3635 300.1000,270.3601 300.8000,270.3569 301.5000,270.3538 302.2000,270.3508 302.9000,270.3480 303.6000,270.3454 304.3000,270.3428 305.0000,270.3404 305.7000,270.3381 306.4000,270.3359 307.1000,270.3338 307.8000,270.3318 308.5000,270.3299 309.2000,270.3280 309.9000,270.3263 310.6000,270.3246 311.3000,270.3231 312.0000,270.3216 312.7000,270.3201 313.4000,270.3188 314.1000,270.3175 314.8000,270.3162 315.5000,270.3150 316.2000,270.3139 316.9000,270.3128 317.6000,270.3118 318.3000,270.3108 319.0000,270.3099 319.7000,270.3090 320.4000,270.3082 321.1000,270.3074 321.8000,270.3066 322.5000,270.3058 323.2000,270.3052 323.9000,270.3045 324.6000,270.3039 325.3000,270.3032 326.0000,270.3027 326.7000,270.3021 327.4000,270.3016 328.1000,270.3011 328.8000,270.3006 329.5000,270.3002 330.2000,270.2997 330.9000,270.2993 331.6000,270.2989 332.3000,270.2986 333.0000,270.2982 333.7000,270.2979 334.4000,270.2975 335.1000,270.2972 335.8000,270.2969 336.5000,270.2966 337.2000,270.2964 337.9000,270.2961 338.6000,270.2959 339.3000,270.2956 340.0000,270.2954 340.7000,270.2952 341.4000,270.2950 342.1000,270.2948 342.8000,270.2946 343.5000,270.2945 344.2000,270.2943 344.9000,270.2941 345.6000,270.2940 346.3000,270.2938 347.0000,270.2937 347.7000,270.2936 348.4000,270.2935 349.1000,270.2933 349.8000,270.2932 350.5000,270.2931 351.2000,270.2930 351.9000,270.2929 352.6000,270.2928 353.3000,270.2927 354.0000,270.2926 354.7000,270.2926 355.4000,270.2925 356.1000,270.2924 356.8000,270.2923 357.5000,270.2923 358.2000,270.2922 358.9000,270.2922 359.6000,270.2921 360.3000,270.2920 361.0000,270.2920 361.7000,270.2919 362.4000,270.2919 363.1000,270.2918 363.8000,270.2918 364.5000,270.2918 365.2000,270.2917 365.9000,270.2917 366.6000,270.2916 367.3000,270.2916 368.0000,270.2916 368.7000,270.2916 369.4000,270.2915 370.1000,270.2915 370.8000,270.2915 371.5000,270.2914 372.2000,270.2914 372.9000,270.2914 373.6000,270.2914 374.3000,270.2913 375.0000,270.2913 375.7000,270.2913 376.4000,270.2913 377.1000,270.2913 377.8000,270.2913 378.5000,270.2912 379.2000,270.2912 379.9000,270.2912 380.6000,270.2912 381.3000,270.2912 382.0000,270.2912 382.7000,270.2912 383.4000,270.2912 384.1000,270.2911 384.8000,270.2911 385.5000,270.2911 386.2000,270.2911 386.9000,270.2911 387.6000,270.2911 388.3000,270.2911 389.0000,270.2911 389.7000,270.2911 390.4000,270.2911 391.1000,270.2911 391.8000,270.2910 392.5000,270.2910 393.2000,270.2910 393.9000,270.2910 394.6000,270.2910 395.3000,270.2910 396.0000,270.2910 396.7000,270.2910 397.4000,270.2910 398.1000,270.2910 398.8000,270.2910 399.5000,270.2910 400.2000,270.2910 400.9000,270.2910 401.6000,270.2910 402.3000,270.2910 403.0000,270.2910 403.7000,270.2910 404.4000,270.2910 405.1000,270.2910 405.8000,270.2910 406.5000,270.2910 407.2000,270.2910 407.9000,270.2910 408.6000,270.2910 409.3000,270.2910 410.0000,270.2910 410.7000,270.2910 411.4000,270.2910 412.1000,270.2910 412.8000,270.2910 413.5000,270.2909 414.2000,270.2909 414.9000,270.2909 415.6000,270.2909 416.3000,270.2909 417.0000,270.2909 417.7000,270.2909 418.4000,270.2909 419.1000,270.2909 419.8000,270.2909 420.5000,270.2909 421.2000,270.2909 421.9000,270.2909 422.6000,270.2909 423.3000,270.2909 424.0000,270.2909 424.7000,270.2909 425.4000,270.2909 426.1000,270.2909 426.8000,270.2909 427.5000,270.2909 428.2000,270.2909 428.9000,270.2909 429.6000,270.2909 430.3000,270.2909 431.0000,270.2909 431.7000,270.2909 432.4000,270.2909 433.1000,270.2909 433.8000,270.2909 434.5000,270.2909 435.2000,270.2909 435.9000,270.2909 436.6000,270.2909 437.3000,270.2909 438.0000,270.2909 438.7000,270.2909 439.4000,270.2909 440.1000,270.2909 440.8000,270.2909 441.5000,270.2909 442.2000,270.2909 442.9000,270.2909 443.6000,270.2909 444.3000,270.2909 445.0000,270.2909 445.7000,270.2909 446.4000,270.2909 447.1000,270.2909 447.8000,270.2909 448.5000,270.2909 449.2000,270.2909 449.9000,270.2909 450.6000,270.2909 451.3000,270.2909 452.0000,270.2909 452.7000,270.2909 453.4000,270.2909 454.1000,270.2909 454.8000,270.2909 455.5000,270.2909 456.2000,270.2909 456.9000,270.2909 457.6000,270.2909 458.3000,270.2909 459.0000,270.2909 459.7000,270.2909 460.4000,270.2909 461.1000,270.2909 461.8000,270.2909 462.5000,270.2909 463.2000,270.2909 463.9000,270.2909 464.6000,270.2909 465.3000,270.2909 466.0000,270.2909 466.7000,270.2909 467.4000,270.2909 468.1000,270.2909 468.8000,270.2909 469.5000,270.2909 470.2000,270.2909 470.9000,270.2909 471.6000,270.2909 472.3000,270.2909 473.0000,270.2909 473.7000,270.2909 474.4000,270.2909 475.1000,270.2909 475.8000,270.2909 476.5000,270.2909 477.2000,270.2909 477.9000,270.2909 478.6000,270.2909 479.3000,270.2909 480.0000,270.2909 480.7000,270.2909 481.4000,270.2909 482.1000,270.2909 482.8000,270.2909 483.5000,270.2909 484.2000,270.2909 484.9000,270.2909 485.6000,270.2909 486.3000,270.2909 487.0000,270.2909 487.7000,270.2909 488.4000,270.2909 489.1000,270.2909 489.8000,270.2909 490.5000,270.2909 491.2000,270.2909 491.9000,270.2909 492.6000,270.2909 493.3000,270.2909 494.0000,270.2909" fill="none" stroke="var(--coral)" stroke-width="2.6" stroke-dasharray=""/>
+<line x1="74.000" y1="243.367" x2="494.000" y2="243.367" stroke="var(--muted,#69695F)" stroke-width="2" stroke-dasharray="5 5"/>
+<line x1="16.000" y1="360.000" x2="38.000" y2="360.000" stroke="var(--peri)" stroke-width="2" stroke-dasharray=""/>
+<text x="45.0" y="365.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">duration 3: returns ON</text>
+
+<line x1="261.000" y1="360.000" x2="283.000" y2="360.000" stroke="var(--coral)" stroke-width="2" stroke-dasharray=""/>
+<text x="290.0" y="365.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">duration 7: stays OFF</text>
+
+</g></svg>
+<figcaption><b>Figure 3. Removing an attractor briefly need not remove its memory.</b> Both pulses double removal at time 5, beyond the upper fold. A pulse lasting 3 time units ends above the restored threshold and returns to ON. A pulse lasting 7 ends below it and stays OFF. The dashed line is the unstable threshold after restoration.</figcaption></figure>
+<p>Separating variables computes the threshold duration without guessing a time step. For <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>p</mi></msub><mo>&gt;</mo><mn>1.82488</mn></mrow><annotation encoding="application/x-tex">d_p&gt;1.82488</annotation></semantics></math></span>, define</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>T</mi><mi>c</mi></msub><mo stretchy="false">(</mo><msub><mi>d</mi><mi>p</mi></msub><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∫</mo><msub><mi>x</mi><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">h</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">d</mi></mrow></msub><msub><mi>x</mi><mrow><mi mathvariant="normal">O</mi><mi mathvariant="normal">N</mi></mrow></msub></msubsup><mfrac><mrow><mi>d</mi><mi>x</mi></mrow><mrow><msub><mi>d</mi><mi>p</mi></msub><mi>x</mi><mo>−</mo><mi>p</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">T_c(d_p)=\int_{x_{\mathrm{threshold}}}^{x_{\mathrm{ON}}}
+\frac{dx}{d_p x-p(x)}.</annotation></semantics></math></div>
+<p>The denominator is the downward speed during the pulse. The integral is the travel time from the initial ON state to the restored basin boundary. Deterministic erasure requires <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>&gt;</mo><msub><mi>T</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">T&gt;T_c</annotation></semantics></math></span>. At exact equality the ideal solution lands on the unstable boundary, so numerical error or a small disturbance decides the subsequent side.</p>
+<figure class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 384" role="img" aria-label="A fold is not a pulse-duration test. The separating curve is calculated by quadrature">
+<title>A fold is not a pulse-duration test</title>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif">
+<text x="16.0" y="25.0" font-size="20" fill="var(--fg,#252821)" font-weight="700">A fold is not a pulse-duration test</text>
+
+<text x="16.0" y="49.0" font-size="16" fill="var(--muted,#69695F)" font-weight="400">The separating curve is calculated by quadrature</text>
+
+<text x="74.0" y="82.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">Critical duration (dimensionless)</text>
+
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="74.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">1.85</text>
+
+<line x1="200.977" y1="100.000" x2="200.977" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="201.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">2.5</text>
+
+<line x1="298.651" y1="100.000" x2="298.651" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="298.7" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">3</text>
+
+<line x1="494.000" y1="100.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="494.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">4</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="283.0" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0</text>
+
+<line x1="74.000" y1="223.231" x2="494.000" y2="223.231" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="228.2" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">4</text>
+
+<line x1="74.000" y1="168.462" x2="494.000" y2="168.462" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="173.5" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">8</text>
+
+<line x1="74.000" y1="113.692" x2="494.000" y2="113.692" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="118.7" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">12</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<text x="284.0" y="331.0" font-size="17" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">Pulse removal rate (dimensionless)</text>
+
+<polyline data-curve="critical-time" points="74.0000,115.4357 76.6250,148.4631 79.2500,167.7836 81.8750,180.8658 84.5000,190.4889 87.1250,197.9568 89.7500,203.9735 92.3750,208.9572 95.0000,213.1743 97.6250,216.8035 100.2500,219.9701 102.8750,222.7647 105.5000,225.2548 108.1250,227.4917 110.7500,229.5154 113.3750,231.3576 116.0000,233.0436 118.6250,234.5941 121.2500,236.0262 123.8750,237.3540 126.5000,238.5894 129.1250,239.7424 131.7500,240.8216 134.3750,241.8345 137.0000,242.7873 139.6250,243.6858 142.2500,244.5346 144.8750,245.3382 147.5000,246.1002 150.1250,246.8241 152.7500,247.5128 155.3750,248.1689 158.0000,248.7950 160.6250,249.3931 163.2500,249.9651 165.8750,250.5129 168.5000,251.0380 171.1250,251.5419 173.7500,252.0259 176.3750,252.4913 179.0000,252.9392 181.6250,253.3705 184.2500,253.7862 186.8750,254.1872 189.5000,254.5744 192.1250,254.9484 194.7500,255.3099 197.3750,255.6596 200.0000,255.9980 202.6250,256.3258 205.2500,256.6435 207.8750,256.9515 210.5000,257.2502 213.1250,257.5402 215.7500,257.8218 218.3750,258.0954 221.0000,258.3613 223.6250,258.6198 226.2500,258.8714 228.8750,259.1162 231.5000,259.3545 234.1250,259.5867 236.7500,259.8129 239.3750,260.0334 242.0000,260.2484 244.6250,260.4581 247.2500,260.6627 249.8750,260.8625 252.5000,261.0575 255.1250,261.2480 257.7500,261.4340 260.3750,261.6159 263.0000,261.7937 265.6250,261.9675 268.2500,262.1375 270.8750,262.3038 273.5000,262.4666 276.1250,262.6259 278.7500,262.7819 281.3750,262.9347 284.0000,263.0843 286.6250,263.2309 289.2500,263.3746 291.8750,263.5154 294.5000,263.6535 297.1250,263.7889 299.7500,263.9216 302.3750,264.0519 305.0000,264.1797 307.6250,264.3052 310.2500,264.4283 312.8750,264.5492 315.5000,264.6678 318.1250,264.7844 320.7500,264.8989 323.3750,265.0114 326.0000,265.1219 328.6250,265.2305 331.2500,265.3373 333.8750,265.4423 336.5000,265.5454 339.1250,265.6469 341.7500,265.7467 344.3750,265.8449 347.0000,265.9415 349.6250,266.0365 352.2500,266.1300 354.8750,266.2220 357.5000,266.3126 360.1250,266.4018 362.7500,266.4896 365.3750,266.5760 368.0000,266.6612 370.6250,266.7451 373.2500,266.8277 375.8750,266.9091 378.5000,266.9892 381.1250,267.0683 383.7500,267.1461 386.3750,267.2229 389.0000,267.2986 391.6250,267.3731 394.2500,267.4467 396.8750,267.5192 399.5000,267.5907 402.1250,267.6612 404.7500,267.7308 407.3750,267.7994 410.0000,267.8671 412.6250,267.9339 415.2500,267.9998 417.8750,268.0648 420.5000,268.1290 423.1250,268.1923 425.7500,268.2549 428.3750,268.3166 431.0000,268.3775 433.6250,268.4377 436.2500,268.4971 438.8750,268.5558 441.5000,268.6137 444.1250,268.6709 446.7500,268.7274 449.3750,268.7833 452.0000,268.8384 454.6250,268.8929 457.2500,268.9467 459.8750,268.9999 462.5000,269.0525 465.1250,269.1044 467.7500,269.1558 470.3750,269.2065 473.0000,269.2567 475.6250,269.3063 478.2500,269.3553 480.8750,269.4038 483.5000,269.4517 486.1250,269.4991 488.7500,269.5459 491.3750,269.5923 494.0000,269.6381" fill="none" stroke="var(--rose)" stroke-width="2.6" stroke-dasharray=""/>
+<circle cx="74.0000" cy="115.4357" r="4.5" fill="var(--rose)"/>
+<circle cx="103.3023" cy="223.1893" r="4.5" fill="var(--rose)"/>
+<circle cx="200.9767" cy="256.1212" r="4.5" fill="var(--rose)"/>
+<circle cx="494.0000" cy="269.6381" r="4.5" fill="var(--rose)"/>
+<text x="16.0" y="362.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">Longer than the curve: erased. Shorter: retained.</text>
+
+</g></svg>
+<figcaption><b>Figure 4. Memory erasure has an amplitude–duration boundary.</b> Independent quadrature gives critical durations 11.873, 4.003, 1.598 and 0.611 at pulse removal rates 1.85, 2, 2.5 and 4. The units are dimensionless, not minutes measured in a cell. Close to the fold, the small downward speed creates a bottleneck.</figcaption></figure>
+<p>A static bifurcation diagram answers which equilibria exist while a parameter is held fixed. Peng's question concerns a finite protocol that leaves one vector field and returns to it. Its answer requires a trajectory between the two switching times. The original genetic-toggle experiments likewise used transient induction and then tested whether a state persisted after the inducer was removed.<sup class="c"><a href="#r-gardner">5</a></sup></p>
+<p class="takeaway">Turn a static fold into a finite-pulse prediction by integrating the travel time to the basin boundary of the restored system.</p>
+
+<h2 id="s7"><span class="n">7</span>The same curve can hide another clock</h2>
+<p>Steady occupancy does not determine how quickly a promoter reaches that occupancy. <a href="https://github.com/chemaoxfz/ccbs-2026-submissions/blob/94162042f6dfad701f14cccb954890a33ade4af4/week2/week2-alvaro-ext.html">Álvaro Bátrez</a> asks what the toggle's Hill curves leave out when binding is no longer fast. That question directly challenges the duration calculation: a hidden slow state can change how far a finite pulse moves the system.</p>
+<p>To isolate the point without assuming negligible binding depletion is exact chemistry, use a deliberately simpler occupancy model. Let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> be the fraction of promoters active under an externally clamped regulator. Its new steady active fraction is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi mathvariant="normal">∞</mi></msub></mrow><annotation encoding="application/x-tex">p_\infty</annotation></semantics></math></span>, and its relaxation rate is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">r&gt;0</annotation></semantics></math></span>. Normalize protein production and removal to obtain</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>p</mi><mo>˙</mo></mover><mo>=</mo><mi>r</mi><mo stretchy="false">(</mo><msub><mi>p</mi><mi mathvariant="normal">∞</mi></msub><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mspace width="2em"/><mover accent="true"><mi>x</mi><mo>˙</mo></mover><mo>=</mo><mi>p</mi><mo>−</mo><mi>x</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\dot p=r(p_\infty-p),
+\qquad \dot x=p-x.</annotation></semantics></math></div>
+<p>This is an effective two-state occupancy description with an undepleted regulator reservoir. It is not a full mass-action model of a finite transcription-factor pool. Both promoter transition rates may be scaled together to change <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span> while keeping their ratio, and hence <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi mathvariant="normal">∞</mi></msub></mrow><annotation encoding="application/x-tex">p_\infty</annotation></semantics></math></span>, fixed.</p>
+<p>Suppose the system starts at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mi>x</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">p=x=1</annotation></semantics></math></span>, and the regulator changes the steady active fraction to 0.2. For <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo mathvariant="normal">≠</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r\ne1</annotation></semantics></math></span>, direct integration gives</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>x</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0.2</mn><mo>+</mo><mn>0.8</mn><msup><mi>e</mi><mrow><mo>−</mo><mi>t</mi></mrow></msup><mo>+</mo><mfrac><mn>0.8</mn><mrow><mn>1</mn><mo>−</mo><mi>r</mi></mrow></mfrac><mrow><mo fence="true">(</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>r</mi><mi>t</mi></mrow></msup><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>t</mi></mrow></msup><mo fence="true">)</mo></mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">x(t)=0.2+0.8e^{-t}
++\frac{0.8}{1-r}\left(e^{-rt}-e^{-t}\right).</annotation></semantics></math></div>
+<figure class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 384" role="img" aria-label="Same equilibrium, different arrival. Promoter activity drops from 1 to 0.2 at time 0">
+<title>Same equilibrium, different arrival</title>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif">
+<text x="16.0" y="25.0" font-size="20" fill="var(--fg,#252821)" font-weight="700">Same equilibrium, different arrival</text>
+
+<text x="16.0" y="49.0" font-size="16" fill="var(--muted,#69695F)" font-weight="400">Promoter activity drops from 1 to 0.2 at time 0</text>
+
+<text x="74.0" y="82.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">Protein / initial protein</text>
+
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="74.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">0</text>
+
+<line x1="179.000" y1="100.000" x2="179.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="179.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">5</text>
+
+<line x1="284.000" y1="100.000" x2="284.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="284.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">10</text>
+
+<line x1="389.000" y1="100.000" x2="389.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="389.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">15</text>
+
+<line x1="494.000" y1="100.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="494.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">20</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="283.0" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0</text>
+
+<line x1="74.000" y1="244.095" x2="494.000" y2="244.095" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="249.1" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0.2</text>
+
+<line x1="74.000" y1="176.286" x2="494.000" y2="176.286" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="181.3" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0.6</text>
+
+<line x1="74.000" y1="108.476" x2="494.000" y2="108.476" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="113.5" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">1</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<text x="284.0" y="331.0" font-size="17" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">Time / protein lifetime</text>
+
+<polyline data-curve="slow" points="74.0000,108.4762 74.8400,108.4975 75.6800,108.5603 76.5200,108.6624 77.3600,108.8020 78.2000,108.9774 79.0400,109.1868 79.8800,109.4285 80.7200,109.7010 81.5600,110.0026 82.4000,110.3321 83.2400,110.6879 84.0800,111.0687 84.9200,111.4732 85.7600,111.9002 86.6000,112.3484 87.4400,112.8169 88.2800,113.3044 89.1200,113.8099 89.9600,114.3324 90.8000,114.8710 91.6400,115.4247 92.4800,115.9926 93.3200,116.5740 94.1600,117.1680 95.0000,117.7737 95.8400,118.3906 96.6800,119.0178 97.5200,119.6547 98.3600,120.3007 99.2000,120.9550 100.0400,121.6172 100.8800,122.2865 101.7200,122.9626 102.5600,123.6448 103.4000,124.3327 104.2400,125.0258 105.0800,125.7236 105.9200,126.4256 106.7600,127.1316 107.6000,127.8409 108.4400,128.5534 109.2800,129.2686 110.1200,129.9861 110.9600,130.7057 111.8000,131.4269 112.6400,132.1496 113.4800,132.8733 114.3200,133.5979 115.1600,134.3231 116.0000,135.0485 116.8400,135.7741 117.6800,136.4995 118.5200,137.2245 119.3600,137.9489 120.2000,138.6725 121.0400,139.3951 121.8800,140.1166 122.7200,140.8368 123.5600,141.5555 124.4000,142.2725 125.2400,142.9877 126.0800,143.7010 126.9200,144.4123 127.7600,145.1213 128.6000,145.8281 129.4400,146.5324 130.2800,147.2342 131.1200,147.9334 131.9600,148.6298 132.8000,149.3235 133.6400,150.0142 134.4800,150.7019 135.3200,151.3866 136.1600,152.0682 137.0000,152.7466 137.8400,153.4218 138.6800,154.0936 139.5200,154.7620 140.3600,155.4271 141.2000,156.0887 142.0400,156.7467 142.8800,157.4012 143.7200,158.0522 144.5600,158.6995 145.4000,159.3431 146.2400,159.9831 147.0800,160.6193 147.9200,161.2518 148.7600,161.8806 149.6000,162.5055 150.4400,163.1267 151.2800,163.7441 152.1200,164.3576 152.9600,164.9673 153.8000,165.5731 154.6400,166.1751 155.4800,166.7732 156.3200,167.3674 157.1600,167.9578 158.0000,168.5443 158.8400,169.1269 159.6800,169.7056 160.5200,170.2804 161.3600,170.8514 162.2000,171.4184 163.0400,171.9817 163.8800,172.5410 164.7200,173.0965 165.5600,173.6481 166.4000,174.1959 167.2400,174.7399 168.0800,175.2800 168.9200,175.8163 169.7600,176.3489 170.6000,176.8776 171.4400,177.4025 172.2800,177.9237 173.1200,178.4411 173.9600,178.9548 174.8000,179.4648 175.6400,179.9711 176.4800,180.4736 177.3200,180.9725 178.1600,181.4678 179.0000,181.9594 179.8400,182.4473 180.6800,182.9317 181.5200,183.4125 182.3600,183.8897 183.2000,184.3633 184.0400,184.8334 184.8800,185.3000 185.7200,185.7631 186.5600,186.2227 187.4000,186.6788 188.2400,187.1316 189.0800,187.5809 189.9200,188.0267 190.7600,188.4693 191.6000,188.9084 192.4400,189.3442 193.2800,189.7767 194.1200,190.2059 194.9600,190.6319 195.8000,191.0545 196.6400,191.4739 197.4800,191.8902 198.3200,192.3032 199.1600,192.7130 200.0000,193.1197 200.8400,193.5232 201.6800,193.9237 202.5200,194.3210 203.3600,194.7153 204.2000,195.1065 205.0400,195.4947 205.8800,195.8799 206.7200,196.2621 207.5600,196.6413 208.4000,197.0176 209.2400,197.3910 210.0800,197.7614 210.9200,198.1290 211.7600,198.4937 212.6000,198.8556 213.4400,199.2146 214.2800,199.5708 215.1200,199.9243 215.9600,200.2750 216.8000,200.6229 217.6400,200.9681 218.4800,201.3106 219.3200,201.6504 220.1600,201.9876 221.0000,202.3221 221.8400,202.6540 222.6800,202.9833 223.5200,203.3100 224.3600,203.6341 225.2000,203.9557 226.0400,204.2747 226.8800,204.5912 227.7200,204.9053 228.5600,205.2168 229.4000,205.5260 230.2400,205.8326 231.0800,206.1369 231.9200,206.4387 232.7600,206.7382 233.6000,207.0353 234.4400,207.3301 235.2800,207.6225 236.1200,207.9127 236.9600,208.2005 237.8000,208.4861 238.6400,208.7694 239.4800,209.0504 240.3200,209.3293 241.1600,209.6059 242.0000,209.8803 242.8400,210.1526 243.6800,210.4227 244.5200,210.6907 245.3600,210.9566 246.2000,211.2203 247.0400,211.4820 247.8800,211.7416 248.7200,211.9991 249.5600,212.2546 250.4000,212.5080 251.2400,212.7595 252.0800,213.0089 252.9200,213.2564 253.7600,213.5019 254.6000,213.7455 255.4400,213.9871 256.2800,214.2269 257.1200,214.4647 257.9600,214.7006 258.8000,214.9346 259.6400,215.1668 260.4800,215.3972 261.3200,215.6257 262.1600,215.8524 263.0000,216.0773 263.8400,216.3004 264.6800,216.5218 265.5200,216.7414 266.3600,216.9592 267.2000,217.1753 268.0400,217.3897 268.8800,217.6024 269.7200,217.8134 270.5600,218.0227 271.4000,218.2304 272.2400,218.4364 273.0800,218.6408 273.9200,218.8435 274.7600,219.0446 275.6000,219.2442 276.4400,219.4421 277.2800,219.6385 278.1200,219.8333 278.9600,220.0265 279.8000,220.2183 280.6400,220.4085 281.4800,220.5971 282.3200,220.7843 283.1600,220.9700 284.0000,221.1542 284.8400,221.3370 285.6800,221.5183 286.5200,221.6981 287.3600,221.8765 288.2000,222.0535 289.0400,222.2291 289.8800,222.4033 290.7200,222.5761 291.5600,222.7476 292.4000,222.9176 293.2400,223.0863 294.0800,223.2537 294.9200,223.4197 295.7600,223.5845 296.6000,223.7479 297.4400,223.9100 298.2800,224.0708 299.1200,224.2303 299.9600,224.3886 300.8000,224.5456 301.6400,224.7013 302.4800,224.8558 303.3200,225.0091 304.1600,225.1612 305.0000,225.3120 305.8400,225.4617 306.6800,225.6101 307.5200,225.7574 308.3600,225.9035 309.2000,226.0485 310.0400,226.1922 310.8800,226.3349 311.7200,226.4764 312.5600,226.6168 313.4000,226.7560 314.2400,226.8942 315.0800,227.0312 315.9200,227.1672 316.7600,227.3020 317.6000,227.4358 318.4400,227.5686 319.2800,227.7002 320.1200,227.8309 320.9600,227.9605 321.8000,228.0890 322.6400,228.2165 323.4800,228.3431 324.3200,228.4686 325.1600,228.5931 326.0000,228.7166 326.8400,228.8391 327.6800,228.9607 328.5200,229.0813 329.3600,229.2009 330.2000,229.3196 331.0400,229.4373 331.8800,229.5541 332.7200,229.6699 333.5600,229.7849 334.4000,229.8989 335.2400,230.0120 336.0800,230.1242 336.9200,230.2356 337.7600,230.3460 338.6000,230.4555 339.4400,230.5642 340.2800,230.6720 341.1200,230.7790 341.9600,230.8851 342.8000,230.9903 343.6400,231.0948 344.4800,231.1983 345.3200,231.3011 346.1600,231.4030 347.0000,231.5042 347.8400,231.6045 348.6800,231.7040 349.5200,231.8028 350.3600,231.9007 351.2000,231.9979 352.0400,232.0943 352.8800,232.1899 353.7200,232.2847 354.5600,232.3788 355.4000,232.4722 356.2400,232.5648 357.0800,232.6567 357.9200,232.7478 358.7600,232.8382 359.6000,232.9279 360.4400,233.0169 361.2800,233.1052 362.1200,233.1928 362.9600,233.2796 363.8000,233.3658 364.6400,233.4513 365.4800,233.5361 366.3200,233.6202 367.1600,233.7037 368.0000,233.7865 368.8400,233.8687 369.6800,233.9501 370.5200,234.0310 371.3600,234.1112 372.2000,234.1907 373.0400,234.2696 373.8800,234.3479 374.7200,234.4256 375.5600,234.5026 376.4000,234.5791 377.2400,234.6549 378.0800,234.7301 378.9200,234.8047 379.7600,234.8788 380.6000,234.9522 381.4400,235.0251 382.2800,235.0973 383.1200,235.1690 383.9600,235.2402 384.8000,235.3107 385.6400,235.3807 386.4800,235.4501 387.3200,235.5190 388.1600,235.5874 389.0000,235.6552 389.8400,235.7224 390.6800,235.7891 391.5200,235.8553 392.3600,235.9210 393.2000,235.9861 394.0400,236.0507 394.8800,236.1148 395.7200,236.1784 396.5600,236.2415 397.4000,236.3041 398.2400,236.3661 399.0800,236.4277 399.9200,236.4888 400.7600,236.5494 401.6000,236.6096 402.4400,236.6692 403.2800,236.7284 404.1200,236.7871 404.9600,236.8453 405.8000,236.9031 406.6400,236.9604 407.4800,237.0172 408.3200,237.0736 409.1600,237.1296 410.0000,237.1851 410.8400,237.2401 411.6800,237.2948 412.5200,237.3489 413.3600,237.4027 414.2000,237.4560 415.0400,237.5089 415.8800,237.5614 416.7200,237.6135 417.5600,237.6651 418.4000,237.7164 419.2400,237.7672 420.0800,237.8176 420.9200,237.8676 421.7600,237.9172 422.6000,237.9665 423.4400,238.0153 424.2800,238.0638 425.1200,238.1118 425.9600,238.1595 426.8000,238.2068 427.6400,238.2537 428.4800,238.3003 429.3200,238.3464 430.1600,238.3922 431.0000,238.4377 431.8400,238.4828 432.6800,238.5275 433.5200,238.5718 434.3600,238.6159 435.2000,238.6595 436.0400,238.7028 436.8800,238.7458 437.7200,238.7884 438.5600,238.8307 439.4000,238.8726 440.2400,238.9143 441.0800,238.9555 441.9200,238.9965 442.7600,239.0371 443.6000,239.0774 444.4400,239.1174 445.2800,239.1571 446.1200,239.1964 446.9600,239.2355 447.8000,239.2742 448.6400,239.3126 449.4800,239.3507 450.3200,239.3885 451.1600,239.4260 452.0000,239.4632 452.8400,239.5001 453.6800,239.5367 454.5200,239.5731 455.3600,239.6091 456.2000,239.6448 457.0400,239.6803 457.8800,239.7155 458.7200,239.7504 459.5600,239.7850 460.4000,239.8193 461.2400,239.8534 462.0800,239.8872 462.9200,239.9207 463.7600,239.9540 464.6000,239.9870 465.4400,240.0197 466.2800,240.0522 467.1200,240.0844 467.9600,240.1164 468.8000,240.1481 469.6400,240.1795 470.4800,240.2107 471.3200,240.2417 472.1600,240.2724 473.0000,240.3029 473.8400,240.3331 474.6800,240.3631 475.5200,240.3928 476.3600,240.4223 477.2000,240.4516 478.0400,240.4806 478.8800,240.5094 479.7200,240.5380 480.5600,240.5663 481.4000,240.5944 482.2400,240.6223 483.0800,240.6500 483.9200,240.6775 484.7600,240.7047 485.6000,240.7317 486.4400,240.7585 487.2800,240.7851 488.1200,240.8115 488.9600,240.8376 489.8000,240.8636 490.6400,240.8893 491.4800,240.9149 492.3200,240.9402 493.1600,240.9654 494.0000,240.9903" fill="none" stroke="var(--coral)" stroke-width="2.6" stroke-dasharray=""/>
+<polyline data-curve="fast" points="74.0000,108.4762 74.8400,110.1432 75.6800,113.7551 76.5200,118.1288 77.3600,122.7368 78.2000,127.3465 79.0400,131.8574 79.8800,136.2283 80.7200,140.4443 81.5600,144.5025 82.4000,148.4048 83.2400,152.1557 84.0800,155.7601 84.9200,159.2235 85.7600,162.5513 86.6000,165.7486 87.4400,168.8206 88.2800,171.7722 89.1200,174.6080 89.9600,177.3326 90.8000,179.9504 91.6400,182.4656 92.4800,184.8821 93.3200,187.2039 94.1600,189.4346 95.0000,191.5779 95.8400,193.6371 96.6800,195.6156 97.5200,197.5165 98.3600,199.3429 99.2000,201.0977 100.0400,202.7836 100.8800,204.4035 101.7200,205.9598 102.5600,207.4551 103.4000,208.8918 104.2400,210.2722 105.0800,211.5984 105.9200,212.8726 106.7600,214.0969 107.6000,215.2731 108.4400,216.4033 109.2800,217.4891 110.1200,218.5323 110.9600,219.5346 111.8000,220.4977 112.6400,221.4230 113.4800,222.3119 114.3200,223.1661 115.1600,223.9867 116.0000,224.7752 116.8400,225.5327 117.6800,226.2606 118.5200,226.9599 119.3600,227.6318 120.2000,228.2773 121.0400,228.8976 121.8800,229.4935 122.7200,230.0660 123.5600,230.6161 124.4000,231.1446 125.2400,231.6524 126.0800,232.1403 126.9200,232.6091 127.7600,233.0595 128.6000,233.4922 129.4400,233.9079 130.2800,234.3074 131.1200,234.6912 131.9600,235.0599 132.8000,235.4142 133.6400,235.7546 134.4800,236.0816 135.3200,236.3958 136.1600,236.6977 137.0000,236.9878 137.8400,237.2665 138.6800,237.5342 139.5200,237.7915 140.3600,238.0387 141.2000,238.2762 142.0400,238.5043 142.8800,238.7235 143.7200,238.9342 144.5600,239.1365 145.4000,239.3310 146.2400,239.5178 147.0800,239.6973 147.9200,239.8697 148.7600,240.0354 149.6000,240.1946 150.4400,240.3475 151.2800,240.4945 152.1200,240.6357 152.9600,240.7713 153.8000,240.9017 154.6400,241.0269 155.4800,241.1472 156.3200,241.2628 157.1600,241.3738 158.0000,241.4806 158.8400,241.5831 159.6800,241.6816 160.5200,241.7762 161.3600,241.8672 162.2000,241.9545 163.0400,242.0385 163.8800,242.1191 164.7200,242.1966 165.5600,242.2710 166.4000,242.3426 167.2400,242.4113 168.0800,242.4773 168.9200,242.5408 169.7600,242.6017 170.6000,242.6603 171.4400,242.7165 172.2800,242.7706 173.1200,242.8225 173.9600,242.8724 174.8000,242.9204 175.6400,242.9665 176.4800,243.0107 177.3200,243.0532 178.1600,243.0941 179.0000,243.1333 179.8400,243.1711 180.6800,243.2073 181.5200,243.2421 182.3600,243.2756 183.2000,243.3077 184.0400,243.3386 184.8800,243.3683 185.7200,243.3968 186.5600,243.4242 187.4000,243.4505 188.2400,243.4757 189.0800,243.5000 189.9200,243.5234 190.7600,243.5458 191.6000,243.5673 192.4400,243.5880 193.2800,243.6079 194.1200,243.6270 194.9600,243.6454 195.8000,243.6630 196.6400,243.6800 197.4800,243.6963 198.3200,243.7119 199.1600,243.7269 200.0000,243.7414 200.8400,243.7553 201.6800,243.7686 202.5200,243.7814 203.3600,243.7937 204.2000,243.8055 205.0400,243.8169 205.8800,243.8278 206.7200,243.8383 207.5600,243.8484 208.4000,243.8580 209.2400,243.8673 210.0800,243.8763 210.9200,243.8849 211.7600,243.8931 212.6000,243.9010 213.4400,243.9087 214.2800,243.9160 215.1200,243.9230 215.9600,243.9298 216.8000,243.9362 217.6400,243.9425 218.4800,243.9485 219.3200,243.9542 220.1600,243.9597 221.0000,243.9651 221.8400,243.9702 222.6800,243.9751 223.5200,243.9798 224.3600,243.9843 225.2000,243.9887 226.0400,243.9928 226.8800,243.9969 227.7200,244.0007 228.5600,244.0044 229.4000,244.0080 230.2400,244.0114 231.0800,244.0147 231.9200,244.0178 232.7600,244.0209 233.6000,244.0238 234.4400,244.0266 235.2800,244.0293 236.1200,244.0319 236.9600,244.0344 237.8000,244.0367 238.6400,244.0390 239.4800,244.0412 240.3200,244.0434 241.1600,244.0454 242.0000,244.0473 242.8400,244.0492 243.6800,244.0510 244.5200,244.0528 245.3600,244.0544 246.2000,244.0560 247.0400,244.0576 247.8800,244.0590 248.7200,244.0605 249.5600,244.0618 250.4000,244.0631 251.2400,244.0644 252.0800,244.0656 252.9200,244.0668 253.7600,244.0679 254.6000,244.0690 255.4400,244.0700 256.2800,244.0710 257.1200,244.0719 257.9600,244.0728 258.8000,244.0737 259.6400,244.0746 260.4800,244.0754 261.3200,244.0762 262.1600,244.0769 263.0000,244.0776 263.8400,244.0783 264.6800,244.0790 265.5200,244.0796 266.3600,244.0802 267.2000,244.0808 268.0400,244.0814 268.8800,244.0819 269.7200,244.0824 270.5600,244.0829 271.4000,244.0834 272.2400,244.0839 273.0800,244.0843 273.9200,244.0848 274.7600,244.0852 275.6000,244.0856 276.4400,244.0859 277.2800,244.0863 278.1200,244.0867 278.9600,244.0870 279.8000,244.0873 280.6400,244.0876 281.4800,244.0879 282.3200,244.0882 283.1600,244.0885 284.0000,244.0888 284.8400,244.0890 285.6800,244.0893 286.5200,244.0895 287.3600,244.0897 288.2000,244.0899 289.0400,244.0901 289.8800,244.0903 290.7200,244.0905 291.5600,244.0907 292.4000,244.0909 293.2400,244.0911 294.0800,244.0912 294.9200,244.0914 295.7600,244.0915 296.6000,244.0917 297.4400,244.0918 298.2800,244.0920 299.1200,244.0921 299.9600,244.0922 300.8000,244.0923 301.6400,244.0924 302.4800,244.0925 303.3200,244.0927 304.1600,244.0928 305.0000,244.0929 305.8400,244.0929 306.6800,244.0930 307.5200,244.0931 308.3600,244.0932 309.2000,244.0933 310.0400,244.0934 310.8800,244.0934 311.7200,244.0935 312.5600,244.0936 313.4000,244.0936 314.2400,244.0937 315.0800,244.0938 315.9200,244.0938 316.7600,244.0939 317.6000,244.0939 318.4400,244.0940 319.2800,244.0940 320.1200,244.0941 320.9600,244.0941 321.8000,244.0942 322.6400,244.0942 323.4800,244.0942 324.3200,244.0943 325.1600,244.0943 326.0000,244.0944 326.8400,244.0944 327.6800,244.0944 328.5200,244.0945 329.3600,244.0945 330.2000,244.0945 331.0400,244.0945 331.8800,244.0946 332.7200,244.0946 333.5600,244.0946 334.4000,244.0947 335.2400,244.0947 336.0800,244.0947 336.9200,244.0947 337.7600,244.0947 338.6000,244.0948 339.4400,244.0948 340.2800,244.0948 341.1200,244.0948 341.9600,244.0948 342.8000,244.0948 343.6400,244.0949 344.4800,244.0949 345.3200,244.0949 346.1600,244.0949 347.0000,244.0949 347.8400,244.0949 348.6800,244.0949 349.5200,244.0950 350.3600,244.0950 351.2000,244.0950 352.0400,244.0950 352.8800,244.0950 353.7200,244.0950 354.5600,244.0950 355.4000,244.0950 356.2400,244.0950 357.0800,244.0950 357.9200,244.0950 358.7600,244.0951 359.6000,244.0951 360.4400,244.0951 361.2800,244.0951 362.1200,244.0951 362.9600,244.0951 363.8000,244.0951 364.6400,244.0951 365.4800,244.0951 366.3200,244.0951 367.1600,244.0951 368.0000,244.0951 368.8400,244.0951 369.6800,244.0951 370.5200,244.0951 371.3600,244.0951 372.2000,244.0951 373.0400,244.0951 373.8800,244.0951 374.7200,244.0952 375.5600,244.0952 376.4000,244.0952 377.2400,244.0952 378.0800,244.0952 378.9200,244.0952 379.7600,244.0952 380.6000,244.0952 381.4400,244.0952 382.2800,244.0952 383.1200,244.0952 383.9600,244.0952 384.8000,244.0952 385.6400,244.0952 386.4800,244.0952 387.3200,244.0952 388.1600,244.0952 389.0000,244.0952 389.8400,244.0952 390.6800,244.0952 391.5200,244.0952 392.3600,244.0952 393.2000,244.0952 394.0400,244.0952 394.8800,244.0952 395.7200,244.0952 396.5600,244.0952 397.4000,244.0952 398.2400,244.0952 399.0800,244.0952 399.9200,244.0952 400.7600,244.0952 401.6000,244.0952 402.4400,244.0952 403.2800,244.0952 404.1200,244.0952 404.9600,244.0952 405.8000,244.0952 406.6400,244.0952 407.4800,244.0952 408.3200,244.0952 409.1600,244.0952 410.0000,244.0952 410.8400,244.0952 411.6800,244.0952 412.5200,244.0952 413.3600,244.0952 414.2000,244.0952 415.0400,244.0952 415.8800,244.0952 416.7200,244.0952 417.5600,244.0952 418.4000,244.0952 419.2400,244.0952 420.0800,244.0952 420.9200,244.0952 421.7600,244.0952 422.6000,244.0952 423.4400,244.0952 424.2800,244.0952 425.1200,244.0952 425.9600,244.0952 426.8000,244.0952 427.6400,244.0952 428.4800,244.0952 429.3200,244.0952 430.1600,244.0952 431.0000,244.0952 431.8400,244.0952 432.6800,244.0952 433.5200,244.0952 434.3600,244.0952 435.2000,244.0952 436.0400,244.0952 436.8800,244.0952 437.7200,244.0952 438.5600,244.0952 439.4000,244.0952 440.2400,244.0952 441.0800,244.0952 441.9200,244.0952 442.7600,244.0952 443.6000,244.0952 444.4400,244.0952 445.2800,244.0952 446.1200,244.0952 446.9600,244.0952 447.8000,244.0952 448.6400,244.0952 449.4800,244.0952 450.3200,244.0952 451.1600,244.0952 452.0000,244.0952 452.8400,244.0952 453.6800,244.0952 454.5200,244.0952 455.3600,244.0952 456.2000,244.0952 457.0400,244.0952 457.8800,244.0952 458.7200,244.0952 459.5600,244.0952 460.4000,244.0952 461.2400,244.0952 462.0800,244.0952 462.9200,244.0952 463.7600,244.0952 464.6000,244.0952 465.4400,244.0952 466.2800,244.0952 467.1200,244.0952 467.9600,244.0952 468.8000,244.0952 469.6400,244.0952 470.4800,244.0952 471.3200,244.0952 472.1600,244.0952 473.0000,244.0952 473.8400,244.0952 474.6800,244.0952 475.5200,244.0952 476.3600,244.0952 477.2000,244.0952 478.0400,244.0952 478.8800,244.0952 479.7200,244.0952 480.5600,244.0952 481.4000,244.0952 482.2400,244.0952 483.0800,244.0952 483.9200,244.0952 484.7600,244.0952 485.6000,244.0952 486.4400,244.0952 487.2800,244.0952 488.1200,244.0952 488.9600,244.0952 489.8000,244.0952 490.6400,244.0952 491.4800,244.0952 492.3200,244.0952 493.1600,244.0952 494.0000,244.0952" fill="none" stroke="var(--teal)" stroke-width="2.6" stroke-dasharray=""/>
+<polyline data-curve="instant" points="74.0000,108.4762 74.8400,113.7939 75.6800,118.9031 76.5200,123.8119 77.3600,128.5283 78.2000,133.0598 79.0400,137.4135 79.8800,141.5966 80.7200,145.6156 81.5600,149.4770 82.4000,153.1871 83.2400,156.7516 84.0800,160.1764 84.9200,163.4669 85.7600,166.6284 86.6000,169.6659 87.4400,172.5843 88.2800,175.3883 89.1200,178.0824 89.9600,180.6708 90.8000,183.1577 91.6400,185.5471 92.4800,187.8428 93.3200,190.0485 94.1600,192.1677 95.0000,194.2038 95.8400,196.1601 96.6800,198.0396 97.5200,199.8455 98.3600,201.5805 99.2000,203.2476 100.0400,204.8492 100.8800,206.3881 101.7200,207.8666 102.5600,209.2871 103.4000,210.6520 104.2400,211.9633 105.0800,213.2232 105.9200,214.4337 106.7600,215.5968 107.6000,216.7142 108.4400,217.7878 109.2800,218.8194 110.1200,219.8105 110.9600,220.7627 111.8000,221.6776 112.6400,222.5566 113.4800,223.4011 114.3200,224.2125 115.1600,224.9922 116.0000,225.7412 116.8400,226.4609 117.6800,227.1523 118.5200,227.8167 119.3600,228.4550 120.2000,229.0682 121.0400,229.6574 121.8800,230.2236 122.7200,230.7675 123.5600,231.2901 124.4000,231.7922 125.2400,232.2746 126.0800,232.7381 126.9200,233.1834 127.7600,233.6112 128.6000,234.0223 129.4400,234.4173 130.2800,234.7968 131.1200,235.1614 131.9600,235.5117 132.8000,235.8482 133.6400,236.1716 134.4800,236.4823 135.3200,236.7808 136.1600,237.0676 137.0000,237.3432 137.8400,237.6079 138.6800,237.8623 139.5200,238.1067 140.3600,238.3415 141.2000,238.5671 142.0400,238.7839 142.8800,238.9921 143.7200,239.1922 144.5600,239.3845 145.4000,239.5692 146.2400,239.7467 147.0800,239.9172 147.9200,240.0810 148.7600,240.2384 149.6000,240.3896 150.4400,240.5349 151.2800,240.6745 152.1200,240.8087 152.9600,240.9375 153.8000,241.0613 154.6400,241.1803 155.4800,241.2946 156.3200,241.4044 157.1600,241.5099 158.0000,241.6113 158.8400,241.7087 159.6800,241.8023 160.5200,241.8922 161.3600,241.9786 162.2000,242.0616 163.0400,242.1413 163.8800,242.2179 164.7200,242.2915 165.5600,242.3622 166.4000,242.4302 167.2400,242.4955 168.0800,242.5582 168.9200,242.6185 169.7600,242.6764 170.6000,242.7320 171.4400,242.7855 172.2800,242.8368 173.1200,242.8862 173.9600,242.9336 174.8000,242.9791 175.6400,243.0229 176.4800,243.0649 177.3200,243.1053 178.1600,243.1442 179.0000,243.1814 179.8400,243.2173 180.6800,243.2517 181.5200,243.2848 182.3600,243.3166 183.2000,243.3471 184.0400,243.3764 184.8800,243.4046 185.7200,243.4317 186.5600,243.4577 187.4000,243.4827 188.2400,243.5067 189.0800,243.5298 189.9200,243.5520 190.7600,243.5733 191.6000,243.5937 192.4400,243.6134 193.2800,243.6323 194.1200,243.6504 194.9600,243.6679 195.8000,243.6846 196.6400,243.7007 197.4800,243.7162 198.3200,243.7311 199.1600,243.7454 200.0000,243.7591 200.8400,243.7723 201.6800,243.7849 202.5200,243.7971 203.3600,243.8088 204.2000,243.8200 205.0400,243.8308 205.8800,243.8412 206.7200,243.8511 207.5600,243.8607 208.4000,243.8699 209.2400,243.8787 210.0800,243.8872 210.9200,243.8954 211.7600,243.9032 212.6000,243.9107 213.4400,243.9180 214.2800,243.9249 215.1200,243.9316 215.9600,243.9380 216.8000,243.9442 217.6400,243.9501 218.4800,243.9558 219.3200,243.9613 220.1600,243.9665 221.0000,243.9716 221.8400,243.9764 222.6800,243.9811 223.5200,243.9856 224.3600,243.9899 225.2000,243.9940 226.0400,243.9980 226.8800,244.0018 227.7200,244.0054 228.5600,244.0090 229.4000,244.0123 230.2400,244.0156 231.0800,244.0187 231.9200,244.0217 232.7600,244.0246 233.6000,244.0274 234.4400,244.0300 235.2800,244.0326 236.1200,244.0350 236.9600,244.0374 237.8000,244.0397 238.6400,244.0418 239.4800,244.0439 240.3200,244.0460 241.1600,244.0479 242.0000,244.0497 242.8400,244.0515 243.6800,244.0532 244.5200,244.0549 245.3600,244.0565 246.2000,244.0580 247.0400,244.0595 247.8800,244.0609 248.7200,244.0622 249.5600,244.0635 250.4000,244.0647 251.2400,244.0659 252.0800,244.0671 252.9200,244.0682 253.7600,244.0693 254.6000,244.0703 255.4400,244.0712 256.2800,244.0722 257.1200,244.0731 257.9600,244.0740 258.8000,244.0748 259.6400,244.0756 260.4800,244.0764 261.3200,244.0771 262.1600,244.0778 263.0000,244.0785 263.8400,244.0792 264.6800,244.0798 265.5200,244.0804 266.3600,244.0810 267.2000,244.0815 268.0400,244.0821 268.8800,244.0826 269.7200,244.0831 270.5600,244.0836 271.4000,244.0840 272.2400,244.0845 273.0800,244.0849 273.9200,244.0853 274.7600,244.0857 275.6000,244.0861 276.4400,244.0864 277.2800,244.0868 278.1200,244.0871 278.9600,244.0874 279.8000,244.0877 280.6400,244.0880 281.4800,244.0883 282.3200,244.0886 283.1600,244.0888 284.0000,244.0891 284.8400,244.0893 285.6800,244.0896 286.5200,244.0898 287.3600,244.0900 288.2000,244.0902 289.0400,244.0904 289.8800,244.0906 290.7200,244.0908 291.5600,244.0909 292.4000,244.0911 293.2400,244.0913 294.0800,244.0914 294.9200,244.0916 295.7600,244.0917 296.6000,244.0919 297.4400,244.0920 298.2800,244.0921 299.1200,244.0922 299.9600,244.0924 300.8000,244.0925 301.6400,244.0926 302.4800,244.0927 303.3200,244.0928 304.1600,244.0929 305.0000,244.0930 305.8400,244.0931 306.6800,244.0931 307.5200,244.0932 308.3600,244.0933 309.2000,244.0934 310.0400,244.0935 310.8800,244.0935 311.7200,244.0936 312.5600,244.0937 313.4000,244.0937 314.2400,244.0938 315.0800,244.0938 315.9200,244.0939 316.7600,244.0939 317.6000,244.0940 318.4400,244.0940 319.2800,244.0941 320.1200,244.0941 320.9600,244.0942 321.8000,244.0942 322.6400,244.0943 323.4800,244.0943 324.3200,244.0943 325.1600,244.0944 326.0000,244.0944 326.8400,244.0944 327.6800,244.0945 328.5200,244.0945 329.3600,244.0945 330.2000,244.0946 331.0400,244.0946 331.8800,244.0946 332.7200,244.0946 333.5600,244.0947 334.4000,244.0947 335.2400,244.0947 336.0800,244.0947 336.9200,244.0947 337.7600,244.0948 338.6000,244.0948 339.4400,244.0948 340.2800,244.0948 341.1200,244.0948 341.9600,244.0948 342.8000,244.0949 343.6400,244.0949 344.4800,244.0949 345.3200,244.0949 346.1600,244.0949 347.0000,244.0949 347.8400,244.0949 348.6800,244.0950 349.5200,244.0950 350.3600,244.0950 351.2000,244.0950 352.0400,244.0950 352.8800,244.0950 353.7200,244.0950 354.5600,244.0950 355.4000,244.0950 356.2400,244.0950 357.0800,244.0950 357.9200,244.0951 358.7600,244.0951 359.6000,244.0951 360.4400,244.0951 361.2800,244.0951 362.1200,244.0951 362.9600,244.0951 363.8000,244.0951 364.6400,244.0951 365.4800,244.0951 366.3200,244.0951 367.1600,244.0951 368.0000,244.0951 368.8400,244.0951 369.6800,244.0951 370.5200,244.0951 371.3600,244.0951 372.2000,244.0951 373.0400,244.0951 373.8800,244.0952 374.7200,244.0952 375.5600,244.0952 376.4000,244.0952 377.2400,244.0952 378.0800,244.0952 378.9200,244.0952 379.7600,244.0952 380.6000,244.0952 381.4400,244.0952 382.2800,244.0952 383.1200,244.0952 383.9600,244.0952 384.8000,244.0952 385.6400,244.0952 386.4800,244.0952 387.3200,244.0952 388.1600,244.0952 389.0000,244.0952 389.8400,244.0952 390.6800,244.0952 391.5200,244.0952 392.3600,244.0952 393.2000,244.0952 394.0400,244.0952 394.8800,244.0952 395.7200,244.0952 396.5600,244.0952 397.4000,244.0952 398.2400,244.0952 399.0800,244.0952 399.9200,244.0952 400.7600,244.0952 401.6000,244.0952 402.4400,244.0952 403.2800,244.0952 404.1200,244.0952 404.9600,244.0952 405.8000,244.0952 406.6400,244.0952 407.4800,244.0952 408.3200,244.0952 409.1600,244.0952 410.0000,244.0952 410.8400,244.0952 411.6800,244.0952 412.5200,244.0952 413.3600,244.0952 414.2000,244.0952 415.0400,244.0952 415.8800,244.0952 416.7200,244.0952 417.5600,244.0952 418.4000,244.0952 419.2400,244.0952 420.0800,244.0952 420.9200,244.0952 421.7600,244.0952 422.6000,244.0952 423.4400,244.0952 424.2800,244.0952 425.1200,244.0952 425.9600,244.0952 426.8000,244.0952 427.6400,244.0952 428.4800,244.0952 429.3200,244.0952 430.1600,244.0952 431.0000,244.0952 431.8400,244.0952 432.6800,244.0952 433.5200,244.0952 434.3600,244.0952 435.2000,244.0952 436.0400,244.0952 436.8800,244.0952 437.7200,244.0952 438.5600,244.0952 439.4000,244.0952 440.2400,244.0952 441.0800,244.0952 441.9200,244.0952 442.7600,244.0952 443.6000,244.0952 444.4400,244.0952 445.2800,244.0952 446.1200,244.0952 446.9600,244.0952 447.8000,244.0952 448.6400,244.0952 449.4800,244.0952 450.3200,244.0952 451.1600,244.0952 452.0000,244.0952 452.8400,244.0952 453.6800,244.0952 454.5200,244.0952 455.3600,244.0952 456.2000,244.0952 457.0400,244.0952 457.8800,244.0952 458.7200,244.0952 459.5600,244.0952 460.4000,244.0952 461.2400,244.0952 462.0800,244.0952 462.9200,244.0952 463.7600,244.0952 464.6000,244.0952 465.4400,244.0952 466.2800,244.0952 467.1200,244.0952 467.9600,244.0952 468.8000,244.0952 469.6400,244.0952 470.4800,244.0952 471.3200,244.0952 472.1600,244.0952 473.0000,244.0952 473.8400,244.0952 474.6800,244.0952 475.5200,244.0952 476.3600,244.0952 477.2000,244.0952 478.0400,244.0952 478.8800,244.0952 479.7200,244.0952 480.5600,244.0952 481.4000,244.0952 482.2400,244.0952 483.0800,244.0952 483.9200,244.0952 484.7600,244.0952 485.6000,244.0952 486.4400,244.0952 487.2800,244.0952 488.1200,244.0952 488.9600,244.0952 489.8000,244.0952 490.6400,244.0952 491.4800,244.0952 492.3200,244.0952 493.1600,244.0952 494.0000,244.0952" fill="none" stroke="var(--peri)" stroke-width="2.6" stroke-dasharray="5 4"/>
+<line x1="16.000" y1="360.000" x2="38.000" y2="360.000" stroke="var(--coral)" stroke-width="2" stroke-dasharray=""/>
+<text x="45.0" y="365.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">slow promoter</text>
+
+<line x1="179.333" y1="360.000" x2="201.333" y2="360.000" stroke="var(--teal)" stroke-width="2" stroke-dasharray=""/>
+<text x="208.3" y="365.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">fast promoter</text>
+
+<line x1="342.667" y1="360.000" x2="364.667" y2="360.000" stroke="var(--peri)" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="371.7" y="365.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">instant</text>
+
+</g></svg>
+<figcaption><b>Figure 5. Identical endpoints do not imply identical responses.</b> The promoter rates are 0.2 and 20 per protein lifetime. Both models end at protein 0.2. Reaching 90% of the final change takes 12.63 versus 2.35 protein lifetimes. Instantaneous occupancy gives 2.30. These are new editorial calculations illustrating Álvaro's question, not a reconstruction of his full toggle simulation.</figcaption></figure>
+<p>A steady-state titration cannot distinguish these two clocks. A step response can. Once a memory is written by a finite pulse, the distinction is operational rather than cosmetic: a reduced model can have the correct fixed points and still give the wrong writing time.</p>
+<p class="takeaway">Test a hidden-state reduction against the transient observable you need, rather than accepting matching steady curves as sufficient validation.</p>
+
+<h2 id="s8"><span class="n">8</span>A stable mean is not a quiet cell</h2>
+<p>Deterministic attraction concerns a concentration trajectory, not the absence of molecular fluctuations. <a href="https://github.com/chemaoxfz/ccbs-2026-submissions/blob/94162042f6dfad701f14cccb954890a33ade4af4/week2/week2-lipeifang-ext.html">Lipei Fang</a> makes the distinction using the simplest production–removal process.</p>
+<p>Let molecules enter at a constant propensity <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span> and leave independently with total propensity <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">\gamma n</annotation></semantics></math></span> when the count is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span>. These are effective birth and death events. The mean count <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">m(t)</annotation></semantics></math></span> obeys the exact equation <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>m</mi><mo>˙</mo></mover><mo>=</mo><mi>α</mi><mo>−</mo><mi>γ</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">\dot m=\alpha-\gamma m</annotation></semantics></math></span> because both propensities are affine in count.</p>
+<p>At stationarity, balance between adjacent count states gives <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><msub><mi>P</mi><mi>n</mi></msub><mo>=</mo><mi>γ</mi><mo stretchy="false">(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><msub><mi>P</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">\alpha P_n=\gamma(n+1)P_{n+1}</annotation></semantics></math></span>. Iterating and normalizing yields</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mi>n</mi></msub><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mover accent="true"><mi>n</mi><mo>ˉ</mo></mover></mrow></msup><mfrac><msup><mover accent="true"><mi>n</mi><mo>ˉ</mo></mover><mi>n</mi></msup><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><mo separator="true">,</mo><mspace width="2em"/><mover accent="true"><mi>n</mi><mo>ˉ</mo></mover><mo>=</mo><mfrac><mi>α</mi><mi>γ</mi></mfrac><mo separator="true">,</mo><mspace width="2em"/><mi mathvariant="normal">Var</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mover accent="true"><mi>n</mi><mo>ˉ</mo></mover><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">P_n=e^{-\bar n}\frac{\bar n^n}{n!},
+\qquad \bar n=\frac{\alpha}{\gamma},
+\qquad \operatorname{Var}(n)=\bar n.</annotation></semantics></math></div>
+<p>For Lipei's <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\alpha=2</annotation></semantics></math></span> molecules per minute and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo>=</mo><mn>0.2</mn><mtext> </mtext><msup><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\gamma=0.2\,\mathrm{min}^{-1}</annotation></semantics></math></span>, the mean is 10 and the relaxation time is 5 minutes. The stationary standard deviation is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>10</mn></msqrt><mo>=</mo><mn>3.16</mn></mrow><annotation encoding="application/x-tex">\sqrt{10}=3.16</annotation></semantics></math></span> molecules, giving a coefficient of variation of 31.6%.</p>
+<figure class="figbox"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 384" role="img" aria-label="A stable mean is not a fixed count. Constant births and independent deaths; mean 10">
+<title>A stable mean is not a fixed count</title>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif">
+<text x="16.0" y="25.0" font-size="20" fill="var(--fg,#252821)" font-weight="700">A stable mean is not a fixed count</text>
+
+<text x="16.0" y="49.0" font-size="16" fill="var(--muted,#69695F)" font-weight="400">Constant births and independent deaths; mean 10</text>
+
+<text x="74.0" y="82.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">Stationary probability</text>
+
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="74.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">0</text>
+
+<line x1="161.500" y1="100.000" x2="161.500" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="161.5" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">5</text>
+
+<line x1="249.000" y1="100.000" x2="249.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="249.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">10</text>
+
+<line x1="336.500" y1="100.000" x2="336.500" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="336.5" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">15</text>
+
+<line x1="424.000" y1="100.000" x2="424.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="424.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">20</text>
+
+<line x1="494.000" y1="100.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="494.0" y="302.0" font-size="16" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">24</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="283.0" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0</text>
+
+<line x1="74.000" y1="218.667" x2="494.000" y2="218.667" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="223.7" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0.05</text>
+
+<line x1="74.000" y1="159.333" x2="494.000" y2="159.333" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="164.3" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0.10</text>
+
+<line x1="74.000" y1="100.000" x2="494.000" y2="100.000" stroke="var(--rule,#DADCD2)" stroke-width="1" stroke-dasharray=""/>
+<text x="62.0" y="105.0" font-size="16" fill="var(--fg,#252821)" text-anchor="end" font-weight="400">0.15</text>
+
+<line x1="74.000" y1="278.000" x2="494.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<line x1="74.000" y1="100.000" x2="74.000" y2="278.000" stroke="var(--muted,#69695F)" stroke-width="1" stroke-dasharray=""/>
+<text x="284.0" y="331.0" font-size="17" fill="var(--fg,#252821)" text-anchor="middle" font-weight="400">Molecule count</text>
+
+<line x1="74.000" y1="278.000" x2="74.000" y2="277.946" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="91.500" y1="278.000" x2="91.500" y2="277.461" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="109.000" y1="278.000" x2="109.000" y2="275.306" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="126.500" y1="278.000" x2="126.500" y2="269.021" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="144.000" y1="278.000" x2="144.000" y2="255.552" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="161.500" y1="278.000" x2="161.500" y2="233.105" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="179.000" y1="278.000" x2="179.000" y2="203.174" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="196.500" y1="278.000" x2="196.500" y2="171.106" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="214.000" y1="278.000" x2="214.000" y2="144.382" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="231.500" y1="278.000" x2="231.500" y2="129.536" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="249.000" y1="278.000" x2="249.000" y2="129.536" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="266.500" y1="278.000" x2="266.500" y2="143.033" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="284.000" y1="278.000" x2="284.000" y2="165.527" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="301.500" y1="278.000" x2="301.500" y2="191.483" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="319.000" y1="278.000" x2="319.000" y2="216.202" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="336.500" y1="278.000" x2="336.500" y2="236.801" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="354.000" y1="278.000" x2="354.000" y2="252.251" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="371.500" y1="278.000" x2="371.500" y2="262.853" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="389.000" y1="278.000" x2="389.000" y2="269.585" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="406.500" y1="278.000" x2="406.500" y2="273.571" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="424.000" y1="278.000" x2="424.000" y2="275.786" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="441.500" y1="278.000" x2="441.500" y2="276.946" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="459.000" y1="278.000" x2="459.000" y2="277.521" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="476.500" y1="278.000" x2="476.500" y2="277.792" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<line x1="494.000" y1="278.000" x2="494.000" y2="277.913" stroke="var(--peri)" stroke-width="7" stroke-dasharray=""/>
+<text x="16.0" y="362.0" font-size="16" fill="var(--fg,#252821)" font-weight="400">Standard deviation: 3.16 molecules. Relative noise: 31.6%.</text>
+
+</g></svg>
+<figcaption><b>Figure 6. The fixed point predicts the center of a distribution, not a frozen molecule count.</b> Bars show the exact stationary Poisson probabilities of the stated linear birth–death model. This is an analytic distribution, not a selected stochastic trajectory. Bursts and nonlinear feedback can change both its shape and the relation between mean and variance.</figcaption></figure>
+<p>Gillespie's stochastic formulation makes individual reaction events explicit under its well-mixed assumptions.<sup class="c"><a href="#r-gillespie">6</a></sup> It does not make every deterministic equation exact for the mean. With nonlinear propensities, averaging the rate is generally different from evaluating the rate at the average state.</p>
+<p>For a bistable device, the next question is not merely the width of the fluctuations. It is the probability of leaving the intended basin during the storage interval. The one-state Poisson example cannot answer that escape problem, but it establishes why a deterministic basin diagram alone cannot answer it either.</p>
+<p class="takeaway">Distinguish a stable mean from a stationary count distribution, and formulate memory reliability as an escape probability over a specified time.</p>
+
+<h2 id="s9"><span class="n">9</span>Specify the memory you need</h2>
+<p>A usable memory claim must name the state, the protocol and the tolerated failures. The submissions provide different pieces of that specification.</p>
+<p>First state what is fixed: the conserved totals, environment and model resolution. Then state what supports two outcomes: the complete feedback and addition–removal shapes. Rate uncertainty, initial-state uncertainty and molecular fluctuations are separate disturbances, so each needs its own test.</p>
+<p>Next specify the writing protocol. A parameter beyond a fold is not enough without duration. A duration predicted by a reduced model is not enough unless the hidden kinetics are fast for that protocol. Successful writing is not enough without a storage time and an acceptable error probability.</p>
+<p>This changes how we read the original phase portrait. Its two attracting points are one verified component of a larger claim. Conservation tells us which directions to test. Structure tells us which rate changes a theorem covers. Basins tell us which preparations succeed. Dynamics tells us how to write, and stochastic kinetics tells us how long the written state can be trusted.</p>
+<p class="takeaway">Write a memory specification that separates admissible perturbations, parameter robustness, initialization, writing time and stochastic retention.</p>
+
+<h2 id="reproduce">Models and provenance</h2>
+<p>The nine named contributions are accepted files in <a href="https://github.com/chemaoxfz/ccbs-2026-submissions/tree/94162042f6dfad701f14cccb954890a33ade4af4/week2">the pinned Week 2 corpus</a>. Attribution identifies each student's question or construction. It does not imply that the students coauthored or approved this editorial synthesis.</p>
+<p>Independent code, the input checksums, the contribution ledger and figure data are retained in the instructor's course project under <code>lectures/research/week02-extension-synthesis/</code>. Root finding, sign-pattern enumeration, pulse quadrature and piecewise time integration are independently implemented. Basin percentages are numerical estimates with the grid and stopping rule stated above. No student script was executed.</p>
+<h2 id="refs">References</h2>
+<ol class="refs">
+<li id="r-horn">F. Horn and R. Jackson, “General mass action kinetics,” <em>Archive for Rational Mechanics and Analysis</em> 47, 81–116 (1972). <a href="https://doi.org/10.1007/BF00251225">DOI</a>. Stoichiometric geometry and stability within compatibility classes.</li>
+<li id="r-tan">C. Tan, P. Marguet and L. You, “Emergent bistability by a growth-modulating positive feedback circuit,” <em>Nature Chemical Biology</em> 5, 842–848 (2009). <a href="https://doi.org/10.1038/nchembio.218">DOI</a>. Full-text results distinguish noncooperative self-activation from growth-mediated feedback.</li>
+<li id="r-melendez">J. R. Melendez-Alvarez and X.-J. Tian, “Emergence of qualitative states in synthetic circuits driven by ultrasensitive growth feedback,” <em>PLOS Computational Biology</em> 18, e1010518 (2022). <a href="https://doi.org/10.1371/journal.pcbi.1010518">DOI</a>. The constitutive-promoter model and its nonmonotone removal curve.</li>
+<li id="r-jeffries">C. Jeffries, V. Klee and P. van den Driessche, “When is a matrix sign stable?” <em>Canadian Journal of Mathematics</em> 29, 315–326 (1977). <a href="https://doi.org/10.4153/CJM-1977-035-3">DOI</a>. Theorems 1–2 and the strictly negative diagonal special case.</li>
+<li id="r-gardner">T. S. Gardner, C. R. Cantor and J. J. Collins, “Construction of a genetic toggle switch in <em>Escherichia coli</em>,” <em>Nature</em> 403, 339–342 (2000). <a href="https://doi.org/10.1038/35002131">DOI</a>. Model, pulse protocols and post-induction memory tests.</li>
+<li id="r-gillespie">D. T. Gillespie, “Exact stochastic simulation of coupled chemical reactions,” <em>Journal of Physical Chemistry</em> 81, 2340–2361 (1977). <a href="https://doi.org/10.1021/j100540a008">DOI</a>. Event-level stochastic kinetics and its relation to deterministic descriptions.</li>
+</ol>
+</main>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('tt');
+  function apply(){document.documentElement.setAttribute('data-theme',
+    (typeof localStorage!=='undefined'&&localStorage.getItem('th')==='dark')?'dark':'light');}
+  b.addEventListener('click',function(){var d=(document.documentElement.getAttribute('data-theme')==='dark')?'light':'dark';
+    if(typeof localStorage!=='undefined')localStorage.setItem('th',d);apply();if(window.__redraw)window.__redraw();});
+  if(typeof localStorage!=='undefined'&&!localStorage.getItem('th')){var d=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';localStorage.setItem('th',d);}
+  apply();
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  function hi(){var y=window.scrollY+80,cur=null;links.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t&&t.offsetTop<=y)cur=a;});links.forEach(function(a){a.classList.toggle('on',a===cur);});}
+  addEventListener('scroll',hi,{passive:true});hi();
+})();
+</script>
+</body>
+</html>
