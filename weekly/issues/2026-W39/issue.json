@@ -1,0 +1,190 @@
+{
+  "end_date": "2026-09-21",
+  "papers": [
+    {
+      "authors": [
+        "Marcela Villegas-Plazas",
+        "Irene Otero‐Muras",
+        "Juan Nogales"
+      ],
+      "category": "core",
+      "key_finding": "A library of 27 asymmetric bistable circuits reproducibly specified distinct population compositions stable over serial propagation and conserved across E. coli and P. putida, enabling spatial ecological compartmentalization that supported distributed Congo Red biotransformation with up to 98% dye removal.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/15/2026.09.14.751370.full.pdf",
+      "published": "2026-09-15",
+      "title": "Engineering phenotypic heterogeneity for functional organization in microbial populations",
+      "tldr": "PROMETEO is a modular genetic-circuit framework using asymmetric bistable circuits to program phenotypic distributions and population composition in genetically homogeneous microbial populations.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division",
+        "Microbial populations \u0026 communities",
+        "Synthetic biology circuits"
+      ],
+      "url": "https://doi.org/10.64898/2026.09.14.751370",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "Directly connects to Fangzhou's interests in synthetic biology, microbial population dynamics, cell-fate circuits, and functional organization of microbial communities through a concrete genetic-circuit mechanism for programming cell-state distributions."
+    },
+    {
+      "authors": [
+        "Weiwei Wang",
+        "You Tian",
+        "Wei Guo",
+        "Yuntao Dong",
+        "Jiandui Mi",
+        "Anum Ali Ahmad",
+        "Xiaoping Jing",
+        "Ruijun Long",
+        "Xuezhao Sun",
+        "Qing Deng",
+        "Lizhuang Hao",
+        "Xiaoyang Lv",
+        "Wei Sun",
+        "Xiang Chen"
+      ],
+      "category": "core",
+      "key_finding": "Adult goats had higher dissolved methane, dissolved hydrogen, and total short-chain fatty acids, with enrichment of carbohydrate-fermenting taxa and methanogenic archaea, whereas young goats showed amino acid-oriented metabolism and different microbial taxa.",
+      "pdf_url": "",
+      "published": "2026-08-27",
+      "title": "Age-related shifts of dissolved hydrogen and its impact on rumen fermentation dynamics and microbial communities in goats (Capra hircus)",
+      "tldr": "This study compared rumen fermentation, microbial communities, and Gibbs free energy profiles between 0.5-year-old and 2-year-old goats to examine age-related changes in hydrogen metabolism.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Dynamic metabolism \u0026 engineering"
+      ],
+      "url": "https://link.springer.com/article/10.1186/s12866-026-05563-x",
+      "venue": "BMC microbiology",
+      "why_relevant": "Relevant to Fangzhou's interests in fermentation ecology, dynamic metabolism, and microbial community dynamics, linking microbial community structure to metabolic hydrogen redistribution and thermodynamic constraints."
+    },
+    {
+      "authors": [
+        "Miguel Atl Silva-Magaña",
+        "Lorena Patricia Mora-Flores",
+        "Marco A. Pita-Galeana",
+        "Enrique Hernández–Lemus",
+        "Guillermo de Anda-Jáuregui"
+      ],
+      "category": "core",
+      "key_finding": "Across stochastic simulations, highly clustered networks tended to localize resistance while heterogeneous networks with hub nodes facilitated rapid dissemination, and antibiotic perturbations could either suppress or accelerate resistance depending on topology and intervention timing.",
+      "pdf_url": "",
+      "published": "2026-09-19",
+      "title": "A network dynamical simulation model for the study of antibiotic resistance in microbial communities",
+      "tldr": "A network dynamical simulation model represents microbial communities as ecological association networks with state-expanded resistant subpopulations to study how community structure affects antibiotic resistance emergence and persistence.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.1080/19490976.2026.2734703",
+      "venue": "Gut Microbes",
+      "why_relevant": "Directly ties to Fangzhou's interests in antibiotic resistance, microbial population dynamics, and community ecology by modeling how ecological network structure shapes resistance spread, though the authors note it is a qualitative proof-of-concept rather than a direct reconstruction of plasmid transfer or species replacement."
+    },
+    {
+      "authors": [
+        "Johannes Cairns",
+        "Niina Smolander",
+        "Sanna Pausio",
+        "Olli Pitkänen",
+        "Meri Lindqvist",
+        "Manu Tamminen",
+        "Rishi Das Roy",
+        "Vill-Petri Friman",
+        "Lutz Becks",
+        "Ville Mustonen",
+        "Teppo Hiltunen"
+      ],
+      "category": "core",
+      "key_finding": "Prior resistance evolution buffered compositional change during the main pulse through increased within-species resistance and accelerated ampicillin detoxification by a dominant degrader, but greater resistance did not improve recovery and diversity after disturbance remained similar to or lower than ancestral communities.",
+      "pdf_url": "",
+      "published": "2026-09-16",
+      "title": "Eco-evolutionary dynamics and environmental detoxification jointly shape bacterial community response to antibiotic perturbation",
+      "tldr": "Using a 23-species bacterial community exposed to sequential ampicillin pulses, this study examined how ecological priming and prior resistance evolution jointly shape community responses to antibiotic disturbance.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.1093/ismejo/wrag248",
+      "venue": "The ISME Journal",
+      "why_relevant": "Directly relevant to Fangzhou's interests in antibiotic resistance, microbial community dynamics, and eco-evolutionary feedbacks, with a concrete mechanism of degrader-mediated detoxification altering selection and persistence."
+    },
+    {
+      "authors": [
+        "SV Aduru",
+        "A Lopatkin"
+      ],
+      "category": "core",
+      "key_finding": "",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Engineering Horizontal Gene Transfer As a Biocontrol Strategy for Microbial Communities.",
+      "tldr": "",
+      "topics": [
+        "Microbial physiology, growth \u0026 division",
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://aiche.confex.com/aiche/2026/meetingapp.cgi/Paper/738441",
+      "venue": "2026 AIChE Annual Meeting",
+      "why_relevant": ""
+    },
+    {
+      "authors": [
+        "V Baldazzi",
+        "F Mairet",
+        "T Gedeon",
+        "H de Jong"
+      ],
+      "category": "core",
+      "key_finding": "A given Pareto suboptimal phenotype can be explained by a range of underlying resource allocation strategies, each corresponding to a different growth physiology and biomass composition, tested with a coarse-grained model and published data on E. coli and Tisochrysis lutea.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/17/2026.09.08.749853.full.pdf",
+      "published": "2026-09-17",
+      "title": "Pareto Suboptimal Resource Allocation and Microbial Growth",
+      "tldr": "This paper extends the theoretical framework relating cellular resource allocation to Pareto optimality by analyzing Pareto suboptimal microbial growth phenotypes and their underlying resource allocation strategies.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/17/2026.09.08.749853.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "Directly connects to Fangzhou's interests in growth laws, proteome allocation, dynamic metabolism, and microbial growth physiology by quantifying how suboptimal resource allocation strategies map to distinct growth phenotypes and biomass composition."
+    },
+    {
+      "authors": [
+        "LCP Wentzel",
+        "P Klímová",
+        "TJ Kohler",
+        "JE Hatton…"
+      ],
+      "category": "core",
+      "key_finding": "",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Methane is an important selection factor in microbial community assembly along the Greenland Ice Sheet margin",
+      "tldr": "The supplied abstract for this paper on methane as a selection factor in microbial community assembly along the Greenland Ice Sheet margin is truncated and does not provide a complete summary.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://journals.asm.org/doi/pdf/10.1128/aem.00875-26",
+      "venue": "Applied and Environmental …",
+      "why_relevant": "Relevant to Fangzhou's interest in microbial population dynamics and community ecology, but the supplied abstract is truncated and no complete biological mechanism can be summarized from the available metadata."
+    },
+    {
+      "authors": [
+        "AS Weiss",
+        "MNY Lee",
+        "OT Schubert",
+        "M Ackermann"
+      ],
+      "category": "core",
+      "key_finding": "The potential for redundancy to support functional robustness depends on whether providers differ in their responses to perturbations, avoid coupled loss through interaction-network effects, and are maintained over relevant timescales through coexistence, turnover, or immigration.",
+      "pdf_url": "https://www.sciencedirect.com/science/article/pii/S1369527426001219/pdf",
+      "published": "2026-09-08",
+      "title": "An ecological perspective on functional redundancy and robustness in microbial communities",
+      "tldr": "This review argues that understanding functional robustness in microbial communities requires moving beyond measuring functional redundancy to asking under which ecological conditions redundant providers persist, compensate, and realize functions.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://www.sciencedirect.com/science/article/pii/S1369527426001219",
+      "venue": "Current Opinion in Microbiology",
+      "why_relevant": "Relevant to Fangzhou's interests in microbial community ecology by providing an ecological framework for when functional redundancy translates into robustness, with concrete considerations of trait distributions, resource competition, and coexistence."
+    }
+  ],
+  "run_key": "2026-W39",
+  "schema_version": 1,
+  "start_date": "2026-09-15",
+  "title": "BMAC Weekly — 2026-W39"
+}
