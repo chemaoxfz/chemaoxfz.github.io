@@ -1,0 +1,198 @@
+{
+  "end_date": "2026-09-28",
+  "papers": [
+    {
+      "authors": [
+        "Eric Hu",
+        "Kathryn Gorman Durben",
+        "Bogdan Budnik",
+        "Daniel H. Arlow",
+        "Sungwhan F. Oh",
+        "Ákos Nyerges"
+      ],
+      "category": "core",
+      "key_finding": "The firewalled strain remained stable for thousands of generations, colonized the mouse gut for over 100 days, and blocked viral infection and horizontal gene transfer; adaptive mutations in carbon-source utilization genes guided genome redesign that increased fitness.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/18/2026.09.17.752456.full.pdf",
+      "published": "2026-09-18",
+      "title": "Firewalled synthetic commensal blocks horizontal gene transfer in the gut",
+      "tldr": "A genetically firewalled E. coli commensal was engineered by reassigning TCA and TCG serine codons, then evolved and rationally redesigned for high fitness.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division",
+        "Microbial populations \u0026 communities",
+        "Synthetic biology circuits"
+      ],
+      "url": "https://www.biorxiv.org/content/10.64898/2026.09.17.752456.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "Directly ties to Fangzhou's interests in synthetic and growing cells, microbial population dynamics, and proteome-level fitness constraints: codon reassignment imposes a global reallocation of translational resources whose fitness cost was mitigated by carbon-metabolism mutations."
+    },
+    {
+      "authors": [
+        "Naresh Yadrapalli",
+        "David T. Gonzales",
+        "T-Y Dora Tang"
+      ],
+      "category": "core",
+      "key_finding": "Communication, limiting expression resources, and membrane surface effects reduced cell-free gene expression variability, and resource-limited Gillespie simulations showed communication-mediated coupling lowers population-level expression noise under both constrained and excess resource conditions.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/25/2026.09.24.754039.full.pdf",
+      "published": "2026-09-25",
+      "title": "Gene expression noise is reduced in communicating synthetic cell populations",
+      "tldr": "Lux and Las quorum-sensing circuits encapsulated in lipid vesicles under cell-free conditions were used to test whether communication reduces gene expression variability across synthetic cell populations.",
+      "topics": [
+        "Synthetic biology circuits",
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.64898/2026.09.24.754039",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "Connects to Fangzhou's work on synthetic biology circuits and microbial decision-making: quorum-sensing coupling acts as a concrete intercellular feedback mechanism that suppresses noise in gene expression, relevant to how growing cell populations stabilize division and fate decisions."
+    },
+    {
+      "authors": [
+        "A. Puljko",
+        "L. Weisse",
+        "M. Ujević Bošnjak",
+        "J. Štiglić",
+        "A. Maravić",
+        "N. Udikovic-Kolic"
+      ],
+      "category": "core",
+      "key_finding": "Hydrological conditions were associated with community composition, total organic carbon was associated with community structure, and sites with greater anthropogenic influence had higher ARG abundances, with efflux pump genes prevalent and clinically relevant vancomycin and colistin resistance genes detected at low relative abundance.",
+      "pdf_url": "https://www.sciencedirect.com/science/article/pii/S0304389426027068/pdf",
+      "published": "2026-09-23",
+      "title": "Microbial community structure and antibiotic resistance genes in Dinaric karst groundwater under contrasting hydrological conditions",
+      "tldr": "Microbial community composition and antibiotic resistance gene profiles were surveyed in five Dinaric karst groundwater sources under contrasting hydrological conditions.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.1016/j.jhazmat.2026.143725",
+      "venue": "Journal of Hazardous Materials",
+      "why_relevant": "Ties to Fangzhou's interests in antibiotic resistance and microbial community ecology: the resistome profiles link environmental selection, community structure, and mobile resistance determinants in a natural microbial population."
+    },
+    {
+      "authors": [
+        "Irem Ünlü"
+      ],
+      "category": "core",
+      "key_finding": "The docking simulation of ciprofloxacin with E. coli DNA gyrase B showed favorable binding scores and specific interaction distances within the target binding pocket, presented as an example of structure-based pre-screening.",
+      "pdf_url": "https://www.oxfordjss.org/_files/ugd/a9c49e_0d0b22033fe14c1b859d5b29f21652df.pdf",
+      "published": "2026-09-01",
+      "title": "Antibiotic Resistance: Mechanisms of Drug Failure and Role of Molecular Docking in Antibiotic Development",
+      "tldr": "A review describes antibiotic targets and bacterial resistance mechanisms and illustrates molecular docking of ciprofloxacin with E. coli DNA gyrase B using SwissDock.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.65161/reczaoyzkfz1yoaqj",
+      "venue": "Oxford Journal of Student Scholarship",
+      "why_relevant": "Connects to Fangzhou's interests in binding and catalysis and antibiotic resistance: the review frames drug-target binding energetics and resistance mechanisms such as target modification and efflux at the level of protein-ligand interactions."
+    },
+    {
+      "authors": [
+        "S Li",
+        "Z Wang",
+        "X Xie",
+        "X Xu",
+        "M Wang",
+        "T Yi",
+        "Z Shen",
+        "P Wu…"
+      ],
+      "category": "core",
+      "key_finding": "",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "Bacterial Community Assembly Patterns Across Distinct Freshwater Habitats",
+      "tldr": "The abstract was unavailable and only metadata were supplied for this study on bacterial community assembly patterns across distinct freshwater habitats.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://www.mdpi.com/2079-7737/15/18/1609",
+      "venue": "Biology",
+      "why_relevant": "If it examines assembly mechanisms in freshwater bacterial communities, it would connect to Fangzhou's work on microbial population dynamics and community ecology, but no abstract was available to confirm the specific mechanism or system."
+    },
+    {
+      "authors": [
+        "Peiwen Cai",
+        "Fengjuan Zhao",
+        "Ziguo Zhao",
+        "Xiancui Zhang",
+        "Choufei Wu"
+      ],
+      "category": "core",
+      "key_finding": "No single SynCom construction strategy is universally superior; robust design requires integrated, context-specific combinations of core-microbiome mining, trait-based screening, interaction-informed assembly, and model-guided optimization.",
+      "pdf_url": "https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2026.1942488/pdf",
+      "published": "2026-09-18",
+      "title": "Synthetic microbial communities for plant growth promotion and soil-borne disease suppression: design principles, mechanisms, and translational challenges",
+      "tldr": "A review critically examines design principles, mechanisms, and translational challenges for synthetic microbial communities used in plant growth promotion and soil-borne disease suppression.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.3389/fmicb.2026.1942488",
+      "venue": "Frontiers in Microbiology",
+      "why_relevant": "Directly relevant to Fangzhou's interests in community ecology and synthetic communities: the review synthesizes mechanisms such as resource competition, niche pre-emption, antibiosis, and immune priming that determine whether designed consortia establish and persist."
+    },
+    {
+      "authors": [
+        "Vincent Somerville",
+        "Marco Meola",
+        "Abigail Nunes-Richards",
+        "Johan Bengtsson-Palme",
+        "Judith Neukamm",
+        "Kerttu Majander",
+        "Marta Pla-Díaz",
+        "Meral Turgay",
+        "Sylvain Moineau",
+        "Monika Haueter",
+        "Hélène Berthoud",
+        "Ueli von Ah",
+        "Petra Lüdin",
+        "Verena J. Schuenemann",
+        "Noam Shani"
+      ],
+      "category": "core",
+      "key_finding": "Microbial community composition shifted with production practices, the oldest cheese harbored a distinct community dominated by Lactiplantibacillus paraplantarum, Streptococcus thermophilus, Pseudolactococcus laudensis, and gut-associated taxa, antibiotic-resistance genes mirrored historical antibiotic use, and bacteriophage genera from 1875 were already comparable to modern cheese factories.",
+      "pdf_url": "",
+      "published": "2026-09-01",
+      "title": "Microbial community dynamics in a traditional Swiss mountain cheese over 142 years of cheesemaking",
+      "tldr": "Shotgun metagenomics and 16S rRNA amplicon sequencing were used to track microbial community changes in Raclette du Valais cheese wheels preserved from 1875 to 2017 at the same Alpine dairy.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.1016/j.cub.2026.08.023",
+      "venue": "Current Biology",
+      "why_relevant": "Ties to Fangzhou's interests in fermentation ecology and long-term microbial population dynamics: the 142-year series shows how human production practices reshape a stable food-fermentation community and its resistome over time."
+    },
+    {
+      "authors": [
+        "Xavier A. Harrison",
+        "Katherine Herborn",
+        "Gilbert Alvarado",
+        "María Marta Chavarría",
+        "Kirsty J. Marsh",
+        "Alexander D. M. Wilson",
+        "Alexandra C. North",
+        "Victoria EP Wakeham",
+        "Roberto Fernández",
+        "Héctor Zumbado‐Ulate",
+        "Jon Bielby",
+        "Robert Puschendorf"
+      ],
+      "category": "core",
+      "key_finding": "Among-population variation in skin microbiome composition was limited, but individual responses to translocation were highly variable, with some frogs showing stable richness and composition while others showed marked turnover in bacterial membership and predicted function, alongside individual-level body mass changes.",
+      "pdf_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/acv.70103",
+      "published": "2026-09-22",
+      "title": "Microbiome Dynamics During Translocation of the Critically Endangered Frog Craugastor ranoides",
+      "tldr": "Skin microbiome composition and predicted function were surveyed across populations of the critically endangered frog Craugastor ranoides and tracked after translocation to a new site.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1111/acv.70103",
+      "venue": "Animal Conservation",
+      "why_relevant": "Relevant to Fangzhou's interest in host-associated microbial community ecology: it documents how a disturbance event reshapes skin bacterial communities that mediate host protection against pathogens, with individual-level heterogeneity in community stability."
+    }
+  ],
+  "run_key": "2026-W40",
+  "schema_version": 1,
+  "start_date": "2026-09-22",
+  "title": "BMAC Weekly — 2026-W40"
+}
