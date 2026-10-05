@@ -1,0 +1,172 @@
+{
+  "end_date": "2026-10-05",
+  "papers": [
+    {
+      "authors": [
+        "P Gagrani",
+        "I Madrid",
+        "TJ Kobayashi"
+      ],
+      "category": "core",
+      "key_finding": "Composition fluctuations satisfy a large-deviation principle whose quasipotential solves a contact Hamilton-Jacobi equation, and covariances of accumulated observables decay with accumulated volume rather than physical time.",
+      "pdf_url": "https://arxiv.org/pdf/2609.30970",
+      "published": "2026-09-25",
+      "title": "Large-deviations theory for growing chemical reaction networks",
+      "tldr": "The authors develop a large-deviation theory for exponentially growing stochastic chemical reaction networks by decomposing abundance into volume and composition, showing composition fluctuations obey a large-deviation principle with speed equal to system volume.",
+      "topics": [
+        "Biomolecular control",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://arxiv.org/pdf/2609.30970",
+      "venue": "arXiv preprint arXiv:2609.30970",
+      "why_relevant": "It directly addresses stochasticity in growing biochemical reaction networks, connecting to Fangzhou's interests in microbial growth laws, cell-size homeostasis, and biomolecular reaction networks as a null model for single-cell heterogeneity."
+    },
+    {
+      "authors": [
+        "Iván Linares‐Ambohades",
+        "Natalia Guerra-Pinto",
+        "Sandra Mingo-Ramirez",
+        "Silvia Serrano-Calleja",
+        "Francisco Amaro",
+        "Ana Alastruey‐Izquierdo",
+        "Cruz Soriano",
+        "Raul de Pablo Sánchez",
+        "Val F. Lanza",
+        "Rafael Cantón",
+        "Fernando Baquero",
+        "Teresa M. Coque",
+        "Ana Elena Pérez‐Cobas"
+      ],
+      "category": "core",
+      "key_finding": "Former-ICU drains harbor a highly conserved multi-kingdom core that remains resilient to structural changes and inactivity, with multidrug-resistant pathogens deeply embedded in integrated ecological networks.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/26/2026.09.25.754391.full.pdf",
+      "published": "2026-09-26",
+      "title": "Spatiotemporal dynamics and stability of multi-kingdom microbial communities in hospital sinks acting as persistent pathogen reservoirs",
+      "tldr": "A 17-month multi-kingdom study of 14 hospital sink drains combined 16S/ITS/18S profiling, culturomics, and resistance testing to track community assembly and stability through renovation and clinical use.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://www.biorxiv.org/content/10.64898/2026.09.25.754391.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "It ties to Fangzhou's microbial population dynamics and community ecology interests by showing how environmental structure and anthropogenic shifts shape persistent, sink-specific multi-kingdom communities."
+    },
+    {
+      "authors": [
+        "Wijdan Hameed Abd Al-Razzaq Al-Kubaisy"
+      ],
+      "category": "core",
+      "key_finding": "Taxonomic biodiversity plays only a minor role in maintaining stability during composting, thermophilic fungi cannot be replaced by bacteria, and keystone taxa and interaction networks not detected by abundance-based profiling promote process efficiency.",
+      "pdf_url": "https://atjb.uoturath.edu.iq/index.php/ATJB/article/download/29/55",
+      "published": "2026-10-01",
+      "title": "Microbial Communities in Composting Processes:Succession, Functional Ecology, and Biotechnological Applications",
+      "tldr": "A review of composting microbiology spanning 2021-2026 uses genome-resolved metagenomics, metatranscriptomics, and ecological network analysis to examine microbial succession, functional ecology, and biotechnological applications.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.63964/atjb.2026.2.3.1",
+      "venue": "Al-Turath Journal for Biology",
+      "why_relevant": "It connects to Fangzhou's microbial community ecology and population dynamics interests, particularly the roles of keystone taxa, functional redundancy, and antibiotic resistance gene dynamics in managed microbial systems."
+    },
+    {
+      "authors": [
+        "Soyeon Choi",
+        "Jennifer A. N. Brophy"
+      ],
+      "category": "core",
+      "key_finding": "Circuit architectures were developed that produce distinct fluorescence outputs in primary, secondary, and tertiary roots by counting long-duration input pulses over the roughly two-day root branch specification period.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/09/29/2026.09.28.755210.full.pdf",
+      "published": "2026-09-29",
+      "title": "Synthetic genetic circuits that count developmental cues in plant roots",
+      "tldr": "The authors built synthetic genetic circuits in Arabidopsis thaliana that use root primordium-specific promoters to express large serine recombinases, irreversibly inverting DNA segments each time a new lateral root initiates to count developmental cues.",
+      "topics": [
+        "Synthetic biology circuits"
+      ],
+      "url": "https://doi.org/10.64898/2026.09.28.755210",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "It directly addresses Fangzhou's synthetic biology circuits interest by demonstrating how repeated developmental signals can be converted into heritable DNA states for branch-resolution engineering."
+    },
+    {
+      "authors": [
+        "Suryasnata Dash",
+        "Abhishek Dey"
+      ],
+      "category": "core",
+      "key_finding": "The RBPF with updated noise covariance balances parameter estimation accuracy, state estimation error, and innovation whiteness compared with fixed noise covariance choices.",
+      "pdf_url": "https://arxiv.org/pdf/2609.31158",
+      "published": "2026-09-25",
+      "title": "A Modified Rao-Blackwellised Particle Filter Based on Updated Process Noise Covariance for Chemical Reaction Networks",
+      "tldr": "The authors apply a modified Rao-Blackwellised particle filter with recursively updated process noise covariance, based on the chemical Langevin equation, to jointly estimate parameters and states in a reduced-order gene expression system.",
+      "topics": [
+        "Biomolecular control"
+      ],
+      "url": "https://arxiv.org/abs/2609.31158",
+      "venue": "arXiv (Cornell University)",
+      "why_relevant": "It connects to Fangzhou's biomolecular control and reaction network interests by providing an estimation framework for stochastic chemical reaction networks relevant to synthetic and natural biological systems."
+    },
+    {
+      "authors": [
+        "Chuang Nie",
+        "Ran Xia",
+        "Liqiong Ma",
+        "Song Li",
+        "Jing Zhang"
+      ],
+      "category": "core",
+      "key_finding": "The composite reduced microbial alpha diversity and total biomass, disrupted biofilm architecture, decreased Actinomyces and Lactobacillus, and enriched Haemophilus and Granulicatella, with predicted functional changes in carbohydrate and nucleotide metabolism.",
+      "pdf_url": "https://www.frontiersin.org/journals/oral-health/articles/10.3389/froh.2026.1779148/pdf",
+      "published": "2026-10-02",
+      "title": "N-acyl-homoserine lactonase–nanosilver composite modulates the bacterial community of an in vitro enriched biofilm model of early childhood caries",
+      "tldr": "An N-acyl-homoserine lactonase-nanosilver composite was tested on in vitro enriched biofilms from children with early childhood caries, with effects assessed by 16S rRNA sequencing, SEM, and biomass assays.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.3389/froh.2026.1779148",
+      "venue": "Frontiers in Oral Health",
+      "why_relevant": "It relates to Fangzhou's microbial community ecology and quorum-sensing interests by showing how a quorum-quenching enzyme combined with nanosilver alters community composition and metabolic function in a biofilm model."
+    },
+    {
+      "authors": [
+        "Se Hui Park",
+        "Doo Sung Cheon",
+        "Tae Jin Cho",
+        "Sun Ae Kim"
+      ],
+      "category": "core",
+      "key_finding": "Most respiratory pathogens were detected more often in oral fluid than lung, while lung microbiota showed lowest diversity and dominance by Escherichia-Shigella and Actinobacillus, and Clostridium perfringens presence was associated with distinct gut community composition and predicted functions.",
+      "pdf_url": "https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2026.1947134/pdf",
+      "published": "2026-10-01",
+      "title": "Pathogen detection and microbial community characterization in clinically symptomatic pigs from commercial farms",
+      "tldr": "The study combined molecular pathogen diagnostics with 16S rRNA sequencing of lung, oral fluid, and fecal samples from clinically symptomatic pigs on South Korean commercial farms.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.3389/fvets.2026.1947134",
+      "venue": "Frontiers in Veterinary Science",
+      "why_relevant": "It connects to Fangzhou's microbial population and community ecology interests by characterizing how pathogen presence associates with site-specific microbiota structure and predicted functional profiles in a production animal system."
+    },
+    {
+      "authors": [
+        "Subin Hwang",
+        "Soo Yeon Lee",
+        "Kyung-Suk Cho"
+      ],
+      "category": "core",
+      "key_finding": "Community structure was primarily shaped by inoculum source followed by incubation temperature, with distinct genus-KO associations such as Pseudoxanthomonas with K12686 and K10804 in one inoculum.",
+      "pdf_url": "https://pdf.medrang.co.kr/MBL/2026/054/MBL054--3571.pdf",
+      "published": "2026-09-21",
+      "title": "Effects of Inoculum Source and Incubation Temperature on Bacterial Community Structure and Predicted Functional Potential Associated with Polylactic Acid (PLA) Degradation",
+      "tldr": "Two compost inocula were enriched with polylactic acid under mesophilic and thermophilic conditions for 100 days to assess bacterial community structure and predicted functional potential.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.48022/mbl.2607.07029",
+      "venue": "Microbiology and Biotechnology Letters",
+      "why_relevant": "It relates to Fangzhou's community ecology and dynamic metabolism interests by demonstrating how inoculum and temperature select taxa and predicted functions linked to ester-bond hydrolysis and lactic acid metabolism."
+    }
+  ],
+  "run_key": "2026-W41",
+  "schema_version": 1,
+  "start_date": "2026-09-29",
+  "title": "BMAC Weekly — 2026-W41"
+}
