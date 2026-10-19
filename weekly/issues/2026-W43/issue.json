@@ -1,0 +1,169 @@
+{
+  "end_date": "2026-10-19",
+  "papers": [
+    {
+      "authors": [
+        "M Meghrazi",
+        "SP Otto"
+      ],
+      "category": "core",
+      "key_finding": "The model predicts that higher food quality raises the cost of traits requiring new structures but lowers the cost of traits requiring energy expenditure, and it yields new predictions about how degradation, recycling, and maintenance demands relate macromolecular composition to growth rate.",
+      "pdf_url": "https://journals.plos.org/plosbiology/article/file?id=10.1371%2Fjournal.pbio.3003995\u0026type=printable",
+      "published": "2026-10-13",
+      "title": "Bridging energy and proteome allocation models allows prediction of the resource cost of traits across environments",
+      "tldr": "The authors build a model combining energy-provisioning and macromolecule-biosynthesis limits to quantify and compare the resource costs of traits that draw on different resources.",
+      "topics": [
+        "Dynamic metabolism \u0026 engineering",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://journals.plos.org/plosbiology/article?id=10.1371%2Fjournal.pbio.3003995",
+      "venue": "PLOS Biology",
+      "why_relevant": "Directly ties bacterial growth laws and proteome allocation to trait costs across environments, matching Fangzhou's work on growth laws, dynamic metabolism, and proteome allocation."
+    },
+    {
+      "authors": [
+        "J Van Impe",
+        "J Wang",
+        "I Hashem",
+        "S Bhonsale"
+      ],
+      "category": "core",
+      "key_finding": "Whether spatial structure promotes cross-feeding depends on how growth depends on exchanged metabolites rather than on physical proximity alone, because metabolic dependence shapes spatial organization and metabolite fluxes.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/10/12/2026.10.09.757969.full.pdf",
+      "published": "2026-10-12",
+      "title": "When and why spatial structure favors metabolic cross-feeding",
+      "tldr": "Using a spatially explicit individual-based model, the authors classify cross-feeding by directionality, investment, and metabolic dependency to test when spatial structure favors or disfavors it.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://www.biorxiv.org/content/biorxiv/early/2026/10/12/2026.10.09.757969.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "Addresses microbial community ecology and metabolite exchange, connecting to Fangzhou's interests in microbial population dynamics and community ecology."
+    },
+    {
+      "authors": [
+        "EJ Lu",
+        "D Del Vecchio"
+      ],
+      "category": "core",
+      "key_finding": "",
+      "pdf_url": "",
+      "published": "2026-01-01",
+      "title": "How Bacterial Growth-Phase Reshapes Synthetic Gene Circuit Function",
+      "tldr": "The abstract was unavailable; the title concerns how bacterial growth phase reshapes synthetic gene circuit function.",
+      "topics": [
+        "Microbial physiology, growth \u0026 division",
+        "Synthetic biology circuits"
+      ],
+      "url": "https://www.biorxiv.org/content/biorxiv/early/2026/10/12/2026.10.09.752898.full.pdf",
+      "venue": "bioRxiv",
+      "why_relevant": "Relates to Fangzhou's work on synthetic gene circuits and microbial growth physiology, though no abstract was provided to confirm specific mechanisms."
+    },
+    {
+      "authors": [
+        "PE Harunari",
+        "G Fiusa",
+        "M Polettini"
+      ],
+      "category": "core",
+      "key_finding": "Mutual linearity holds in mass-action monomial (complex) activities rather than species concentrations, with coefficients independent of the controlled rates, conserved quantities, and complex stoichiometry, and violations signal nonzero deficiency or multiple linkage classes.",
+      "pdf_url": "https://arxiv.org/pdf/2610.11970",
+      "published": "2026-10-08",
+      "title": "Mutual Linearity of Complexes in Chemical Reaction Networks",
+      "tldr": "The authors show that for zero-deficiency chemical reaction networks with a single linkage class, controlling one reaction makes stationary complex activities obey an exact linear relation.",
+      "topics": [
+        "Biomolecular control"
+      ],
+      "url": "https://arxiv.org/pdf/2610.11970",
+      "venue": "arXiv preprint arXiv:2610.11970",
+      "why_relevant": "Provides structural results for chemical reaction network steady states and control, relevant to Fangzhou's interest in biomolecular reaction networks and their control."
+    },
+    {
+      "authors": [
+        "Maruf Khan",
+        "Bishrant Pant",
+        "Ahmad Humayan Kabir"
+      ],
+      "category": "core",
+      "key_finding": "Chinese tallow rhizosphere had greater bacterial and fungal richness, distinct composition enriched in beneficial taxa such as Streptomyces, Bradyrhizobium, and Rhizobium and ectomycorrhizal fungi, with functional predictions indicating more carbohydrate degradation, nitrogen fixation, and plant growth promotion.",
+      "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2026/10/16/2026.10.09.758132.full.pdf",
+      "published": "2026-10-16",
+      "title": "Invasive Chinese tallow is associated with distinct rhizosphere microbial communities, core microbiomes, and functional potential relative to native Loblolly pine",
+      "tldr": "The authors compare rhizosphere bacterial and fungal communities of invasive Chinese tallow and native Loblolly pine using 16S and ITS amplicon sequencing plus soil and functional analyses.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.64898/2026.10.09.758132",
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "why_relevant": "Examines host-mediated assembly and functional potential of soil microbial communities, connecting to Fangzhou's microbial community ecology interests."
+    },
+    {
+      "authors": [
+        "Ing Xhu Lim",
+        "Faisal Halabeya",
+        "Joshua N. Milstein"
+      ],
+      "category": "core",
+      "key_finding": "Coccus-like cells display a competitive advantage over bacillus cells and more effectively invade and fixate, while coexisting bacillus populations are effectively stable, and faster division drives fixation or acts defensively depending on morphology.",
+      "pdf_url": "https://journals.plos.org/ploscompbiol/article/file?id=10.1371%2Fjournal.pcbi.1014874\u0026type=printable",
+      "published": "2026-10-13",
+      "title": "The influence of cell morphology on the dynamics and stability of model bacterial communities",
+      "tldr": "Agent-based simulations of dual bacterial populations in microchannels show that boundary dynamics are well described by a drift-diffusion model, with morphology and division rate affecting fixation versus coexistence.",
+      "topics": [
+        "Microbial populations \u0026 communities"
+      ],
+      "url": "https://doi.org/10.1371/journal.pcbi.1014874",
+      "venue": "PLoS Computational Biology",
+      "why_relevant": "Links cell morphology and mechanical interactions to community dynamics and coexistence, relevant to Fangzhou's interests in microbial population dynamics and cell-size/morphology."
+    },
+    {
+      "authors": [
+        "Mohd Adnan",
+        "Arif Jamal Siddiqui",
+        "Fevzi Bardakçi",
+        "Riadh Badraoui",
+        "Abdelmuhsin Abdelgadir",
+        "Syed Amir Ashraf",
+        "Halil Biyik",
+        "Mitesh Patel"
+      ],
+      "category": "core",
+      "key_finding": "Interspecies quorum-sensing crosstalk can promote synergistic cooperation that increases virulence or antagonistic responses that alter microbial dynamics, and quorum quenching, targeted delivery, and combination therapies are discussed as interventions.",
+      "pdf_url": "",
+      "published": "2026-10-06",
+      "title": "Quorum sensing crosstalk and dynamics in polymicrobial biofilms: implications for pathogenesis and emerging therapeutic strategies",
+      "tldr": "This review analyzes quorum-sensing crosstalk in polymicrobial biofilms and its implications for pathogenesis, antimicrobial resistance, and emerging therapeutic strategies.",
+      "topics": [
+        "Microbial populations \u0026 communities",
+        "Microbial physiology, growth \u0026 division"
+      ],
+      "url": "https://doi.org/10.1080/1040841x.2026.2741843",
+      "venue": "Critical Reviews in Microbiology",
+      "why_relevant": "Covers cell-to-cell signaling, biofilm behavior, and antibiotic resistance in multi-species communities, matching Fangzhou's interests in microbial decision-making, molecular sensing, and antibiotic resistance."
+    },
+    {
+      "authors": [
+        "Benedikt Remlein",
+        "Massimiliano Esposito",
+        "Francesco Avanzini"
+      ],
+      "category": "core",
+      "key_finding": "With fast reactions acting as exchange mechanisms and abundant species behaving as chemostats, local detailed balance, entropy production, and free-energy balance emerge to leading order for arbitrary stoichiometries.",
+      "pdf_url": "",
+      "published": "2026-10-15",
+      "title": "Emergence of open chemical reaction network thermodynamics within closed systems",
+      "tldr": "The authors show that open chemical reaction network behavior, including stochastic dynamics and thermodynamic structure, emerges asymptotically from closed CRNs under time-scale separation and abundance separation.",
+      "topics": [
+        "Biomolecular control"
+      ],
+      "url": "https://doi.org/10.1103/ssn3-44gk",
+      "venue": "Physical Review X",
+      "why_relevant": "Gives a physically grounded basis for chemostat-like open reaction-network thermodynamics, which bears on Fangzhou's interests in biochemical reaction networks and biomolecular control."
+    }
+  ],
+  "run_key": "2026-W43",
+  "schema_version": 1,
+  "start_date": "2026-10-13",
+  "title": "BMAC Weekly — 2026-W43"
+}
