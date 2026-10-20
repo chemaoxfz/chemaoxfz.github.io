@@ -205,6 +205,9 @@ kramdown:
 # Includes & excludes
 include: ["_pages"]
 exclude:
+  # Preserve the live tutorial as a raw download, outside notebook conversion.
+  # The Pages workflow copies it unchanged after Jekyll finishes.
+  - assets/ccbs/2026fall/demo-assets/lecture13/lecture13-live.ipynb
   - bin
   - CONTRIBUTING.md
   - CUSTOMIZE.md

@@ -49,6 +49,8 @@ jobs:
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+      - name: Copy the Lecture 13 notebook download unchanged
+        run: install -Dm644 assets/ccbs/2026fall/demo-assets/lecture13/lecture13-live.ipynb _site/assets/ccbs/2026fall/demo-assets/lecture13/lecture13-live.ipynb
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
