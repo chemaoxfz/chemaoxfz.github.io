@@ -311,6 +311,7 @@ html.l15-present body{font-size:22px}
 })();
 </script>
 
+
 <style>
 .l15-exhibit{max-width:58rem;margin:2rem 0;padding:1.3rem;border:1px solid var(--rule);border-radius:12px;background:var(--bg2);font-family:var(--sans)}
 .l15-exhibit h3{font-size:1.12rem;margin:.4rem 0 1rem}
@@ -381,6 +382,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 </ol></li>
 <li><a href="#optional">Optional transfer and scoring details</a></li>
 <li><a href="#rundown">Teaching selection and demonstration files</a></li>
+<li><a href="#reading">Supporting documents</a></li>
 <li><a href="#refs">Sources</a></li>
 </ol></nav><main>
 <h1>Protein design: from evolutionary clues to testable molecules</h1>
@@ -570,6 +572,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
 <figcaption><b>Figure 1. Learn the molecular objects that a design workflow manipulates.</b> The sequence strips and molecular outlines are schematic. The small backbone trace uses experimental Top7 coordinates. The interface drawing marks a contact region between two partners. These representations describe a proposed molecule. Measurements establish its behavior.</figcaption></figure>
+<div class="l15-exhibit" id="l15-functional-question"><h3>A requirement to return to</h3><p>Imagine a reversible reporter for a benign environmental solute near 1 µM. It must distinguish that solute from a competitor and produce a signal quickly. One requirement for its binding component is to reach 90% of its new equilibrium occupancy within two seconds after the solute arrives.</p><p>Which evidence would establish that requirement: a plausible pocket, a measured equilibrium affinity, or a time-resolved response? We will return to this choice after learning what the design tools supply.</p></div>
 <p>The size of sequence space makes guidance necessary. A length-100 chain has <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>20</mn><mn>100</mn></msup><mo>≈</mo><mn>1.27</mn><mo>×</mo><msup><mn>10</mn><mn>130</mn></msup></mrow><annotation encoding="application/x-tex">20^{100}\approx 1.27\times10^{130}</annotation></semantics></math></span> possible sequences if each position admits the 20 standard amino acids. We cannot test them all. A useful method must propose a small set enriched for the desired behavior.</p>
 <p>The histories of design and prediction therefore develop together. Design improves the proposal. Prediction helps assess its structural consequences. Experiments determine whether the selected consequence actually occurs.</p>
 <p class="takeaway">You can state a design task as a molecular behavior under specified conditions, then identify which parts a sequence or coordinate file can answer.</p>
@@ -1323,7 +1326,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <h2 id="s5"><span class="n">5</span>Fix the design specification</h2>
 <p class="lede">Before opening a model, separate what is fixed, what can change, and what evidence would count as success.</p>
 <p class="l15-step-claim" data-point="P5" data-tier="major" data-route="spine"><span class="l15-step-label">P5</span>A design specification makes every output interpretable.</p>
-<p>Our task is <strong>fixed-backbone redesign of Top7</strong>. We retain the experimental backbone and propose new amino-acid sequences compatible with it. This is a manageable demonstration on the lecturer's CPU. The task also exposes the boundary between generating a candidate and establishing that it folds.</p>
+<p>Our task is <strong>fixed-backbone redesign of Top7</strong>. We retain the experimental backbone and propose new amino-acid sequences compatible with it. This gives us one manageable step to inspect on the lecturer's CPU. The reporter introduced earlier would require several further steps, including an interface, signal coupling and functional measurements.</p>
 <figure id="fig-specification"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 7. The demonstration has a fixed input and an explicit success question.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 390" role="img" aria-label="Keep the backbone fixed while proposing new sequences" font-family="var(--sans)">
 <defs><marker id="l15-specification-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
@@ -2096,7 +2099,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
 <figcaption><b>Figure 9. Known and generated backbones enter the same sequence-design step.</b> The executed demonstration follows the upper route. The lower route explains how RFdiffusion can supply a new backbone. Prediction and experiment follow either route. Only sequence design was executed for the prepared classroom dataset.</figcaption></figure>
-<p><strong>RFdiffusion generates backbone arrangements under structural constraints.</strong> Its original formulation learned denoising using a structure-prediction architecture. A sampled trajectory progressively creates a backbone. The constraints can describe a fold, an assembly or a structural motif. The output then needs amino-acid identities. <a href="#r-rfd">[Watson et al., 2023]</a></p>
+<p><strong>RFdiffusion generates backbone arrangements under structural constraints.</strong> Its original formulation adapted the RoseTTAFold structure-prediction architecture for denoising. A sampled trajectory progressively creates a backbone. The constraints can describe a fold, an assembly or a structural motif. ProteinMPNN can then supply identities, and AlphaFold2 can evaluate the proposed sequence's structural agreement. These models serve different stages. <a href="#r-rfd">[Watson et al., 2023]</a></p>
 <figure id="fig-diffusion"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 10. Denoising is an algorithmic route to a proposal.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" role="img" aria-label="Denoising illustrates a generative construction" font-family="var(--sans)">
 <defs><marker id="l15-diffusion-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
@@ -2513,10 +2516,17 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <p class="l15-data-note">92 observed residues, A3–A94. Seed 37. Checkpoint v_48_020. Eight new sequences. No new structural prediction or experimental validation.</p>
 <noscript><p>JavaScript enables rotation and candidate selection. The demonstration bundle also contains readable FASTA, CSV and the run manifest.</p></noscript>
 </div>
-<figure id="fig-scores"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 11. The real run produces a set of distinct proposals.">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-label="Real sequence-design output: score and diversity" font-family="var(--sans)">
+<p><strong>Sequence recovery and candidate diversity compare different pairs.</strong> Sequence recovery is the fraction of positions matching the input sequence. The first candidate, T0.1-S1, matches 39 of 92 positions, giving <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>39</mn><mi mathvariant="normal">/</mi><mn>92</mn><mo>≈</mo><mn>42.4</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">39/92\approx42.4\%</annotation></semantics></math></span>. To ask whether the proposals themselves are diverse, compare candidates with one another.</p>
+<div class="l15-exhibit l15-tabs" data-tabs id="l15-sample-comparisons" aria-label="Compare the real sequence outputs">
+<div role="tablist" aria-label="Two sequence comparisons">
+<button type="button" role="tab" aria-selected="true" aria-controls="samples-reference" id="tab-samples-reference">Compare with input</button>
+<button type="button" role="tab" aria-selected="false" aria-controls="samples-diversity" id="tab-samples-diversity" tabindex="-1">Compare candidates</button>
+</div>
+<div role="tabpanel" id="samples-reference" aria-labelledby="tab-samples-reference">
+<figure id="fig-scores"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 11. Sequence recovery and model score describe each proposal.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-label="Real sequence-design output: score and sequence recovery" font-family="var(--sans)">
 <defs><marker id="l15-scores-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
-<text x="30.0" y="38.0" font-size="25" fill="var(--fg)" font-weight="700">Real sequence-design output: score and diversity</text>
+<text x="30.0" y="38.0" font-size="25" fill="var(--fg)" font-weight="700">Real sequence-design output: score and sequence recovery</text>
 <line x1="100.0" y1="330.0" x2="800.0" y2="330.0" stroke="var(--fg)" stroke-width="1"/>
 <line x1="100.0" y1="100.0" x2="100.0" y2="330.0" stroke="var(--fg)" stroke-width="1"/>
 <line x1="100.0" y1="100.0" x2="100.0" y2="330.0" stroke="var(--rule)" stroke-width="1"/>
@@ -2544,20 +2554,185 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <circle cx="568.7" cy="222.2" r="7" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.5"/>
 <circle cx="386.2" cy="207.1" r="7" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.5"/>
 <circle cx="416.4" cy="207.4" r="7" fill="var(--rose)" stroke="var(--bg2)" stroke-width="1.5"/>
-<text x="450.0" y="396.0" font-size="18" fill="var(--fg)" text-anchor="middle">Identity to the input sequence</text>
+<text x="450.0" y="396.0" font-size="18" fill="var(--fg)" text-anchor="middle">Sequence recovery to the input</text>
 <text x="30.0" y="220.0" font-size="17" fill="var(--fg)" text-anchor="middle" transform="rotate(-90 30.0 220.0)">ProteinMPNN score</text>
 <foreignObject x="535" y="49.2" width="720" height="32" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:16px;line-height:1;color:var(--peri)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>s</mi></msub><mo>=</mo><mn>0.1</mn></mrow><annotation encoding="application/x-tex">T_s=0.1</annotation></semantics></math></div></foreignObject>
 <foreignObject x="675" y="49.2" width="720" height="32" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:16px;line-height:1;color:var(--rose)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>s</mi></msub><mo>=</mo><mn>0.3</mn></mrow><annotation encoding="application/x-tex">T_s=0.3</annotation></semantics></math></div></foreignObject>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 11. The real run produces a set of distinct proposals.</b> Each point is one saved ProteinMPNN sequence. Sequence identity is measured against the experimental input sequence over the 92 designed positions. The vertical score is the model's mean negative log conditional sequence probability. This small sample cannot establish a general temperature trend or a folding success rate.</figcaption></figure>
+<figcaption><b>Figure 11. Sequence recovery and model score describe each proposal.</b> Each point is one saved ProteinMPNN sequence. The horizontal axis compares its identities with the input over 92 positions. The vertical score describes agreement with the model. Neither axis measures folding success.</figcaption></figure>
+</div>
+<div role="tabpanel" id="samples-diversity" aria-labelledby="tab-samples-diversity" hidden>
+<p>The proposals share many changes. They recover 40.2–46.7% of the input sequence, yet distinct candidate pairs are 60.9–79.3% identical to one another. Thirty-two positions never change within this set. A collection can differ from one reference while remaining similar within itself.</p>
+<figure id="fig-companion-diversity"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 12. Compare all eight actual proposals with one another.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 540" role="img" aria-label="Eight real samples occupy a small, structured part of sequence space" font-family="var(--sans)">
+<text x="28.0" y="32.0" font-size="20" fill="var(--fg)" font-weight="650">Eight real samples occupy a small, structured part of sequence space</text>
+<text x="28.0" y="57.0" font-size="13" fill="var(--muted)">Saved ProteinMPNN run on the 92 observed residues of Top7. Diagonal identity is 100%.</text>
+<text x="154.0" y="111.0" font-size="14" fill="var(--fg)" text-anchor="middle">A1</text>
+<text x="116.0" y="154.0" font-size="14" fill="var(--fg)" text-anchor="end">A1</text>
+<rect x="132.0" y="126.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.87"/>
+<text x="153.0" y="152.0" font-size="12" fill="var(--fg)" text-anchor="middle">100</text>
+<rect x="176.0" y="126.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5031521739130436"/>
+<text x="197.0" y="152.0" font-size="12" fill="var(--fg)" text-anchor="middle">71</text>
+<rect x="220.0" y="126.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.44880434782608686"/>
+<text x="241.0" y="152.0" font-size="12" fill="var(--fg)" text-anchor="middle">66</text>
+<rect x="264.0" y="126.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5303260869565217"/>
+<text x="285.0" y="152.0" font-size="12" fill="var(--fg)" text-anchor="middle">73</text>
+<rect x="308.0" y="126.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.46239130434782605"/>
+<text x="329.0" y="152.0" font-size="12" fill="var(--fg)" text-anchor="middle">67</text>
+<rect x="352.0" y="126.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.46239130434782605"/>
+<text x="373.0" y="152.0" font-size="12" fill="var(--fg)" text-anchor="middle">67</text>
+<rect x="396.0" y="126.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5439130434782609"/>
+<text x="417.0" y="152.0" font-size="12" fill="var(--fg)" text-anchor="middle">74</text>
+<rect x="440.0" y="126.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5303260869565217"/>
+<text x="461.0" y="152.0" font-size="12" fill="var(--fg)" text-anchor="middle">73</text>
+<text x="198.0" y="111.0" font-size="14" fill="var(--fg)" text-anchor="middle">A2</text>
+<text x="116.0" y="198.0" font-size="14" fill="var(--fg)" text-anchor="end">A2</text>
+<rect x="132.0" y="170.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5031521739130436"/>
+<text x="153.0" y="196.0" font-size="12" fill="var(--fg)" text-anchor="middle">71</text>
+<rect x="176.0" y="170.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.87"/>
+<text x="197.0" y="196.0" font-size="12" fill="var(--fg)" text-anchor="middle">100</text>
+<rect x="220.0" y="170.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.44880434782608686"/>
+<text x="241.0" y="196.0" font-size="12" fill="var(--fg)" text-anchor="middle">66</text>
+<rect x="264.0" y="170.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.6118478260869565"/>
+<text x="285.0" y="196.0" font-size="12" fill="var(--fg)" text-anchor="middle">79</text>
+<rect x="308.0" y="170.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.4895652173913043"/>
+<text x="329.0" y="196.0" font-size="12" fill="var(--fg)" text-anchor="middle">70</text>
+<rect x="352.0" y="170.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.46239130434782605"/>
+<text x="373.0" y="196.0" font-size="12" fill="var(--fg)" text-anchor="middle">67</text>
+<rect x="396.0" y="170.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5303260869565217"/>
+<text x="417.0" y="196.0" font-size="12" fill="var(--fg)" text-anchor="middle">73</text>
+<rect x="440.0" y="170.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.47597826086956524"/>
+<text x="461.0" y="196.0" font-size="12" fill="var(--fg)" text-anchor="middle">68</text>
+<text x="242.0" y="111.0" font-size="14" fill="var(--fg)" text-anchor="middle">A3</text>
+<text x="116.0" y="242.0" font-size="14" fill="var(--fg)" text-anchor="end">A3</text>
+<rect x="132.0" y="214.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.44880434782608686"/>
+<text x="153.0" y="240.0" font-size="12" fill="var(--fg)" text-anchor="middle">66</text>
+<rect x="176.0" y="214.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.44880434782608686"/>
+<text x="197.0" y="240.0" font-size="12" fill="var(--fg)" text-anchor="middle">66</text>
+<rect x="220.0" y="214.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.87"/>
+<text x="241.0" y="240.0" font-size="12" fill="var(--fg)" text-anchor="middle">100</text>
+<rect x="264.0" y="214.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.47597826086956524"/>
+<text x="285.0" y="240.0" font-size="12" fill="var(--fg)" text-anchor="middle">68</text>
+<rect x="308.0" y="214.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.3944565217391304"/>
+<text x="329.0" y="240.0" font-size="12" fill="var(--fg)" text-anchor="middle">62</text>
+<rect x="352.0" y="214.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.42163043478260864"/>
+<text x="373.0" y="240.0" font-size="12" fill="var(--fg)" text-anchor="middle">64</text>
+<rect x="396.0" y="214.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.46239130434782605"/>
+<text x="417.0" y="240.0" font-size="12" fill="var(--fg)" text-anchor="middle">67</text>
+<rect x="440.0" y="214.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5167391304347826"/>
+<text x="461.0" y="240.0" font-size="12" fill="var(--fg)" text-anchor="middle">72</text>
+<text x="286.0" y="111.0" font-size="14" fill="var(--fg)" text-anchor="middle">A4</text>
+<text x="116.0" y="286.0" font-size="14" fill="var(--fg)" text-anchor="end">A4</text>
+<rect x="132.0" y="258.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5303260869565217"/>
+<text x="153.0" y="284.0" font-size="12" fill="var(--fg)" text-anchor="middle">73</text>
+<rect x="176.0" y="258.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.6118478260869565"/>
+<text x="197.0" y="284.0" font-size="12" fill="var(--fg)" text-anchor="middle">79</text>
+<rect x="220.0" y="258.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.47597826086956524"/>
+<text x="241.0" y="284.0" font-size="12" fill="var(--fg)" text-anchor="middle">68</text>
+<rect x="264.0" y="258.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.87"/>
+<text x="285.0" y="284.0" font-size="12" fill="var(--fg)" text-anchor="middle">100</text>
+<rect x="308.0" y="258.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.42163043478260864"/>
+<text x="329.0" y="284.0" font-size="12" fill="var(--fg)" text-anchor="middle">64</text>
+<rect x="352.0" y="258.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.46239130434782605"/>
+<text x="373.0" y="284.0" font-size="12" fill="var(--fg)" text-anchor="middle">67</text>
+<rect x="396.0" y="258.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5031521739130436"/>
+<text x="417.0" y="284.0" font-size="12" fill="var(--fg)" text-anchor="middle">71</text>
+<rect x="440.0" y="258.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.43521739130434783"/>
+<text x="461.0" y="284.0" font-size="12" fill="var(--fg)" text-anchor="middle">65</text>
+<text x="330.0" y="111.0" font-size="14" fill="var(--fg)" text-anchor="middle">A5</text>
+<text x="116.0" y="330.0" font-size="14" fill="var(--fg)" text-anchor="end">A5</text>
+<rect x="132.0" y="302.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.46239130434782605"/>
+<text x="153.0" y="328.0" font-size="12" fill="var(--fg)" text-anchor="middle">67</text>
+<rect x="176.0" y="302.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.4895652173913043"/>
+<text x="197.0" y="328.0" font-size="12" fill="var(--fg)" text-anchor="middle">70</text>
+<rect x="220.0" y="302.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.3944565217391304"/>
+<text x="241.0" y="328.0" font-size="12" fill="var(--fg)" text-anchor="middle">62</text>
+<rect x="264.0" y="302.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.42163043478260864"/>
+<text x="285.0" y="328.0" font-size="12" fill="var(--fg)" text-anchor="middle">64</text>
+<rect x="308.0" y="302.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.87"/>
+<text x="329.0" y="328.0" font-size="12" fill="var(--fg)" text-anchor="middle">100</text>
+<rect x="352.0" y="302.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.40804347826086956"/>
+<text x="373.0" y="328.0" font-size="12" fill="var(--fg)" text-anchor="middle">63</text>
+<rect x="396.0" y="302.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.42163043478260864"/>
+<text x="417.0" y="328.0" font-size="12" fill="var(--fg)" text-anchor="middle">64</text>
+<rect x="440.0" y="302.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.44880434782608686"/>
+<text x="461.0" y="328.0" font-size="12" fill="var(--fg)" text-anchor="middle">66</text>
+<text x="374.0" y="111.0" font-size="14" fill="var(--fg)" text-anchor="middle">A6</text>
+<text x="116.0" y="374.0" font-size="14" fill="var(--fg)" text-anchor="end">A6</text>
+<rect x="132.0" y="346.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.46239130434782605"/>
+<text x="153.0" y="372.0" font-size="12" fill="var(--fg)" text-anchor="middle">67</text>
+<rect x="176.0" y="346.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.46239130434782605"/>
+<text x="197.0" y="372.0" font-size="12" fill="var(--fg)" text-anchor="middle">67</text>
+<rect x="220.0" y="346.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.42163043478260864"/>
+<text x="241.0" y="372.0" font-size="12" fill="var(--fg)" text-anchor="middle">64</text>
+<rect x="264.0" y="346.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.46239130434782605"/>
+<text x="285.0" y="372.0" font-size="12" fill="var(--fg)" text-anchor="middle">67</text>
+<rect x="308.0" y="346.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.40804347826086956"/>
+<text x="329.0" y="372.0" font-size="12" fill="var(--fg)" text-anchor="middle">63</text>
+<rect x="352.0" y="346.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.87"/>
+<text x="373.0" y="372.0" font-size="12" fill="var(--fg)" text-anchor="middle">100</text>
+<rect x="396.0" y="346.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.43521739130434783"/>
+<text x="417.0" y="372.0" font-size="12" fill="var(--fg)" text-anchor="middle">65</text>
+<rect x="440.0" y="346.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.38086956521739135"/>
+<text x="461.0" y="372.0" font-size="12" fill="var(--fg)" text-anchor="middle">61</text>
+<text x="418.0" y="111.0" font-size="14" fill="var(--fg)" text-anchor="middle">A7</text>
+<text x="116.0" y="418.0" font-size="14" fill="var(--fg)" text-anchor="end">A7</text>
+<rect x="132.0" y="390.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5439130434782609"/>
+<text x="153.0" y="416.0" font-size="12" fill="var(--fg)" text-anchor="middle">74</text>
+<rect x="176.0" y="390.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5303260869565217"/>
+<text x="197.0" y="416.0" font-size="12" fill="var(--fg)" text-anchor="middle">73</text>
+<rect x="220.0" y="390.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.46239130434782605"/>
+<text x="241.0" y="416.0" font-size="12" fill="var(--fg)" text-anchor="middle">67</text>
+<rect x="264.0" y="390.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5031521739130436"/>
+<text x="285.0" y="416.0" font-size="12" fill="var(--fg)" text-anchor="middle">71</text>
+<rect x="308.0" y="390.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.42163043478260864"/>
+<text x="329.0" y="416.0" font-size="12" fill="var(--fg)" text-anchor="middle">64</text>
+<rect x="352.0" y="390.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.43521739130434783"/>
+<text x="373.0" y="416.0" font-size="12" fill="var(--fg)" text-anchor="middle">65</text>
+<rect x="396.0" y="390.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.87"/>
+<text x="417.0" y="416.0" font-size="12" fill="var(--fg)" text-anchor="middle">100</text>
+<rect x="440.0" y="390.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5031521739130436"/>
+<text x="461.0" y="416.0" font-size="12" fill="var(--fg)" text-anchor="middle">71</text>
+<text x="462.0" y="111.0" font-size="14" fill="var(--fg)" text-anchor="middle">A8</text>
+<text x="116.0" y="462.0" font-size="14" fill="var(--fg)" text-anchor="end">A8</text>
+<rect x="132.0" y="434.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5303260869565217"/>
+<text x="153.0" y="460.0" font-size="12" fill="var(--fg)" text-anchor="middle">73</text>
+<rect x="176.0" y="434.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.47597826086956524"/>
+<text x="197.0" y="460.0" font-size="12" fill="var(--fg)" text-anchor="middle">68</text>
+<rect x="220.0" y="434.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5167391304347826"/>
+<text x="241.0" y="460.0" font-size="12" fill="var(--fg)" text-anchor="middle">72</text>
+<rect x="264.0" y="434.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.43521739130434783"/>
+<text x="285.0" y="460.0" font-size="12" fill="var(--fg)" text-anchor="middle">65</text>
+<rect x="308.0" y="434.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.44880434782608686"/>
+<text x="329.0" y="460.0" font-size="12" fill="var(--fg)" text-anchor="middle">66</text>
+<rect x="352.0" y="434.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.38086956521739135"/>
+<text x="373.0" y="460.0" font-size="12" fill="var(--fg)" text-anchor="middle">61</text>
+<rect x="396.0" y="434.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.5031521739130436"/>
+<text x="417.0" y="460.0" font-size="12" fill="var(--fg)" text-anchor="middle">71</text>
+<rect x="440.0" y="434.0" width="42.0" height="42.0" fill="var(--peri)" opacity="0.87"/>
+<text x="461.0" y="460.0" font-size="12" fill="var(--fg)" text-anchor="middle">100</text>
+<text x="535.0" y="147.0" font-size="16" fill="var(--fg)" font-weight="600">A1–A4: temperature 0.1</text>
+<text x="535.0" y="174.0" font-size="16" fill="var(--fg)" font-weight="600">A5–A8: temperature 0.3</text>
+<text x="535.0" y="220.0" font-size="15" fill="var(--fg)">Between different samples:</text>
+<text x="535.0" y="252.0" font-size="23" fill="var(--rose)" font-weight="600">60.9–79.3% identity</text>
+<text x="535.0" y="300.0" font-size="17" fill="var(--fg)">32 of 92 positions never change</text>
+<text x="535.0" y="329.0" font-size="16" fill="var(--fg)">within these eight samples.</text>
+<text x="535.0" y="381.0" font-size="14" fill="var(--muted)">This is a small computational sample.</text>
+<text x="535.0" y="406.0" font-size="14" fill="var(--muted)">It does not measure folding or function.</text>
+<text x="132.0" y="511.0" font-size="13" fill="var(--muted)">Cell entries: percent identical residues. Candidate labels follow the saved run order.</text>
+</svg>
+</div>
+<p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
+<figcaption><b>Figure 12. Compare all eight actual proposals with one another.</b> A1–A4 are T0.1-S1 through T0.1-S4. A5–A8 are T0.3-S1 through T0.3-S4. Entries are percent identical positions. The matrix is recomputed from the saved sequences. Eight samples on one backbone cannot establish a general temperature–diversity relation.</figcaption></figure>
+</div></div>
 <p><strong>The score ranks agreement with a conditional model.</strong> Lower scores indicate that this model more readily assigns the sequence to this backbone under its scoring procedure. The score is neither an energy nor a folding probability. Scores from different models, tasks or conditioning assumptions need not be comparable.</p>
 <p><strong>Sampling temperature changes the choice distribution.</strong> Lower algorithmic temperature concentrates probability on favored residue identities. Higher temperature permits more varied choices. This temperature is dimensionless. It does not specify the temperature of a protein solution.</p>
 <div class="l15-exhibit" id="l15-temperature">
 <span class="l15-tag">Constructed probability example · not model output</span>
 <h3>Change the choice distribution at one hypothetical position</h3>
 <p>Hold four preference scores, called logits, fixed. Moving the sampling-temperature slider changes their probabilities. The four letters denote lysine (K), glutamate (E), leucine (L) and alanine (A).</p>
-<figure id="fig-temperature"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 12. A sampling temperature redistributes probability.">
+<figure id="fig-temperature"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 13. A sampling temperature redistributes probability.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-label="Sampling temperature changes which identities are drawn" font-family="var(--sans)">
 <defs><marker id="l15-temperature-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
 <text x="30.0" y="38.0" font-size="24" fill="var(--fg)" font-weight="700">Sampling temperature changes which identities are drawn</text>
@@ -2596,7 +2771,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <text x="450.0" y="407.0" font-size="16" fill="var(--muted)" text-anchor="middle">Constructed four-choice example. The temperature is dimensionless.</text>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 12. A sampling temperature redistributes probability.</b> The chart uses the softmax rule with the four displayed logits. It illustrates one hypothetical position with four allowed identities. ProteinMPNN normally chooses among amino acids in a much richer sequence and structural context.</figcaption></figure>
+<figcaption><b>Figure 13. A sampling temperature redistributes probability.</b> The chart uses the softmax rule with the four displayed logits. It illustrates one hypothetical position with four allowed identities. ProteinMPNN normally chooses among amino acids in a much richer sequence and structural context.</figcaption></figure>
 <div class="l15-controls">
 <label>Sampling temperature <output id="l15-temperature-value">0.10</output><input id="l15-temperature-slider" type="range" min="0.05" max="1" step="0.05" value="0.1"></label>
 <button type="button" id="l15-temperature-reset">Reset to 0.10</button>
@@ -2604,7 +2779,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <p id="l15-temperature-readout" role="status" aria-live="polite"></p>
 <p class="l15-data-note">The optional scoring note gives the formula. These probabilities are independent of the eight real candidate sequences.</p>
 </div>
-<div class="box"><span class="lbl">Lecturer demonstration: 12 minutes</span><ol><li>Show the fixed backbone and the 92-position input mapping.</li><li>Run the notebook's live cell, or open the prepared replay.</li><li>Select two candidates. Locate changed residues and compare score and identity.</li><li>Export a FASTA and its candidate identifier.</li><li>Ask what the current output proves and which prediction or measurement comes next.</li></ol></div>
+<div class="box"><span class="lbl">Lecturer demonstration: 12 minutes</span><ol><li>Show the fixed backbone and the 92-position input mapping.</li><li>Run the notebook's live cell, or open the prepared replay.</li><li>Select two candidates. Compare their model scores and sequence recovery. Use the candidate-comparison tab to ask a different diversity question.</li><li>Export a FASTA and its candidate identifier.</li><li>Ask what the current output proves and which prediction or measurement comes next.</li></ol></div>
 <p class="takeaway">You can rerun or replay a sequence-design calculation, trace a candidate to its provenance, and interpret its score without turning it into a claim of function.</p>
 
 <h2 id="s8"><span class="n">8</span>Match each claim to its evidence</h2>
@@ -2618,7 +2793,14 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <tr><td>Structural agreement</td><td data-label="Question">Does the predicted structure agree with the design over the chosen atoms?</td><td data-label="Open question">Are the two computations sharing a failure mode?</td></tr>
 <tr><td>Expression, folding and functional assays</td><td data-label="Question">Which required properties occur under the tested conditions?</td><td data-label="Open question">Do they transfer to the intended cellular or application context?</td></tr>
 </tbody></table></div>
-<figure id="fig-confidence"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 13. Local confidence and relative placement answer different questions.">
+<p>Confidence estimates the reliability of a prediction. Structural agreement compares two coordinate sets. The root-mean-square deviation (RMSD) measures their coordinate discrepancy after the specified atoms have been aligned by a rigid rotation and translation. The alignment removes arbitrary placement in the coordinate file.</p>
+<div class="l15-exhibit l15-tabs" data-tabs id="l15-structure-comparisons" aria-label="Confidence and structural comparison">
+<div role="tablist" aria-label="Two geometric questions">
+<button type="button" role="tab" aria-selected="true" aria-controls="structure-confidence" id="tab-structure-confidence">Local and relative confidence</button>
+<button type="button" role="tab" aria-selected="false" aria-controls="structure-alignment" id="tab-structure-alignment" tabindex="-1">Alignment before RMSD</button>
+</div>
+<div role="tabpanel" id="structure-confidence" aria-labelledby="tab-structure-confidence">
+<figure id="fig-confidence"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 14. Local confidence and relative placement answer different questions.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" role="img" aria-label="Well-defined domains can still have an uncertain relative pose" font-family="var(--sans)">
 <defs><marker id="l15-confidence-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
 <text x="30.0" y="38.0" font-size="24" fill="var(--fg)" font-weight="700">Well-defined domains can still have an uncertain relative pose</text>
@@ -2789,13 +2971,64 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <text x="450.0" y="638.0" font-size="15" fill="var(--muted)" text-anchor="middle">Schematic poses and PAE patterns. Domain shape and relative placement are different questions.</text>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 13. Local confidence and relative placement answer different questions.</b> The upper drawings hold domain A fixed and compare possible placements of domain B. The lower PAE matrices express the corresponding distinction: low error within each domain can coexist with high uncertainty between domains. Both panels are schematic. Their colors indicate predicted position error, not binding strength. <a href="#r-af2">[AlphaFold2 confidence definitions]</a></figcaption></figure>
-<p>Structural agreement must state its comparison. For a monomer, report which residues and atoms enter a superposition and its root-mean-square deviation (RMSD). A small whole-chain deviation can still hide a misplaced functional loop. For a complex, aligning the full complex and aligning each chain independently ask different questions.</p>
+<figcaption><b>Figure 14. Local confidence and relative placement answer different questions.</b> The upper drawings hold domain A fixed and compare possible placements of domain B. The lower PAE matrices express the corresponding distinction: low error within each domain can coexist with high uncertainty between domains. Both panels are schematic. Their colors indicate predicted position error, not binding strength. <a href="#r-af2">[AlphaFold2 confidence definitions]</a></figcaption></figure>
+</div>
+<div role="tabpanel" id="structure-alignment" aria-labelledby="tab-structure-alignment" hidden>
+<p>These two landmark sets have identical shape. One has been rotated and translated. Directly subtracting their coordinates gives a raw RMSD of 10.12 Å. Proper rigid alignment reduces it to zero. The number becomes meaningful only after the comparison is defined.</p>
+<figure id="fig-companion-alignment"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 15. Remove rigid placement before comparing shape.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 515" role="img" aria-label="Remove rigid placement before comparing molecular shape" font-family="var(--sans)">
+<text x="28.0" y="32.0" font-size="20" fill="var(--fg)" font-weight="650">Remove rigid placement before comparing molecular shape</text>
+<text x="28.0" y="57.0" font-size="13" fill="var(--muted)">Three illustrative landmarks. First two coordinates shown. Lengths are in Å.</text>
+<line x1="90.0" y1="404.0" x2="428.0" y2="404.0" stroke="var(--rule)" stroke-width="1"/>
+<line x1="90.0" y1="118.0" x2="90.0" y2="404.0" stroke="var(--rule)" stroke-width="1"/>
+<line x1="116.0" y1="404.0" x2="116.0" y2="409.0" stroke="var(--rule)" stroke-width="1"/>
+<text x="116.0" y="427.0" font-size="12" fill="var(--fg)" text-anchor="middle">0</text>
+<line x1="220.0" y1="404.0" x2="220.0" y2="409.0" stroke="var(--rule)" stroke-width="1"/>
+<text x="220.0" y="427.0" font-size="12" fill="var(--fg)" text-anchor="middle">4</text>
+<line x1="324.0" y1="404.0" x2="324.0" y2="409.0" stroke="var(--rule)" stroke-width="1"/>
+<text x="324.0" y="427.0" font-size="12" fill="var(--fg)" text-anchor="middle">8</text>
+<line x1="428.0" y1="404.0" x2="428.0" y2="409.0" stroke="var(--rule)" stroke-width="1"/>
+<text x="428.0" y="427.0" font-size="12" fill="var(--fg)" text-anchor="middle">12</text>
+<line x1="90.0" y1="378.0" x2="428.0" y2="378.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="80.0" y="382.0" font-size="12" fill="var(--fg)" text-anchor="end">0</text>
+<line x1="90.0" y1="248.0" x2="428.0" y2="248.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="80.0" y="252.0" font-size="12" fill="var(--fg)" text-anchor="end">5</text>
+<line x1="90.0" y1="118.0" x2="428.0" y2="118.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="80.0" y="122.0" font-size="12" fill="var(--fg)" text-anchor="end">10</text>
+<text x="259.0" y="453.0" font-size="14" fill="var(--fg)" text-anchor="middle">First coordinate / Å</text>
+<text x="90.0" y="102.0" font-size="14" fill="var(--fg)">Second coordinate / Å</text>
+<path d="M116.00,378.00 L220.00,378.00 L116.00,300.00 L116.00,378.00" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="116.0" cy="378.0" r="5" fill="var(--teal)"/>
+<text x="100.0" y="395.0" font-size="12" fill="var(--teal)">1</text>
+<circle cx="220.0" cy="378.0" r="5" fill="var(--teal)"/>
+<text x="230.0" y="395.0" font-size="12" fill="var(--teal)">2</text>
+<circle cx="116.0" cy="300.0" r="5" fill="var(--teal)"/>
+<text x="98.0" y="291.0" font-size="12" fill="var(--teal)">3</text>
+<path d="M376.00,248.00 L376.00,144.00 L298.00,248.00 L376.00,248.00" fill="none" stroke="var(--coral)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="376.0" cy="248.0" r="5" fill="var(--coral)"/>
+<text x="386.0" y="265.0" font-size="12" fill="var(--coral)">1</text>
+<circle cx="376.0" cy="144.0" r="5" fill="var(--coral)"/>
+<text x="386.0" y="134.0" font-size="12" fill="var(--coral)">2</text>
+<circle cx="298.0" cy="248.0" r="5" fill="var(--coral)"/>
+<text x="280.0" y="265.0" font-size="12" fill="var(--coral)">3</text>
+<text x="550.0" y="147.0" font-size="17" fill="var(--fg)" font-weight="600">Before rigid alignment</text>
+<text x="550.0" y="183.0" font-size="23" fill="var(--coral)">RMSD = 10.12 Å</text>
+<text x="550.0" y="235.0" font-size="17" fill="var(--fg)" font-weight="600">After rigid alignment</text>
+<text x="550.0" y="270.0" font-size="23" fill="var(--teal)">RMSD = 0 Å</text>
+<text x="550.0" y="322.0" font-size="16" fill="var(--fg)">The shape never changed.</text>
+<text x="550.0" y="349.0" font-size="14" fill="var(--muted)">Residue correspondence is fixed.</text>
+<text x="420.0" y="495.0" font-size="14" fill="var(--fg)" text-anchor="middle">A meaningful RMSD also specifies atoms, residue mapping and the aligned region.</text>
+</svg>
+</div>
+<p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
+<figcaption><b>Figure 15. Remove rigid placement before comparing shape.</b> The three constructed landmarks are not a protein backbone. The plot shows two coordinate directions with equal length scales. The raw RMSD includes all three directions. The exposition derives the alignment and gives the exact coordinates.</figcaption></figure>
+<p>Report which residues and atoms are aligned and which are evaluated. Aligning each domain separately can hide an incorrect relative orientation. A small whole-chain RMSD can also hide a misplaced functional loop. Choose the comparison for the structural question that matters.</p>
+</div></div>
 <div class="l15-exhibit" id="l15-triage">
 <span class="l15-tag">Constructed classroom exercise · not model output</span>
 <h3>Choose a shortlist without changing what a score means</h3>
 <p>Change the cutoffs. Explain why a confident but structurally different candidate should be treated differently from a candidate with low confidence.</p>
-<figure id="fig-triage"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 14. Two score cutoffs carve out a shortlist.">
+<figure id="fig-triage"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 16. Two score cutoffs carve out a shortlist.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img" aria-label="Confidence and agreement select different regions of the plot" font-family="var(--sans)">
 <defs><marker id="l15-triage-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
 <text x="30.0" y="38.0" font-size="24" fill="var(--fg)" font-weight="700">Confidence and agreement select different regions of the plot</text>
@@ -2851,7 +3084,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <text x="450.0" y="432.0" font-size="16" fill="var(--muted)" text-anchor="middle">The sliders change the shortlist. They do not add experimental evidence.</text>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 14. Two score cutoffs carve out a shortlist.</b> Filled points pass the selected filters. The shaded upper-left region satisfies the confidence and RMSD cutoffs. Candidate D has an additional geometric defect, marked by a cross. The six values are constructed for this exercise.</figcaption></figure>
+<figcaption><b>Figure 16. Two score cutoffs carve out a shortlist.</b> Filled points pass the selected filters. The shaded upper-left region satisfies the confidence and RMSD cutoffs. Candidate D has an additional geometric defect, marked by a cross. The six values are constructed for this exercise.</figcaption></figure>
 <div class="l15-controls">
 <label>Minimum mean pLDDT: <output id="l15-confidence-value">85</output><input type="range" id="l15-confidence-cutoff" min="70" max="98" value="85"></label>
 <label>Maximum backbone RMSD: <output id="l15-rmsd-value">2.0 Å</output><input type="range" id="l15-rmsd-cutoff" min="0.5" max="5" step="0.1" value="2"></label>
@@ -2862,7 +3095,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <p class="l15-data-note">These six rows are invented to isolate distinct decisions. Their values do not describe the eight real ProteinMPNN candidates above.</p>
 </div>
 <p>The exercise's thresholds are classroom choices, not validated acceptance rules. Changing a threshold changes the shortlist. It does not change the evidence already available for a candidate. Before using a filter experimentally, calibrate it for the target family, assay and model version.</p>
-<figure id="fig-experiments"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 15. Experiments distinguish production, physical state and the requested job.">
+<figure id="fig-experiments"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 17. Experiments distinguish production, physical state and the requested job.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Each experiment resolves a different uncertainty" font-family="var(--sans)">
 <defs><marker id="l15-experiments-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
 <text x="30.0" y="38.0" font-size="24" fill="var(--fg)" font-weight="700">Each experiment resolves a different uncertainty</text>
@@ -2911,9 +3144,15 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <text x="671.0" y="508.0" font-size="15" fill="var(--fg)" text-anchor="middle">Localization · competition · cellular effect</text>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 15. Experiments distinguish production, physical state and the requested job.</b> Each gate answers a different question. A protein can express but aggregate, fold but fail to bind, or bind without producing the intended cellular effect. The required tests follow the specification.</figcaption></figure>
+<figcaption><b>Figure 17. Experiments distinguish production, physical state and the requested job.</b> Each gate answers a different question. A protein can express but aggregate, fold but fail to bind, or bind without producing the intended cellular effect. The required tests follow the specification.</figcaption></figure>
 <p><strong>A reported success rate requires a denominator.</strong> Count generated proposals, computationally retained candidates, experimentally tested candidates, assay hits and confirmed functional designs separately. A fraction among preselected tested candidates is not the fraction among all generated sequences. BindCraft and BoltzGen use different tasks and experimental pipelines, so their headline rates cannot rank the methods by themselves. <a href="#r-bindcraft">[Pacesa et al., 2025]</a> <a href="#r-boltzgen">[Stark et al., inspected preprint]</a></p>
-<figure id="fig-denominators"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 16. Follow the counts through the selection process.">
+<div class="l15-exhibit l15-tabs" data-tabs id="l15-selection-comparisons" aria-label="Interpret a selected population">
+<div role="tablist" aria-label="Two questions about selection">
+<button type="button" role="tab" aria-selected="true" aria-controls="selection-counts" id="tab-selection-counts">Follow every denominator</button>
+<button type="button" role="tab" aria-selected="false" aria-controls="selection-reliability" id="tab-selection-reliability" tabindex="-1">How informative is a pass?</button>
+</div>
+<div role="tabpanel" id="selection-counts" aria-labelledby="tab-selection-counts">
+<figure id="fig-denominators"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 18. Follow the counts through the selection process.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 405" role="img" aria-label="A success rate changes when its denominator changes" font-family="var(--sans)">
 <defs><marker id="l15-denominators-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
 <text x="30.0" y="38.0" font-size="24" fill="var(--fg)" font-weight="700">A success rate changes when its denominator changes</text>
@@ -2940,7 +3179,58 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <text x="450.0" y="394.0" font-size="15" fill="var(--muted)" text-anchor="middle">Invented campaign for teaching. Counts and shapes do not report any method's performance.</text>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 16. Follow the counts through the selection process.</b> The invented campaign produces five assay hits from twenty tested candidates and one thousand generated proposals. The two displayed fractions answer different questions. An assay hit also needs the confirmation appropriate to its task before being called a functional design. Funnel shapes are categorical, not proportional to counts.</figcaption></figure>
+<figcaption><b>Figure 18. Follow the counts through the selection process.</b> The invented campaign produces five assay hits from twenty tested candidates and one thousand generated proposals. The two displayed fractions answer different questions. Outcomes for the untested proposals remain unknown. Funnel shapes are categorical, not proportional to counts.</figcaption></figure>
+</div>
+<div role="tabpanel" id="selection-reliability" aria-labelledby="tab-selection-reliability" hidden>
+<p>A filter's reliability also depends on the proposals entering it. Consider a constructed filter that passes 80% of candidates that would succeed and 10% of candidates that would fail. Keep those two rates fixed. Change only the initial fraction that would succeed under one stated assay.</p>
+<div id="l15-filter-reliability">
+<span class="l15-tag">Constructed population example · not a model benchmark</span>
+<figure id="fig-filter-reliability"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 19. Count both kinds of passes before interpreting a filter.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 475" role="img" aria-label="The same filter has different reliability in different populations" font-family="var(--sans)">
+<text x="28.0" y="34.0" font-size="21" fill="var(--fg)" font-weight="650">The same filter can produce different success fractions</text>
+<text x="28.0" y="62.0" font-size="14" fill="var(--muted)">Constructed example. 80% of successes pass. 10% of failures pass.</text>
+<text x="84.0" y="113.0" font-size="14" fill="var(--fg)">Success fraction among passes</text>
+<line x1="84.0" y1="133.0" x2="84.0" y2="371.0" stroke="var(--fg)" stroke-width="1.5"/>
+<line x1="84.0" y1="371.0" x2="409.0" y2="371.0" stroke="var(--fg)" stroke-width="1.5"/>
+<line x1="84.0" y1="371.0" x2="84.0" y2="376.0" stroke="var(--fg)" stroke-width="1"/>
+<text x="84.0" y="394.0" font-size="12" fill="var(--fg)" text-anchor="middle">0%</text>
+<line x1="84.0" y1="371.0" x2="409.0" y2="371.0" stroke="var(--rule)" stroke-width="1"/>
+<text x="74.0" y="375.0" font-size="12" fill="var(--fg)" text-anchor="end">0%</text>
+<line x1="246.5" y1="371.0" x2="246.5" y2="376.0" stroke="var(--fg)" stroke-width="1"/>
+<text x="246.5" y="394.0" font-size="12" fill="var(--fg)" text-anchor="middle">50%</text>
+<line x1="84.0" y1="252.0" x2="409.0" y2="252.0" stroke="var(--rule)" stroke-width="1"/>
+<text x="74.0" y="256.0" font-size="12" fill="var(--fg)" text-anchor="end">50%</text>
+<line x1="409.0" y1="371.0" x2="409.0" y2="376.0" stroke="var(--fg)" stroke-width="1"/>
+<text x="409.0" y="394.0" font-size="12" fill="var(--fg)" text-anchor="middle">100%</text>
+<line x1="84.0" y1="133.0" x2="409.0" y2="133.0" stroke="var(--rule)" stroke-width="1"/>
+<text x="74.0" y="137.0" font-size="12" fill="var(--fg)" text-anchor="end">100%</text>
+<text x="246.5" y="425.0" font-size="14" fill="var(--fg)" text-anchor="middle">Success fraction before filtering</text>
+<g id="l15-filter-curve" data-frame="84 133 325 238 0 1 0 1"><path d="M84.00,371.00 L84.65,367.24 L85.30,363.59 L85.95,360.04 L86.60,356.58 L87.25,353.21 L87.90,349.92 L88.55,346.72 L89.20,343.60 L89.85,340.56 L90.50,337.60 L91.15,334.70 L91.80,331.88 L92.45,329.12 L93.10,326.42 L93.75,323.79 L94.40,321.22 L95.05,318.71 L95.70,316.25 L96.35,313.85 L97.00,311.50 L97.65,309.20 L98.30,306.95 L98.95,304.75 L99.60,302.59 L100.25,300.48 L100.90,298.41 L101.55,296.39 L102.20,294.40 L102.85,292.46 L103.50,290.55 L104.15,288.68 L104.80,286.85 L105.45,285.05 L106.10,283.28 L106.75,281.55 L107.40,279.85 L108.05,278.18 L108.70,276.55 L109.35,274.94 L110.00,273.36 L110.65,271.81 L111.30,270.28 L111.95,268.79 L112.60,267.32 L113.25,265.87 L113.90,264.45 L114.55,263.05 L115.20,261.68 L115.85,260.33 L116.50,259.00 L117.15,257.69 L117.80,256.41 L118.45,255.14 L119.10,253.90 L119.75,252.67 L120.40,251.47 L121.05,250.28 L121.70,249.11 L122.35,247.96 L123.00,246.83 L123.65,245.71 L124.30,244.61 L124.95,243.53 L125.60,242.46 L126.25,241.41 L126.90,240.37 L127.55,239.35 L128.20,238.34 L128.85,237.35 L129.50,236.37 L130.15,235.41 L130.80,234.46 L131.45,233.52 L132.10,232.60 L132.75,231.68 L133.40,230.78 L134.05,229.90 L134.70,229.02 L135.35,228.15 L136.00,227.30 L136.65,226.46 L137.30,225.63 L137.95,224.81 L138.60,224.00 L139.25,223.20 L139.90,222.41 L140.55,221.63 L141.20,220.86 L141.85,220.10 L142.50,219.35 L143.15,218.61 L143.80,217.88 L144.45,217.16 L145.10,216.44 L145.75,215.74 L146.40,215.04 L147.05,214.35 L147.70,213.67 L148.35,213.00 L149.00,212.33 L149.65,211.68 L150.30,211.03 L150.95,210.38 L151.60,209.75 L152.25,209.12 L152.90,208.50 L153.55,207.89 L154.20,207.28 L154.85,206.68 L155.50,206.09 L156.15,205.50 L156.80,204.92 L157.45,204.34 L158.10,203.78 L158.75,203.21 L159.40,202.66 L160.05,202.11 L160.70,201.56 L161.35,201.03 L162.00,200.49 L162.65,199.97 L163.30,199.44 L163.95,198.93 L164.60,198.42 L165.25,197.91 L165.90,197.41 L166.55,196.91 L167.20,196.42 L167.85,195.94 L168.50,195.45 L169.15,194.98 L169.80,194.51 L170.45,194.04 L171.10,193.58 L171.75,193.12 L172.40,192.66 L173.05,192.21 L173.70,191.77 L174.35,191.33 L175.00,190.89 L175.65,190.46 L176.30,190.03 L176.95,189.61 L177.60,189.19 L178.25,188.77 L178.90,188.36 L179.55,187.95 L180.20,187.54 L180.85,187.14 L181.50,186.74 L182.15,186.35 L182.80,185.96 L183.45,185.57 L184.10,185.19 L184.75,184.80 L185.40,184.43 L186.05,184.05 L186.70,183.68 L187.35,183.31 L188.00,182.95 L188.65,182.59 L189.30,182.23 L189.95,181.88 L190.60,181.52 L191.25,181.18 L191.90,180.83 L192.55,180.49 L193.20,180.15 L193.85,179.81 L194.50,179.47 L195.15,179.14 L195.80,178.81 L196.45,178.49 L197.10,178.16 L197.75,177.84 L198.40,177.52 L199.05,177.21 L199.70,176.89 L200.35,176.58 L201.00,176.27 L201.65,175.97 L202.30,175.66 L202.95,175.36 L203.60,175.06 L204.25,174.77 L204.90,174.47 L205.55,174.18 L206.20,173.89 L206.85,173.60 L207.50,173.32 L208.15,173.03 L208.80,172.75 L209.45,172.47 L210.10,172.20 L210.75,171.92 L211.40,171.65 L212.05,171.38 L212.70,171.11 L213.35,170.84 L214.00,170.58 L214.65,170.32 L215.30,170.06 L215.95,169.80 L216.60,169.54 L217.25,169.28 L217.90,169.03 L218.55,168.78 L219.20,168.53 L219.85,168.28 L220.50,168.04 L221.15,167.79 L221.80,167.55 L222.45,167.31 L223.10,167.07 L223.75,166.83 L224.40,166.59 L225.05,166.36 L225.70,166.13 L226.35,165.90 L227.00,165.67 L227.65,165.44 L228.30,165.21 L228.95,164.99 L229.60,164.76 L230.25,164.54 L230.90,164.32 L231.55,164.10 L232.20,163.89 L232.85,163.67 L233.50,163.45 L234.15,163.24 L234.80,163.03 L235.45,162.82 L236.10,162.61 L236.75,162.40 L237.40,162.20 L238.05,161.99 L238.70,161.79 L239.35,161.59 L240.00,161.39 L240.65,161.19 L241.30,160.99 L241.95,160.79 L242.60,160.59 L243.25,160.40 L243.90,160.21 L244.55,160.01 L245.20,159.82 L245.85,159.63 L246.50,159.44 L247.15,159.26 L247.80,159.07 L248.45,158.89 L249.10,158.70 L249.75,158.52 L250.40,158.34 L251.05,158.16 L251.70,157.98 L252.35,157.80 L253.00,157.62 L253.65,157.44 L254.30,157.27 L254.95,157.09 L255.60,156.92 L256.25,156.75 L256.90,156.58 L257.55,156.41 L258.20,156.24 L258.85,156.07 L259.50,155.90 L260.15,155.74 L260.80,155.57 L261.45,155.41 L262.10,155.24 L262.75,155.08 L263.40,154.92 L264.05,154.76 L264.70,154.60 L265.35,154.44 L266.00,154.28 L266.65,154.13 L267.30,153.97 L267.95,153.82 L268.60,153.66 L269.25,153.51 L269.90,153.36 L270.55,153.20 L271.20,153.05 L271.85,152.90 L272.50,152.75 L273.15,152.61 L273.80,152.46 L274.45,152.31 L275.10,152.17 L275.75,152.02 L276.40,151.88 L277.05,151.73 L277.70,151.59 L278.35,151.45 L279.00,151.31 L279.65,151.17 L280.30,151.03 L280.95,150.89 L281.60,150.75 L282.25,150.61 L282.90,150.48 L283.55,150.34 L284.20,150.20 L284.85,150.07 L285.50,149.94 L286.15,149.80 L286.80,149.67 L287.45,149.54 L288.10,149.41 L288.75,149.28 L289.40,149.15 L290.05,149.02 L290.70,148.89 L291.35,148.76 L292.00,148.64 L292.65,148.51 L293.30,148.38 L293.95,148.26 L294.60,148.13 L295.25,148.01 L295.90,147.89 L296.55,147.76 L297.20,147.64 L297.85,147.52 L298.50,147.40 L299.15,147.28 L299.80,147.16 L300.45,147.04 L301.10,146.92 L301.75,146.80 L302.40,146.69 L303.05,146.57 L303.70,146.45 L304.35,146.34 L305.00,146.22 L305.65,146.11 L306.30,145.99 L306.95,145.88 L307.60,145.77 L308.25,145.66 L308.90,145.54 L309.55,145.43 L310.20,145.32 L310.85,145.21 L311.50,145.10 L312.15,144.99 L312.80,144.88 L313.45,144.78 L314.10,144.67 L314.75,144.56 L315.40,144.45 L316.05,144.35 L316.70,144.24 L317.35,144.14 L318.00,144.03 L318.65,143.93 L319.30,143.83 L319.95,143.72 L320.60,143.62 L321.25,143.52 L321.90,143.42 L322.55,143.31 L323.20,143.21 L323.85,143.11 L324.50,143.01 L325.15,142.91 L325.80,142.81 L326.45,142.72 L327.10,142.62 L327.75,142.52 L328.40,142.42 L329.05,142.33 L329.70,142.23 L330.35,142.13 L331.00,142.04 L331.65,141.94 L332.30,141.85 L332.95,141.75 L333.60,141.66 L334.25,141.57 L334.90,141.47 L335.55,141.38 L336.20,141.29 L336.85,141.20 L337.50,141.11 L338.15,141.01 L338.80,140.92 L339.45,140.83 L340.10,140.74 L340.75,140.65 L341.40,140.56 L342.05,140.48 L342.70,140.39 L343.35,140.30 L344.00,140.21 L344.65,140.12 L345.30,140.04 L345.95,139.95 L346.60,139.87 L347.25,139.78 L347.90,139.69 L348.55,139.61 L349.20,139.52 L349.85,139.44 L350.50,139.36 L351.15,139.27 L351.80,139.19 L352.45,139.11 L353.10,139.02 L353.75,138.94 L354.40,138.86 L355.05,138.78 L355.70,138.70 L356.35,138.62 L357.00,138.53 L357.65,138.45 L358.30,138.37 L358.95,138.30 L359.60,138.22 L360.25,138.14 L360.90,138.06 L361.55,137.98 L362.20,137.90 L362.85,137.82 L363.50,137.75 L364.15,137.67 L364.80,137.59 L365.45,137.52 L366.10,137.44 L366.75,137.36 L367.40,137.29 L368.05,137.21 L368.70,137.14 L369.35,137.06 L370.00,136.99 L370.65,136.91 L371.30,136.84 L371.95,136.77 L372.60,136.69 L373.25,136.62 L373.90,136.55 L374.55,136.48 L375.20,136.40 L375.85,136.33 L376.50,136.26 L377.15,136.19 L377.80,136.12 L378.45,136.05 L379.10,135.98 L379.75,135.91 L380.40,135.84 L381.05,135.77 L381.70,135.70 L382.35,135.63 L383.00,135.56 L383.65,135.49 L384.30,135.42 L384.95,135.35 L385.60,135.29 L386.25,135.22 L386.90,135.15 L387.55,135.08 L388.20,135.02 L388.85,134.95 L389.50,134.88 L390.15,134.82 L390.80,134.75 L391.45,134.69 L392.10,134.62 L392.75,134.56 L393.40,134.49 L394.05,134.43 L394.70,134.36 L395.35,134.30 L396.00,134.23 L396.65,134.17 L397.30,134.11 L397.95,134.04 L398.60,133.98 L399.25,133.92 L399.90,133.85 L400.55,133.79 L401.20,133.73 L401.85,133.67 L402.50,133.61 L403.15,133.54 L403.80,133.48 L404.45,133.42 L405.10,133.36 L405.75,133.30 L406.40,133.24 L407.05,133.18 L407.70,133.12 L408.35,133.06 L409.00,133.00" fill="none" stroke="var(--rose)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+</g><circle id="l15-filter-point" cx="87.2" cy="353.2" r="6" fill="var(--rose)" stroke="var(--bg2)" stroke-width="2"/>
+<text id="l15-filter-population" x="459.0" y="112.0" font-size="16" fill="var(--fg)" font-weight="650">1,000 proposals. 1% would succeed.</text>
+<rect x="457.0" y="148.0" width="350.0" height="62.0" fill="var(--powder)" rx="8"/>
+<text id="l15-filter-good" x="481.0" y="188.0" font-size="24" fill="var(--fg)" font-weight="650">8</text>
+<text x="556.0" y="185.0" font-size="14" fill="var(--fg)">successful proposals pass</text>
+<rect x="457.0" y="227.0" width="350.0" height="62.0" fill="var(--blush)" rx="8"/>
+<text id="l15-filter-bad" x="481.0" y="267.0" font-size="24" fill="var(--fg)" font-weight="650">99</text>
+<text x="556.0" y="264.0" font-size="14" fill="var(--fg)">unsuccessful proposals pass</text>
+<text id="l15-filter-posterior" x="632.0" y="337.0" font-size="22" fill="var(--rose)" text-anchor="middle" font-weight="650">7.5% of passes succeed</text>
+<text id="l15-filter-denominator" x="632.0" y="370.0" font-size="15" fill="var(--fg)" text-anchor="middle">8 successes among 107 passes</text>
+<text x="420.0" y="460.0" font-size="16" fill="var(--fg)" text-anchor="middle" font-weight="650">A filter's meaning depends on the proposals entering it.</text>
+</svg>
+</div>
+<p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
+<figcaption><b>Figure 19. Count both kinds of passes before interpreting a filter.</b> Among 1,000 proposals with an initial success fraction of 1%, this filter passes 8 successful proposals and 99 unsuccessful proposals in expectation. Only 8 of the 107 passes would succeed. Moving the slider changes the initial population while holding both filter rates fixed. The curve follows these counts exactly.</figcaption></figure>
+<div class="l15-controls">
+<label>Success fraction before filtering <output id="l15-filter-initial-value">1%</output><input id="l15-filter-initial" type="range" min="0" max="100" step="1" value="1"></label>
+<button type="button" data-filter-fraction="1">Start with 1% successes</button>
+<button type="button" data-filter-fraction="50">Start with 50% successes</button>
+</div>
+<p id="l15-filter-result" role="status" aria-live="polite"></p>
+<p class="l15-data-note">Success means satisfying one stated assay criterion. These are expected counts for a constructed population. The filter passes 80% of successful proposals and 10% of unsuccessful proposals. Its rates are stipulated here, not measured for a protein-design method.</p>
+</div>
+<p>At the one-percent setting, eight successes and 99 failures pass per thousand proposals. Only <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>8</mn><mo>+</mo><mn>99</mn><mo stretchy="false">)</mo><mo>≈</mo><mn>7.5</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">8/(8+99)\approx7.5\%</annotation></semantics></math></span> of passes succeed. At the fifty-percent setting, that fraction becomes <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>400</mn><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>400</mn><mo>+</mo><mn>50</mn><mo stretchy="false">)</mo><mo>≈</mo><mn>88.9</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">400/(400+50)\approx88.9\%</annotation></semantics></math></span>. Better proposals and a better filter can both improve the selected population. A pass has no universal functional meaning independent of that population.</p>
+</div></div>
 <div class="l15-exhibit l15-concept-check" id="l15-concept-check">
 <h3>Check the six questions before reading the method names</h3>
 <p>For each scenario, name what is missing. Then reveal the answer. Several questions can belong to one project.</p>
@@ -2958,7 +3248,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <h2 id="s9"><span class="n">9</span>Choose a method by the object it supplies</h2>
 <p class="lede">Apply the six questions from section 6. The method names now fill roles in a framework you already know.</p>
 <p class="l15-step-claim" data-point="P9" data-tier="major" data-route="spine"><span class="l15-step-label">P9</span>A method's conditional input and output locate its role in the workflow.</p>
-<figure id="fig-landscape"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 17. Use the six familiar questions to locate the methods.">
+<figure id="fig-landscape"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 20. Use the six familiar questions to locate the methods.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 475" role="img" aria-label="Choose a model by what is missing from the design" font-family="var(--sans)">
 <defs><marker id="l15-landscape-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
 <text x="30.0" y="38.0" font-size="25" fill="var(--fg)" font-weight="700">Choose a model by what is missing from the design</text>
@@ -2991,11 +3281,11 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <text x="522.0" y="379.0" font-size="14" fill="var(--fg)">Directed evolution / active learning</text>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 17. Use the six familiar questions to locate the methods.</b> The first column repeats the framework taught in Part 2. Some methods address several questions. Coordinates, sequences, backbones and interfaces name requested objects or arrangements. Joint generation couples choices. Assay feedback supplies experimental information for the next round.</figcaption></figure>
+<figcaption><b>Figure 20. Use the six familiar questions to locate the methods.</b> The first column repeats the framework taught in Part 2. Some methods address several questions. Coordinates, sequences, backbones and interfaces name requested objects or arrangements. Joint generation couples choices. Assay feedback supplies experimental information for the next round.</figcaption></figure>
 <p><strong>Broader molecular representations have expanded what can be conditioned on.</strong> AlphaFold3 predicts assemblies that include proteins and other molecular components. LigandMPNN designs sequence using a supplied nonprotein atomic context. RFdiffusion2 builds scaffolds around catalytic functional-group geometry. RFdiffusion3 and BoltzGen extend generative modeling toward atom-level interactions. These capabilities address different missing inputs. They do not establish every downstream behavior. <a href="#r-af3">[Abramson et al., 2024]</a> <a href="#r-ligandmpnn">[Dauparas et al., 2025]</a> <a href="#r-rfd2">[Ahern et al., 2026]</a> <a href="#r-rfd3">[Butcher et al., inspected preprint]</a> <a href="#r-boltzgen">[Stark et al., inspected preprint]</a></p>
 <p><strong>Sequence and multimodal models offer another starting point.</strong> ProGen learns sequence generation conditioned on information such as protein-family tags. ESM3 jointly represents sequence, structure and function annotations. A prompt can constrain a proposal before a complete backbone is chosen. Function-related conditioning still needs a functional test. <a href="#r-progen">[Madani et al., 2023]</a> <a href="#r-esm3paper">[Hayes et al., inspected author preview]</a> <a href="#r-esm3">[author documentation]</a></p>
 <p><strong>A computational loop and an experimental loop receive different feedback.</strong> NISE iterates between sequence design and structure prediction to improve compatibility with a small molecule. Its reported candidates are then tested experimentally. Directed evolution instead uses measured behavior to select variants during the loop. Either can be useful, but an iteration is not evidence of experimental feedback by itself. <a href="#r-nise">[Fry et al., 2026]</a></p>
-<figure id="fig-feedback"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 18. The source of feedback determines what a loop can establish.">
+<figure id="fig-feedback"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 21. The source of feedback determines what a loop can establish.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 455" role="img" aria-label="Identify what information returns to the next design round" font-family="var(--sans)">
 <defs><marker id="l15-feedback-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
 <text x="30.0" y="38.0" font-size="24" fill="var(--fg)" font-weight="700">Identify what information returns to the next design round</text>
@@ -3133,7 +3423,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <text x="450.0" y="443.0" font-size="15" fill="var(--muted)" text-anchor="middle">An experiment performed after a computational loop does not change that loop's input.</text>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 18. The source of feedback determines what a loop can establish.</b> A predicted structure or score can guide another computational proposal. An assay observation can guide another experimental design round. Both loops may occur in one project. An experiment performed after computational iteration is evidence about its output, but it was not feedback within that iteration.</figcaption></figure>
+<figcaption><b>Figure 21. The source of feedback determines what a loop can establish.</b> A predicted structure or score can guide another computational proposal. An assay observation can guide another experimental design round. Both loops may occur in one project. An experiment performed after computational iteration is evidence about its output, but it was not feedback within that iteration.</figcaption></figure>
 <div class="l15-exhibit" id="l15-methods"><h3>Explore the methods by task</h3>
 <div class="l15-controls"><label>Object or decision needed<select id="l15-method-task">
 <option value="all">All representative methods</option><option value="prediction">Need coordinates</option>
@@ -3148,7 +3438,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <h2 id="s10"><span class="n">10</span>Locate the constraints that function adds</h2>
 <p class="lede">Different molecular jobs fail for different reasons. The most useful limitation is the one that changes the next design decision.</p>
 <p class="l15-step-claim" data-point="P10" data-tier="major" data-route="spine"><span class="l15-step-label">P10</span>Molecular function imposes constraints beyond one favorable structure.</p>
-<figure id="fig-bottlenecks"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 19. Draw the missing constraint for each molecular job.">
+<figure id="fig-bottlenecks"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 22. Draw the missing constraint for each molecular job.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Function adds specificity, barriers, populations and context" font-family="var(--sans)">
 <defs><marker id="l15-bottlenecks-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
 <text x="30.0" y="38.0" font-size="24" fill="var(--fg)" font-weight="700">Function adds specificity, barriers, populations and context</text>
@@ -3210,7 +3500,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <text x="450.0" y="591.0" font-size="15" fill="var(--muted)" text-anchor="middle">Conceptual constraints. The drawings do not rank task difficulty or report a designed protein.</text>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 19. Draw the missing constraint for each molecular job.</b> Binding requires comparison with competing partners. Catalysis depends on a reaction pathway. Switching depends on populations and rates. Cellular function also depends on abundance and context. The energy curves and state populations are schematic, not measurements or a universal difficulty ranking.</figcaption></figure>
+<figcaption><b>Figure 22. Draw the missing constraint for each molecular job.</b> Binding requires comparison with competing partners. Catalysis depends on a reaction pathway. Switching depends on populations and rates. Cellular function also depends on abundance and context. The energy curves and state populations are schematic, not measurements or a universal difficulty ranking.</figcaption></figure>
 <p><strong>Binding adds specificity and context.</strong> A plausible interface leaves affinity, off-target interactions, accessibility and conformational state unresolved. A predictor's confidence in the interface is not a calibrated binding constant. Boltz-2 adds an affinity-prediction task, but its documented protein–small-molecule setting cannot be silently transferred to arbitrary protein–protein binding. <a href="#r-boltz2">[Passaro et al., inspected preprint and official documentation]</a></p>
 <p><strong>Catalysis adds a reaction pathway.</strong> Positioning catalytic groups is an important structural task. Efficient turnover also depends on chemical barriers, protonation, substrate access, product release and competing states. RFdiffusion2 demonstrates progress in functional-group scaffolding and experimental enzyme design. Its results establish particular tested cases, not an arbitrary-reaction design guarantee. <a href="#r-rfd2">[Ahern et al., 2026]</a></p>
 <p><strong>Switching adds populations and timescales.</strong> A switch needs more than two individually plausible structures. The intended input must alter their relative populations, and interconversion must occur on a useful timescale. Multiple random-seed predictions do not automatically provide a thermodynamic ensemble or a transition rate. AlphaFold3 explicitly discusses the limits of interpreting its structural variability in this way. <a href="#r-af3">[Abramson et al., 2024, limitations]</a></p>
@@ -3220,7 +3510,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <h2 id="s11"><span class="n">11</span>Close the loop with informative experiments</h2>
 <p class="lede">The next round should respond to what the current round taught us. A failed assay can be useful when it distinguishes reasons for failure.</p>
 <p class="l15-step-claim" data-point="P11" data-tier="major" data-route="spine"><span class="l15-step-label">P11</span>Experiments guide the next proposal and supply the parameters a cell model needs.</p>
-<figure id="fig-loop"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 20. A measured failure selects the next question.">
+<figure id="fig-loop"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 23. A measured failure selects the next question.">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" role="img" aria-label="Choose the next test from the unresolved failure" font-family="var(--sans)">
 <defs><marker id="l15-loop-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
 <text x="30.0" y="38.0" font-size="25" fill="var(--fg)" font-weight="700">Choose the next test from the unresolved failure</text>
@@ -3251,23 +3541,25 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <text x="450.0" y="434.0" font-size="18" fill="var(--fg)" text-anchor="middle" font-weight="700">The next experiment should distinguish explanations of the failure.</text>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 20. A measured failure selects the next question.</b> More generated sequences help only if the next selection step addresses the limiting property. This decision map follows the design specification. It is distinct from a computational loop that selects only on model predictions.</figcaption></figure>
+<figcaption><b>Figure 23. A measured failure selects the next question.</b> More generated sequences help only if the next selection step addresses the limiting property. This decision map follows the design specification. It is distinct from a computational loop that selects only on model predictions.</figcaption></figure>
 <p>If a candidate is insoluble, a binding assay may not diagnose the intended interface. If it is soluble and folded but does not bind, the interface and target state become more relevant. If it binds but has no cellular effect, investigate occupancy, localization and the connection between binding and the desired mechanism.</p>
 <p>The connection to this course is quantitative. For a simple binding pair, a cell model may require an equilibrium dissociation constant, binding kinetics and concentrations. For a catalytic component, it may require turnover and substrate dependence. Coordinates can help propose such a mechanism. They do not supply every parameter.</p>
-<p>For a reversible elementary association, let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mo>+</mo></msub></mrow><annotation encoding="application/x-tex">k_+</annotation></semantics></math></span> be the bimolecular association rate constant and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mo>−</mo></msub></mrow><annotation encoding="application/x-tex">k_-</annotation></semantics></math></span> the unimolecular dissociation rate constant. Their units are inverse concentration per time and inverse time, respectively. The equilibrium dissociation constant therefore has concentration units:</p>
+<p>Return to the reporter's binding requirement. Model one protein and one ligand by the reversible elementary reaction</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo>+</mo><mi>S</mi><munderover><mo stretchy="true" minsize="3.0em">⇌</mo><mpadded width="+0.6em" lspace="0.3em"><msub><mi>k</mi><mo>−</mo></msub></mpadded><mpadded width="+0.6em" lspace="0.3em"><msub><mi>k</mi><mo>+</mo></msub></mpadded></munderover><msub><mi>C</mi><mrow><mi>E</mi><mi>S</mi></mrow></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">E+S\xrightleftharpoons[k_-]{k_+}C_{ES}.</annotation></semantics></math></div>
+<p>The free concentrations are <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span>, and the complex concentration is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>E</mi><mi>S</mi></mrow></msub></mrow><annotation encoding="application/x-tex">C_{ES}</annotation></semantics></math></span>. The bimolecular association rate constant <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mo>+</mo></msub></mrow><annotation encoding="application/x-tex">k_+</annotation></semantics></math></span> has units of inverse concentration per time. The unimolecular dissociation rate constant <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mo>−</mo></msub></mrow><annotation encoding="application/x-tex">k_-</annotation></semantics></math></span> has units of inverse time. Their ratio is the equilibrium dissociation constant:</p>
 <div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>K</mi><mi>d</mi></msub><mo>=</mo><mfrac><msub><mi>k</mi><mo>−</mo></msub><msub><mi>k</mi><mo>+</mo></msub></mfrac></mrow><annotation encoding="application/x-tex">K_d=\frac{k_-}{k_+}</annotation></semantics></math></div>
 <p>This ratio illustrates a limitation even of a measured equilibrium constant. Different association and dissociation rates can produce the same <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>d</mi></msub></mrow><annotation encoding="application/x-tex">K_d</annotation></semantics></math></span> but different response times. A model of adaptation or switching may need those timescales separately.</p>
-<p>To see the difference, consider a ligand maintained at a fixed free concentration <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span>. Let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\theta(t)</annotation></semantics></math></span> be the fraction of binding sites occupied. For independent sites with elementary association and dissociation, its response from an initially unbound state is:</p>
-<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mover accent="true"><mi>θ</mi><mo>˙</mo></mover></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><msub><mi>k</mi><mo>+</mo></msub><mi>s</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>k</mi><mo>−</mo></msub><mi>θ</mi><mo separator="true">,</mo><mspace width="2em"/><mi>θ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mo separator="true">,</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>θ</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mfrac><mi>s</mi><mrow><msub><mi>K</mi><mi>d</mi></msub><mo>+</mo><mi>s</mi></mrow></mfrac><mrow><mo fence="true">(</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>t</mi><mi mathvariant="normal">/</mi><mi>τ</mi></mrow></msup><mo fence="true">)</mo></mrow><mo separator="true">,</mo><mspace width="2em"/><mi>τ</mi><mo>=</mo><mfrac><mn>1</mn><mrow><msub><mi>k</mi><mo>+</mo></msub><mi>s</mi><mo>+</mo><msub><mi>k</mi><mo>−</mo></msub></mrow></mfrac><mi mathvariant="normal">.</mi></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
-\dot\theta&amp;=k_+s(1-\theta)-k_-\theta, \qquad \theta(0)=0,\\
-\theta(t)&amp;=\frac{s}{K_d+s}\left(1-e^{-t/\tau}\right),
-\qquad \tau=\frac{1}{k_+s+k_-}.
+<p>Hold the free ligand concentration <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span> fixed with a reservoir. The total protein concentration <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>E</mi></msub><mo>=</mo><mi>E</mi><mo>+</mo><msub><mi>C</mi><mrow><mi>E</mi><mi>S</mi></mrow></msub></mrow><annotation encoding="application/x-tex">q_E=E+C_{ES}</annotation></semantics></math></span> is conserved, and the occupied fraction is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>=</mo><msub><mi>C</mi><mrow><mi>E</mi><mi>S</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>q</mi><mi>E</mi></msub></mrow><annotation encoding="application/x-tex">\theta=C_{ES}/q_E</annotation></semantics></math></span>. For independent sites, the response from an initially unbound state is:</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mover accent="true"><mi>θ</mi><mo>˙</mo></mover></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><msub><mi>k</mi><mo>+</mo></msub><mi>S</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>k</mi><mo>−</mo></msub><mi>θ</mi><mo separator="true">,</mo><mspace width="2em"/><mi>θ</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mo separator="true">,</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>θ</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mfrac><mi>S</mi><mrow><msub><mi>K</mi><mi>d</mi></msub><mo>+</mo><mi>S</mi></mrow></mfrac><mrow><mo fence="true">(</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>t</mi><mi mathvariant="normal">/</mi><mi>τ</mi></mrow></msup><mo fence="true">)</mo></mrow><mo separator="true">,</mo><mspace width="2em"/><mi>τ</mi><mo>=</mo><mfrac><mn>1</mn><mrow><msub><mi>k</mi><mo>+</mo></msub><mi>S</mi><mo>+</mo><msub><mi>k</mi><mo>−</mo></msub></mrow></mfrac><mi mathvariant="normal">.</mi></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+\dot\theta&amp;=k_+S(1-\theta)-k_-\theta, \qquad \theta(0)=0,\\
+\theta(t)&amp;=\frac{S}{K_d+S}\left(1-e^{-t/\tau}\right),
+\qquad \tau=\frac{1}{k_+S+k_-}.
 \end{aligned}</annotation></semantics></math></div>
-<p>The example below sets <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><mn>1</mn><mtext> </mtext><mi>μ</mi><mi mathvariant="normal">M</mi></mrow><annotation encoding="application/x-tex">s=1\,\mu\mathrm{M}</annotation></semantics></math></span>. The fast pair has <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mo>+</mo></msub><mo>=</mo><mn>1</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">k_+=1\,\mu\mathrm{M}^{-1}\mathrm{s}^{-1}</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mo>−</mo></msub><mo>=</mo><mn>1</mn><mtext> </mtext><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">k_-=1\,\mathrm{s}^{-1}</annotation></semantics></math></span>. The slow pair has both constants ten times smaller. Both have <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>d</mi></msub><mo>=</mo><mn>1</mn><mtext> </mtext><mi>μ</mi><mi mathvariant="normal">M</mi></mrow><annotation encoding="application/x-tex">K_d=1\,\mu\mathrm{M}</annotation></semantics></math></span> and equilibrium occupancy one-half. Their relaxation times are 0.5 seconds and 5 seconds.</p>
+<p>The example below sets <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mn>1</mn><mtext> </mtext><mi>μ</mi><mi mathvariant="normal">M</mi></mrow><annotation encoding="application/x-tex">S=1\,\mu\mathrm{M}</annotation></semantics></math></span>. The fast pair has <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mo>+</mo></msub><mo>=</mo><mn>1</mn><mtext> </mtext><mi>μ</mi><msup><mi mathvariant="normal">M</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">k_+=1\,\mu\mathrm{M}^{-1}\mathrm{s}^{-1}</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mo>−</mo></msub><mo>=</mo><mn>1</mn><mtext> </mtext><msup><mi mathvariant="normal">s</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">k_-=1\,\mathrm{s}^{-1}</annotation></semantics></math></span>. The slow pair has both constants ten times smaller. Both have <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>d</mi></msub><mo>=</mo><mn>1</mn><mtext> </mtext><mi>μ</mi><mi mathvariant="normal">M</mi></mrow><annotation encoding="application/x-tex">K_d=1\,\mu\mathrm{M}</annotation></semantics></math></span> and equilibrium occupancy one-half. Their relaxation times are 0.5 seconds and 5 seconds.</p>
 <div class="l15-exhibit" id="l15-kinetics">
 <span class="l15-tag">Calculated binding example · illustrative rate constants</span>
-<figure id="fig-kinetics"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 21. Equilibrium occupancy leaves response speed undetermined.">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 515" role="img" aria-label="The same equilibrium affinity can hide different response speeds" font-family="var(--sans)">
+<figure id="fig-kinetics"><div class="l15-figure" tabindex="0" role="region" aria-label="Figure 24. Equilibrium occupancy leaves response speed undetermined.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 555" role="img" aria-label="The same equilibrium affinity can hide different response speeds" font-family="var(--sans)">
 <defs><marker id="l15-kinetics-flow" markerWidth="9" markerHeight="7" refX="6" refY="2.5" orient="auto"><path d="M0,0 L0,5 L7,2.5 z" fill="var(--muted)"/></marker></defs>
 <text x="30.0" y="38.0" font-size="24" fill="var(--fg)" font-weight="700">The same equilibrium affinity can hide different response speeds</text>
 <text x="450.0" y="77.0" font-size="16" fill="var(--muted)" text-anchor="middle">Constructed example · free ligand clamped at 1 µM · initially unbound</text>
@@ -3321,6 +3613,9 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <text x="241.0" y="110.0" font-size="16" fill="var(--fg)" text-anchor="middle" font-weight="650">Same equilibrium occupancy</text>
 <text x="690.0" y="110.0" font-size="16" fill="var(--fg)" text-anchor="middle" font-weight="650">Different response speeds</text>
 <line x1="528.0" y1="167.2" x2="853.0" y2="167.2" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="4 4"/>
+<line id="l15-binding-deadline" x1="571.3" y1="363.0" x2="571.3" y2="128.0" stroke="var(--plum)" stroke-width="1.6" stroke-dasharray="5 4"/>
+<line id="l15-binding-target" x1="528.0" y1="186.8" x2="853.0" y2="186.8" stroke="var(--plum)" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="571.3" y="399.0" font-size="13" fill="var(--plum)" text-anchor="middle" font-weight="650">2 s</text>
 <path id="l15-kinetic-curve-fast" d="M528.00,363.00 L529.08,344.36 L530.17,327.50 L531.25,312.24 L532.33,298.44 L533.42,285.95 L534.50,274.64 L535.58,264.41 L536.67,255.16 L537.75,246.79 L538.83,239.21 L539.92,232.35 L541.00,226.15 L542.08,220.54 L543.17,215.46 L544.25,210.86 L545.33,206.70 L546.42,202.94 L547.50,199.54 L548.58,196.46 L549.67,193.67 L550.75,191.15 L551.83,188.87 L552.92,186.80 L554.00,184.93 L555.08,183.24 L556.17,181.71 L557.25,180.33 L558.33,179.08 L559.42,177.94 L560.50,176.92 L561.58,175.99 L562.67,175.15 L563.75,174.39 L564.83,173.70 L565.92,173.08 L567.00,172.52 L568.08,172.01 L569.17,171.55 L570.25,171.13 L571.33,170.75 L572.42,170.41 L573.50,170.10 L574.58,169.82 L575.67,169.57 L576.75,169.34 L577.83,169.14 L578.92,168.95 L580.00,168.78 L581.08,168.62 L582.17,168.49 L583.25,168.36 L584.33,168.25 L585.42,168.14 L586.50,168.05 L587.58,167.97 L588.67,167.89 L589.75,167.82 L590.83,167.76 L591.92,167.70 L593.00,167.65 L594.08,167.61 L595.17,167.56 L596.25,167.53 L597.33,167.49 L598.42,167.46 L599.50,167.43 L600.58,167.41 L601.67,167.38 L602.75,167.36 L603.83,167.35 L604.92,167.33 L606.00,167.31 L607.08,167.30 L608.17,167.29 L609.25,167.27 L610.33,167.26 L611.42,167.26 L612.50,167.25 L613.58,167.24 L614.67,167.23 L615.75,167.23 L616.83,167.22 L617.92,167.22 L619.00,167.21 L620.08,167.21 L621.17,167.20 L622.25,167.20 L623.33,167.20 L624.42,167.19 L625.50,167.19 L626.58,167.19 L627.67,167.19 L628.75,167.18 L629.83,167.18 L630.92,167.18 L632.00,167.18 L633.08,167.18 L634.17,167.18 L635.25,167.18 L636.33,167.18 L637.42,167.17 L638.50,167.17 L639.58,167.17 L640.67,167.17 L641.75,167.17 L642.83,167.17 L643.92,167.17 L645.00,167.17 L646.08,167.17 L647.17,167.17 L648.25,167.17 L649.33,167.17 L650.42,167.17 L651.50,167.17 L652.58,167.17 L653.67,167.17 L654.75,167.17 L655.83,167.17 L656.92,167.17 L658.00,167.17 L659.08,167.17 L660.17,167.17 L661.25,167.17 L662.33,167.17 L663.42,167.17 L664.50,167.17 L665.58,167.17 L666.67,167.17 L667.75,167.17 L668.83,167.17 L669.92,167.17 L671.00,167.17 L672.08,167.17 L673.17,167.17 L674.25,167.17 L675.33,167.17 L676.42,167.17 L677.50,167.17 L678.58,167.17 L679.67,167.17 L680.75,167.17 L681.83,167.17 L682.92,167.17 L684.00,167.17 L685.08,167.17 L686.17,167.17 L687.25,167.17 L688.33,167.17 L689.42,167.17 L690.50,167.17 L691.58,167.17 L692.67,167.17 L693.75,167.17 L694.83,167.17 L695.92,167.17 L697.00,167.17 L698.08,167.17 L699.17,167.17 L700.25,167.17 L701.33,167.17 L702.42,167.17 L703.50,167.17 L704.58,167.17 L705.67,167.17 L706.75,167.17 L707.83,167.17 L708.92,167.17 L710.00,167.17 L711.08,167.17 L712.17,167.17 L713.25,167.17 L714.33,167.17 L715.42,167.17 L716.50,167.17 L717.58,167.17 L718.67,167.17 L719.75,167.17 L720.83,167.17 L721.92,167.17 L723.00,167.17 L724.08,167.17 L725.17,167.17 L726.25,167.17 L727.33,167.17 L728.42,167.17 L729.50,167.17 L730.58,167.17 L731.67,167.17 L732.75,167.17 L733.83,167.17 L734.92,167.17 L736.00,167.17 L737.08,167.17 L738.17,167.17 L739.25,167.17 L740.33,167.17 L741.42,167.17 L742.50,167.17 L743.58,167.17 L744.67,167.17 L745.75,167.17 L746.83,167.17 L747.92,167.17 L749.00,167.17 L750.08,167.17 L751.17,167.17 L752.25,167.17 L753.33,167.17 L754.42,167.17 L755.50,167.17 L756.58,167.17 L757.67,167.17 L758.75,167.17 L759.83,167.17 L760.92,167.17 L762.00,167.17 L763.08,167.17 L764.17,167.17 L765.25,167.17 L766.33,167.17 L767.42,167.17 L768.50,167.17 L769.58,167.17 L770.67,167.17 L771.75,167.17 L772.83,167.17 L773.92,167.17 L775.00,167.17 L776.08,167.17 L777.17,167.17 L778.25,167.17 L779.33,167.17 L780.42,167.17 L781.50,167.17 L782.58,167.17 L783.67,167.17 L784.75,167.17 L785.83,167.17 L786.92,167.17 L788.00,167.17 L789.08,167.17 L790.17,167.17 L791.25,167.17 L792.33,167.17 L793.42,167.17 L794.50,167.17 L795.58,167.17 L796.67,167.17 L797.75,167.17 L798.83,167.17 L799.92,167.17 L801.00,167.17 L802.08,167.17 L803.17,167.17 L804.25,167.17 L805.33,167.17 L806.42,167.17 L807.50,167.17 L808.58,167.17 L809.67,167.17 L810.75,167.17 L811.83,167.17 L812.92,167.17 L814.00,167.17 L815.08,167.17 L816.17,167.17 L817.25,167.17 L818.33,167.17 L819.42,167.17 L820.50,167.17 L821.58,167.17 L822.67,167.17 L823.75,167.17 L824.83,167.17 L825.92,167.17 L827.00,167.17 L828.08,167.17 L829.17,167.17 L830.25,167.17 L831.33,167.17 L832.42,167.17 L833.50,167.17 L834.58,167.17 L835.67,167.17 L836.75,167.17 L837.83,167.17 L838.92,167.17 L840.00,167.17 L841.08,167.17 L842.17,167.17 L843.25,167.17 L844.33,167.17 L845.42,167.17 L846.50,167.17 L847.58,167.17 L848.67,167.17 L849.75,167.17 L850.83,167.17 L851.92,167.17 L853.00,167.17" fill="none" stroke="var(--peri)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
 <circle id="l15-kinetic-marker-fast" cx="528.0" cy="363.0" r="6" fill="var(--peri)" stroke="var(--bg2)" stroke-width="1.5"/>
 <path id="l15-kinetic-curve-slow" d="M528.00,363.00 L529.08,361.05 L530.17,359.12 L531.25,357.21 L532.33,355.32 L533.42,353.45 L534.50,351.60 L535.58,349.76 L536.67,347.94 L537.75,346.14 L538.83,344.36 L539.92,342.60 L541.00,340.86 L542.08,339.13 L543.17,337.42 L544.25,335.72 L545.33,334.04 L546.42,332.38 L547.50,330.74 L548.58,329.11 L549.67,327.50 L550.75,325.91 L551.83,324.33 L552.92,322.76 L554.00,321.21 L555.08,319.68 L556.17,318.16 L557.25,316.66 L558.33,315.17 L559.42,313.70 L560.50,312.24 L561.58,310.80 L562.67,309.37 L563.75,307.96 L564.83,306.56 L565.92,305.17 L567.00,303.79 L568.08,302.44 L569.17,301.09 L570.25,299.76 L571.33,298.44 L572.42,297.13 L573.50,295.84 L574.58,294.56 L575.67,293.29 L576.75,292.04 L577.83,290.79 L578.92,289.56 L580.00,288.35 L581.08,287.14 L582.17,285.95 L583.25,284.76 L584.33,283.59 L585.42,282.44 L586.50,281.29 L587.58,280.15 L588.67,279.03 L589.75,277.92 L590.83,276.81 L591.92,275.72 L593.00,274.64 L594.08,273.57 L595.17,272.51 L596.25,271.47 L597.33,270.43 L598.42,269.40 L599.50,268.38 L600.58,267.38 L601.67,266.38 L602.75,265.39 L603.83,264.41 L604.92,263.45 L606.00,262.49 L607.08,261.54 L608.17,260.60 L609.25,259.67 L610.33,258.75 L611.42,257.84 L612.50,256.94 L613.58,256.04 L614.67,255.16 L615.75,254.28 L616.83,253.42 L617.92,252.56 L619.00,251.71 L620.08,250.87 L621.17,250.04 L622.25,249.21 L623.33,248.39 L624.42,247.59 L625.50,246.79 L626.58,245.99 L627.67,245.21 L628.75,244.43 L629.83,243.66 L630.92,242.90 L632.00,242.15 L633.08,241.40 L634.17,240.67 L635.25,239.93 L636.33,239.21 L637.42,238.49 L638.50,237.78 L639.58,237.08 L640.67,236.38 L641.75,235.70 L642.83,235.01 L643.92,234.34 L645.00,233.67 L646.08,233.01 L647.17,232.35 L648.25,231.71 L649.33,231.06 L650.42,230.43 L651.50,229.80 L652.58,229.17 L653.67,228.56 L654.75,227.95 L655.83,227.34 L656.92,226.74 L658.00,226.15 L659.08,225.56 L660.17,224.98 L661.25,224.41 L662.33,223.84 L663.42,223.27 L664.50,222.72 L665.58,222.16 L666.67,221.62 L667.75,221.07 L668.83,220.54 L669.92,220.01 L671.00,219.48 L672.08,218.96 L673.17,218.44 L674.25,217.93 L675.33,217.43 L676.42,216.93 L677.50,216.43 L678.58,215.94 L679.67,215.46 L680.75,214.98 L681.83,214.50 L682.92,214.03 L684.00,213.57 L685.08,213.10 L686.17,212.65 L687.25,212.19 L688.33,211.75 L689.42,211.30 L690.50,210.86 L691.58,210.43 L692.67,210.00 L693.75,209.57 L694.83,209.15 L695.92,208.73 L697.00,208.32 L698.08,207.91 L699.17,207.50 L700.25,207.10 L701.33,206.70 L702.42,206.31 L703.50,205.92 L704.58,205.54 L705.67,205.15 L706.75,204.78 L707.83,204.40 L708.92,204.03 L710.00,203.66 L711.08,203.30 L712.17,202.94 L713.25,202.59 L714.33,202.23 L715.42,201.88 L716.50,201.54 L717.58,201.20 L718.67,200.86 L719.75,200.52 L720.83,200.19 L721.92,199.86 L723.00,199.54 L724.08,199.22 L725.17,198.90 L726.25,198.58 L727.33,198.27 L728.42,197.96 L729.50,197.65 L730.58,197.35 L731.67,197.05 L732.75,196.75 L733.83,196.46 L734.92,196.17 L736.00,195.88 L737.08,195.59 L738.17,195.31 L739.25,195.03 L740.33,194.75 L741.42,194.48 L742.50,194.21 L743.58,193.94 L744.67,193.67 L745.75,193.41 L746.83,193.15 L747.92,192.89 L749.00,192.63 L750.08,192.38 L751.17,192.13 L752.25,191.88 L753.33,191.63 L754.42,191.39 L755.50,191.15 L756.58,190.91 L757.67,190.67 L758.75,190.44 L759.83,190.21 L760.92,189.98 L762.00,189.75 L763.08,189.53 L764.17,189.30 L765.25,189.08 L766.33,188.87 L767.42,188.65 L768.50,188.44 L769.58,188.22 L770.67,188.01 L771.75,187.81 L772.83,187.60 L773.92,187.40 L775.00,187.20 L776.08,187.00 L777.17,186.80 L778.25,186.61 L779.33,186.41 L780.42,186.22 L781.50,186.03 L782.58,185.84 L783.67,185.66 L784.75,185.47 L785.83,185.29 L786.92,185.11 L788.00,184.93 L789.08,184.76 L790.17,184.58 L791.25,184.41 L792.33,184.24 L793.42,184.07 L794.50,183.90 L795.58,183.73 L796.67,183.57 L797.75,183.40 L798.83,183.24 L799.92,183.08 L801.00,182.92 L802.08,182.77 L803.17,182.61 L804.25,182.46 L805.33,182.31 L806.42,182.15 L807.50,182.01 L808.58,181.86 L809.67,181.71 L810.75,181.57 L811.83,181.42 L812.92,181.28 L814.00,181.14 L815.08,181.00 L816.17,180.86 L817.25,180.73 L818.33,180.59 L819.42,180.46 L820.50,180.33 L821.58,180.20 L822.67,180.07 L823.75,179.94 L824.83,179.81 L825.92,179.69 L827.00,179.56 L828.08,179.44 L829.17,179.32 L830.25,179.19 L831.33,179.08 L832.42,178.96 L833.50,178.84 L834.58,178.72 L835.67,178.61 L836.75,178.49 L837.83,178.38 L838.92,178.27 L840.00,178.16 L841.08,178.05 L842.17,177.94 L843.25,177.83 L844.33,177.73 L845.42,177.62 L846.50,177.52 L847.58,177.42 L848.67,177.31 L849.75,177.21 L850.83,177.11 L851.92,177.01 L853.00,176.92" fill="none" stroke="var(--rose)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
@@ -3329,18 +3624,22 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <foreignObject x="-84" y="442.8" width="720" height="38" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:center;font-size:19px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>d</mi></msub><mo>=</mo><mn>1</mn><mtext> </mtext><mi>μ</mi><mi mathvariant="normal">M</mi></mrow><annotation encoding="application/x-tex">K_d=1\,\mu\mathrm{M}</annotation></semantics></math></div></foreignObject>
 <foreignObject x="212" y="443.6" width="720" height="36" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:center;font-size:18px;line-height:1;color:var(--peri)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>τ</mi><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>=</mo><mn>0.5</mn><mtext> </mtext><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">\tau_{\mathrm{fast}}=0.5\,\mathrm{s}</annotation></semantics></math></div></foreignObject>
 <foreignObject x="420" y="443.6" width="720" height="36" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:center;font-size:18px;line-height:1;color:var(--rose)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>τ</mi><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">w</mi></mrow></msub><mo>=</mo><mn>5</mn><mtext> </mtext><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">\tau_{\mathrm{slow}}=5\,\mathrm{s}</annotation></semantics></math></div></foreignObject>
-<text x="450.0" y="500.0" font-size="17" fill="var(--fg)" text-anchor="middle" font-weight="650">Both approach one-half occupancy. Their relaxation times differ tenfold.</text>
+<text x="450.0" y="495.0" font-size="16" fill="var(--plum)" text-anchor="middle">Dashed guides: reach 90% of equilibrium occupancy by 2 seconds.</text>
+<text x="450.0" y="536.0" font-size="17" fill="var(--fg)" text-anchor="middle" font-weight="650">The fast pair meets this binding-speed requirement. The slow pair does not.</text>
 </svg></div>
 <p class="l15-scroll-hint">Scroll horizontally to inspect the diagram at reading size.</p>
-<figcaption><b>Figure 21. Equilibrium occupancy leaves response speed undetermined.</b> The two equilibrium curves coincide. At a fixed free ligand concentration of 1 µM, the fast and slow pairs relax with time constants of 0.5 s and 5 s. The right-hand curves are exact solutions of the stated binding equation. They are independent of the protein-design data.</figcaption></figure>
+<figcaption><b>Figure 24. Equilibrium occupancy leaves response speed undetermined.</b> The two equilibrium curves coincide. At a fixed free ligand concentration of 1 µM, the fast and slow pairs relax with time constants of 0.5 s and 5 s. The right-hand curves are exact solutions of the stated binding equation. Dashed guides mark the two-second deadline and the target of 45% occupancy, which is 90% of the equilibrium value. The illustrative rates are independent of the protein-design data.</figcaption></figure>
 <div class="l15-controls">
 <label>Time <output id="l15-kinetic-time-value">0.0 s</output><input type="range" id="l15-kinetic-time" min="0" max="15" step="0.1" value="0"></label>
 <button type="button" id="l15-kinetic-play" aria-pressed="false">Play response</button>
+<button type="button" id="l15-kinetic-deadline">Check at 2 seconds</button>
 <button type="button" id="l15-kinetic-reset">Reset</button>
 </div>
 <p id="l15-kinetic-readout" role="status" aria-live="polite"></p>
 <p class="l15-data-note">Free ligand is clamped by a reservoir. This example assumes independent binding sites and does not model ligand depletion, cooperativity or a cellular reaction network.</p>
 </div>
+<p>The required 90% of equilibrium is an occupied fraction of 0.45. At two seconds, the fast pair reaches about 0.491 and the slow pair about 0.165. Only the fast pair meets this binding-speed requirement.</p>
+<p>A time-resolved binding measurement can test the speed requirement. Specificity and the coupling from binding to reporter signal need their own tests. The design specification determines which observations count as success.</p>
 <p><strong>Lecture 16 receives the remaining problem:</strong> how do we assemble molecular structures, measured parameters and an explicit interaction architecture into a model that predicts cellular behavior? The designed molecule is a proposed component. Composition into a working biomachine is a further modeling and experimental task.</p>
 <p class="takeaway">You can use a design result or failure to choose an informative next measurement and distinguish molecular coordinates from the parameters needed by a cellular model.</p>
 
@@ -3373,10 +3672,13 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 <tr><td>Methods, bottlenecks and the next experiment</td><td>P9–P11</td><td>18</td></tr>
 <tr><td>Administration and discussion</td><td></td><td>10</td></tr>
 </tbody></table>
-<p>Drop installation details, extended method rows and optional branches first. The six-question check can be assigned for self-study. The binding-response derivation can be left for reading while its two curves carry the closing point. If live inference fails, switch to the prepared replay. Preserve the distinction between a candidate, a structural prediction and a measured result.</p>
+<p>Drop installation details, extended method rows and optional branches first. The pairwise heatmap, alignment calculation and filter-population tab can be assigned for reading after stating their decision rules. The six-question check can also be assigned for self-study. Leave the binding-response derivation for reading if needed, but use the two-second comparison to close the opening question. If live inference fails, switch to the prepared replay.</p>
 <p>The interactive sequence explorer is embedded in this page. The following files belong to the lecturer's local teaching packet:</p>
 <ul><li>Complete demonstration bundle: notebook, input, model, upstream source, prepared outputs and replay.</li><li>No-install graphical replay.</li><li>Lecturer's notebook and its executed HTML reading copy.</li></ul>
 <p>The Present button, or key P outside a text field, switches between the reading page and its visual teaching layer. Tabs, the candidate explorer and the method filters remain usable in presentation mode.</p>
+<h2 id="reading">Supporting documents</h2>
+<p>The lecturer's local teaching packet includes the supporting documents. The exposition teaches the calculations behind this route. Its real-output audit, rigid alignment, selection calculation and binding transient develop the examples above.</p>
+<p>The lineage follows the historical questions and experiments, including FSD-1 and Top7 and the combined account of AlphaFold2.</p>
 <h2 id="refs">Sources</h2>
 <p>Primary papers and official method documentation support the claims at their points of use. Preprint status refers to the version inspected. The <a href="#r-2025">2025 course slides</a> supplied the historical teaching context. The current demonstration and diagrams were prepared for this lecture.</p>
 <div class="refs"><ol><li id="r-evolution">Chen and Arnold (1993). Tuning the activity of an enzyme for unusual environments: sequential random mutagenesis of subtilisin E for catalysis in dimethylformamide. PNAS 90, 5618–5622. <a href="https://doi.org/10.1073/pnas.90.12.5618">Source</a></li><li id="r-fsd">Dahiyat and Mayo (1997). De novo protein design: fully automated sequence selection. Science 278, 82–87. <a href="https://doi.org/10.1126/science.278.5335.82">Source</a></li><li id="r-top7">Kuhlman et al. (2003). Design of a novel globular protein fold with atomic-level accuracy. Science 302, 1364–1368. <a href="https://doi.org/10.1126/science.1089427">Source</a></li><li id="r-pdb">RCSB PDB 1QYS. Crystal structure of the computationally designed protein Top7. <a href="https://www.rcsb.org/structure/1QYS">Source</a></li><li id="r-dca">Morcos et al. (2011). Direct-coupling analysis of residue coevolution captures native contacts across many protein families. PNAS 108, E1293–E1301. <a href="https://doi.org/10.1073/pnas.1111471108">Source</a></li><li id="r-af1">Senior et al. (2020). Improved protein structure prediction using potentials from deep learning. Nature 577, 706–710. <a href="https://doi.org/10.1038/s41586-019-1923-7">Source</a></li><li id="r-af2">Jumper et al. (2021). Highly accurate protein structure prediction with AlphaFold. Nature 596, 583–589. <a href="https://doi.org/10.1038/s41586-021-03819-2">Source</a></li><li id="r-colabfold">Mirdita et al. (2022). ColabFold: making protein folding accessible to all. Nature Methods 19, 679–682. <a href="https://doi.org/10.1038/s41592-022-01488-1">Source</a></li><li id="r-mpnn">Dauparas et al. (2022). Robust deep learning–based protein sequence design using ProteinMPNN. Science 378, 49–56. <a href="https://doi.org/10.1126/science.add2187">Source</a></li><li id="r-rfd">Watson et al. (2023). De novo design of protein structure and function with RFdiffusion. Nature 620, 1089–1100. <a href="https://doi.org/10.1038/s41586-023-06415-8">Source</a></li><li id="r-chroma">Ingraham et al. (2023). Illuminating protein space with a programmable generative model. Nature 623, 1070–1078. <a href="https://doi.org/10.1038/s41586-023-06728-8">Source</a></li><li id="r-af3">Abramson et al. (2024). Accurate structure prediction of biomolecular interactions with AlphaFold 3. Nature 630, 493–500. <a href="https://doi.org/10.1038/s41586-024-07487-w">Source</a></li><li id="r-ligandmpnn">Dauparas et al. (2025). Atomic context-conditioned protein sequence design using LigandMPNN. Nature Methods. <a href="https://doi.org/10.1038/s41592-025-02626-1">Source</a></li><li id="r-rfd2">Ahern et al. (2026, online 2025). Atom-level enzyme active site scaffolding using RFdiffusion2. Nature Methods 23, 96–105. <a href="https://doi.org/10.1038/s41592-025-02975-x">Source</a></li><li id="r-rfd3">Butcher et al. (2025). De novo Design of All-atom Biomolecular Interactions with RFdiffusion3. Inspected bioRxiv preprint. <a href="https://doi.org/10.1101/2025.09.18.676967">Source</a></li><li id="r-bindcraft">Pacesa et al. (2025). One-shot design of functional protein binders with BindCraft. Nature. <a href="https://doi.org/10.1038/s41586-025-09429-6">Source</a></li><li id="r-alphaproteo">Zambaldi et al. (2024). De novo design of high-affinity protein binders with AlphaProteo. Inspected arXiv v1 technical report. <a href="https://arxiv.org/abs/2409.08022">Source</a></li><li id="r-progen">Madani et al. (2023). Large language models generate functional protein sequences across diverse families. Nature Biotechnology 41, 1099–1106. <a href="https://doi.org/10.1038/s41587-022-01618-2">Source</a></li><li id="r-esm3">Sercu / EvolutionaryScale (2024, updated 2025). ESM3 author method documentation. <a href="https://www.evolutionaryscale.ai/blog/esm3-release">Source</a></li><li id="r-boltz2">Passaro et al. (2025). Boltz-2: Towards Accurate and Efficient Binding Affinity Prediction. Inspected bioRxiv preprint, 18 June 2025. See official repository documentation for the affinity task&#x27;s scope. <a href="https://doi.org/10.1101/2025.06.14.659707">Source</a></li><li id="r-boltzgen">Stark et al. (2025). BoltzGen: Toward Universal Binder Design. Inspected bioRxiv preprint. <a href="https://doi.org/10.1101/2025.11.20.689494">Source</a></li><li id="r-nise">Fry, Slaw and Polizzi (2026). Zero-shot design of drug-binding proteins via neural iterative selection–expansion. Nature 656, 237–248. <a href="https://doi.org/10.1038/s41586-026-10670-w">Source</a></li><li id="r-2025">Fangzhou Xiao. CCBS 2025 Lecture 9: Introduction to Protein Design. Historical teaching source, 79 slides. The current run and original diagrams are separate 2026 teaching materials. <a href="https://chemaoxfz.github.io/assets/ccbs/2025fall/lecture9/20251106_protein_design.pdf">Source</a></li><li id="r-esm3paper">Hayes et al. (2024). Simulating 500 million years of evolution with a language model. Inspected author preview dated 25 June 2024. A later version appeared in Science 387, 850–858 (2025), DOI 10.1126/science.ads0018. <a href="https://doi.org/10.1126/science.ads0018">Source</a></li></ol></div>
@@ -5356,6 +5658,8 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
         0.475106465816068
       ]
     },
+    "deadline_s": 2,
+    "required_fraction_of_equilibrium": 0.9,
     "assumption": "Clamped free ligand, elementary reversible association, initially unbound."
   },
   "denominators": {
@@ -5445,7 +5749,7 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       const c = current();
       const unchanged = [...c.sequence].filter((a,i) => a === data.native[i]).length;
       document.getElementById("l15-run-readout").textContent =
-        `${c.id}: score ${c.score.toFixed(4)} · ${unchanged}/92 identities retained (${(100*unchanged/92).toFixed(1)}%) · ${92-unchanged} changed positions.`;
+        `${c.id}: score ${c.score.toFixed(4)} · sequence recovery ${unchanged}/92 (${(100*unchanged/92).toFixed(1)}%) · ${92-unchanged} changed positions.`;
       const alignment = document.getElementById("l15-alignment");
       alignment.replaceChildren();
       for (let i=0;i<92;i+=23) {
@@ -5557,6 +5861,37 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   const holder = document.getElementById("l15-visual-data");
   if (!holder) return;
   const data = JSON.parse(holder.textContent);
+  const initialFraction = document.getElementById("l15-filter-initial");
+  if (initialFraction) {
+    function updateFilter() {
+      const fraction = Number(initialFraction.value) / 100;
+      const good = 1000 * fraction * .8;
+      const bad = 1000 * (1 - fraction) * .1;
+      const total = good + bad, success = good / total;
+      const count = value => Number(value.toFixed(1)).toString();
+      document.getElementById("l15-filter-initial-value").textContent = `${initialFraction.value}%`;
+      document.getElementById("l15-filter-population").textContent = `1,000 proposals. ${initialFraction.value}% would succeed.`;
+      document.getElementById("l15-filter-good").textContent = count(good);
+      document.getElementById("l15-filter-bad").textContent = count(bad);
+      document.getElementById("l15-filter-posterior").textContent = `${(100*success).toFixed(1)}% of passes succeed`;
+      document.getElementById("l15-filter-denominator").textContent = `${count(good)} successes among ${count(total)} passes`;
+      const point = document.getElementById("l15-filter-point");
+      point.setAttribute("cx", String(84 + 325*fraction));
+      point.setAttribute("cy", String(371 - 238*success));
+      document.getElementById("l15-filter-result").textContent =
+        `Of 1,000 proposals, expect ${count(good)} successful passes and ${count(bad)} unsuccessful passes. ` +
+        `${(100*success).toFixed(1)}% of passes would succeed under the stated assay.`;
+      document.getElementById("l15-filter-reliability").dataset.posterior = String(success);
+    }
+    initialFraction.addEventListener("input", updateFilter);
+    document.querySelectorAll("[data-filter-fraction]").forEach(button => {
+      button.addEventListener("click", () => {
+        initialFraction.value = button.dataset.filterFraction;
+        updateFilter();
+      });
+    });
+    updateFilter();
+  }
   const temperature = document.getElementById("l15-temperature-slider");
   if (temperature) {
     function updateTemperature() {
@@ -5602,7 +5937,8 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       clock.setAttribute("x2", String(528 + 325*elapsed/15));
       document.getElementById("l15-kinetic-time-value").textContent = `${elapsed.toFixed(1)} s`;
       document.getElementById("l15-kinetic-readout").textContent =
-        `At ${elapsed.toFixed(1)} s: fast ${(100*values[0]).toFixed(1)}% occupied · slow ${(100*values[1]).toFixed(1)}% occupied. Both approach 50%.`;
+        `At ${elapsed.toFixed(1)} s: fast ${(100*values[0]).toFixed(1)}% occupied · slow ${(100*values[1]).toFixed(1)}% occupied. Both approach 50%. ` +
+        `The target is 45% occupied by 2 s. At this time, fast ${values[0]>=.45?"has":"has not"} reached that occupancy and slow ${values[1]>=.45?"has":"has not"} reached it.`;
     }
     function pause() {
       running = false; previous = 0;
@@ -5628,6 +5964,9 @@ html.l15-present .l15-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     time.addEventListener("input", () => { pause(); updateKinetics(); });
     document.getElementById("l15-kinetic-reset").addEventListener("click", () => {
       pause(); time.value = "0"; updateKinetics();
+    });
+    document.getElementById("l15-kinetic-deadline").addEventListener("click", () => {
+      pause(); time.value = "2"; updateKinetics();
     });
     document.addEventListener("visibilitychange", () => { if (document.hidden) pause(); });
     updateKinetics();
