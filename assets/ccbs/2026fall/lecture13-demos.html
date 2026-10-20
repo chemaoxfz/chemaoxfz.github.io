@@ -201,7 +201,8 @@ canvas{display:block;width:100%;height:auto;border-radius:8px;background:var(--b
 <h1>Explore metabolic constraints and their predictions</h1>
 <p class="sub">Five classroom demonstrations for Lecture 13, Parts 2 and 3.</p>
 <p class="byline">CCBS Lecture 13 · Demonstrations · 19 October 2026</p>
-<p>Begin with the <a href="lecture13-core.html#part2">core’s steady flux calculations</a>. Continue to its <a href="lecture13-core.html#part3">dynamic constraints</a>. The exposition derives the equations. Every control works offline. The organism and control trajectories are precomputed solutions of the declared problems. Their controls select or replay those solutions.</p>
+<p>Begin with <a href="lecture13-core.html#s4">Part 2: describing behavior through objectives and biochemical constraints</a>. Then use its steady flux calculations. Continue to its <a href="lecture13-core.html#part3">dynamic constraints</a>. The exposition derives the equations. Every control works offline. The organism and control trajectories are precomputed solutions of the declared problems. Their controls select or replay those solutions.</p>
+<details><summary>Optional comparison: a static function, a trajectory and a controller from optimization</summary><p>The core’s <a href="lecture13-core.html#l13-opt-examples">spring-carriage experiment</a> compares an explicit force law with an optimization at each stage. Change the load, follow the motion, then request faster feedback under a motor limit. It belongs to the optional machine-design extension outside the five metabolic experiments.</p></details>
 <div class="demo-toolbar"><button id="demo-present" aria-pressed="false">Present one experiment</button><button id="demo-prev">Previous</button><button id="demo-next">Next</button><output id="demo-position">Experiment 1 of 5</output></div>
 <section class="demo-step demo-active">
 <h2 id="s1"><span class="n">1</span>Allocate a limited ATP supply</h2>
