@@ -341,6 +341,7 @@ html.l12-present main>details.l12-optional[open]{display:block!important;max-wid
 <p><strong>We will follow two engineered constructions before choosing the biological task.</strong> A molecular NAND works, but its dedicated catalytic channels supply a small gate budget. A molecular linear threshold unit also works, but regulation among transcription-factor genes supplies a small weight budget. These comparisons motivate a different question: how does a cell choose and preserve useful actions? Binding lets the same factors participate in many interactions and expression combinations. MultiFate makes that principle concrete.</p>
 <div class="box key"><span class="lbl">What this lecture enables</span><p>Construct the molecular gate and weighted comparison, identify the resources their architectures need, and explain how homodimer activation and heterodimer sequestration create several persistent cell-state decisions.</p></div>
 <p class="l12-route">Four parts and ten main teaching points. <strong>Present</strong>, or the <strong>P</strong> key, switches to the graphical lecture. The optional extension derives a richer binding-state response map. The older finite-affinity, loading, timing, energy and memory calculations remain available below the main argument.</p>
+<p class="l12-route">The <a href="lecture12-exposition.html">exposition</a> develops the calculations and worked examples. The <a href="lecture12-lineage.html">lineage</a> follows the experiments and the questions they tested.</p>
 <div class="parthead" id="part1"><div class="k">Part 1</div><h2>Test logic gates as a cellular computing architecture</h2><p>Build a molecular gate, connect the construction to an engineered architecture, and estimate the component budget.</p></div>
 <h2 id="s1"><span class="n">1</span>The biomachine perspective asks how computation is achieved</h2>
 <p class="lede">Choose computation as the function of a biomachine. Then ask what principles make engineered computation powerful and whether a cell uses those principles.</p>
@@ -643,6 +644,7 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 <div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>z</mi><mo>˙</mo></mover><mo>=</mo><mi>a</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>z</mi><mo stretchy="false">)</mo><mo>−</mo><mi>b</mi><mi>z</mi><mo separator="true">,</mo><mspace width="2em"/><msup><mi>z</mi><mo>∗</mo></msup><mo>=</mo><mfrac><mi>a</mi><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow></mfrac><mspace width="1em"/><mo stretchy="false">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>&gt;</mo><mn>0</mn><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\dot z=a(1-z)-bz,\qquad z^*=\frac{a}{a+b}\quad(a+b&gt;0).</annotation></semantics></math></div>
 <p>For inputs 00, 01 and 10, the ideal construction has <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a&gt;0</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b=0</annotation></semantics></math></span>, so <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>z</mi><mo>∗</mo></msup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">z^*=1</annotation></semantics></math></span>. For 11, it has <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a=0</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b&gt;0</annotation></semantics></math></span>, so <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>z</mi><mo>∗</mo></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">z^*=0</annotation></semantics></math></span>. This calculation neglects bound output intermediates and assumes the unresolved catalytic mechanism supports the stated effective conversions. The optional calculation checks leakage and settling time.<sup class="c"><a href="#r-course">1</a></sup></p>
 <p><strong>Promoter binding supplies another familiar way to combine inputs.</strong> Lecture 9 assigned activity to promoter occupancy states. An unbound active promoter repressed by either of two inputs gives NOR at the low and high input levels. Other active-state choices give AND, OR and NAND. The logic resides in which bound configurations permit production.<sup class="c"><a href="#r-buchler">2</a></sup></p>
+<p><strong>Genetic gates have also been composed in living cells.</strong> Nielsen and colleagues' Cello system connected characterized transcriptional gates in <em>E. coli</em> and tested the complete circuits. The designs used measured input and output ranges to choose compatible gates. A temporary wrong output in one circuit exposed the additional need to account for signal propagation delays.<sup class="c"><a href="#r-nielsen">3</a></sup></p>
 <p class="takeaway">Write the output-changing operations for each input combination, then check their balance. A molecular truth table can work. The next question is how many such units can operate together.</p>
 <h2 id="s3"><span class="n">3</span>A dedicated catalytic-gate architecture has a small component budget</h2>
 <p><strong>Linked logic gates scale computation by supplying more elementary operations.</strong> A large circuit combines the outputs of many simple gates. At a fixed clock and precision, more gates allow more operations to run in parallel. Reusing those gates for more clock cycles allows a longer computation. If <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span> gates each evaluate once per clock cycle at frequency <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_\mathrm{clock}</annotation></semantics></math></span>, the available gate evaluations over elapsed time <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span> scale as</p>
@@ -1096,9 +1098,11 @@ y=1&amp;\ \Longleftrightarrow\ \sum_jw_jx_j&gt;\theta,\quad w_j=\frac{a_R}{K_{Sj
 <text x="450.0" y="782.0" font-size="20" fill="var(--fg)" text-anchor="middle">The molecular pictures show the strong-binding readout limit away from equality.</text>
 </svg>
 </div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 8. The two inputs select which protein remains in excess.</b> The free inputs vary while producer amplitudes and affinities remain fixed at the stated example. The line <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">3x_1-x_2=1</annotation></semantics></math></span> is the exact total-comparison boundary. In the ideal tight-sequestration and sensitive-reporter limit, output is 1 where R remains unmatched and 0 where S remains unmatched. Finite binding rounds the reporter response near the boundary.</figcaption></figure>
-<div class="box l12-card"><span class="lbl">Read the boundary as a molecular decision</span><p>Hold <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x_1=1</annotation></semantics></math></span> and increase <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_2</annotation></semantics></math></span>. The totals match at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x_2=2</annotation></semantics></math></span>. Below that value, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span> is in excess and the reporter is available. Above that value, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span> is in excess and represses the reporter. The finite-binding calculation resolves the rounded response near the line.</p></div>
+<div class="box l12-card"><span class="lbl">Read the boundary as a molecular decision</span><p>Hold <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">x_1=1</annotation></semantics></math></span> and increase <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">x_2</annotation></semantics></math></span>. The totals match at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">x_2=2</annotation></semantics></math></span>. In the ideal readout, below that value, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span> is in excess and the reporter is available. Above that value, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span> is in excess and represses the reporter. Finite binding and reporter loading determine the measured transition.</p></div>
 
-<p><strong>The molecular linear threshold unit is an approximation to the ideal binary rule.</strong> The total comparison is exactly affine under the stated promoter and expression model. Finite sequestration and finite reporter affinity round the observed output near equality. The inputs must leave a sufficient surplus, binding must settle before the readout, and promoter-bound amounts must be small enough for this calculation. The optional calculations give the finite output, loading and clock conditions.<sup class="c"><a href="#r-course">1</a></sup></p>
+<p><strong>The drawn line compares producer totals.</strong> A finite reporter's half-output contour also depends on pair affinity, reporter affinity and reporter abundance. Adding reporter sites consumes free repressor and shifts the measured threshold. The <a href="#optional-loading">loading calculation</a> derives this shift, and the <a href="lecture12-exposition.html#load-calculator">exposition's calculator</a> lets you vary the reporter abundance.</p>
+<p><strong>A reliable binary readout needs a concentration margin.</strong> The inputs must leave a sufficient protein surplus, binding must settle before the readout, and promoter-bound amounts must be small enough for the unloaded calculation. The optional calculations give the <a href="#optional-finite">finite-affinity and clock conditions</a>.<sup class="c"><a href="#r-course">1</a></sup></p>
+<p><strong>The sequestration threshold has experimental support.</strong> Buchler and Cross built a synthetic yeast circuit in which an inhibitor sequestered a transcriptional activator. Increasing inhibitor abundance moved the activation threshold and sharpened the reporter response. This tests the titration mechanism used as one ingredient of our weighted comparison.<sup class="c"><a href="#r-cross">18</a></sup> The <a href="lecture12-lineage.html#s4">lineage</a> explains the intervention and its evidence.</p>
 <p class="takeaway">Competitive promoter binding, positive expression and one-to-one sequestration turn three expressed genes into a signed weighted comparison. The third promoter reads which protein remains unmatched.</p>
 
 <h2 id="s6"><span class="n">6</span>Regulator-network weights leave a second scaling puzzle</h2>
@@ -4609,6 +4613,839 @@ y=1&amp;\ \Longleftrightarrow\ \sum_jw_jx_j&gt;\theta,\quad w_j=\frac{a_R}{K_{Sj
 <p><strong>This numerical comparison illustrates control, rather than fitting the experimental drugs.</strong> The experiment uses transient induction and changes protein stability. The published inducer response approaches full activation when its inducer term becomes large. The calculation uses that limiting control with a five-lifetime pulse and a twofold removal change. It assigns no doxycycline concentration, trimethoprim concentration or duration in days. The measured protocols also use separately sorted starting populations. The calculation instead holds the starting state fixed to make the retained choices easy to compare.<sup class="c"><a href="#r-zhu">7</a></sup></p>
 <p>The final points satisfy the constituent balances and production-removal balance. Their Jacobian eigenvalues have negative real parts. The trajectories settle after the controls return to baseline. This is a deterministic fast-binding model calculation.</p>
 
+<p><strong>Varying the pulse reveals which controls select each retained state.</strong> Keep the same A-high starting state and full B induction. Let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">T_{\mathrm{pulse}}</annotation></semantics></math></span> be the pulse duration. Scan <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">f</mi></mrow></msub><msub><mi>T</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\delta_{\mathrm{ref}}T_{\mathrm{pulse}}</annotation></semantics></math></span> from 0.25 to 8 and the removal multiplier <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math></span> from 1 to 2.5. After each pulse, restore the baseline and wait 100 baseline removal lifetimes before identifying the retained state.</p>
+<figure id="fig-multifate-pulse-selection"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 20. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 558" role="img" aria-label="Pulse duration and protein removal select a retained expression state" font-family="var(--sans)">
+<text x="400.0" y="35.0" font-size="24" fill="var(--fg)" text-anchor="middle" font-weight="700">Pulse duration and removal select the retained state</text>
+<text x="400.0" y="69.0" font-size="17" fill="var(--muted)" text-anchor="middle">Same A-high start. Restore baseline before the final readout.</text>
+<rect id="pulse-cell-0-0" x="90.0" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-1" x="109.4" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-2" x="128.8" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-3" x="148.1" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-4" x="167.5" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-5" x="186.9" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-6" x="206.2" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-7" x="225.6" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-8" x="245.0" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-9" x="264.4" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-10" x="283.8" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-11" x="303.1" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-12" x="322.5" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-13" x="341.9" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-14" x="361.2" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-15" x="380.6" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-16" x="400.0" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-17" x="419.4" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-18" x="438.8" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-19" x="458.1" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-20" x="477.5" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-21" x="496.9" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-22" x="516.2" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-23" x="535.6" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-24" x="555.0" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-25" x="574.4" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-26" x="593.8" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-27" x="613.1" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-28" x="632.5" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-29" x="651.9" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-30" x="671.2" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-0-31" x="690.6" y="411.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-0" x="90.0" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-1" x="109.4" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-2" x="128.8" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-3" x="148.1" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-4" x="167.5" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-5" x="186.9" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-6" x="206.2" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-7" x="225.6" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-8" x="245.0" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-9" x="264.4" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-10" x="283.8" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-11" x="303.1" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-12" x="322.5" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-13" x="341.9" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-14" x="361.2" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-15" x="380.6" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-16" x="400.0" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-17" x="419.4" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-18" x="438.8" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-19" x="458.1" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-20" x="477.5" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-21" x="496.9" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-22" x="516.2" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-23" x="535.6" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-24" x="555.0" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-25" x="574.4" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-26" x="593.8" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-27" x="613.1" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-28" x="632.5" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-29" x="651.9" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-30" x="671.2" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-1-31" x="690.6" y="400.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-0" x="90.0" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-1" x="109.4" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-2" x="128.8" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-3" x="148.1" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-4" x="167.5" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-5" x="186.9" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-6" x="206.2" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-7" x="225.6" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-8" x="245.0" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-9" x="264.4" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-10" x="283.8" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-11" x="303.1" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-12" x="322.5" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-13" x="341.9" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-14" x="361.2" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-15" x="380.6" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-16" x="400.0" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-17" x="419.4" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-18" x="438.8" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-19" x="458.1" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-20" x="477.5" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-21" x="496.9" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-22" x="516.2" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-23" x="535.6" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-24" x="555.0" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-25" x="574.4" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-26" x="593.8" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-27" x="613.1" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-28" x="632.5" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-29" x="651.9" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-30" x="671.2" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-2-31" x="690.6" y="389.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-0" x="90.0" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-1" x="109.4" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-2" x="128.8" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-3" x="148.1" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-4" x="167.5" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-5" x="186.9" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-6" x="206.2" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-7" x="225.6" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-8" x="245.0" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-9" x="264.4" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-10" x="283.8" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-11" x="303.1" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-12" x="322.5" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-13" x="341.9" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-14" x="361.2" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-15" x="380.6" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-16" x="400.0" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-17" x="419.4" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-18" x="438.8" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-19" x="458.1" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-20" x="477.5" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-21" x="496.9" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-22" x="516.2" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-23" x="535.6" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-24" x="555.0" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-25" x="574.4" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-26" x="593.8" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-27" x="613.1" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-28" x="632.5" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-29" x="651.9" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-30" x="671.2" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-3-31" x="690.6" y="378.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-0" x="90.0" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-1" x="109.4" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-2" x="128.8" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-3" x="148.1" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-4" x="167.5" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-5" x="186.9" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-6" x="206.2" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-7" x="225.6" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-8" x="245.0" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-9" x="264.4" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-10" x="283.8" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-11" x="303.1" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-12" x="322.5" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-13" x="341.9" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-14" x="361.2" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-15" x="380.6" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-16" x="400.0" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-17" x="419.4" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-18" x="438.8" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-19" x="458.1" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-20" x="477.5" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-21" x="496.9" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-22" x="516.2" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-23" x="535.6" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-24" x="555.0" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-25" x="574.4" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-26" x="593.8" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-27" x="613.1" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-28" x="632.5" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-29" x="651.9" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-30" x="671.2" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-4-31" x="690.6" y="367.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-0" x="90.0" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-1" x="109.4" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-2" x="128.8" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-3" x="148.1" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-4" x="167.5" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-5" x="186.9" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-6" x="206.2" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-7" x="225.6" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-8" x="245.0" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-9" x="264.4" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-10" x="283.8" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-11" x="303.1" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-12" x="322.5" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-13" x="341.9" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-14" x="361.2" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-15" x="380.6" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-16" x="400.0" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-17" x="419.4" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-18" x="438.8" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-19" x="458.1" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-20" x="477.5" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-21" x="496.9" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-22" x="516.2" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-23" x="535.6" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-24" x="555.0" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-25" x="574.4" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-26" x="593.8" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-27" x="613.1" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-28" x="632.5" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-29" x="651.9" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-30" x="671.2" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-5-31" x="690.6" y="355.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-0" x="90.0" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-1" x="109.4" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-2" x="128.8" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-3" x="148.1" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-4" x="167.5" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-5" x="186.9" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-6" x="206.2" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-7" x="225.6" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-8" x="245.0" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-9" x="264.4" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-10" x="283.8" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-11" x="303.1" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-12" x="322.5" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-13" x="341.9" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-14" x="361.2" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-15" x="380.6" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-16" x="400.0" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-17" x="419.4" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-18" x="438.8" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-19" x="458.1" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-20" x="477.5" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-21" x="496.9" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-22" x="516.2" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-23" x="535.6" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-24" x="555.0" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-25" x="574.4" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-26" x="593.8" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-27" x="613.1" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-28" x="632.5" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-29" x="651.9" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-30" x="671.2" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-6-31" x="690.6" y="344.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-0" x="90.0" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-1" x="109.4" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-2" x="128.8" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-3" x="148.1" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-4" x="167.5" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-5" x="186.9" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-6" x="206.2" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-7" x="225.6" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-8" x="245.0" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-9" x="264.4" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-10" x="283.8" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-11" x="303.1" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-12" x="322.5" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-13" x="341.9" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-14" x="361.2" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-15" x="380.6" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-16" x="400.0" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-17" x="419.4" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-18" x="438.8" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-19" x="458.1" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-20" x="477.5" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-21" x="496.9" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-22" x="516.2" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-23" x="535.6" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-24" x="555.0" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-25" x="574.4" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-26" x="593.8" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-27" x="613.1" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-28" x="632.5" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-29" x="651.9" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-30" x="671.2" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-7-31" x="690.6" y="333.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-0" x="90.0" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-1" x="109.4" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-2" x="128.8" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-3" x="148.1" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-4" x="167.5" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-5" x="186.9" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-6" x="206.2" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-7" x="225.6" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-8" x="245.0" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-9" x="264.4" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-10" x="283.8" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-11" x="303.1" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-12" x="322.5" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-13" x="341.9" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-14" x="361.2" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-15" x="380.6" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-16" x="400.0" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-17" x="419.4" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-18" x="438.8" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-19" x="458.1" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-20" x="477.5" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-21" x="496.9" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-22" x="516.2" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-23" x="535.6" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-24" x="555.0" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-25" x="574.4" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-26" x="593.8" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-27" x="613.1" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-28" x="632.5" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-29" x="651.9" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-30" x="671.2" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-8-31" x="690.6" y="322.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-0" x="90.0" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-1" x="109.4" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-2" x="128.8" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-3" x="148.1" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-4" x="167.5" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-5" x="186.9" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-6" x="206.2" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-7" x="225.6" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-8" x="245.0" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-9" x="264.4" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-10" x="283.8" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-11" x="303.1" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-12" x="322.5" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-13" x="341.9" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-14" x="361.2" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-15" x="380.6" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-16" x="400.0" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-17" x="419.4" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-18" x="438.8" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-19" x="458.1" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-20" x="477.5" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-21" x="496.9" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-22" x="516.2" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-23" x="535.6" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-24" x="555.0" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-25" x="574.4" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-26" x="593.8" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-27" x="613.1" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-28" x="632.5" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-29" x="651.9" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-30" x="671.2" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-9-31" x="690.6" y="311.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-0" x="90.0" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-1" x="109.4" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-2" x="128.8" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-3" x="148.1" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-4" x="167.5" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-5" x="186.9" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-6" x="206.2" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-7" x="225.6" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-8" x="245.0" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-9" x="264.4" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-10" x="283.8" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-11" x="303.1" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-12" x="322.5" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-13" x="341.9" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-14" x="361.2" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-15" x="380.6" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-16" x="400.0" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-17" x="419.4" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-18" x="438.8" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-19" x="458.1" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-20" x="477.5" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-21" x="496.9" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-22" x="516.2" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-23" x="535.6" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-24" x="555.0" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-25" x="574.4" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-26" x="593.8" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-27" x="613.1" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-28" x="632.5" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-29" x="651.9" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-30" x="671.2" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-10-31" x="690.6" y="299.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-0" x="90.0" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-1" x="109.4" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-2" x="128.8" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-3" x="148.1" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-4" x="167.5" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-5" x="186.9" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-6" x="206.2" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-7" x="225.6" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-8" x="245.0" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-9" x="264.4" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-10" x="283.8" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-11" x="303.1" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-12" x="322.5" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-13" x="341.9" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-14" x="361.2" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-15" x="380.6" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-16" x="400.0" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-17" x="419.4" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-18" x="438.8" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-19" x="458.1" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-20" x="477.5" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-21" x="496.9" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-22" x="516.2" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-23" x="535.6" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-24" x="555.0" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-25" x="574.4" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-26" x="593.8" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-27" x="613.1" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-28" x="632.5" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-29" x="651.9" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-30" x="671.2" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-11-31" x="690.6" y="288.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-0" x="90.0" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-1" x="109.4" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-2" x="128.8" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-3" x="148.1" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-4" x="167.5" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-5" x="186.9" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-6" x="206.2" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-7" x="225.6" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-8" x="245.0" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-9" x="264.4" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-10" x="283.8" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-11" x="303.1" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-12" x="322.5" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-13" x="341.9" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-14" x="361.2" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-15" x="380.6" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-16" x="400.0" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-17" x="419.4" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-18" x="438.8" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-19" x="458.1" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-20" x="477.5" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-21" x="496.9" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-22" x="516.2" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-23" x="535.6" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-24" x="555.0" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-25" x="574.4" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-26" x="593.8" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-27" x="613.1" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-28" x="632.5" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-29" x="651.9" y="277.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-12-30" x="671.2" y="277.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-12-31" x="690.6" y="277.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-13-0" x="90.0" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-1" x="109.4" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-2" x="128.8" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-3" x="148.1" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-4" x="167.5" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-5" x="186.9" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-6" x="206.2" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-7" x="225.6" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-8" x="245.0" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-9" x="264.4" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-10" x="283.8" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-11" x="303.1" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-12" x="322.5" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-13" x="341.9" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-14" x="361.2" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-15" x="380.6" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-16" x="400.0" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-17" x="419.4" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-18" x="438.8" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-19" x="458.1" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-20" x="477.5" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-21" x="496.9" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-22" x="516.2" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-23" x="535.6" y="266.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-13-24" x="555.0" y="266.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-13-25" x="574.4" y="266.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-13-26" x="593.8" y="266.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-13-27" x="613.1" y="266.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-13-28" x="632.5" y="266.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-13-29" x="651.9" y="266.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-13-30" x="671.2" y="266.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-13-31" x="690.6" y="266.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-0" x="90.0" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-1" x="109.4" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-2" x="128.8" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-3" x="148.1" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-4" x="167.5" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-5" x="186.9" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-6" x="206.2" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-7" x="225.6" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-8" x="245.0" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-9" x="264.4" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-10" x="283.8" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-11" x="303.1" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-12" x="322.5" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-13" x="341.9" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-14" x="361.2" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-15" x="380.6" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-16" x="400.0" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-17" x="419.4" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-18" x="438.8" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-19" x="458.1" y="255.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-14-20" x="477.5" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-21" x="496.9" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-22" x="516.2" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-23" x="535.6" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-24" x="555.0" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-25" x="574.4" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-26" x="593.8" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-27" x="613.1" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-28" x="632.5" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-29" x="651.9" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-30" x="671.2" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-14-31" x="690.6" y="255.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-0" x="90.0" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-1" x="109.4" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-2" x="128.8" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-3" x="148.1" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-4" x="167.5" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-5" x="186.9" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-6" x="206.2" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-7" x="225.6" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-8" x="245.0" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-9" x="264.4" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-10" x="283.8" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-11" x="303.1" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-12" x="322.5" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-13" x="341.9" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-14" x="361.2" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-15" x="380.6" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-16" x="400.0" y="243.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-15-17" x="419.4" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-18" x="438.8" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-19" x="458.1" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-20" x="477.5" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-21" x="496.9" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-22" x="516.2" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-23" x="535.6" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-24" x="555.0" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-25" x="574.4" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-26" x="593.8" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-27" x="613.1" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-28" x="632.5" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-29" x="651.9" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-30" x="671.2" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-15-31" x="690.6" y="243.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-0" x="90.0" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-1" x="109.4" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-2" x="128.8" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-3" x="148.1" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-4" x="167.5" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-5" x="186.9" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-6" x="206.2" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-7" x="225.6" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-8" x="245.0" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-9" x="264.4" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-10" x="283.8" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-11" x="303.1" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-12" x="322.5" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-13" x="341.9" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-14" x="361.2" y="232.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-16-15" x="380.6" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-16" x="400.0" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-17" x="419.4" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-18" x="438.8" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-19" x="458.1" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-20" x="477.5" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-21" x="496.9" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-22" x="516.2" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-23" x="535.6" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-24" x="555.0" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-25" x="574.4" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-26" x="593.8" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-27" x="613.1" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-28" x="632.5" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-29" x="651.9" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-30" x="671.2" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-16-31" x="690.6" y="232.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-0" x="90.0" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-1" x="109.4" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-2" x="128.8" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-3" x="148.1" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-4" x="167.5" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-5" x="186.9" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-6" x="206.2" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-7" x="225.6" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-8" x="245.0" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-9" x="264.4" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-10" x="283.8" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-11" x="303.1" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-12" x="322.5" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-13" x="341.9" y="221.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-17-14" x="361.2" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-15" x="380.6" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-16" x="400.0" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-17" x="419.4" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-18" x="438.8" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-19" x="458.1" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-20" x="477.5" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-21" x="496.9" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-22" x="516.2" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-23" x="535.6" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-24" x="555.0" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-25" x="574.4" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-26" x="593.8" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-27" x="613.1" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-28" x="632.5" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-29" x="651.9" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-30" x="671.2" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-17-31" x="690.6" y="221.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-0" x="90.0" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-1" x="109.4" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-2" x="128.8" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-3" x="148.1" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-4" x="167.5" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-5" x="186.9" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-6" x="206.2" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-7" x="225.6" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-8" x="245.0" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-9" x="264.4" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-10" x="283.8" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-11" x="303.1" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-12" x="322.5" y="210.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-18-13" x="341.9" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-14" x="361.2" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-15" x="380.6" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-16" x="400.0" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-17" x="419.4" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-18" x="438.8" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-19" x="458.1" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-20" x="477.5" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-21" x="496.9" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-22" x="516.2" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-23" x="535.6" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-24" x="555.0" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-25" x="574.4" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-26" x="593.8" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-27" x="613.1" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-28" x="632.5" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-29" x="651.9" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-30" x="671.2" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-18-31" x="690.6" y="210.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-0" x="90.0" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-1" x="109.4" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-2" x="128.8" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-3" x="148.1" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-4" x="167.5" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-5" x="186.9" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-6" x="206.2" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-7" x="225.6" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-8" x="245.0" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-9" x="264.4" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-10" x="283.8" y="199.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-19-11" x="303.1" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-12" x="322.5" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-13" x="341.9" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-14" x="361.2" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-15" x="380.6" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-16" x="400.0" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-17" x="419.4" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-18" x="438.8" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-19" x="458.1" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-20" x="477.5" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-21" x="496.9" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-22" x="516.2" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-23" x="535.6" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-24" x="555.0" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-25" x="574.4" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-26" x="593.8" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-27" x="613.1" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-28" x="632.5" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-29" x="651.9" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-30" x="671.2" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-19-31" x="690.6" y="199.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-0" x="90.0" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-1" x="109.4" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-2" x="128.8" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-3" x="148.1" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-4" x="167.5" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-5" x="186.9" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-6" x="206.2" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-7" x="225.6" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-8" x="245.0" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-9" x="264.4" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-10" x="283.8" y="187.8" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-20-11" x="303.1" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-12" x="322.5" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-13" x="341.9" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-14" x="361.2" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-15" x="380.6" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-16" x="400.0" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-17" x="419.4" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-18" x="438.8" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-19" x="458.1" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-20" x="477.5" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-21" x="496.9" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-22" x="516.2" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-23" x="535.6" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-24" x="555.0" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-25" x="574.4" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-26" x="593.8" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-27" x="613.1" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-28" x="632.5" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-29" x="651.9" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-30" x="671.2" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-20-31" x="690.6" y="187.8" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-0" x="90.0" y="176.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-21-1" x="109.4" y="176.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-21-2" x="128.8" y="176.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-21-3" x="148.1" y="176.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-21-4" x="167.5" y="176.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-21-5" x="186.9" y="176.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-21-6" x="206.2" y="176.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-21-7" x="225.6" y="176.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-21-8" x="245.0" y="176.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-21-9" x="264.4" y="176.6" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-21-10" x="283.8" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-11" x="303.1" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-12" x="322.5" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-13" x="341.9" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-14" x="361.2" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-15" x="380.6" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-16" x="400.0" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-17" x="419.4" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-18" x="438.8" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-19" x="458.1" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-20" x="477.5" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-21" x="496.9" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-22" x="516.2" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-23" x="535.6" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-24" x="555.0" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-25" x="574.4" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-26" x="593.8" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-27" x="613.1" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-28" x="632.5" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-29" x="651.9" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-30" x="671.2" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-21-31" x="690.6" y="176.6" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-0" x="90.0" y="165.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-22-1" x="109.4" y="165.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-22-2" x="128.8" y="165.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-22-3" x="148.1" y="165.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-22-4" x="167.5" y="165.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-22-5" x="186.9" y="165.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-22-6" x="206.2" y="165.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-22-7" x="225.6" y="165.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-22-8" x="245.0" y="165.4" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-22-9" x="264.4" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-10" x="283.8" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-11" x="303.1" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-12" x="322.5" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-13" x="341.9" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-14" x="361.2" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-15" x="380.6" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-16" x="400.0" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-17" x="419.4" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-18" x="438.8" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-19" x="458.1" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-20" x="477.5" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-21" x="496.9" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-22" x="516.2" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-23" x="535.6" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-24" x="555.0" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-25" x="574.4" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-26" x="593.8" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-27" x="613.1" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-28" x="632.5" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-29" x="651.9" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-30" x="671.2" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-22-31" x="690.6" y="165.4" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-0" x="90.0" y="154.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-23-1" x="109.4" y="154.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-23-2" x="128.8" y="154.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-23-3" x="148.1" y="154.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-23-4" x="167.5" y="154.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-23-5" x="186.9" y="154.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-23-6" x="206.2" y="154.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-23-7" x="225.6" y="154.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-23-8" x="245.0" y="154.2" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-23-9" x="264.4" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-10" x="283.8" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-11" x="303.1" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-12" x="322.5" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-13" x="341.9" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-14" x="361.2" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-15" x="380.6" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-16" x="400.0" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-17" x="419.4" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-18" x="438.8" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-19" x="458.1" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-20" x="477.5" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-21" x="496.9" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-22" x="516.2" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-23" x="535.6" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-24" x="555.0" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-25" x="574.4" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-26" x="593.8" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-27" x="613.1" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-28" x="632.5" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-29" x="651.9" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-30" x="671.2" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-23-31" x="690.6" y="154.2" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-0" x="90.0" y="143.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-24-1" x="109.4" y="143.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-24-2" x="128.8" y="143.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-24-3" x="148.1" y="143.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-24-4" x="167.5" y="143.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-24-5" x="186.9" y="143.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-24-6" x="206.2" y="143.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-24-7" x="225.6" y="143.0" width="19.6" height="11.4" fill="var(--teal)" opacity="0.7"/>
+<rect id="pulse-cell-24-8" x="245.0" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-9" x="264.4" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-10" x="283.8" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-11" x="303.1" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-12" x="322.5" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-13" x="341.9" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-14" x="361.2" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-15" x="380.6" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-16" x="400.0" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-17" x="419.4" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-18" x="438.8" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-19" x="458.1" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-20" x="477.5" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-21" x="496.9" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-22" x="516.2" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-23" x="535.6" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-24" x="555.0" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-25" x="574.4" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-26" x="593.8" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-27" x="613.1" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-28" x="632.5" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-29" x="651.9" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-30" x="671.2" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<rect id="pulse-cell-24-31" x="690.6" y="143.0" width="19.6" height="11.4" fill="var(--peri)" opacity="0.7"/>
+<line x1="157.8" y1="143.0" x2="157.8" y2="423.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="157.8" y="450.0" font-size="17" fill="var(--fg)" text-anchor="middle">1</text>
+<line x1="235.3" y1="143.0" x2="235.3" y2="423.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="235.3" y="450.0" font-size="17" fill="var(--fg)" text-anchor="middle">2</text>
+<line x1="390.3" y1="143.0" x2="390.3" y2="423.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="390.3" y="450.0" font-size="17" fill="var(--fg)" text-anchor="middle">4</text>
+<line x1="545.3" y1="143.0" x2="545.3" y2="423.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="545.3" y="450.0" font-size="17" fill="var(--fg)" text-anchor="middle">6</text>
+<line x1="700.3" y1="143.0" x2="700.3" y2="423.0" stroke="var(--gridc)" stroke-width="1"/>
+<text x="700.3" y="450.0" font-size="17" fill="var(--fg)" text-anchor="middle">8</text>
+<line x1="90.0" y1="417.4" x2="710.0" y2="417.4" stroke="var(--gridc)" stroke-width="1"/>
+<text x="77.0" y="422.4" font-size="17" fill="var(--fg)" text-anchor="end">1</text>
+<line x1="90.0" y1="327.8" x2="710.0" y2="327.8" stroke="var(--gridc)" stroke-width="1"/>
+<text x="77.0" y="332.8" font-size="17" fill="var(--fg)" text-anchor="end">1.5</text>
+<line x1="90.0" y1="238.2" x2="710.0" y2="238.2" stroke="var(--gridc)" stroke-width="1"/>
+<text x="77.0" y="243.2" font-size="17" fill="var(--fg)" text-anchor="end">2</text>
+<line x1="90.0" y1="148.6" x2="710.0" y2="148.6" stroke="var(--gridc)" stroke-width="1"/>
+<text x="77.0" y="153.6" font-size="17" fill="var(--fg)" text-anchor="end">2.5</text>
+<line x1="90.0" y1="423.0" x2="710.0" y2="423.0" stroke="var(--fg)" stroke-width="1"/>
+<line x1="90.0" y1="143.0" x2="90.0" y2="423.0" stroke="var(--fg)" stroke-width="1"/>
+<foreignObject x="40" y="471.2" width="720" height="42" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:center;font-size:21px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">f</mi></mrow></msub><msub><mi>T</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\delta_{\mathrm{ref}}T_{\mathrm{pulse}}</annotation></semantics></math></div></foreignObject>
+<foreignObject x="90" y="106.2" width="720" height="42" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:21px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo>=</mo><mi>δ</mi><mi mathvariant="normal">/</mi><msub><mi>δ</mi><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">f</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\gamma=\delta/\delta_{\mathrm{ref}}</annotation></semantics></math></div></foreignObject>
+<rect x="205.0" y="502.0" width="22.0" height="22.0" fill="var(--teal)" opacity="0.7"/>
+<text x="236.0" y="520.0" font-size="18" fill="var(--fg)">Both high</text>
+<rect x="445.0" y="502.0" width="22.0" height="22.0" fill="var(--peri)" opacity="0.7"/>
+<text x="476.0" y="520.0" font-size="18" fill="var(--fg)">A low, B high</text>
+</svg></div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 20. Pulse duration and protein removal determine the retained expression choice.</b> All 800 model protocols start from the same A-high state and fully induce B during the pulse. The horizontal axis varies pulse duration in baseline removal lifetimes. The vertical axis varies the removal multiplier. Each colored cell records the state after restoring baseline controls and waiting 100 baseline lifetimes. The grid contains both-high and B-high outcomes. The no-control A-high outcome is shown in the preceding trajectory figure. This finite numerical scan uses illustrative rate controls, rather than calibrated drug doses.</figcaption></figure>
+<p><strong>The tested controls select two different expression combinations.</strong> At the baseline removal rate, every tested pulse leaves both factors high. Faster removal permits B high and A low when the pulse lasts long enough. The no-control trajectory above remains A high and B low. That outcome is absent from this grid of induced pulses. The plotted boundary separates sampled outcomes. The <a href="lecture12-exposition.html#s9">exposition</a> develops the writing protocol and its relation to the experiments.</p>
+
 </details>
 <details class="l12-optional" id="ltu-expression-amplitude"><summary>The expression amplitude retains transcript and protein timescales</summary>
 <p><strong>The unrepressed amplitude follows from two production and removal balances.</strong> Let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mi>R</mi></msub></mrow><annotation encoding="application/x-tex">M_R</annotation></semantics></math></span> denote transcript concentration. Write</p>
@@ -4629,7 +5466,7 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 <p><strong>The output fraction follows a one-dimensional relaxation.</strong> Neglect output tied up in the unresolved complexes, so each output form's free concentration equals its total in this effective model. With <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>=</mo><msub><mi>q</mi><msub><mi>Z</mi><mn>1</mn></msub></msub><mi mathvariant="normal">/</mi><msub><mi>q</mi><mi>Z</mi></msub></mrow><annotation encoding="application/x-tex">z=q_{Z_1}/q_Z</annotation></semantics></math></span>, the conversion balance is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>z</mi><mo>˙</mo></mover><mo>=</mo><mi>a</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>z</mi><mo stretchy="false">)</mo><mo>−</mo><mi>b</mi><mi>z</mi></mrow><annotation encoding="application/x-tex">\dot z=a(1-z)-bz</annotation></semantics></math></span>. For constant inputs and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>+</mo><mi>b</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a+b&gt;0</annotation></semantics></math></span>, the steady fraction and relaxation time are</p>
 <div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>z</mi><mo>∗</mo></msup><mo>=</mo><mfrac><mi>a</mi><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow></mfrac><mo separator="true">,</mo><mspace width="2em"/><msub><mi>t</mi><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow></mfrac><mo separator="true">,</mo><mspace width="2em"/><mi>z</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>z</mi><mo>∗</mo></msup><mo>+</mo><mo stretchy="false">[</mo><mi>z</mi><mo stretchy="false">(</mo><mn>0</mn><mo stretchy="false">)</mo><mo>−</mo><msup><mi>z</mi><mo>∗</mo></msup><mo stretchy="false">]</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>t</mi><mi mathvariant="normal">/</mi><msub><mi>t</mi><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi></mrow></msub></mrow></msup><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">z^*=\frac{a}{a+b},\qquad t_\mathrm{gate}=\frac{1}{a+b},\qquad z(t)=z^*+[z(0)-z^*]e^{-t/t_\mathrm{gate}}.</annotation></semantics></math></div>
 <p><strong>Ideal input reservoirs recover the NAND truth table.</strong> Set the selected form of each input to concentration <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">c_0</annotation></semantics></math></span> and the unselected form to zero. For 00, 01 and 10, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>κ</mi><msubsup><mi>c</mi><mn>0</mn><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">a=\kappa c_0^2</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b=0</annotation></semantics></math></span>. For 11, those roles reverse. After <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi></mrow></msub><mspace width="0.1667em"></mspace><mi>log</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>1</mn><mi mathvariant="normal">/</mi><mi>ϵ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t_\mathrm{gate}\log(1/\epsilon)</annotation></semantics></math></span>, the output fraction lies within <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span> of its desired value even from the opposite initial output. If both conversion rates vanish, the output retains its initial condition and the gate has no defined completion time.</p>
-<p><strong>A chemical NAND needs the correct conversion, a bounded opposing conversion and time to settle.</strong></p><figure id="fig-nand-relaxation"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 20. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 525" role="img" aria-label="nand-relaxation" font-family="var(--sans)">
+<p><strong>A chemical NAND needs the correct conversion, a bounded opposing conversion and time to settle.</strong></p><figure id="fig-nand-relaxation"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 21. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 525" role="img" aria-label="nand-relaxation" font-family="var(--sans)">
 <text x="30.0" y="40.0" font-size="24" fill="var(--fg)" font-weight="700">The chemical NAND must relax before its output is read</text>
 <text x="85.0" y="98.0" font-size="20" fill="var(--fg)" font-weight="700">00, 01 or 10: make output 1</text>
 <foreignObject x="85" y="115.6" width="720" height="36" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:18px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>=</mo><msub><mi>q</mi><msub><mi>Z</mi><mn>1</mn></msub></msub><mi mathvariant="normal">/</mi><msub><mi>q</mi><mi>Z</mi></msub></mrow><annotation encoding="application/x-tex">z=q_{Z_1}/q_Z</annotation></semantics></math></div></foreignObject>
@@ -4686,7 +5523,7 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 <line x1="510.0" y1="485.0" x2="540.0" y2="485.0" stroke="var(--rose)" stroke-width="3" stroke-dasharray="7 5"/>
 <text x="550.0" y="492.0" font-size="17" fill="var(--fg)">Opposing rate = 0.1 of desired rate</text>
 </svg>
-</div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 20. Leakage changes the answer as well as the approach to it.</b> The desired pseudo-first-order rate is 1 in units of the ideal gate clock. The dashed curve adds an opposing rate of 0.1. Its wrong-output fraction approaches 1/11. The plot is computed from the stated relaxation equation, with an initially wrong output.</figcaption></figure>
+</div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 21. Leakage changes the answer as well as the approach to it.</b> The desired pseudo-first-order rate is 1 in units of the ideal gate clock. The dashed curve adds an opposing rate of 0.1. Its wrong-output fraction approaches 1/11. The plot is computed from the stated relaxation equation, with an initially wrong output.</figcaption></figure>
 <p><strong>Finite opposing rates give a measurable gate error.</strong> If the desired rate is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span> and the unwanted reverse rate is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span>, the error at rest is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">b/(a+b)</annotation></semantics></math></span>. Achieving error at most <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span> requires <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mi mathvariant="normal">/</mi><mi>a</mi><mo>≤</mo><mi>ϵ</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>ϵ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">b/a\le\epsilon/(1-\epsilon)</annotation></semantics></math></span>. The fuels must also support the maintained direction of conversion. Writing an irreversible effective rate does not establish its thermodynamic feasibility.</p>
 <p><strong>NAND gates are functionally complete for finite Boolean functions.</strong> NAND gives NOT by repeating an input. Combining NAND with NOT gives AND. De Morgan's identity then gives OR. A finite truth table can be written as an OR of ANDs of input literals, so these constructions realize any finite Boolean function. A machine that computes for arbitrarily long inputs also needs a scalable memory and a sequencing rule. A fixed finite gate circuit alone supplies neither.<sup class="c"><a href="#r-course">1</a></sup></p>
 <p class="takeaway">Check a chemical gate by deriving its output fraction, error and settling time under the stated input reservoirs.</p>
@@ -4695,7 +5532,7 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 <p><strong>The pair's binding balance determines the free repressor.</strong> At prescribed totals, ignore the third promoter's contribution to the protein balance for now. Let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><msub><mi>C</mi><mrow><mi>R</mi><mi>S</mi></mrow></msub></mrow><annotation encoding="application/x-tex">C=C_{RS}</annotation></semantics></math></span>, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>R</mi></msub><mo>=</mo><mi>R</mi><mo>+</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">q_R=R+C</annotation></semantics></math></span>, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>S</mi></msub><mo>=</mo><mi>S</mi><mo>+</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">q_S=S+C</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>S</mi><mo>=</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mi>C</mi></mrow><annotation encoding="application/x-tex">RS=K_\mathrm{pair}C</annotation></semantics></math></span>. For equilibrium allocation, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mo>=</mo><msub><mi>k</mi><mo>−</mo></msub><mi mathvariant="normal">/</mi><msub><mi>k</mi><mo>+</mo></msub></mrow><annotation encoding="application/x-tex">K_\mathrm{pair}=k_-/k_+</annotation></semantics></math></span>. Define the total difference <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>=</mo><msub><mi>q</mi><mi>R</mi></msub><mo>−</mo><msub><mi>q</mi><mi>S</mi></msub></mrow><annotation encoding="application/x-tex">\Delta=q_R-q_S</annotation></semantics></math></span>. Since <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mi>S</mi><mo>+</mo><mi mathvariant="normal">Δ</mi></mrow><annotation encoding="application/x-tex">R=S+\Delta</annotation></semantics></math></span>, the nonnegative root is</p>
 <div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>S</mi><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><mi mathvariant="normal">Δ</mi><mo>+</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mo stretchy="false">)</mo><mi>S</mi><mo>−</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><msub><mi>q</mi><mi>S</mi></msub><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mspace width="2em"/><mi>S</mi><mo>=</mo><mfrac><mrow><msqrt><mrow><mo stretchy="false">(</mo><mi mathvariant="normal">Δ</mi><mo>+</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mn>4</mn><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><msub><mi>q</mi><mi>S</mi></msub></mrow></msqrt><mo>−</mo><mo stretchy="false">(</mo><mi mathvariant="normal">Δ</mi><mo>+</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mo stretchy="false">)</mo></mrow><mn>2</mn></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">S^2+(\Delta+K_\mathrm{pair})S-K_\mathrm{pair}q_S=0,\qquad S=\frac{\sqrt{(\Delta+K_\mathrm{pair})^2+4K_\mathrm{pair}q_S}-(\Delta+K_\mathrm{pair})}{2}.</annotation></semantics></math></div>
 <p><strong>The reporter reads free repressor through a saturating law.</strong> Let the output gene produce protein <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi></mrow><annotation encoding="application/x-tex">O</annotation></semantics></math></span>. For a rare promoter repressed by free <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span>, the normalized unbound activity is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>+</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p=K_\mathrm{out}/(K_\mathrm{out}+S)</annotation></semantics></math></span>. Under total-proportional reporter removal, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> is also the steady output total <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>q</mi><mi>O</mi><mo>∗</mo></msubsup></mrow><annotation encoding="application/x-tex">q_O^*</annotation></semantics></math></span> divided by its unrepressed concentration amplitude <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>O</mi></msub></mrow><annotation encoding="application/x-tex">a_O</annotation></semantics></math></span>. The physical output is continuous even though the ideal label changes at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Delta=0</annotation></semantics></math></span>.</p>
-<p><strong>Finite binding needs a concentration margin and a reporter affinity between the two free-pool scales.</strong></p><figure id="fig-threshold-response"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 21. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" role="img" aria-label="threshold-response" font-family="var(--sans)">
+<p><strong>Finite binding needs a concentration margin and a reporter affinity between the two free-pool scales.</strong></p><figure id="fig-threshold-response"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 22. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" role="img" aria-label="threshold-response" font-family="var(--sans)">
 <defs><marker id="l12-threshold-response" markerWidth="11" markerHeight="8" refX="8" refY="3.0" orient="auto"><path d="M0,0 L0,6 L9,3.0 z" fill="var(--teal)"/></marker></defs>
 <text x="28.0" y="39.0" font-size="25" fill="var(--fg)" font-weight="700">Finite binding rounds the ideal threshold into a response band</text>
 <rect x="84.0" y="446.2" width="5.9" height="5.9" fill="var(--rose)" opacity="0.06538095542246695"/>
@@ -7774,21 +8611,23 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 <foreignObject x="84" y="536.8" width="720" height="48" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:left;font-size:24px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><msub><mi>x</mi><mn>1</mn></msub><mo>−</mo><msub><mi>x</mi><mn>2</mn></msub><mo>−</mo><mn>1</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">3x_1-x_2-1=0</annotation></semantics></math></div></foreignObject>
 <foreignObject x="90" y="636.6" width="720" height="46" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:center;font-size:23px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>c</mi><mn>0</mn></msub><mo>=</mo><mn>0.003</mn><mo separator="true">,</mo><mspace width="1em"/><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>c</mi><mn>0</mn></msub><mo>=</mo><mn>0.03</mn></mrow><annotation encoding="application/x-tex">K_{\mathrm{pair}}/c_0=0.003,\quad K_{\mathrm{out}}/c_0=0.03</annotation></semantics></math></div></foreignObject>
 </svg>
-</div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 21. The affine boundary organizes a rounded molecular response.</b> The paired promoters use the mixed-sign parameters from §5. The finite reporter response is computed from the exact pair-allocation root. The plot uses <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mo>=</mo><mn>0.003</mn><msub><mi>c</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">K_\mathrm{pair}=0.003c_0</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>=</mo><mn>0.03</mn><msub><mi>c</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">K_\mathrm{out}=0.03c_0</annotation></semantics></math></span>. These illustrative parameters expose a broad response band. The ideal sign label and the physical reporter activity are different objects.</figcaption></figure>
+</div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 22. The affine boundary organizes a rounded molecular response.</b> The paired promoters use the mixed-sign parameters from §5. The finite reporter response is computed from the exact pair-allocation root. The plot uses <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mo>=</mo><mn>0.003</mn><msub><mi>c</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">K_\mathrm{pair}=0.003c_0</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>=</mo><mn>0.03</mn><msub><mi>c</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">K_\mathrm{out}=0.03c_0</annotation></semantics></math></span>. These illustrative parameters expose a broad response band. The ideal sign label and the physical reporter activity are different objects.</figcaption></figure>
 <p><strong>A finite concentration margin gives an explicit accuracy test.</strong> Restrict the tested inputs so that <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">Δ</mi><mi mathvariant="normal">∣</mi><mo>≥</mo><msub><mi>δ</mi><mi>q</mi></msub><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">|\Delta|\ge\delta_q&gt;0</annotation></semantics></math></span>, and bound <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>S</mi></msub><mo>≤</mo><msub><mi>B</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub></mrow><annotation encoding="application/x-tex">q_S\le B_\mathrm{max}</annotation></semantics></math></span>. The symbol <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>δ</mi><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">\delta_q</annotation></semantics></math></span> denotes a concentration margin, not a removal rate. When <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>≥</mo><msub><mi>δ</mi><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">\Delta\ge\delta_q</annotation></semantics></math></span>, free <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>≥</mo><msub><mi>δ</mi><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">R\ge\delta_q</annotation></semantics></math></span>, so <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mi>C</mi><mi mathvariant="normal">/</mi><mi>R</mi><mo>≤</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><msub><mi>B</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>δ</mi><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">S=K_\mathrm{pair}C/R\le K_\mathrm{pair}B_\mathrm{max}/\delta_q</annotation></semantics></math></span>. When <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>≤</mo><mo>−</mo><msub><mi>δ</mi><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">\Delta\le-\delta_q</annotation></semantics></math></span>, free <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>≥</mo><msub><mi>δ</mi><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">S\ge\delta_q</annotation></semantics></math></span>.</p>
 <p><strong>The two bounds place the reporter affinity in a window.</strong> To require <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>≥</mo><mn>1</mn><mo>−</mo><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">p\ge1-\epsilon</annotation></semantics></math></span> on the positive side and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>≤</mo><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">p\le\epsilon</annotation></semantics></math></span> on the negative side, a sufficient condition is</p>
 <div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>ϵ</mi><mo stretchy="false">)</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><msub><mi>B</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub></mrow><mrow><mi>ϵ</mi><msub><mi>δ</mi><mi>q</mi></msub></mrow></mfrac><mo>≤</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>≤</mo><mfrac><mrow><mi>ϵ</mi><msub><mi>δ</mi><mi>q</mi></msub></mrow><mrow><mn>1</mn><mo>−</mo><mi>ϵ</mi></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\frac{(1-\epsilon)K_\mathrm{pair}B_\mathrm{max}}{\epsilon\delta_q}\le K_\mathrm{out}\le\frac{\epsilon\delta_q}{1-\epsilon}.</annotation></semantics></math></div>
 <p>A reporter that binds too weakly stays active on the negative side. A reporter that binds too tightly senses the small leftover repressor even on the positive side. The window exists when <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><msub><mi>B</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub><mo>≤</mo><mo stretchy="false">[</mo><mi>ϵ</mi><msub><mi>δ</mi><mi>q</mi></msub><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>ϵ</mi><mo stretchy="false">)</mo><msup><mo stretchy="false">]</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">K_\mathrm{pair}B_\mathrm{max}\le[\epsilon\delta_q/(1-\epsilon)]^2</annotation></semantics></math></span>. These are conservative sufficient bounds for the declared input range.</p>
 <div class="l12-exhibit" id="l12-threshold-demo"></div>
 <p><strong>The limit must preserve this separation of scales.</strong> Sending <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">K_\mathrm{out}</annotation></semantics></math></span> to zero at fixed positive <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">K_\mathrm{pair}</annotation></semantics></math></span> represses the output at every input with <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>S</mi></msub><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">q_S&gt;0</annotation></semantics></math></span>. The useful logical limit instead requires <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><msub><mi>B</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>δ</mi><mi>q</mi></msub><mo>≪</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>≪</mo><msub><mi>δ</mi><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">K_\mathrm{pair}B_\mathrm{max}/\delta_q\ll K_\mathrm{out}\ll\delta_q</annotation></semantics></math></span>. A large slope near equality does not replace a reliable output interval away from equality.</p>
-<p><strong>Fast binding must also be fast enough for the chosen expression clock.</strong> The equilibrium calculation assumes promoter and pair allocation relax faster than the changing totals. In a full model with equal first-order turnover <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math></span> of free and pair-bound proteins, the pair balance at steady state is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mo>+</mo></msub><mi>R</mi><mi>S</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>k</mi><mo>−</mo></msub><mo>+</mo><mi>γ</mi><mo stretchy="false">)</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">k_+RS=(k_-+\gamma)C</annotation></semantics></math></span>. The same root then uses the effective constant <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mo>=</mo><mo stretchy="false">(</mo><msub><mi>k</mi><mo>−</mo></msub><mo>+</mo><mi>γ</mi><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><msub><mi>k</mi><mo>+</mo></msub></mrow><annotation encoding="application/x-tex">K_\mathrm{pair}=(k_-+\gamma)/k_+</annotation></semantics></math></span>. Replacing this by the thermodynamic dissociation constant requires <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo>≪</mo><msub><mi>k</mi><mo>−</mo></msub></mrow><annotation encoding="application/x-tex">\gamma\ll k_-</annotation></semantics></math></span>. Very small dissociation alone does not guarantee an accurate equilibrium readout.</p>
+<p><strong>The removal mechanism fixes the turnover correction.</strong> Suppose free proteins and whole complexes are removed at the common frequency <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi></mrow><annotation encoding="application/x-tex">\gamma</annotation></semantics></math></span>. Removing one complex removes one constituent of each type. The complex balance is</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>C</mi><mo>˙</mo></mover><mo>=</mo><msub><mi>k</mi><mo>+</mo></msub><mi>R</mi><mi>S</mi><mo>−</mo><mo stretchy="false">(</mo><msub><mi>k</mi><mo>−</mo></msub><mo>+</mo><mi>γ</mi><mo stretchy="false">)</mo><mi>C</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\dot C=k_+RS-(k_-+\gamma)C.</annotation></semantics></math></div>
+<p>At steady state, the same allocation root uses <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mo>=</mo><mo stretchy="false">(</mo><msub><mi>k</mi><mo>−</mo></msub><mo>+</mo><mi>γ</mi><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><msub><mi>k</mi><mo>+</mo></msub></mrow><annotation encoding="application/x-tex">K_\mathrm{pair}=(k_-+\gamma)/k_+</annotation></semantics></math></span>. Replacing this by the thermodynamic dissociation constant requires <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>γ</mi><mo>≪</mo><msub><mi>k</mi><mo>−</mo></msub></mrow><annotation encoding="application/x-tex">\gamma\ll k_-</annotation></semantics></math></span>. Binding must also relax faster than the changing totals. Very small dissociation alone does not guarantee an accurate equilibrium readout.</p>
 <p class="takeaway">Choose an input margin and reporter affinity that meet the specified error tolerance, then check the binding clock against protein turnover.</p>
 </details><details class="l12-optional" id="optional-loading"><summary>B2 · Recalculate signal loading, delay and stochastic interpretation</summary>
 <p class="lede">A wire in a logic diagram transmits a value. A molecule that binds a downstream target also leaves the upstream free pool.</p>
 <p><strong>The third promoter becomes a load when its bound amount is appreciable.</strong> If its total is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><msub><mi>G</mi><mn>0</mn></msub></msub></mrow><annotation encoding="application/x-tex">q_{G_0}</annotation></semantics></math></span>, its bound repressor concentration is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><msub><mi>G</mi><mn>0</mn></msub><mi>S</mi></mrow></msub><mo>=</mo><msub><mi>q</mi><msub><mi>G</mi><mn>0</mn></msub></msub><mi>S</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>+</mo><mi>S</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">C_{G_0S}=q_{G_0}S/(K_\mathrm{out}+S)</annotation></semantics></math></span>. The pair totals now obey <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>R</mi></msub><mo>=</mo><mi>R</mi><mo>+</mo><mi>C</mi></mrow><annotation encoding="application/x-tex">q_R=R+C</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>S</mi></msub><mo>=</mo><mi>S</mi><mo>+</mo><mi>C</mi><mo>+</mo><msub><mi>C</mi><mrow><msub><mi>G</mi><mn>0</mn></msub><mi>S</mi></mrow></msub></mrow><annotation encoding="application/x-tex">q_S=S+C+C_{G_0S}</annotation></semantics></math></span>. Eliminating free <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span> gives a single monotone balance for <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span>:</p>
 <div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mi>S</mi></msub><mo>=</mo><mi>S</mi><mo>+</mo><mfrac><mrow><msub><mi>q</mi><mi>R</mi></msub><mi>S</mi></mrow><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mo>+</mo><mi>S</mi></mrow></mfrac><mo>+</mo><mfrac><mrow><msub><mi>q</mi><msub><mi>G</mi><mn>0</mn></msub></msub><mi>S</mi></mrow><mrow><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>+</mo><mi>S</mi></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">q_S=S+\frac{q_RS}{K_\mathrm{pair}+S}+\frac{q_{G_0}S}{K_\mathrm{out}+S}.</annotation></semantics></math></div>
 <p><strong>Loading shifts the reporter's midpoint.</strong> The reporter has <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">p=1/2</annotation></semantics></math></span> when <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub></mrow><annotation encoding="application/x-tex">S=K_\mathrm{out}</annotation></semantics></math></span>. Substituting this concentration gives <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>S</mi></msub><mo>=</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mo>+</mo><msub><mi>q</mi><mi>R</mi></msub><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mo>+</mo><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mo stretchy="false">)</mo><mo>+</mo><msub><mi>q</mi><msub><mi>G</mi><mn>0</mn></msub></msub><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">q_S=K_\mathrm{out}+q_RK_\mathrm{out}/(K_\mathrm{pair}+K_\mathrm{out})+q_{G_0}/2</annotation></semantics></math></span>. The final term is absent from the isolated unit. The downstream promoter's copy number therefore moves the observed threshold even at unchanged upstream totals.</p>
-<p><strong>Every downstream binding target belongs in the upstream mass balance.</strong></p><figure id="fig-loading"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 22. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 651" role="img" aria-label="loading" font-family="var(--sans)">
+<p><strong>Every downstream binding target belongs in the upstream mass balance.</strong></p><figure id="fig-loading"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 23. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 651" role="img" aria-label="loading" font-family="var(--sans)">
 <defs><marker id="l12-loading" markerWidth="11" markerHeight="8" refX="8" refY="3.0" orient="auto"><path d="M0,0 L0,6 L9,3.0 z" fill="var(--teal)"/></marker></defs>
 <text x="28.0" y="39.0" font-size="25" fill="var(--fg)" font-weight="700">A downstream binding site changes the available protein</text>
 <line x1="85.0" y1="132.0" x2="85.0" y2="437.0" stroke="var(--gridc)" stroke-width="1"/>
@@ -7826,7 +8665,7 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 <text x="720.0" y="494.0" font-size="18" fill="var(--fg)" text-anchor="middle">Different free S and reporter output.</text>
 <foreignObject x="90" y="601.2" width="720" height="42" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:center;font-size:21px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><msub><mi>G</mi><mn>0</mn></msub></msub><mi mathvariant="normal">/</mi><msub><mi>c</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn><mtext> or </mtext><mn>0.5</mn><mo separator="true">,</mo><mspace width="1em"/><msub><mi>K</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">r</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>c</mi><mn>0</mn></msub><mo>=</mo><mn>0.003</mn><mo separator="true">,</mo><mspace width="1em"/><msub><mi>K</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">t</mi></mrow></msub><mi mathvariant="normal">/</mi><msub><mi>c</mi><mn>0</mn></msub><mo>=</mo><mn>0.03</mn></mrow><annotation encoding="application/x-tex">q_{G_0}/c_0=0\ \text{or}\ 0.5,\quad K_{\mathrm{pair}}/c_0=0.003,\quad K_{\mathrm{out}}/c_0=0.03</annotation></semantics></math></div></foreignObject>
 </svg>
-</div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 22. A downstream target changes the response at fixed upstream totals.</b> The comparison solves the full mass balance for free repressor with and without the output-promoter pool. The controlled quantities are protein totals. A reservoir that clamps free repressor would instead supply the bound amount and preserve the free-input response.</figcaption></figure>
+</div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 23. A downstream target changes the response at fixed upstream totals.</b> The comparison solves the full mass balance for free repressor with and without the output-promoter pool. The controlled quantities are protein totals. A reservoir that clamps free repressor would instead supply the bound amount and preserve the free-input response.</figcaption></figure>
 <p><strong>Several downstream targets add several bound amounts.</strong> If free <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span> binds promoter pools <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><msub><mi>G</mi><mi>i</mi></msub></msub></mrow><annotation encoding="application/x-tex">q_{G_i}</annotation></semantics></math></span>, its supplied total is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>I</mi></msub><mo>=</mo><mi>I</mi><mo>+</mo><msub><mo>∑</mo><mi>i</mi></msub><msub><mi>q</mi><msub><mi>G</mi><mi>i</mi></msub></msub><mi>I</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><msub><mi>K</mi><mi>i</mi></msub><mo>+</mo><mi>I</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">q_I=I+\sum_i q_{G_i}I/(K_i+I)</annotation></semantics></math></span>, before adding any other partners. Consequently the affine comparison in §5 is generally not affine in input totals. A negligible total binding capacity, or a reservoir that fixes free input, justifies the earlier input interpretation.</p>
 <p><strong>Expression can replenish signal but adds delay.</strong> The output concentration is produced from a promoter activity, rather than supplied by an ideal wire. Even with fast binding, transcript and protein relaxation introduce clocks <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>M</mi></msub><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><msub><mi>γ</mi><mi>M</mi></msub></mrow><annotation encoding="application/x-tex">t_M=1/\gamma_M</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>R</mi></msub><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><msub><mi>γ</mi><mi>R</mi></msub></mrow><annotation encoding="application/x-tex">t_R=1/\gamma_R</annotation></semantics></math></span>. For a normalized step from 0 to 1, a one-stage first-order response reaches error <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span> after <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>R</mi></msub><mspace width="0.1667em"></mspace><mi>log</mi><mo>⁡</mo><mo stretchy="false">(</mo><mn>1</mn><mi mathvariant="normal">/</mi><mi>ϵ</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t_R\log(1/\epsilon)</annotation></semantics></math></span>. Several stages can introduce longer transients and temporary wrong classifications. Their timing should be checked in the composed dynamics.<sup class="c"><a href="#r-nielsen">3</a></sup></p>
 <p><strong>Small concentrations make the readout stochastic.</strong> At volume <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span>, a concentration <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span> corresponds to mean count <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mi>c</mi><msub><mi>N</mi><mi>A</mi></msub><mi>V</mi></mrow><annotation encoding="application/x-tex">n=cN_AV</annotation></semantics></math></span>, where <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mi>A</mi></msub></mrow><annotation encoding="application/x-tex">N_A</annotation></semantics></math></span> is Avogadro's constant. A Poisson reference has relative standard deviation <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">1/\sqrt n</annotation></semantics></math></span>. Correlations and burst production can change that reference. A deterministic tolerance bounds mean concentrations. A probability of wrong classification needs a stochastic model and a sampling protocol.</p>
@@ -7858,7 +8697,7 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 \dot q_B&amp;=\frac{1}{t_\mathrm{deg}}\left[\frac{4c_0}{1+(q_A/c_0)^2}-q_B+c_0u_B(t)\right].
 \end{aligned}</annotation></semantics></math></div>
 <p>All parameter values are illustrative. The concentrations are nonnegative. Each dimensionless nonnegative input specifies an additional production flux in its corresponding equation. The two unforced stable states have one protein high and the other low. The symmetric fixed point is unstable to opposite changes in the two proteins.</p>
-<p><strong>A writing pulse selects a basin. The unforced dynamics then preserve the decision.</strong></p><figure id="fig-toggle-memory"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 23. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 713" role="img" aria-label="toggle-memory" font-family="var(--sans)">
+<p><strong>A writing pulse selects a basin. The unforced dynamics then preserve the decision.</strong></p><figure id="fig-toggle-memory"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 24. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 713" role="img" aria-label="toggle-memory" font-family="var(--sans)">
 <defs><marker id="l12-toggle-memory" markerWidth="11" markerHeight="8" refX="8" refY="3.0" orient="auto"><path d="M0,0 L0,6 L9,3.0 z" fill="var(--teal)"/></marker></defs>
 <text x="28.0" y="39.0" font-size="25" fill="var(--fg)" font-weight="700">A transient pulse moves the state into another basin of attraction</text>
 <line x1="83.0" y1="133.0" x2="83.0" y2="453.0" stroke="var(--gridc)" stroke-width="1"/>
@@ -8006,7 +8845,7 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 <foreignObject x="90" y="610" width="720" height="40" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:center;font-size:20px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><msub><mi>t</mi><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">g</mi></mrow></msub><msub><mi>c</mi><mn>0</mn></msub></mfrac><msub><mover accent="true"><mi>q</mi><mo>˙</mo></mover><mi>A</mi></msub><mo>=</mo><mfrac><mn>4</mn><mrow><mn>1</mn><mo>+</mo><mo stretchy="false">(</mo><msub><mi>q</mi><mi>B</mi></msub><mi mathvariant="normal">/</mi><msub><mi>c</mi><mn>0</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></mfrac><mo>−</mo><mfrac><msub><mi>q</mi><mi>A</mi></msub><msub><mi>c</mi><mn>0</mn></msub></mfrac><mo>+</mo><msub><mi>u</mi><mi>A</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mspace width="1em"/><mfrac><msub><mi>t</mi><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">g</mi></mrow></msub><msub><mi>c</mi><mn>0</mn></msub></mfrac><msub><mover accent="true"><mi>q</mi><mo>˙</mo></mover><mi>B</mi></msub><mo>=</mo><mfrac><mn>4</mn><mrow><mn>1</mn><mo>+</mo><mo stretchy="false">(</mo><msub><mi>q</mi><mi>A</mi></msub><mi mathvariant="normal">/</mi><msub><mi>c</mi><mn>0</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></mfrac><mo>−</mo><mfrac><msub><mi>q</mi><mi>B</mi></msub><msub><mi>c</mi><mn>0</mn></msub></mfrac><mo>+</mo><msub><mi>u</mi><mi>B</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\frac{t_{\mathrm{deg}}}{c_0}\dot q_A=\frac{4}{1+(q_B/c_0)^2}-\frac{q_A}{c_0}+u_A(t),\quad \frac{t_{\mathrm{deg}}}{c_0}\dot q_B=\frac{4}{1+(q_A/c_0)^2}-\frac{q_B}{c_0}+u_B(t)</annotation></semantics></math></div></foreignObject>
 <foreignObject x="90" y="658.2" width="720" height="42" style="overflow:visible;pointer-events:none"><div xmlns="http://www.w3.org/1999/xhtml" style="width:720px;text-align:center;font-size:21px;line-height:1;color:var(--fg)"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>A</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>6</mn><mtext> </mtext><msub><mn>1</mn><mrow><mo stretchy="false">{</mo><mn>5</mn><mo>≤</mo><mi>t</mi><mi mathvariant="normal">/</mi><msub><mi>t</mi><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">g</mi></mrow></msub><mo>&lt;</mo><mn>7</mn><mo stretchy="false">}</mo></mrow></msub><mo separator="true">,</mo><mspace width="1em"/><msub><mi>u</mi><mi>B</mi></msub><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">u_A(t)=6\,1_{\{5\le t/t_{\mathrm{deg}}&lt;7\}},\quad u_B(t)=0</annotation></semantics></math></div></foreignObject>
 </svg>
-</div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 23. A transient input can leave a persistent expression state.</b> The phase portrait and pulse trajectory are computed from the declared cooperative toggle. The plotted pulse sets <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>A</mi></msub><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">u_A=6</annotation></semantics></math></span> for two removal times, starting at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi mathvariant="normal">/</mi><msub><mi>t</mi><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">g</mi></mrow></msub><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">t/t_\mathrm{deg}=5</annotation></semantics></math></span>, with <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>B</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">u_B=0</annotation></semantics></math></span>. The explorer can pulse either protein. The memory is the final attracting state after the input returns to zero. The elapsed time is measured in removal times. This is a deterministic illustration, not a measured retention probability.</figcaption></figure>
+</div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 24. A transient input can leave a persistent expression state.</b> The phase portrait and pulse trajectory are computed from the declared cooperative toggle. The plotted pulse sets <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>A</mi></msub><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">u_A=6</annotation></semantics></math></span> for two removal times, starting at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi mathvariant="normal">/</mi><msub><mi>t</mi><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">g</mi></mrow></msub><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">t/t_\mathrm{deg}=5</annotation></semantics></math></span>, with <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>B</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">u_B=0</annotation></semantics></math></span>. The explorer can pulse either protein. The memory is the final attracting state after the input returns to zero. The elapsed time is measured in removal times. This is a deterministic illustration, not a measured retention probability.</figcaption></figure>
 <div class="l12-exhibit" id="l12-memory-demo"></div>
 <p><strong>The reaction-order calculation explains the two kinds of fixed point.</strong> At the symmetric fixed point, let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>=</mo><msub><mi>q</mi><mi>A</mi></msub><mo>=</mo><msub><mi>q</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">q=q_A=q_B</annotation></semantics></math></span> denote the common concentration. Each repression order is <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>2</mn><mo stretchy="false">(</mo><mi>q</mi><mi mathvariant="normal">/</mi><msub><mi>c</mi><mn>0</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mi mathvariant="normal">/</mi><mo stretchy="false">[</mo><mn>1</mn><mo>+</mo><mo stretchy="false">(</mo><mi>q</mi><mi mathvariant="normal">/</mi><msub><mi>c</mi><mn>0</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">-2(q/c_0)^2/[1+(q/c_0)^2]</annotation></semantics></math></span>. Its magnitude exceeds 1 for this example. The balance-order matrix therefore has an unstable direction in which one protein increases while the other decreases. At the asymmetric fixed points, the product of the two repression-order magnitudes is below 1, so both linearized modes return. Lecture 11's stability test turns the simulation into an interpretable mechanism.</p>
 <div class="box def"><span class="lbl">Biological comparison: a pulse commits an oocyte</span><p>Xiong and Ferrell showed that transient progesterone stimulation could commit Xenopus oocytes to a mature state that persisted after hormone withdrawal. A separate experiment transiently activated an engineered Raf kinase with oestradiol. Blocking feedback made that kinase-pathway response reverse after the stimulus was removed. The result supports a concrete cell-state memory task. The two-protein toggle above is an illustration of the same dynamical question, rather than a model of that signaling pathway.<sup class="c"><a href="#r-xiong">6</a></sup></p></div>
@@ -8019,7 +8858,7 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 <p>The weights describe how each input moves the comparison. A positive weight favors output 1. A negative weight favors output 0. The equality convention belongs to the logical definition. A finite molecular implementation will require a nonzero margin from equality.</p>
 <p><strong>AND and OR use the same weights and different thresholds.</strong> On binary inputs, set <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><mo>=</mo><msub><mi>w</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">w_1=w_2=1</annotation></semantics></math></span>. Threshold <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>=</mo><mn>3</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\theta=3/2</annotation></semantics></math></span> gives AND. Threshold <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>=</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">\theta=1/2</annotation></semantics></math></span> gives OR. Both choices leave a margin of <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">1/2</annotation></semantics></math></span> on every binary input.</p>
 <p><strong>XOR cannot be computed by one linear threshold unit.</strong> XOR labels 10 and 01 as 1, and 00 and 11 as 0. The four required inequalities are <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><mo>&gt;</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">w_1&gt;\theta</annotation></semantics></math></span>, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>2</mn></msub><mo>&gt;</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">w_2&gt;\theta</annotation></semantics></math></span>, <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">0\le\theta</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><mo>≤</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">w_1+w_2\le\theta</annotation></semantics></math></span>. The first two imply <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><mo>&gt;</mo><mn>2</mn><mi>θ</mi><mo>≥</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">w_1+w_2&gt;2\theta\ge\theta</annotation></semantics></math></span>, contradicting the last. The failure follows from the task's geometry.</p>
-<p><strong>Depth helps when intermediate decisions make a task separable.</strong></p><figure id="fig-xor-geometry"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 24. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 570" role="img" aria-label="xor-geometry" font-family="var(--sans)">
+<p><strong>Depth helps when intermediate decisions make a task separable.</strong></p><figure id="fig-xor-geometry"><div class="l12-figure" tabindex="0" role="region" aria-label="Figure 25. Scroll horizontally on a narrow screen."><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 570" role="img" aria-label="xor-geometry" font-family="var(--sans)">
 <defs><marker id="l12-xor-geometry" markerWidth="11" markerHeight="8" refX="8" refY="3.0" orient="auto"><path d="M0,0 L0,6 L9,3.0 z" fill="var(--teal)"/></marker></defs>
 <text x="28.0" y="39.0" font-size="25" fill="var(--fg)" font-weight="700">Two thresholds compose a decision that one threshold cannot make</text>
 <line x1="122.3" y1="121.0" x2="122.3" y2="396.0" stroke="var(--gridc)" stroke-width="1"/>
@@ -8066,7 +8905,7 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 <text x="653.0" y="503.0" font-size="18" fill="var(--fg)" text-anchor="middle">Hidden thresholds are OR and AND.</text>
 <text x="653.0" y="535.0" font-size="18" fill="var(--fg)" text-anchor="middle">The output selects OR without AND.</text>
 </svg>
-</div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 24. Two intermediate decisions compute XOR.</b> The binary input square assigns output 1 to opposite corners. No affine line separates those corners from the other two. The hidden units compute OR and AND. The output tests their difference. Connecting physical versions of these units still requires the loading and timing checks in the optional loading and timing calculation.</figcaption></figure>
+</div><p class="l12-scroll-hint">Scroll inside the figure to see it at reading size.</p><figcaption><b>Figure 25. Two intermediate decisions compute XOR.</b> The binary input square assigns output 1 to opposite corners. No affine line separates those corners from the other two. The hidden units compute OR and AND. The output tests their difference. Connecting physical versions of these units still requires the loading and timing checks in the optional loading and timing calculation.</figcaption></figure>
 <p><strong>Two hidden linear threshold units and one output linear threshold unit compute XOR.</strong> Let <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn><mo stretchy="false">{</mo><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>x</mi><mn>2</mn></msub><mo>&gt;</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">h_1=1\{x_1+x_2&gt;1/2\}</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>h</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn><mo stretchy="false">{</mo><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><msub><mi>x</mi><mn>2</mn></msub><mo>&gt;</mo><mn>3</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">h_2=1\{x_1+x_2&gt;3/2\}</annotation></semantics></math></span>. The output <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mn>1</mn><mo stretchy="false">{</mo><msub><mi>h</mi><mn>1</mn></msub><mo>−</mo><msub><mi>h</mi><mn>2</mn></msub><mo>&gt;</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">y=1\{h_1-h_2&gt;1/2\}</annotation></semantics></math></span> is 1 precisely when one input is high. This construction proves a specific representational advantage of an additional layer. It does not assert that every extra layer multiplies every task's capacity by the same factor. <a href="#a4">finite molecular XOR calculation</a> checks a finite molecular implementation of the three linear threshold units.</p>
 <p class="takeaway">Test whether a truth table is linearly separable, and introduce intermediate decisions when one threshold cannot represent it.</p>
 </details><details class="l12-optional" id="a1"><summary>B6 · Check the finite-margin window with an explicit OR gate</summary>
@@ -8126,7 +8965,7 @@ X_1+Y_1+Z_1&amp;\rightsquigarrow X_1+Y_1+Z_0.
 <li id="r-huttlin">E. L. Huttlin and colleagues. “Dual proteome-scale networks reveal cell-specific remodeling of the human interactome.” <em>Cell</em> 184, 3022–3040 (2021). <a href="https://doi.org/10.1016/j.cell.2021.04.011">DOI</a> · Local full text. <span class="venue">Summary and Results: 118,162 protein associations among 14,586 proteins in the assembled 293T network. Affinity-purification associations include complex-mediated interactions.</span></li>
 <li id="r-binding-uat"><em>Universal Approximation with Equilibrium Binding: A tutorial: one conservation mechanism, two proofs, and their physical costs.</em> Unpublished local tutorial, October 2026. Its printed attribution describes a synthesis of the binding universal-approximation manuscripts and the work of XU Ye. No individual author is inferred. Local full text. <span class="venue">Theorem 5.7, Proposition 5.13, Theorem 7.1 and Theorem 11.12: occupancy concentration, conserved-total calibration, scalar and multivariate approximation, and the resources needed as the error decreases.</span></li>
 <li id="r-resource-limited"><em>Resource-Limited Universality in Equilibrium Binding Scaffolds.</em> Unpublished local working manuscript, 2026. No author is printed in the inspected opening. Local full text. <span class="venue">Sections 2–3 and Appendix A: exact occupancy scaffolds, conserved-total calibration, positive approximation and its pool-size and gain costs.</span></li>
-</ol></div>
+<li id="r-cross">N. E. Buchler and F. R. Cross. Protein sequestration generates a flexible ultrasensitive response in a genetic network. <em>Molecular Systems Biology</em> 5, 272 (2009). <a href="https://doi.org/10.1038/msb.2009.30">DOI</a>. <span class="venue">Figures 2 and 3: synthetic yeast measurements test how inhibitor abundance sets the sequestration threshold and response sharpness.</span></li></ol></div>
 <style>
 .l12-demo{margin:1.6rem 0 2.2rem;border:1px solid var(--rule);border-radius:10px;background:var(--bg2);font-family:var(--sans);overflow:hidden}
 .l12-demo-title{margin:0!important;padding:1rem 1.2rem .25rem;font-size:1.05rem!important;font-weight:700;line-height:1.35}
