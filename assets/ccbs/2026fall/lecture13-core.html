@@ -2018,7 +2018,7 @@ m_{\mathrm{retained}}&amp;=-\sum_i m_i
 <p><strong>With oxygen in excess, glucose limits growth and the oxidative routes carry the carbon that is not built into biomass.</strong> At oxygen cap 20 the optimum grows at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.982</mn><mtext> </mtext><msup><mi mathvariant="normal">h</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0.982\,\mathrm{h}^{-1}</annotation></semantics></math></span>. Lower glycolysis, read at enolase, carries 14.6, or about 1.5 triose units per glucose. Pyruvate dehydrogenase adds 7.97 to acetyl-CoA. The TCA cycle takes 4.86 at citrate synthase, and the pentose phosphate pathway takes 4.08 at glucose-6-phosphate dehydrogenase. The ATP synthase flux is 55.8. Net carbon dioxide export is 19.7, and no acetate, ethanol or formate leaves the cell. Two thirds of the glucose carbon ends in biomass.</p>
 <p><strong>When oxygen is too scarce to oxidize the carbon, pyruvate takes a different route and the fermentation products carry the remaining carbon.</strong> At oxygen cap 5 the optimum grows at <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.492</mn><mtext> </mtext><msup><mi mathvariant="normal">h</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0.492\,\mathrm{h}^{-1}</annotation></semantics></math></span> and consumes all five oxygen units. Pyruvate dehydrogenase falls to zero. Pyruvate formate lyase carries 14.7 and splits pyruvate into acetyl-CoA and formate. The TCA cycle falls to 0.53 and the pentose phosphate pathway to zero. Acetate, formate and ethanol leave at 11.4, 14.6 and 1.25. The ATP synthase flux falls to 9.41. One third of the carbon reaches biomass.</p>
 <p><strong>Without oxygen the same shift goes further.</strong> Acetate, formate and ethanol leave at 8.21, 17.3 and 8.08, and growth falls to <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.242</mn><mtext> </mtext><msup><mi mathvariant="normal">h</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">0.242\,\mathrm{h}^{-1}</annotation></semantics></math></span>. A small TCA flux of 0.26 remains, because biosynthesis still withdraws TCA intermediates. Net carbon dioxide exchange is close to zero.</p>
-<figure class="figbox" id="fig-fba-routes"><div class="l13-figure" tabindex="0" role="region" aria-label="The growth-maximizing iJO1366 flux distribution drawn at three oxygen caps, with arrow width proportional to reaction flux"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 980" role="img" aria-label="Three oxygen regimes of the iJO1366 flux optimum, drawn as pathway fluxes" font-family="var(--sans)">
+<figure class="figbox" id="fig-fba-routes"><div class="l13-figure" tabindex="0" role="region" aria-label="The growth-maximizing iJO1366 flux distribution drawn at three oxygen caps, with arrow width proportional to reaction flux"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1000" role="img" aria-label="Three oxygen regimes of the iJO1366 flux optimum, drawn as pathway fluxes" font-family="var(--sans)">
 <text x="36.0" y="40.0" font-size="25" fill="var(--fg)" font-weight="700">Oxygen supply changes which pathway carries the carbon</text>
 <text x="36.0" y="66.0" font-size="14" fill="var(--muted)">iJO1366 with glucose uptake capped at 10. Fluxes are in mmol gDW⁻¹ h⁻¹. Arrow width is proportional, on one scale.</text>
 <text x="36.0" y="112.0" font-size="20" fill="var(--fg)" font-weight="700">Oxygen cap 0</text>
@@ -2027,58 +2027,78 @@ m_{\mathrm{retained}}&amp;=-\sum_i m_i
 <text x="864.0" y="135.0" font-size="14" fill="var(--muted)" text-anchor="end">17% of carbon to biomass</text>
 <text x="36.0" y="246.0" font-size="14" fill="var(--fg)">glucose</text>
 <text x="36.0" y="267.0" font-size="17" fill="var(--fg)" font-weight="700">10.0</text>
-<line x1="112.0" y1="250.0" x2="157.3" y2="250.0" stroke="var(--fg)" stroke-width="7.0"/>
-<path d="M159.35,260.35 L168.00,250.00 L159.35,239.65" fill="none" stroke="var(--fg)" stroke-width="2.8000000000000003" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M145.10,260.35 L153.75,250.00 L145.10,239.65" fill="none" stroke="var(--fg)" stroke-width="2.8000000000000003" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="112.0" y1="250.0" x2="131.1" y2="250.0" stroke="var(--fg)" stroke-width="7.0"/>
+<line x1="148.9" y1="250.0" x2="168.0" y2="250.0" stroke="var(--fg)" stroke-width="7.0"/>
+<path d="M132.59,256.25 L137.79,250.00 L132.59,243.75" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M142.21,256.25 L147.41,250.00 L142.21,243.75" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="168.0" y="226.0" width="66.0" height="48.0" fill="var(--bg2)" stroke="var(--rule)" stroke-width="1.4" rx="7"/>
 <text x="201.0" y="255.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">G6P</text>
 <line x1="201.0" y1="226.0" x2="201.0" y2="188.0" stroke="var(--teal)" stroke-width="1.1" stroke-dasharray="3 4"/>
+<line x1="201.0" y1="226.0" x2="201.0" y2="213.9" stroke="var(--teal)" stroke-width="0.0"/>
+<line x1="201.0" y1="200.1" x2="201.0" y2="188.0" stroke="var(--teal)" stroke-width="0.0"/>
+<path d="M205.60,212.42 L201.00,208.62 L196.40,212.42" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M205.60,205.39 L201.00,201.59 L196.40,205.39" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="140.0" y="146.0" width="128.0" height="42.0" fill="var(--bg2)" stroke="var(--teal)" stroke-width="1.4" rx="7"/>
-<text x="204.0" y="164.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">PPP ≈0</text>
+<text x="204.0" y="164.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">PPP 0</text>
 <text x="204.0" y="181.0" font-size="11" fill="var(--muted)" text-anchor="middle">precursors + CO₂</text>
-<line x1="234.0" y1="250.0" x2="282.5" y2="250.0" stroke="var(--fg)" stroke-width="13.31173840923811"/>
-<path d="M284.51,263.82 L296.00,250.00 L284.51,236.18" fill="none" stroke="var(--fg)" stroke-width="5.324695363695245" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M265.53,263.82 L277.02,250.00 L265.53,236.18" fill="none" stroke="var(--fg)" stroke-width="5.324695363695245" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="234.0" y1="250.0" x2="254.3" y2="250.0" stroke="var(--fg)" stroke-width="13.31173840923811"/>
+<line x1="275.7" y1="250.0" x2="296.0" y2="250.0" stroke="var(--fg)" stroke-width="13.31173840923811"/>
+<path d="M255.79,257.50 L262.25,250.00 L255.79,242.50" fill="none" stroke="var(--fg)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M267.75,257.50 L274.21,250.00 L267.75,242.50" fill="none" stroke="var(--fg)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="265.0" y="218.0" font-size="12" fill="var(--muted)" text-anchor="middle">glycolysis</text>
 <text x="265.0" y="280.0" font-size="17" fill="var(--fg)" text-anchor="middle" font-weight="700">19.0</text>
 <rect x="296.0" y="226.0" width="76.0" height="48.0" fill="var(--bg2)" stroke="var(--rule)" stroke-width="1.4" rx="7"/>
 <text x="334.0" y="255.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">pyruvate</text>
 <line x1="372.0" y1="233.0" x2="436.0" y2="233.0" stroke="var(--fg)" stroke-width="1.1" stroke-dasharray="3 4"/>
-<text x="404.0" y="210.0" font-size="12" fill="var(--muted)" text-anchor="middle">PDH ≈0</text>
-<line x1="372.0" y1="267.0" x2="423.0" y2="267.0" stroke="var(--lime)" stroke-width="12.11678590330318"/>
-<path d="M425.05,280.16 L436.00,267.00 L425.05,253.84" fill="none" stroke="var(--lime)" stroke-width="4.846714361321272" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M406.96,280.16 L417.91,267.00 L406.96,253.84" fill="none" stroke="var(--lime)" stroke-width="4.846714361321272" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="372.0" y1="233.0" x2="397.1" y2="233.0" stroke="var(--fg)" stroke-width="3.979039320256561e-14"/>
+<line x1="410.9" y1="233.0" x2="436.0" y2="233.0" stroke="var(--fg)" stroke-width="3.979039320256561e-14"/>
+<path d="M398.58,237.60 L402.38,233.00 L398.58,228.40" fill="none" stroke="var(--fg)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M405.61,237.60 L409.41,233.00 L405.61,228.40" fill="none" stroke="var(--fg)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="404.0" y="210.0" font-size="12" fill="var(--muted)" text-anchor="middle">PDH 0</text>
+<line x1="372.0" y1="267.0" x2="393.6" y2="267.0" stroke="var(--lime)" stroke-width="12.11678590330318"/>
+<line x1="414.4" y1="267.0" x2="436.0" y2="267.0" stroke="var(--lime)" stroke-width="12.11678590330318"/>
+<path d="M395.13,274.50 L401.36,267.00 L395.13,259.50" fill="none" stroke="var(--lime)" stroke-width="2.423357180660636" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M406.64,274.50 L412.87,267.00 L406.64,259.50" fill="none" stroke="var(--lime)" stroke-width="2.423357180660636" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="396.0" y="292.0" font-size="12" fill="var(--muted)" text-anchor="end">PFL 17.3</text>
-<line x1="412.0" y1="273.0" x2="412.0" y2="309.1" stroke="var(--lime)" stroke-width="12.098324002818858"/>
-<path d="M398.85,311.06 L412.00,322.00 L425.15,311.06" fill="none" stroke="var(--lime)" stroke-width="4.8393296011275435" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M398.85,292.98 L412.00,303.93 L425.15,292.98" fill="none" stroke="var(--lime)" stroke-width="4.8393296011275435" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="412.0" y1="273.0" x2="412.0" y2="287.1" stroke="var(--lime)" stroke-width="12.098324002818858"/>
+<line x1="412.0" y1="307.9" x2="412.0" y2="322.0" stroke="var(--lime)" stroke-width="12.098324002818858"/>
+<path d="M404.50,288.64 L412.00,294.86 L419.50,288.64" fill="none" stroke="var(--lime)" stroke-width="2.4196648005637718" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M404.50,300.14 L412.00,306.36 L419.50,300.14" fill="none" stroke="var(--lime)" stroke-width="2.4196648005637718" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="352.0" y="324.0" width="88.0" height="40.0" fill="var(--bg2)" stroke="var(--lime)" stroke-width="1.4" rx="7"/>
 <text x="396.0" y="348.7" font-size="13" fill="var(--lime)" text-anchor="middle" font-weight="700">formate 17.3</text>
 <rect x="436.0" y="226.0" width="104.0" height="48.0" fill="var(--bg2)" stroke="var(--rule)" stroke-width="1.4" rx="7"/>
 <text x="488.0" y="255.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">acetyl-CoA</text>
-<line x1="492.0" y1="274.0" x2="492.0" y2="311.9" stroke="var(--coral)" stroke-width="5.745342283686813"/>
-<path d="M482.34,313.91 L492.00,322.00 L501.66,313.91" fill="none" stroke="var(--coral)" stroke-width="2.298136913474725" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M482.34,300.61 L492.00,308.69 L501.66,300.61" fill="none" stroke="var(--coral)" stroke-width="2.298136913474725" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="492.0" y1="274.0" x2="492.0" y2="289.4" stroke="var(--coral)" stroke-width="5.745342283686813"/>
+<line x1="492.0" y1="306.6" x2="492.0" y2="322.0" stroke="var(--coral)" stroke-width="5.745342283686813"/>
+<path d="M486.06,290.95 L492.00,295.90 L497.94,290.95" fill="none" stroke="var(--coral)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M486.06,300.10 L492.00,305.05 L497.94,300.10" fill="none" stroke="var(--coral)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="448.0" y="324.0" width="88.0" height="40.0" fill="var(--bg2)" stroke="var(--coral)" stroke-width="1.4" rx="7"/>
 <text x="492.0" y="348.7" font-size="13" fill="var(--coral)" text-anchor="middle" font-weight="700">acetate 8.21</text>
-<line x1="528.0" y1="274.0" x2="587.8" y2="316.2" stroke="var(--rose)" stroke-width="5.654368453927102"/>
-<path d="M583.89,325.21 L596.00,322.00 L594.97,309.51" fill="none" stroke="var(--rose)" stroke-width="2.261747381570841" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M573.07,317.58 L585.18,314.36 L584.15,301.87" fill="none" stroke="var(--rose)" stroke-width="2.261747381570841" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="528.0" y1="274.0" x2="555.0" y2="293.1" stroke="var(--rose)" stroke-width="5.654368453927102"/>
+<line x1="569.0" y1="302.9" x2="596.0" y2="322.0" stroke="var(--rose)" stroke-width="5.654368453927102"/>
+<path d="M552.85,298.78 L560.29,296.79 L559.67,289.12" fill="none" stroke="var(--rose)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M560.30,304.04 L567.74,302.05 L567.12,294.38" fill="none" stroke="var(--rose)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="552.0" y="324.0" width="88.0" height="40.0" fill="var(--bg2)" stroke="var(--rose)" stroke-width="1.4" rx="7"/>
 <text x="596.0" y="348.7" font-size="13" fill="var(--rose)" text-anchor="middle" font-weight="700">ethanol 8.08</text>
-<line x1="540.0" y1="250.0" x2="574.0" y2="250.0" stroke="var(--teal)" stroke-width="1.2"/>
-<path d="M575.96,257.16 L582.00,250.00 L575.96,242.84" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M566.06,257.16 L572.10,250.00 L566.06,242.84" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="540.0" y1="250.0" x2="553.7" y2="250.0" stroke="var(--teal)" stroke-width="1.2"/>
+<line x1="568.3" y1="250.0" x2="582.0" y2="250.0" stroke="var(--teal)" stroke-width="1.2"/>
+<path d="M555.24,254.80 L559.28,250.00 L555.24,245.20" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M562.72,254.80 L566.76,250.00 L562.72,245.20" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="561.0" y="214.0" font-size="14" fill="var(--teal)" text-anchor="middle" font-weight="700">0.26</text>
 <rect x="582.0" y="224.0" width="124.0" height="52.0" fill="var(--bg2)" stroke="var(--teal)" stroke-width="1.4" rx="7"/>
 <text x="644.0" y="247.0" font-size="13" fill="var(--fg)" text-anchor="middle" font-weight="700">TCA cycle</text>
 <text x="644.0" y="264.0" font-size="10" fill="var(--muted)" text-anchor="middle">+ respiration</text>
 <line x1="632.0" y1="178.0" x2="632.0" y2="223.0" stroke="var(--plum)" stroke-width="1.1" stroke-dasharray="3 4"/>
+<line x1="632.0" y1="178.0" x2="632.0" y2="193.6" stroke="var(--plum)" stroke-width="0.0"/>
+<line x1="632.0" y1="207.4" x2="632.0" y2="223.0" stroke="var(--plum)" stroke-width="0.0"/>
+<path d="M627.40,195.08 L632.00,198.88 L636.60,195.08" fill="none" stroke="var(--plum)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M627.40,202.11 L632.00,205.91 L636.60,202.11" fill="none" stroke="var(--plum)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="652.0" y="186.0" font-size="14" fill="var(--plum)" font-weight="700">O₂</text>
-<text x="652.0" y="204.0" font-size="15" fill="var(--plum)" font-weight="700">≈0</text>
-<line x1="706.0" y1="250.0" x2="740.0" y2="250.0" stroke="var(--peri)" stroke-width="1.2"/>
-<path d="M741.96,257.16 L748.00,250.00 L741.96,242.84" fill="none" stroke="var(--peri)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M732.06,257.16 L738.10,250.00 L732.06,242.84" fill="none" stroke="var(--peri)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="652.0" y="204.0" font-size="15" fill="var(--plum)" font-weight="700">0</text>
+<line x1="706.0" y1="250.0" x2="719.7" y2="250.0" stroke="var(--peri)" stroke-width="1.2"/>
+<line x1="734.3" y1="250.0" x2="748.0" y2="250.0" stroke="var(--peri)" stroke-width="1.2"/>
+<path d="M721.24,254.80 L725.28,250.00 L721.24,245.20" fill="none" stroke="var(--peri)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M728.72,254.80 L732.76,250.00 L728.72,245.20" fill="none" stroke="var(--peri)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="760.0" y="245.0" font-size="14" fill="var(--peri)" font-weight="700">CO₂</text>
 <text x="760.0" y="265.0" font-size="15" fill="var(--peri)" font-weight="700">≈0</text>
 <text x="36.0" y="382.0" font-size="20" fill="var(--fg)" font-weight="700">Oxygen cap 5</text>
@@ -2087,60 +2107,77 @@ m_{\mathrm{retained}}&amp;=-\sum_i m_i
 <text x="864.0" y="405.0" font-size="14" fill="var(--muted)" text-anchor="end">34% of carbon to biomass</text>
 <text x="36.0" y="516.0" font-size="14" fill="var(--fg)">glucose</text>
 <text x="36.0" y="537.0" font-size="17" fill="var(--fg)" font-weight="700">10.0</text>
-<line x1="112.0" y1="520.0" x2="157.3" y2="520.0" stroke="var(--fg)" stroke-width="7.0"/>
-<path d="M159.35,530.35 L168.00,520.00 L159.35,509.65" fill="none" stroke="var(--fg)" stroke-width="2.8000000000000003" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M145.10,530.35 L153.75,520.00 L145.10,509.65" fill="none" stroke="var(--fg)" stroke-width="2.8000000000000003" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="112.0" y1="520.0" x2="131.1" y2="520.0" stroke="var(--fg)" stroke-width="7.0"/>
+<line x1="148.9" y1="520.0" x2="168.0" y2="520.0" stroke="var(--fg)" stroke-width="7.0"/>
+<path d="M132.59,526.25 L137.79,520.00 L132.59,513.75" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M142.21,526.25 L147.41,520.00 L142.21,513.75" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="168.0" y="496.0" width="66.0" height="48.0" fill="var(--bg2)" stroke="var(--rule)" stroke-width="1.4" rx="7"/>
 <text x="201.0" y="525.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">G6P</text>
 <line x1="201.0" y1="496.0" x2="201.0" y2="458.0" stroke="var(--teal)" stroke-width="1.1" stroke-dasharray="3 4"/>
+<line x1="201.0" y1="496.0" x2="201.0" y2="483.9" stroke="var(--teal)" stroke-width="0.0"/>
+<line x1="201.0" y1="470.1" x2="201.0" y2="458.0" stroke="var(--teal)" stroke-width="0.0"/>
+<path d="M205.60,482.42 L201.00,478.62 L196.40,482.42" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M205.60,475.39 L201.00,471.59 L196.40,475.39" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="140.0" y="416.0" width="128.0" height="42.0" fill="var(--bg2)" stroke="var(--teal)" stroke-width="1.4" rx="7"/>
-<text x="204.0" y="434.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">PPP ≈0</text>
+<text x="204.0" y="434.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">PPP 0</text>
 <text x="204.0" y="451.0" font-size="11" fill="var(--muted)" text-anchor="middle">precursors + CO₂</text>
-<line x1="234.0" y1="520.0" x2="282.8" y2="520.0" stroke="var(--fg)" stroke-width="12.599388420746044"/>
-<path d="M284.83,533.43 L296.00,520.00 L284.83,506.57" fill="none" stroke="var(--fg)" stroke-width="5.039755368298418" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M266.38,533.43 L277.55,520.00 L266.38,506.57" fill="none" stroke="var(--fg)" stroke-width="5.039755368298418" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="234.0" y1="520.0" x2="254.5" y2="520.0" stroke="var(--fg)" stroke-width="12.599388420746044"/>
+<line x1="275.5" y1="520.0" x2="296.0" y2="520.0" stroke="var(--fg)" stroke-width="12.599388420746044"/>
+<path d="M255.99,527.50 L262.31,520.00 L255.99,512.50" fill="none" stroke="var(--fg)" stroke-width="2.519877684149209" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M267.69,527.50 L274.01,520.00 L267.69,512.50" fill="none" stroke="var(--fg)" stroke-width="2.519877684149209" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="265.0" y="488.0" font-size="12" fill="var(--muted)" text-anchor="middle">glycolysis</text>
 <text x="265.0" y="550.0" font-size="17" fill="var(--fg)" text-anchor="middle" font-weight="700">18.0</text>
 <rect x="296.0" y="496.0" width="76.0" height="48.0" fill="var(--bg2)" stroke="var(--rule)" stroke-width="1.4" rx="7"/>
 <text x="334.0" y="525.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">pyruvate</text>
 <line x1="372.0" y1="503.0" x2="436.0" y2="503.0" stroke="var(--fg)" stroke-width="1.1" stroke-dasharray="3 4"/>
-<text x="404.0" y="480.0" font-size="12" fill="var(--muted)" text-anchor="middle">PDH ≈0</text>
-<line x1="372.0" y1="537.0" x2="423.9" y2="537.0" stroke="var(--lime)" stroke-width="10.281267991229905"/>
-<path d="M425.87,549.15 L436.00,537.00 L425.87,524.85" fill="none" stroke="var(--lime)" stroke-width="4.112507196491962" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M409.16,549.15 L419.29,537.00 L409.16,524.85" fill="none" stroke="var(--lime)" stroke-width="4.112507196491962" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="372.0" y1="503.0" x2="397.1" y2="503.0" stroke="var(--fg)" stroke-width="8.107292615022743e-13"/>
+<line x1="410.9" y1="503.0" x2="436.0" y2="503.0" stroke="var(--fg)" stroke-width="8.107292615022743e-13"/>
+<path d="M398.58,507.60 L402.38,503.00 L398.58,498.40" fill="none" stroke="var(--fg)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M405.61,507.60 L409.41,503.00 L405.61,498.40" fill="none" stroke="var(--fg)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="404.0" y="480.0" font-size="12" fill="var(--muted)" text-anchor="middle">PDH 0</text>
+<line x1="372.0" y1="537.0" x2="394.2" y2="537.0" stroke="var(--lime)" stroke-width="10.281267991229905"/>
+<line x1="413.8" y1="537.0" x2="436.0" y2="537.0" stroke="var(--lime)" stroke-width="10.281267991229905"/>
+<path d="M395.65,544.07 L401.51,537.00 L395.65,529.93" fill="none" stroke="var(--lime)" stroke-width="2.056253598245981" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M406.49,544.07 L412.35,537.00 L406.49,529.93" fill="none" stroke="var(--lime)" stroke-width="2.056253598245981" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="396.0" y="562.0" font-size="12" fill="var(--muted)" text-anchor="end">PFL 14.7</text>
-<line x1="412.0" y1="543.0" x2="412.0" y2="579.9" stroke="var(--lime)" stroke-width="10.243691183383271"/>
-<path d="M399.87,581.89 L412.00,592.00 L424.13,581.89" fill="none" stroke="var(--lime)" stroke-width="4.097476473353309" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M399.87,565.21 L412.00,575.32 L424.13,565.21" fill="none" stroke="var(--lime)" stroke-width="4.097476473353309" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="412.0" y1="543.0" x2="412.0" y2="557.7" stroke="var(--lime)" stroke-width="10.243691183383271"/>
+<line x1="412.0" y1="577.3" x2="412.0" y2="592.0" stroke="var(--lime)" stroke-width="10.243691183383271"/>
+<path d="M404.94,559.17 L412.00,565.01 L419.06,559.17" fill="none" stroke="var(--lime)" stroke-width="2.0487382366766544" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M404.94,569.99 L412.00,575.83 L419.06,569.99" fill="none" stroke="var(--lime)" stroke-width="2.0487382366766544" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="352.0" y="594.0" width="88.0" height="40.0" fill="var(--bg2)" stroke="var(--lime)" stroke-width="1.4" rx="7"/>
 <text x="396.0" y="618.7" font-size="13" fill="var(--lime)" text-anchor="middle" font-weight="700">formate 14.6</text>
 <rect x="436.0" y="496.0" width="104.0" height="48.0" fill="var(--bg2)" stroke="var(--rule)" stroke-width="1.4" rx="7"/>
 <text x="488.0" y="525.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">acetyl-CoA</text>
-<line x1="492.0" y1="544.0" x2="492.0" y2="580.9" stroke="var(--coral)" stroke-width="7.94635783466238"/>
-<path d="M481.13,582.92 L492.00,592.00 L502.87,582.92" fill="none" stroke="var(--coral)" stroke-width="3.1785431338649524" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M481.13,567.96 L492.00,577.04 L502.87,567.96" fill="none" stroke="var(--coral)" stroke-width="3.1785431338649524" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="492.0" y1="544.0" x2="492.0" y2="558.8" stroke="var(--coral)" stroke-width="7.94635783466238"/>
+<line x1="492.0" y1="577.2" x2="492.0" y2="592.0" stroke="var(--coral)" stroke-width="7.94635783466238"/>
+<path d="M485.51,560.32 L492.00,565.71 L498.49,560.32" fill="none" stroke="var(--coral)" stroke-width="1.5892715669324762" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M485.51,570.29 L492.00,575.68 L498.49,570.29" fill="none" stroke="var(--coral)" stroke-width="1.5892715669324762" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="448.0" y="594.0" width="88.0" height="40.0" fill="var(--bg2)" stroke="var(--coral)" stroke-width="1.4" rx="7"/>
 <text x="492.0" y="618.7" font-size="13" fill="var(--coral)" text-anchor="middle" font-weight="700">acetate 11.4</text>
-<line x1="528.0" y1="544.0" x2="589.4" y2="587.4" stroke="var(--rose)" stroke-width="1.2"/>
-<path d="M586.94,594.37 L596.00,592.00 L595.19,582.67" fill="none" stroke="var(--rose)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M578.85,588.66 L587.91,586.29 L587.11,576.96" fill="none" stroke="var(--rose)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="528.0" y1="544.0" x2="556.1" y2="563.8" stroke="var(--rose)" stroke-width="1.2"/>
+<line x1="567.9" y1="572.2" x2="596.0" y2="592.0" stroke="var(--rose)" stroke-width="1.2"/>
+<path d="M554.53,568.60 L560.60,567.01 L560.06,560.76" fill="none" stroke="var(--rose)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M560.63,572.91 L566.70,571.32 L566.17,565.07" fill="none" stroke="var(--rose)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="552.0" y="594.0" width="88.0" height="40.0" fill="var(--bg2)" stroke="var(--rose)" stroke-width="1.4" rx="7"/>
 <text x="596.0" y="618.7" font-size="13" fill="var(--rose)" text-anchor="middle" font-weight="700">ethanol 1.25</text>
-<line x1="540.0" y1="520.0" x2="574.0" y2="520.0" stroke="var(--teal)" stroke-width="1.2"/>
-<path d="M575.96,527.16 L582.00,520.00 L575.96,512.84" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M566.06,527.16 L572.10,520.00 L566.06,512.84" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="540.0" y1="520.0" x2="553.7" y2="520.0" stroke="var(--teal)" stroke-width="1.2"/>
+<line x1="568.3" y1="520.0" x2="582.0" y2="520.0" stroke="var(--teal)" stroke-width="1.2"/>
+<path d="M555.24,524.80 L559.28,520.00 L555.24,515.20" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M562.72,524.80 L566.76,520.00 L562.72,515.20" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="561.0" y="484.0" font-size="14" fill="var(--teal)" text-anchor="middle" font-weight="700">0.53</text>
 <rect x="582.0" y="494.0" width="124.0" height="52.0" fill="var(--bg2)" stroke="var(--teal)" stroke-width="1.4" rx="7"/>
 <text x="644.0" y="517.0" font-size="13" fill="var(--fg)" text-anchor="middle" font-weight="700">TCA cycle</text>
 <text x="644.0" y="534.0" font-size="10" fill="var(--muted)" text-anchor="middle">+ respiration</text>
-<line x1="632.0" y1="448.0" x2="632.0" y2="483.9" stroke="var(--plum)" stroke-width="3.5"/>
-<path d="M623.58,485.93 L632.00,493.00 L640.42,485.93" fill="none" stroke="var(--plum)" stroke-width="1.4000000000000001" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M623.58,474.30 L632.00,481.38 L640.42,474.30" fill="none" stroke="var(--plum)" stroke-width="1.4000000000000001" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="632.0" y1="448.0" x2="632.0" y2="462.6" stroke="var(--plum)" stroke-width="3.5"/>
+<line x1="632.0" y1="478.4" x2="632.0" y2="493.0" stroke="var(--plum)" stroke-width="3.5"/>
+<path d="M626.62,464.09 L632.00,468.59 L637.38,464.09" fill="none" stroke="var(--plum)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M626.62,472.41 L632.00,476.91 L637.38,472.41" fill="none" stroke="var(--plum)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="652.0" y="456.0" font-size="14" fill="var(--plum)" font-weight="700">O₂</text>
 <text x="652.0" y="474.0" font-size="15" fill="var(--plum)" font-weight="700">5.00</text>
-<line x1="706.0" y1="520.0" x2="740.0" y2="520.0" stroke="var(--peri)" stroke-width="1.2"/>
-<path d="M741.96,527.16 L748.00,520.00 L741.96,512.84" fill="none" stroke="var(--peri)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M732.06,527.16 L738.10,520.00 L732.06,512.84" fill="none" stroke="var(--peri)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="706.0" y1="520.0" x2="719.7" y2="520.0" stroke="var(--peri)" stroke-width="1.2"/>
+<line x1="734.3" y1="520.0" x2="748.0" y2="520.0" stroke="var(--peri)" stroke-width="1.2"/>
+<path d="M721.24,524.80 L725.28,520.00 L721.24,515.20" fill="none" stroke="var(--peri)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M728.72,524.80 L732.76,520.00 L728.72,515.20" fill="none" stroke="var(--peri)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="760.0" y="515.0" font-size="14" fill="var(--peri)" font-weight="700">CO₂</text>
 <text x="760.0" y="535.0" font-size="15" fill="var(--peri)" font-weight="700">≈0</text>
 <text x="36.0" y="652.0" font-size="20" fill="var(--fg)" font-weight="700">Oxygen cap 20</text>
@@ -2149,69 +2186,227 @@ m_{\mathrm{retained}}&amp;=-\sum_i m_i
 <text x="864.0" y="675.0" font-size="14" fill="var(--muted)" text-anchor="end">67% of carbon to biomass</text>
 <text x="36.0" y="786.0" font-size="14" fill="var(--fg)">glucose</text>
 <text x="36.0" y="807.0" font-size="17" fill="var(--fg)" font-weight="700">10.0</text>
-<line x1="112.0" y1="790.0" x2="157.3" y2="790.0" stroke="var(--fg)" stroke-width="7.0"/>
-<path d="M159.35,800.35 L168.00,790.00 L159.35,779.65" fill="none" stroke="var(--fg)" stroke-width="2.8000000000000003" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M145.10,800.35 L153.75,790.00 L145.10,779.65" fill="none" stroke="var(--fg)" stroke-width="2.8000000000000003" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="112.0" y1="790.0" x2="131.1" y2="790.0" stroke="var(--fg)" stroke-width="7.0"/>
+<line x1="148.9" y1="790.0" x2="168.0" y2="790.0" stroke="var(--fg)" stroke-width="7.0"/>
+<path d="M132.59,796.25 L137.79,790.00 L132.59,783.75" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M142.21,796.25 L147.41,790.00 L142.21,783.75" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="168.0" y="766.0" width="66.0" height="48.0" fill="var(--bg2)" stroke="var(--rule)" stroke-width="1.4" rx="7"/>
 <text x="201.0" y="795.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">G6P</text>
-<line x1="201.0" y1="766.0" x2="201.0" y2="736.8" stroke="var(--teal)" stroke-width="2.8573543974616795"/>
-<path d="M209.07,734.79 L201.00,728.00 L192.93,734.79" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M209.07,745.93 L201.00,739.14 L192.93,745.93" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="201.0" y1="766.0" x2="201.0" y2="754.7" stroke="var(--teal)" stroke-width="2.8573543974616795"/>
+<line x1="201.0" y1="739.3" x2="201.0" y2="728.0" stroke="var(--teal)" stroke-width="2.8573543974616795"/>
+<path d="M206.21,753.23 L201.00,748.86 L195.79,753.23" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M206.21,745.14 L201.00,740.77 L195.79,745.14" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="140.0" y="686.0" width="128.0" height="42.0" fill="var(--bg2)" stroke="var(--teal)" stroke-width="1.4" rx="7"/>
 <text x="204.0" y="704.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">PPP 4.08</text>
 <text x="204.0" y="721.0" font-size="11" fill="var(--muted)" text-anchor="middle">precursors + CO₂</text>
-<line x1="234.0" y1="790.0" x2="283.9" y2="790.0" stroke="var(--fg)" stroke-width="10.210823280830827"/>
-<path d="M285.91,802.12 L296.00,790.00 L285.91,777.88" fill="none" stroke="var(--fg)" stroke-width="4.084329312332331" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M269.25,802.12 L279.34,790.00 L269.25,777.88" fill="none" stroke="var(--fg)" stroke-width="4.084329312332331" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="234.0" y1="790.0" x2="255.2" y2="790.0" stroke="var(--fg)" stroke-width="10.210823280830827"/>
+<line x1="274.8" y1="790.0" x2="296.0" y2="790.0" stroke="var(--fg)" stroke-width="10.210823280830827"/>
+<path d="M256.67,797.05 L262.52,790.00 L256.67,782.95" fill="none" stroke="var(--fg)" stroke-width="2.0421646561661655" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M267.48,797.05 L273.33,790.00 L267.48,782.95" fill="none" stroke="var(--fg)" stroke-width="2.0421646561661655" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="265.0" y="758.0" font-size="12" fill="var(--muted)" text-anchor="middle">glycolysis</text>
 <text x="265.0" y="820.0" font-size="17" fill="var(--fg)" text-anchor="middle" font-weight="700">14.6</text>
 <rect x="296.0" y="766.0" width="76.0" height="48.0" fill="var(--bg2)" stroke="var(--rule)" stroke-width="1.4" rx="7"/>
 <text x="334.0" y="795.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">pyruvate</text>
-<line x1="372.0" y1="773.0" x2="426.0" y2="773.0" stroke="var(--fg)" stroke-width="5.578430824038317"/>
-<path d="M427.99,782.57 L436.00,773.00 L427.99,763.43" fill="none" stroke="var(--fg)" stroke-width="2.231372329615327" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M414.81,782.57 L422.82,773.00 L414.81,763.43" fill="none" stroke="var(--fg)" stroke-width="2.231372329615327" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="372.0" y1="773.0" x2="395.5" y2="773.0" stroke="var(--fg)" stroke-width="5.578430824038317"/>
+<line x1="412.5" y1="773.0" x2="436.0" y2="773.0" stroke="var(--fg)" stroke-width="5.578430824038317"/>
+<path d="M397.00,778.89 L401.91,773.00 L397.00,767.11" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M406.09,778.89 L411.00,773.00 L406.09,767.11" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="404.0" y="750.0" font-size="12" fill="var(--muted)" text-anchor="middle">PDH 7.97</text>
 <line x1="372.0" y1="807.0" x2="436.0" y2="807.0" stroke="var(--lime)" stroke-width="1.1" stroke-dasharray="3 4"/>
-<text x="396.0" y="832.0" font-size="12" fill="var(--muted)" text-anchor="end">PFL ≈0</text>
+<line x1="372.0" y1="807.0" x2="397.1" y2="807.0" stroke="var(--lime)" stroke-width="0.0"/>
+<line x1="410.9" y1="807.0" x2="436.0" y2="807.0" stroke="var(--lime)" stroke-width="0.0"/>
+<path d="M398.58,811.60 L402.38,807.00 L398.58,802.40" fill="none" stroke="var(--lime)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M405.61,811.60 L409.41,807.00 L405.61,802.40" fill="none" stroke="var(--lime)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="396.0" y="832.0" font-size="12" fill="var(--muted)" text-anchor="end">PFL 0</text>
 <line x1="412.0" y1="813.0" x2="412.0" y2="862.0" stroke="var(--lime)" stroke-width="1.1" stroke-dasharray="3 4"/>
+<line x1="412.0" y1="813.0" x2="412.0" y2="830.6" stroke="var(--lime)" stroke-width="0.0"/>
+<line x1="412.0" y1="844.4" x2="412.0" y2="862.0" stroke="var(--lime)" stroke-width="0.0"/>
+<path d="M407.40,832.09 L412.00,835.88 L416.60,832.09" fill="none" stroke="var(--lime)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M407.40,839.12 L412.00,842.91 L416.60,839.12" fill="none" stroke="var(--lime)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="352.0" y="864.0" width="88.0" height="40.0" fill="var(--bg2)" stroke="var(--lime)" stroke-width="1.4" rx="7"/>
-<text x="396.0" y="888.7" font-size="13" fill="var(--lime)" text-anchor="middle" font-weight="700">formate ≈0</text>
+<text x="396.0" y="888.7" font-size="13" fill="var(--lime)" text-anchor="middle" font-weight="700">formate 0</text>
 <rect x="436.0" y="766.0" width="104.0" height="48.0" fill="var(--bg2)" stroke="var(--rule)" stroke-width="1.4" rx="7"/>
 <text x="488.0" y="795.0" font-size="14" fill="var(--fg)" text-anchor="middle" font-weight="700">acetyl-CoA</text>
 <line x1="492.0" y1="814.0" x2="492.0" y2="862.0" stroke="var(--coral)" stroke-width="1.1" stroke-dasharray="3 4"/>
+<line x1="492.0" y1="814.0" x2="492.0" y2="831.1" stroke="var(--coral)" stroke-width="5.499448119117289e-13"/>
+<line x1="492.0" y1="844.9" x2="492.0" y2="862.0" stroke="var(--coral)" stroke-width="5.499448119117289e-13"/>
+<path d="M487.40,832.59 L492.00,836.38 L496.60,832.59" fill="none" stroke="var(--coral)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M487.40,839.62 L492.00,843.41 L496.60,839.62" fill="none" stroke="var(--coral)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="448.0" y="864.0" width="88.0" height="40.0" fill="var(--bg2)" stroke="var(--coral)" stroke-width="1.4" rx="7"/>
-<text x="492.0" y="888.7" font-size="13" fill="var(--coral)" text-anchor="middle" font-weight="700">acetate ≈0</text>
+<text x="492.0" y="888.7" font-size="13" fill="var(--coral)" text-anchor="middle" font-weight="700">acetate 0</text>
 <line x1="528.0" y1="814.0" x2="596.0" y2="862.0" stroke="var(--rose)" stroke-width="1.1" stroke-dasharray="3 4"/>
+<line x1="528.0" y1="814.0" x2="556.4" y2="834.0" stroke="var(--rose)" stroke-width="0.0"/>
+<line x1="567.6" y1="842.0" x2="596.0" y2="862.0" stroke="var(--rose)" stroke-width="0.0"/>
+<path d="M554.92,838.64 L560.68,837.07 L560.23,831.12" fill="none" stroke="var(--rose)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M560.67,842.69 L566.42,841.12 L565.97,835.17" fill="none" stroke="var(--rose)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="552.0" y="864.0" width="88.0" height="40.0" fill="var(--bg2)" stroke="var(--rose)" stroke-width="1.4" rx="7"/>
-<text x="596.0" y="888.7" font-size="13" fill="var(--rose)" text-anchor="middle" font-weight="700">ethanol ≈0</text>
-<line x1="540.0" y1="790.0" x2="573.0" y2="790.0" stroke="var(--teal)" stroke-width="3.400443650958028"/>
-<path d="M574.97,798.37 L582.00,790.00 L574.97,781.63" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M563.42,798.37 L570.45,790.00 L563.42,781.63" fill="none" stroke="var(--teal)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="596.0" y="888.7" font-size="13" fill="var(--rose)" text-anchor="middle" font-weight="700">ethanol 0</text>
+<line x1="540.0" y1="790.0" x2="553.1" y2="790.0" stroke="var(--teal)" stroke-width="3.400443650958028"/>
+<line x1="568.9" y1="790.0" x2="582.0" y2="790.0" stroke="var(--teal)" stroke-width="3.400443650958028"/>
+<path d="M554.62,795.35 L559.10,790.00 L554.62,784.65" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M562.90,795.35 L567.38,790.00 L562.90,784.65" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="561.0" y="754.0" font-size="14" fill="var(--teal)" text-anchor="middle" font-weight="700">4.86</text>
 <rect x="582.0" y="764.0" width="124.0" height="52.0" fill="var(--bg2)" stroke="var(--teal)" stroke-width="1.4" rx="7"/>
 <text x="644.0" y="787.0" font-size="13" fill="var(--fg)" text-anchor="middle" font-weight="700">TCA cycle</text>
 <text x="644.0" y="804.0" font-size="10" fill="var(--muted)" text-anchor="middle">+ respiration</text>
-<line x1="632.0" y1="718.0" x2="632.0" y2="750.0" stroke="var(--plum)" stroke-width="12.305253471177522"/>
-<path d="M618.73,751.96 L632.00,763.00 L645.27,751.96" fill="none" stroke="var(--plum)" stroke-width="4.92210138847101" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M618.73,733.73 L632.00,744.77 L645.27,733.73" fill="none" stroke="var(--plum)" stroke-width="4.92210138847101" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="632.0" y1="718.0" x2="632.0" y2="730.1" stroke="var(--plum)" stroke-width="12.305253471177522"/>
+<line x1="632.0" y1="750.9" x2="632.0" y2="763.0" stroke="var(--plum)" stroke-width="12.305253471177522"/>
+<path d="M624.50,731.58 L632.00,737.84 L639.50,731.58" fill="none" stroke="var(--plum)" stroke-width="2.461050694235505" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M624.50,743.16 L632.00,749.42 L639.50,743.16" fill="none" stroke="var(--plum)" stroke-width="2.461050694235505" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="652.0" y="726.0" font-size="14" fill="var(--plum)" font-weight="700">O₂</text>
 <text x="652.0" y="744.0" font-size="15" fill="var(--plum)" font-weight="700">17.6</text>
-<line x1="706.0" y1="790.0" x2="734.3" y2="790.0" stroke="var(--peri)" stroke-width="13.772655844963774"/>
-<path d="M736.30,804.07 L748.00,790.00 L736.30,775.93" fill="none" stroke="var(--peri)" stroke-width="5.50906233798551" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M716.97,804.07 L728.67,790.00 L716.97,775.93" fill="none" stroke="var(--peri)" stroke-width="5.50906233798551" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="706.0" y1="790.0" x2="717.1" y2="790.0" stroke="var(--peri)" stroke-width="13.772655844963774"/>
+<line x1="736.9" y1="790.0" x2="748.0" y2="790.0" stroke="var(--peri)" stroke-width="13.772655844963774"/>
+<path d="M718.62,797.50 L724.50,790.00 L718.62,782.50" fill="none" stroke="var(--peri)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M729.50,797.50 L735.38,790.00 L729.50,782.50" fill="none" stroke="var(--peri)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="760.0" y="785.0" font-size="14" fill="var(--peri)" font-weight="700">CO₂</text>
 <text x="760.0" y="805.0" font-size="15" fill="var(--peri)" font-weight="700">19.7</text>
 <line x1="36.0" y1="922.0" x2="864.0" y2="922.0" stroke="var(--rule)" stroke-width="1"/>
 <text x="36.0" y="944.0" font-size="12" fill="var(--muted)">Each arrow is an overall conversion, not an elementary step. Lower glycolysis carries two triose units per glucose.</text>
-<line x1="700.0" y1="939.0" x2="732.9" y2="939.0" stroke="var(--fg)" stroke-width="3.5"/>
-<path d="M734.92,947.42 L742.00,939.00 L734.92,930.58" fill="none" stroke="var(--fg)" stroke-width="1.4000000000000001" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M723.30,947.42 L730.38,939.00 L723.30,930.58" fill="none" stroke="var(--fg)" stroke-width="1.4000000000000001" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="700.0" y1="939.0" x2="713.1" y2="939.0" stroke="var(--fg)" stroke-width="3.5"/>
+<line x1="728.9" y1="939.0" x2="742.0" y2="939.0" stroke="var(--fg)" stroke-width="3.5"/>
+<path d="M714.59,944.38 L719.09,939.00 L714.59,933.62" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M722.91,944.38 L727.41,939.00 L722.91,933.62" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="752.0" y="944.0" font-size="12" fill="var(--muted)">5 flux units</text>
+<text x="36.0" y="964.0" font-size="12" fill="var(--muted)">Pyruvate dehydrogenase releases one NADH and one CO₂ per acetyl-CoA. Pyruvate formate lyase releases formate and no NADH.</text>
 </svg>
 </div><figcaption><b>Figure 7b. The same optimum at three oxygen supplies, drawn as pathway fluxes.</b> Every panel solves iJO1366 with glucose uptake capped at 10 and the oxygen cap shown. Arrow width is reaction flux in millimoles per gram dry weight per hour, on one scale for all panels. Numbers are reaction fluxes: enolase for lower glycolysis, pyruvate dehydrogenase, pyruvate formate lyase, citrate synthase for TCA entry, glucose-6-phosphate dehydrogenase for the pentose phosphate pathway, the exchanges, and growth. Lower glycolysis carries two triose units per glucose. The carbon dioxide arrow is net export from pyruvate dehydrogenase, the TCA cycle and the pentose phosphate pathway, after the small anaplerotic uptake. The PPP and TCA blocks are projections that lump several reactions, so every arrow is an overall conversion rather than an elementary step. Each printed value is fixed across all growth-optimal solutions, except oxygen uptake at cap 20, which can be anywhere from 17.6 to 20. The panel shows the minimum-total-flux value. The growth rate and the carbon share in each header come from the same solution.</figcaption></figure>
-<p><strong>The shift follows the redox budget.</strong> Glycolysis reduces NAD+ at the glyceraldehyde-3-phosphate dehydrogenase step, and the TCA cycle would reduce more. Without oxygen, respiration cannot reoxidize that NADH. The optimum therefore keeps the TCA cycle nearly closed and sends pyruvate through pyruvate formate lyase, which produces no NADH. Ethanol production consumes two NADH per ethanol and removes electrons that respiration would have removed. Its flux rises from 1.25 at oxygen cap 5 to 8.08 without oxygen. Acetate formation can also return ATP through acetate kinase. The optimum does not fix how much acetate passes that step, so the figure makes no ATP claim for acetate.</p>
+<p><strong>The shift follows the reducing power.</strong> Glycolysis reduces NAD+ at the glyceraldehyde-3-phosphate dehydrogenase step. Pyruvate dehydrogenase would add one NADH per acetyl-CoA. Without oxygen, respiration cannot reoxidize that NADH, so the optimum must match NADH production to the sinks that remain. Ethanol production consumes two NADH per acetyl-CoA and is the largest sink without oxygen. Pyruvate formate lyase releases formate and makes no NADH. The optimum uses it instead of pyruvate dehydrogenase. Acetate formation can also return ATP through acetate kinase. The optimum does not fix how much acetate passes that step, so the figure makes no ATP claim for acetate.</p>
+<p>Figure 7c follows the same three solutions from NADH source to sink.</p>
+<figure class="figbox" id="fig-fba-redox"><div class="l13-figure" tabindex="0" role="region" aria-label="NADH produced and reoxidized at three oxygen caps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="NADH produced and reoxidized at three oxygen caps" font-family="var(--sans)">
+<text x="36.0" y="40.0" font-size="25" fill="var(--fg)" font-weight="700">Oxygen decides where the reducing power goes</text>
+<text x="36.0" y="66.0" font-size="14" fill="var(--muted)">iJO1366 solutions of Figure 7b. Arrow width is NADH flux in mmol gDW⁻¹ h⁻¹, on one scale.</text>
+<text x="36.0" y="118.0" font-size="16" fill="var(--fg)" font-weight="700">Oxygen cap 0</text>
+<text x="864.0" y="118.0" font-size="13" fill="var(--muted)" text-anchor="end">no oxygen acceptor</text>
+<text x="248.0" y="150.0" font-size="12" fill="var(--fg)" text-anchor="end">glycolysis (GAPD) 19.4</text>
+<line x1="256.0" y1="146.0" x2="297.8" y2="146.0" stroke="var(--fg)" stroke-width="11.554021433942932"/>
+<line x1="318.2" y1="146.0" x2="360.0" y2="146.0" stroke="var(--fg)" stroke-width="11.554021433942932"/>
+<path d="M299.29,153.39 L305.40,146.00 L299.29,138.61" fill="none" stroke="var(--fg)" stroke-width="2.3108042867885863" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M310.60,153.39 L316.71,146.00 L310.60,138.61" fill="none" stroke="var(--fg)" stroke-width="2.3108042867885863" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="248.0" y="176.0" font-size="12" fill="var(--fg)" text-anchor="end">pyruvate dehydrogenase (PDH) 0</text>
+<line x1="256.0" y1="172.0" x2="360.0" y2="172.0" stroke="var(--fg)" stroke-width="1.1" stroke-dasharray="3 4"/>
+<line x1="256.0" y1="172.0" x2="301.1" y2="172.0" stroke="var(--fg)" stroke-width="0.0"/>
+<line x1="314.9" y1="172.0" x2="360.0" y2="172.0" stroke="var(--fg)" stroke-width="0.0"/>
+<path d="M302.58,176.60 L306.38,172.00 L302.58,167.40" fill="none" stroke="var(--fg)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M309.61,176.60 L313.41,172.00 L309.61,167.40" fill="none" stroke="var(--fg)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="248.0" y="202.0" font-size="12" fill="var(--fg)" text-anchor="end">TCA cycle (MDH, AKGDH) 0.17</text>
+<line x1="256.0" y1="198.0" x2="300.7" y2="198.0" stroke="var(--fg)" stroke-width="1.2"/>
+<line x1="315.3" y1="198.0" x2="360.0" y2="198.0" stroke="var(--fg)" stroke-width="1.2"/>
+<path d="M302.24,202.80 L306.28,198.00 L302.24,193.20" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M309.72,202.80 L313.76,198.00 L309.72,193.20" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="248.0" y="228.0" font-size="12" fill="var(--fg)" text-anchor="end">other reactions 0.65</text>
+<line x1="256.0" y1="224.0" x2="300.7" y2="224.0" stroke="var(--fg)" stroke-width="1.2"/>
+<line x1="315.3" y1="224.0" x2="360.0" y2="224.0" stroke="var(--fg)" stroke-width="1.2"/>
+<path d="M302.24,228.80 L306.28,224.00 L302.24,219.20" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M309.72,228.80 L313.76,224.00 L309.72,219.20" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="480.0" y1="160.0" x2="584.0" y2="160.0" stroke="var(--plum)" stroke-width="1.1" stroke-dasharray="3 4"/>
+<line x1="480.0" y1="160.0" x2="525.1" y2="160.0" stroke="var(--plum)" stroke-width="0.0"/>
+<line x1="538.9" y1="160.0" x2="584.0" y2="160.0" stroke="var(--plum)" stroke-width="0.0"/>
+<path d="M526.59,164.60 L530.38,160.00 L526.59,155.40" fill="none" stroke="var(--plum)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M533.62,164.60 L537.41,160.00 L533.62,155.40" fill="none" stroke="var(--plum)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="594.0" y="164.0" font-size="12" fill="var(--fg)">respiratory chain 0</text>
+<line x1="480.0" y1="192.0" x2="522.3" y2="192.0" stroke="var(--rose)" stroke-width="9.612426371676072"/>
+<line x1="541.7" y1="192.0" x2="584.0" y2="192.0" stroke="var(--rose)" stroke-width="9.612426371676072"/>
+<path d="M523.85,198.90 L529.57,192.00 L523.85,185.10" fill="none" stroke="var(--rose)" stroke-width="1.9224852743352145" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M534.43,198.90 L540.15,192.00 L534.43,185.10" fill="none" stroke="var(--rose)" stroke-width="1.9224852743352145" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="594.0" y="196.0" font-size="12" fill="var(--fg)">ethanol (ACALD, ALCD2x) 16.2</text>
+<line x1="480.0" y1="224.0" x2="524.4" y2="224.0" stroke="var(--muted)" stroke-width="2.430339226342047"/>
+<line x1="539.6" y1="224.0" x2="584.0" y2="224.0" stroke="var(--muted)" stroke-width="2.430339226342047"/>
+<path d="M525.89,229.11 L530.18,224.00 L525.89,218.89" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M533.82,229.11 L538.11,224.00 L533.82,218.89" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="594.0" y="228.0" font-size="12" fill="var(--fg)">NADPH and other 4.08</text>
+<rect x="360.0" y="134.0" width="120.0" height="112.0" fill="var(--bg2)" stroke="var(--plum)" stroke-width="1.6" rx="8"/>
+<text x="420.0" y="178.0" font-size="15" fill="var(--plum)" text-anchor="middle" font-weight="700">NADH</text>
+<text x="420.0" y="202.0" font-size="17" fill="var(--fg)" text-anchor="middle" font-weight="700">20.2</text>
+<text x="420.0" y="220.0" font-size="10" fill="var(--muted)" text-anchor="middle">mmol gDW⁻¹ h⁻¹</text>
+<text x="36.0" y="278.0" font-size="16" fill="var(--fg)" font-weight="700">Oxygen cap 5</text>
+<text x="864.0" y="278.0" font-size="13" fill="var(--muted)" text-anchor="end">the chain takes half of it</text>
+<text x="248.0" y="310.0" font-size="12" fill="var(--fg)" text-anchor="end">glycolysis (GAPD) 18.8</text>
+<line x1="256.0" y1="306.0" x2="297.9" y2="306.0" stroke="var(--fg)" stroke-width="11.196022830989232"/>
+<line x1="318.1" y1="306.0" x2="360.0" y2="306.0" stroke="var(--fg)" stroke-width="11.196022830989232"/>
+<path d="M299.39,313.30 L305.43,306.00 L299.39,298.70" fill="none" stroke="var(--fg)" stroke-width="2.2392045661978464" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M310.57,313.30 L316.61,306.00 L310.57,298.70" fill="none" stroke="var(--fg)" stroke-width="2.2392045661978464" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="248.0" y="336.0" font-size="12" fill="var(--fg)" text-anchor="end">pyruvate dehydrogenase (PDH) 0</text>
+<line x1="256.0" y1="332.0" x2="360.0" y2="332.0" stroke="var(--fg)" stroke-width="1.1" stroke-dasharray="3 4"/>
+<line x1="256.0" y1="332.0" x2="301.1" y2="332.0" stroke="var(--fg)" stroke-width="0.0"/>
+<line x1="314.9" y1="332.0" x2="360.0" y2="332.0" stroke="var(--fg)" stroke-width="0.0"/>
+<path d="M302.58,336.60 L306.38,332.00 L302.58,327.40" fill="none" stroke="var(--fg)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M309.61,336.60 L313.41,332.00 L309.61,327.40" fill="none" stroke="var(--fg)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="248.0" y="362.0" font-size="12" fill="var(--fg)" text-anchor="end">TCA cycle (MDH, AKGDH) 0.51</text>
+<line x1="256.0" y1="358.0" x2="300.7" y2="358.0" stroke="var(--fg)" stroke-width="1.2"/>
+<line x1="315.3" y1="358.0" x2="360.0" y2="358.0" stroke="var(--fg)" stroke-width="1.2"/>
+<path d="M302.24,362.80 L306.28,358.00 L302.24,353.20" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M309.72,362.80 L313.76,358.00 L309.72,353.20" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="248.0" y="388.0" font-size="12" fill="var(--fg)" text-anchor="end">other reactions 1.32</text>
+<line x1="256.0" y1="384.0" x2="300.7" y2="384.0" stroke="var(--fg)" stroke-width="1.2"/>
+<line x1="315.3" y1="384.0" x2="360.0" y2="384.0" stroke="var(--fg)" stroke-width="1.2"/>
+<path d="M302.24,388.80 L306.28,384.00 L302.24,379.20" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M309.72,388.80 L313.76,384.00 L309.72,379.20" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="480.0" y1="320.0" x2="523.4" y2="320.0" stroke="var(--plum)" stroke-width="5.852861273041169"/>
+<line x1="540.6" y1="320.0" x2="584.0" y2="320.0" stroke="var(--plum)" stroke-width="5.852861273041169"/>
+<path d="M524.92,325.96 L529.89,320.00 L524.92,314.04" fill="none" stroke="var(--plum)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M534.11,325.96 L539.08,320.00 L534.11,314.04" fill="none" stroke="var(--plum)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="594.0" y="324.0" font-size="12" fill="var(--fg)">respiratory chain 9.84</text>
+<line x1="480.0" y1="352.0" x2="524.7" y2="352.0" stroke="var(--rose)" stroke-width="1.4881740656877478"/>
+<line x1="539.3" y1="352.0" x2="584.0" y2="352.0" stroke="var(--rose)" stroke-width="1.4881740656877478"/>
+<path d="M526.16,356.87 L530.26,352.00 L526.16,347.13" fill="none" stroke="var(--rose)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M533.74,356.87 L537.84,352.00 L533.74,347.13" fill="none" stroke="var(--rose)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="594.0" y="356.0" font-size="12" fill="var(--fg)">ethanol (ACALD, ALCD2x) 2.50</text>
+<line x1="480.0" y1="384.0" x2="523.7" y2="384.0" stroke="var(--muted)" stroke-width="4.9466407961609065"/>
+<line x1="540.3" y1="384.0" x2="584.0" y2="384.0" stroke="var(--muted)" stroke-width="4.9466407961609065"/>
+<path d="M525.18,389.74 L529.96,384.00 L525.18,378.26" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M534.04,389.74 L538.82,384.00 L534.04,378.26" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="594.0" y="388.0" font-size="12" fill="var(--fg)">NADPH and other 8.31</text>
+<rect x="360.0" y="294.0" width="120.0" height="112.0" fill="var(--bg2)" stroke="var(--plum)" stroke-width="1.6" rx="8"/>
+<text x="420.0" y="338.0" font-size="15" fill="var(--plum)" text-anchor="middle" font-weight="700">NADH</text>
+<text x="420.0" y="362.0" font-size="17" fill="var(--fg)" text-anchor="middle" font-weight="700">20.7</text>
+<text x="420.0" y="380.0" font-size="10" fill="var(--muted)" text-anchor="middle">mmol gDW⁻¹ h⁻¹</text>
+<text x="36.0" y="438.0" font-size="16" fill="var(--fg)" font-weight="700">Oxygen cap 20</text>
+<text x="864.0" y="438.0" font-size="13" fill="var(--muted)" text-anchor="end">the chain takes most of it</text>
+<text x="248.0" y="470.0" font-size="12" fill="var(--fg)" text-anchor="end">glycolysis (GAPD) 16.3</text>
+<line x1="256.0" y1="466.0" x2="298.3" y2="466.0" stroke="var(--fg)" stroke-width="9.683490907580754"/>
+<line x1="317.7" y1="466.0" x2="360.0" y2="466.0" stroke="var(--fg)" stroke-width="9.683490907580754"/>
+<path d="M299.83,472.92 L305.56,466.00 L299.83,459.08" fill="none" stroke="var(--fg)" stroke-width="1.936698181516151" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M310.44,472.92 L316.17,466.00 L310.44,459.08" fill="none" stroke="var(--fg)" stroke-width="1.936698181516151" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="248.0" y="496.0" font-size="12" fill="var(--fg)" text-anchor="end">pyruvate dehydrogenase (PDH) 7.97</text>
+<line x1="256.0" y1="492.0" x2="299.7" y2="492.0" stroke="var(--fg)" stroke-width="4.741666200432569"/>
+<line x1="316.3" y1="492.0" x2="360.0" y2="492.0" stroke="var(--fg)" stroke-width="4.741666200432569"/>
+<path d="M301.23,497.69 L305.98,492.00 L301.23,486.31" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M310.02,497.69 L314.77,492.00 L310.02,486.31" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="248.0" y="522.0" font-size="12" fill="var(--fg)" text-anchor="end">TCA cycle (MDH, AKGDH) 8.63</text>
+<line x1="256.0" y1="518.0" x2="299.6" y2="518.0" stroke="var(--fg)" stroke-width="5.132955609293645"/>
+<line x1="316.4" y1="518.0" x2="360.0" y2="518.0" stroke="var(--fg)" stroke-width="5.132955609293645"/>
+<path d="M301.12,523.78 L305.95,518.00 L301.12,512.22" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M310.05,523.78 L314.88,518.00 L310.05,512.22" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="248.0" y="548.0" font-size="12" fill="var(--fg)" text-anchor="end">other reactions 2.75</text>
+<line x1="256.0" y1="544.0" x2="300.6" y2="544.0" stroke="var(--fg)" stroke-width="1.634528953113937"/>
+<line x1="315.4" y1="544.0" x2="360.0" y2="544.0" stroke="var(--fg)" stroke-width="1.634528953113937"/>
+<path d="M302.12,548.91 L306.25,544.00 L302.12,539.09" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M309.75,548.91 L313.88,544.00 L309.75,539.09" fill="none" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="480.0" y1="480.0" x2="521.2" y2="480.0" stroke="var(--plum)" stroke-width="18.457925224994735"/>
+<line x1="542.8" y1="480.0" x2="584.0" y2="480.0" stroke="var(--plum)" stroke-width="18.457925224994735"/>
+<path d="M522.74,487.50 L529.24,480.00 L522.74,472.50" fill="none" stroke="var(--plum)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M534.76,487.50 L541.26,480.00 L534.76,472.50" fill="none" stroke="var(--plum)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="594.0" y="484.0" font-size="12" fill="var(--fg)">respiratory chain 31.0</text>
+<line x1="480.0" y1="512.0" x2="584.0" y2="512.0" stroke="var(--rose)" stroke-width="1.1" stroke-dasharray="3 4"/>
+<line x1="480.0" y1="512.0" x2="525.1" y2="512.0" stroke="var(--rose)" stroke-width="0.0"/>
+<line x1="538.9" y1="512.0" x2="584.0" y2="512.0" stroke="var(--rose)" stroke-width="0.0"/>
+<path d="M526.59,516.60 L530.38,512.00 L526.59,507.40" fill="none" stroke="var(--rose)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M533.62,516.60 L537.41,512.00 L533.62,507.40" fill="none" stroke="var(--rose)" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="594.0" y="516.0" font-size="12" fill="var(--fg)">ethanol (ACALD, ALCD2x) 0</text>
+<line x1="480.0" y1="544.0" x2="524.3" y2="544.0" stroke="var(--muted)" stroke-width="2.734716445426171"/>
+<line x1="539.7" y1="544.0" x2="584.0" y2="544.0" stroke="var(--muted)" stroke-width="2.734716445426171"/>
+<path d="M525.81,549.18 L530.15,544.00 L525.81,538.82" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M533.85,549.18 L538.19,544.00 L533.85,538.82" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="594.0" y="548.0" font-size="12" fill="var(--fg)">NADPH and other 4.60</text>
+<rect x="360.0" y="454.0" width="120.0" height="112.0" fill="var(--bg2)" stroke="var(--plum)" stroke-width="1.6" rx="8"/>
+<text x="420.0" y="498.0" font-size="15" fill="var(--plum)" text-anchor="middle" font-weight="700">NADH</text>
+<text x="420.0" y="522.0" font-size="17" fill="var(--fg)" text-anchor="middle" font-weight="700">35.6</text>
+<text x="420.0" y="540.0" font-size="10" fill="var(--muted)" text-anchor="middle">mmol gDW⁻¹ h⁻¹</text>
+</svg>
+</div><figcaption><b>Figure 7c. Oxygen decides where the reducing power goes.</b> Each row uses the same iJO1366 solution as the matching panel of Figure 7b. Sources of NADH are on the left and sinks on the right, in NADH units per gram dry weight per hour. Arrow width is proportional to flux on one scale. The pool total equals the sum of its sources and of its sinks. Without oxygen, ethanol formation is the largest sink. At oxygen cap 20, pyruvate dehydrogenase and the TCA cycle add 16.6 units of NADH and the respiratory chain takes 31.0 of the 35.6 made. The remaining sink includes the transhydrogenase that supplies NADPH and reactions of biosynthesis. Every group total, not only the pool total, is fixed across all growth-optimal solutions at these three conditions.</figcaption></figure>
 <p><strong>The switch happens at a common oxygen-to-glucose ratio.</strong> Overflow products disappear at oxygen cap 10 for glucose 5 and at cap 18 for glucose 10. At those caps the model consumes about 1.8 oxygen per glucose: <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9.07</mn><mi mathvariant="normal">/</mi><mn>5</mn><mo>=</mo><mn>1.81</mn></mrow><annotation encoding="application/x-tex">9.07/5=1.81</annotation></semantics></math></span> and <span class="m"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>17.58</mn><mi mathvariant="normal">/</mi><mn>10</mn><mo>=</mo><mn>1.76</mn></mrow><annotation encoding="application/x-tex">17.58/10=1.76</annotation></semantics></math></span>. Extra oxygen above that ratio is unused, so growth then follows the glucose supply alone.</p>
-<p><strong>Below that ratio, more glucose lowers the carbon yield.</strong> At oxygen cap 5, raising glucose from 5 to 20 raises growth from 0.34 to 0.77 and lowers the share of carbon retained in biomass from 0.46 to 0.26. The extra sugar is fermented at a lower yield. Without oxygen the share is 0.17. At the threshold it is 0.67. Figure 7c plots this share against the supply ratio for three glucose caps.</p>
+<p><strong>Below that ratio, more glucose lowers the carbon yield.</strong> At oxygen cap 5, raising glucose from 5 to 20 raises growth from 0.34 to 0.77 and lowers the share of carbon retained in biomass from 0.46 to 0.26. The extra sugar is fermented at a lower yield. Without oxygen the share is 0.17. At the threshold it is 0.67. Figure 7d plots this share against the supply ratio for three glucose caps.</p>
 <figure class="figbox" id="fig-fba-yield"><div class="l13-figure" tabindex="0" role="region" aria-label="Carbon retained in biomass per glucose carbon against the oxygen-to-glucose supply ratio at three glucose caps"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Share of glucose carbon retained in biomass against oxygen supply" font-family="var(--sans)">
 <text x="36.0" y="40.0" font-size="25" fill="var(--fg)" font-weight="700">Carbon yield follows the oxygen-to-glucose supply ratio</text>
 <text x="36.0" y="66.0" font-size="14" fill="var(--muted)">Every archived iJO1366 solution at glucose caps 5, 10 and 20. The curves nearly coincide.</text>
@@ -2265,7 +2460,7 @@ m_{\mathrm{retained}}&amp;=-\sum_i m_i
 <text x="140.0" y="149.2" font-size="14" fill="var(--fg)">two thirds of the carbon becomes biomass</text>
 <text x="270.6" y="400.8" font-size="14" fill="var(--fg)">one glucose in six becomes biomass</text>
 </svg>
-</div><figcaption><b>Figure 7c. Carbon yield follows the oxygen-to-glucose supply ratio.</b> Each point is one archived iJO1366 solution at glucose caps 5, 10 and 20. The vertical axis is carbon retained in biomass divided by carbon taken up as glucose. Plotted against the ratio of the caps, the three curves nearly coincide. The residual gap comes from the fixed ATP maintenance requirement, which costs relatively more when growth is slow. The shading separates the oxygen-scarce region from the region where oxygen is in excess. Overflow products disappear above about 1.8 oxygen per glucose. Beyond that ratio the extra oxygen is unused, so the yield is flat. The marked points are the three regimes of Figure 7b.</figcaption></figure>
+</div><figcaption><b>Figure 7d. Carbon yield follows the oxygen-to-glucose supply ratio.</b> Each point is one archived iJO1366 solution at glucose caps 5, 10 and 20. The vertical axis is carbon retained in biomass divided by carbon taken up as glucose. Plotted against the ratio of the caps, the three curves nearly coincide. The residual gap comes from the fixed ATP maintenance requirement, which costs relatively more when growth is slow. The shading separates the oxygen-scarce region from the region where oxygen is in excess. Overflow products disappear above about 1.8 oxygen per glucose. Beyond that ratio the extra oxygen is unused, so the yield is flat. The marked points are the three regimes of Figure 7b.</figcaption></figure>
 <p><strong>The calculation bounds the route. It does not measure it.</strong> Growth and the exchange fluxes are fixed by the optimum. Several internal fluxes are not. Between oxygen caps of about 6 and 17 the model can excrete or oxidize formate at the same growth rate, so the partition shown in that band would follow the chosen representative. The three panels avoid that band, and their printed values are fixed. A predicted flux becomes evidence only when its variability range is narrow and the exchange fluxes agree with measurement.</p>
 
 <details><summary>Inspect all 2,583 reaction records and three computed conditions</summary>
