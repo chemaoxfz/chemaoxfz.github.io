@@ -103,7 +103,7 @@ nav_order: 7
 <div class="teaching-courses">
   <section class="teaching-course">
     <h2>PEBBLE BioFusion · Summer research camp</h2>
-    <p>Westlake University, Hangzhou</p>
+    <p>Hosted by the Center for Interdisciplinary Studies, Westlake University, Hangzhou</p>
 
     <div class="course-year">
       <div class="course-term">Summer 2026</div>
@@ -113,8 +113,7 @@ nav_order: 7
         talks and hands-on studios. Week two hands the hours over to the students, who each
         carry a question of their own to a manuscript. Thirty-six sessions, fourteen tutorials, and
         sixteen student manuscripts by forty-five authors.</p>
-        <p>I organized the camp. Westlake University's Center for Interdisciplinary Studies hosted
-        and funded it.</p>
+        <p>I organized the 2026 camp, which the center funded.</p>
         <a class="course-link" href="https://pebble-biofusion.github.io/">Schedule, tutorials, research-with-AI method, and student work →</a>
       </div>
     </div>

@@ -276,7 +276,7 @@ display_categories: [ongoing, past]
       An agent output is not research.
       It becomes research when a human can understand it, defend it and communicate it.
       That rule shapes how I do research with AI agents.
-      Below are the commandments I work by, the scaffold I use to tell an agent what I want, the camp I organized, where I taught both, and two open skills that turn the practice into procedures an agent can follow.
+      Below are the commandments I work by, the scaffold I use to tell an agent what I want, the 2026 camp I organized, where I taught both, and two open skills that turn the practice into procedures an agent can follow.
     </p>
     <ul class="research-index__list" role="list">
       <li>
@@ -327,8 +327,8 @@ display_categories: [ongoing, past]
               <a href="https://pebble-biofusion.github.io/">PEBBLE BioFusion 2026, an AI-native research camp</a>
             </h3>
             <p class="research-project__description">
-              I organized PEBBLE BioFusion 2026, a summer research camp designed from the ground up for the age of AI.
-              Westlake University's Center for Interdisciplinary Studies hosted and funded it.
+              PEBBLE BioFusion is a summer research camp hosted by Westlake University's Center for Interdisciplinary Studies.
+              I organized the 2026 camp, funded by the center and designed from the ground up for the age of AI.
               AI now supplies tutorials, literature search, code and first drafts on demand.
               So the camp trained what AI does not reliably supply: taste in choosing questions, rigor in building a chain of logic, and the courage to pursue a bold question all the way through.
               Week one opened five live questions, and week two handed the hours to the students.
