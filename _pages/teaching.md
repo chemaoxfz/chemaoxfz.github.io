@@ -49,6 +49,10 @@ nav_order: 7
     margin: 0;
   }
 
+  .course-year p + p {
+    margin-top: 0.6rem;
+  }
+
   .course-link {
     display: inline-block;
     margin-top: 0.25rem;
@@ -109,6 +113,8 @@ nav_order: 7
         talks and hands-on studios. Week two hands the hours over to the students, who each
         carry a question of their own to a manuscript. Thirty-six sessions, fourteen tutorials, and
         sixteen student manuscripts by forty-five authors.</p>
+        <p>I organized the camp. Westlake University's Center for Interdisciplinary Studies hosted
+        and funded it.</p>
         <a class="course-link" href="https://pebble-biofusion.github.io/">Schedule, tutorials, research-with-AI method, and student work →</a>
       </div>
     </div>
